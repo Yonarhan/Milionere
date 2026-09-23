@@ -88,3 +88,11 @@ def llm(saida_cli: dict, segundos: float) -> None:
 def imagem(provedor: str, segundos: float = 0.0, quantidade: int = 1) -> None:
     _anotar({"tipo": "imagem", "modelo": provedor, "usd": PRECO_IMAGEM_USD.get(provedor, 0.0) * quantidade,
              "segundos": segundos})
+
+
+def anotar_llm(modelo: str, uso, usd: float, segundos: float) -> None:
+    """Chamada pela API direta (llm_api.py): o custo vem calculado dos tokens reais."""
+    _anotar({"tipo": "llm", "modelo": modelo,
+             "entrada": (getattr(uso, "input_tokens", 0) or 0) + (getattr(uso, "cache_read_input_tokens", 0) or 0)
+                        + (getattr(uso, "cache_creation_input_tokens", 0) or 0),
+             "saida": getattr(uso, "output_tokens", 0) or 0, "usd": usd, "segundos": segundos})

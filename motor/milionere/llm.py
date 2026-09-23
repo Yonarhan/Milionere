@@ -42,8 +42,14 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
            modelo: str | None = None, papel: str = "roteirista") -> dict:
     """Manda o prompt e devolve o JSON validado pelo schema. Com ler_arquivos_em, o modelo pode abrir
     (só ler) arquivos daquela pasta, por exemplo imagens para o juiz visual."""
+    if caminhos.LLM == "api":  # API direta da Anthropic: sem o overhead do Claude Code CLI
+        import llm_api
+        try:
+            return llm_api.chamar(prompt, schema, ler_arquivos_em, modelo, papel)
+        except Exception as e:
+            raise ErroLLM(f"API: {e}") from e
     if caminhos.LLM != "claude-cli":
-        raise ErroLLM(f"MILIONERE_LLM={caminhos.LLM!r} ainda não implementado (fase 1: API). Use claude-cli.")
+        raise ErroLLM(f"MILIONERE_LLM={caminhos.LLM!r} desconhecido (use claude-cli ou api)")
     cmd = [CLAUDE, "-p", *_flags_opcionais(), "--output-format", "json", "--json-schema", json.dumps(schema)]
     if ler_arquivos_em:
         cmd += ["--tools", "Read", "--allowedTools", "Read", "--add-dir", str(ler_arquivos_em)]

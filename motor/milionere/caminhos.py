@@ -6,7 +6,7 @@ worker do Celery e no servidor, sem caminho fixo no código.
 
 Camadas trocáveis (valores aceitos):
     MILIONERE_VOZ     edge (padrão, MVP) | azure (mesma voz, oficial: pedir antes de cobrar)
-    MILIONERE_LLM     claude-cli (padrão, dev) | api (fase 1)
+    MILIONERE_LLM     claude-cli (padrão, dev) | api (API direta da Anthropic; ANTHROPIC_API_KEY no .env)
     MILIONERE_IMAGEM  auto (padrão: manual > comfy) | comfy | gemini | manual
     MILIONERE_PLANO   gratis (padrão) | pago | chave_propria   (pago/chave_propria => gemini com reserva no comfy)
     MILIONERE_MODELO_ROTEIRO / MILIONERE_MODELO_JUIZ   modelo do Claude de cada papel (padrão: sonnet / haiku)
@@ -55,3 +55,5 @@ PLANO = _cfg("MILIONERE_PLANO", "gratis")
 MODELO_ROTEIRO = _cfg("MILIONERE_MODELO_ROTEIRO", "sonnet")   # escreve: precisa de qualidade em pt-BR
 MODELO_JUIZ = _cfg("MILIONERE_MODELO_JUIZ", "haiku")          # confere contra critérios fixos: o barato basta
 JUIZ_ROTEIRO = _cfg("MILIONERE_JUIZ_ROTEIRO", "1") == "1"     # juiz de IA no roteiro genérico (desligar = só código)
+ESFORCO_ROTEIRO = _cfg("MILIONERE_ESFORCO_ROTEIRO", "medium")  # API: low | medium | high (ignorado no Haiku)
+ESFORCO_JUIZ = _cfg("MILIONERE_ESFORCO_JUIZ", "low")
