@@ -142,6 +142,20 @@
           "imagem_corrigida": "Wide shot of a weary prophet lying asleep under a lone broom tree, a round loaf baking on glowing stones and a clay water jar beside him, peaceful, soft dawn light, desert wilderness"
         }
       ]
+    },
+    {
+      "quando": "20:27:45",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 2,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "Os pés do profeta, em primeiro plano, estão deformados: as solas estão viradas para a câmera com os dedos na parte de baixo.",
+          "imagem_corrigida": "Wide shot of a weary prophet sitting alone under a lone broom tree, head bowed in despair, robe draped over folded legs, lifting his face to the sky, harsh midday sun, barren desert wilderness"
+        }
+      ]
     }
   ]
 }
