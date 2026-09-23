@@ -45,6 +45,7 @@
   "cinema_flux": {
     "nome": "Cinematográfico realista (Flux, melhor em ação)",
     "motor": "flux",
+    "modelo_credito": "FLUX.1 schnell",
     "prompt": "cinematic film still, dramatic lighting, 35mm photograph, realistic, highly detailed, biblical epic movie",
     "negativo": "",
     "negativo_biblico": "",
@@ -52,6 +53,24 @@
     "passos": 4,
     "cfg": 1.0,
     "sampler": "euler",
+    "scheduler": "simple",
+    "ip_peso": 0,
+    "movimento": "zoom"
+  },
+  "cinema_zimage": {
+    "nome": "Cinematográfico realista (Z-Image Turbo, Alibaba, open source)",
+    "motor": "zimage",
+    "modelo_credito": "Z-Image Turbo",
+    "prompt": "cinematic film still, dramatic lighting, 35mm photograph, realistic, highly detailed, biblical epic movie",
+    "negativo": "",
+    "negativo_biblico": "",
+    "unet": "z_image_turbo-Q6_K.gguf",
+    "text_encoder": "qwen_3_4b_fp8_mixed.safetensors",
+    "vae": "z_image_ae.safetensors",
+    "passos": 9,
+    "cfg": 1.0,
+    "shift": 3.0,
+    "sampler": "res_multistep",
     "scheduler": "simple",
     "ip_peso": 0,
     "movimento": "zoom"

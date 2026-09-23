@@ -1,0 +1,496 @@
+[
+  {
+    "id": "boa_boa_pedro-agua_01",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands of the characters appear distorted and incomplete.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with another person in the background, standing in a boat, looking ahead with a calm expression. The scene is set at night under a full moon, with dark clouds in the sky."
+  },
+  {
+    "id": "boa_boa_pedro-agua_02",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains anatomical and proportion errors, such as distorted hands and unnatural facial features.",
+    "imagem_corrigida": "Medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, standing alone in the open sea with a sailboat in the background."
+  },
+  {
+    "id": "boa_boa_pedro-agua_03",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands appear distorted and do not match the size of the body.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands gripping the ropes tightly, conveying a sense of struggle and fear. The scene is set at night with a full moon in the background, emphasizing the dramatic atmosphere."
+  },
+  {
+    "id": "boa_boa_pedro-agua_04",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains anatomical and proportion errors, which could be distracting for viewers.",
+    "imagem_corrigida": "Medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands raised in a gesture of courage and hope, against a backdrop of a stormy sea under a dark sky."
+  },
+  {
+    "id": "boa_boa_pedro-agua_05",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands and face appear distorted and unnatural.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands clasped together in a prayerful gesture, illuminated by the moonlight."
+  },
+  {
+    "id": "boa_boa_pedro-agua_06",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains anatomical and proportion errors, which could be distracting for viewers.",
+    "imagem_corrigida": "Medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, standing alone in the open sea under a full moon."
+  },
+  {
+    "id": "boa_boa_pedro-agua_07",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image does not show a person's hand or arm holding the foot, which could be a common mistake in AI-generated images.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with his hand gripping the edge of the boat."
+  },
+  {
+    "id": "boa_boa_pedro-agua_08",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image does not show the hands of the person, which could be a concern for viewers who expect to see the hands in a scene involving a fisherman in stormy waves.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with his hands gripping the ship's railing."
+  },
+  {
+    "id": "boa_boa_pedro-agua_09",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands appear distorted and do not match the size of the body.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands raised in a gesture of desperation, illuminated by the moonlight, against a dark, stormy sea."
+  },
+  {
+    "id": "boa_boa_pedro-agua_10",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands of the characters appear distorted, with an unusual number of fingers or hands.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with a figure standing on the shore extending a hand towards him, symbolizing a moment of rescue or guidance. The scene is set against a dramatic sky with a bright sun in the background, emphasizing the emotional intensity of the moment."
+  },
+  {
+    "id": "boa_boa_pedro-agua_11",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands and faces appear distorted, and the bodies are not in a natural position.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with another person standing nearby, looking down with a concerned expression. The scene is set in a stormy sea with a dark, overcast sky."
+  },
+  {
+    "id": "boa_boa_pedro-agua_12",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image does not show any people, which contradicts the fable 'Afundando no medo? Grita pra Jesus.'",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with a sailboat in the distance under a dramatic sky."
+  },
+  {
+    "id": "boa_boa_pedro-agua_13",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": true,
+    "problema": "",
+    "imagem_corrigida": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_01",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains anatomical and proportion errors, which could be distracting for viewers.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in calm waters, face full of determination, standing on a wooden dock, with a serene sunset in the background."
+  },
+  {
+    "id": "boa_boa_jonas-peixe_02",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains anatomical and proportion errors, which could be distracting for viewers.",
+    "imagem_corrigida": "Medium shot of a bearded man standing on a rocky cliff, looking up with a contemplative expression, wearing traditional robes, with a city in the background under a dramatic sky."
+  },
+  {
+    "id": "boa_boa_jonas-peixe_03",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image does not show a bearded fisherman waist-deep in stormy waves, face full of fear, as described in the narration.",
+    "imagem_corrigida": "Medium shot of a bearded fisherman standing on a ship, looking out at the horizon, with a calm sea and a distant ship in the background."
+  },
+  {
+    "id": "boa_boa_jonas-peixe_04",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains a ship in a stormy sea with lightning, which does not align with the narration 'No mar, Deus mandou uma tempestade.' The image depicts a ship, not a person, and the narration should focus on a person experiencing fear in the storm.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with the sea and lightning in the background."
+  },
+  {
+    "id": "boa_boa_jonas-peixe_05",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands and faces are distorted and do not match the body or scene.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with another person in the background, also in distress, holding a rope. The scene is set on a ship in the middle of a stormy sea."
+  },
+  {
+    "id": "boa_boa_jonas-peixe_06",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands are not clearly visible, which could be a result of the AI's limitations.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with a ship in the background under a stormy sky."
+  },
+  {
+    "id": "boa_boa_jonas-peixe_07",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands appear distorted and do not match the body's proportions.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands gripping the ship's rigging, showing determination and resilience against the storm."
+  },
+  {
+    "id": "boa_boa_jonas-peixe_08",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The fish's mouth appears disproportionately large compared to its body.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with a large, menacing fish looming above him, mouth wide open, ready to engulf him. The scene is set in a deep, dark ocean with a ship in the background."
+  },
+  {
+    "id": "boa_boa_jonas-peixe_09",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands appear distorted and incomplete, which could be a sign of an AI-generated image.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands positioned naturally, not distorted or incomplete."
+  },
+  {
+    "id": "boa_boa_jonas-peixe_10",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands appear distorted and do not match the body's proportions.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands in a natural position, not distorted."
+  },
+  {
+    "id": "boa_boa_jonas-peixe_11",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": true,
+    "problema": "",
+    "imagem_corrigida": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_12",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands appear distorted and do not match the body's proportions.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands gripping the sides of his tunic, conveying a sense of struggle and determination."
+  },
+  {
+    "id": "boa_boa_jonas-peixe_13",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": true,
+    "problema": "",
+    "imagem_corrigida": ""
+  },
+  {
+    "id": "sdxl_sdxl_pedro_01",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The fisherman's hands are not clearly visible, which could be a concern for viewers.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with his hands gripping the boat's ropes, illuminated by the moonlight."
+  },
+  {
+    "id": "sdxl_sdxl_pedro_02",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image does not show Jesus or any person in the scene.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with a distant mountain silhouette in the background."
+  },
+  {
+    "id": "sdxl_sdxl_pedro_03",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The person's hands are not clearly visible, which could be a concern for viewers.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with his hands gripping the boat's edge, emphasizing his struggle against the storm."
+  },
+  {
+    "id": "sdxl_sdxl_pedro_04",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The person's hands are not fully visible, which could be a concern for viewers.",
+    "imagem_corrigida": "Medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands gripping the boat's edge, emphasizing the struggle against the storm."
+  },
+  {
+    "id": "sdxl_sdxl_pedro_05",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands appear distorted and do not match the body's proportions.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands resting on the edge of the boat, looking out at the turbulent sea."
+  },
+  {
+    "id": "sdxl_sdxl_pedro_06",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image does not show Jesus' hands, which could be a concern for viewers expecting to see Jesus' hands in a religious context.",
+    "imagem_corrigida": "Medium shot of a bearded man waist-deep in stormy waves, face full of fear, hands submerged in the water, looking towards the viewer with a determined expression. The scene is set against a dark, stormy ocean with dramatic lighting."
+  },
+  {
+    "id": "sdxl_sdxl_pedro_07",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The person's feet are not visible, which could be a mistake in the image.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with his feet submerged in the water, holding onto the boat's edge with a rope."
+  },
+  {
+    "id": "sdxl_sdxl_pedro_08",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image does not show the hands of the bearded man, which contradicts the fable 'But he saw the strong wind and was afraid.'",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with his hands gripping the ropes of his boat, struggling against the wind and waves."
+  },
+  {
+    "id": "sdxl_sdxl_pedro_09",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands appear distorted and do not match the body's proportions.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with arms outstretched and hands in silhouette against the dark sky, conveying a sense of desperation and urgency."
+  },
+  {
+    "id": "sdxl_sdxl_pedro_10",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: HTTP Error 400: Bad Request"
+  },
+  {
+    "id": "sdxl_sdxl_pedro_12",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image does not show the action or emotion described in the narration.",
+    "imagem_corrigida": "Medium shot of a bearded man in a robe, waist-deep in stormy waves, face full of fear."
+  },
+  {
+    "id": "sdxl_sdxl_pedro_13",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": true,
+    "problema": "",
+    "imagem_corrigida": ""
+  },
+  {
+    "id": "dificil_dificil_01_1",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands and faces are not correctly proportioned and the bodies are not properly aligned.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with another person in the background, appearing concerned, both standing in the water."
+  },
+  {
+    "id": "dificil_dificil_01_2",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image shows a bearded man in a robe giving a thumbs-up gesture, which contradicts the narration 'Jesus extended his hand and held Peter.'",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with his hands gripping the boat's railing, looking out at the turbulent sea."
+  },
+  {
+    "id": "dificil_dificil_01_3",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands and faces are not fully visible, and the bodies are not fully visible.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands gripping the edge of a boat, struggling against the turbulent sea. The scene is set in a dark, stormy ocean with dramatic lighting highlighting the fisherman's struggle."
+  },
+  {
+    "id": "dificil_dificil_02_1",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains anatomical and facial distortions that are noticeable to a common viewer.",
+    "imagem_corrigida": "Medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, pointing forward with a determined expression, standing alone on a boat with dramatic lighting and a stormy sea in the background."
+  },
+  {
+    "id": "dificil_dificil_02_2",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hand appears to be disproportionately large compared to the body.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with his hand raised in a gesture of warning or command, against a backdrop of a stormy sea."
+  },
+  {
+    "id": "dificil_dificil_02_3",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains anatomical and proportion errors, and the clothing does not match the historical context.",
+    "imagem_corrigida": "Medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with a calm sea in the background."
+  },
+  {
+    "id": "dificil_dificil_03_1",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands, faces, and bodies appear distorted, and there is text on the boat.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with a calm sea in the background."
+  },
+  {
+    "id": "dificil_dificil_03_2",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands and faces are distorted, and the bodies are not in a natural position.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with another person standing nearby, looking on with concern. The fisherman's arm is extended, as if reaching out for help, while the other person stands with their arms crossed, observing the situation. The scene is set in a stormy sea with a small boat in the background."
+  },
+  {
+    "id": "dificil_dificil_03_3",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands and faces appear distorted, and the bodies are not fully visible.",
+    "imagem_corrigida": "Medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with another person standing nearby, looking concerned, in a dimly lit, stormy sea."
+  },
+  {
+    "id": "dificil_dificil_04_1",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains anatomical and proportion errors, which could be distracting for viewers.",
+    "imagem_corrigida": "Medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, hands clasped in prayer, with a ship's wooden structure in the background, illuminated by a warm, natural light."
+  },
+  {
+    "id": "dificil_dificil_04_2",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands are tied together, which is not a natural position for hands.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands clasped in prayer."
+  },
+  {
+    "id": "dificil_dificil_04_3",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hands appear distorted and do not match the body's proportions.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands clasped in prayer, illuminated by the moonlight on a ship's deck."
+  },
+  {
+    "id": "dificil_dificil_05_1",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains anatomical and artistic flaws, such as distorted hands, disproportionate faces, and unnatural body positions. There is also a text or watermark in the corner of the image.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with a glowing figure in the background. The fisherman is holding a fishing rod, and the glowing figure is standing with arms outstretched. The scene takes place on a stormy sea at night."
+  },
+  {
+    "id": "dificil_dificil_05_2",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains anatomical and proportion errors, such as distorted hands and faces, and misplaced limbs.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with a glowing figure standing on a boat, surrounded by people reaching out in awe. The scene is set against a dark, stormy sea with a mountainous backdrop."
+  },
+  {
+    "id": "dificil_dificil_05_3",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains anatomical and proportion errors in the hands, faces, and bodies, which contradict the fable of 'They cried out: It's a ghost!'",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with two other individuals in a boat pointing towards a glowing figure in the distance. The scene is set in a dark, stormy sea with a bright light source in the background."
+  },
+  {
+    "id": "dificil_dificil_06_1",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains anatomical and positional inconsistencies, such as distorted hands and faces, and overlapping bodies.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with another person standing nearby, arms raised in distress, against a backdrop of a stormy sea and a clear sky."
+  },
+  {
+    "id": "dificil_dificil_06_2",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image shows a group of men on a ship in stormy waters, with one man in the center appearing to be thrown overboard. The hands and faces are distorted, and the bodies are not in the correct position.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with his arms outstretched as if being thrown overboard. The scene is set on a ship in the middle of a stormy sea."
+  },
+  {
+    "id": "dificil_dificil_06_3",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains anatomical and proportion errors, such as distorted hands and faces with an unnatural number of eyes or mouths.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with a strong sense of urgency and movement, emphasizing the struggle against the sea. The scene is set on a ship with a clear blue sky and choppy waters in the background."
+  },
+  {
+    "id": "dificil_dificil_07_1",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image shows a bearded fisherman in a stormy sea, but the hands and facial features are distorted, and the body and hands do not match.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands raised in prayer, and the sea and ships in the background. The fisherman's arms and legs are in a natural position, and the hands are shown in a way that matches the body's size and proportions."
+  },
+  {
+    "id": "dificil_dificil_07_2",
+    "esperado_ok": true,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image shows a bearded fisherman in a stormy sea, but the hands and facial features are distorted, and the body parts are not in a natural position.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with hands raised in prayer, and a ship in the background. The lighting is natural, and the setting is a rocky coastline."
+  },
+  {
+    "id": "dificil_dificil_07_3",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image contains anatomical and proportion errors, which could be distracting for viewers.",
+    "imagem_corrigida": "Medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, hands raised in prayer, with a ship in the background."
+  },
+  {
+    "id": "dificil_dificil_08_1",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hand appears to be floating without a visible arm, which is an anatomical error.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with his arm extended forward, as if reaching out to the viewer."
+  },
+  {
+    "id": "dificil_dificil_08_2",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The hand appears to be floating in front of the person, which is not a natural pose.",
+    "imagem_corrigida": "A medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, with his hand extended forward as if reaching out to someone."
+  },
+  {
+    "id": "dificil_dificil_08_3",
+    "esperado_ok": false,
+    "cena": 1,
+    "ok": false,
+    "problema": "The image does not match the fable of Jesus responding with 'Come!' and does not show a bearded fisherman in stormy waves.",
+    "imagem_corrigida": "Medium shot of a bearded fisherman waist-deep in stormy waves, face full of fear, hands outstretched in desperation, with a stormy sea and dark sky in the background."
+  }
+]

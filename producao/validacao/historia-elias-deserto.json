@@ -1,0 +1,147 @@
+{
+  "etapas": [
+    {
+      "quando": "20:01:41",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 1,
+      "problemas": [
+        "roteiro tem 96 palavras; o formato pede 60 a 95",
+        "cena 7 usa 'jornada' (linguagem de IA)"
+      ],
+      "falas": [
+        "Um profeta pediu a Deus pra morrer.",
+        "O profeta Elias fugiu e sentou debaixo de um zimbro.",
+        "E disse: já basta, Senhor, tira minha vida.",
+        "Elias dormiu e um anjo disse: levante e coma!",
+        "Na cabeceira dele tinha pão assado nas brasas e água.",
+        "E olha: Elias comeu e dormiu de novo.",
+        "O anjo voltou e disse: a jornada é longa demais pra você.",
+        "Com aquela comida, Elias andou quarenta dias até Horebe.",
+        "Se você disse 'já basta', Deus começa pelo pão.",
+        "Elias pediu a morte, e Deus mandou pão.",
+        "Manda pra quem precisa ouvir isso."
+      ]
+    },
+    {
+      "quando": "20:02:30",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Um profeta pediu a Deus pra morrer.",
+        "Elias fugiu pro deserto e sentou debaixo de um zimbro.",
+        "E disse: já basta, Senhor, tira minha vida.",
+        "Elias dormiu, e um anjo disse: levante e coma!",
+        "Na cabeceira tinha pão assado nas brasas e água.",
+        "E olha: Elias comeu e dormiu de novo.",
+        "O anjo voltou e disse: o caminho é longo demais pra você.",
+        "Com aquela comida, Elias andou quarenta dias até Horebe.",
+        "Se você disse 'já basta', Deus começa pelo pão.",
+        "Elias pediu a morte. Deus mandou pão.",
+        "Manda pra quem precisa ouvir isso."
+      ]
+    },
+    {
+      "quando": "20:03:00",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Esgotado, o profeta Elias foge pro deserto e pede pra morrer, mas Deus manda um anjo com pão e água duas vezes, e com essa comida ele anda quarenta dias até Horebe.",
+      "erros_factuais": [
+        "Cena 6: o texto diz que Elias 'deitou-se novamente' (19:6), não que 'dormiu de novo'. É um exagero pequeno, mas é apresentado como fato. Troque por 'e deitou de novo'."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 6: o texto diz que Elias 'deitou-se novamente' (19:6), não que 'dormiu de novo'. É um exagero pequeno, mas é apresentado como fato. Troque por 'e deitou de novo'."
+      ]
+    },
+    {
+      "quando": "20:03:25",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Um profeta pediu a Deus pra morrer.",
+        "Elias fugiu pro deserto e sentou debaixo de um zimbro.",
+        "E disse: já basta, Senhor, tira minha vida.",
+        "Elias dormiu, e um anjo disse: levante e coma!",
+        "Na cabeceira tinha pão assado nas brasas e água.",
+        "E olha: Elias comeu e deitou de novo.",
+        "O anjo voltou e disse: o caminho é longo demais pra você.",
+        "Com aquela comida, Elias andou quarenta dias até Horebe.",
+        "Se você disse 'já basta', Deus começa pelo pão.",
+        "Elias pediu a morte. E recebeu pão.",
+        "Manda pra quem precisa ouvir isso."
+      ]
+    },
+    {
+      "quando": "20:03:52",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Elias, desesperado, foge para o deserto e pede a Deus para morrer; em vez disso, um anjo o acorda duas vezes com pão e água, e com essa comida ele anda quarenta dias até Horebe.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "20:16:19",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "A cena combina (profeta caído sob a árvore no deserto), mas tem uma ferramenta de aparência moderna em primeiro plano e um braço de ligação estranha com o corpo.",
+          "imagem_corrigida": "Wide shot of a weary prophet sitting slumped beneath a lone broom tree, head bowed in despair, praying to die, harsh midday sun over an empty desert wilderness"
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "A cena combina com a fala, mas as mãos e os braços estão deformados (o jarro parece ter um dedo fundido e o braço sai de um lugar impossível), e há uma pessoa sobrando ao fundo.",
+          "imagem_corrigida": "Wide shot of a weary prophet lying asleep on his side under a broom tree, cloak wrapped around him, peaceful exhausted face, clay jar and bread beside him, golden late afternoon light, empty desert wilderness"
+        },
+        {
+          "cena": 7,
+          "ok": false,
+          "problema": "O anjo tem uma asa só, que parece fundida com a árvore, e está calçando o que parece um chinelo moderno.",
+          "imagem_corrigida": "Wide shot of a weary prophet sitting beneath a lone broom tree while a tall radiant angel stands several steps away speaking gently, both full body and apart, golden dawn light, vast rocky desert"
+        },
+        {
+          "cena": 8,
+          "ok": false,
+          "problema": "As botas modernas com cadarço e o cinto com fivela e bolsa estilo coldre, bem no centro da imagem, quebram o realismo bíblico.",
+          "imagem_corrigida": "Wide shot of a lone prophet in a long wool robe and simple sandals trudging across vast desert dunes toward a towering rocky mountain, weary but determined, golden sunset light, ancient Sinai wilderness"
+        },
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "Mão sobrando: aparecem três mãos no corpo de Elias, uma no peito e duas no colo.",
+          "imagem_corrigida": "Wide shot of a weary prophet lying asleep under a lone broom tree, a round loaf baking on glowing stones and a clay water jar beside him, peaceful, soft dawn light, desert wilderness"
+        }
+      ]
+    }
+  ]
+}

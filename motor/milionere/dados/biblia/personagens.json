@@ -43,5 +43,10 @@
     "nome": "Marinheiro",
     "nome_en": "sailor",
     "descricao_visual": "a muscular sailor in his 30s, short cropped dark hair, thick short dark beard, deeply sun-burned skin, sleeveless rough undyed linen tunic tied with a rope, bare feet"
+  },
+  "elias": {
+    "nome": "Elias",
+    "nome_en": "Elijah",
+    "descricao_visual": "a gaunt weathered man in his late 40s, long unkempt grey-streaked dark hair, long wild grey-black beard, deeply tanned leathery skin, rough dark camel-hair mantle over a coarse brown tunic, leather belt"
   }
 }

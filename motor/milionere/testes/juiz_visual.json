@@ -1,0 +1,978 @@
+[
+  {
+    "id": "boa_boa_pedro-agua_01",
+    "arquivo": "boa_pedro-agua_01.png",
+    "fala": "Jesus segurou antes de perguntar.",
+    "personagens": [
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_pedro-agua_02",
+    "arquivo": "boa_pedro-agua_02.png",
+    "fala": "De madrugada, Jesus andou no mar até o barco dos discípulos.",
+    "personagens": [
+      "jesus"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_pedro-agua_03",
+    "arquivo": "boa_pedro-agua_03.png",
+    "fala": "Eles gritaram: É um fantasma!",
+    "personagens": [
+      "discipulo"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_pedro-agua_04",
+    "arquivo": "boa_pedro-agua_04.png",
+    "fala": "Jesus disse: Coragem, sou eu!",
+    "personagens": [
+      "jesus"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_pedro-agua_05",
+    "arquivo": "boa_pedro-agua_05.png",
+    "fala": "Pedro pediu: se é você, manda eu ir até aí.",
+    "personagens": [
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_pedro-agua_06",
+    "arquivo": "boa_pedro-agua_06.png",
+    "fala": "Jesus respondeu: Vem!",
+    "personagens": [
+      "jesus"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_pedro-agua_07",
+    "arquivo": "boa_pedro-agua_07.png",
+    "fala": "Pedro saiu do barco e andou na água.",
+    "personagens": [
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_pedro-agua_08",
+    "arquivo": "boa_pedro-agua_08.png",
+    "fala": "Mas viu o vento forte e teve medo.",
+    "personagens": [
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_pedro-agua_09",
+    "arquivo": "boa_pedro-agua_09.png",
+    "fala": "Começou a afundar e gritou: Senhor, me salva!",
+    "personagens": [
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_pedro-agua_10",
+    "arquivo": "boa_pedro-agua_10.png",
+    "fala": "Na hora, Jesus estendeu a mão e segurou Pedro.",
+    "personagens": [
+      "jesus",
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_pedro-agua_11",
+    "arquivo": "boa_pedro-agua_11.png",
+    "fala": "Depois disse: homem de pouca fé, por que duvidou?",
+    "personagens": [
+      "jesus",
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_pedro-agua_12",
+    "arquivo": "boa_pedro-agua_12.png",
+    "fala": "Afundando no medo? Grita pra Jesus.",
+    "personagens": [],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_pedro-agua_13",
+    "arquivo": "boa_pedro-agua_13.png",
+    "fala": "Ele segura primeiro. Pergunta depois. Escreve amém.",
+    "personagens": [],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_01",
+    "arquivo": "boa_jonas-peixe_01.png",
+    "fala": "Jonas pagou pra fugir de Deus.",
+    "personagens": [
+      "jonas"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_02",
+    "arquivo": "boa_jonas-peixe_02.png",
+    "fala": "Deus mandou Jonas pregar contra a grande cidade de Nínive.",
+    "personagens": [
+      "jonas"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_03",
+    "arquivo": "boa_jonas-peixe_03.png",
+    "fala": "Mas Jonas pagou passagem num navio pra Társis.",
+    "personagens": [
+      "jonas"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_04",
+    "arquivo": "boa_jonas-peixe_04.png",
+    "fala": "No mar, Deus mandou uma tempestade.",
+    "personagens": [],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_05",
+    "arquivo": "boa_jonas-peixe_05.png",
+    "fala": "Repara: Jonas pediu pra ser jogado no mar.",
+    "personagens": [
+      "jonas",
+      "marinheiro"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_06",
+    "arquivo": "boa_jonas-peixe_06.png",
+    "fala": "Jonas sabia que a tempestade era culpa dele.",
+    "personagens": [
+      "jonas"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_07",
+    "arquivo": "boa_jonas-peixe_07.png",
+    "fala": "Os marinheiros jogaram Jonas, e o mar parou.",
+    "personagens": [
+      "jonas"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_08",
+    "arquivo": "boa_jonas-peixe_08.png",
+    "fala": "Deus preparou um grande peixe pra engolir Jonas.",
+    "personagens": [
+      "jonas"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_09",
+    "arquivo": "boa_jonas-peixe_09.png",
+    "fala": "Dentro do peixe, Jonas orou, e Deus ouviu.",
+    "personagens": [
+      "jonas"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_10",
+    "arquivo": "boa_jonas-peixe_10.png",
+    "fala": "Deus falou, e o peixe vomitou Jonas na terra seca.",
+    "personagens": [
+      "jonas"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_11",
+    "arquivo": "boa_jonas-peixe_11.png",
+    "fala": "Se você afundou fugindo, Deus te ouve.",
+    "personagens": [],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_12",
+    "arquivo": "boa_jonas-peixe_12.png",
+    "fala": "Jonas fugiu, Deus não desistiu.",
+    "personagens": [
+      "jonas"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "boa_boa_jonas-peixe_13",
+    "arquivo": "boa_jonas-peixe_13.png",
+    "fala": "Escreve amém.",
+    "personagens": [],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "sdxl_sdxl_pedro_01",
+    "arquivo": "sdxl_pedro_01.png",
+    "fala": "Pedro andou na água. Até ver o vento.",
+    "personagens": [
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": false,
+    "motivo": "Luzes de cidade moderna no horizonte quebram a época, e a cena mostra Pedro parado no barco, não andando sobre a água."
+  },
+  {
+    "id": "sdxl_sdxl_pedro_02",
+    "arquivo": "sdxl_pedro_02.png",
+    "fala": "De madrugada, Jesus andou no mar até os discípulos.",
+    "personagens": [
+      "jesus"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": false,
+    "motivo": "Jesus não aparece: a imagem mostra só um barco no mar ao amanhecer, e ninguém andando sobre a água."
+  },
+  {
+    "id": "sdxl_sdxl_pedro_03",
+    "arquivo": "sdxl_pedro_03.png",
+    "fala": "Eles gritaram: É um fantasma!",
+    "personagens": [
+      "discipulo"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "sdxl_sdxl_pedro_04",
+    "arquivo": "sdxl_pedro_04.png",
+    "fala": "Jesus disse: Coragem! Sou eu!",
+    "personagens": [
+      "jesus"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "sdxl_sdxl_pedro_05",
+    "arquivo": "sdxl_pedro_05.png",
+    "fala": "Pedro pediu: Senhor, se é você, manda eu ir.",
+    "personagens": [
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "sdxl_sdxl_pedro_06",
+    "arquivo": "sdxl_pedro_06.png",
+    "fala": "Jesus respondeu: Venha!",
+    "personagens": [
+      "jesus"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": false,
+    "motivo": "Jesus veste uma camisa moderna de linho com botões, o que quebra o realismo bíblico, embora a cena combine com a fala."
+  },
+  {
+    "id": "sdxl_sdxl_pedro_07",
+    "arquivo": "sdxl_pedro_07.png",
+    "fala": "Pedro desceu do barco. Andou na água.",
+    "personagens": [
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "sdxl_sdxl_pedro_08",
+    "arquivo": "sdxl_pedro_08.png",
+    "fala": "Mas viu o vento forte. Teve medo.",
+    "personagens": [
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "sdxl_sdxl_pedro_09",
+    "arquivo": "sdxl_pedro_09.png",
+    "fala": "Começou a afundar. Gritou: Senhor, me salva!",
+    "personagens": [
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": false,
+    "motivo": "Pedro está de pé e seguro dentro do barco, em vez de afundando nas ondas, e o rosto tem uma pintura estranha."
+  },
+  {
+    "id": "sdxl_sdxl_pedro_12",
+    "arquivo": "sdxl_pedro_12.png",
+    "fala": "Primeiro segurou. Depois perguntou: por que duvidou?",
+    "personagens": [
+      "jesus",
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "sdxl_sdxl_pedro_13",
+    "arquivo": "sdxl_pedro_13.png",
+    "fala": "Escreve amém.",
+    "personagens": [],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "dificil_dificil_01_1",
+    "arquivo": "dificil_01_1.png",
+    "fala": "Na hora, Jesus estendeu a mão e segurou Pedro.",
+    "personagens": [
+      "jesus",
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "extreme close-up of Jesus hand firmly gripping Peter's wrist, pulling him out of stormy water",
+    "esperado_ok": false,
+    "motivo": "A mão estendida para a câmera está gigante, com dedos deformados, e o braço parece pertencer aos dois homens ao mesmo tempo."
+  },
+  {
+    "id": "dificil_dificil_01_2",
+    "arquivo": "dificil_01_2.png",
+    "fala": "Na hora, Jesus estendeu a mão e segurou Pedro.",
+    "personagens": [
+      "jesus",
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "extreme close-up of Jesus hand firmly gripping Peter's wrist, pulling him out of stormy water",
+    "esperado_ok": false,
+    "motivo": "Jesus aparece sozinho fazendo 'joinha' dentro do barco, em vez de socorrer Pedro que afunda. A ação contradiz a fala e Pedro não aparece."
+  },
+  {
+    "id": "dificil_dificil_01_3",
+    "arquivo": "dificil_01_3.png",
+    "fala": "Na hora, Jesus estendeu a mão e segurou Pedro.",
+    "personagens": [
+      "jesus",
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "extreme close-up of Jesus hand firmly gripping Peter's wrist, pulling him out of stormy water",
+    "esperado_ok": false,
+    "motivo": "A mão agarra uma manga vazia e sem corpo que sai da água, e Pedro não aparece em lugar nenhum."
+  },
+  {
+    "id": "dificil_dificil_02_1",
+    "arquivo": "dificil_02_1.png",
+    "fala": "Jesus respondeu: Vem!",
+    "personagens": [
+      "jesus"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "medium shot of Jesus pointing his finger straight at the camera, stormy sea behind",
+    "esperado_ok": false,
+    "motivo": "A mão de Jesus apontando para a câmera, em primeiro plano, está deformada e é o centro da imagem."
+  },
+  {
+    "id": "dificil_dificil_02_2",
+    "arquivo": "dificil_02_2.png",
+    "fala": "Jesus respondeu: Vem!",
+    "personagens": [
+      "jesus"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "medium shot of Jesus pointing his finger straight at the camera, stormy sea behind",
+    "esperado_ok": false,
+    "motivo": "A mão enorme apontando para a câmera, em primeiro plano, tem dedos deformados e chama toda a atenção."
+  },
+  {
+    "id": "dificil_dificil_02_3",
+    "arquivo": "dificil_02_3.png",
+    "fala": "Jesus respondeu: Vem!",
+    "personagens": [
+      "jesus"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "medium shot of Jesus pointing his finger straight at the camera, stormy sea behind",
+    "esperado_ok": false,
+    "motivo": "A mão que aponta para a câmera, bem grande em primeiro plano, está deformada, com um dedo a mais bem visível."
+  },
+  {
+    "id": "dificil_dificil_03_1",
+    "arquivo": "dificil_03_1.png",
+    "fala": "Na hora, Jesus estendeu a mão e segurou Pedro.",
+    "personagens": [
+      "jesus",
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "Jesus and Peter embracing each other waist-deep in water, hands on each other's backs",
+    "esperado_ok": false,
+    "motivo": "O abraço entre os dois gerou uma mão sobrando e braços fundidos, e ainda há texto escrito no barco."
+  },
+  {
+    "id": "dificil_dificil_03_2",
+    "arquivo": "dificil_03_2.png",
+    "fala": "Na hora, Jesus estendeu a mão e segurou Pedro.",
+    "personagens": [
+      "jesus",
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "Jesus and Peter embracing each other waist-deep in water, hands on each other's backs",
+    "esperado_ok": false,
+    "motivo": "O abraço gerou mãos deformadas e corpos fundidos, bem no centro da imagem."
+  },
+  {
+    "id": "dificil_dificil_03_3",
+    "arquivo": "dificil_03_3.png",
+    "fala": "Na hora, Jesus estendeu a mão e segurou Pedro.",
+    "personagens": [
+      "jesus",
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "Jesus and Peter embracing each other waist-deep in water, hands on each other's backs",
+    "esperado_ok": false,
+    "motivo": "O abraço deixa os braços e as mãos confusos e desproporcionais, com os dois corpos meio fundidos, o que se nota fácil num celular."
+  },
+  {
+    "id": "dificil_dificil_04_1",
+    "arquivo": "dificil_04_1.png",
+    "fala": "Pedro pediu: se é você, manda eu ir até aí.",
+    "personagens": [
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "close-up of Peter's hands clasped in prayer, fingers interlocked, inside a wooden boat",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "dificil_dificil_04_2",
+    "arquivo": "dificil_04_2.png",
+    "fala": "Pedro pediu: se é você, manda eu ir até aí.",
+    "personagens": [
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "close-up of Peter's hands clasped in prayer, fingers interlocked, inside a wooden boat",
+    "esperado_ok": false,
+    "motivo": "As mãos em primeiro plano são o ponto central da imagem e estão deformadas, com dedos fundidos e um braço faltando, algo visível até no celular."
+  },
+  {
+    "id": "dificil_dificil_04_3",
+    "arquivo": "dificil_04_3.png",
+    "fala": "Pedro pediu: se é você, manda eu ir até aí.",
+    "personagens": [
+      "pedro"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "close-up of Peter's hands clasped in prayer, fingers interlocked, inside a wooden boat",
+    "esperado_ok": false,
+    "motivo": "As mãos entrelaçadas no centro da imagem estão deformadas, com dedos a mais e embolados, e isso aparece bem num celular."
+  },
+  {
+    "id": "dificil_dificil_05_1",
+    "arquivo": "dificil_05_1.png",
+    "fala": "Eles gritaram: É um fantasma!",
+    "personagens": [],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "crowd of terrified fishermen in a small boat pointing at a ghostly figure on the water",
+    "esperado_ok": false,
+    "motivo": "A imagem mostra Jesus como um fantasma que brilha e flutua no céu, com uma aura parecida com auréola. Isso fica errado num vídeo cristão realista, e os discípulos apontando geram vários erros de dedos."
+  },
+  {
+    "id": "dificil_dificil_05_2",
+    "arquivo": "dificil_05_2.png",
+    "fala": "Eles gritaram: É um fantasma!",
+    "personagens": [],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "crowd of terrified fishermen in a small boat pointing at a ghostly figure on the water",
+    "esperado_ok": false,
+    "motivo": "Jesus aparece como um fantasma assustador com cara de caveira, e o barco lotado mostra braços emaranhados e um membro sobrando, sendo que a cena deveria ser só paisagem."
+  },
+  {
+    "id": "dificil_dificil_05_3",
+    "arquivo": "dificil_05_3.png",
+    "fala": "Eles gritaram: É um fantasma!",
+    "personagens": [],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "crowd of terrified fishermen in a small boat pointing at a ghostly figure on the water",
+    "esperado_ok": false,
+    "motivo": "A cena deveria ser só paisagem, mas mostra pessoas calmas fazendo 'joinha' em vez de gritar de medo, além de Jesus com uma aura brilhante e mãos com gestos estranhos."
+  },
+  {
+    "id": "dificil_dificil_06_1",
+    "arquivo": "dificil_06_1.png",
+    "fala": "Os marinheiros jogaram Jonas, e o mar parou.",
+    "personagens": [
+      "jonas",
+      "marinheiro"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "prompt": "sailors throwing Jonah overboard, several men gripping his arms and legs",
+    "esperado_ok": false,
+    "motivo": "Corpos fundidos com braços sobrando, pessoas em pé sobre a água e marinheiros sorrindo num mar calmo não mostram Jonas sendo lançado ao mar."
+  },
+  {
+    "id": "dificil_dificil_06_2",
+    "arquivo": "dificil_06_2.png",
+    "fala": "Os marinheiros jogaram Jonas, e o mar parou.",
+    "personagens": [
+      "jonas",
+      "marinheiro"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "prompt": "sailors throwing Jonah overboard, several men gripping his arms and legs",
+    "esperado_ok": false,
+    "motivo": "O emaranhado de mãos e pés sobrando, as pessoas em pé sobre o mar e um objeto parecido com celular no deck deixam a IA evidente."
+  },
+  {
+    "id": "dificil_dificil_06_3",
+    "arquivo": "dificil_06_3.png",
+    "fala": "Os marinheiros jogaram Jonas, e o mar parou.",
+    "personagens": [
+      "jonas",
+      "marinheiro"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "prompt": "sailors throwing Jonah overboard, several men gripping his arms and legs",
+    "esperado_ok": false,
+    "motivo": "Um marinheiro aparece de pé sobre a água fora do barco, e há braços e mãos sem dono claro no grupo da esquerda."
+  },
+  {
+    "id": "dificil_dificil_07_1",
+    "arquivo": "dificil_07_1.png",
+    "fala": "Dentro do peixe, Jonas orou, e Deus ouviu.",
+    "personagens": [
+      "jonas"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "prompt": "Jonah kneeling inside the belly of a giant fish, both hands raised in prayer, fingers spread",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "dificil_dificil_07_2",
+    "arquivo": "dificil_07_2.png",
+    "fala": "Dentro do peixe, Jonas orou, e Deus ouviu.",
+    "personagens": [
+      "jonas"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "prompt": "Jonah kneeling inside the belly of a giant fish, both hands raised in prayer, fingers spread",
+    "esperado_ok": true,
+    "motivo": ""
+  },
+  {
+    "id": "dificil_dificil_07_3",
+    "arquivo": "dificil_07_3.png",
+    "fala": "Dentro do peixe, Jonas orou, e Deus ouviu.",
+    "personagens": [
+      "jonas"
+    ],
+    "fichas": {
+      "jonas": "Jonas",
+      "marinheiro": "Marinheiro"
+    },
+    "epoca": "biblica",
+    "prompt": "Jonah kneeling inside the belly of a giant fish, both hands raised in prayer, fingers spread",
+    "esperado_ok": false,
+    "motivo": "Jonas está fora do peixe, numa praia com um navio ao fundo, gesticulando de forma teatral em vez de orar dentro do peixe, e as mãos estão artificiais."
+  },
+  {
+    "id": "dificil_dificil_08_1",
+    "arquivo": "dificil_08_1.png",
+    "fala": "Jesus respondeu: Vem!",
+    "personagens": [
+      "jesus"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "Jesus reaching his open hand toward the camera, foreshortened palm in the foreground",
+    "esperado_ok": false,
+    "motivo": "A mão estendida para a câmera domina a cena e está deformada, com dedos tortos e tamanho desproporcional, um defeito típico de IA que qualquer um percebe."
+  },
+  {
+    "id": "dificil_dificil_08_2",
+    "arquivo": "dificil_08_2.png",
+    "fala": "Jesus respondeu: Vem!",
+    "personagens": [
+      "jesus"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "Jesus reaching his open hand toward the camera, foreshortened palm in the foreground",
+    "esperado_ok": false,
+    "motivo": "A mão aberta com a palma para a frente parece um gesto de 'pare', o contrário de 'Vem!', e ainda sai de um antebraço solto, desligado do corpo de Jesus."
+  },
+  {
+    "id": "dificil_dificil_08_3",
+    "arquivo": "dificil_08_3.png",
+    "fala": "Jesus respondeu: Vem!",
+    "personagens": [
+      "jesus"
+    ],
+    "fichas": {
+      "jesus": "Jesus",
+      "pedro": "Pedro",
+      "discipulo": "Discípulo"
+    },
+    "epoca": "biblica",
+    "prompt": "Jesus reaching his open hand toward the camera, foreshortened palm in the foreground",
+    "esperado_ok": false,
+    "motivo": "A mão estendida em primeiro plano, bem no centro da imagem, está deformada (polegar gigante, dedos fundidos) e dá pra perceber de cara num celular."
+  }
+]

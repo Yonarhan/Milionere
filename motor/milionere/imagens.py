@@ -84,7 +84,8 @@ def workflow_flux(positivo: str, estilo: dict, seed: int) -> dict:
     return {
         "1": {"class_type": "UnetLoaderGGUF", "inputs": {"unet_name": estilo["unet"]}},
         "2": {"class_type": "DualCLIPLoader", "inputs": {"clip_name1": "t5xxl_fp8_e4m3fn.safetensors",
-                                                         "clip_name2": "clip_l.safetensors", "type": "flux"}},
+                                                         "clip_name2": "clip_l.safetensors", "type": "flux",
+                                                         "device": "cpu"}},  # texto na CPU: o modelo fica fixo na VRAM
         "3": {"class_type": "VAELoader", "inputs": {"vae_name": "flux_ae.safetensors"}},
         "4": {"class_type": "CLIPTextEncode", "inputs": {"text": positivo, "clip": ["2", 0]}},
         "5": {"class_type": "ConditioningZeroOut", "inputs": {"conditioning": ["4", 0]}},
@@ -98,9 +99,33 @@ def workflow_flux(positivo: str, estilo: dict, seed: int) -> dict:
     }
 
 
+def workflow_zimage(positivo: str, estilo: dict, seed: int) -> dict:
+    """Z-Image Turbo (Alibaba) GGUF: text encoder Qwen3-4B, cfg 1 sem negativo, shift AuraFlow 3, ~9 passos."""
+    return {
+        "1": {"class_type": "UnetLoaderGGUF", "inputs": {"unet_name": estilo["unet"]}},
+        "2": {"class_type": "CLIPLoader", "inputs": {"clip_name": estilo["text_encoder"], "type": "lumina2",
+                                                  "device": "cpu"}},
+        "3": {"class_type": "VAELoader", "inputs": {"vae_name": estilo["vae"]}},
+        "4": {"class_type": "CLIPTextEncode", "inputs": {"text": positivo, "clip": ["2", 0]}},
+        "5": {"class_type": "ConditioningZeroOut", "inputs": {"conditioning": ["4", 0]}},
+        "6": {"class_type": "EmptySD3LatentImage", "inputs": {"width": LARGURA, "height": ALTURA, "batch_size": 1}},
+        "10": {"class_type": "ModelSamplingAuraFlow", "inputs": {"model": ["1", 0], "shift": estilo.get("shift", 3.0)}},
+        "7": {"class_type": "KSampler", "inputs": {
+            "model": ["10", 0], "positive": ["4", 0], "negative": ["5", 0], "latent_image": ["6", 0],
+            "seed": seed, "steps": estilo["passos"], "cfg": 1.0, "sampler_name": estilo["sampler"],
+            "scheduler": estilo["scheduler"], "denoise": 1.0}},
+        # decodifica em blocos: o VAEDecode normal expulsa o modelo da VRAM e ele recarrega na cena seguinte
+        "8": {"class_type": "VAEDecodeTiled", "inputs": {"samples": ["7", 0], "vae": ["3", 0], "tile_size": 512,
+                                                   "overlap": 64, "temporal_size": 64, "temporal_overlap": 8}},
+        "9": {"class_type": "SaveImage", "inputs": {"images": ["8", 0], "filename_prefix": "roteirista"}},
+    }
+
+
 def montar_workflow(positivo: str, negativo: str, estilo: dict, seed: int, referencia: str | None, peso_ref: float) -> dict:
     if estilo.get("motor") == "flux":
         return workflow_flux(positivo, estilo, seed)
+    if estilo.get("motor") == "zimage":
+        return workflow_zimage(positivo, estilo, seed)
     wf = {
         "1": {"class_type": "CheckpointLoaderSimple", "inputs": {"ckpt_name": estilo["checkpoint"]}},
         "2": {"class_type": "CLIPTextEncode", "inputs": {"text": positivo, "clip": ["1", 1]}},

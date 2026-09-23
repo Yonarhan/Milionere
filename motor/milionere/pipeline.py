@@ -128,7 +128,8 @@ def empacotar(r: dict, formato_id: str, formato: dict, tema: dict, estilo: str, 
         "fontes": [f"{tema['ref']} ({biblia.TRADUCAO})"],
         "ganchos": r["ganchos"],
         "notas": {"roteirista": r["autoavaliacao"], "juiz": r.get("_notas_juiz", {})},
-        "_creditos": ["Imagens geradas por IA (Stable Diffusion XL)", f"Texto bíblico: {biblia.TRADUCAO}"],
+        "_creditos": [f"Imagens geradas por IA ({imagens.estilos()[estilo].get('modelo_credito', 'Stable Diffusion XL')})",
+                      f"Texto bíblico: {biblia.TRADUCAO}"],
         "ajustes": {"voice_rate": 1.05},
     }
 
@@ -146,6 +147,21 @@ def salvar_fichas(r: dict) -> None:
 
 # ---------------------------------------------------------------- etapa 2: imagens
 
+REPROVADAS = PROD / "midia" / "_reprovadas"  # alimentam o teste de regressão do juiz (regressao_juiz.py)
+
+
+def guardar_reprovada(r: dict, arq: Path, veredito: dict) -> None:
+    REPROVADAS.mkdir(parents=True, exist_ok=True)
+    n = veredito["cena"]
+    destino = REPROVADAS / f"{r['slug']}_cena{n:02d}_{datetime.now():%H%M%S%f}{arq.suffix}"
+    shutil.copy(arq, destino)
+    c = r["cenas"][n - 1]
+    with open(REPROVADAS / "reprovadas.jsonl", "a", encoding="utf-8") as f:
+        f.write(json.dumps({"arquivo": destino.name, "fala": c["fala"], "personagens": c["personagens"],
+                            "fichas": {p["id"]: p["nome"] for p in r["personagens"]}, "epoca": r["epoca"],
+                            "prompt": c["imagem"], "motivo": veredito["problema"]}, ensure_ascii=False) + "\n")
+
+
 def imagens_validadas(r: dict, arq_roteiro: Path, reg: Registro) -> None:
     pasta = PROD / "midia" / r["slug"]
     faltando = [i for i in range(1, len(r["cenas"]) + 1) if not any(pasta.glob(f"cena_{i:02d}.*"))]
@@ -157,6 +173,8 @@ def imagens_validadas(r: dict, arq_roteiro: Path, reg: Registro) -> None:
         log("camada 3: juiz visual (todas as cenas, uma por vez)")
         ruins = validar.camada3(r, pasta, r["epoca"])
         reg.add("camada3", not ruins, rodada=1, reprovadas=ruins)
+        for c in ruins:
+            guardar_reprovada(r, next(iter(sorted(pasta.glob(f"cena_{c['cena']:02d}.*")))), c)
         # cena aprovada fica travada; só as reprovadas voltam, com OPCOES_POR_CENA tentativas por rodada
         for rodada in range(1, MAX_REFACAO_IMAGEM + 1):
             if not ruins:
@@ -173,6 +191,9 @@ def imagens_validadas(r: dict, arq_roteiro: Path, reg: Registro) -> None:
                 opcoes = provedores.gerar_opcoes(r, r["estilo"], pasta, n, OPCOES_POR_CENA)
                 vereditos = validar.julgar_varias(r, [(n, o) for o in opcoes], r["epoca"])
                 boa = next((o for o, v in zip(opcoes, vereditos) if v["ok"]), None)
+                for o, v in zip(opcoes, vereditos):
+                    if not v["ok"]:
+                        guardar_reprovada(r, o, v)
                 if boa:
                     for velho in pasta.glob(f"cena_{n:02d}.*"):
                         velho.unlink()
