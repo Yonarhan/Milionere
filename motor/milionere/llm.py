@@ -9,12 +9,14 @@ import sys
 import shutil
 import subprocess
 import tempfile
+import time
 from pathlib import Path
 
 CLAUDE = shutil.which("claude") or "claude"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import caminhos  # noqa: E402
+import medidor  # noqa: E402
 
 
 class ErroLLM(RuntimeError):
@@ -37,7 +39,7 @@ def _flags_opcionais() -> list[str]:
 
 
 def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeout: int = 600,
-           modelo: str | None = None) -> dict:
+           modelo: str | None = None, papel: str = "roteirista") -> dict:
     """Manda o prompt e devolve o JSON validado pelo schema. Com ler_arquivos_em, o modelo pode abrir
     (só ler) arquivos daquela pasta, por exemplo imagens para o juiz visual."""
     if caminhos.LLM != "claude-cli":
@@ -47,10 +49,12 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
         cmd += ["--tools", "Read", "--allowedTools", "Read", "--add-dir", str(ler_arquivos_em)]
     else:
         cmd += ["--tools", ""]
+    modelo = modelo or (caminhos.MODELO_JUIZ if papel == "juiz" else caminhos.MODELO_ROTEIRO)
     if modelo:
         cmd += ["--model", modelo]
     ultimo = ""
     for _ in range(2):
+        inicio = time.time()
         with tempfile.TemporaryDirectory() as vazio:  # roda fora do projeto: nada de CLAUDE.md por perto
             proc = subprocess.run(cmd, input=prompt, capture_output=True, text=True, encoding="utf-8",
                                   errors="replace", cwd=vazio, timeout=timeout)
@@ -59,6 +63,7 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
         except json.JSONDecodeError:
             ultimo = (proc.stdout + proc.stderr)[-1500:]
             continue
+        medidor.llm(saida, time.time() - inicio)  # conta também as tentativas que falharam (foram pagas)
         if saida.get("is_error") or "structured_output" not in saida:
             ultimo = json.dumps(saida, ensure_ascii=False)[:1500]
             continue

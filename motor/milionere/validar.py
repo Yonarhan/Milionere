@@ -187,7 +187,7 @@ def camada2(r: dict, formato: dict, tema: dict) -> tuple[list[str], dict]:
         "Toda correção que você sugerir precisa caber no limite: se pedir para acrescentar, diga o que cortar.\n"
         "Cada problema deve dizer o número da cena e como corrigir, em 1 frase."
     )
-    j = llm.chamar(prompt, SCHEMA_JUIZ)
+    j = llm.chamar(prompt, SCHEMA_JUIZ, papel="juiz")
     problemas = [f"ERRO FACTUAL: {e}" for e in j["erros_factuais"]]
     notas = {c["criterio"]: c["nota"] for c in j["criterios"]}
     subjetivas = [notas[k] for k in SUBJETIVOS]
@@ -238,7 +238,7 @@ def julgar_imagem(r: dict, n: int, arq: Path, epoca: str) -> dict:
         "enquadramento NÃO são motivo de reprovação.\n\n"
         "Se houver defeito ou não combinar, escreva o problema e um prompt novo que evite o problema. " + REGRAS_IMAGEM
     )
-    v = llm.chamar(prompt, SCHEMA_VISUAL, ler_arquivos_em=arq.parent)
+    v = llm.chamar(prompt, SCHEMA_VISUAL, ler_arquivos_em=arq.parent, papel="juiz")
     ok = not v["defeitos"] and v["combina"]
     problema = v["problema"] or "; ".join(v["defeitos"])
     return {"cena": n, "ok": ok, "problema": "" if ok else problema,

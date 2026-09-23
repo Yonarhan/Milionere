@@ -9,6 +9,7 @@ Camadas trocáveis (valores aceitos):
     MILIONERE_LLM     claude-cli (padrão, dev) | api (fase 1)
     MILIONERE_IMAGEM  auto (padrão: manual > comfy) | comfy | gemini | manual
     MILIONERE_PLANO   gratis (padrão) | pago | chave_propria   (pago/chave_propria => gemini com reserva no comfy)
+    MILIONERE_MODELO_ROTEIRO / MILIONERE_MODELO_JUIZ   modelo do Claude de cada papel (padrão: sonnet / haiku)
 """
 
 import os
@@ -51,3 +52,6 @@ VOZ = _cfg("MILIONERE_VOZ", "edge")
 LLM = _cfg("MILIONERE_LLM", "claude-cli")
 IMAGEM = _cfg("MILIONERE_IMAGEM", "auto")
 PLANO = _cfg("MILIONERE_PLANO", "gratis")
+MODELO_ROTEIRO = _cfg("MILIONERE_MODELO_ROTEIRO", "sonnet")   # escreve: precisa de qualidade em pt-BR
+MODELO_JUIZ = _cfg("MILIONERE_MODELO_JUIZ", "haiku")          # confere contra critérios fixos: o barato basta
+JUIZ_ROTEIRO = _cfg("MILIONERE_JUIZ_ROTEIRO", "1") == "1"     # juiz de IA no roteiro genérico (desligar = só código)
