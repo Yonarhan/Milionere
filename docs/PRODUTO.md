@@ -145,7 +145,7 @@ Arquivos (Cloudflare R2)
 
 | Fase | Entrega |
 |---|---|
-| 0. Base | ✅ Repositório, `.gitattributes`, pipeline do Rafael. ⬜ Caminhos configuráveis e camadas trocáveis (LLM, imagem, voz) |
+| 0. Base | ✅ Repositório, `.gitattributes`, pipeline do Rafael, motor embutido, pacote `motor/milionere`, caminhos por `.env`, camadas trocáveis (voz edge/azure, LLM claude-cli/api*, imagem manual/comfy/gemini). *API de LLM na fase 1 |
 | 1. Qualidade e velocidade | Teste com 10 temas, biblioteca v1, modelos rápidos, versões múltiplas, juiz barato, Gemini de volta como premium e socorro. Meta: menos de 5 min por vídeo |
 | 2. Servidor | Docker com ComfyUI, fila, GPU sob demanda, R2 |
 | 3. Site (MVP) | O fluxo do protótipo funcionando de verdade |

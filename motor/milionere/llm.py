@@ -5,12 +5,16 @@ Cada chamada é uma conversa nova: o juiz nunca vê o raciocínio do roteirista.
 """
 
 import json
+import sys
 import shutil
 import subprocess
 import tempfile
 from pathlib import Path
 
 CLAUDE = shutil.which("claude") or "claude"
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import caminhos  # noqa: E402
 
 
 class ErroLLM(RuntimeError):
@@ -21,6 +25,8 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
            modelo: str | None = None) -> dict:
     """Manda o prompt e devolve o JSON validado pelo schema. Com ler_arquivos_em, o modelo pode abrir
     (só ler) arquivos daquela pasta, por exemplo imagens para o juiz visual."""
+    if caminhos.LLM != "claude-cli":
+        raise ErroLLM(f"MILIONERE_LLM={caminhos.LLM!r} ainda não implementado (fase 1: API). Use claude-cli.")
     cmd = [CLAUDE, "-p", "--safe-mode", "--no-session-persistence", "--output-format", "json",
            "--json-schema", json.dumps(schema)]
     if ler_arquivos_em:

@@ -24,9 +24,11 @@ import uuid
 import zlib
 from pathlib import Path
 
-SKILL = Path(__file__).resolve().parents[1]
-RAIZ = Path(__file__).resolve().parents[4]
-COMFY = Path.home() / "projects" / "milionere" / "ComfyUI"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from caminhos import DADOS as SKILL  # noqa: E402  (presets, formatos, estilos, bíblia, referências)
+from caminhos import RAIZ  # noqa: E402
+from caminhos import COMFY  # noqa: E402
 URL = "http://127.0.0.1:8188"
 RETRATOS = SKILL / "biblia" / "retratos"
 LARGURA, ALTURA = 768, 1344  # resolução nativa do SDXL mais próxima de 9:16

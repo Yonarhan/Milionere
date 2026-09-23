@@ -18,7 +18,9 @@ import sys
 import unicodedata
 from pathlib import Path
 
-SKILL = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from caminhos import DADOS as SKILL  # noqa: E402  (presets, formatos, estilos, bíblia, referências)
 PASTA = SKILL / "biblia"
 ARQ_BPM = PASTA / "bpm.json"
 ARQ_TEMAS = PASTA / "temas.json"

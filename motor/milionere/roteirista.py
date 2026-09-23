@@ -16,9 +16,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import biblia  # noqa: E402
 import llm  # noqa: E402
 
-SKILL = Path(__file__).resolve().parents[1]
-RAIZ = Path(__file__).resolve().parents[4]
-REFS = SKILL / "references"
+from caminhos import DADOS as SKILL  # noqa: E402  (presets, formatos, estilos, bíblia, referências)
+from caminhos import RAIZ  # noqa: E402
+REFS = SKILL / "referencias"
 
 SCHEMA = {
     "type": "object",

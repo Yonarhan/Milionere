@@ -35,11 +35,12 @@ Os créditos obrigatórios ficam em `motor/storage/bgm/creditos.json` (formato: 
 ## 5. Gerar um vídeo
 ```powershell
 cd motor
-$sk = "..\.claude\skills\roteirista-shorts\scripts"
+$sk = ".\milionere"
 .\.venv\Scripts\python.exe "$sk\curadoria.py" "..\producao\roteiros\<roteiro>.json"
 .\.venv\Scripts\python.exe "$sk\produzir.py"  "..\producao\roteiros\<roteiro>.json" --sem-musica
 ```
-Pipeline automático do gospel (Linux/WSL + ComfyUI): `motor/.venv-linux/bin/python .claude/skills/roteirista-shorts/scripts/pipeline.py`
+Pipeline automático do gospel (Linux/WSL + ComfyUI), de dentro de `motor/`: `.venv-linux/bin/python milionere/pipeline.py`
+Configuração opcional: copie `.env.exemplo` para `.env` na raiz (voz, LLM, provedor de imagem, plano).
 
 As imagens próprias (ex.: geradas no Gemini) vão em `producao/midia/<slug>/cena_NN.jpg`. O vídeo sai em `videos_prontos/`.
 O fluxo completo está em `.claude/skills/roteirista-shorts/SKILL.md`.

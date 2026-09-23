@@ -9,7 +9,9 @@ import json
 import sys
 from pathlib import Path
 
-RAIZ = Path(__file__).resolve().parents[4]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from caminhos import RAIZ  # noqa: E402
 
 arquivo, slug, escolhas = sys.argv[1], sys.argv[2], sys.argv[3]
 roteiros = json.loads(Path(arquivo).read_text(encoding="utf-8"))

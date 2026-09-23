@@ -16,8 +16,10 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-RAIZ = Path(__file__).resolve().parents[4]
-CONFIG = RAIZ / "motor" / "config.toml"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from caminhos import RAIZ  # noqa: E402
+from caminhos import CONFIG_MOTOR as CONFIG  # noqa: E402
 MINIMO_BOM = 5
 
 

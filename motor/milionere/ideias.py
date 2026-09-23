@@ -21,9 +21,11 @@ import urllib.parse
 from datetime import date
 from pathlib import Path
 
-RAIZ = Path(__file__).resolve().parents[4]
-MPT = RAIZ / "motor"
-PYTHON = MPT / (".venv/Scripts/python.exe" if sys.platform == "win32" else ".venv-linux/bin/python")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from caminhos import RAIZ  # noqa: E402
+from caminhos import MOTOR as MPT  # noqa: E402
+from caminhos import PYTHON_MOTOR as PYTHON  # noqa: E402
 BUSCAS_PADRAO = [
     "space facts", "black hole facts", "weird planet facts",
     "biology facts", "weird animal facts", "human body facts",

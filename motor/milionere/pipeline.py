@@ -23,14 +23,15 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import biblia  # noqa: E402
 import imagens  # noqa: E402
+import provedores  # noqa: E402  (ComfyUI | Gemini | manual, conforme MILIONERE_IMAGEM/PLANO)
 import roteirista  # noqa: E402
 import validar  # noqa: E402
 
-SKILL = Path(__file__).resolve().parents[1]
-RAIZ = Path(__file__).resolve().parents[4]
-PROD = RAIZ / "producao"
+from caminhos import DADOS as SKILL  # noqa: E402  (presets, formatos, estilos, bíblia, referências)
+from caminhos import RAIZ  # noqa: E402
+from caminhos import PRODUCAO as PROD  # noqa: E402
 USADOS = PROD / "usados.json"
-PY_MPT = RAIZ / "motor" / (".venv/Scripts/python.exe" if sys.platform == "win32" else ".venv-linux/bin/python")
+from caminhos import PYTHON_MOTOR as PY_MPT  # noqa: E402
 MAX_REESCRITAS = 4
 MAX_REFACAO_IMAGEM = 2
 OPCOES_POR_CENA = 3
@@ -148,11 +149,11 @@ def salvar_fichas(r: dict) -> None:
 def imagens_validadas(r: dict, arq_roteiro: Path, reg: Registro) -> None:
     pasta = PROD / "midia" / r["slug"]
     faltando = [i for i in range(1, len(r["cenas"]) + 1) if not any(pasta.glob(f"cena_{i:02d}.*"))]
-    proc = imagens.garantir_comfy()
+    proc = provedores.garantir_comfy()
     try:
         if faltando:
-            log(f"imagens: gerando {len(faltando)} cenas no ComfyUI (estilo {r['estilo']})")
-            imagens.gerar_cenas(r, r["estilo"], pasta, so=faltando)
+            log(f"imagens: gerando {len(faltando)} cenas ({provedores.modo()}) (estilo {r['estilo']})")
+            provedores.gerar_cenas(r, r["estilo"], pasta, so=faltando)
         log("camada 3: juiz visual (todas as cenas, uma por vez)")
         ruins = validar.camada3(r, pasta, r["epoca"])
         reg.add("camada3", not ruins, rodada=1, reprovadas=ruins)
@@ -169,7 +170,7 @@ def imagens_validadas(r: dict, arq_roteiro: Path, reg: Registro) -> None:
             ainda = []
             for c in ruins:
                 n = c["cena"]
-                opcoes = imagens.gerar_opcoes(r, r["estilo"], pasta, n, OPCOES_POR_CENA)
+                opcoes = provedores.gerar_opcoes(r, r["estilo"], pasta, n, OPCOES_POR_CENA)
                 vereditos = validar.julgar_varias(r, [(n, o) for o in opcoes], r["epoca"])
                 boa = next((o for o, v in zip(opcoes, vereditos) if v["ok"]), None)
                 if boa:
@@ -190,7 +191,7 @@ def imagens_validadas(r: dict, arq_roteiro: Path, reg: Registro) -> None:
         else:
             log("  todas as imagens aprovadas")
     finally:
-        imagens.derrubar(proc)  # libera a memória da placa pro render
+        provedores.derrubar(proc)  # libera a memória da placa pro render
 
 
 # ---------------------------------------------------------------- etapa 3: vídeo

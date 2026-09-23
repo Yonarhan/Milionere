@@ -22,15 +22,18 @@ import time
 import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from PIL import Image, ImageDraw, ImageFont
 
 import fontes
 
-SKILL = Path(__file__).resolve().parents[1]
-RAIZ = Path(__file__).resolve().parents[4]
-MPT = RAIZ / "motor"
+from caminhos import DADOS as SKILL  # noqa: E402  (presets, formatos, estilos, bíblia, referências)
+from caminhos import RAIZ  # noqa: E402
+from caminhos import MOTOR as MPT  # noqa: E402
 FONTE = MPT / "resource" / "fonts" / "BeVietnamPro-Bold.ttf"
 MAX_CANDIDATOS = 18
 LADO_W, LADO_H = 240, 300  # cada miniatura

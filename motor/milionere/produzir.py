@@ -37,15 +37,16 @@ from datetime import date, datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import caminhos  # noqa: E402
 import renderizar as render  # noqa: E402
 import sincronizar as sync  # noqa: E402
 
-SKILL = Path(__file__).resolve().parents[1]
-RAIZ = Path(__file__).resolve().parents[4]
-MPT = RAIZ / "motor"
+from caminhos import DADOS as SKILL  # noqa: E402  (presets, formatos, estilos, bíblia, referências)
+from caminhos import RAIZ  # noqa: E402
+from caminhos import MOTOR as MPT  # noqa: E402
 # Windows usa o .venv original; Linux/WSL usa o .venv-linux (criado com `UV_PROJECT_ENVIRONMENT=.venv-linux uv sync --frozen`)
-PYTHON = MPT / (".venv/Scripts/python.exe" if sys.platform == "win32" else ".venv-linux/bin/python")
-SAIDA = RAIZ / "videos_prontos"
+from caminhos import PYTHON_MOTOR as PYTHON  # noqa: E402
+from caminhos import SAIDA  # noqa: E402
 LOCAL_VIDEOS = MPT / "storage" / "local_videos"
 PALAVRAS_POR_SEGUNDO = 1.95  # medido: Edge TTS pt-BR a 1.0x, com as pausas dos pontos finais
 
@@ -79,6 +80,11 @@ def montar_tarefa(r: dict, preset: dict) -> tuple[dict, list[str]]:
         tarefa["bgm_type"] = ""  # vazio = sem música para o motor
         avisos.append(f"sem música '{preset['bgm_prefixo']}*' em storage/bgm; vídeo sai sem música")
     tarefa.update(r.get("ajustes", {}))
+    if caminhos.VOZ == "azure":  # mesma voz pela API oficial do Azure (formato do motor: ...Neural-V2-Male)
+        nome = tarefa.get("voice_name", "")
+        if nome and "-V2" not in nome:
+            base, _, genero = nome.rpartition("-")
+            tarefa["voice_name"] = f"{base}-V2-{genero}" if genero in ("Male", "Female") else f"{nome}-V2"
 
     palavras = len(roteiro.split())
     segundos = palavras / (PALAVRAS_POR_SEGUNDO * float(tarefa.get("voice_rate", 1.0)))
