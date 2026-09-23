@@ -27,6 +27,7 @@ class Job(models.Model):
     entrada = models.JSONField(default=dict)
     saida = models.JSONField(default=dict, blank=True)
     erro = models.TextField(blank=True)
+    custos = models.JSONField(default=dict, blank=True)  # medidor: US$, R$, tokens e tempo por etapa
     criado = models.DateTimeField(auto_now_add=True)
     atualizado = models.DateTimeField(auto_now=True)
 

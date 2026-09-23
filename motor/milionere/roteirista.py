@@ -115,6 +115,13 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
         "com referência, 2 frases, uma pergunta e 'Leia <livro capítulo>'. 5 hashtags com #shorts. Comentário fixado com "
         "pergunta pessoal. Autoavaliação honesta de 1 a 5.",
     ]
+    try:  # guia do nicho: exemplos aprovados + erros que o revisor mais apontou (motor/milionere/guia.py)
+        import guia
+        bloco = guia.bloco("gospel", formato["nome"], tema["titulo"])
+        if bloco:
+            partes.append(bloco)
+    except Exception:
+        pass
     if anterior and correcoes:
         partes.append("# REESCREVA\nSua versão anterior foi reprovada. Versão anterior:\n"
                       + json.dumps({k: anterior[k] for k in ("cenas", "eventos", "versiculo") if k in anterior}, ensure_ascii=False)
@@ -126,7 +133,7 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
 
 
 def escrever(formato: dict, tema: dict, correcoes: list[str] | None = None, anterior: dict | None = None) -> dict:
-    r = llm.chamar(montar_prompt(formato, tema, correcoes, anterior), SCHEMA)
+    r = llm.chamar(montar_prompt(formato, tema, correcoes, anterior), SCHEMA, papel="roteirista")
     # consistência por construção: personagem que já existe usa SEMPRE a ficha salva
     conhecidos = biblia.personagens()
     for p in r["personagens"]:

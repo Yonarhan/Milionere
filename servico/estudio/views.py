@@ -50,7 +50,7 @@ def api_job(request, job_id):
     except (Job.DoesNotExist, ValueError):
         raise Http404
     return JsonResponse({"id": str(job.pk), "tipo": job.tipo, "status": job.status, "etapa": job.etapa,
-                         "mensagem": job.mensagem, "etapas": job.etapas(), "saida": job.saida,
+                         "mensagem": job.mensagem, "etapas": job.etapas(), "saida": job.saida, "custos": job.custos,
                          "erro": job.mensagem if job.status == Job.Status.ERRO else ""})
 
 

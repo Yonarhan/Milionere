@@ -423,8 +423,13 @@ $("gerarRoteiro").onclick=async()=>{
   try{
     const pedido={nicho:S.nicho,formato:S.formato,formato_nome:formato().nome,tema:S.tema,tema_titulo:temaTitulo(),tema_livre:$("temaLivre").value.trim()};
     let j=await api("/api/roteiro",pedido);
-    if(j.job){j=await esperar(j.job,s=>{b.textContent=s.mensagem?`${s.mensagem.slice(0,48)}…`:"Escrevendo e validando…"});if(j.status==="erro")throw new Error(j.erro);j={roteiro:j.saida.roteiro}}
-    aplicarRoteiro(j.roteiro);renderCenas();renderImagens();mostrar(0);toast("Roteiro pronto");
+    document.getElementById("infoRoteiro")?.remove();
+    if(j.job){j=await esperar(j.job,s=>{b.textContent=s.mensagem?`${s.mensagem.slice(0,48)}…`:"Escrevendo e validando…"});if(j.status==="erro")throw new Error(j.erro);j={roteiro:j.saida.roteiro,custos:j.custos}}
+    aplicarRoteiro(j.roteiro);renderCenas();renderImagens();mostrar(0);
+    const cst=j.custos&&j.custos.brl!=null?` · custo R$ ${j.custos.brl.toFixed(2)} (${(j.custos.modelos||[]).join(", ")||"—"})`:"";
+    const nt=j.roteiro.notas&&Object.keys(j.roteiro.notas).length?` · juiz: ${Object.entries(j.roteiro.notas).map(([k,v])=>k+" "+v).join(", ")}`:"";
+    $("checks").insertAdjacentHTML("beforebegin",`<p class="planinfo" id="infoRoteiro">${j.roteiro.tentativas?`Aprovado na tentativa ${j.roteiro.tentativas}`:"Roteiro pronto"}${nt}${cst}</p>`);
+    toast("Roteiro pronto");
   }catch(e){toast("Não deu: "+e.message)}
   b.disabled=false;b.textContent="Gerar outro";
 };
@@ -457,7 +462,7 @@ $("gerar").onclick=async()=>{
     $("sum6").textContent=`Vídeo pronto em ${seg}s`;$("s6").dataset.done="true";
     res.hidden=false;
     res.innerHTML=`<video controls playsinline src="${s.video_url}" style="width:100%;max-width:320px;border-radius:14px;background:#000;justify-self:center"></video>
-      <div class="row"><a class="btn primary" href="${s.video_url}" download>⬇️ Baixar vídeo</a><span class="planinfo">Pronto em ${seg}s ${S.mus==="sem"?"· sem música (escolha o áudio no TikTok)":""}${s.banco&&(s.banco.reusadas||s.banco.novas)?` · banco do nicho: ${s.banco.reusadas} cena(s) reusada(s), ${s.banco.novas} imagem(ns) nova(s) guardada(s)`:""}</span></div>`+
+      <div class="row"><a class="btn primary" href="${s.video_url}" download>⬇️ Baixar vídeo</a><span class="planinfo">Pronto em ${seg}s ${S.mus==="sem"?"· sem música (escolha o áudio no TikTok)":""}${s.banco&&(s.banco.reusadas||s.banco.novas)?` · banco do nicho: ${s.banco.reusadas} cena(s) reusada(s), ${s.banco.novas} imagem(ns) nova(s) guardada(s)`:""}${fim.custos&&fim.custos.brl!=null?` · custo desta geração: R$ ${fim.custos.brl.toFixed(2)}`:""}</span></div>`+
       campos.map(([t,v],k)=>`<div class="copybox"><div class="top"><span class="label">${t}</span><button class="btn" type="button" data-c="${k}" style="padding:5px 10px;font-size:12px">Copiar</button></div><pre>${esc(v||"")}</pre></div>`).join("")+
       (s.post_txt?`<details class="copybox"><summary class="label" style="cursor:pointer">Texto completo do post (com créditos)</summary><pre>${esc(s.post_txt)}</pre></details>`:"")+
       `<p class="planinfo">Lembrete: marque “conteúdo gerado por IA” ao postar.</p>`;

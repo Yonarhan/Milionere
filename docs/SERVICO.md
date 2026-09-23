@@ -139,3 +139,19 @@ milionere/
 - Hospedagem da VPS (custo e região) e se começa com a GPU própria ou na nuvem.
 - LLM do plano grátis (API paga barata, Gemini texto, Workers AI). O `claude -p` é só para desenvolvimento.
 - Troca do Edge TTS pelo Azure oficial antes da cobrança (já decidido: ver PRODUTO.md, seção 9).
+
+
+## 10. Sistema de guia da IA (implementado 23/09/2026)
+
+| Peça | Arquivo | O que faz |
+|---|---|---|
+| Medidor | `motor/milionere/medidor.py` | Toda chamada de IA e imagem anota tokens, modelo, US$/R$ e tempo por etapa. Vai para `Job.custos` e aparece no admin e na tela |
+| Banco de roteiros | `motor/milionere/banco_roteiros.py` | Roteiros aprovados (exemplos) + erros que o juiz apontou, por nicho; busca por significado; desempenho real (views/retenção) pesa nos exemplos |
+| Guia | `motor/milionere/guia.py` | Bloco que entra em todo prompt de roteiro: 3 exemplos aprovados parecidos + erros mais comuns do nicho + aprendizados. `checar()` = camada 1 por código (grátis) |
+| Roteirista guiado | `servico_pipeline._roteiro_generico` | escreve (guiado) → código → juiz (só se o código aprovou) → reescreve só o apontado (máx. 3) → aprovado vira exemplo, reprovação vira lição |
+| Papéis e modelos | `caminhos.py` | `MILIONERE_MODELO_ROTEIRO` (padrão sonnet) e `MILIONERE_MODELO_JUIZ` (padrão haiku); `MILIONERE_JUIZ_ROTEIRO=0` desliga o juiz |
+
+**Medição real (buraco negro, aprovado na 1ª):** R$ 1,51 em valor de API, 193 s. O roteirista consumiu 35,7 mil tokens de
+entrada e 10,3 mil de saída porque o `claude -p` embute ~9 mil tokens de instruções do Claude Code por chamada e usa pensamento
+estendido. **Chamando a API direto** (fase 1: camada `MILIONERE_LLM=api`), o mesmo roteiro ficaria em torno de 7 mil tokens de
+entrada e 1,5 mil de saída: estimativa de ~R$ 0,20 (Sonnet 5 escrevendo + Haiku julgando), fora a economia do cache de prompt.

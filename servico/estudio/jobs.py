@@ -31,15 +31,19 @@ def _progresso(job_id):
 
 def _executar(job_id, trabalho):
     close_old_connections()
-    try:
-        Job.objects.filter(pk=job_id).update(status=Job.Status.RODANDO)
-        saida = trabalho()
-        Job.objects.filter(pk=job_id).update(status=Job.Status.OK, saida=saida, mensagem="")
-    except BaseException as e:  # SystemExit do pipeline também vira erro legível
-        Job.objects.filter(pk=job_id).update(status=Job.Status.ERRO, erro=f"{e}\n\n{traceback.format_exc()[-3000:]}",
-                                             mensagem=str(e)[:300])
-    finally:
-        close_old_connections()
+    _pipeline()
+    import medidor
+
+    with medidor.medir() as m:  # toda chamada de IA e imagem feita neste job é anotada aqui
+        try:
+            Job.objects.filter(pk=job_id).update(status=Job.Status.RODANDO)
+            saida = trabalho()
+            Job.objects.filter(pk=job_id).update(status=Job.Status.OK, saida=saida, mensagem="", custos=m.resumo())
+        except BaseException as e:  # SystemExit do pipeline também vira erro legível
+            Job.objects.filter(pk=job_id).update(status=Job.Status.ERRO, erro=f"{e}\n\n{traceback.format_exc()[-3000:]}",
+                                                 mensagem=str(e)[:300], custos=m.resumo())
+        finally:
+            close_old_connections()
 
 
 def _rodar_roteiro(job_id):

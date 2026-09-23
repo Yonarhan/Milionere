@@ -70,16 +70,23 @@ def _prompts_manuais(roteiro: dict, nome_estilo: str, pasta: Path, cenas: list[i
 
 
 def _uma(roteiro: dict, nome_estilo: str, n: int, destino: Path, seed: int) -> Path:
+    import time as _t
+    import medidor
     s = _sessao()
+    inicio = _t.time()
     if s.gemini_ok:
         import imagem_gemini
         try:
-            return imagem_gemini.gerar_cena(roteiro, nome_estilo, n, destino, imagem_gemini.chave())
+            feito = imagem_gemini.gerar_cena(roteiro, nome_estilo, n, destino, imagem_gemini.chave())
+            medidor.imagem(imagem_gemini.MODELOS[0], _t.time() - inicio)
+            return feito
         except imagem_gemini.SemCota as e:
             print(f"  Gemini indisponível ({e}); usando o ComfyUI como reserva")
             s.gemini_ok = False
     s.comfy()
-    return imagens._gerar_cena(roteiro, nome_estilo, n, destino, seed)
+    feito = imagens._gerar_cena(roteiro, nome_estilo, n, destino, seed)
+    medidor.imagem("comfy", _t.time() - inicio)
+    return feito
 
 
 def gerar_cenas(roteiro: dict, nome_estilo: str, pasta: Path, so: list[int] | None = None,

@@ -113,39 +113,106 @@ SCHEMA_SIMPLES = {
 }
 
 
-def _roteiro_generico(entrada: dict, log) -> dict:
+SCHEMA_JUIZ = {
+    "type": "object", "additionalProperties": False, "required": ["notas", "erros_factuais", "problemas"],
+    "properties": {
+        "notas": {"type": "object", "additionalProperties": False,
+                  "required": ["gancho", "clareza", "ritmo", "linguagem", "payoff", "precisao"],
+                  "properties": {k: {"type": "integer", "minimum": 1, "maximum": 5}
+                                 for k in ["gancho", "clareza", "ritmo", "linguagem", "payoff", "precisao"]}},
+        "erros_factuais": {"type": "array", "items": {"type": "string"}},
+        "problemas": {"type": "array", "items": {"type": "string"}, "description": "cada um com o número da cena e como corrigir"},
+    },
+}
+MAX_TENTATIVAS = 3
+
+
+def _preset(nicho: str) -> dict:
+    return json.loads((caminhos.DADOS / "presets.json").read_text(encoding="utf-8"))[PRESET_DO_NICHO.get(nicho, "curiosidades")]
+
+
+def _juiz(r: dict, entrada: dict, tema: str) -> tuple[list[str], dict]:
+    """Camada 2 genérica: outra conversa, modelo barato (papel juiz), critérios fixos."""
     import llm
+
+    cenas = "\n".join(f"{i}. {c['fala']}" for i, c in enumerate(r["cenas"], 1))
+    prompt = (
+        "Você revisa roteiros de Shorts/TikTok em pt-BR antes de publicar. Ache problemas, não elogie. "
+        "Nota 5 só se não há nada a melhorar; 3 = publicável com defeito visível.\n\n"
+        f"# Nicho: {entrada['nicho']} · Tema: {tema}\n# Roteiro (uma voz narra; cada linha é uma cena com uma imagem)\n{cenas}\n\n"
+        "# Critérios (1-5)\n- gancho: a 1ª frase faz parar de rolar o feed?\n- clareza: quem ouve UMA vez entende tudo?\n"
+        "- ritmo: nenhuma frase sobrando, frases curtas e variadas?\n- linguagem: soa como gente falando, sem cara de IA?\n"
+        "- payoff: o final entrega surpresa/emoção e responde o gancho?\n"
+        "- precisao: o FATO CENTRAL está correto? Dramatização em tom de hipótese ('imagina') não é erro.\n"
+        "erros_factuais = só afirmações apresentadas como fato que estão erradas. "
+        "Cada problema: número da cena + como corrigir, em 1 frase.")
+    j = llm.chamar(prompt, SCHEMA_JUIZ, papel="juiz")
+    notas = j["notas"]
+    reprova = bool(j["erros_factuais"]) or min(notas.values()) < 3 or sum(notas.values()) / len(notas) < 3.6
+    problemas = [f"ERRO FACTUAL: {e}" for e in j["erros_factuais"]] + (j["problemas"] if reprova else [])
+    return problemas, notas
+
+
+def _roteiro_generico(entrada: dict, log) -> dict:
+    """Roteirista guiado: exemplos e erros do nicho no prompt -> checagem por código -> juiz -> reescreve só o apontado."""
+    import banco_roteiros
+    import guia
+    import llm
+    import medidor
 
     refs = caminhos.DADOS / "referencias"
     ler = lambda n: (refs / n).read_text(encoding="utf-8") if (refs / n).exists() else ""  # noqa: E731
-    preset = json.loads((caminhos.DADOS / "presets.json").read_text(encoding="utf-8"))[PRESET_DO_NICHO.get(entrada["nicho"], "curiosidades")]
+    nicho, preset = entrada["nicho"], _preset(entrada["nicho"])
     lo, hi = preset["palavras_min"], preset["palavras_max"]
     tema = entrada.get("tema_livre") or entrada.get("tema_titulo") or entrada.get("tema")
-    prompt = "\n\n".join([
+    formato = entrada.get("formato_nome", entrada.get("formato", ""))
+    base = "\n\n".join([
         "Você é roteirista de Shorts/TikTok em português do Brasil. Escreva UM roteiro dividido em cenas.",
-        f"# Nicho: {entrada['nicho']} · formato: {entrada.get('formato_nome', entrada.get('formato'))}\n# Tema: {tema}",
-        f"# Tamanho\n{lo} a {hi} palavras no total, 8 a 13 cenas, uma frase por cena. A 1ª é o gancho (até 8 palavras); "
-        "a última é um CTA curto (comenta, manda pra alguém, imagina...).",
+        f"# Nicho: {nicho} · formato: {formato}\n# Tema: {tema}",
+        f"# Tamanho\n{lo} a {hi} palavras no total, 7 a 13 cenas, uma frase por cena (3 a 14 palavras). "
+        "A 1ª é o gancho (até 8 palavras); a última é um CTA curto (comenta, manda pra alguém, escreve...).",
         "# Fatos\nO fato central tem que ser verdadeiro. O resto pode ser dramatização em tom de hipótese ('imagina', 'provavelmente').",
-        f"# Ganchos\n{ler('ganchos.md')}", f"# Linguagem\n{ler('anti-ia.md')}", f"# Nichos\n{ler('nichos.md')}",
+        guia.bloco(nicho, formato, tema),
+        f"# Ganchos\n{ler('ganchos.md')}", f"# Linguagem\n{ler('anti-ia.md')}",
         "# Post\nTítulo até 60 caracteres, descrição com 1-2 frases e uma pergunta, 5 hashtags com #shorts.",
     ])
-    log("roteiro", "escrevendo com IA")
-    r = llm.chamar(prompt, SCHEMA_SIMPLES)
-    total = sum(len(c["fala"].split()) for c in r["cenas"])
-    if not lo <= total <= hi:
-        log("roteiro", f"{total} palavras: ajustando para {lo}-{hi}")
-        r = llm.chamar(prompt + f"\n\n# REESCREVA\nSua versão tinha {total} palavras. Fique entre {lo} e {hi}.\n"
-                       + json.dumps(r["cenas"], ensure_ascii=False), SCHEMA_SIMPLES)
-    return r
+    melhor, correcoes = None, []
+    for tentativa in range(1, MAX_TENTATIVAS + 1):
+        prompt = base
+        if correcoes:
+            prompt += ("\n\n# REESCREVA corrigindo TODOS estes problemas (sem criar outros)\n"
+                       + "\n".join(f"- {c}" for c in correcoes) + "\n\nVersão anterior:\n"
+                       + json.dumps([c["fala"] for c in melhor[0]["cenas"]], ensure_ascii=False))
+        log("roteiro", f"escrevendo (tentativa {tentativa})")
+        with medidor.etapa("roteiro"):
+            r = llm.chamar(prompt, SCHEMA_SIMPLES, papel="roteirista")
+        erros = guia.checar(r["cenas"], preset)                      # camada 1: código, grátis
+        notas = {}
+        if not erros and caminhos.JUIZ_ROTEIRO:                      # camada 2: só se o código aprovou
+            log("roteiro", f"juiz revisando (tentativa {tentativa})")
+            with medidor.etapa("juiz"):
+                erros, notas = _juiz(r, entrada, tema)
+        pontos = (sum(notas.values()) if notas else 0) - 3 * len(erros)
+        if melhor is None or pontos >= melhor[2]:
+            melhor = (r, notas, pontos)
+        banco_roteiros.registrar_erros(nicho, formato, erros)          # a memória aprende com cada reprovação
+        if not erros:
+            banco_roteiros.adicionar(nicho, formato, tema, r["titulo"], [c["fala"] for c in r["cenas"]], notas, "ia")
+            return {**r, "_notas_juiz": notas, "_tentativas": tentativa}
+        correcoes = erros
+    r, notas, _ = melhor
+    return {**r, "_notas_juiz": notas, "_tentativas": MAX_TENTATIVAS, "_avisos": correcoes}
 
 
 def gerar_roteiro(entrada: dict, log) -> dict:
     """entrada: {nicho, formato, tema, tema_livre?, tema_titulo?}. Devolve o roteiro no formato da tela."""
+    import medidor
+
     pronto = None if entrada.get("tema_livre") else roteiro_pronto(entrada.get("tema", ""))
     if pronto:
         return pronto
     if entrada["nicho"] == "gospel" and not entrada.get("tema_livre"):
+        import banco_roteiros
         import biblia
         import pipeline
 
@@ -154,12 +221,18 @@ def gerar_roteiro(entrada: dict, log) -> dict:
         if tema:
             log("roteiro", "escrevendo com o texto exato da Bíblia e validando (camadas 1 e 2)")
             reg = pipeline.Registro(f"svc-{entrada.get('job', 'x')}")
-            r = pipeline.roteiro_validado(formato, tema, reg)
+            with medidor.etapa("roteiro+juiz (bíblico)"):
+                r = pipeline.roteiro_validado(formato, tema, reg)
+            reprovacoes = [p for e in reg.dados["etapas"] if not e["ok"] for p in e.get("problemas", [])]
+            banco_roteiros.registrar_erros("gospel", formato["nome"], reprovacoes)
             if not r:
                 raise RuntimeError("o roteiro não passou nas validações; tente outro tema ou escreva o seu")
-            return {**_tela({**r, "slug": ""}), "base": ""}
+            banco_roteiros.adicionar("gospel", formato["nome"], tema["titulo"], r["titulo"], [c["fala"] for c in r["cenas"]],
+                                     r.get("_notas_juiz", {}), "ia")
+            return {**_tela({**r, "slug": ""}), "base": "", "notas": r.get("_notas_juiz", {})}
     r = _roteiro_generico(entrada, log)
-    return {**_tela({**r, "slug": ""}), "base": ""}
+    return {**_tela({**r, "slug": ""}), "base": "", "notas": r.get("_notas_juiz", {}), "tentativas": r.get("_tentativas"),
+            "avisos": r.get("_avisos", [])}
 
 
 # ------------------------------------------------------------------ vídeo
@@ -267,6 +340,14 @@ def gerar_video(entrada: dict, pasta_job: Path, log) -> dict:
         raise RuntimeError(falhas[-1] if falhas else "o render falhou: veja log.txt do job")
     log("post", "")
     banco = _alimentar_banco(entrada, r, slug)
+    try:  # vídeo com roteiro que passa na checagem por código também vira exemplo do nicho
+        import banco_roteiros
+        import guia
+        if not guia.checar(r["cenas"], _preset(entrada["nicho"])) and not roteiro_pronto(entrada.get("tema", "")):
+            banco_roteiros.adicionar(entrada["nicho"], entrada.get("formato", ""), entrada.get("tema_livre") or entrada.get("tema", ""),
+                                     r["titulo"], [c["fala"] for c in r["cenas"]], {}, "video")
+    except Exception as e:
+        print(f"banco de roteiros indisponível: {e}")
     txt = video.with_suffix(".txt")
     return {"video": str(video), "post_txt": txt.read_text(encoding="utf-8") if txt.exists() else "",
             "titulo": r["titulo"], "descricao": r["descricao"], "hashtags": " ".join(r["hashtags"]), "banco": banco}
