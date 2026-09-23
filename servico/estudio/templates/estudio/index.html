@@ -182,6 +182,9 @@ select{max-width:100%}
             </div>
           </div>
           <p class="planinfo" id="planImg"></p>
+          <label class="row" for="compartilhar" style="font-size:14px"><input type="checkbox" id="compartilhar">
+            Compartilhar as imagens que eu subir com o banco do nicho (os próximos vídeos saem mais rápido e mais baratos).
+            <a href="/banco" target="_blank" rel="noopener" style="color:var(--accent)">Ver o banco</a></label>
           <div id="imagens"></div>
         </div>
       </details>
@@ -442,7 +445,7 @@ $("gerar").onclick=async()=>{
   const pedido={nicho:S.nicho,formato:S.formato,tema:S.tema,tema_livre:$("temaLivre").value.trim(),plano:S.plano,estilo:S.estilo,
     voz:$("voz").value,vel:S.vel,leg:S.leg,cor:S.cor,mus:S.mus,post:S.post,
     cenas:S.cenas.map((f,i)=>({fala:f,busca:(ROTEIROS[S.tema]&&ROTEIROS[S.tema].falas[i]===f)?"":(S.extra[i]?.busca||""),imagem:S.extra[i]?.imagem||""})),
-    uploads:Object.fromEntries(Object.entries(S.uploads))};
+    uploads:Object.fromEntries(Object.entries(S.uploads)),compartilhar_banco:$("compartilhar").checked};
   try{
     const {job}=await api("/api/gerar",pedido);
     const fim=await esperar(job,j=>{
@@ -454,7 +457,7 @@ $("gerar").onclick=async()=>{
     $("sum6").textContent=`Vídeo pronto em ${seg}s`;$("s6").dataset.done="true";
     res.hidden=false;
     res.innerHTML=`<video controls playsinline src="${s.video_url}" style="width:100%;max-width:320px;border-radius:14px;background:#000;justify-self:center"></video>
-      <div class="row"><a class="btn primary" href="${s.video_url}" download>⬇️ Baixar vídeo</a><span class="planinfo">Pronto em ${seg}s ${S.mus==="sem"?"· sem música (escolha o áudio no TikTok)":""}</span></div>`+
+      <div class="row"><a class="btn primary" href="${s.video_url}" download>⬇️ Baixar vídeo</a><span class="planinfo">Pronto em ${seg}s ${S.mus==="sem"?"· sem música (escolha o áudio no TikTok)":""}${s.banco&&(s.banco.reusadas||s.banco.novas)?` · banco do nicho: ${s.banco.reusadas} cena(s) reusada(s), ${s.banco.novas} imagem(ns) nova(s) guardada(s)`:""}</span></div>`+
       campos.map(([t,v],k)=>`<div class="copybox"><div class="top"><span class="label">${t}</span><button class="btn" type="button" data-c="${k}" style="padding:5px 10px;font-size:12px">Copiar</button></div><pre>${esc(v||"")}</pre></div>`).join("")+
       (s.post_txt?`<details class="copybox"><summary class="label" style="cursor:pointer">Texto completo do post (com créditos)</summary><pre>${esc(s.post_txt)}</pre></details>`:"")+
       `<p class="planinfo">Lembrete: marque “conteúdo gerado por IA” ao postar.</p>`;

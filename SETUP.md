@@ -64,3 +64,12 @@ cd servico
 Abra http://127.0.0.1:8000 → nicho → tema → (Gerar roteiro) → Gerar vídeo. O vídeo aparece na tela e pode ser baixado.
 Jobs, entradas e erros ficam no admin (`manage.py createsuperuser` → /admin). Arquivos do serviço: `servico/media/` (fora do git).
 Arquitetura de produção (Celery, Postgres, R2…): [docs/SERVICO.md](docs/SERVICO.md).
+
+### Banco de imagens por nicho
+Toda cena nova consulta o banco do nicho antes de buscar no Pexels ou gerar; toda imagem aprovada entra no banco.
+Carga inicial com as imagens já aprovadas do time (rodar uma vez, de dentro de `motor/`):
+```powershell
+$env:MILIONERE_PRODUCAO = "..\servico\media\producao"
+.\.venv\Scripts\python.exe milionere\banco_imagens.py --indexar-repo
+```
+Ver o banco: http://127.0.0.1:8000/banco · A busca por significado usa um modelo aberto e grátis (baixa ~120 MB na 1ª vez).

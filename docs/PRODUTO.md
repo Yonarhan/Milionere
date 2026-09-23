@@ -83,6 +83,11 @@ juiz barato → aprova → entra na biblioteca
 
 **Métrica principal:** % de cenas atendidas pela biblioteca ou geradas a partir dela, com nota do juiz ≥ 4.
 
+**Status (23/09/2026): v1 no ar no serviço.** `motor/milionere/banco_imagens.py` (SQLite + modelo aberto
+multilingual MiniLM). Consulta antes do Pexels, herda o personagem da cena anterior, não repete imagem no vídeo,
+guarda as imagens de cada vídeo (uploads privados por padrão, compartilhados com consentimento). Primeiro teste:
+roteiro novo do Pedro → 4 de 7 cenas do banco (imagens do Gemini do time), custo zero, 53 s.
+
 ## 6. Otimizar o pipeline para o servidor
 
 Meta: **menos de 5 min por vídeo** (hoje, ~2h30 no pior caso).

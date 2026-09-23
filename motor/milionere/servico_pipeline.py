@@ -202,6 +202,25 @@ def montar_roteiro(entrada: dict, slug: str) -> dict:
         cenas.append(cena)
         if (entrada.get("uploads") or {}).get(str(i)):
             _salvar_upload(entrada["uploads"][str(i)], midia, n)
+    # banco de imagens do nicho: cena sem imagem ainda (sem upload e sem imagem do roteiro pronto) consulta o banco
+    usados, do_banco = set(), {}
+    try:
+        import banco_imagens
+        contexto = []  # último personagem citado: "chorou sozinho" depois de uma cena do Pedro = Pedro chorando
+        for n, cena in enumerate(cenas, 1):
+            citados = banco_imagens.detectar_personagens(cena["fala"])
+            contexto = citados or contexto
+            if any(midia.glob(f"cena_{n:02d}.*")):
+                continue
+            texto = cena["fala"] if citados or not contexto else f"{cena['fala']} ({contexto[0]})"
+            achado = next((a for a in banco_imagens.buscar(nicho, texto, dono=entrada.get("dono", ""), excluir=usados)
+                           if a["nota"] >= banco_imagens.LIMIAR_REUSO), None)
+            if achado:
+                shutil.copy(achado["arquivo"], midia / f"cena_{n:02d}{achado['arquivo'].suffix}")
+                usados.add(achado["id"])
+                do_banco[n] = {"id": achado["id"], "nota": achado["nota"]}
+    except Exception as e:  # o banco nunca derruba o vídeo: sem banco, segue para a busca normal
+        print(f"banco de imagens indisponível: {e}")
     if base:  # as escolhas da curadoria apontam para o candidatos.json do roteiro pronto
         cur = REPO_PRODUCAO / "curadoria" / base["slug"] / "candidatos.json"
         if cur.exists():
@@ -214,7 +233,7 @@ def montar_roteiro(entrada: dict, slug: str) -> dict:
                "text_fore_color": "#FFE600" if entrada.get("cor") == "amarela" else "#FFFFFF"}
     return {"slug": slug, "nicho": PRESET_DO_NICHO.get(nicho, "curiosidades"), "titulo": post.get("titulo") or "Meu Short",
             "cenas": cenas, "descricao": post.get("desc", ""), "hashtags": (post.get("tags") or "#shorts").split(),
-            "comentario_fixado": post.get("comentario", ""), "ajustes": ajustes}
+            "comentario_fixado": post.get("comentario", ""), "ajustes": ajustes, "_do_banco": do_banco}
 
 
 def gerar_video(entrada: dict, pasta_job: Path, log) -> dict:
@@ -247,6 +266,34 @@ def gerar_video(entrada: dict, pasta_job: Path, log) -> dict:
     if not video or not video.exists():
         raise RuntimeError(falhas[-1] if falhas else "o render falhou: veja log.txt do job")
     log("post", "")
+    banco = _alimentar_banco(entrada, r, slug)
     txt = video.with_suffix(".txt")
     return {"video": str(video), "post_txt": txt.read_text(encoding="utf-8") if txt.exists() else "",
-            "titulo": r["titulo"], "descricao": r["descricao"], "hashtags": " ".join(r["hashtags"])}
+            "titulo": r["titulo"], "descricao": r["descricao"], "hashtags": " ".join(r["hashtags"]), "banco": banco}
+
+
+def _alimentar_banco(entrada: dict, r: dict, slug: str) -> dict:
+    """Depois do vídeo pronto: marca o uso das imagens que vieram do banco e guarda as novas (uploads e IA).
+    Upload só vira compartilhado se o usuário autorizou; senão fica no banco privado dele (dono)."""
+    try:
+        import banco_imagens
+    except Exception:
+        return {}
+    do_banco = r.get("_do_banco", {})
+    banco_imagens.marcar_uso([v["id"] for v in do_banco.values()])
+    midia, novas = caminhos.PRODUCAO / "midia" / slug, 0
+    uploads = {int(k) for k in (entrada.get("uploads") or {})}
+    for n, cena in enumerate(r["cenas"], 1):
+        if n in do_banco:
+            continue
+        img = next((p for p in sorted(midia.glob(f"cena_{n:02d}.*")) if p.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"}), None)
+        if not img:
+            continue
+        de_upload = (n - 1) in uploads
+        desc = " | ".join(x for x in (cena["fala"], cena.get("imagem", "")) if x)
+        if banco_imagens.adicionar(img, entrada["nicho"], desc, estilo=entrada.get("estilo", "cinema"),
+                                   origem="upload" if de_upload else "ia-time", credito="Imagem gerada por IA",
+                                   compartilhada=bool(entrada.get("compartilhar_banco")) or not de_upload,
+                                   dono=entrada.get("dono", "")):
+            novas += 1
+    return {"reusadas": len(do_banco), "novas": novas}

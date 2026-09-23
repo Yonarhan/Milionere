@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt-br"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Banco de imagens</title>
+<style>
+:root{--ground:#F2F3F0;--surface:#fff;--ink:#15181C;--muted:#5C636B;--line:#D6D9D2;--accent:#0E7C66}
+@media (prefers-color-scheme:dark){:root{--ground:#111316;--surface:#1A1D21;--ink:#ECEDEA;--muted:#9AA1A8;--line:#30353B;--accent:#35C29D}}
+body{background:var(--ground);color:var(--ink);font:15px/1.5 system-ui,sans-serif;margin:0;padding:20px 16px}
+.wrap{max-width:1180px;margin:0 auto}h1{margin:0 0 4px}a{color:var(--accent)}
+.filtros{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 18px}.filtros a{border:1px solid var(--line);border-radius:999px;padding:5px 12px;text-decoration:none;color:var(--ink)}
+.filtros a.on{border-color:var(--accent);font-weight:600}
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.item img{width:100%;aspect-ratio:9/16;object-fit:cover;display:block}
+.item p{margin:0;padding:8px;font-size:12px;color:var(--muted)}.item b{color:var(--ink)}
+</style></head><body><div class="wrap">
+<p><a href="/">← Estúdio</a></p>
+<h1>Banco de imagens</h1>
+<p style="color:var(--muted)">{{ total }} imagem(ns){% if nicho %} em {{ nicho }}{% endif %}. Toda cena nova consulta o banco antes de buscar ou gerar; toda imagem aprovada entra aqui.</p>
+<div class="filtros"><a href="/banco" class="{% if not nicho %}on{% endif %}">todos</a>{% for n in nichos %}<a href="?nicho={{ n }}" class="{% if n == nicho %}on{% endif %}">{{ n }}</a>{% endfor %}</div>
+<div class="grade">{% for i in itens %}
+  <div class="item"><img src="{{ i.url }}" alt="{{ i.descricao }}" loading="lazy">
+  <p><b>{{ i.nicho }}</b> · usada {{ i.usos }}x · {{ i.origem }}{% if not i.compartilhada %} · privada{% endif %}<br>{{ i.descricao|truncatechars:90 }}</p></div>
+{% empty %}<p>O banco ainda está vazio. Rode <code>banco_imagens.py --indexar-repo</code> ou gere vídeos com imagens próprias.</p>{% endfor %}</div>
+</div></body></html>

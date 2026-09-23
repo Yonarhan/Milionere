@@ -1,3 +1,4 @@
 # Instale no mesmo ambiente do motor (motor/.venv): o serviço importa o pipeline motor/milionere.
 django>=5.2,<5.3
+fastembed>=0.4   # busca por significado do banco de imagens (modelo aberto, roda na CPU)
 # produção (docs/SERVICO.md): celery, redis, psycopg, pgvector, django-storages, django-allauth

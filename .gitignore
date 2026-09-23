@@ -255,3 +255,6 @@ producao/*.png
 # Serviço (MVP local): banco e arquivos gerados
 servico/db.sqlite3
 servico/media/
+
+# Banco de imagens (gerado; v1 em SQLite)
+producao/banco/
