@@ -1,0 +1,89 @@
+[
+  {
+    "slug": "venus-dia-maior-que-ano",
+    "nicho": "astronomia",
+    "titulo": "Nesse planeta, você faria aniversário antes do dia acabar 🪐",
+    "cenas": [
+      {
+        "fala": "Em Vênus, um dia dura mais que um ano.",
+        "busca": "planet venus|planet in space",
+        "arte": "Venus",
+        "escolha": [
+          "nasa:PIA13001"
+        ]
+      },
+      {
+        "fala": "Ela leva 243 dias pra girar em torno de si mesma.",
+        "busca": "planet rotating|rotating planet",
+        "arte": "Venus globe",
+        "escolha": [
+          "nasa:PIA00257",
+          "nasa:PIA00252"
+        ]
+      },
+      {
+        "fala": "E só 225 pra dar a volta no Sol.",
+        "busca": "solar system|planets orbiting sun",
+        "arte": "solar system planets",
+        "escolha": [
+          "nasa:PIA11800"
+        ]
+      },
+      {
+        "fala": "Você faria aniversário antes do dia acabar.",
+        "busca": "birthday cake candles|birthday party",
+        "escolha": [
+          "pexels:8901133"
+        ]
+      },
+      {
+        "fala": "E lá o Sol nasce no oeste.",
+        "busca": "sunrise time lapse|sunrise horizon",
+        "arte": "Venus surface",
+        "escolha": [
+          "pexels:11110306"
+        ]
+      },
+      {
+        "fala": "Mesmo mais longe que Mercúrio, ela é o planeta mais quente.",
+        "busca": "planet mercury|sun surface",
+        "arte": "Mercury planet|Venus Magellan",
+        "escolha": [
+          "nasa:GSFC_20171208_Archive_e001918"
+        ]
+      },
+      {
+        "fala": "465 graus. Derrete chumbo.",
+        "busca": "molten lava|melting metal",
+        "arte": "Venus volcano",
+        "escolha": [
+          "nasa:PIA00272",
+          "pexels:6033520"
+        ]
+      },
+      {
+        "fala": "E você aí reclamando do calor.",
+        "busca": "man sweating heat|hot summer fan",
+        "escolha": [
+          "pexels:6892080"
+        ]
+      }
+    ],
+    "descricao": "Vênus leva 243 dias pra girar em torno de si mesma e só 225 pra dar a volta no Sol. Ou seja: lá um dia dura mais que um ano. 🪐\n\nE ainda é o planeta mais quente do Sistema Solar, com 465 °C.\n\nVídeos: Pexels | Imagens: NASA",
+    "hashtags": [
+      "#astronomia",
+      "#espaço",
+      "#vênus",
+      "#curiosidades",
+      "#shorts"
+    ],
+    "comentario_fixado": "Se você morasse em Vênus, quantos anos teria no fim do primeiro dia? 😂",
+    "fontes": [
+      "https://spaceplace.nasa.gov/all-about-venus/en/",
+      "https://spacedaily.com/t-venus-day-longer-than-year/"
+    ],
+    "ajustes": {
+      "voice_rate": 1.15
+    }
+  }
+]

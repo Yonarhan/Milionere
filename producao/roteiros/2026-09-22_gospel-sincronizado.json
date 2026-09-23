@@ -1,0 +1,221 @@
+[
+  {
+    "slug": "jesus-chorou-lazaro",
+    "nicho": "gospel",
+    "titulo": "Por que Jesus chorou se já sabia o final? 😢",
+    "cenas": [
+      {
+        "fala": "Jesus chegou quatro dias atrasado.",
+        "busca": "man walking desert|walking desert sand",
+        "arte": "Christ walking with disciples painting|Jesus walking road painting",
+        "escolha": [
+          "pexels:19688516"
+        ],
+        "foto": "jesus walking|jesus desert"
+      },
+      {
+        "fala": "De propósito.",
+        "busca": "sandals walking dirt road|feet walking path",
+        "escolha": [
+          "pexels:18741740"
+        ]
+      },
+      {
+        "fala": "Lázaro, amigo dele, tava muito doente.",
+        "busca": "sick man in bed|ill man lying bed",
+        "arte": "sick man in bed painting|Lazarus sick",
+        "escolha": [
+          "pexels:8088302"
+        ],
+        "foto": "sick man bed ancient|lazarus"
+      },
+      {
+        "fala": "E Jesus esperou mais dois dias.",
+        "busca": "hourglass|hourglass sand time",
+        "escolha": [
+          "pexels:31112120"
+        ]
+      },
+      {
+        "fala": "Quando chegou, Lázaro tava no túmulo fazia quatro dias.",
+        "busca": "cave entrance|rock cave dark",
+        "arte": "tomb of Lazarus|rock-cut tomb",
+        "escolha": [
+          "wikimedia:59127791",
+          "wikimedia:66780268"
+        ],
+        "foto": "tomb stone rolled|empty tomb"
+      },
+      {
+        "fala": "Jesus sabia que ia ressuscitar ele.",
+        "busca": "sunlight through clouds|sun rays sky",
+        "arte": "Christ light painting|Jesus Christ portrait painting",
+        "escolha": [
+          "wikimedia:13359461"
+        ]
+      },
+      {
+        "fala": "Mas viu a irmã dele chorando.",
+        "busca": "woman crying|sad woman tears",
+        "arte": "Mary and Martha painting|Martha Mary Jesus Lazarus",
+        "escolha": [
+          "pexels:6670423"
+        ],
+        "foto": "mary jesus feet|woman crying jesus"
+      },
+      {
+        "fala": "E a Bíblia usa só duas palavras.",
+        "busca": "open bible|bible pages",
+        "escolha": [
+          "pexels:6860448"
+        ]
+      },
+      {
+        "fala": "Jesus chorou.",
+        "busca": "tears close up|tear falling eye",
+        "arte": "Jesus wept|Christ weeping painting",
+        "escolha": [
+          "pexels:8056469"
+        ],
+        "foto": "jesus crying|jesus tears"
+      },
+      {
+        "fala": "Ele sabia o final. E chorou mesmo assim.",
+        "busca": "man crying|sad man portrait",
+        "arte": "Christ weeping|Jesus tears painting",
+        "escolha": [
+          "pexels:8165644"
+        ],
+        "foto": "jesus sad|jesus praying"
+      },
+      {
+        "fala": "Porque antes de tirar a sua dor, ele sente ela com você.",
+        "busca": "comforting sad friend|consoling crying woman",
+        "escolha": [
+          "pexels:6382089",
+          "pexels:6381021"
+        ]
+      },
+      {
+        "fala": "Aí Jesus gritou. Lázaro, venha para fora!",
+        "busca": "light in dark cave|cave light rays",
+        "arte": "raising of Lazarus|resurrection of Lazarus",
+        "escolha": [
+          "wikimedia:21909544",
+          "wikimedia:74650229"
+        ],
+        "foto": "jesus resurrection light|jesus miracle"
+      },
+      {
+        "fala": "E o morto saiu.",
+        "busca": "man walking out of cave|silhouette cave exit",
+        "arte": "raising of Lazarus Rembrandt|Lazarus coming out of tomb",
+        "escolha": [
+          "wikimedia:42334240"
+        ],
+        "foto": "lazarus|resurrection tomb light"
+      },
+      {
+        "fala": "Ele pode parecer atrasado. Mas nunca chega tarde.",
+        "busca": "sunrise|sunrise mountains",
+        "escolha": [
+          "pexels:15499822",
+          "pexels:29119700"
+        ]
+      },
+      {
+        "fala": "Escreve amém.",
+        "busca": "praying hands on bible|hands praying over bible",
+        "escolha": [
+          "pexels:5875593"
+        ]
+      }
+    ],
+    "descricao": "\"Jesus chorou.\" João 11:35 (NVI). O versículo mais curto da Bíblia. Ele sabia que ia ressuscitar Lázaro e mesmo assim chorou junto. 🙏\n\nManda pra alguém que tá esperando um milagre.\n\nVídeos: Pexels",
+    "hashtags": [
+      "#jesus",
+      "#biblia",
+      "#fé",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já sentiu que Deus tava atrasado na sua vida? Conta aqui 👇🙏",
+    "fontes": [
+      "https://www.bibliaonline.com.br/nvi/jo/11"
+    ],
+    "ajustes": {
+      "voice_rate": 1.0
+    }
+  },
+  {
+    "slug": "isaias-41-10-nao-tema",
+    "nicho": "gospel",
+    "titulo": "Se você tá com medo hoje, escuta isso 🙏",
+    "cenas": [
+      {
+        "fala": "Se você tá com medo hoje, escuta isso.",
+        "busca": "woman looking out window rain|rain on window"
+      },
+      {
+        "fala": "Talvez seja uma conta que não fecha.",
+        "busca": "bills calculator|worried man bills"
+      },
+      {
+        "fala": "Um exame que você tá esperando.",
+        "busca": "hospital corridor|hospital waiting room"
+      },
+      {
+        "fala": "Alguém que foi embora.",
+        "busca": "person walking away|man walking away alone"
+      },
+      {
+        "fala": "Deus sabe.",
+        "busca": "sunlight through clouds|sun rays sky"
+      },
+      {
+        "fala": "E ele deixou uma promessa pra esse momento.",
+        "busca": "open bible|bible pages"
+      },
+      {
+        "fala": "Isaías quarenta e um, versículo dez.",
+        "busca": "bible close up|reading bible"
+      },
+      {
+        "fala": "Por isso não tema, pois estou com você.",
+        "busca": "man praying with bible|christian man praying"
+      },
+      {
+        "fala": "Não tenha medo, pois sou o seu Deus.",
+        "busca": "light rays forest|sun rays forest"
+      },
+      {
+        "fala": "Eu o fortalecerei e o ajudarei.",
+        "busca": "helping hand|hand reaching help"
+      },
+      {
+        "fala": "Eu o segurarei com a minha mão direita vitoriosa.",
+        "busca": "holding hands|hands holding"
+      },
+      {
+        "fala": "Você não tá sozinho nisso.",
+        "busca": "comforting sad friend|consoling crying woman"
+      },
+      {
+        "fala": "Se você recebeu essa palavra, escreve amém.",
+        "busca": "praying hands on bible|hands praying over bible"
+      }
+    ],
+    "descricao": "\"Por isso não tema, pois estou com você; não tenha medo, pois sou o seu Deus. Eu o fortalecerei e o ajudarei; eu o segurarei com a minha mão direita vitoriosa.\" Isaías 41:10 (NVI) 🙏\n\nManda pra alguém que precisa ouvir isso hoje.\n\nVídeos: Pexels",
+    "hashtags": [
+      "#deus",
+      "#fé",
+      "#palavradedeus",
+      "#gospel",
+      "#shorts"
+    ],
+    "comentario_fixado": "Escreve aqui o nome de alguém que precisa dessa palavra hoje 🙏",
+    "fontes": [
+      "https://www.bibliaonline.com.br/nvi/is/41/10-13"
+    ]
+  }
+]

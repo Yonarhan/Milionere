@@ -1,0 +1,75 @@
+[
+  {
+    "slug": "ele-negou-jesus-3-vezes",
+    "nicho": "gospel",
+    "titulo": "Ele negou Jesus 3 vezes. Olha como Jesus respondeu 😢",
+    "cenas": [
+      {
+        "fala": "Ele negou Jesus três vezes.",
+        "busca": "man night fire"
+      },
+      {
+        "fala": "Numa noite fria, perto de uma fogueira.",
+        "busca": "campfire night"
+      },
+      {
+        "fala": "Não conheço esse homem.",
+        "busca": "man night fire"
+      },
+      {
+        "fala": "O galo cantou. E Jesus olhou pra ele.",
+        "busca": "rooster crowing"
+      },
+      {
+        "fala": "Pedro saiu e chorou amargamente.",
+        "busca": "man crying alone"
+      },
+      {
+        "fala": "Depois da ressurreição, Jesus foi atrás dele na praia.",
+        "busca": "lake sunrise"
+      },
+      {
+        "fala": "Acendeu outra fogueira. E perguntou três vezes:",
+        "busca": "fish on campfire"
+      },
+      {
+        "fala": "Pedro, você me ama?",
+        "busca": "lake sunrise"
+      },
+      {
+        "fala": "Uma pergunta pra cada negação.",
+        "busca": "hug forgiveness"
+      },
+      {
+        "fala": "Se você acha que falhou demais, ele ainda tá te esperando.",
+        "busca": "sunrise over lake|sea sunrise calm",
+        "escolha": [
+          "pexels:35525574"
+        ]
+      },
+      {
+        "fala": "Escreve amém.",
+        "busca": "praying hands on bible|hands praying over bible",
+        "escolha": [
+          "pexels:8483593"
+        ]
+      }
+    ],
+    "descricao": "\"Saindo dali, chorou amargamente.\" Lucas 22:62 (NVI)\n\nPedro negou Jesus três vezes perto de uma fogueira. Depois da ressurreição, Jesus foi atrás dele na praia, acendeu outra fogueira e perguntou três vezes: \"você me ama?\". Uma pergunta pra cada negação. 🙏\n\n📖 Leia Lucas 22 e João 21.",
+    "hashtags": [
+      "#jesus",
+      "#biblia",
+      "#fé",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já sentiu que falhou demais com Deus? Ele ainda tá te esperando 🙏👇",
+    "fontes": [
+      "https://www.bibliaonline.com.br/nvi/lc/22",
+      "https://www.bibliaonline.com.br/nvi/jo/21"
+    ],
+    "ajustes": {
+      "voice_rate": 1.0
+    }
+  }
+]

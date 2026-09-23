@@ -1,0 +1,68 @@
+[
+  {
+    "slug": "planeta-chove-vidro",
+    "nicho": "astronomia",
+    "titulo": "O planeta mais bonito do universo é um pesadelo 🌧️🪐",
+    "cenas": [
+      {
+        "fala": "Existe um planeta onde chove vidro. De lado.",
+        "busca": "blue planet space|planet storm"
+      },
+      {
+        "fala": "Fica a 63 anos-luz daqui. E, de longe, parece a Terra.",
+        "busca": "blue planet space|earth from space",
+        "arte": "HD 189733b|exoplanet blue",
+        "escolha": [
+          "pexels:39433173"
+        ]
+      },
+      {
+        "fala": "Azul, lindo.",
+        "busca": "blue planet space"
+      },
+      {
+        "fala": "Mas esse azul vem de nuvens cheias de vidro.",
+        "busca": "glass shards|broken glass slow motion"
+      },
+      {
+        "fala": "Lá faz mais de mil graus.",
+        "busca": "molten lava|fire flames",
+        "arte": "exoplanet hot",
+        "escolha": [
+          "pexels:19777570"
+        ]
+      },
+      {
+        "fala": "E o vento sopra a sete vezes a velocidade do som.",
+        "busca": "hurricane storm|violent wind storm"
+      },
+      {
+        "fala": "Então a chuva não cai. Ela voa de lado, como estilhaços.",
+        "busca": "glass shattering slow motion|broken glass flying"
+      },
+      {
+        "fala": "Imagina sair sem guarda-chuva lá.",
+        "busca": "man with umbrella rain|umbrella storm",
+        "escolha": [
+          "pexels:7539035"
+        ]
+      }
+    ],
+    "descricao": "HD 189733b fica a 63 anos-luz e, de longe, parece a Terra: azul. Mas o azul vem de nuvens com partículas de vidro, a temperatura passa de 1.000 °C e os ventos chegam a 7 vezes a velocidade do som. Os cientistas acreditam que lá chove vidro... de lado. 🪐\n\nVídeos: Pexels | Imagens: NASA/ESA e geradas com IA",
+    "hashtags": [
+      "#astronomia",
+      "#espaço",
+      "#universo",
+      "#curiosidades",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você visitaria esse planeta por 1 milhão de reais? 😂",
+    "fontes": [
+      "https://science.nasa.gov/resource/blue-and-bizarre/",
+      "https://www.nasa.gov/image-article/rains-of-terror-exoplanet-hd-189733b/"
+    ],
+    "ajustes": {
+      "voice_rate": 1.15
+    }
+  }
+]

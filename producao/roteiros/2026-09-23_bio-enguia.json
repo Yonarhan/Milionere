@@ -1,0 +1,77 @@
+[
+  {
+    "slug": "enguia-escapa-estomago",
+    "nicho": "curiosidades",
+    "titulo": "Esse bicho foi engolido vivo... e saiu pela guelra 😳",
+    "cenas": [
+      {
+        "fala": "Esse bicho foi engolido vivo. E saiu.",
+        "busca": "fish eating|predator fish"
+      },
+      {
+        "fala": "É a enguia-japonesa, ainda filhote.",
+        "busca": "eel underwater|baby eel",
+        "escolha": [
+          "pexels:4468761"
+        ]
+      },
+      {
+        "fala": "Quando um peixe engole ela inteira, ela não desiste.",
+        "busca": "fish swallowing|big fish mouth"
+      },
+      {
+        "fala": "Dentro do estômago, ela se contorce até achar o caminho de volta.",
+        "busca": "x-ray fish|xray scan"
+      },
+      {
+        "fala": "E sai de ré. Pela guelra do predador.",
+        "busca": "fish gills close up|fish gills"
+      },
+      {
+        "fala": "Tudo em menos de um minuto.",
+        "busca": "stopwatch|timer countdown",
+        "escolha": [
+          "pexels:7034348"
+        ]
+      },
+      {
+        "fala": "Cientistas só conseguiram ver isso com vídeo de raio-x.",
+        "busca": "x-ray scan|scientist laboratory",
+        "escolha": [
+          "pexels:5722222"
+        ]
+      },
+      {
+        "fala": "Das trinta e duas enguias engolidas, nove escaparam.",
+        "busca": "eels swimming|eel underwater",
+        "escolha": [
+          "pexels:34753212"
+        ]
+      },
+      {
+        "fala": "Imagina sair vivo de dentro de quem te comeu.",
+        "busca": "fish swimming free|fish escaping",
+        "escolha": [
+          "pexels:35143188"
+        ]
+      }
+    ],
+    "descricao": "Filhotes de enguia-japonesa conseguem escapar depois de engolidos: voltam pelo estômago do predador e saem de ré pela guelra. Num estudo de 2024 com vídeo de raio-x, 9 de 32 enguias engolidas escaparam, em média em 56 segundos. 😳",
+    "hashtags": [
+      "#curiosidades",
+      "#animais",
+      "#ciencia",
+      "#vocesabia",
+      "#shorts"
+    ],
+    "comentario_fixado": "Qual animal você acha que é o mais difícil de matar? 👇",
+    "fontes": [
+      "https://www.sciencedaily.com/releases/2024/09/240909113034.htm",
+      "https://www.cell.com/current-biology/fulltext/S0960-9822(24)00926-6"
+    ],
+    "inspiracao": "https://www.youtube.com/shorts/oiet6vWOciM (só o fato; roteiro e imagens próprios)",
+    "ajustes": {
+      "voice_rate": 1.15
+    }
+  }
+]

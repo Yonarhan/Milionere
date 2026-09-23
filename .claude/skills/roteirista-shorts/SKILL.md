@@ -1,0 +1,174 @@
+---
+name: roteirista-shorts
+description: Sistema de roteirização e produção de YouTube Shorts/TikTok sem rosto com o MoneyPrinterTurbo (curiosidades, astronomia, gospel). Use quando o usuário pedir roteiro, ideia de vídeo, "próximo vídeo", lote de vídeos, refinar/melhorar um vídeo, ou gerar vídeos pelo MoneyPrinter.
+---
+
+# Roteirista de Shorts
+
+Pipeline completo: **tema → pesquisa → ganchos → roteiro → passe anti-IA → nota → keywords
+verificadas → produção em lote → pacote de postagem → aprendizado**.
+
+Arquivos desta skill:
+- `references/ganchos.md` — fórmulas de gancho e finais. Ler SEMPRE antes de escrever.
+- `references/anti-ia.md` — passe de humanização para roteiro falado. Ler SEMPRE antes de revisar.
+- `references/nichos.md` — estrutura, tom, música e keywords por nicho.
+- `references/persona-gospel.md` — fórmula VALIDADA do nicho gospel (ler sempre que o nicho for gospel).
+- Músicas: `MoneyPrinterTurbo/storage/bgm/<prefixo>_*.mp3`; créditos obrigatórios em `storage/bgm/creditos.json` (vão sozinhos pro post).
+- `presets.json` — configuração do MoneyPrinter por nicho (voz, legenda, ritmo, música).
+- `scripts/checar_keywords.py` — confere no Pexels se cada keyword tem vídeo vertical.
+- `scripts/produzir.py` — gera os vídeos em lote e organiza em `videos_prontos/`.
+- `../../../producao/aprendizados.md` — o que já funcionou ou não. Ler antes de começar, atualizar no fim.
+
+Caminhos (Windows): raiz do projeto `C:\Users\Yonarhan\milionere`; MoneyPrinter em
+`MoneyPrinterTurbo\` com venv em `MoneyPrinterTurbo\.venv\Scripts\python.exe`.
+Rode os scripts com esse Python.
+
+## 1. Briefing
+
+Descubra (pergunte só o que faltar): **nicho** (chave do presets.json), **quantos vídeos**,
+**tema** (ou "sugira"). Leia `producao/aprendizados.md` e aplique o que estiver lá.
+
+**Caçar ideias que já viralizaram:** `python scripts/ideias.py --canais` lista os Shorts mais vistos de canais de
+ciência de referência (Zack D. Films, Kurzgesagt, Veritasium...) — muito melhor que a busca geral, que traz lixo.
+`--transcricao <url>` baixa o texto falado de um Short. Regra: fato não tem dono, roteiro e imagens sim — nunca
+traduzir o roteiro deles nem usar o vídeo; checar o fato (Short viral erra muito) e escrever do nosso jeito.
+
+**Recriar a partir de um Short de sucesso (fluxo validado 2026-09-23):** `ideias.py --canais` → escolher o fato →
+`ideias.py --transcricao <url>` → checar na FONTE PRIMÁRIA (o Short do Zack D. sobre enguias dizia "3 minutos antes do
+ácido", o estudo não diz isso — cortar) → gancho e roteiro NOSSOS → registrar a origem no campo `inspiracao`.
+NUNCA baixar/repostar o vídeo deles (Content ID, strike, "conteúdo reutilizado" = sem monetização).
+Vídeo reaproveitável de verdade só: NASA (domínio público), Pexels/Pixabay, e YouTube com licença Creative Commons (com crédito).
+
+Se for para sugerir temas: proponha 5–8 por nicho, cada um com o gancho candidato em 1 linha,
+evitando temas já feitos (veja `producao/roteiros/`). Use WebSearch para achar assuntos em alta
+quando fizer sentido (notícias de ciência/espaço da semana, datas comemorativas cristãs).
+
+## 2. Pesquisa e checagem
+
+- Curiosidades/astronomia: confirme cada fato em pelo menos 1 fonte confiável (WebSearch/WebFetch).
+  Anote as fontes no roteiro (campo `fontes`). Na dúvida, corte o fato.
+- Gospel: confirme o versículo exato (livro, capítulo:versículo, tradução).
+- Nunca invente número, estudo, citação ou versículo.
+- **Extrapolação é liberada (pedido do usuário, 2026-09-23):** não precisa referenciar tudo. Cheque só o FATO CENTRAL
+  do vídeo; o resto pode ser cenário, dramatização e imaginação, desde que soe como hipótese ("imagina", "provavelmente",
+  "ia virar") e não contradiga ciência básica de forma grosseira (erro óbvio vira comentário de "fake").
+
+## 3. Gancho
+
+Siga `references/ganchos.md`: 5 opções, nota, escolha. Mostre ao usuário em formato curto.
+
+## 4. Roteiro
+
+- Siga a estrutura do nicho em `references/nichos.md` e a faixa de palavras do `presets.json`.
+- Uma ideia por frase. Frases de 3 a 14 palavras. Ponto final frequente (o TTS respira no ponto).
+- Primeira frase = gancho escolhido. Última frase = final com loop, virada ou CTA do nicho.
+- Escreva pensando nas imagens: cada frase precisa de uma cena filmável com imagem de banco.
+
+## 5. Passe anti-IA
+
+Aplique `references/anti-ia.md` inteiro e faça o teste final.
+
+## 6. Nota de qualidade (portão)
+
+Dê nota 1–5, com 1 linha de justificativa cada:
+
+| Critério | Pergunta |
+|---|---|
+| Gancho | Eu pararia de rolar o feed? |
+| Clareza | Entendo tudo ouvindo uma vez, sem ver a tela? |
+| Ritmo | Tem alguma frase que dá pra cortar sem perder nada? (se sim, nota ≤3) |
+| Payoff | O final entrega algo (surpresa, emoção, risada)? |
+| Precisão | Todo fato está checado? |
+| Imagem | Cada frase tem uma cena de banco de imagens clara? |
+
+**Qualquer nota < 4 → reescreva e dê nota de novo.** Mostre a tabela final ao usuário.
+
+## 7. Cenas (fala + imagem) — SEMPRE neste formato
+
+Escreva o roteiro já dividido em `cenas`: cada cena = `{"fala": "<1 frase curta>", "busca": "<termo Pexels>"}`.
+O `produzir.py` mede na narração em que segundo cada fala começa e corta o vídeo daquela cena
+no tempo exato (modo sincronizado, `scripts/sincronizar.py`). Sem isso as imagens não acompanham a fala.
+
+- `busca` em inglês, concreta e filmável ("man praying at sunrise", não "faith"). Use `|` para
+  dar uma alternativa: `"hourglass|hourglass sand time"`.
+- A imagem tem que mostrar O QUE A FALA DIZ naquele momento (tempo passando → hourglass; conta → bills calculator).
+- Uma cena por frase (10–16 cenas num vídeo de 30s). Cenas longas viram 2 tomadas sozinhas (`corte_max` do preset).
+- Verifique as buscas antes com `checar_keywords.py` (aceita "a, b, c").
+
+## 7b. Curadoria visual (OBRIGATÓRIA) — Claude escolhe cada imagem olhando
+
+A busca automática pega o 1º resultado e sai desconexo. Então, para cada cena:
+1. Além de `busca` (vídeo de banco, inglês), dê `arte` quando existir ilustração específica:
+   - gospel: pinturas clássicas do episódio ("raising of Lazarus|Rembrandt Lazarus", "Jonah and the whale painting")
+     e fotos históricas de lugares bíblicos ("tomb of Lazarus Bethany") — Wikimedia/Met, domínio público;
+   - astronomia: imagens reais da NASA ("Andromeda galaxy", "solar flare");
+   - curiosidades: gravuras/fotos históricas no Wikimedia quando o tema for histórico.
+2. `python scripts/curadoria.py <roteiros.json> --slug <slug>` (~15 s, buscas em paralelo) → UMA folha
+   `producao/curadoria/<slug>/folha_geral.png` (1 linha por cena, rótulos `cena.N`; `--detalhe` gera folhas por cena).
+3. Abra (Read) a folha geral e escolha o número que mostra literalmente o que a fala diz (pessoa certa,
+   clima certo, época certa — nada de tênis/celular em cena bíblica, nada de gente rindo em cena de dor).
+   Se nenhum serve, troque `busca`/`arte` e rode de novo com `--cenas N`.
+4. Grave as escolhas de uma vez: `python scripts/escolher.py <roteiros.json> <slug> "1.1 2.3,2.4 3.3 ..."`
+   (vírgula = 2 tomadas na mesma cena). Pinturas/fotos viram clipe com zoom lento; os créditos das obras
+   entram sozinhos no `.txt` do post.
+
+## 7c. Imagens geradas por IA (melhor resultado para histórias bíblicas)
+
+Banco nenhum tem "Jesus chorando no túmulo". Para as cenas-chave (4–8 por vídeo), o usuário gera no app
+do Gemini (grátis; a API de imagem do Gemini exige faturamento — cota grátis = 0 em 2026-09-22):
+1. Entregue UM prompt por mensagem (senão o Gemini junta tudo numa imagem só), cada um começando com
+   "Generate ONE single image, vertical 9:16." + descrição fixa dos personagens + cena + bloco de estilo +
+   "No text, no watermark, no halo, no modern objects." A partir do 2º: "Use the same Jesus from the first image."
+   Personagens e estilo padrão em `references/personagens-biblicos.md`.
+2. Ele salva em `producao/midia/<slug>/cena_NN.jpg` (NN = número da cena; `cena_NNb.jpg` = 2ª tomada).
+3. Arquivos dessa pasta têm PRIORIDADE sobre curadoria/busca. 1 imagem numa cena longa vira 1 tomada contínua.
+Cenas genéricas (ampulheta, nascer do sol, mãos na Bíblia, abraço) seguem no banco com curadoria.
+
+## 7d. Geração AUTOMÁTICA de imagens (API do Gemini)
+
+Coloque em cada cena-chave o campo `"prompt_ia": "<personagens + cena + estilo + proibições>"` (sem o
+"Generate ONE single image", o script põe). O `produzir.py` chama `scripts/gerar_imagens.py` antes de montar:
+gera o que falta em `producao/midia/<slug>/`, usa a 1ª imagem como referência de personagem e pula o que já existe.
+Sem faturamento ativo a API devolve 429 → o script grava `prompts.txt` na pasta e o usuário gera no app (fallback).
+Refazer uma cena ruim: `gerar_imagens.py <roteiros.json> --refazer 5`.
+
+## 8. Salvar e produzir
+
+Salve os roteiros aprovados em `producao/roteiros/<AAAA-MM-DD>_<lote>.json` no formato descrito
+em `scripts/produzir.py` (slug, nicho, titulo, roteiro, keywords, descricao, hashtags,
+comentario_fixado, fontes, ajustes). Depois:
+
+1. `python scripts/produzir.py <arquivo> --seco` — confere duração estimada e avisos.
+2. Se o usuário quiser ouvir antes: `--so-audio` (gera só a narração em `videos_prontos/`).
+3. `python scripts/produzir.py <arquivo>` — gera os vídeos. Pode levar alguns minutos por vídeo;
+   rode em background e avise o usuário.
+
+Os vídeos saem em `videos_prontos/<data>_<slug>.mp4` com um `.txt` do post ao lado.
+
+**Revisão visual obrigatória:** depois de gerar, abra (Read) o `painel.png` que o script indica e
+confira tomada por tomada: a imagem combina com a fala? o clima é o certo (nada de gente rindo em
+cena de dor)? No gospel, nada de outra religião (mesquita, templo budista etc. — o preset já filtra
+por `evitar_termos`, mas confira). Troque a `busca` das cenas ruins e gere de novo antes de entregar.
+A montagem final é feita por `scripts/renderizar.py` (ffmpeg + placa de vídeo, ~10s por vídeo).
+
+## 8b. Padrão: Claude gera o vídeo
+
+O padrão é Claude rodar `produzir.py` e entregar o vídeo pronto em `videos_prontos/` — o usuário
+não preenche a WebUI. Só entregue a ficha de `references/ficha-webui.md` (ordem e rótulos da tela)
+se o usuário pedir para preencher ele mesmo ou quiser replicar um vídeo na WebUI.
+
+## 9. Pacote de postagem
+
+Para cada vídeo, o `.txt` já tem título, descrição, hashtags e comentário fixado. Regras:
+- Título ≤ 60 caracteres, com a curiosidade (não repetir o gancho palavra por palavra).
+- Descrição: 1–2 frases + "Vídeos: Pexels" + 3–5 hashtags (sempre #shorts).
+- Lembrar: marcar conteúdo sintético = Sim; postar pelo app no celular permite adicionar som em alta.
+- TikTok: o usuário posta SEM música e escolhe um áudio do TikTok → gerar também com `--sem-musica` e entregar a
+  legenda curta do TikTok (1 frase + 5–6 hashtags, incluindo #fyp). Deixar a voz em volume alto; ele baixa o áudio do TikTok no app.
+
+## 10. Aprendizado
+
+Quando o usuário der feedback (gostou/não gostou, views, retenção), registre em
+`producao/aprendizados.md` como regra curta e acionável, com a data. Exemplo:
+`- 2026-09-22: música triste em curiosidades = ruim. Usar suspense/animado.`
+Se a regra mudar um preset (voz, velocidade, música), altere também `presets.json`.

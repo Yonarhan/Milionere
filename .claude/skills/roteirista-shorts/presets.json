@@ -1,0 +1,144 @@
+{
+  "_comentario": "Presets por nicho. Qualquer campo de VideoParams do MoneyPrinterTurbo pode ser sobrescrito por roteiro no campo 'ajustes'. 'bgm_prefixo' escolhe uma música aleatória em MoneyPrinterTurbo/storage/bgm cujo nome começa com esse prefixo; se não houver nenhuma, o vídeo sai sem música. 'corte_max' = duração máxima de cada tomada no modo sincronizado (cenas longas viram 2+ tomadas). custom_position = % a partir do topo. 'evitar_termos' descarta vídeos do Pexels cujo link/descrição contenha esses termos. 'fontes_video' buscam o campo 'busca' da cena; 'fontes_arte' buscam o campo 'arte' (pinturas/NASA em domínio público). 'fontes_foto' buscam o campo 'foto' da cena (fotos e ilustrações, inclusive cenas bíblicas feitas por IA no Pixabay).",
+  "curiosidades": {
+    "palavras_min": 45,
+    "palavras_max": 75,
+    "bgm_prefixo": "curiosidade_",
+    "params": {
+      "video_language": "pt-BR",
+      "video_aspect": "9:16",
+      "video_source": "pexels",
+      "video_concat_mode": "sequential",
+      "match_materials_to_script": true,
+      "video_transition_mode": "None",
+      "video_clip_duration": 2,
+      "voice_name": "pt-BR-AntonioNeural-Male",
+      "voice_rate": 1.15,
+      "voice_volume": 1.0,
+      "bgm_volume": 0.12,
+      "subtitle_enabled": true,
+      "subtitle_position": "custom",
+      "subtitle_display_mode": "word_by_word",
+      "subtitle_animation": "pop_spring",
+      "font_name": "BeVietnamPro-Bold.ttf",
+      "font_size": 80,
+      "text_fore_color": "#FFE600",
+      "stroke_color": "#000000",
+      "stroke_width": 3.0,
+      "custom_position": 66
+    },
+    "corte_max": 2.5,
+    "fontes_video": [
+      "pexels",
+      "pixabay"
+    ],
+    "fontes_arte": [
+      "wikimedia"
+    ],
+    "fontes_foto": [
+      "pixabay_foto",
+      "pexels_foto"
+    ]
+  },
+  "astronomia": {
+    "palavras_min": 50,
+    "palavras_max": 85,
+    "bgm_prefixo": "espaco_",
+    "params": {
+      "video_language": "pt-BR",
+      "video_aspect": "9:16",
+      "video_source": "pexels",
+      "video_concat_mode": "sequential",
+      "match_materials_to_script": true,
+      "video_transition_mode": "FadeIn",
+      "video_clip_duration": 3,
+      "voice_name": "pt-BR-AntonioNeural-Male",
+      "voice_rate": 1.1,
+      "voice_volume": 1.0,
+      "bgm_volume": 0.15,
+      "subtitle_enabled": true,
+      "subtitle_position": "custom",
+      "subtitle_display_mode": "word_by_word",
+      "subtitle_animation": "pop_spring",
+      "font_name": "BeVietnamPro-Bold.ttf",
+      "font_size": 78,
+      "text_fore_color": "#FFFFFF",
+      "stroke_color": "#000000",
+      "stroke_width": 3.0,
+      "custom_position": 66
+    },
+    "corte_max": 3.0,
+    "fontes_video": [
+      "nasa_video",
+      "pexels",
+      "pixabay"
+    ],
+    "fontes_arte": [
+      "nasa",
+      "wikimedia"
+    ],
+    "fontes_foto": [
+      "pixabay_foto",
+      "pexels_foto"
+    ]
+  },
+  "gospel": {
+    "palavras_min": 45,
+    "palavras_max": 90,
+    "bgm_prefixo": "gospel_",
+    "params": {
+      "video_language": "pt-BR",
+      "video_aspect": "9:16",
+      "video_source": "pexels",
+      "video_concat_mode": "sequential",
+      "match_materials_to_script": true,
+      "video_transition_mode": "FadeIn",
+      "video_clip_duration": 4,
+      "voice_name": "pt-BR-AntonioNeural-Male",
+      "voice_rate": 0.95,
+      "voice_volume": 1.0,
+      "bgm_volume": 0.22,
+      "subtitle_enabled": true,
+      "subtitle_position": "custom",
+      "subtitle_display_mode": "sentence",
+      "subtitle_animation": "none",
+      "font_name": "BeVietnamPro-Medium.ttf",
+      "font_size": 62,
+      "text_fore_color": "#FFFFFF",
+      "stroke_color": "#000000",
+      "stroke_width": 2.0,
+      "custom_position": 62
+    },
+    "corte_max": 3.5,
+    "evitar_termos": [
+      "muslim",
+      "mosque",
+      "islam",
+      "islamic",
+      "hijab",
+      "ramadan",
+      "quran",
+      "koran",
+      "kufi",
+      "buddha",
+      "buddhist",
+      "monk",
+      "hindu",
+      "temple",
+      "prayer-mat",
+      "eid"
+    ],
+    "fontes_video": [
+      "pexels",
+      "pixabay"
+    ],
+    "fontes_arte": [
+      "wikimedia",
+      "met"
+    ],
+    "fontes_foto": [
+      "pixabay_foto",
+      "pexels_foto"
+    ]
+  }
+}

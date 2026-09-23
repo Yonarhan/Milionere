@@ -1,3 +1,28 @@
+# Dependência: clonar à parte (ver SETUP.md). Contém config.toml com as chaves de API.
+MoneyPrinterTurbo/
+
+# Saídas pesadas e mídia gerada
+videos_prontos/
+amostras_voz/
+producao/midia/
+producao/curadoria/
+producao/ideias/transcricoes/
+*.mp4
+*.mp3
+*.wav
+
+# Segredos e arquivos locais
+config.toml
+.env
+*.key
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# ---- modelo padrão do GitHub (Python) ----
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

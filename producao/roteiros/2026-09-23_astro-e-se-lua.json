@@ -1,0 +1,87 @@
+[
+  {
+    "slug": "e-se-a-lua-sumisse",
+    "nicho": "astronomia",
+    "titulo": "E se a Lua sumisse HOJE à noite? 🌑",
+    "cenas": [
+      {
+        "fala": "E se a Lua sumisse hoje à noite?",
+        "busca": "full moon night|moon",
+        "arte": "full moon",
+        "escolha": [
+          "pixabay:11721"
+        ]
+      },
+      {
+        "fala": "Primeiro, o céu virava um breu total.",
+        "busca": "dark night sky stars|night city dark",
+        "escolha": [
+          "pexels:27741118"
+        ]
+      },
+      {
+        "fala": "Depois, o mar. As marés iam encolher pra um terço.",
+        "busca": "ocean tide|ocean waves beach",
+        "arte": "ocean tides Earth",
+        "escolha": [
+          "pexels:36625666",
+          "pexels:27697870"
+        ]
+      },
+      {
+        "fala": "Praias e mangues iam morrer aos poucos.",
+        "busca": "mangrove|tide pool crabs",
+        "escolha": [
+          "pexels:30877843"
+        ]
+      },
+      {
+        "fala": "Os corais, que se reproduzem guiados pelo luar, iam se perder no escuro.",
+        "busca": "coral spawning|coral reef",
+        "escolha": [
+          "pexels:34632965"
+        ]
+      },
+      {
+        "fala": "E o pior vem devagar. Sem a Lua segurando, o eixo da Terra ia começar a balançar.",
+        "busca": "earth rotating space|earth spinning",
+        "arte": "Earth rotation axis",
+        "escolha": [
+          "pexels:39433173"
+        ]
+      },
+      {
+        "fala": "Invernos que duram anos. Verões de fritar.",
+        "busca": "four seasons time lapse|snow storm",
+        "escolha": [
+          "pexels:29817715"
+        ]
+      },
+      {
+        "fala": "Aquela bolinha no céu tá segurando o nosso planeta.",
+        "busca": "moon rising|full moon clouds",
+        "arte": "moon from Earth",
+        "escolha": [
+          "pexels:7895827"
+        ]
+      }
+    ],
+    "descricao": "Se a Lua sumisse, as marés cairiam para cerca de um terço do tamanho, as noites ficariam muito mais escuras e muitos corais, que desovam guiados pelo luar, perderiam o ritmo. E, com o tempo, sem a Lua para estabilizar, o eixo da Terra oscilaria bem mais, bagunçando as estações. 🌑",
+    "hashtags": [
+      "#astronomia",
+      "#lua",
+      "#espaço",
+      "#curiosidades",
+      "#shorts"
+    ],
+    "comentario_fixado": "Qual 'E se...' você quer ver no próximo vídeo? 👇",
+    "fontes": [
+      "https://www.space.com/what-would-happen-if-the-moon-disappeared",
+      "https://scienceinschool.org/article/2013/moon-2/",
+      "https://www.pnas.org/doi/10.1073/pnas.2101985118"
+    ],
+    "ajustes": {
+      "voice_rate": 1.15
+    }
+  }
+]
