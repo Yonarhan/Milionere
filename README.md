@@ -5,6 +5,7 @@ narração e legenda sincronizados. Os nichos atuais são **gospel** (fórmula v
 
 - 📄 **O que é e o que já fizemos:** [RESUMO_DO_PROJETO.md](RESUMO_DO_PROJETO.md)
 - 🚀 **Produto (site freemium), arquitetura e roadmap:** [docs/PRODUTO.md](docs/PRODUTO.md)
+- 🏗️ **Serviço em Django (arquitetura, apps, infra, marcos):** [docs/SERVICO.md](docs/SERVICO.md)
 - 🖥️ **Protótipo da interface:** [docs/prototipo-interface.html](docs/prototipo-interface.html) (abra no navegador)
 - 🛠️ **Como rodar no seu PC:** [SETUP.md](SETUP.md)
 - 🧠 **Fluxo completo e regras de roteiro:** [.claude/skills/roteirista-shorts/SKILL.md](.claude/skills/roteirista-shorts/SKILL.md)
