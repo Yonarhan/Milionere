@@ -41,7 +41,7 @@ Ideia → Roteiro → Imagens → Narração + legenda → Montagem → Postagem
 
 | Ferramenta | Para que serve | Custo |
 |---|---|---|
-| **MoneyPrinterTurbo** (open source) | Narração, legenda e base da produção | Grátis |
+| **Motor próprio** (pasta `motor/`) | Voz, legenda, interface web e base da produção | Grátis |
 | **Claude Code** (IA) | Roteiros, escolha das imagens e automação de tudo | Assinatura que já temos |
 | **Gemini** (app) | Geração das imagens de IA | Grátis, mas manual |
 | Pexels, Pixabay, NASA, Wikimedia | Imagens e vídeos | Grátis |

@@ -1,6 +1,6 @@
 # Ficha para a WebUI (formato OBRIGATÓRIO de entrega)
 
-O usuário preenche o vídeo na tela do MoneyPrinterTurbo (http://127.0.0.1:8501). Todo roteiro
+O usuário preenche o vídeo na tela do motor (http://127.0.0.1:8501). Todo roteiro
 aprovado é entregue nesta ficha, **na mesma ordem das 4 colunas da tela**, com os rótulos exatos
 da interface em português. Valores vêm do preset do nicho em `presets.json` + `ajustes` do roteiro.
 

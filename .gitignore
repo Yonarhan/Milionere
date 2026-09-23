@@ -1,5 +1,10 @@
-# Dependência: clonar à parte (ver SETUP.md). Contém config.toml com as chaves de API.
-MoneyPrinterTurbo/
+# Motor (voz, legenda, interface web): o código entra no git; chaves, ambientes e gerados NÃO.
+motor/config.toml
+motor/config.toml.bak
+motor/storage/
+motor/.venv/
+motor/.venv-linux/
+motor/resource/songs/
 
 # Saídas pesadas e mídia gerada
 videos_prontos/

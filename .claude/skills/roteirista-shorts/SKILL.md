@@ -1,6 +1,6 @@
 ---
 name: roteirista-shorts
-description: Sistema de roteirização e produção de YouTube Shorts/TikTok sem rosto com o MoneyPrinterTurbo (curiosidades, astronomia, gospel). Use quando o usuário pedir roteiro, ideia de vídeo, "próximo vídeo", lote de vídeos, refinar/melhorar um vídeo, ou gerar vídeos pelo MoneyPrinter.
+description: Sistema de roteirização e produção de YouTube Shorts/TikTok sem rosto com o motor (curiosidades, astronomia, gospel). Use quando o usuário pedir roteiro, ideia de vídeo, "próximo vídeo", lote de vídeos, refinar/melhorar um vídeo, ou gerar vídeos pelo motor.
 ---
 
 # Roteirista de Shorts
@@ -13,21 +13,21 @@ Arquivos desta skill:
 - `references/anti-ia.md` — passe de humanização para roteiro falado. Ler SEMPRE antes de revisar.
 - `references/nichos.md` — estrutura, tom, música e keywords por nicho.
 - `references/persona-gospel.md` — fórmula VALIDADA do nicho gospel (ler sempre que o nicho for gospel).
-- Músicas: `MoneyPrinterTurbo/storage/bgm/<prefixo>_*.mp3`; créditos obrigatórios em `storage/bgm/creditos.json` (vão sozinhos pro post).
-- `presets.json` — configuração do MoneyPrinter por nicho (voz, legenda, ritmo, música).
+- Músicas: `motor/storage/bgm/<prefixo>_*.mp3`; créditos obrigatórios em `storage/bgm/creditos.json` (vão sozinhos pro post).
+- `presets.json` — configuração do motor por nicho (voz, legenda, ritmo, música).
 - `scripts/checar_keywords.py` — confere no Pexels se cada keyword tem vídeo vertical.
 - `scripts/produzir.py` — gera os vídeos em lote e organiza em `videos_prontos/`.
 - `../../../producao/aprendizados.md` — o que já funcionou ou não. Ler antes de começar, atualizar no fim.
 
-Caminhos: MoneyPrinter em `MoneyPrinterTurbo/`. Python do venv — Linux/WSL: `MoneyPrinterTurbo/.venv-linux/bin/python`
-(recriar com `cd MoneyPrinterTurbo && UV_PROJECT_ENVIRONMENT=.venv-linux uv sync --frozen`); Windows:
-`MoneyPrinterTurbo\.venv\Scripts\python.exe`. Os scripts escolhem sozinhos pelo sistema.
+Caminhos: motor em `motor/`. Python do venv — Linux/WSL: `motor/.venv-linux/bin/python`
+(recriar com `cd motor && UV_PROJECT_ENVIRONMENT=.venv-linux uv sync --frozen`); Windows:
+`motor\.venv\Scripts\python.exe`. Os scripts escolhem sozinhos pelo sistema.
 Rode os scripts com esse Python.
 
 ## 0. Pipeline automático gospel (1 comando → vídeo pronto)
 
 ```
-MoneyPrinterTurbo/.venv-linux/bin/python .claude/skills/roteirista-shorts/scripts/pipeline.py            # menu
+motor/.venv-linux/bin/python .claude/skills/roteirista-shorts/scripts/pipeline.py            # menu
 ... pipeline.py --formato historia|parabola|proverbio|personagem [--estilo cinema|oleo|pixar] [--qtd N] [--tema id]
 ... pipeline.py --retomar producao/roteiros/<arquivo>.json    # roteiro já aprovado: só imagens + vídeo
 ```

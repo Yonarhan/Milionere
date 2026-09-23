@@ -7,7 +7,7 @@ Uso:
     python pipeline.py --formato historia --tema jonas-peixe
     python pipeline.py --retomar producao/roteiros/2026-09-23_historia-jonas-peixe.json   # pula o roteiro
 
-Rode com o Python do MoneyPrinter (.venv-linux), que tem Pillow e imageio-ffmpeg.
+Rode com o Python do motor (.venv-linux), que tem Pillow e imageio-ffmpeg.
 Cada etapa grava o que decidiu em producao/validacao/<slug>.json (dá pra auditar por que algo passou ou não).
 """
 
@@ -30,7 +30,7 @@ SKILL = Path(__file__).resolve().parents[1]
 RAIZ = Path(__file__).resolve().parents[4]
 PROD = RAIZ / "producao"
 USADOS = PROD / "usados.json"
-PY_MPT = RAIZ / "MoneyPrinterTurbo" / (".venv/Scripts/python.exe" if sys.platform == "win32" else ".venv-linux/bin/python")
+PY_MPT = RAIZ / "motor" / (".venv/Scripts/python.exe" if sys.platform == "win32" else ".venv-linux/bin/python")
 MAX_REESCRITAS = 4
 MAX_REFACAO_IMAGEM = 2
 OPCOES_POR_CENA = 3

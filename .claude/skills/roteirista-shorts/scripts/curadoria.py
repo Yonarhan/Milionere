@@ -30,7 +30,7 @@ import fontes
 
 SKILL = Path(__file__).resolve().parents[1]
 RAIZ = Path(__file__).resolve().parents[4]
-MPT = RAIZ / "MoneyPrinterTurbo"
+MPT = RAIZ / "motor"
 FONTE = MPT / "resource" / "fonts" / "BeVietnamPro-Bold.ttf"
 MAX_CANDIDATOS = 18
 LADO_W, LADO_H = 240, 300  # cada miniatura

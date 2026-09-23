@@ -12,7 +12,7 @@ Um **site** (que também funciona no celular) onde qualquer pessoa cria um Short
 
 - **O plano grátis entrega o fluxo completo**, com qualidade de postagem. Nada de versão capada.
 - **O plano pago acelera e melhora**, principalmente as imagens (API do Google/Gemini), e traz extras.
-- É **tão simples quanto o MoneyPrinter**: o caminho mínimo são 3 cliques (nicho → tema → Gerar). Tudo vem pré-configurado pelo nicho, e o avançado fica escondido.
+- É **tão simples quanto o motor**: o caminho mínimo são 3 cliques (nicho → tema → Gerar). Tudo vem pré-configurado pelo nicho, e o avançado fica escondido.
 
 ## 2. A interface (ver o protótipo)
 

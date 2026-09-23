@@ -22,7 +22,7 @@ from datetime import date
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[4]
-MPT = RAIZ / "MoneyPrinterTurbo"
+MPT = RAIZ / "motor"
 PYTHON = MPT / (".venv/Scripts/python.exe" if sys.platform == "win32" else ".venv-linux/bin/python")
 BUSCAS_PADRAO = [
     "space facts", "black hole facts", "weird planet facts",

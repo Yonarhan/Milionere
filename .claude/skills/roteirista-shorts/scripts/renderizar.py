@@ -1,6 +1,6 @@
 """Render final rápido: uma única passada no ffmpeg (clipes + legenda ASS + voz + música).
 
-Substitui a montagem do MoneyPrinter (moviepy, que recodifica 3 vezes e desenha a legenda
+Substitui a montagem do motor (moviepy, que recodifica 3 vezes e desenha a legenda
 quadro a quadro em Python). Aqui a legenda é desenhada pela libass e o vídeo é codificado na
 placa de vídeo (h264_nvenc); se a placa falhar, cai para libx264 no processador.
 """
@@ -12,14 +12,14 @@ from sincronizar import FFMPEG, FPS, ler_srt
 
 LARGURA, ALTURA = 1080, 1920
 FONTES = {
-    # arquivo em MoneyPrinterTurbo/resource/fonts -> (família, negrito)
+    # arquivo em motor/resource/fonts -> (família, negrito)
     "BeVietnamPro-Bold.ttf": ("Be Vietnam Pro", True),
     "BeVietnamPro-Medium.ttf": ("Be Vietnam Pro", False),
     "Charm-Bold.ttf": ("Charm", True),
     "UTM Kabel KT.ttf": ("UTM Kabel KT", False),
 }
 EMENDA_MAX = {"word_by_word": 0.35, "sentence": 1.5}  # buracos menores que isso são fechados (evita piscar/sumir)
-ESCALA_FONTE = 1.45  # font_size do preset (px do MoneyPrinter) -> tamanho ASS equivalente
+ESCALA_FONTE = 1.45  # font_size do preset (px do motor) -> tamanho ASS equivalente
 
 
 def cor_ass(hex_rgb: str) -> str:

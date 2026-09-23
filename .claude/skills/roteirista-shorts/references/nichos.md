@@ -52,8 +52,8 @@ Cada nicho tem um preset em `presets.json` (voz, ritmo, legenda, música). Este 
 
 ---
 
-## Nichos vistos mas FORA do alcance do MoneyPrinter
+## Nichos vistos mas FORA do alcance do motor
 
 - **Histórias de frutas/animais em 3D estilo Pixar** (fruit.toon2, Histórias Frutíferas, QuackTok — 100k a 400k curtidas).
   Precisam de personagens consistentes gerados por IA de imagem/vídeo (Higgsfield, Kling, Veo etc.), que é pago
-  e fora do MoneyPrinter. Anotar como possível passo 2 se o canal der certo.
+  e fora do motor. Anotar como possível passo 2 se o canal der certo.

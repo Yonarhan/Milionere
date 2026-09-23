@@ -4,11 +4,11 @@ Regras que vieram de feedback real. A skill `roteirista-shorts` lê este arquivo
 
 ## Geral
 - 2026-09-22: primeiro vídeo (água-viva, ~45s) ficou longo demais. Alvo: 18–28s em curiosidades.
-- 2026-09-22: música aleatória do MoneyPrinter saiu triste. Nunca usar `random`; usar músicas escolhidas em `MoneyPrinterTurbo/storage/bgm` com prefixo do nicho, ou sem música e adicionar som em alta no app.
+- 2026-09-22: música aleatória do motor saiu triste. Nunca usar `random`; usar músicas escolhidas em `motor/storage/bgm` com prefixo do nicho, ou sem música e adicionar som em alta no app.
 - 2026-09-22: voz Antonio em 1.0x ficou "mansa demais" para curiosidade. Usar 1.15x+ ou outra voz (ver `amostras_voz/`).
 
 - 2026-09-22: polvo (Antonio 1.15x): voz e roteiro aprovados. Legenda no centro exato não agradou → agora custom ~62–66% do topo.
-- 2026-09-22: imagens não acompanhavam a fala (MoneyPrinter troca clipe em ritmo fixo). Solução: roteiro em `cenas` + montagem sincronizada.
+- 2026-09-22: imagens não acompanhavam a fala (motor troca clipe em ritmo fixo). Solução: roteiro em `cenas` + montagem sincronizada.
 
 - 2026-09-22: imagens automáticas 'não conexas' com a fala. Solução: curadoria visual por cena (Claude olha folhas de candidatos e escolhe) + fontes de arte/foto histórica/NASA.
 

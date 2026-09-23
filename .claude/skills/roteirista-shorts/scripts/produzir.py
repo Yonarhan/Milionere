@@ -1,4 +1,4 @@
-"""Gera os vídeos de um roteiros.json pelo MoneyPrinterTurbo e organiza a saída.
+"""Gera os vídeos de um roteiros.json pelo motor e organiza a saída.
 
 Uso:
     python produzir.py roteiros.json            # gera todos
@@ -42,7 +42,7 @@ import sincronizar as sync  # noqa: E402
 
 SKILL = Path(__file__).resolve().parents[1]
 RAIZ = Path(__file__).resolve().parents[4]
-MPT = RAIZ / "MoneyPrinterTurbo"
+MPT = RAIZ / "motor"
 # Windows usa o .venv original; Linux/WSL usa o .venv-linux (criado com `UV_PROJECT_ENVIRONMENT=.venv-linux uv sync --frozen`)
 PYTHON = MPT / (".venv/Scripts/python.exe" if sys.platform == "win32" else ".venv-linux/bin/python")
 SAIDA = RAIZ / "videos_prontos"
@@ -68,7 +68,7 @@ def montar_tarefa(r: dict, preset: dict) -> tuple[dict, list[str]]:
     roteiro = roteiro_de(r)
     tarefa.update(video_subject=r["titulo"], video_script=roteiro)
     if "cenas" in r:
-        # preenchido só para o MoneyPrinter não pedir termos a um LLM; a busca real é por cena
+        # preenchido só para o motor não pedir termos a um LLM; a busca real é por cena
         tarefa["video_terms"] = ", ".join(c["busca"].split("|")[0].strip() for c in r["cenas"])
     else:
         tarefa["video_terms"] = ", ".join(r["keywords"])
@@ -76,7 +76,7 @@ def montar_tarefa(r: dict, preset: dict) -> tuple[dict, list[str]]:
     if musica:
         tarefa.update(bgm_type="custom", bgm_file=musica)
     else:
-        tarefa["bgm_type"] = ""  # vazio = sem música para o MoneyPrinter
+        tarefa["bgm_type"] = ""  # vazio = sem música para o motor
         avisos.append(f"sem música '{preset['bgm_prefixo']}*' em storage/bgm; vídeo sai sem música")
     tarefa.update(r.get("ajustes", {}))
 
@@ -144,8 +144,8 @@ def entregar(r: dict, pasta: Path, so_audio: bool) -> None:
 
 
 def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, render_mpt: bool = False) -> None:
-    """Etapa A (MoneyPrinter): narração + legenda. Etapa B: clipes cortados no tempo de cada cena,
-    montados por render.py (ffmpeg + placa de vídeo) ou, com --render-mpt, pelo MoneyPrinter (lento)."""
+    """Etapa A (motor): narração + legenda. Etapa B: clipes cortados no tempo de cada cena,
+    montados por render.py (ffmpeg + placa de vídeo) ou, com --render-mpt, pelo motor (lento)."""
     item = rodar_cli([tarefa], stop_at="subtitle")["tasks"][0]
     if falhou(item, r["slug"]):
         return
@@ -223,7 +223,7 @@ def main() -> None:
     ap.add_argument("--so-audio", action="store_true", help="para no estágio de áudio")
     ap.add_argument("--seco", action="store_true", help="não executa, só mostra")
     ap.add_argument("--sem-musica", action="store_true", help="versão sem música (p/ usar áudio do TikTok); salva como <slug>_sem-musica")
-    ap.add_argument("--render-mpt", action="store_true", help="monta pelo MoneyPrinter (lento), em vez do ffmpeg")
+    ap.add_argument("--render-mpt", action="store_true", help="monta pelo motor (lento), em vez do ffmpeg")
     args = ap.parse_args()
 
     presets = json.loads((SKILL / "presets.json").read_text(encoding="utf-8"))

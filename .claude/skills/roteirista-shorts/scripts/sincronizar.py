@@ -1,11 +1,11 @@
 """Montagem cena a cena: cada trecho da fala ganha um vídeo cortado no tempo exato.
 
-O MoneyPrinter sozinho troca de imagem num ritmo fixo (video_clip_duration) sem saber
+O motor sozinho troca de imagem num ritmo fixo (video_clip_duration) sem saber
 quando cada frase é falada. Aqui:
   1. lemos o subtitle.srt da narração (tempo de cada palavra/frase);
   2. achamos o início de cada cena pela contagem de palavras;
   3. baixamos do Pexels um vídeo vertical por tomada e cortamos no tamanho exato;
-  4. devolvemos os arquivos na ordem, para o MoneyPrinter montar em modo sequencial.
+  4. devolvemos os arquivos na ordem, para o motor montar em modo sequencial.
 """
 
 import json

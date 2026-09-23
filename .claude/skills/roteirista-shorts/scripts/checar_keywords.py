@@ -17,7 +17,7 @@ import urllib.request
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[4]
-CONFIG = RAIZ / "MoneyPrinterTurbo" / "config.toml"
+CONFIG = RAIZ / "motor" / "config.toml"
 MINIMO_BOM = 5
 
 
