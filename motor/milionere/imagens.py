@@ -26,6 +26,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import caminhos  # noqa: E402
 from caminhos import DADOS as SKILL  # noqa: E402  (presets, formatos, estilos, bíblia, referências)
 from caminhos import RAIZ  # noqa: E402
 from caminhos import COMFY  # noqa: E402
@@ -58,7 +59,7 @@ def garantir_comfy() -> subprocess.Popen | None:
     """Sobe o ComfyUI se não estiver rodando. Devolve o processo (para derrubar no fim) ou None se já estava no ar."""
     if no_ar():
         return None
-    log = open(RAIZ / "producao" / "comfy.log", "w")
+    log = open(caminhos.PRODUCAO / "comfy.log", "w")
     proc = subprocess.Popen([str(COMFY / ".venv" / "bin" / "python"), "main.py", "--listen", "127.0.0.1",
                              "--port", "8188", "--disable-auto-launch",
                              # WSL: a memória fixada (pinned) do driver dxg esgota e o ComfyUI trava ao carregar o IP-Adapter
@@ -236,12 +237,12 @@ def main() -> None:
     try:
         if args.teste:
             est = estilos()[args.estilo or "cinema"]
-            d = gerar(f"{args.teste}, {est['prompt']}", est["negativo"], est, RAIZ / "producao" / "teste_comfy.png", 42)
+            d = gerar(f"{args.teste}, {est['prompt']}", est["negativo"], est, caminhos.PRODUCAO / "teste_comfy.png", 42)
             print(d)
             return
         r = json.loads(Path(args.roteiro).read_text(encoding="utf-8"))
         r = r[0] if isinstance(r, list) else r
-        gerar_cenas(r, args.estilo or r.get("estilo", "cinema"), RAIZ / "producao" / "midia" / r["slug"], args.cenas,
+        gerar_cenas(r, args.estilo or r.get("estilo", "cinema"), caminhos.PRODUCAO / "midia" / r["slug"], args.cenas,
                     nova_seed=bool(args.cenas))
     finally:
         derrubar(proc)

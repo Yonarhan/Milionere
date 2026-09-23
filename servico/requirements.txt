@@ -1,0 +1,3 @@
+# Instale no mesmo ambiente do motor (motor/.venv): o serviço importa o pipeline motor/milionere.
+django>=5.2,<5.3
+# produção (docs/SERVICO.md): celery, redis, psycopg, pgvector, django-storages, django-allauth

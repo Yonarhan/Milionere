@@ -151,9 +151,10 @@ class Pexels:
 
     def buscar(self, termo: str) -> list[dict]:
         if termo not in self._buscas:
-            url = "https://api.pexels.com/videos/search?" + urllib.parse.urlencode(
-                {"query": termo, "per_page": 30, "orientation": "portrait"}
-            )
+            params = {"query": termo, "per_page": 30, "orientation": "portrait"}
+            if termo.startswith("pt:"):  # termo em português (fala do usuário sem busca em inglês)
+                params.update(query=termo[3:], locale="pt-BR")
+            url = "https://api.pexels.com/videos/search?" + urllib.parse.urlencode(params)
             req = urllib.request.Request(url, headers={"Authorization": self.chave, **UA})
             with urllib.request.urlopen(req, timeout=30) as r:
                 self._buscas[termo] = json.load(r).get("videos", [])
@@ -261,15 +262,13 @@ def montar_tomadas(cenas, tempos, corte_max: float, pexels: Pexels, pasta: Path,
                 relatorio.append(f"  {ini:5.1f}s–{fim:5.1f}s  cena {i:>2}.{k + 1}  {frames / FPS:4.1f}s  SUA PASTA: {origem.name}  «{cena['fala'][:50]}»")
             continue
 
-        escolha = cena.get("escolha") or []
+        escolha = [e for e in (cena.get("escolha") or []) if e in por_ref]  # escolhas órfãs viram busca automática
         if escolha:
             for k in range(partes):
                 frames = limites[k + 1] - limites[k]
                 ref = escolha[min(k, len(escolha) - 1)]
                 repeticao = k - escolha.index(ref)  # mesma escolha em 2 tomadas -> pega outro trecho do vídeo
-                c = por_ref.get(ref)
-                if not c:
-                    raise RuntimeError(f"cena {i}: escolha '{ref}' não está no candidatos.json da curadoria")
+                c = por_ref[ref]
                 origem = baixar_candidato(c, pexels.cache)
                 n += 1
                 destino = pasta / f"tomada_{n:02d}.mp4"

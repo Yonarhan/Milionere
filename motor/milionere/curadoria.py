@@ -31,6 +31,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 import fontes
 
+import caminhos  # noqa: E402
 from caminhos import DADOS as SKILL  # noqa: E402  (presets, formatos, estilos, bíblia, referências)
 from caminhos import RAIZ  # noqa: E402
 from caminhos import MOTOR as MPT  # noqa: E402
@@ -122,7 +123,7 @@ def main() -> None:
         if args.slug and args.slug not in r["slug"]:
             continue
         preset = presets[r["nicho"]]
-        pasta = RAIZ / "producao" / "curadoria" / r["slug"]
+        pasta = caminhos.PRODUCAO / "curadoria" / r["slug"]
         pasta.mkdir(parents=True, exist_ok=True)
         cache_arq = pasta / "candidatos.json"
         cache = json.loads(cache_arq.read_text(encoding="utf-8")) if cache_arq.exists() else {}

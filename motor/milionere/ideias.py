@@ -23,6 +23,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import caminhos  # noqa: E402
 from caminhos import RAIZ  # noqa: E402
 from caminhos import MOTOR as MPT  # noqa: E402
 from caminhos import PYTHON_MOTOR as PYTHON  # noqa: E402
@@ -67,7 +68,7 @@ def shorts_do_canal(canal: str, n: int = 120) -> list[dict]:
 
 
 def transcricao(url: str) -> str:
-    pasta = RAIZ / "producao" / "ideias" / "transcricoes"
+    pasta = caminhos.PRODUCAO / "ideias" / "transcricoes"
     pasta.mkdir(parents=True, exist_ok=True)
     ytdlp(url, "--skip-download", "--write-auto-subs", "--sub-langs", "en.*,pt.*", "--sub-format", "vtt",
           "-o", str(pasta / "%(id)s.%(ext)s"))
@@ -113,7 +114,7 @@ def main() -> None:
     for v in todos[: args.top]:
         linhas.append(f"| {v['views']:,} | {v['titulo']} | {v['canal']} | {v['busca']} | {v['url']} |".replace(",", "."))
     tabela = "\n".join(linhas)
-    destino = RAIZ / "producao" / "ideias" / f"{date.today():%Y-%m-%d}.md"
+    destino = caminhos.PRODUCAO / "ideias" / f"{date.today():%Y-%m-%d}.md"
     destino.parent.mkdir(parents=True, exist_ok=True)
     destino.write_text(f"# Shorts mais vistos ({date.today():%d/%m/%Y})\n\n{tabela}\n", encoding="utf-8")
     print(tabela)

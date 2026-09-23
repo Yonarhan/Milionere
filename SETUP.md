@@ -52,3 +52,15 @@ cd motor
 ```
 
 Licenças de terceiros: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
+
+## 7. Serviço (site) — MVP local
+O protótipo, agora ligado ao pipeline de verdade (Django):
+```powershell
+.\motor\.venv\Scripts\python.exe -m pip install -r servico\requirements.txt
+cd servico
+..\motor\.venv\Scripts\python.exe manage.py migrate
+..\motor\.venv\Scripts\python.exe manage.py runserver
+```
+Abra http://127.0.0.1:8000 → nicho → tema → (Gerar roteiro) → Gerar vídeo. O vídeo aparece na tela e pode ser baixado.
+Jobs, entradas e erros ficam no admin (`manage.py createsuperuser` → /admin). Arquivos do serviço: `servico/media/` (fora do git).
+Arquitetura de produção (Celery, Postgres, R2…): [docs/SERVICO.md](docs/SERVICO.md).

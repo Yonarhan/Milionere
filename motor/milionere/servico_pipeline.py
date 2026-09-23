@@ -1,0 +1,252 @@
+"""Ponte entre o produto (site) e o pipeline: o Django chama só estas funções.
+
+    catalogo()                                  -> nichos, formatos, temas e roteiros prontos (formato da tela)
+    roteiro_pronto(tema_id)                     -> roteiro já aprovado (Lázaro, Pedro, planeta de vidro...) ou None
+    gerar_roteiro(entrada, log)                 -> roteiro por IA (gospel do catálogo bíblico: pipeline do Rafael
+                                                   com as camadas 1 e 2; outros nichos: roteirista genérico)
+    gerar_video(entrada, pasta_job, log)        -> {video, post}: roda o produzir.py com progresso por etapa
+
+`log(etapa, msg)` recebe o progresso ('roteiro', 'voz', 'imagens', 'montagem', 'post').
+Cada vídeo usa um slug próprio (job-<id>): dois usuários com o mesmo tema nunca se sobrescrevem.
+"""
+
+import base64
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import caminhos  # noqa: E402
+
+REPO_PRODUCAO = caminhos.RAIZ / "producao"   # roteiros e mídias já feitos pelo time (fonte dos "prontos")
+PRESET_DO_NICHO = {"gospel": "gospel", "astronomia": "astronomia", "animais": "curiosidades"}
+VOZES = {"antonio": "pt-BR-AntonioNeural-Male", "francisca": "pt-BR-FranciscaNeural-Female",
+         "thalita": "pt-BR-ThalitaMultilingualNeural-Female"}
+BUSCA_PADRAO = {"gospel": "man praying with bible", "astronomia": "galaxy stars space", "animais": "wild animal close up"}
+# tema da tela -> slug do roteiro pronto em producao/roteiros (os do pipeline do Rafael usam o campo "tema")
+PRONTOS_POR_SLUG = {"jesus-chorou-lazaro": "lazaro", "isaias-41-10-nao-tema": "isaias-41-10",
+                    "ele-negou-jesus-3-vezes": "pedro-negou", "planeta-chove-vidro": "vidro",
+                    "e-se-a-lua-sumisse": "lua", "enguia-escapa-estomago": "enguia"}
+PARADAS = set("a o e é de da do das dos que em no na nos nas um uma pra para por com se ele ela eles elas lá já não "
+              "mais mas mesmo foi era tá ser sua seu você isso esse essa aí ao aos como quando".split())
+
+
+# ------------------------------------------------------------------ catálogo
+
+def _prontos() -> dict[str, dict]:
+    achados = {}
+    for arq in sorted(REPO_PRODUCAO.glob("roteiros/*.json")):
+        for r in json.loads(arq.read_text(encoding="utf-8")):
+            if not r.get("cenas"):
+                continue
+            tema = PRONTOS_POR_SLUG.get(r["slug"]) or r.get("tema")
+            if tema:
+                achados[tema] = r
+    return achados
+
+
+def _tela(r: dict) -> dict:
+    return {"titulo": r.get("titulo", ""), "falas": [c["fala"] for c in r["cenas"]],
+            "extra": [{"busca": c.get("busca", ""), "imagem": c.get("imagem", "")} for c in r["cenas"]],
+            "desc": r.get("descricao", ""), "tags": " ".join(r.get("hashtags", [])), "base": r["slug"]}
+
+
+def roteiro_pronto(tema_id: str) -> dict | None:
+    r = _prontos().get(tema_id)
+    return _tela(r) if r else None
+
+
+def catalogo() -> dict:
+    import biblia
+
+    formatos = {k: v for k, v in json.loads((caminhos.DADOS / "formatos.json").read_text(encoding="utf-8")).items()
+                if not k.startswith("_")}
+    temas = biblia.temas()
+    gospel = {}
+    for fid, f in formatos.items():
+        lista = [[t["id"], f"{t['titulo']} · {t['ref']}" if t.get("ref") and fid != "personagem" else t["titulo"]]
+                 for t in temas.get(f["catalogo"], [])]
+        gospel[fid] = {"nome": f["nome"], "temas": lista}
+    gospel["historia"]["temas"][:0] = [["lazaro", "Jesus chorou (Lázaro) · João 11"],
+                                       ["pedro-negou", "Ele negou Jesus 3 vezes · Lucas 22 / João 21"]]
+    gospel["sermao"] = {"nome": "Mensagem curta / sermão", "temas": [["isaias-41-10", "Se você tá com medo hoje · Isaías 41:10"]]}
+    return {
+        "nichos": {
+            "gospel": {"nome": "Gospel", "cor": "#C9A227", "grad": ["#3b2a17", "#a8733a", "#f1c27d"], "formatos": gospel},
+            "astronomia": {"nome": "Astronomia", "cor": "#4C6FFF", "grad": ["#050814", "#1b2a6b", "#6d8cff"], "formatos": {
+                "uau": {"nome": "Fato que dá “uau”", "temas": [["vidro", "O planeta onde chove vidro de lado"],
+                        ["neutron", "Uma colher de estrela de nêutrons"], ["espaguete", "Cair num buraco negro"],
+                        ["pegadas", "As pegadas na Lua vão durar milhões de anos"]]},
+                "ese": {"nome": "E se…?", "temas": [["lua", "E se a Lua sumisse hoje à noite?"], ["sol", "E se o Sol apagasse?"],
+                        ["terra-parar", "E se a Terra parasse de girar?"]]}}},
+            "animais": {"nome": "Animais bizarros", "cor": "#2E9E6B", "grad": ["#062016", "#146b4a", "#7fd6a8"], "formatos": {
+                "bizarro": {"nome": "Bicho bizarro", "temas": [["enguia", "A enguia que escapa do estômago"],
+                            ["polvo", "Três corações e sangue azul"], ["agua-viva", "O animal que não morre de velhice"]]}}},
+            "tecnologia": {"nome": "Tecnologia", "cor": "#8A8F98", "breve": True},
+            "historia": {"nome": "História", "cor": "#9C5B3B", "breve": True},
+            "mitologia": {"nome": "Mitologia", "cor": "#7A5AC8", "breve": True},
+            "psicologia": {"nome": "Psicologia", "cor": "#D0598A", "breve": True},
+        },
+        "prontos": {k: _tela(r) for k, r in _prontos().items()},
+    }
+
+
+# ------------------------------------------------------------------ roteiro por IA
+
+SCHEMA_SIMPLES = {
+    "type": "object", "additionalProperties": False,
+    "required": ["titulo", "cenas", "descricao", "hashtags", "comentario_fixado"],
+    "properties": {
+        "titulo": {"type": "string"},
+        "cenas": {"type": "array", "items": {"type": "object", "additionalProperties": False,
+                  "required": ["fala", "busca", "imagem"], "properties": {
+                      "fala": {"type": "string", "description": "1 frase curta em pt-BR, 3 a 14 palavras"},
+                      "busca": {"type": "string", "description": "em inglês: termo concreto de vídeo de banco (Pexels)"},
+                      "imagem": {"type": "string", "description": "em inglês: prompt de imagem da cena, até 30 palavras"}}}},
+        "descricao": {"type": "string"}, "hashtags": {"type": "array", "items": {"type": "string"}},
+        "comentario_fixado": {"type": "string"},
+    },
+}
+
+
+def _roteiro_generico(entrada: dict, log) -> dict:
+    import llm
+
+    refs = caminhos.DADOS / "referencias"
+    ler = lambda n: (refs / n).read_text(encoding="utf-8") if (refs / n).exists() else ""  # noqa: E731
+    preset = json.loads((caminhos.DADOS / "presets.json").read_text(encoding="utf-8"))[PRESET_DO_NICHO.get(entrada["nicho"], "curiosidades")]
+    lo, hi = preset["palavras_min"], preset["palavras_max"]
+    tema = entrada.get("tema_livre") or entrada.get("tema_titulo") or entrada.get("tema")
+    prompt = "\n\n".join([
+        "Você é roteirista de Shorts/TikTok em português do Brasil. Escreva UM roteiro dividido em cenas.",
+        f"# Nicho: {entrada['nicho']} · formato: {entrada.get('formato_nome', entrada.get('formato'))}\n# Tema: {tema}",
+        f"# Tamanho\n{lo} a {hi} palavras no total, 8 a 13 cenas, uma frase por cena. A 1ª é o gancho (até 8 palavras); "
+        "a última é um CTA curto (comenta, manda pra alguém, imagina...).",
+        "# Fatos\nO fato central tem que ser verdadeiro. O resto pode ser dramatização em tom de hipótese ('imagina', 'provavelmente').",
+        f"# Ganchos\n{ler('ganchos.md')}", f"# Linguagem\n{ler('anti-ia.md')}", f"# Nichos\n{ler('nichos.md')}",
+        "# Post\nTítulo até 60 caracteres, descrição com 1-2 frases e uma pergunta, 5 hashtags com #shorts.",
+    ])
+    log("roteiro", "escrevendo com IA")
+    r = llm.chamar(prompt, SCHEMA_SIMPLES)
+    total = sum(len(c["fala"].split()) for c in r["cenas"])
+    if not lo <= total <= hi:
+        log("roteiro", f"{total} palavras: ajustando para {lo}-{hi}")
+        r = llm.chamar(prompt + f"\n\n# REESCREVA\nSua versão tinha {total} palavras. Fique entre {lo} e {hi}.\n"
+                       + json.dumps(r["cenas"], ensure_ascii=False), SCHEMA_SIMPLES)
+    return r
+
+
+def gerar_roteiro(entrada: dict, log) -> dict:
+    """entrada: {nicho, formato, tema, tema_livre?, tema_titulo?}. Devolve o roteiro no formato da tela."""
+    pronto = None if entrada.get("tema_livre") else roteiro_pronto(entrada.get("tema", ""))
+    if pronto:
+        return pronto
+    if entrada["nicho"] == "gospel" and not entrada.get("tema_livre"):
+        import biblia
+        import pipeline
+
+        formato = pipeline.carregar("formatos.json").get(entrada.get("formato", ""))
+        tema = next((t for t in biblia.temas().get(formato["catalogo"], []) if t["id"] == entrada.get("tema")), None) if formato else None
+        if tema:
+            log("roteiro", "escrevendo com o texto exato da Bíblia e validando (camadas 1 e 2)")
+            reg = pipeline.Registro(f"svc-{entrada.get('job', 'x')}")
+            r = pipeline.roteiro_validado(formato, tema, reg)
+            if not r:
+                raise RuntimeError("o roteiro não passou nas validações; tente outro tema ou escreva o seu")
+            return {**_tela({**r, "slug": ""}), "base": ""}
+    r = _roteiro_generico(entrada, log)
+    return {**_tela({**r, "slug": ""}), "base": ""}
+
+
+# ------------------------------------------------------------------ vídeo
+
+def _busca_auto(fala: str, nicho: str) -> str:
+    palavras = [w for w in re.findall(r"[\wÀ-ÿ]+", fala.lower()) if len(w) > 3 and w not in PARADAS]
+    termo = " ".join(palavras[:3])
+    return (f"pt:{termo}|" if termo else "") + BUSCA_PADRAO.get(nicho, "cinematic landscape")
+
+
+def _salvar_upload(data_url: str, pasta: Path, n: int) -> None:
+    cab, dados = data_url.split(",", 1)
+    ext = {"image/png": ".png", "image/webp": ".webp", "video/mp4": ".mp4"}.get(cab[5:].split(";")[0], ".jpg")
+    for velho in pasta.glob(f"cena_{n:02d}*"):
+        velho.unlink()
+    (pasta / f"cena_{n:02d}{ext}").write_bytes(base64.b64decode(dados))
+
+
+def montar_roteiro(entrada: dict, slug: str) -> dict:
+    """entrada da tela -> roteiro do produzir.py. Reaproveita busca/escolha/imagens do roteiro pronto quando a fala não mudou."""
+    nicho = entrada["nicho"]
+    base = _prontos().get(entrada.get("tema", "")) if not entrada.get("tema_livre") else None
+    midia = caminhos.PRODUCAO / "midia" / slug
+    midia.mkdir(parents=True, exist_ok=True)
+    cenas = []
+    for i, c in enumerate(entrada["cenas"]):
+        fala = c["fala"].strip()
+        if not fala:
+            continue
+        n = len(cenas) + 1
+        igual = base and i < len(base["cenas"]) and base["cenas"][i]["fala"].strip() == fala
+        if igual:
+            cena = {k: v for k, v in base["cenas"][i].items() if k in ("fala", "busca", "arte", "foto", "escolha", "imagem")}
+            for arq in (REPO_PRODUCAO / "midia" / base["slug"]).glob(f"cena_{i + 1:02d}*"):
+                shutil.copy(arq, midia / arq.name.replace(f"cena_{i + 1:02d}", f"cena_{n:02d}", 1))
+        else:
+            cena = {"fala": fala, "busca": (c.get("busca") or "").strip() or _busca_auto(fala, nicho)}
+            if c.get("imagem"):
+                cena["imagem"] = c["imagem"]
+        cenas.append(cena)
+        if (entrada.get("uploads") or {}).get(str(i)):
+            _salvar_upload(entrada["uploads"][str(i)], midia, n)
+    if base:  # as escolhas da curadoria apontam para o candidatos.json do roteiro pronto
+        cur = REPO_PRODUCAO / "curadoria" / base["slug"] / "candidatos.json"
+        if cur.exists():
+            (caminhos.PRODUCAO / "curadoria" / slug).mkdir(parents=True, exist_ok=True)
+            shutil.copy(cur, caminhos.PRODUCAO / "curadoria" / slug / "candidatos.json")
+    post = entrada.get("post") or {}
+    ajustes = {"voice_rate": float(entrada.get("vel", 1.0)),
+               "voice_name": VOZES.get(entrada.get("voz", "antonio"), VOZES["antonio"]),
+               "subtitle_display_mode": "word_by_word" if entrada.get("leg") == "palavra" else "sentence",
+               "text_fore_color": "#FFE600" if entrada.get("cor") == "amarela" else "#FFFFFF"}
+    return {"slug": slug, "nicho": PRESET_DO_NICHO.get(nicho, "curiosidades"), "titulo": post.get("titulo") or "Meu Short",
+            "cenas": cenas, "descricao": post.get("desc", ""), "hashtags": (post.get("tags") or "#shorts").split(),
+            "comentario_fixado": post.get("comentario", ""), "ajustes": ajustes}
+
+
+def gerar_video(entrada: dict, pasta_job: Path, log) -> dict:
+    slug = f"job-{pasta_job.name[:8]}"
+    r = montar_roteiro(entrada, slug)
+    if not r["cenas"]:
+        raise RuntimeError("o roteiro está vazio")
+    pasta_job.mkdir(parents=True, exist_ok=True)
+    arq = pasta_job / "roteiro.json"
+    arq.write_text(json.dumps([r], ensure_ascii=False, indent=2), encoding="utf-8")
+    log("roteiro", f"{len(r['cenas'])} cenas prontas")
+    cmd = [str(caminhos.PYTHON_MOTOR), str(Path(__file__).with_name("produzir.py")), str(arq)]
+    if entrada.get("mus", "sem") == "sem":
+        cmd.append("--sem-musica")
+    env = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUNBUFFERED": "1"}
+    proc = subprocess.Popen(cmd, cwd=caminhos.MOTOR, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                            text=True, encoding="utf-8", errors="replace")
+    video, falhas, saida = None, [], []
+    for linha in proc.stdout:
+        linha = linha.rstrip()
+        saida.append(linha)
+        if linha.startswith("ETAPA "):
+            log(linha.split()[1], "")
+        elif linha.startswith("PRONTO"):
+            video = Path(linha.split("] ", 1)[1].strip())
+        elif linha.startswith("FALHOU"):
+            falhas.append(linha)
+    proc.wait()
+    (pasta_job / "log.txt").write_text("\n".join(saida), encoding="utf-8")
+    if not video or not video.exists():
+        raise RuntimeError(falhas[-1] if falhas else "o render falhou: veja log.txt do job")
+    log("post", "")
+    txt = video.with_suffix(".txt")
+    return {"video": str(video), "post_txt": txt.read_text(encoding="utf-8") if txt.exists() else "",
+            "titulo": r["titulo"], "descricao": r["descricao"], "hashtags": " ".join(r["hashtags"])}

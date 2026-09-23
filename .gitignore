@@ -251,3 +251,7 @@ __marimo__/
 motor/milionere/dados/biblia/fontes/
 *:Zone.Identifier
 producao/*.png
+
+# Serviço (MVP local): banco e arquivos gerados
+servico/db.sqlite3
+servico/media/

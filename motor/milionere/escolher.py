@@ -11,12 +11,13 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import caminhos  # noqa: E402
 from caminhos import RAIZ  # noqa: E402
 
 arquivo, slug, escolhas = sys.argv[1], sys.argv[2], sys.argv[3]
 roteiros = json.loads(Path(arquivo).read_text(encoding="utf-8"))
 r = next(x for x in roteiros if slug in x["slug"])
-cand = json.loads((RAIZ / "producao" / "curadoria" / r["slug"] / "candidatos.json").read_text(encoding="utf-8"))
+cand = json.loads((caminhos.PRODUCAO / "curadoria" / r["slug"] / "candidatos.json").read_text(encoding="utf-8"))
 for grupo in escolhas.split():
     refs = []
     destino = int(grupo.split("=")[0]) if "=" in grupo else None

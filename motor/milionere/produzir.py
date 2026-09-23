@@ -152,10 +152,12 @@ def entregar(r: dict, pasta: Path, so_audio: bool) -> None:
 def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, render_mpt: bool = False) -> None:
     """Etapa A (motor): narração + legenda. Etapa B: clipes cortados no tempo de cada cena,
     montados por render.py (ffmpeg + placa de vídeo) ou, com --render-mpt, pelo motor (lento)."""
+    print("ETAPA voz", flush=True)
     item = rodar_cli([tarefa], stop_at="subtitle")["tasks"][0]
     if falhou(item, r["slug"]):
         return
     pasta_a = pasta_tarefa(item)
+    print("ETAPA imagens", flush=True)
     if so_audio:
         entregar(r, pasta_a, so_audio=True)
         return
@@ -168,16 +170,16 @@ def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, r
         print(f"AVISO  [{r['slug']}] {a}")
 
     pexels = sync.Pexels(MPT / "config.toml", LOCAL_VIDEOS / "pexels_cache")
-    cur_arq = RAIZ / "producao" / "curadoria" / r["slug"] / "candidatos.json"
+    cur_arq = caminhos.PRODUCAO / "curadoria" / r["slug"] / "candidatos.json"
     curadoria = json.loads(cur_arq.read_text(encoding="utf-8")) if cur_arq.exists() else None
-    midia = RAIZ / "producao" / "midia" / r["slug"]
+    midia = caminhos.PRODUCAO / "midia" / r["slug"]
     sem_escolha = [i for i, c in enumerate(r["cenas"], 1)
                    if not c.get("escolha") and not (midia.exists() and any(midia.glob(f"cena_{i:02d}*")))]
     if sem_escolha:
         print(f"AVISO  [{r['slug']}] cenas sem curadoria (busca automática): {sem_escolha}")
     tomadas, relatorio = sync.montar_tomadas(
         r["cenas"], tempos, float(preset.get("corte_max", 3.0)), pexels, LOCAL_VIDEOS / "sync" / r["slug"],
-        preset.get("evitar_termos"), curadoria, RAIZ / "producao" / "midia" / r["slug"],
+        preset.get("evitar_termos"), curadoria, caminhos.PRODUCAO / "midia" / r["slug"],
     )
     creditos_bgm = MPT / "storage" / "bgm" / "creditos.json"
     if tarefa.get("bgm_file") and creditos_bgm.exists():
@@ -191,6 +193,7 @@ def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, r
     print(f"linha do tempo [{r['slug']}] narração {dur:.1f}s, {len(tomadas)} tomadas:")
     print("\n".join(relatorio))
 
+    print("ETAPA montagem", flush=True)
     if not render_mpt:
         pasta_sync = LOCAL_VIDEOS / "sync" / r["slug"]
         musica = MPT / "storage" / "bgm" / tarefa["bgm_file"] if tarefa.get("bgm_type") == "custom" else None

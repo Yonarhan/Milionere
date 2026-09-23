@@ -1,0 +1,475 @@
+{% verbatim %}<!doctype html>
+<html lang="pt-br"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Milionere Estúdio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ground:#F2F3F0; --surface:#FFFFFF; --sunk:#E8EAE5; --ink:#15181C; --muted:#5C636B; --line:#D6D9D2;
+  --accent:#0E7C66; --accent-ink:#FFFFFF; --accent-soft:#D5EEE7; --sub:#FFD400;
+  --ok:#1F8A4C; --warn:#B7791F; --bad:#C0392B; --shadow:0 1px 2px rgba(20,24,28,.06),0 8px 24px rgba(20,24,28,.06);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark; --ground:#111316; --surface:#1A1D21; --sunk:#23272C; --ink:#ECEDEA; --muted:#9AA1A8; --line:#30353B;
+  --accent:#35C29D; --accent-ink:#06231C; --accent-soft:#16372F; --ok:#4CC27E; --warn:#E3A948; --bad:#EF6B5E;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);}}
+:root[data-theme="dark"]{
+  color-scheme:dark; --ground:#111316; --surface:#1A1D21; --sunk:#23272C; --ink:#ECEDEA; --muted:#9AA1A8; --line:#30353B;
+  --accent:#35C29D; --accent-ink:#06231C; --accent-soft:#16372F; --ok:#4CC27E; --warn:#E3A948; --bad:#EF6B5E;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.5 var(--body);padding:0 16px 48px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto}
+header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:20px 16px}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand h1{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.tag{font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:5px 7px;border-radius:4px}
+.plans{display:flex;background:var(--sunk);border-radius:999px;padding:3px;gap:2px}
+.plans button{border:0;background:transparent;padding:7px 14px;border-radius:999px;cursor:pointer;font-weight:600;font-size:13px;color:var(--muted)}
+.plans button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.intro{color:var(--muted);max-width:68ch;margin:0 0 20px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:1fr}.stage{order:-1;position:static}.phone{max-width:220px}}
+
+.step{background:var(--surface);border:1px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden}
+.step>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:16px 18px}
+.step>summary::-webkit-details-marker{display:none}
+.num{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:500 12px var(--mono);background:var(--sunk);color:var(--muted);flex:none}
+.step[data-done="true"] .num{background:var(--accent);color:var(--accent-ink)}
+.step>summary h2{font-size:17px;font-weight:700}
+.sumline{margin-left:auto;color:var(--muted);font-size:13px;text-align:right;max-width:55%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.body{padding:0 18px 18px;display:grid;gap:14px}
+.label{font:500 11px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 13px;cursor:pointer;display:flex;align-items:center;gap:8px;font-weight:600}
+.chip[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.chip:disabled{opacity:.5;cursor:not-allowed}
+.chip small{font-weight:500;color:var(--muted);font-size:11px}
+.dot{width:10px;height:10px;border-radius:3px;flex:none}
+
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+select,input[type=text],textarea{background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:9px 11px;min-width:0}
+select{max-width:100%}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:9px 14px;cursor:pointer;font-weight:600;display:inline-flex;gap:7px;align-items:center}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.big{padding:14px 22px;font-size:16px;width:100%;justify-content:center}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.seg button{border:0;background:var(--surface);padding:8px 13px;cursor:pointer;font-weight:600;font-size:13px}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--ground)}
+
+.scenes{display:grid;gap:8px}
+.scene{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:10px;align-items:start;padding:8px;border-radius:10px;border:1px solid transparent}
+.scene.active{border-color:var(--accent);background:var(--accent-soft)}
+.scene .n{font:500 12px var(--mono);color:var(--muted);padding-top:9px;text-align:right}
+.scene textarea{width:100%;resize:vertical;min-height:40px;line-height:1.4}
+.scene .w{font:500 11px var(--mono);color:var(--muted);padding-top:10px;white-space:nowrap}
+.scene .w.over{color:var(--bad)}
+.checks{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-size:12px;font-weight:600;padding:4px 9px;border-radius:999px;border:1px solid var(--line);display:inline-flex;gap:6px;align-items:center}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.pill.ok{color:var(--ok)} .pill.warn{color:var(--warn)} .pill.bad{color:var(--bad)}
+.pill span{color:var(--ink);font-weight:500}
+
+.imgrow{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:10px;align-items:center;padding:6px 0;border-top:1px solid var(--line)}
+.imgrow:first-child{border-top:0}
+.thumb{width:44px;height:78px;border-radius:6px;background:var(--sunk);background-size:cover;background-position:center;position:relative;overflow:hidden}
+.src{font-size:12px;color:var(--muted)}
+.imgrow .fala{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mini{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.mini .btn{padding:6px 9px;font-size:12px}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.stage{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+.phone{width:100%;max-width:300px;aspect-ratio:9/16;margin:0 auto;border-radius:28px;background:#000;border:6px solid #0B0C0E;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.frame{position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity .35s}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.08)}}
+.playing .frame{animation:kb 4s ease-out forwards}
+@media (prefers-reduced-motion:reduce){.playing .frame{animation:none}}
+.caption{position:absolute;left:8%;right:8%;top:62%;transform:translateY(-50%);text-align:center;font:800 22px/1.15 var(--display);color:#fff;
+  -webkit-text-stroke:0;text-shadow:0 0 3px #000,0 0 3px #000,0 2px 6px #000;}
+.caption.yellow{color:var(--sub)}
+.ui{position:absolute;left:10px;right:10px;bottom:10px;display:flex;justify-content:space-between;align-items:flex-end;color:#fff;font-size:11px;opacity:.85}
+.ui .handle{font-weight:700}
+.side{position:absolute;right:10px;bottom:70px;display:grid;gap:14px;color:#fff;font-size:18px;text-align:center;opacity:.85}
+.meta{display:flex;justify-content:space-between;max-width:300px;margin:10px auto 0;font:500 12px var(--mono);color:var(--muted)}
+.player{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.note{font-size:12px;color:var(--muted);text-align:center;max-width:300px;margin:8px auto 0}
+
+.progress{display:grid;gap:8px}
+.stageRow{display:grid;grid-template-columns:22px 1fr auto;gap:10px;align-items:center;font-size:14px}
+.stageRow .st{width:18px;height:18px;border-radius:50%;border:2px solid var(--line)}
+.stageRow.run .st{border-color:var(--accent);border-top-color:transparent;animation:spin 1s linear infinite}
+.stageRow.done .st{background:var(--accent);border-color:var(--accent)}
+.stageRow .t{font:500 12px var(--mono);color:var(--muted)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.result{display:grid;gap:10px}
+.copybox{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:grid;gap:6px;background:var(--ground)}
+.copybox .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.copybox pre{margin:0;white-space:pre-wrap;font:14px/1.45 var(--body)}
+.planinfo{font-size:13px;color:var(--muted);border-left:3px solid var(--accent);padding:2px 0 2px 10px}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);transform:translateX(-50%);background:var(--ink);color:var(--ground);padding:9px 16px;border-radius:9px;font-weight:600;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+</style>
+
+</head><body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><h1>Milionere Estúdio</h1><span class="tag">beta · pipeline real</span></div>
+    <div class="plans" role="group" aria-label="Plano">
+      <button type="button" data-plan="gratis" aria-pressed="true">Grátis</button>
+      <button type="button" data-plan="pago" aria-pressed="false">Pago</button>
+      <button type="button" data-plan="chave" aria-pressed="false">Chave própria</button>
+    </div>
+  </header>
+  <p class="intro">Escolha o nicho e o tema: o resto já vem pronto. Quem quiser, edita cada frase, troca cada imagem e ajusta voz e legenda. Os temas com ● já têm roteiro aprovado (e imagens). Nos outros, a IA escreve e valida o roteiro.</p>
+
+  <div class="grid">
+    <main>
+      <details class="step" id="s1" open>
+        <summary><span class="num">1</span><h2>Nicho</h2><span class="sumline" id="sum1"></span></summary>
+        <div class="body"><div class="chips" id="nichos"></div></div>
+      </details>
+
+      <details class="step" id="s2" open>
+        <summary><span class="num">2</span><h2>Formato e tema</h2><span class="sumline" id="sum2"></span></summary>
+        <div class="body">
+          <div><div class="label">Formato</div><div class="chips" id="formatos" style="margin-top:8px"></div></div>
+          <div><label class="label" for="tema">Tema</label>
+            <div class="row" style="margin-top:8px">
+              <select id="tema" style="flex:1 1 260px"></select>
+              <button class="btn" type="button" id="sortear">🎲 Surpreenda-me</button>
+            </div>
+          </div>
+          <div class="row"><input type="text" id="temaLivre" placeholder="…ou escreva o seu tema" style="flex:1 1 260px" aria-label="Tema livre"></div>
+        </div>
+      </details>
+
+      <details class="step" id="s3" open>
+        <summary><span class="num">3</span><h2>Roteiro</h2><span class="sumline" id="sum3"></span></summary>
+        <div class="body">
+          <div class="row">
+            <div class="seg" role="group" aria-label="Origem do roteiro">
+              <button type="button" id="modoIA" aria-pressed="true">✨ Gerar com IA</button>
+              <button type="button" id="modoMeu" aria-pressed="false">✍️ Escrever o meu</button>
+            </div>
+            <button class="btn" type="button" id="gerarRoteiro">Gerar roteiro</button>
+            <button class="btn" type="button" id="addCena">+ cena</button>
+          </div>
+          <div class="checks" id="checks" aria-live="polite"></div>
+          <div class="scenes" id="cenas"></div>
+        </div>
+      </details>
+
+      <details class="step" id="s4">
+        <summary><span class="num">4</span><h2>Imagens</h2><span class="sumline" id="sum4"></span></summary>
+        <div class="body">
+          <div><div class="label">Estilo</div>
+            <div class="seg" role="group" aria-label="Estilo" id="estilos" style="margin-top:8px">
+              <button type="button" data-estilo="cinema" aria-pressed="true">Cinema</button>
+              <button type="button" data-estilo="oleo" aria-pressed="false">Pintura a óleo</button>
+              <button type="button" data-estilo="pixar" aria-pressed="false">Animação 3D</button>
+            </div>
+          </div>
+          <p class="planinfo" id="planImg"></p>
+          <div id="imagens"></div>
+        </div>
+      </details>
+
+      <details class="step" id="s5">
+        <summary><span class="num">5</span><h2>Voz, legenda e música</h2><span class="sumline" id="sum5"></span></summary>
+        <div class="body">
+          <div class="row">
+            <label class="label" for="voz" style="min-width:70px">Voz</label>
+            <select id="voz"><option value="antonio">Antonio · masculina, calma</option><option value="francisca">Francisca · feminina</option><option value="thalita">Thalita · feminina, jovem</option></select>
+          </div>
+          <div class="row">
+            <label class="label" for="vel" style="min-width:70px">Velocidade</label>
+            <input type="range" id="vel" min="0.9" max="1.3" step="0.05" value="1" style="flex:1 1 200px">
+            <span id="velTxt" style="font:500 13px var(--mono)">1.00x</span>
+          </div>
+          <div class="row"><span class="label" style="min-width:70px">Legenda</span>
+            <div class="seg" role="group" aria-label="Legenda" id="legModo">
+              <button type="button" data-leg="frase" aria-pressed="true">Frase</button>
+              <button type="button" data-leg="palavra" aria-pressed="false">Palavra por palavra</button>
+            </div>
+            <div class="seg" role="group" aria-label="Cor da legenda" id="legCor">
+              <button type="button" data-cor="branca" aria-pressed="true">Branca</button>
+              <button type="button" data-cor="amarela" aria-pressed="false">Amarela</button>
+            </div>
+          </div>
+          <div class="row"><span class="label" style="min-width:70px">Música</span>
+            <div class="seg" role="group" aria-label="Música" id="musica">
+              <button type="button" data-mus="sem" aria-pressed="true">Sem (uso a do TikTok)</button>
+              <button type="button" data-mus="biblioteca" aria-pressed="false">Da biblioteca</button>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="step" id="s6" open>
+        <summary><span class="num">6</span><h2>Gerar e postar</h2><span class="sumline" id="sum6"></span></summary>
+        <div class="body">
+          <button class="btn primary big" type="button" id="gerar">🎬 Gerar vídeo</button>
+          <div class="progress" id="progresso" hidden></div>
+          <div class="result" id="resultado" hidden></div>
+        </div>
+      </details>
+    </main>
+
+    <aside class="stage" aria-label="Prévia">
+      <div class="phone" id="phone">
+        <div class="frame" id="frame"></div>
+        <div class="side" aria-hidden="true"><span>♥</span><span>💬</span><span>↗</span></div>
+        <div class="caption" id="caption"></div>
+        <div class="ui" aria-hidden="true"><span class="handle">@seucanal</span><span>♪ som original</span></div>
+      </div>
+      <div class="meta"><span id="metaCena">cena 1/1</span><span id="metaDur">~0s</span></div>
+      <div class="player">
+        <button class="btn" type="button" id="prev">◀</button>
+        <button class="btn primary" type="button" id="play">▶ Ouvir prévia</button>
+        <button class="btn" type="button" id="next">▶▶</button>
+      </div>
+      <p class="note">A prévia usa a voz do seu navegador. O vídeo final usa a voz do servidor, sincronizada com a legenda.</p>
+    </aside>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(() => {
+// Estúdio Milionere: a tela do protótipo ligada ao pipeline real (API do Django).
+let NICHOS = {}, ROTEIROS = {};
+const VOCAB_IA=["fascinante","incrível jornada","desvendar","crucial","notável","intrigante","vasto universo","não apenas","não é só","e sabe o que","realmente","jornada","tapeçaria","mergulhar","inspirador","poderosa lição","nos ensina que"];
+const CTA=/\b(amém|amem|comenta|manda|escreve|compartilha|salva|imagina|qual)\b/i;
+const PLANOS={
+  gratis:{img:"Imagens: suas imagens primeiro; depois as cenas já aprovadas do roteiro pronto e o banco de vídeos (Pexels), escolhido pela fala. IA aberta (ComfyUI) entra quando o worker de GPU estiver ligado.",fontes:["automática (banco)"]},
+  pago:{img:"Imagens: suas imagens + Gemini com o personagem de referência (se a chave do projeto tiver faturamento). Sem cota, cai para o banco/ComfyUI.",fontes:["Gemini"]},
+  chave:{img:"Imagens: a sua chave do Google gera como no plano pago. O custo vai direto para a sua conta do Google.",fontes:["Gemini (sua chave)"]},
+};
+const S={plano:"gratis",nicho:"gospel",formato:"historia",tema:"lazaro",estilo:"cinema",leg:"frase",cor:"branca",mus:"sem",vel:1,
+  cenas:[],extra:[],uploads:{},atual:0,tocando:false,modo:"ia",post:{titulo:"",desc:"",tags:""}};
+const $=id=>document.getElementById(id);
+const palavras=t=>(t.match(/[\wÀ-ÿ]+/g)||[]).length;
+const nicho=()=>NICHOS[S.nicho], formato=()=>nicho().formatos[S.formato];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function csrf(){return (document.cookie.match(/csrftoken=([^;]+)/)||[])[1]||""}
+async function api(url,corpo){
+  const r=await fetch(url,corpo?{method:"POST",headers:{"Content-Type":"application/json","X-CSRFToken":csrf()},body:JSON.stringify(corpo)}:{});
+  const j=await r.json().catch(()=>({erro:`erro ${r.status}`}));
+  if(!r.ok&&r.status!==202)throw new Error(j.erro||`erro ${r.status}`);
+  return j;
+}
+async function esperar(jobId,cada){for(;;){const j=await api(`/api/jobs/${jobId}`);cada&&cada(j);if(j.status==="ok"||j.status==="erro")return j;await new Promise(r=>setTimeout(r,1500))}}
+
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2200)}
+function pressGroup(el,attr,val){el.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset[attr]===val)))}
+
+function renderNichos(){
+  const box=$("nichos");box.innerHTML="";
+  for(const [id,n] of Object.entries(NICHOS)){
+    const b=document.createElement("button");b.type="button";b.className="chip";b.disabled=!!n.breve;
+    b.setAttribute("aria-pressed",String(id===S.nicho));
+    b.innerHTML=`<span class="dot" style="background:${n.cor}"></span>${esc(n.nome)}${n.breve?' <small>em breve</small>':''}`;
+    b.onclick=()=>{S.nicho=id;S.formato=Object.keys(n.formatos)[0];S.tema=formato().temas[0][0];renderAll(true)};
+    box.appendChild(b);
+  }
+  $("sum1").textContent=nicho().nome;
+}
+function renderFormatos(){
+  const box=$("formatos");box.innerHTML="";
+  for(const [id,f] of Object.entries(nicho().formatos)){
+    const b=document.createElement("button");b.type="button";b.className="chip";b.setAttribute("aria-pressed",String(id===S.formato));b.textContent=f.nome;
+    b.onclick=()=>{S.formato=id;S.tema=f.temas[0][0];renderAll(true)};box.appendChild(b);
+  }
+  const sel=$("tema");sel.innerHTML="";
+  for(const [id,t] of formato().temas){const o=document.createElement("option");o.value=id;o.textContent=(ROTEIROS[id]?"● ":"")+t;sel.appendChild(o)}
+  sel.value=S.tema;
+  $("sum2").textContent=`${formato().nome} · ${temaTitulo()}`;
+}
+function temaTitulo(){return $("temaLivre").value.trim()||formato().temas.find(t=>t[0]===S.tema)?.[1]||S.tema}
+function aplicarRoteiro(r){
+  S.cenas=r.falas.slice();S.extra=(r.extra||[]).map(e=>({...e}));while(S.extra.length<S.cenas.length)S.extra.push({});
+  S.post={titulo:r.titulo||"",desc:r.desc||"",tags:r.tags||"#shorts"};S.uploads={};S.atual=0;
+}
+function carregarRoteiro(){
+  const r=$("temaLivre").value.trim()?null:ROTEIROS[S.tema];
+  if(r){aplicarRoteiro(r);return}
+  S.cenas=[];S.extra=[];S.uploads={};S.atual=0;
+  S.post={titulo:temaTitulo().split("·")[0].trim(),desc:"",tags:"#shorts"};
+}
+function renderCenas(){
+  const box=$("cenas");box.innerHTML="";
+  if(!S.cenas.length){box.innerHTML=`<p class="planinfo">Sem roteiro ainda. Clique em <b>Gerar roteiro</b> (IA) ou em <b>+ cena</b> para escrever o seu.</p>`}
+  S.cenas.forEach((f,i)=>{
+    const d=document.createElement("div");d.className="scene"+(i===S.atual?" active":"");
+    const n=palavras(f);
+    d.innerHTML=`<span class="n">${String(i+1).padStart(2,"0")}</span><textarea id="cena-${i}" rows="1" aria-label="Fala da cena ${i+1}"></textarea><span class="w ${n>14?"over":""}">${n}p</span>`;
+    const ta=d.querySelector("textarea");ta.value=f;
+    ta.oninput=()=>{S.cenas[i]=ta.value;d.querySelector(".w").textContent=palavras(ta.value)+"p";d.querySelector(".w").classList.toggle("over",palavras(ta.value)>14);validar();renderImagens();mostrar(i)};
+    ta.onfocus=()=>mostrar(i);
+    box.appendChild(d);
+  });
+  validar();
+}
+function duracao(){return S.cenas.reduce((a,f)=>a+palavras(f),0)/(1.95*S.vel)}
+function validar(){
+  const out=[];const total=S.cenas.reduce((a,f)=>a+palavras(f),0);const dur=duracao();
+  if(S.cenas.length){
+    const g=palavras(S.cenas[0]||"");
+    out.push(dur<=38?["ok","Duração",`~${Math.round(dur)}s`]:dur<=58?["warn","Duração",`~${Math.round(dur)}s · ideal até 35s`]:["bad","Duração",`~${Math.round(dur)}s · longo demais`]);
+    out.push(g<=8?["ok","Gancho",`${g} palavras`]:["bad","Gancho",`${g} palavras · máx. 8`]);
+    out.push(CTA.test(S.cenas[S.cenas.length-1]||"")?["ok","Final","tem chamada"]:["warn","Final","sem chamada (amém, comenta…)"]);
+    const ia=S.cenas.flatMap((f,i)=>VOCAB_IA.filter(v=>f.toLowerCase().includes(v)).map(v=>`cena ${i+1}: “${v}”`));
+    out.push(ia.length?["warn","Cara de IA",ia.slice(0,2).join(", ")]:["ok","Linguagem","natural"]);
+    const trav=S.cenas.findIndex(f=>/[—–;]/.test(f));
+    if(trav>=0)out.push(["warn","Pontuação",`cena ${trav+1}: travessão ou ;`]);
+  }
+  $("checks").innerHTML=out.map(([c,a,b])=>`<span class="pill ${c}">${a} <span>${esc(b)}</span></span>`).join("");
+  $("sum3").textContent=`${S.cenas.length} cenas · ${total} palavras · ~${Math.round(dur)}s`;
+  $("metaDur").textContent=`~${Math.round(dur)}s`;
+}
+function gradCena(i){const g=nicho().grad;const ang=(i*47)%360;return `radial-gradient(120% 80% at ${20+(i*23)%60}% ${15+(i*31)%50}%, ${g[2]}cc, transparent 60%), linear-gradient(${ang}deg, ${g[0]}, ${g[1]})`}
+function fonteCena(i){if(S.uploads[i])return "sua imagem";const r=ROTEIROS[S.tema];if(r&&r.falas[i]===S.cenas[i])return "cena aprovada do roteiro pronto";return PLANOS[S.plano].fontes[0]}
+function promptCena(i){
+  const est={cinema:"cinematic film still, dramatic soft lighting, realistic",oleo:"oil painting, Rembrandt style, chiaroscuro",pixar:"3d animated movie still, pixar style"}[S.estilo];
+  const epoca=S.nicho==="gospel"?"ancient Judea 1st century, no modern objects":"photorealistic";
+  const desc=S.extra[i]?.imagem||`Scene illustrating: "${S.cenas[i]}"`;
+  return `Generate ONE single image, vertical 9:16. ${desc}. ${epoca}, ${est}, highly detailed. No text, no watermark.`;
+}
+function renderImagens(){
+  $("planImg").textContent=PLANOS[S.plano].img;
+  const box=$("imagens");box.innerHTML="";
+  S.cenas.forEach((f,i)=>{
+    const r=document.createElement("div");r.className="imgrow";
+    const bg=S.uploads[i]?`url(${S.uploads[i]})`:gradCena(i);
+    r.innerHTML=`<div class="thumb" style="background-image:${bg}"></div>
+      <div style="min-width:0"><div class="fala">${String(i+1).padStart(2,"0")} · ${esc(f)}</div><div class="src">${fonteCena(i)}</div></div>
+      <div class="mini"><button class="btn" type="button" data-a="copy">📋 Copiar prompt</button>
+      <label class="btn" for="up-${i}">⬆️ Subir</label><input class="visually-hidden" type="file" accept="image/*" id="up-${i}">${S.uploads[i]?'<button class="btn" type="button" data-a="rm">auto</button>':''}</div>`;
+    r.querySelector('[data-a="copy"]').onclick=async()=>{try{await navigator.clipboard.writeText(promptCena(i));toast(`Prompt da cena ${i+1} copiado`)}catch{toast("Seu navegador bloqueou a cópia")}};
+    r.querySelector(`#up-${i}`).onchange=e=>{const file=e.target.files[0];if(!file)return;const fr=new FileReader();fr.onload=()=>{S.uploads[i]=fr.result;renderImagens();mostrar(i);toast(`Imagem da cena ${i+1} adicionada`)};fr.readAsDataURL(file)};
+    const rm=r.querySelector('[data-a="rm"]');if(rm)rm.onclick=()=>{delete S.uploads[i];renderImagens();mostrar(i)};
+    box.appendChild(r);
+  });
+  const sub=Object.keys(S.uploads).length;
+  $("sum4").textContent=`${S.estilo==="cinema"?"Cinema":S.estilo==="oleo"?"Óleo":"3D"} · ${sub?sub+" suas · ":""}${S.cenas.length-sub} automáticas`;
+}
+function mostrar(i,palavraIdx){
+  S.atual=Math.max(0,Math.min(i,S.cenas.length-1));
+  const fr=$("frame");fr.style.backgroundImage=S.uploads[S.atual]?`url(${S.uploads[S.atual]})`:(S.cenas.length?gradCena(S.atual):"none");
+  const fala=S.cenas[S.atual]||"";
+  let txt=fala;
+  if(S.leg==="palavra"){const ws=fala.split(/\s+/);txt=ws[Math.min(palavraIdx||0,ws.length-1)]||""}
+  const c=$("caption");c.textContent=txt;c.classList.toggle("yellow",S.cor==="amarela");
+  c.style.fontSize=S.leg==="palavra"?"30px":"22px";
+  $("metaCena").textContent=`cena ${S.cenas.length?S.atual+1:0}/${S.cenas.length}`;
+  document.querySelectorAll(".scene").forEach((el,k)=>el.classList.toggle("active",k===S.atual));
+  const ph=$("phone");ph.classList.remove("playing");void ph.offsetWidth;if(S.tocando)ph.classList.add("playing");
+}
+function renderVoz(){
+  $("velTxt").textContent=S.vel.toFixed(2)+"x";
+  $("sum5").textContent=`${$("voz").selectedOptions[0].text.split("·")[0].trim()} ${S.vel.toFixed(2)}x · legenda ${S.leg==="frase"?"por frase":"palavra por palavra"} · ${S.mus==="sem"?"sem música":"música da biblioteca"}`;
+}
+function presetNicho(){
+  if(S.nicho==="gospel"){S.vel=1;S.leg="frase";S.cor="branca"}else{S.vel=1.15;S.leg="palavra";S.cor="amarela"}
+  $("vel").value=S.vel;pressGroup($("legModo"),"leg",S.leg);pressGroup($("legCor"),"cor",S.cor);
+}
+function renderAll(reset){
+  renderNichos();renderFormatos();
+  if(reset){presetNicho();carregarRoteiro();$("resultado").hidden=true;$("progresso").hidden=true}
+  renderCenas();renderImagens();renderVoz();mostrar(S.atual);
+  ["s1","s2","s3","s4","s5"].forEach(s=>$(s).dataset.done="true");
+}
+
+// prévia com a voz do navegador
+let timer=null;
+function parar(){S.tocando=false;clearTimeout(timer);try{speechSynthesis.cancel()}catch{}$("play").textContent="▶ Ouvir prévia";$("phone").classList.remove("playing")}
+function tocar(i){
+  if(!S.tocando||i>=S.cenas.length){parar();mostrar(0);return}
+  mostrar(i,0);
+  const fala=S.cenas[i];const ws=fala.split(/\s+/);const ms=Math.max(900,palavras(fala)/(1.95*S.vel)*1000+250);
+  if(S.leg==="palavra")ws.forEach((_,k)=>setTimeout(()=>S.tocando&&S.atual===i&&mostrar(i,k),k*ms/ws.length));
+  let avancou=false;const avancar=()=>{if(avancou||!S.tocando)return;avancou=true;clearTimeout(timer);timer=setTimeout(()=>tocar(i+1),120)};
+  try{const u=new SpeechSynthesisUtterance(fala);u.lang="pt-BR";u.rate=S.vel;const v=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.startsWith("pt"));if(v)u.voice=v;u.onend=avancar;speechSynthesis.speak(u);timer=setTimeout(avancar,ms*1.8)}
+  catch{timer=setTimeout(avancar,ms)}
+}
+$("play").onclick=()=>{if(!S.cenas.length)return;if(S.tocando){parar();return}S.tocando=true;$("play").textContent="■ Parar";tocar(S.atual)};
+$("prev").onclick=()=>{parar();mostrar(S.atual-1)};
+$("next").onclick=()=>{parar();mostrar(S.atual+1)};
+
+// controles
+document.querySelectorAll(".plans button").forEach(b=>b.onclick=()=>{S.plano=b.dataset.plan;document.querySelectorAll(".plans button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));renderImagens()});
+$("tema").onchange=e=>{S.tema=e.target.value;$("temaLivre").value="";renderAll(true)};
+$("sortear").onclick=()=>{const ts=formato().temas;S.tema=ts[Math.floor(Math.random()*ts.length)][0];$("temaLivre").value="";renderAll(true);toast("Tema sorteado")};
+$("temaLivre").onchange=()=>{carregarRoteiro();renderAll(false)};
+$("modoIA").onclick=()=>{S.modo="ia";$("modoIA").setAttribute("aria-pressed","true");$("modoMeu").setAttribute("aria-pressed","false");$("gerarRoteiro").hidden=false};
+$("modoMeu").onclick=()=>{S.modo="meu";$("modoMeu").setAttribute("aria-pressed","true");$("modoIA").setAttribute("aria-pressed","false");$("gerarRoteiro").hidden=true;S.cenas=["","",""];S.extra=[{},{},{}];S.uploads={};renderCenas();renderImagens();mostrar(0);$("cena-0").focus()};
+$("gerarRoteiro").onclick=async()=>{
+  const b=$("gerarRoteiro");b.disabled=true;b.textContent="Escrevendo e validando…";
+  try{
+    const pedido={nicho:S.nicho,formato:S.formato,formato_nome:formato().nome,tema:S.tema,tema_titulo:temaTitulo(),tema_livre:$("temaLivre").value.trim()};
+    let j=await api("/api/roteiro",pedido);
+    if(j.job){j=await esperar(j.job,s=>{b.textContent=s.mensagem?`${s.mensagem.slice(0,48)}…`:"Escrevendo e validando…"});if(j.status==="erro")throw new Error(j.erro);j={roteiro:j.saida.roteiro}}
+    aplicarRoteiro(j.roteiro);renderCenas();renderImagens();mostrar(0);toast("Roteiro pronto");
+  }catch(e){toast("Não deu: "+e.message)}
+  b.disabled=false;b.textContent="Gerar outro";
+};
+$("addCena").onclick=()=>{S.cenas.push("");S.extra.push({});renderCenas();renderImagens();$(`cena-${S.cenas.length-1}`).focus()};
+$("estilos").querySelectorAll("button").forEach(b=>b.onclick=()=>{S.estilo=b.dataset.estilo;pressGroup($("estilos"),"estilo",S.estilo);renderImagens()});
+$("legModo").querySelectorAll("button").forEach(b=>b.onclick=()=>{S.leg=b.dataset.leg;pressGroup($("legModo"),"leg",S.leg);renderVoz();mostrar(S.atual)});
+$("legCor").querySelectorAll("button").forEach(b=>b.onclick=()=>{S.cor=b.dataset.cor;pressGroup($("legCor"),"cor",S.cor);mostrar(S.atual)});
+$("musica").querySelectorAll("button").forEach(b=>b.onclick=()=>{S.mus=b.dataset.mus;pressGroup($("musica"),"mus",S.mus);renderVoz()});
+$("vel").oninput=e=>{S.vel=parseFloat(e.target.value);renderVoz();validar()};
+$("voz").onchange=renderVoz;
+
+// gerar o vídeo de verdade
+$("gerar").onclick=async()=>{
+  parar();const p=$("progresso"),res=$("resultado"),bt=$("gerar");
+  if(!S.cenas.some(f=>f.trim())){toast("Escreva ou gere o roteiro primeiro");return}
+  bt.disabled=true;p.hidden=false;res.hidden=true;p.innerHTML=`<div class="stageRow run"><span class="st"></span><span>Enviando…</span><span class="t"></span></div>`;
+  const inicio=Date.now();
+  const pedido={nicho:S.nicho,formato:S.formato,tema:S.tema,tema_livre:$("temaLivre").value.trim(),plano:S.plano,estilo:S.estilo,
+    voz:$("voz").value,vel:S.vel,leg:S.leg,cor:S.cor,mus:S.mus,post:S.post,
+    cenas:S.cenas.map((f,i)=>({fala:f,busca:(ROTEIROS[S.tema]&&ROTEIROS[S.tema].falas[i]===f)?"":(S.extra[i]?.busca||""),imagem:S.extra[i]?.imagem||""})),
+    uploads:Object.fromEntries(Object.entries(S.uploads))};
+  try{
+    const {job}=await api("/api/gerar",pedido);
+    const fim=await esperar(job,j=>{
+      p.innerHTML=j.etapas.map(e=>`<div class="stageRow ${e.estado==="feito"?"done":e.estado==="rodando"?"run":""}"><span class="st"></span><span>${e.nome}${e.estado==="rodando"&&j.mensagem?` · ${esc(j.mensagem)}`:""}</span><span class="t">${e.estado==="erro"?"erro":""}</span></div>`).join("");
+    });
+    if(fim.status==="erro")throw new Error(fim.erro||"falhou");
+    const s=fim.saida,seg=Math.round((Date.now()-inicio)/1000);
+    const campos=[["Título",s.titulo],["Descrição",s.descricao],["Hashtags",s.hashtags]];
+    $("sum6").textContent=`Vídeo pronto em ${seg}s`;$("s6").dataset.done="true";
+    res.hidden=false;
+    res.innerHTML=`<video controls playsinline src="${s.video_url}" style="width:100%;max-width:320px;border-radius:14px;background:#000;justify-self:center"></video>
+      <div class="row"><a class="btn primary" href="${s.video_url}" download>⬇️ Baixar vídeo</a><span class="planinfo">Pronto em ${seg}s ${S.mus==="sem"?"· sem música (escolha o áudio no TikTok)":""}</span></div>`+
+      campos.map(([t,v],k)=>`<div class="copybox"><div class="top"><span class="label">${t}</span><button class="btn" type="button" data-c="${k}" style="padding:5px 10px;font-size:12px">Copiar</button></div><pre>${esc(v||"")}</pre></div>`).join("")+
+      (s.post_txt?`<details class="copybox"><summary class="label" style="cursor:pointer">Texto completo do post (com créditos)</summary><pre>${esc(s.post_txt)}</pre></details>`:"")+
+      `<p class="planinfo">Lembrete: marque “conteúdo gerado por IA” ao postar.</p>`;
+    res.querySelectorAll("[data-c]").forEach(b=>b.onclick=async()=>{try{await navigator.clipboard.writeText(campos[+b.dataset.c][1]||"");toast(`${campos[+b.dataset.c][0]} copiado`)}catch{toast("Selecione o texto para copiar")}});
+  }catch(e){p.insertAdjacentHTML("beforeend",`<p class="planinfo" style="border-color:var(--bad)">Não deu para gerar: ${esc(e.message)}</p>`)}
+  bt.disabled=false;
+};
+
+// início: catálogo real do servidor
+(async()=>{
+  try{const c=await api("/api/catalogo");NICHOS=c.nichos;ROTEIROS=c.prontos}
+  catch(e){document.querySelector(".intro").textContent="Não consegui carregar o catálogo: "+e.message;return}
+  renderAll(true);
+})();
+})();
+
+</script>
+</body></html>{% endverbatim %}
