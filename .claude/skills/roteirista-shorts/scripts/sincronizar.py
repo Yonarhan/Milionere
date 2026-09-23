@@ -50,6 +50,77 @@ def duracao_audio(caminho: Path) -> float:
     return int(h) * 3600 + int(m) * 60 + float(s)
 
 
+PAUSA_MIN = 0.35  # entre duas falas, menos que isso soa como frase colada / pedaço perdido
+PAUSA_ALVO = 0.8  # pausa normal do Edge TTS depois de ponto final
+
+
+def _tempo_srt(t: float) -> str:
+    ms = round(t * 1000)
+    return f"{ms // 3600000:02d}:{ms // 60000 % 60:02d}:{ms // 1000 % 60:02d},{ms % 1000:03d}"
+
+
+def respirar(cenas: list[dict], audio: Path, srt_arq: Path) -> list[str]:
+    """O Edge TTS às vezes cola duas frases sem pausa ('manda eu ir Jesus respondeu'). Acha as trocas de fala
+    com pausa < PAUSA_MIN e insere silêncio ali, no áudio e na legenda. Devolve o que corrigiu."""
+    srt = ler_srt(srt_arq)
+    fins_de_fala, acc = set(), 0
+    for c in cenas[:-1]:
+        acc += len(tokens(c["fala"]))
+        fins_de_fala.add(acc)
+    cortes, acc = [], 0  # (índice do bloco que termina a fala, silêncio a inserir)
+    for k, (ini, fim, txt) in enumerate(srt[:-1]):
+        acc += len(tokens(txt))
+        gap = srt[k + 1][0] - fim
+        if acc in fins_de_fala and gap < PAUSA_MIN:
+            cortes.append((k, PAUSA_ALVO - gap))
+    if not cortes:
+        return []
+    # o fim do bloco no srt às vezes cai no meio da última sílaba: corta no ponto mais silencioso logo depois
+    import numpy as np
+    bruto = subprocess.run([FFMPEG, "-v", "error", "-i", str(audio), "-f", "s16le", "-ac", "1", "-ar", "16000", "-"],
+                           capture_output=True, check=True).stdout
+    amostras = np.frombuffer(bruto, np.int16).astype(float)
+
+    def rms(x: float) -> float:
+        trecho = amostras[int(x * 16000):int(x * 16000) + 320]
+        return float(np.sqrt(np.mean(trecho ** 2))) if len(trecho) else 0.0
+
+    def vale(t: float) -> float:
+        # o PRIMEIRO ponto quieto depois do fim da frase: quando o TTS emenda, a palavra seguinte já começa
+        # logo depois, e o ponto mais quieto da janela pode cair no meio dela ("Je... sus")
+        voz = max(rms(t - 0.3 + j * 0.01) for j in range(30))
+        janelas = [t + j * 0.01 for j in range(-3, 31)]
+        quieto = next((x for x in janelas if rms(x) < 0.15 * voz), None)
+        return (quieto if quieto is not None else min(janelas, key=rms)) + 0.01
+
+    pontos = {k: vale(srt[k][1]) for k, _ in cortes}
+    info = subprocess.run([FFMPEG, "-i", str(audio)], capture_output=True, text=True).stderr
+    taxa = re.search(r"(\d+) Hz", info).group(1)
+    canais = 2 if "stereo" in info else 1
+    filtros, rotulos, ant = [], [], 0.0
+    for j, (k, sil) in enumerate(cortes):
+        t = pontos[k]
+        filtros.append(f"[0:a]atrim={ant:.3f}:{t:.3f},asetpts=PTS-STARTPTS[p{j}]")
+        filtros.append(f"aevalsrc={'|'.join(['0'] * canais)}:d={sil:.3f}:s={taxa}[s{j}]")
+        rotulos += [f"[p{j}]", f"[s{j}]"]
+        ant = t
+    filtros.append(f"[0:a]atrim=start={ant:.3f},asetpts=PTS-STARTPTS[fim]")
+    rotulos.append("[fim]")
+    filtros.append(f"{''.join(rotulos)}concat=n={len(rotulos)}:v=0:a=1[a]")
+    original = audio.with_name(audio.stem + "_original" + audio.suffix)
+    if not original.exists():
+        audio.rename(original)
+    subprocess.run([FFMPEG, "-y", "-v", "error", "-i", str(original), "-filter_complex", ";".join(filtros),
+                    "-map", "[a]", str(audio)], check=True)
+    novos, desloc, corte = [], 0.0, dict(cortes)
+    for k, (ini, fim, txt) in enumerate(srt):
+        novos.append((ini + desloc, fim + desloc, txt))
+        desloc += corte.get(k, 0.0)
+    srt_arq.write_text("\n".join(f"{n}\n{_tempo_srt(a)} --> {_tempo_srt(b)}\n{t}\n" for n, (a, b, t) in enumerate(novos, 1)),
+                       encoding="utf-8")
+    return [f"pausa inserida depois de «{srt[k][2]}» (era {PAUSA_ALVO - s:.2f}s)" for k, s in cortes]
+
+
 def tempos_das_cenas(cenas: list[dict], srt: list, dur_audio: float) -> tuple[list[tuple[float, float]], list[str]]:
     """Início/fim de cada cena. Cada palavra do srt ganha um horário (interpolado dentro do bloco)."""
     linha_do_tempo = []

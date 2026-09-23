@@ -411,6 +411,210 @@
           "imagem_corrigida": "Close-up of a strong hand gripping a wet wrist and pulling it up out of dark churning waves, urgent rescue, spray flying, warm light against cold moonlight, stormy sea at night"
         }
       ]
+    },
+    {
+      "quando": "15:34:12",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 2,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "Pedro aparece calmo, de perfil e em pé no barco, sem medo e sem estar sobre as ondas, o que não passa o 'até ver o vento'.",
+          "imagem_corrigida": "wide shot of a bearded fisherman standing on top of stormy sea waves, turning in fear toward a towering wave, arms out for balance, spray whipping, cold blue moonlight, open sea at night"
+        },
+        {
+          "cena": 5,
+          "ok": false,
+          "problema": "Pedro encara a câmera com cara brava em vez de esperança e nervosismo, e tem um pano laranja estranho na perna.",
+          "imagem_corrigida": "medium shot of a fisherman kneeling at a wooden boat's edge, gripping the rail, leaning toward the sea, hopeful and nervous gaze outward, wind in his hair, cold moonlight, choppy sea at night"
+        },
+        {
+          "cena": 11,
+          "ok": false,
+          "problema": "A mão agarra uma corda em vez de um pulso, e os rostos saem embolados e cobertos: não mostra o resgate.",
+          "imagem_corrigida": "close-up of a strong hand firmly gripping a wet wrist, pulling it up out of dark churning waves, urgent rescue, spray flying, warm light against cold moonlight, stormy sea at night"
+        }
+      ]
+    },
+    {
+      "quando": "15:38:00",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 3,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "Pedro aparece em pé dentro do barco, de costas e com os braços erguidos como em triunfo, o que contradiz 'andou na água' e o medo.",
+          "imagem_corrigida": "wide shot of a bearded fisherman standing on top of stormy sea waves, turning in fear toward a towering wave, arms out for balance, spray whipping, cold blue moonlight, open sea at night"
+        },
+        {
+          "cena": 8,
+          "ok": false,
+          "problema": "Pedro está dentro do barco (e não sobre a água, como diz a história) e usa uma túnica escura, cinza-chumbo, diferente da túnica cinza-marrom das outras cenas.",
+          "imagem_corrigida": "close-up profile of a bearded fisherman standing on stormy waves, turning toward huge wind-whipped waves, eyes wide with fear, mouth open, spray hitting his face, cold dark blue moonlight, open sea at night"
+        },
+        {
+          "cena": 11,
+          "ok": false,
+          "problema": "A imagem não mostra o resgate: uma mão agarra uma corda sobre a cabeça de um homem parecido com Jesus dentro da água, com Pedro atrás no barco, então os papéis ficam trocados e a cena confunde.",
+          "imagem_corrigida": "close-up of a strong hand firmly gripping a wet wrist, pulling it up out of dark churning waves, urgent rescue, spray flying, warm light against cold moonlight, stormy sea at night"
+        }
+      ]
+    },
+    {
+      "quando": "15:38:35",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-pedro-agua.mp4",
+      "duracao": 47.9,
+      "avisos": []
+    },
+    {
+      "quando": "15:39:09",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-pedro-agua_sem-musica.mp4",
+      "duracao": 47.9,
+      "avisos": []
+    },
+    {
+      "quando": "15:49:32",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "O barco dos discípulos ao fundo tem uma cabine de comando que parece de barco de pesca moderno e quebra o realismo de época.",
+          "imagem_corrigida": "Wide shot from behind of Jesus walking calmly on dark stormy sea waves toward a small ancient wooden fishing boat with one square sail, serene and steady, pale blue predawn light, Sea of Galilee"
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "A mão estendida em primeiro plano está deformada (polegar gigante, dedos fundidos) e chama muita atenção no celular.",
+          "imagem_corrigida": "Wide shot of Jesus standing calmly on dark stormy sea waves, body turned toward a distant fishing boat, warm inviting smile, robe blowing in wind, moonlight breaking through clouds over the Sea of Galilee at night"
+        },
+        {
+          "cena": 10,
+          "ok": false,
+          "problema": "Há uma mão desconectada agarrando a corda sobre a cabeça, e a cena mostra dois homens num barco, não Jesus segurando Pedro, que afunda no mar.",
+          "imagem_corrigida": "Wide shot of two silhouettes on a stormy sea at night, one figure standing calmly on the waves, the other sinking waist-deep, being pulled upward, desperate relief, moonlight through storm clouds, Sea of Galilee"
+        },
+        {
+          "cena": 12,
+          "ok": false,
+          "problema": "O braço que sai da água tem proporção errada (antebraço grosso demais para a mão), parece artificial, e a cena depende de um close de mão, sendo que ninguém deveria aparecer.",
+          "imagem_corrigida": "Wide shot of a violent night sea, towering dark waves crashing, a single golden beam of light breaking through storm clouds onto the water, hopeful and dramatic, Sea of Galilee under stormy sky"
+        }
+      ]
+    },
+    {
+      "quando": "15:59:29",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 2,
+      "reprovadas": [
+        {
+          "cena": 10,
+          "ok": false,
+          "problema": "Pedro aparece calmo no barco dando um tchauzinho e Jesus olha para o lado com os braços caídos; ninguém está afundando e ninguém está sendo segurado, o que contradiz o resgate da fala.",
+          "imagem_corrigida": "Wide shot, two silhouettes on stormy sea: Jesus standing on waves bending down to lift a sinking fisherman rising from water, desperate rescue moment, moonlight breaking through storm clouds, Sea of Galilee at night"
+        }
+      ]
+    },
+    {
+      "quando": "16:02:53",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 3,
+      "reprovadas": []
+    },
+    {
+      "quando": "16:03:29",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-pedro-agua.mp4",
+      "duracao": 48.7,
+      "avisos": [
+        "AVISO  [historia-pedro-agua] pausa inserida depois de «manda eu ir» (era 0.01s)"
+      ]
+    },
+    {
+      "quando": "16:04:05",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-pedro-agua_sem-musica.mp4",
+      "duracao": 48.7,
+      "avisos": [
+        "AVISO  [historia-pedro-agua] pausa inserida depois de «manda eu ir» (era 0.01s)"
+      ]
+    },
+    {
+      "quando": "16:29:51",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "Pedro aparece seguro, de pé no barco, com os braços abertos em pose de triunfo diante da onda, e isso contradiz o momento em que ele afunda e é segurado por Jesus.",
+          "imagem_corrigida": "Wide shot of a fisherman sinking chest-deep in stormy waves, head tilted up in desperate relief, a robed silhouette standing on the water beside him, moonlight breaking through clouds, Sea of Galilee at night"
+        },
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "Jesus aparece afundado até as coxas no mar, como se entrasse andando na água, e não andando sobre as águas como diz a fala.",
+          "imagem_corrigida": "Wide shot of Jesus walking calmly on top of the stormy sea surface, feet resting on the waves, serene and majestic, approaching a distant fishing boat, pale predawn blue light, Sea of Galilee"
+        },
+        {
+          "cena": 3,
+          "ok": false,
+          "problema": "A mão apontando em primeiro plano tem o polegar do lado errado, um defeito de IA bem visível, e o gesto de apontar ainda chama atenção para a mão.",
+          "imagem_corrigida": "Medium shot of a terrified fisherman recoiling backward against the mast of a wooden boat, screaming in terror, staring at the dark sea, moonlit night, stormy waves on the Sea of Galilee"
+        }
+      ]
+    },
+    {
+      "quando": "16:38:28",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 2,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "A mão de Pedro está apoiada sobre a água como se fosse chão, e a figura de costas atrás dele se afasta, o que confunde a ideia de Jesus segurando Pedro.",
+          "imagem_corrigida": "Wide shot of a bearded fisherman chest-deep in stormy waves, gazing upward with relief, a robed figure standing calmly on the water beside him, both in silhouette, moonlight breaking through clouds over the Sea of Galilee"
+        }
+      ]
+    },
+    {
+      "quando": "16:40:40",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 3,
+      "reprovadas": []
+    },
+    {
+      "quando": "16:41:16",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-pedro-agua.mp4",
+      "duracao": 47.3,
+      "avisos": []
+    },
+    {
+      "quando": "16:41:45",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-pedro-agua_sem-musica.mp4",
+      "duracao": 47.3,
+      "avisos": []
     }
   ]
 }

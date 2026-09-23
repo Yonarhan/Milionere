@@ -63,11 +63,13 @@ SCHEMA = {
 
 
 REGRAS_IMAGEM = (
-    "Prompt de imagem para Stable Diffusion XL, em inglês, no máximo 30 palavras. Comece pelo enquadramento e pela AÇÃO "
-    "com emoção ('medium shot of a bearded fisherman sinking in stormy waves, screaming, one arm raised'). Um sujeito "
-    "principal fazendo UMA coisa clara. Dois personagens juntos só em plano médio ou aberto com ação simples (abraço, "
-    "mão estendida). Contato de mãos = close-up só das mãos. Nada de negação ('no halo'), nada de texto, e não descreva "
-    "a aparência dos personagens (ela entra sozinha). Termine com luz e lugar."
+    "Prompt de imagem para Flux, em inglês, no máximo 35 palavras. O modelo erra mãos, dedos e gente se tocando, então "
+    "a imagem tem que funcionar SEM depender disso. Comece pelo enquadramento e pela AÇÃO com emoção ('medium shot of a "
+    "bearded fisherman waist-deep in stormy waves, face full of fear'). Um sujeito principal fazendo UMA coisa clara. "
+    "Proibido: close-up de mãos, dedo apontando, mão estendida para a câmera, duas pessoas se tocando, mãos dadas, "
+    "multidão. Ação com as mãos se mostra pelo corpo inteiro em plano aberto ou em silhueta contra a luz. Dois "
+    "personagens juntos = plano aberto, separados, de corpo inteiro (ou silhuetas). Nada de negação ('no halo'), nada "
+    "de texto, e não descreva a aparência dos personagens (ela entra sozinha). Termine com luz e lugar."
 )
 
 
@@ -138,7 +140,7 @@ SCHEMA_PROMPTS = {"type": "object", "additionalProperties": False, "required": [
 
 
 def reescrever_imagens(r: dict) -> None:
-    """Reescreve os prompts de imagem de um roteiro já aprovado nas regras do SDXL (as falas não mudam)."""
+    """Reescreve os prompts de imagem de um roteiro já aprovado nas regras de REGRAS_IMAGEM (as falas não mudam)."""
     linhas = "\n".join(f"{i}. fala: «{c['fala']}» | personagens na imagem: {', '.join(c['personagens']) or 'nenhum'} | "
                        f"atual: {c['imagem']}" for i, c in enumerate(r["cenas"], 1))
     novo = llm.chamar(f"{REGRAS_IMAGEM}\n\nReescreva o prompt de cada cena abaixo seguindo essas regras, mantendo o que a "

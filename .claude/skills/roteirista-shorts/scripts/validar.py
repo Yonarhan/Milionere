@@ -6,16 +6,15 @@
   Camada 2 (juiz LLM, conversa nova, só vê a fonte e o roteiro): fidelidade aos fatos, ordem, personagens
            consistentes, compreensão de quem ouve uma vez (nota >= 4 em cada) + gancho, ritmo, linguagem,
            payoff (média >= 3.5, nenhum <= 2). Qualquer erro factual = reprovado, e os problemas voltam pro roteirista reescrever.
-  Camada 3 (juiz visual, depois das imagens): cada imagem mostra o que a fala diz? mesmo personagem com a
-           mesma cara? nada moderno, texto, auréola, deformação ou símbolo de outra religião? Cena reprovada
-           é gerada de novo.
+  Camada 3 (juiz visual, depois das imagens): uma imagem por vez, em resolução cheia. Primeiro anatomia e
+           artefatos (mãos, rostos extras, corpos fundidos, texto, objeto moderno), depois se contradiz a fala.
+           Cena reprovada ganha 3 opções novas e fica a primeira aprovada.
   Camada 4 (pipeline.py, depois do render): duração do vídeo e sincronia legenda/cenas.
 """
 
 import json
 import re
 import sys
-import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -137,7 +136,7 @@ CRITERIOS = {
     "personagens": "os mesmos personagens do começo ao fim, com os nomes e papéis certos, sem ninguém surgir do nada",
     "compreensao": "quem nunca leu a história entende tudo ouvindo UMA vez, sem ver a tela",
     "gancho": "a primeira frase faz parar de rolar o feed",
-    "ritmo": "nenhuma frase sobrando; frases curtas e variadas",
+    "ritmo": "frases curtas mas LIGADAS (conectivos), soando como uma história contada de uma vez, não uma lista de frases soltas ou telegráficas; nenhuma frase sobrando",
     "linguagem": "soa como gente falando, sem cara de IA nem de livro",
     "payoff": "o final entrega emoção ou virada e responde o gancho",
 }
@@ -180,6 +179,9 @@ def camada2(r: dict, formato: dict, tema: dict) -> tuple[list[str], dict]:
         "alguém, número errado, nome trocado, milagre que não houve, ordem invertida). Emoção e ambiente em tom de "
         "hipótese ('imagina o medo') não são erro. Na parábola moderna a história é inventada de propósito: aí só o "
         "provérbio e o sentido dele precisam ser fiéis.\n"
+        "A narrativa não pode ser interrompida: frase falando com o espectador (2ª pessoa, pergunta ao público, "
+        "aplicação) no meio da história, antes do clímax, soa como se tivesse pulado um pedaço. Isso é problema de "
+        "compreensao (nota <= 3): mande mover a frase para depois do clímax.\n"
         f"O vídeo tem limite de {formato['palavras'][0]} a {formato['palavras'][1]} palavras ({sum(len(_palavras(c['fala'])) for c in r['cenas'])} agora): "
         "não dá pra contar tudo. Omitir um detalhe secundário NÃO é erro; só é erro se a omissão mudar o sentido. "
         "Toda correção que você sugerir precisa caber no limite: se pedir para acrescentar, diga o que cortar.\n"
@@ -200,43 +202,57 @@ def camada2(r: dict, formato: dict, tema: dict) -> tuple[list[str], dict]:
 # ---------------------------------------------------------------- camada 3
 
 SCHEMA_VISUAL = {
-    "type": "object", "additionalProperties": False, "required": ["cenas"],
-    "properties": {"cenas": {"type": "array", "items": {
-        "type": "object", "additionalProperties": False, "required": ["cena", "ok", "problema", "imagem_corrigida"],
-        "properties": {"cena": {"type": "integer"}, "ok": {"type": "boolean"}, "problema": {"type": "string"},
-                       "imagem_corrigida": {"type": "string", "description": "se reprovada: novo prompt em inglês para a cena; senão vazio"}}}}},
+    "type": "object", "additionalProperties": False,
+    "required": ["defeitos", "combina", "problema", "imagem_corrigida"],
+    "properties": {
+        "defeitos": {"type": "array", "items": {"type": "string"},
+                     "description": "cada defeito GRAVE achado na checagem de anatomia/artefatos; vazio se nenhum"},
+        "combina": {"type": "boolean", "description": "a imagem serve para o momento da fala (não contradiz)"},
+        "problema": {"type": "string", "description": "se reprovada: o problema principal em 1 frase; senão vazio"},
+        "imagem_corrigida": {"type": "string", "description": "se reprovada: novo prompt em inglês; senão vazio"},
+    },
 }
+JUIZES_EM_PARALELO = 4
 
 
-def camada3(r: dict, pasta: Path, epoca: str) -> list[dict]:
-    """Juiz visual. Devolve as cenas reprovadas: [{cena, problema, imagem_corrigida}]."""
-    from PIL import Image
-
+def julgar_imagem(r: dict, n: int, arq: Path, epoca: str) -> dict:
+    """Juiz visual de UMA imagem, em resolução cheia. Devolve {cena, ok, problema, imagem_corrigida}."""
+    c = r["cenas"][n - 1]
     pers = {p["id"]: p for p in r["personagens"]}
-    with tempfile.TemporaryDirectory(dir=pasta) as tmp:
-        tmp = Path(tmp)
-        linhas = []
-        for i, c in enumerate(r["cenas"], 1):
-            arq = next(iter(sorted(pasta.glob(f"cena_{i:02d}.*"))), None)
-            if not arq:
-                continue
-            menor = tmp / f"cena_{i:02d}.jpg"
-            with Image.open(arq) as im:
-                im.convert("RGB").resize((384, 672)).save(menor, quality=85)
-            quem = "; ".join(f"{pers[p]['nome']} = {pers[p]['descricao_visual']}" for p in c["personagens"] if p in pers) or "ninguém"
-            linhas.append(f"Cena {i}: arquivo {menor}\n  fala: «{c['fala']}»\n  deveria mostrar: {c['imagem']}\n  personagens: {quem}")
-        prompt = (
-            "Você revisa as imagens de um vídeo curto cristão antes de publicar. Abra CADA arquivo com a ferramenta Read "
-            "e avalie. Seja rigoroso: imagem ruim derruba o vídeo.\n\n" + "\n\n".join(linhas) +
-            "\n\nAprove se a imagem combina com o MOMENTO da fala (personagem, emoção e lugar certos), mesmo que não "
-            "mostre a ação ao pé da letra: é um vídeo curto, imagem evocativa funciona. Reprove a cena se:\n"
-            "- contradiz a fala (emoção oposta, pessoa errada, lugar que confunde a história) ou não tem relação com ela;\n"
-            "- o mesmo personagem aparece com cara, cabelo, barba ou roupa diferente das outras cenas ou da descrição;\n"
-            "- aparece gente a mais ou a menos do que a cena pede;\n"
-            "- tem texto, letra, marca d'água, auréola, asas quando não pediu, mãos ou rosto deformados;\n"
-            + ("- tem objeto moderno (roupa atual, óculos, relógio, prédio, luz elétrica);\n" if epoca == "biblica" else "") +
-            "- tem símbolo de outra religião ou algo constrangedor.\n"
-            "Para reprovada, escreva o problema em 1 frase e um novo prompt. " + REGRAS_IMAGEM
-        )
-        v = llm.chamar(prompt, SCHEMA_VISUAL, ler_arquivos_em=tmp)
-    return [c for c in v["cenas"] if not c["ok"]]
+    quem = "; ".join(pers[p]["nome"] for p in c["personagens"] if p in pers) or "ninguém (só paisagem ou objeto)"
+    prompt = (
+        f"Abra a imagem {arq} com a ferramenta Read. Ela vai num vídeo cristão realista; defeito de IA derruba o vídeo.\n\n"
+        "PASSO 1, anatomia e artefatos (o mais importante). Olhe devagar, parte por parte:\n"
+        "- cada MÃO: conte os dedos, veja se o tamanho bate com o corpo, se está presa a um braço, se não há mão sobrando;\n"
+        "- cada ROSTO: olhos, boca e proporção normais; nenhum rosto extra, cortado, fundido ou surgindo no meio da cena;\n"
+        "- CORPOS: braços e pernas na quantidade e posição possíveis, nenhum membro saindo de lugar errado, pessoas não "
+        "fundidas entre si ou com objetos;\n"
+        "- texto, letras, assinatura ou marca d'água em qualquer canto;\n"
+        + ("- objeto moderno (roupa atual, óculos, relógio, prédio, luz elétrica), auréola, símbolo de outra religião;\n"
+           if epoca == "biblica" else "- símbolo de outra religião ou algo constrangedor;\n") +
+        "Liste em `defeitos` só o que um espectador comum perceberia num celular. Mão em silhueta ou borrada pelo "
+        "movimento não é defeito.\n\n"
+        f"PASSO 2, história. Fala narrada nesta cena: «{c['fala']}». Quem deve aparecer: {quem}.\n"
+        "`combina` = false só se a imagem CONTRADIZ a fala (pessoa errada, emoção oposta, ação oposta) ou não tem nada "
+        "a ver. Imagem evocativa que não mostra a ação ao pé da letra combina. Cor de roupa, expressão exata e "
+        "enquadramento NÃO são motivo de reprovação.\n\n"
+        "Se houver defeito ou não combinar, escreva o problema e um prompt novo que evite o problema. " + REGRAS_IMAGEM
+    )
+    v = llm.chamar(prompt, SCHEMA_VISUAL, ler_arquivos_em=arq.parent)
+    ok = not v["defeitos"] and v["combina"]
+    problema = v["problema"] or "; ".join(v["defeitos"])
+    return {"cena": n, "ok": ok, "problema": "" if ok else problema,
+            "imagem_corrigida": "" if ok else v["imagem_corrigida"]}
+
+
+def julgar_varias(r: dict, itens: list[tuple[int, Path]], epoca: str) -> list[dict]:
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(JUIZES_EM_PARALELO) as ex:
+        return list(ex.map(lambda it: julgar_imagem(r, it[0], it[1], epoca), itens))
+
+
+def camada3(r: dict, pasta: Path, epoca: str, so: list[int] | None = None) -> list[dict]:
+    """Juiz visual, uma imagem por vez. Devolve as cenas reprovadas: [{cena, problema, imagem_corrigida}]."""
+    itens = [(i, a) for i in range(1, len(r["cenas"]) + 1) if not so or i in so
+             for a in [next(iter(sorted(pasta.glob(f"cena_{i:02d}.*"))), None)] if a]
+    return [v for v in julgar_varias(r, itens, epoca) if not v["ok"]]

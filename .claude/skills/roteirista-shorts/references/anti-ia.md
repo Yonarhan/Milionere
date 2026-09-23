@@ -25,7 +25,8 @@ formalidade muito mais rápido que o olho.
 
 - **Fala de gente:** "pra", "tá", "cê" (com moderação), "sério", "olha só", "pensa comigo".
 - **Reação, não só relato:** "Isso é meio assustador." / "E ninguém sabe explicar."
-- **Ritmo de narrador de Shorts:** frases curtas, ponto a cada 6–12 palavras. O TTS respira no ponto.
+- **Ritmo de narrador de Shorts:** frases curtas, mas LIGADAS, como alguém contando uma história de uma vez. Cada fala continua a anterior com conectivo ("então", "aí", "mas", "na hora", "e"). Cada ponto final vira uma pausa de quase 1s no TTS: ponto só onde a ideia fecha; dentro da mesma ação, use "e" ou vírgula ("Pedro saiu do barco e andou na água.", não "Desceu do barco. Andou na água.").
+- **Nada de fragmento telegráfico** sem sujeito ou verbo ("Teve medo.", "Primeiro segurou.") fora do gancho. Se não cabe tudo ligado, conte MENOS fatos, não corte os conectivos.
 - **Números por extenso quando curtos** ("três"), algarismos quando grandes ("2 trilhões"). Evite siglas.
 - **Um "você" por vídeo pelo menos.** Coloca o espectador dentro.
 

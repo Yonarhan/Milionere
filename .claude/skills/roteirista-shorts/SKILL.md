@@ -35,10 +35,10 @@ Fluxo: tema (sorteado de `biblia/temas.json`, sem repetir `producao/usados.json`
 com o texto EXATO da Bíblia Portuguesa Mundial (domínio público, `biblia/bpm.json`) → **camada 1** (código: tamanho,
 gancho, CTA, vocabulário de IA, versículo idêntico à fonte, eventos dentro do trecho e em ordem, cenas na ordem dos
 eventos, personagens declarados) → **camada 2** (juiz LLM em conversa nova: fidelidade, ordem, personagens, compreensão,
-gancho, ritmo, linguagem, payoff; nota < 4 ou erro factual = reescreve, máx. 3) → imagens no ComfyUI local (SDXL
-Juggernaut + IP-Adapter com o retrato fixo de cada personagem em `biblia/retratos/<estilo>/`) → **camada 3** (juiz
-visual abre cada imagem; reprovada = refaz com prompt corrigido, máx. 2) → `produzir.py` com e sem música → **camada 4**
-(duração 15–50 s). Tudo o que cada camada disse fica em `producao/validacao/<slug>.json`.
+gancho, ritmo, linguagem, payoff; nota < 4 ou erro factual = reescreve, máx. 3) → imagens no ComfyUI local (padrão
+para histórias: `--estilo cinema_flux`, Flux schnell GGUF; SDXL erra ação/mãos) → **camada 3** (juiz visual, 1 imagem por
+vez em resolução cheia, anatomia primeiro; cena aprovada fica travada; reprovada ganha 3 opções e fica a 1ª aprovada,
+máx. 2 rodadas) → `produzir.py` com e sem música (pausa inserida onde o TTS colou frases) → **camada 4** (duração 15–58 s). Tudo o que cada camada disse fica em `producao/validacao/<slug>.json`.
 
 - Formatos: `formatos.json` (receita, faixa de palavras, estilo padrão). Estilos: `estilos.json` (edite/crie à vontade).
 - Personagens fixos: `biblia/personagens.json` (id → aparência). Personagem bíblico novo é salvo sozinho na 1ª aparição.

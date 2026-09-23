@@ -182,32 +182,45 @@ def prompt_cena(cena: dict, personagens: dict, estilo: dict, cenario: str) -> st
     return ", ".join(p.strip().rstrip(".") for p in partes if p and p.strip())
 
 
-def gerar_cenas(roteiro: dict, nome_estilo: str, pasta: Path, so: list[int] | None = None, nova_seed: bool = False) -> list[Path]:
+def _gerar_cena(roteiro: dict, nome_estilo: str, n: int, destino: Path, seed: int) -> Path:
     estilo = estilos()[nome_estilo]
     biblico = roteiro.get("epoca", "biblica") == "biblica"
     personagens = {p["id"]: p for p in roteiro.get("personagens", [])}
-    negativo = negativo_de(estilo, biblico)
+    cena = roteiro["cenas"][n - 1]
+    principal = next((personagens[i] for i in cena.get("personagens", []) if i in personagens), None)
+    # IP-Adapter só em close: em plano médio/aberto ele copia a pose do retrato e mata a ação da cena
+    close = (re.match(r"\s*(extreme |medium |tight )?close[- ]?up|\s*portrait", cena["imagem"], re.I)
+             and not re.search(r"\b(hands?|feet|foot|wrist)\b", cena["imagem"][:60], re.I))
+    usa_ref = estilo.get("motor") != "flux" and estilo.get("ip_peso", 0) > 0
+    ref = retrato(principal, nome_estilo, biblico) if usa_ref and principal and cena.get("rosto_visivel", True) and close else None
+    inicio = time.time()
+    gerar(prompt_cena(cena, personagens, estilo, roteiro.get("cenario_en", "")), negativo_de(estilo, biblico), estilo,
+          destino, seed, ref, estilo["ip_peso"] if ref else 0.0)
+    print(f"  cena {n:>2} {time.time() - inicio:4.0f}s  {destino.name}  «{cena['fala'][:50]}»")
+    return destino
+
+
+def gerar_cenas(roteiro: dict, nome_estilo: str, pasta: Path, so: list[int] | None = None, nova_seed: bool = False) -> list[Path]:
     base = _seed_fixa(roteiro["slug"])
     feitos = []
-    for n, cena in enumerate(roteiro["cenas"], 1):
+    for n in range(1, len(roteiro["cenas"]) + 1):
         if so and n not in so:
             continue
-        principal = next((personagens[i] for i in cena.get("personagens", []) if i in personagens), None)
-        # IP-Adapter só em close: em plano médio/aberto ele copia a pose do retrato e mata a ação da cena
-        close = (re.match(r"\s*(extreme |medium |tight )?close[- ]?up|\s*portrait", cena["imagem"], re.I)
-                 and not re.search(r"\b(hands?|feet|foot|wrist)\b", cena["imagem"][:60], re.I))
-        usa_ref = estilo.get("motor") != "flux" and estilo.get("ip_peso", 0) > 0
-        ref = retrato(principal, nome_estilo, biblico) if usa_ref and principal and cena.get("rosto_visivel", True) and close else None
         seed = base + n + (random.randint(1, 10**6) if nova_seed else 0)
-        destino = pasta / f"cena_{n:02d}.png"
         for velho in pasta.glob(f"cena_{n:02d}*"):
             velho.unlink()
-        inicio = time.time()
-        gerar(prompt_cena(cena, personagens, estilo, roteiro.get("cenario_en", "")), negativo, estilo, destino, seed,
-              ref, estilo["ip_peso"] if ref else 0.0)
-        print(f"  cena {n:>2} {time.time() - inicio:4.0f}s  {destino.name}  «{cena['fala'][:50]}»")
-        feitos.append(destino)
+        feitos.append(_gerar_cena(roteiro, nome_estilo, n, pasta / f"cena_{n:02d}.png", seed))
     return feitos
+
+
+def gerar_opcoes(roteiro: dict, nome_estilo: str, pasta: Path, n: int, k: int = 3) -> list[Path]:
+    """k versões da cena n com seeds novas, em pasta/opcoes/ (fora do glob cena_NN* que o render usa)."""
+    destino = pasta / "opcoes"
+    destino.mkdir(parents=True, exist_ok=True)
+    for velho in destino.glob(f"cena_{n:02d}_*"):
+        velho.unlink()
+    return [_gerar_cena(roteiro, nome_estilo, n, destino / f"cena_{n:02d}_{j}.png", random.randint(0, 2**31 - 1))
+            for j in range(1, k + 1)]
 
 
 def main() -> None:

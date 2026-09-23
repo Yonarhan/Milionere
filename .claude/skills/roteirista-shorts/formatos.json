@@ -4,11 +4,11 @@
     "nome": "História bíblica narrada",
     "catalogo": "historias",
     "nicho": "gospel",
-    "palavras": [60, 85],
+    "palavras": [60, 95],
     "cenas": [10, 14],
-    "estilo": "cinema",
+    "estilo": "cinema_flux",
     "epoca": "biblica",
-    "receita": "Conte um episódio real da Bíblia como um plot twist, na ORDEM em que aconteceu no texto.\n1. Gancho-paradoxo (até 7 palavras) que abre uma lacuna: algo que parece errado ou impossível.\n2. A história em frases curtas, uma imagem por frase, seguindo a ordem do trecho bíblico.\n3. Um momento-curiosidade no meio (um detalhe exato do texto que pouca gente nota).\n4. Uma aplicação pessoal em 1 frase, em 2ª pessoa, ligada a uma dor real (culpa, espera, medo, luto).\n5. O clímax/virada do texto.\n6. Uma frase-loop que responde o gancho.\n7. CTA curto: 'Escreve amém.' ou 'Manda pra quem precisa ouvir isso.'"
+    "receita": "Conte um episódio real da Bíblia como um plot twist, na ORDEM em que aconteceu no texto.\n1. Gancho-paradoxo (até 7 palavras) que abre uma lacuna: algo que parece errado ou impossível.\n2. A história em frases curtas, uma imagem por frase, seguindo a ordem do trecho bíblico.\n3. Um momento-curiosidade no meio (um detalhe exato do texto que pouca gente nota).\n4. O clímax/virada do texto. A história corre sem interrupção do começo até aqui.\n5. Só DEPOIS do clímax, uma aplicação pessoal em 1 frase, em 2ª pessoa, ligada a uma dor real (culpa, espera, medo, luto).\n6. Uma frase-loop que responde o gancho.\n7. CTA curto: 'Escreve amém.' ou 'Manda pra quem precisa ouvir isso.'"
   },
   "parabola": {
     "nome": "Parábola moderna de Provérbio",

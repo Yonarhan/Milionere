@@ -154,6 +154,8 @@ def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, r
         entregar(r, pasta_a, so_audio=True)
         return
 
+    for p in sync.respirar(r["cenas"], pasta_a / "audio.mp3", pasta_a / "subtitle.srt"):
+        print(f"AVISO  [{r['slug']}] {p}")
     dur = sync.duracao_audio(pasta_a / "audio.mp3")
     tempos, avisos = sync.tempos_das_cenas(r["cenas"], sync.ler_srt(pasta_a / "subtitle.srt"), dur)
     for a in avisos:

@@ -18,6 +18,9 @@ Regras que vieram de feedback real. A skill `roteirista-shorts` lê este arquivo
 - 2026-09-22: Vênus (dia > ano) ficou "maneiro" mas o fato foi morno. Escolher fatos que passem no teste do uau (ganchos.md) e usar imagens do Gemini para o impossível.
 
 ## Gospel
+- 2026-09-23: vídeo do Pedro (Flux + juiz novo) aprovado: "ficou top". Receita que funcionou: Flux schnell (cinema_flux), juiz visual 1 imagem por vez em resolução cheia com anatomia primeiro, 3 opções só para cena reprovada, prompts sem close de mãos nem gente se tocando.
+- 2026-09-23: falas telegráficas ("Andou na água. Teve medo.") soam desconexas. Frases ligadas com conectivos, "e" dentro da mesma ação; até 95 palavras (~47s). Aplicação ao espectador só DEPOIS do clímax.
+- 2026-09-23: Edge TTS às vezes emenda duas frases (0.01s de pausa) e engole palavra curta antes de nome ("manda eu ir Jesus"). sincronizar.respirar insere pausa no 1º silêncio real; evitar terminar fala com monossílabo antes de nome próprio.
 - 2026-09-22: "man praying"/"hands praying" no Pexels trazem muçulmanos em mesquita. Usar "with bible"/"christian" na busca (+ filtro `evitar_termos` no preset).
 - 2026-09-22: "friends hugging" traz gente rindo. Para dor/consolo: "comforting sad friend", "consoling crying woman".
 - 2026-09-22: 90 palavras a 1.0x = 48s (longo). Mirar ~65 palavras ou voz 1.1x.

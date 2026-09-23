@@ -76,23 +76,23 @@
     },
     "cenas": [
       {
-        "fala": "Pedro andou na água. Até ver o vento.",
+        "fala": "Jesus segurou antes de perguntar.",
         "evento": 0,
         "personagens": [
           "pedro"
         ],
         "rosto_visivel": true,
-        "imagem": "Wide shot of a bearded fisherman standing on top of stormy sea waves, turning in fear toward a towering wave, spray whipping around him, cold blue moonlight, open sea at night",
+        "imagem": "Wide shot of a bearded fisherman chest-deep in stormy waves, gazing upward with relief, a robed figure standing calmly on the water beside him, both in silhouette, moonlight breaking through clouds over the Sea of Galilee",
         "busca": "stormy sea at night waves"
       },
       {
-        "fala": "De madrugada, Jesus andou no mar até os discípulos.",
+        "fala": "De madrugada, Jesus andou no mar até o barco dos discípulos.",
         "evento": 1,
         "personagens": [
           "jesus"
         ],
         "rosto_visivel": true,
-        "imagem": "Wide shot from behind of a man walking calmly on top of rolling waves toward a distant wooden fishing boat, cloak blowing, faint grey predawn light, dark open sea",
+        "imagem": "Wide shot of Jesus walking calmly on top of the stormy sea surface, feet resting on the waves, serene and majestic, approaching a distant fishing boat, pale predawn blue light, Sea of Galilee",
         "busca": "dark sea before dawn"
       },
       {
@@ -102,11 +102,11 @@
           "discipulo"
         ],
         "rosto_visivel": true,
-        "imagem": "Close-up of a young man screaming in terror, pointing out at the dark sea, eyes wide, spray in the air, dim bluish moonlight, inside a wooden fishing boat at night",
+        "imagem": "Medium shot of a terrified fisherman recoiling backward against the mast of a wooden boat, screaming in terror, staring at the dark sea, moonlit night, stormy waves on the Sea of Galilee",
         "busca": "wooden boat storm night"
       },
       {
-        "fala": "Jesus disse: Coragem! Sou eu!",
+        "fala": "Jesus disse: Coragem, sou eu!",
         "evento": 3,
         "personagens": [
           "jesus"
@@ -116,27 +116,27 @@
         "busca": "calm figure stormy sea"
       },
       {
-        "fala": "Pedro pediu: Senhor, se é você, manda eu ir.",
+        "fala": "Pedro pediu: se é você, manda eu ir até aí.",
         "evento": 4,
         "personagens": [
           "pedro"
         ],
         "rosto_visivel": true,
-        "imagem": "Medium shot of a fisherman kneeling at a wooden boat's edge, gripping the rail, leaning toward the sea, hopeful yet nervous, wind in his hair, cold moonlight, choppy sea at night",
+        "imagem": "medium shot of a fisherman kneeling at a wooden boat's edge, gripping the rail, leaning toward the sea, hopeful and nervous gaze outward, wind in his hair, cold moonlight, choppy sea at night",
         "busca": "fisherman wooden boat night"
       },
       {
-        "fala": "Jesus respondeu: Venha!",
+        "fala": "Jesus respondeu: Vem!",
         "evento": 5,
         "personagens": [
           "jesus"
         ],
         "rosto_visivel": true,
-        "imagem": "Medium close-up of a man standing on stormy sea waves, extending an open palm toward the viewer in warm invitation, kind smile, soft light on his face, dark sea at night",
+        "imagem": "Wide shot of Jesus standing calmly on dark stormy sea waves, body turned toward a distant fishing boat, warm inviting smile, robe blowing in wind, moonlight breaking through clouds over the Sea of Galilee at night",
         "busca": "hand reaching out sea"
       },
       {
-        "fala": "Pedro desceu do barco. Andou na água.",
+        "fala": "Pedro saiu do barco e andou na água.",
         "evento": 6,
         "personagens": [
           "pedro"
@@ -146,7 +146,7 @@
         "busca": "feet on water surface"
       },
       {
-        "fala": "Mas viu o vento forte. Teve medo.",
+        "fala": "Mas viu o vento forte e teve medo.",
         "evento": 7,
         "personagens": [
           "pedro"
@@ -156,7 +156,7 @@
         "busca": "strong wind ocean waves"
       },
       {
-        "fala": "Começou a afundar. Gritou: Senhor, me salva!",
+        "fala": "Começou a afundar e gritou: Senhor, me salva!",
         "evento": 7,
         "personagens": [
           "pedro"
@@ -166,26 +166,18 @@
         "busca": "man sinking in dark water"
       },
       {
-        "fala": "Medo te afundando? Grita pra Jesus.",
-        "evento": 0,
-        "personagens": [],
-        "rosto_visivel": false,
-        "imagem": "Close-up of a single hand reaching straight up out of churning dark water, fingers open, water streaming down, desperate hope, faint warm golden light from above, stormy sea",
-        "busca": "hand reaching out of water"
-      },
-      {
-        "fala": "Imediatamente, Jesus estendeu a mão e segurou Pedro.",
+        "fala": "Na hora, Jesus estendeu a mão e segurou Pedro.",
         "evento": 8,
         "personagens": [
           "jesus",
           "pedro"
         ],
         "rosto_visivel": true,
-        "imagem": "Close-up of a strong hand gripping a wet wrist and pulling it up out of dark churning waves, urgent rescue, spray flying, warm light against cold moonlight, stormy sea at night",
+        "imagem": "Wide shot, two silhouettes on stormy sea: Jesus standing on waves bending down to lift a sinking fisherman rising from water, desperate rescue moment, moonlight breaking through storm clouds, Sea of Galilee at night",
         "busca": "hand pulling hand from water"
       },
       {
-        "fala": "Primeiro segurou. Depois perguntou: por que duvidou?",
+        "fala": "Depois disse: homem de pouca fé, por que duvidou?",
         "evento": 8,
         "personagens": [
           "jesus",
@@ -196,7 +188,15 @@
         "busca": "sea dawn after storm"
       },
       {
-        "fala": "Escreve amém.",
+        "fala": "Afundando no medo? Grita pra Jesus.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a violent night sea, towering dark waves crashing, a single golden beam of light breaking through storm clouds onto the water, hopeful and dramatic, Sea of Galilee under stormy sky",
+        "busca": "hand reaching out of water"
+      },
+      {
+        "fala": "Ele segura primeiro. Pergunta depois. Escreve amém.",
         "evento": 0,
         "personagens": [],
         "rosto_visivel": false,
@@ -274,6 +274,9 @@
     ],
     "ajustes": {
       "voice_rate": 1.05
-    }
+    },
+    "_avisos": [
+      "imagens reprovadas: [1, 8, 11]"
+    ]
   }
 ]

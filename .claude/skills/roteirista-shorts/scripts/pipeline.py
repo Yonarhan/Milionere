@@ -13,6 +13,7 @@ Cada etapa grava o que decidiu em producao/validacao/<slug>.json (dá pra audita
 
 import argparse
 import json
+import shutil
 import subprocess
 import sys
 import time
@@ -32,7 +33,8 @@ USADOS = PROD / "usados.json"
 PY_MPT = RAIZ / "MoneyPrinterTurbo" / (".venv/Scripts/python.exe" if sys.platform == "win32" else ".venv-linux/bin/python")
 MAX_REESCRITAS = 4
 MAX_REFACAO_IMAGEM = 2
-DURACAO_OK = (15.0, 50.0)
+OPCOES_POR_CENA = 3
+DURACAO_OK = (15.0, 58.0)
 
 
 def carregar(nome: str) -> dict:
@@ -151,24 +153,42 @@ def imagens_validadas(r: dict, arq_roteiro: Path, reg: Registro) -> None:
         if faltando:
             log(f"imagens: gerando {len(faltando)} cenas no ComfyUI (estilo {r['estilo']})")
             imagens.gerar_cenas(r, r["estilo"], pasta, so=faltando)
-        for rodada in range(1, MAX_REFACAO_IMAGEM + 2):
-            log(f"camada 3: juiz visual (rodada {rodada})")
-            ruins = validar.camada3(r, pasta, r["epoca"])
-            reg.add("camada3", not ruins, rodada=rodada, reprovadas=ruins)
+        log("camada 3: juiz visual (todas as cenas, uma por vez)")
+        ruins = validar.camada3(r, pasta, r["epoca"])
+        reg.add("camada3", not ruins, rodada=1, reprovadas=ruins)
+        # cena aprovada fica travada; só as reprovadas voltam, com OPCOES_POR_CENA tentativas por rodada
+        for rodada in range(1, MAX_REFACAO_IMAGEM + 1):
             if not ruins:
-                log("  todas as imagens aprovadas")
-                return
+                break
             for c in ruins:
                 log(f"  cena {c['cena']} reprovada: {c['problema']}")
-            if rodada > MAX_REFACAO_IMAGEM:
-                log("  AVISO: sobraram imagens reprovadas depois das refações; revise o painel antes de postar")
-                r.setdefault("_avisos", []).append(f"imagens reprovadas: {[c['cena'] for c in ruins]}")
-                return
-            for c in ruins:
                 if c["imagem_corrigida"].strip():
                     r["cenas"][c["cena"] - 1]["imagem"] = c["imagem_corrigida"].strip()
             arq_roteiro.write_text(json.dumps([r], ensure_ascii=False, indent=2), encoding="utf-8")
-            imagens.gerar_cenas(r, r["estilo"], pasta, so=[c["cena"] for c in ruins], nova_seed=True)
+            log(f"refação {rodada}: {OPCOES_POR_CENA} opções para as cenas {[c['cena'] for c in ruins]}")
+            ainda = []
+            for c in ruins:
+                n = c["cena"]
+                opcoes = imagens.gerar_opcoes(r, r["estilo"], pasta, n, OPCOES_POR_CENA)
+                vereditos = validar.julgar_varias(r, [(n, o) for o in opcoes], r["epoca"])
+                boa = next((o for o, v in zip(opcoes, vereditos) if v["ok"]), None)
+                if boa:
+                    for velho in pasta.glob(f"cena_{n:02d}.*"):
+                        velho.unlink()
+                    shutil.move(boa, pasta / f"cena_{n:02d}.png")
+                    log(f"  cena {n} aprovada ({boa.name})")
+                else:
+                    ainda.append(vereditos[-1])
+            reg.add("camada3", not ainda, rodada=rodada + 1, reprovadas=ainda)
+            ruins = ainda
+        shutil.rmtree(pasta / "opcoes", ignore_errors=True)
+        if ruins:
+            for c in ruins:
+                log(f"  cena {c['cena']} reprovada: {c['problema']}")
+            log("  AVISO: sobraram imagens reprovadas depois das refações; revise o painel antes de postar")
+            r.setdefault("_avisos", []).append(f"imagens reprovadas: {[c['cena'] for c in ruins]}")
+        else:
+            log("  todas as imagens aprovadas")
     finally:
         imagens.derrubar(proc)  # libera a memória da placa pro render
 
