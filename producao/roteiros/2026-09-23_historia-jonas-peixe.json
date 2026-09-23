@@ -1,0 +1,270 @@
+[
+  {
+    "slug": "historia-jonas-peixe",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "jonas-peixe",
+    "estilo": "cinema_flux",
+    "epoca": "biblica",
+    "titulo": "Dá pra fugir de Deus? Jonas tentou 🌊",
+    "cenario_en": "ancient Near East, 8th century BC, Mediterranean port of Joppa, wooden sailing ships, open sea, rocky coastline",
+    "personagens": [
+      {
+        "id": "jonas",
+        "nome": "Jonas",
+        "nome_en": "Jonah",
+        "descricao_visual": "a lean man in his early 40s, messy shoulder-length black hair, full untrimmed black beard with a few grey strands, tanned olive skin, worn dark brown wool tunic with a faded ochre cloak and leather belt"
+      },
+      {
+        "id": "marinheiro",
+        "nome": "Marinheiro",
+        "nome_en": "sailor",
+        "descricao_visual": "a muscular sailor in his 30s, short cropped dark hair, thick short dark beard, deeply sun-burned skin, sleeveless rough undyed linen tunic tied with a rope, bare feet"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Deus manda Jonas pregar contra a grande cidade de Nínive",
+        "ref": "Jonas 1:1-2"
+      },
+      {
+        "n": 2,
+        "evento": "Jonas paga a passagem de um navio para Társis, para fugir do Senhor",
+        "ref": "Jonas 1:3"
+      },
+      {
+        "n": 3,
+        "evento": "O Senhor manda um grande vento e uma tempestade violenta no mar",
+        "ref": "Jonas 1:4"
+      },
+      {
+        "n": 4,
+        "evento": "Jonas pede que o lancem ao mar, porque sabe que a tempestade é por causa dele",
+        "ref": "Jonas 1:12"
+      },
+      {
+        "n": 5,
+        "evento": "Os homens lançam Jonas ao mar e o mar cessa a sua fúria",
+        "ref": "Jonas 1:15"
+      },
+      {
+        "n": 6,
+        "evento": "O Senhor prepara um grande peixe para engolir Jonas",
+        "ref": "Jonas 1:17"
+      },
+      {
+        "n": 7,
+        "evento": "Jonas ora do ventre do peixe e Deus ouve",
+        "ref": "Jonas 2:1-2"
+      },
+      {
+        "n": 8,
+        "evento": "O Senhor fala ao peixe e ele vomita Jonas na terra seca",
+        "ref": "Jonas 2:10"
+      }
+    ],
+    "versiculo": {
+      "ref": "Jonas 2:2",
+      "texto": "Clamei ao SENHOR por causa da minha aflição. Ele me respondeu. Do ventre do Seol eu gritei. Tu ouviste a minha voz."
+    },
+    "cenas": [
+      {
+        "fala": "Jonas pagou pra fugir de Deus.",
+        "evento": 0,
+        "personagens": [
+          "jonas"
+        ],
+        "rosto_visivel": true,
+        "imagem": "medium shot of a man hurrying up a wooden gangplank onto an old sailing ship, glancing back over his shoulder with guilty anxious eyes, golden dusk light, ancient harbor of Joppa",
+        "busca": "ancient ship harbor sunset"
+      },
+      {
+        "fala": "Deus mandou Jonas pregar contra a grande cidade de Nínive.",
+        "evento": 1,
+        "personagens": [
+          "jonas"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a prophet standing alone on a rocky hilltop, gazing upward in awe as God calls him, distant walled ancient city on the horizon, golden sunbeams through dark clouds, ancient Middle Eastern desert",
+        "busca": "light rays through clouds desert"
+      },
+      {
+        "fala": "Mas Jonas pagou passagem num navio pra Társis.",
+        "evento": 2,
+        "personagens": [
+          "jonas"
+        ],
+        "rosto_visivel": true,
+        "imagem": "wide shot of a lone man at the stern of a departing wooden sailing ship, staring back at the shore with a heavy troubled face, calm sea, warm afternoon light, ancient harbor",
+        "busca": "old sailing ship at sea"
+      },
+      {
+        "fala": "No mar, Deus mandou uma tempestade.",
+        "evento": 3,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "wide dramatic shot of a small wooden ship tossed on enormous black waves, sails torn, lightning splitting the dark sky, violent night storm on the open sea",
+        "busca": "ship in storm waves"
+      },
+      {
+        "fala": "Repara: Jonas pediu pra ser jogado no mar.",
+        "evento": 4,
+        "personagens": [
+          "jonas",
+          "marinheiro"
+        ],
+        "rosto_visivel": true,
+        "imagem": "wide shot of a soaked man shouting with fierce resolve on a rain-lashed deck, a frightened sailor standing apart near the mast, both full body, stormy grey light, wooden ship at sea",
+        "busca": "stormy sea ship deck rain"
+      },
+      {
+        "fala": "Jonas sabia que a tempestade era culpa dele.",
+        "evento": 4,
+        "personagens": [
+          "jonas"
+        ],
+        "rosto_visivel": true,
+        "imagem": "close-up of a drenched man's face heavy with guilt, rain streaming down, eyes cast downward, dark stormy blue light, storm-battered wooden ship deck with mast behind",
+        "busca": "man in rain storm guilt"
+      },
+      {
+        "fala": "Os marinheiros jogaram Jonas, e o mar parou.",
+        "evento": 5,
+        "personagens": [
+          "jonas"
+        ],
+        "rosto_visivel": false,
+        "imagem": "wide shot of a man's silhouette falling from the side of a wooden ship into the sea, clouds breaking open, waves suddenly calming, silver light spilling over the open water",
+        "busca": "calm sea after storm clouds"
+      },
+      {
+        "fala": "Deus preparou um grande peixe pra engolir Jonas.",
+        "evento": 6,
+        "personagens": [
+          "jonas"
+        ],
+        "rosto_visivel": false,
+        "imagem": "underwater wide shot of a colossal dark fish rising from the deep with open mouth toward a small sinking human silhouette, rays of light from the surface, deep blue ocean",
+        "busca": "whale underwater deep ocean"
+      },
+      {
+        "fala": "Dentro do peixe, Jonas orou, e Deus ouviu.",
+        "evento": 7,
+        "personagens": [
+          "jonas"
+        ],
+        "rosto_visivel": true,
+        "imagem": "medium shot of a drenched man kneeling, face lifted upward in desperate prayer, eyes closed, faint warm glow from above, inside the dark cavernous belly of a great fish",
+        "busca": "light in darkness hope"
+      },
+      {
+        "fala": "Deus falou, e o peixe vomitou Jonas na terra seca.",
+        "evento": 8,
+        "personagens": [
+          "jonas"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a exhausted bearded man kneeling on a sandy shore, soaked and gasping, looking up to the sky in awe, a huge fish sinking back into the waves behind, golden dawn light on an ancient coastline",
+        "busca": "sunrise beach waves"
+      },
+      {
+        "fala": "Se você afundou fugindo, Deus te ouve.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "wide shot of a single ray of sunlight piercing deep dark water, glowing particles drifting upward full of hope, cinematic blue light, silent ocean depths",
+        "busca": "sunlight underwater deep ocean"
+      },
+      {
+        "fala": "Jonas fugiu, Deus não desistiu.",
+        "evento": 0,
+        "personagens": [
+          "jonas"
+        ],
+        "rosto_visivel": true,
+        "imagem": "medium shot of a man standing on the shore facing the sunrise, eyes wet with gratitude, cloak blowing in the wind, golden morning light, ancient seashore",
+        "busca": "man looking at sunrise sea"
+      },
+      {
+        "fala": "Escreve amém.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "wide shot of a calm sea with gentle waves rolling onto the sand, peaceful stillness, warm golden sunrise light, ancient coastline",
+        "busca": "calm sea sunrise golden"
+      }
+    ],
+    "descricao": "\"Clamei ao SENHOR por causa da minha aflição. Ele me respondeu.\" (Jonas 2:2)\nJonas pagou um navio pra fugir de Deus e acabou no fundo do mar. Mesmo lá, Deus ouviu a oração dele.\nVocê já tentou fugir de Deus?\nLeia Jonas 1 e 2.\n#jesus #biblia #fé #palavradedeus #shorts\nVoz e imagens geradas por IA. Vídeos: Pexels.",
+    "hashtags": [
+      "#jesus",
+      "#biblia",
+      "#fé",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "De que você já tentou fugir, achando que Deus não ia mais te ouvir?",
+    "fontes": [
+      "Jonas 1:1-4; 1:11-17; 2:1-2; 2:10 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Jonas pagou pra fugir de Deus.",
+        "choque": 5,
+        "clareza": 5,
+        "imagem": 5
+      },
+      {
+        "texto": "Deus mandou pra leste. Jonas foi pro oeste.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Um homem orou de dentro de um peixe.",
+        "choque": 5,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "Você já tentou fugir de Deus?",
+        "choque": 3,
+        "clareza": 5,
+        "imagem": 3
+      },
+      {
+        "texto": "Filho, até no fundo do mar eu te ouço.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 3
+      }
+    ],
+    "notas": {
+      "roteirista": {
+        "gancho": 5,
+        "clareza": 4,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Stable Diffusion XL)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    }
+  }
+]

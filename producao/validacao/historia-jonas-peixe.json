@@ -146,6 +146,226 @@
         "payoff (nota 3): Falta o momento-curiosidade: inclua 'três dias e três noites' na cena 9 ou 'do ventre do Seol eu gritei' na cena 10 (2:2).",
         "payoff (nota 3): Cena 13: 'Deus não largou Jonas' responde o gancho de forma fraca; feche o loop com o próprio gancho: 'Jonas pagou pra fugir de Deus. Não tinha pra onde fugir.'"
       ]
+    },
+    {
+      "quando": "16:48:54",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Jonas pagou passagem pra fugir de Deus.",
+        "Deus mandou Jonas pregar contra Nínive.",
+        "Mas Jonas embarcou num navio pra Társis.",
+        "Aí Deus mandou uma tempestade violenta.",
+        "Repara: foi Jonas que pediu pra ser jogado no mar.",
+        "Então os marinheiros jogaram Jonas, e a fúria do mar parou.",
+        "Mas Deus preparou um grande peixe pra engolir Jonas.",
+        "Do ventre do peixe, Jonas orou, e Deus ouviu.",
+        "Então Deus falou, e o peixe vomitou Jonas na terra seca.",
+        "Se você fugiu e afundou, Deus ainda ouve você.",
+        "Jonas fugiu, mas Deus não desistiu dele.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "16:49:24",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 4,
+        "personagens": 4,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Jonas fugiu de Deus num navio, uma tempestade veio, ele pediu para ser jogado no mar, um peixe o engoliu, ele orou lá dentro e Deus o salvou, fazendo o peixe vomitá-lo em terra.",
+      "erros_factuais": [],
+      "problemas": [
+        "compreensao (nota 3): Cena 5: quem ouve não entende por que Jonas pede para ser jogado no mar. Acrescente 'porque sabia que a tempestade era culpa dele' e, para compensar, corte a cena 3 inteira, que repete o gancho da cena 1 (a fuga de navio para Társis).",
+        "compreensao (nota 3): Cena 2: 'Nínive' não significa nada para quem não conhece a história. Diga 'a grande cidade de Nínive' e corte o 'Então' da cena 9 para não passar do limite."
+      ]
+    },
+    {
+      "quando": "16:50:13",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Jonas pagou passagem pra fugir de Deus.",
+        "Deus mandou Jonas pregar contra a grande cidade de Nínive.",
+        "Aí Deus mandou uma tempestade violenta.",
+        "Repara: Jonas pediu pra ser jogado no mar.",
+        "Porque ele sabia que a tempestade era culpa dele.",
+        "Os marinheiros jogaram Jonas, e o mar parou.",
+        "Mas Deus preparou um grande peixe pra engolir Jonas.",
+        "Do ventre do peixe, Jonas orou, e Deus ouviu.",
+        "Deus falou, e o peixe vomitou Jonas na terra seca.",
+        "Se você fugiu e afundou, Deus ainda ouve você.",
+        "Jonas fugiu, mas Deus não desistiu dele.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "16:51:00",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 3,
+        "personagens": 3,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Deus mandou Jonas pregar em Nínive, mas Jonas pagou passagem para fugir. Deus mandou uma tempestade, Jonas foi jogado ao mar, um peixe o engoliu e depois o vomitou em terra, porque Deus ouviu sua oração. Quem ouve só uma vez não fica sabendo que houve navio nem de onde saíram os marinheiros.",
+      "erros_factuais": [],
+      "problemas": [
+        "ordem (nota 3): Cenas 1-2: a fuga (Jonas 1:3) é narrada antes da ordem de Deus (1:2) e nunca volta no lugar certo. Transforme a cena 1 em gancho sem ser evento ('Jonas pagou pra fugir de Deus.') e conte a fuga na cena 2: 'Deus mandou Jonas pregar contra Nínive, mas ele embarcou num navio pra Társis.' Corte 'a grande cidade de' para compensar as palavras.",
+        "ordem (nota 3): Cena 3: o 'Aí' coloca a tempestade logo depois da ordem de Deus, pulando a fuga. Isso se resolve com a correção da cena 2.",
+        "personagens (nota 3): Cenas 4 e 6: os marinheiros aparecem na imagem da cena 4 e na fala da cena 6 sem que nenhum navio tenha sido mencionado. Na cena 2 diga 'embarcou num navio' e na cena 4 escreva 'Jonas pediu aos marinheiros pra ser jogado no mar' (corte 'Repara:' para compensar).",
+        "compreensao (nota 3): Cena 3: quem só ouve não sabe que Jonas está num navio no mar, então a tempestade surge sem lugar. Escreva 'Aí, em alto-mar, Deus mandou uma tempestade violenta' e corte 'Porque' da cena 5 ('Ele sabia que a culpa era dele.') para caber.",
+        "compreensao (nota 3): Cena 1: 'pagou passagem' sem dizer passagem de quê nem para onde deixa uma lacuna que a narrativa não fecha. Use o navio para Társis na cena 2."
+      ]
+    },
+    {
+      "quando": "16:51:45",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Jonas pagou passagem pra fugir de Deus.",
+        "Deus mandou Jonas pregar contra a grande cidade de Nínive.",
+        "Aí Deus mandou uma tempestade violenta.",
+        "Repara: Jonas mesmo pediu pra ser jogado no mar.",
+        "Porque Jonas sabia que a tempestade era culpa dele.",
+        "Os marinheiros jogaram Jonas, e o mar parou.",
+        "Mas Deus preparou um grande peixe pra engolir Jonas.",
+        "Do ventre do peixe, Jonas orou e Deus ouviu.",
+        "Deus falou, e o peixe vomitou Jonas na terra seca.",
+        "Se você fugiu e afundou, Deus ainda te ouve.",
+        "Jonas fugiu, mas Deus não desistiu.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "16:52:17",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 3,
+        "personagens": 3,
+        "compreensao": 3,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Deus manda Jonas pregar contra Nínive, ele foge, vem uma tempestade, ele é jogado no mar, um peixe o engole, ele ora e é vomitado em terra seca. Mas o ouvinte fica sem saber que Jonas estava num navio e de onde saíram os marinheiros.",
+      "erros_factuais": [],
+      "problemas": [
+        "ordem (nota 3): Cenas 1-2: a fuga (1:3) é narrada antes da ordem de Deus (1:1-2) e não volta no lugar certo, então a sequência fica ordem → tempestade. Corrija assim: gancho sem o fato da fuga na cena 1 (ex.: 'Ele tentou fugir de Deus... de navio.') e, na cena 2, 'Deus mandou Jonas pregar contra Nínive, mas ele embarcou pra Társis, bem longe.' Cortar 'grande cidade de' libera as palavras.",
+        "personagens (nota 3): Cena 6: 'os marinheiros' surgem do nada, porque em nenhum ponto da narração cronológica se diz que Jonas estava num navio. Cite o navio na cena 2, como na correção de ordem.",
+        "personagens (nota 3): Cena 6: a imagem mostra só Jonas, mas quem age são os marinheiros. Coloque 'jonas, marinheiro' na imagem.",
+        "personagens (nota 3): Cena 4: o marinheiro aparece na imagem antes de ser mencionado na fala. Isso vai se resolver quando o navio for citado na cena 2.",
+        "compreensao (nota 3): Cenas 2→3: quem só ouve pula de 'Deus mandou pregar' para 'Deus mandou uma tempestade' sem saber que Jonas desobedeceu e embarcou. A tempestade fica sem motivo e o 'mar' da cena 4 fica sem contexto. Diga a desobediência e o navio na cena 2.",
+        "compreensao (nota 3): Cena 4: 'Repara:' fala direto com o espectador no meio da história. Troque por 'E o detalhe:' ou apague, o que economiza 1 palavra."
+      ]
+    },
+    {
+      "quando": "16:54:09",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Jonas pagou pra fugir de Deus.",
+        "Deus mandou Jonas pregar contra a grande cidade de Nínive.",
+        "Mas Jonas pagou passagem num navio pra Társis.",
+        "No mar, Deus mandou uma tempestade.",
+        "Repara: Jonas pediu pra ser jogado no mar.",
+        "Jonas sabia que a tempestade era culpa dele.",
+        "Os marinheiros jogaram Jonas, e o mar parou.",
+        "Deus preparou um grande peixe pra engolir Jonas.",
+        "Dentro do peixe, Jonas orou, e Deus ouviu.",
+        "Deus falou, e o peixe vomitou Jonas na terra seca.",
+        "Se você afundou fugindo, Deus te ouve.",
+        "Jonas fugiu, Deus não desistiu.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "16:54:35",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Jonas fugiu de Deus num navio, provocou uma tempestade, foi jogado ao mar, engolido por um grande peixe, orou lá dentro e Deus o ouviu e o devolveu à terra seca.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "17:07:13",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "Há navios parados em cima das dunas de areia, um erro de IA que o espectador percebe na hora.",
+          "imagem_corrigida": "Wide shot of a prophet standing alone on a rocky hilltop, gazing upward in awe as God calls him, distant walled ancient city on the horizon, golden sunbeams through dark clouds, ancient Middle Eastern desert"
+        },
+        {
+          "cena": 10,
+          "ok": false,
+          "problema": "A cena combina com a fala (Jonas na praia com o peixe no mar), mas o tronco dele está anatomicamente deformado e torcido, o que qualquer espectador percebe.",
+          "imagem_corrigida": "Wide shot of a exhausted bearded man kneeling on a sandy shore, soaked and gasping, looking up to the sky in awe, a huge fish sinking back into the waves behind, golden dawn light on an ancient coastline"
+        }
+      ]
+    },
+    {
+      "quando": "17:11:12",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "17:11:46",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-jonas-peixe.mp4",
+      "duracao": 43.4,
+      "avisos": []
+    },
+    {
+      "quando": "17:12:12",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-jonas-peixe_sem-musica.mp4",
+      "duracao": 43.4,
+      "avisos": []
     }
   ]
 }

@@ -33,5 +33,15 @@
     "nome": "Discípulo",
     "nome_en": "disciple",
     "descricao_visual": "a young man in his early 20s, short wavy black hair, sparse thin black beard, light olive skin, plain faded blue-grey wool tunic with a leather belt"
+  },
+  "jonas": {
+    "nome": "Jonas",
+    "nome_en": "Jonah",
+    "descricao_visual": "a lean man in his early 40s, messy shoulder-length black hair, full untrimmed black beard with a few grey strands, tanned olive skin, worn dark brown wool tunic with a faded ochre cloak and leather belt"
+  },
+  "marinheiro": {
+    "nome": "Marinheiro",
+    "nome_en": "sailor",
+    "descricao_visual": "a muscular sailor in his 30s, short cropped dark hair, thick short dark beard, deeply sun-burned skin, sleeveless rough undyed linen tunic tied with a rope, bare feet"
   }
 }
