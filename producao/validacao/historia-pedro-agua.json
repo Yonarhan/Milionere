@@ -373,6 +373,44 @@
           "imagem_corrigida": "Medium shot of two men standing on calm water facing each other, one gently questioning with an open hand, the other head bowed in relief, soft grey-blue dawn light, open sea"
         }
       ]
+    },
+    {
+      "quando": "15:26:54",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "Jesus aparece com água até os joelhos, como se entrasse andando no mar, não andando sobre a água.",
+          "imagem_corrigida": "Wide shot from behind of a man walking calmly on top of rolling waves toward a distant wooden fishing boat, cloak blowing, faint grey predawn light, dark open sea"
+        },
+        {
+          "cena": 4,
+          "ok": false,
+          "problema": "Tem marca d'água visível ('© PESTUE I LLORS') no canto inferior esquerdo.",
+          "imagem_corrigida": "Medium shot of a man standing on choppy water beside a wooden fishing boat, one palm raised calmingly, gentle reassuring smile, soft light on his face, stormy sea at night"
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "Tem marca d'água ('@SUS') no canto e Jesus aponta o dedo com um colar, em vez de estender a mão aberta.",
+          "imagem_corrigida": "Medium close-up of a man standing on stormy sea waves, extending an open palm toward the viewer in warm invitation, kind smile, soft light on his face, dark sea at night"
+        },
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "Pedro aparece sentado dentro de um barco redondo, não afundando nas ondas, o que contradiz a fala.",
+          "imagem_corrigida": "Medium shot of a bearded fisherman sinking chest-deep in churning waves, screaming in desperation, one open hand raised upward, cold moonlight, open stormy sea at night"
+        },
+        {
+          "cena": 11,
+          "ok": false,
+          "problema": "As mãos se juntam como numa queda de braço acima da água, não parece um resgate de alguém afundando, e a junção das mãos está confusa.",
+          "imagem_corrigida": "Close-up of a strong hand gripping a wet wrist and pulling it up out of dark churning waves, urgent rescue, spray flying, warm light against cold moonlight, stormy sea at night"
+        }
+      ]
     }
   ]
 }
