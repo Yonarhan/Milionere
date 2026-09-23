@@ -1,0 +1,15 @@
+# Mesmas quebras de linha (LF) no Windows, Linux e WSL: evita diffs gigantes só de CRLF/LF.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Binários
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.mp4 binary
+*.mp3 binary
+*.wav binary
+*.safetensors binary
+*.gguf binary
