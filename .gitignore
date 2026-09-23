@@ -241,3 +241,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Fontes brutas da bíblia (regeneráveis; bpm.json já processado)
+.claude/skills/roteirista-shorts/biblia/fontes/
+*:Zone.Identifier
+producao/*.png

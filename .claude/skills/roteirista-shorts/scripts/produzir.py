@@ -43,7 +43,8 @@ import sincronizar as sync  # noqa: E402
 SKILL = Path(__file__).resolve().parents[1]
 RAIZ = Path(__file__).resolve().parents[4]
 MPT = RAIZ / "MoneyPrinterTurbo"
-PYTHON = MPT / ".venv" / "Scripts" / "python.exe"
+# Windows usa o .venv original; Linux/WSL usa o .venv-linux (criado com `UV_PROJECT_ENVIRONMENT=.venv-linux uv sync --frozen`)
+PYTHON = MPT / (".venv/Scripts/python.exe" if sys.platform == "win32" else ".venv-linux/bin/python")
 SAIDA = RAIZ / "videos_prontos"
 LOCAL_VIDEOS = MPT / "storage" / "local_videos"
 PALAVRAS_POR_SEGUNDO = 1.95  # medido: Edge TTS pt-BR a 1.0x, com as pausas dos pontos finais
@@ -240,9 +241,6 @@ def main() -> None:
         print(f"[{r['slug']}] " + " | ".join(avisos))
     if args.seco:
         return
-
-    if any(c.get("prompt_ia") for r in roteiros for c in r.get("cenas", [])):  # 1º passo: imagens da IA
-        subprocess.run([sys.executable, str(Path(__file__).with_name("gerar_imagens.py")), args.arquivo])
 
     antigos = [(r, t) for r, t in planos if "cenas" not in r]
     if antigos:

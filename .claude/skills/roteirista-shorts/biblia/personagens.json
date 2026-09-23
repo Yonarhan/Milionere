@@ -1,0 +1,37 @@
+{
+  "jesus": {
+    "nome": "Jesus",
+    "nome_en": "Jesus",
+    "descricao_visual": "a man in his early 30s, shoulder-length wavy dark brown hair, short dark beard, olive skin, kind brown eyes, simple cream linen tunic with a brown cloak"
+  },
+  "pedro": {
+    "nome": "Pedro",
+    "nome_en": "Peter",
+    "descricao_visual": "a sturdy fisherman in his late 30s, curly black hair and thick short black beard, sun-tanned weathered skin, rough grey-brown wool tunic with a rope belt"
+  },
+  "lazaro": {
+    "nome": "Lázaro",
+    "nome_en": "Lazarus",
+    "descricao_visual": "a thin pale man in his 30s, short dark hair, light beard, plain off-white linen garment"
+  },
+  "marta": {
+    "nome": "Marta",
+    "nome_en": "Martha",
+    "descricao_visual": "a woman in her late 20s, dark hair under a beige head covering, simple brown woven robe"
+  },
+  "maria-betania": {
+    "nome": "Maria de Betânia",
+    "nome_en": "Mary of Bethany",
+    "descricao_visual": "a young woman in her early 20s, long dark hair under a light blue head covering, simple cream woven robe"
+  },
+  "anjo": {
+    "nome": "Anjo do Senhor",
+    "nome_en": "angel",
+    "descricao_visual": "a tall radiant man in flowing white robes, soft golden light around him, serene face, no wings"
+  },
+  "discipulo": {
+    "nome": "Discípulo",
+    "nome_en": "disciple",
+    "descricao_visual": "a young man in his early 20s, short wavy black hair, sparse thin black beard, light olive skin, plain faded blue-grey wool tunic with a leather belt"
+  }
+}

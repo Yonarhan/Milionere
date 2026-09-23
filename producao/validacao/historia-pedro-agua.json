@@ -1,0 +1,378 @@
+{
+  "etapas": [
+    {
+      "quando": "12:59:22",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Pedro andou sobre o mar. E afundou.",
+        "Jesus foi até os discípulos andando no mar.",
+        "Os discípulos gritaram: É um fantasma!",
+        "Pedro pediu: Senhor, manda eu ir até você.",
+        "Jesus disse só uma palavra: Venha!",
+        "Pedro desceu do barco e andou na água.",
+        "Mas Pedro viu o vento forte. Teve medo.",
+        "Começou a afundar e gritou: Senhor, me salva!",
+        "Se o medo tá te afundando, grita também.",
+        "Imediatamente, Jesus estendeu a mão e segurou Pedro.",
+        "Pedro afundou, sim. Mas Jesus segurou na hora.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "12:59:50",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Jesus andou sobre o mar, Pedro pediu para ir até ele, andou na água, teve medo do vento, começou a afundar, gritou por socorro e Jesus o segurou na hora.",
+      "erros_factuais": [
+        "Cena 1: 'E afundou' — o texto diz 'começando a afundar' (14:30), não que Pedro afundou; o roteiro apresenta como fato um afundamento completo.",
+        "Cena 11: 'Pedro afundou, sim' — mesmo exagero: a fonte diz só que ele começou a afundar e foi segurado imediatamente."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 1: 'E afundou' — o texto diz 'começando a afundar' (14:30), não que Pedro afundou; o roteiro apresenta como fato um afundamento completo.",
+        "ERRO FACTUAL: Cena 11: 'Pedro afundou, sim' — mesmo exagero: a fonte diz só que ele começou a afundar e foi segurado imediatamente.",
+        "fidelidade (nota 3): Cena 1: 'E afundou' exagera o 14:30; troque por 'Pedro andou na água. E começou a afundar.' (+2 palavras, compense cortando 'só uma palavra' na cena 5).",
+        "fidelidade (nota 3): Cena 11: 'Pedro afundou, sim' repete o exagero; troque por 'Ele começou a afundar. Não chegou ao fundo.' (mesmo tamanho).",
+        "fidelidade (nota 3): Cena 4: sem 'se é você', o pedido perde o sentido de teste que está no 14:28; use 'Senhor, se é você, manda eu ir' (7 palavras, cabe no lugar da atual).",
+        "gancho (nota 3): Cena 1: 'Pedro andou sobre o mar. E afundou.' entrega o final e é uma história conhecida demais para parecer paradoxo; teste 'Pedro andou na água. Até olhar pro lado.' (8 palavras, corte 'Mas' na cena 7) ou 'O único homem que andou na água afundou.' (8).",
+        "ritmo (nota 3): Cenas 2, 4, 6, 7, 8, 9, 10 e 11 têm todas ~8 palavras, o que deixa a leitura monótona; encurte a cena 5 para 'Jesus respondeu: Venha!' (3 palavras) e use a folga para variar.",
+        "ritmo (nota 3): Cena 11 repete o 'segurou' da cena 10 sem trazer nada novo; troque pela frase-loop sugerida em payoff.",
+        "ritmo (nota 3): Falta o momento-curiosidade: 'só uma palavra' é fraco; use a cena 10 para 'Imediatamente. Mesma palavra de quando Jesus falou com eles.' ou cite 'quarta vigília, lá pelas 3 da manhã' na cena 2, cortando 'só uma palavra' da cena 5 para abrir espaço.",
+        "payoff (nota 3): Cena 11: o loop só repete o fato da cena 10 e não gera virada; use 'Ele começou a afundar. Não chegou ao fundo.' para responder ao gancho com contraste.",
+        "payoff (nota 3): Cenas 10–11: a pergunta 'por que você duvidou?' do versículo citado (14:31) some; se couber, troque a cena 11 por 'Segurou primeiro. Perguntou depois: por que duvidou?' (7 palavras), que é fiel e dá mais emoção."
+      ]
+    },
+    {
+      "quando": "13:00:51",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Pedro andou na água. Até ver o vento.",
+        "De madrugada, Jesus andou no mar até os discípulos.",
+        "Eles gritaram: É um fantasma!",
+        "Jesus disse: Coragem! Sou eu!",
+        "Pedro pediu: Senhor, se é você, manda eu ir.",
+        "Jesus respondeu: Venha!",
+        "Pedro desceu do barco. Andou na água.",
+        "Mas viu o vento forte. Teve medo.",
+        "Começou a afundar. Gritou: Senhor, me salva!",
+        "Medo te afundando? Grita pra Jesus.",
+        "Imediatamente, Jesus estendeu a mão e segurou Pedro.",
+        "Primeiro segurou. Depois perguntou: por que duvidou?",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "13:01:22",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "O ouvinte entende que Pedro andou sobre a água até Jesus, afundou quando teve medo do vento, gritou por socorro, e Jesus o segurou na hora antes de perguntar por que duvidou.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "13:32:27",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "Pedro está com água até a cintura, posando de frente com cara neutra, sem vento, sem noite e sem medo, e tem uma vara com corda estranha saindo do lado.",
+          "imagem_corrigida": "Wide cinematic shot at night, full body: the fisherman standing upright ON TOP of the surface of a dark stormy sea, feet on the water, strong wind whipping spray and his tunic around him, his head turned sideways toward enormous towering waves, expression shifting from awe to fear, cold blue moonlight, dramatic storm clouds, no boat nearby, no text"
+        },
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "É só um retrato de frente parado num pôr do sol, sem barco, sem andar sobre as ondas e sem o manto marrom.",
+          "imagem_corrigida": "Wide shot before dawn seen from behind and slightly to the side: the man in a cream tunic and brown cloak walking calmly on top of dark rolling sea waves, full body small in frame, cloak blowing in the wind, a small wooden fishing boat far in the distance ahead of him, faint grey light on the horizon, dark sea, no text"
+        },
+        {
+          "cena": 3,
+          "ok": false,
+          "problema": "O discípulo está calmo olhando pra câmera, sem gritar, sem apontar, sem mostrar o barco à noite.",
+          "imagem_corrigida": "Close-up at night inside a small wooden fishing boat: the young man screaming in terror, mouth wide open, eyes wide, arm stretched out pointing toward the dark sea, wet hair plastered on forehead, wooden boat edge visible, dim bluish moonlight, spray in the air, no text"
+        },
+        {
+          "cena": 4,
+          "ok": false,
+          "problema": "Retrato parado de frente, sem mão levantada, sem barco, sem manto marrom e não está de pé sobre a água.",
+          "imagem_corrigida": "Medium shot at night: the man in a cream tunic and brown cloak standing on the surface of dark choppy water, the side of a wooden fishing boat visible in the foreground, one hand raised with open palm in a calming gesture, reassuring gentle expression, soft light on his face against a dark stormy sky, no halo, no text"
+        },
+        {
+          "cena": 5,
+          "ok": false,
+          "problema": "Pedro só encara a câmera sentado no barco, sem agarrar a borda nem se inclinar para o mar com expressão de esperança e nervosismo.",
+          "imagem_corrigida": "Medium shot at night from outside the boat: the fisherman kneeling at the edge of a wooden fishing boat, both hands gripping the wooden rail, leaning forward toward the dark sea, looking out over the water with a hopeful but nervous expression, wind blowing his hair, cold moonlight, choppy waves, no text"
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "Retrato parado de frente, sem mão estendida em convite, sem manto marrom e sem estar na água à noite.",
+          "imagem_corrigida": "Medium close-up at night: the man in a cream tunic and brown cloak standing on dark sea water, extending one open hand forward toward the viewer in invitation, warm gentle smile, brown cloak blowing in the wind, dark stormy sky behind him, soft light on his face, no halo, no text"
+        },
+        {
+          "cena": 7,
+          "ok": false,
+          "problema": "Pedro está parado dentro do barco sem pisar na água, e há um brilho de luzes de cidade no horizonte.",
+          "imagem_corrigida": "Low angle shot at water level at night: close view of the fisherman's bare feet and lower legs stepping over the side of a wooden boat and landing on the surface of the dark sea, feet standing on top of the water, ripples spreading around his feet, hem of a rough wool tunic, cold moonlight, completely dark horizon with no lights, no text"
+        },
+        {
+          "cena": 8,
+          "ok": false,
+          "problema": "Pedro olha fixo para a câmera com cara neutra, sem olhar para as ondas, sem medo e sem respingos.",
+          "imagem_corrigida": "Close-up at night: the fisherman's face in profile turned sideways toward huge wind-whipped waves, eyes widening in fear, brow tense, mouth slightly open, sea spray hitting his face and beard, hair blown by strong wind, cold dark blue light, no text"
+        },
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "Pedro está de pé no barco com túnica de botão (moderna), sem afundar, sem braço erguido e sem gritar.",
+          "imagem_corrigida": "Medium shot at night: the fisherman alone in the open sea, sinking into churning dark waves up to his knees, one arm reaching desperately upward, mouth open in a desperate cry, soaked rough wool tunic with a rope belt, no buttons, huge dark waves around him, no boat close, cold light, no text"
+        },
+        {
+          "cena": 10,
+          "ok": false,
+          "problema": "A mão desce de cima para tocar a água, em vez de sair da água em direção à luz, e o mar está calmo.",
+          "imagem_corrigida": "Close-up of a single human hand and forearm reaching straight up out of dark churning water, fingers open, water streaming down the arm, a faint warm golden light shining from above, rest of the body submerged and not visible, dramatic dark contrast, no text"
+        },
+        {
+          "cena": 11,
+          "ok": false,
+          "problema": "Só aparece um homem posando, sem Pedro e sem a mão segurando o pulso para puxá-lo.",
+          "imagem_corrigida": "Tight dramatic shot at night on the sea: the calm man in a cream tunic and brown cloak standing on the water above, his firm hand gripping the wet wrist of the fisherman who is half submerged in the waves below, pulling him up, the fisherman's face looking up full of relief, two people clearly visible, spray and dark waves, no halo, no text"
+        },
+        {
+          "cena": 12,
+          "ok": false,
+          "problema": "Só aparece um homem de frente, sem Pedro encharcado e sem o braço sendo segurado.",
+          "imagem_corrigida": "Medium shot of two men standing on the surface of the sea at first grey-blue dawn light: the calm man in a cream tunic and brown cloak holding the forearm of the soaked fisherman in a wet grey-brown wool tunic, looking at him with gentle questioning eyes, the fisherman looking back ashamed and relieved, calmer water, no halo, no text"
+        }
+      ]
+    },
+    {
+      "quando": "13:48:59",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "Pedro aparece de pé dentro do barco, calmo, e não em cima das ondas se virando com medo.",
+          "imagem_corrigida": "Wide shot of a fisherman standing on top of stormy sea waves, turning toward a towering wave, awe turning to fear, spray whipping, cold blue moonlight, open sea at night"
+        },
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "Parece um homem entrando no mar numa praia ao pôr do sol; falta o barco ao longe e o clima de madrugada.",
+          "imagem_corrigida": "Wide shot from behind of a man walking calmly across rolling waves toward a distant wooden fishing boat, cloak blowing in wind, faint grey predawn light, dark open sea"
+        },
+        {
+          "cena": 4,
+          "ok": false,
+          "problema": "É só um retrato parado dentro do barco, com o peito à mostra, sem a mão erguida para acalmar e sem estar de pé na água.",
+          "imagem_corrigida": "Medium shot of a man standing on choppy water, one palm raised calmingly, gentle reassuring smile, fishing boat beside him, soft light on his face, stormy sea at night"
+        },
+        {
+          "cena": 5,
+          "ok": false,
+          "problema": "Pedro está sentado e olha para a câmera com cara neutra, sem se inclinar para o mar nem segurar a borda do barco.",
+          "imagem_corrigida": "Medium shot of a fisherman kneeling at a wooden boat's edge, gripping the rail, leaning toward the sea, hopeful yet nervous, wind in his hair, cold moonlight, choppy sea at night"
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "Jesus não estende a mão convidando e parece estar numa praia, então o 'Venha!' não aparece.",
+          "imagem_corrigida": "Medium close-up of a man standing on the sea, extending an open hand toward the viewer in invitation, warm smile, soft light on his face, stormy sea at night"
+        },
+        {
+          "cena": 7,
+          "ok": false,
+          "problema": "Mostra só um barco vazio, sem os pés de Pedro descendo para a água.",
+          "imagem_corrigida": "Low angle close-up of bare feet stepping from a wooden boat onto dark water surface, ripples spreading, tense anticipation, cold moonlight, open sea at night"
+        },
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "Pedro está com os dois punhos erguidos como se comemorasse, sem desespero e sem estar afundando.",
+          "imagem_corrigida": "Medium shot of a bearded fisherman sinking in churning waves up to his chest, screaming in desperation, one open hand raised upward, cold moonlight, open stormy sea at night"
+        },
+        {
+          "cena": 10,
+          "ok": false,
+          "problema": "A mão vem de cima e toca a água, em vez de sair de dentro da água pedindo socorro.",
+          "imagem_corrigida": "Close-up of a single hand reaching straight up out of churning dark water, fingers open, water streaming down, desperate hope, faint warm golden light from above, stormy sea"
+        },
+        {
+          "cena": 11,
+          "ok": false,
+          "problema": "Mostra só o retrato de um homem, sem as duas mãos se segurando no resgate.",
+          "imagem_corrigida": "Close-up of two hands, a firm hand gripping a wet wrist and pulling it up from dark waves, urgent rescue, spray flying, warm light against cold moonlight, stormy sea at night"
+        },
+        {
+          "cena": 12,
+          "ok": false,
+          "problema": "Aparece só um homem, e a cena pede Jesus e Pedro juntos, um de frente para o outro.",
+          "imagem_corrigida": "Medium shot of two men standing on calm water facing each other, one gently questioning, the other with head bowed, relieved, soft grey-blue dawn light, open sea"
+        }
+      ]
+    },
+    {
+      "quando": "13:56:16",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "Não aparece nenhum pescador de pé sobre as ondas, só um barco pequeno ao longe.",
+          "imagem_corrigida": "Wide shot of a fisherman standing on top of stormy sea waves, turning toward a towering wave in fear, spray whipping around him, cold blue moonlight, open sea at night"
+        },
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "Não aparece Jesus andando sobre o mar; mostra uma praia em tom sépia, e não o mar aberto antes do amanhecer.",
+          "imagem_corrigida": "Wide shot from behind of a man walking calmly across rolling waves toward a distant wooden fishing boat, cloak blowing in wind, faint grey predawn light, dark open sea"
+        },
+        {
+          "cena": 4,
+          "ok": false,
+          "problema": "Jesus está dentro do barco e não sobre a água, sem a mão erguida e sem o manto marrom.",
+          "imagem_corrigida": "Medium shot of a man standing on choppy water beside a fishing boat, one palm raised calmingly, gentle reassuring smile, soft light on his face, stormy sea at night"
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "Jesus não estende a mão para convidar, e o céu está claro em vez da noite de tempestade.",
+          "imagem_corrigida": "Medium close-up of a man standing on the sea, extending an open hand toward the viewer in invitation, warm smile, soft light on his face, stormy sea at night"
+        },
+        {
+          "cena": 7,
+          "ok": false,
+          "problema": "Só aparecem um barco e cordas; não há pés descendo para a água.",
+          "imagem_corrigida": "Low angle close-up of bare feet stepping from a wooden boat onto dark water surface, ripples spreading, tense anticipation, cold moonlight, open sea at night"
+        },
+        {
+          "cena": 8,
+          "ok": false,
+          "problema": "A expressão de Pedro está calma e não mostra medo; não está de perfil para as ondas e não há respingos.",
+          "imagem_corrigida": "Close-up profile of a fisherman turning toward huge wind-whipped waves, eyes wide with fear, mouth open, spray hitting his face, cold dark blue light, stormy sea at night"
+        },
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "Pedro está de pé no barco, seco, e não afundando nas ondas.",
+          "imagem_corrigida": "Medium shot of a bearded fisherman sinking in churning waves up to his chest, screaming in desperation, one open hand raised upward, cold moonlight, open stormy sea at night"
+        },
+        {
+          "cena": 10,
+          "ok": false,
+          "problema": "A mão desce para tocar a água num pôr do sol calmo, em vez de sair da água erguida para o alto num mar agitado.",
+          "imagem_corrigida": "Close-up of a single hand reaching straight up out of churning dark water, fingers open, water streaming down, desperate hope, faint warm golden light from above, stormy sea"
+        },
+        {
+          "cena": 11,
+          "ok": false,
+          "problema": "Mostra só o retrato de um homem, sem as mãos do resgate.",
+          "imagem_corrigida": "Close-up of two hands, a firm hand gripping a wet wrist and pulling it up from dark waves, urgent rescue, spray flying, warm light against cold moonlight, stormy sea at night"
+        },
+        {
+          "cena": 12,
+          "ok": false,
+          "problema": "Aparece só um homem, e a cena pede Jesus e Pedro um de frente para o outro.",
+          "imagem_corrigida": "Medium shot of two men standing on calm water facing each other, one gently questioning, the other with head bowed in relief, soft grey-blue dawn light, open sea"
+        }
+      ]
+    },
+    {
+      "quando": "14:02:55",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 2,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "Só mostra um barco ao longe; não há pescador em pé sobre as ondas com medo.",
+          "imagem_corrigida": "Wide shot of a bearded fisherman standing on top of stormy sea waves, turning in fear toward a towering wave, spray whipping around him, cold blue moonlight, open sea at night"
+        },
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "Só mostra um barco com uma silhueta dentro; ninguém anda sobre o mar.",
+          "imagem_corrigida": "Wide shot from behind of a man walking calmly on rolling waves toward a distant wooden fishing boat, cloak blowing in wind, faint grey predawn light, dark open sea"
+        },
+        {
+          "cena": 4,
+          "ok": false,
+          "problema": "Jesus está dentro do barco, com peito à mostra, sem manto marrom, sem a mão erguida e com luz de pôr do sol em vez de noite.",
+          "imagem_corrigida": "Medium shot of a man standing on choppy water beside a fishing boat, one palm raised calmingly, gentle reassuring smile, soft light on his face, stormy sea at night"
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "Retrato parado, sem mão estendida em convite, sem estar sobre o mar e sem clima de tempestade noturna.",
+          "imagem_corrigida": "Medium close-up of a man standing on stormy sea waves, extending an open hand toward the viewer in invitation, warm smile, soft light on his face, stormy sea at night"
+        },
+        {
+          "cena": 7,
+          "ok": false,
+          "problema": "O pé está pisando no convés do barco; não desce para a superfície da água.",
+          "imagem_corrigida": "Low angle close-up of bare feet stepping off a wooden boat edge onto dark water surface, ripples spreading, tense anticipation, cold moonlight, open sea at night"
+        },
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "Pedro aparece sem camisa, em pé no barco segurando uma vara de pesca; não está afundando nas ondas.",
+          "imagem_corrigida": "Medium shot of a bearded fisherman sinking in churning waves up to his chest, screaming in desperation, one open hand raised upward, cold moonlight, open stormy sea at night"
+        },
+        {
+          "cena": 10,
+          "ok": false,
+          "problema": "A mão desce até a água calma, no pôr do sol, com parte de um rosto na borda do quadro; não sai da água para cima, em pleno mar agitado.",
+          "imagem_corrigida": "Close-up of a single hand reaching straight up out of churning dark water, fingers open, water streaming down, desperate hope, faint warm golden light from above, stormy sea"
+        },
+        {
+          "cena": 11,
+          "ok": false,
+          "problema": "Retrato de Jesus com o peito à mostra; não há mãos se segurando nem resgate.",
+          "imagem_corrigida": "Close-up of two hands, a firm hand gripping a wet wrist and pulling it up from dark waves, urgent rescue, spray flying, warm light against cold moonlight, stormy sea at night"
+        },
+        {
+          "cena": 12,
+          "ok": false,
+          "problema": "Aparece só um homem (Pedro) olhando para o lado; falta Jesus e a conversa frente a frente sobre a água.",
+          "imagem_corrigida": "Medium shot of two men standing on calm water facing each other, one gently questioning with an open hand, the other head bowed in relief, soft grey-blue dawn light, open sea"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "etapas": [
+    {
+      "quando": "12:53:34",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 1,
+      "problemas": [
+        "roteiro tem 98 palavras; o formato pede 60 a 85"
+      ],
+      "falas": [
+        "Pedro andou no mar. Depois afundou.",
+        "De madrugada, Jesus foi até o barco andando sobre o mar.",
+        "Os discípulos gritaram de medo: É um fantasma!",
+        "Mas Jesus falou na hora: Coragem! Sou eu!",
+        "Pedro pediu: Senhor, se é você, manda eu ir.",
+        "Jesus disse: Venha!",
+        "E Pedro desceu do barco e andou sobre as águas.",
+        "Mas viu o vento forte, teve medo e começou a afundar.",
+        "Ele gritou: Senhor, salva-me!",
+        "Tá afundando no medo? Grita. Ele escuta.",
+        "Repara: imediatamente Jesus estendeu a mão e segurou Pedro.",
+        "Pedro afundou. Mas a mão de Jesus chegou antes.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "12:54:14",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Pedro andou no mar. Depois afundou.",
+        "De madrugada, Jesus andou no mar até os discípulos.",
+        "Eles gritaram: É um fantasma!",
+        "Jesus disse: Coragem! Sou eu!",
+        "Pedro pediu: Se é você, manda eu ir.",
+        "Jesus disse: Venha! E Pedro andou sobre as águas.",
+        "Aí Pedro viu o vento forte. Teve medo. Começou a afundar.",
+        "Pedro gritou: Senhor, salva-me!",
+        "Afundando no medo? Grita. Jesus escuta.",
+        "Repara: imediatamente Jesus estendeu a mão e segurou Pedro.",
+        "Pedro afundou. Mas a mão de Jesus chegou antes.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "12:54:45",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 4,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Jesus foi andando no mar até os discípulos de madrugada. Pedro pediu para ir até Ele, andou sobre as águas, sentiu medo do vento, começou a afundar e gritou, e Jesus o segurou na mesma hora.",
+      "erros_factuais": [
+        "Cena 1: 'Depois afundou' diz que Pedro afundou de vez, mas o texto (Mt 14:30) diz 'começando a afundar'. Ele não chegou a afundar porque Jesus o segurou antes.",
+        "Cena 11: 'Pedro afundou' repete o exagero e contradiz a própria frase seguinte, 'a mão de Jesus chegou antes'. Pela fonte, ele só começou a afundar."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 1: 'Depois afundou' diz que Pedro afundou de vez, mas o texto (Mt 14:30) diz 'começando a afundar'. Ele não chegou a afundar porque Jesus o segurou antes.",
+        "ERRO FACTUAL: Cena 11: 'Pedro afundou' repete o exagero e contradiz a própria frase seguinte, 'a mão de Jesus chegou antes'. Pela fonte, ele só começou a afundar.",
+        "fidelidade (nota 3): Cena 1: trocar 'Depois afundou' por 'E começou a afundar', que é o que Mt 14:30 diz, sem contar palavras a mais.",
+        "fidelidade (nota 3): Cena 11: trocar 'Pedro afundou' por 'Pedro começou a afundar' e compensar as 2 palavras extras cortando 'Repara:' na cena 10 ou 'De madrugada' na cena 2.",
+        "compreensao (nota 3): Cenas 2 e 6: o barco nunca aparece, então quem nunca leu a história não sabe onde estavam os discípulos nem de onde Pedro saiu. Na cena 6, trocar 'E Pedro andou sobre as águas' por 'Pedro saiu do barco e andou na água' (+2 palavras) e cortar 'De madrugada' na cena 2 para compensar.",
+        "compreensao (nota 3): Cena 5: 'manda eu ir' fica vago quando se ouve só uma vez. Escrever 'manda eu ir até você' (+2) e cortar 'Repara:' na cena 10 para compensar.",
+        "gancho (nota 3): Cena 1: 'Pedro andou no mar. Depois afundou.' soa como spoiler em ordem normal e não como paradoxo, então não abre lacuna. Trocar por algo como 'Ele afundou andando sobre a água.' (6 palavras), que parece impossível e é respondido no final.",
+        "payoff (nota 3): Cena 11: 'Pedro afundou. Mas a mão de Jesus chegou antes.' se contradiz, porque se a mão chegou antes, ele não afundou. Isso enfraquece a virada. Reescrever como 'Pedro começou a afundar. A mão de Jesus chegou primeiro.', respondendo diretamente ao gancho corrigido."
+      ]
+    },
+    {
+      "quando": "12:55:38",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Pedro começou a afundar andando na água.",
+        "Jesus veio andando no mar até o barco.",
+        "Os discípulos gritaram: É um fantasma!",
+        "Jesus disse: Coragem! Sou eu!",
+        "Pedro pediu: Manda eu ir até você.",
+        "Jesus disse: Venha! Pedro saiu do barco e andou na água.",
+        "Pedro viu o vento forte. Teve medo. Começou a afundar.",
+        "Pedro gritou: Senhor, salva-me!",
+        "Afundando no medo? Grita. Jesus escuta.",
+        "Imediatamente Jesus estendeu a mão e segurou Pedro.",
+        "Pedro começou a afundar. A mão de Jesus chegou primeiro.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "12:56:11",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 4,
+        "personagens": 4,
+        "compreensao": 3,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Jesus andou sobre o mar até o barco; Pedro pediu para ir até ele, andou na água, teve medo do vento, começou a afundar, gritou e Jesus o segurou na hora.",
+      "erros_factuais": [],
+      "problemas": [
+        "compreensao (nota 3): Cena 5: 'Manda eu ir até você' não diz COMO; quem só ouve não sabe que ele pede pra andar na água; troque por 'Manda eu ir andando na água' (+2 palavras, pagas cortando 'Pedro começou a afundar.' na cena 11).",
+        "compreensao (nota 3): Cena 1→2: sem um marcador de tempo, quem ouve pode achar que Pedro afundou antes de Jesus chegar; use 'Horas antes' na cena 2 (veja em ordem).",
+        "gancho (nota 3): Cena 1: 'Pedro começou a afundar andando na água' entrega o fim e não é bem um paradoxo nem abre dúvida; troque por 'Ele andou na água. E afundou.' (6 palavras), que deixa a pergunta 'como?' e ainda economiza 1 palavra.",
+        "ritmo (nota 3): Cenas 10-11: a cena 11 repete o que a cena 10 acabou de mostrar (afundar + mão de Jesus); corte 'Pedro começou a afundar.' e deixe só a frase-loop.",
+        "ritmo (nota 3): Falta o momento-curiosidade entre as cenas 2 e 8: use o 'na quarta vigília' na cena 2 ('Três da manhã. Jesus veio andando no mar.'), pagando com o corte da cena 11.",
+        "ritmo (nota 3): Cenas 7-8: 'Pedro' abre três cenas seguidas (6, 7, 8); na cena 8 troque por 'Ele gritou: Senhor, salva-me!'.",
+        "payoff (nota 3): Cena 11: o loop só repete a cena 10 e não responde a nenhuma pergunta do gancho; com o gancho 'Ele andou na água. E afundou.', feche com 'Afundou. Mas não se afogou.', que responde a lacuna direto.",
+        "payoff (nota 3): Cena 10: a virada acaba no gesto; se couber, termine com a pergunta de Jesus 'Por que você duvidou?' (+4 palavras, pagas cortando 'Pedro começou a afundar.' na cena 11)."
+      ]
+    },
+    {
+      "quando": "12:57:26",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Pedro andou na água. E começou a afundar.",
+        "Antes, de madrugada, Jesus veio andando no mar.",
+        "Os discípulos no barco gritaram: Fantasma!",
+        "Jesus: Coragem! Sou eu!",
+        "Pedro pediu: Manda eu ir andando na água.",
+        "Jesus: Venha! Pedro saiu do barco e andou na água.",
+        "Mas viu o vento forte, teve medo e só aí começou a afundar.",
+        "Ele gritou: Senhor, salva-me!",
+        "Afundando no medo? Grita. Jesus escuta.",
+        "Imediatamente Jesus estendeu a mão e segurou Pedro.",
+        "Começou a afundar. Nunca chegou ao fundo.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "12:58:01",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 3,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Jesus andou no mar de madrugada. Pedro pediu para ir até Ele, andou na água, teve medo do vento e começou a afundar. Gritou por socorro, e Jesus o segurou na hora.",
+      "erros_factuais": [
+        "Cena 11: 'Nunca chegou ao fundo' é uma dedução apresentada como fato. O texto diz só que Pedro começou a afundar e que Jesus o segurou imediatamente. A dedução é razoável, mas não está escrita na fonte."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 11: 'Nunca chegou ao fundo' é uma dedução apresentada como fato. O texto diz só que Pedro começou a afundar e que Jesus o segurou imediatamente. A dedução é razoável, mas não está escrita na fonte.",
+        "compreensao (nota 3): Cenas 4 e 6: 'Jesus: Coragem!' e 'Jesus: Venha!' foram escritas como marcação de roteiro. Numa narração de voz única, os dois-pontos não se ouvem e a fala se mistura com a narração. Troque por 'Jesus disse: Coragem! Sou eu!' e 'Jesus disse: Venha!' (+2 palavras, compensadas cortando 'só aí' da cena 7).",
+        "compreensao (nota 3): Cena 6: numa voz só, 'Venha! Pedro saiu...' emenda sem pausa, e parece que a fala continua. Com o 'disse' da correção anterior, isso se resolve.",
+        "gancho (nota 3): Cena 1: o gancho tem 8 palavras, acima do limite de 7, e não é um paradoxo de verdade: é o resumo de uma história famosa, e quem conhece passa direto. Troque por 'Ele andou na água. E afundou.' (6 palavras), que tira o nome, abre uma lacuna e economiza 2 palavras para as correções."
+      ]
+    }
+  ]
+}

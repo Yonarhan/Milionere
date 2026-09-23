@@ -1,0 +1,279 @@
+[
+  {
+    "slug": "historia-pedro-agua",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "pedro-agua",
+    "estilo": "cinema_flux",
+    "epoca": "biblica",
+    "titulo": "Por que Pedro começou a afundar no meio do milagre? 🌊",
+    "cenario_en": "Sea of Galilee, 1st century, night before dawn, small wooden fishing boat, strong wind and dark rolling waves, no modern objects",
+    "personagens": [
+      {
+        "id": "jesus",
+        "nome": "Jesus",
+        "nome_en": "Jesus",
+        "descricao_visual": "a man in his early 30s, shoulder-length wavy dark brown hair, short dark beard, olive skin, kind brown eyes, simple cream linen tunic with a brown cloak"
+      },
+      {
+        "id": "pedro",
+        "nome": "Pedro",
+        "nome_en": "Peter",
+        "descricao_visual": "a sturdy fisherman in his late 30s, curly black hair and thick short black beard, sun-tanned weathered skin, rough grey-brown wool tunic with a rope belt"
+      },
+      {
+        "id": "discipulo",
+        "nome": "Discípulo",
+        "nome_en": "disciple",
+        "descricao_visual": "a young man in his early 20s, short wavy black hair, sparse thin black beard, light olive skin, plain faded blue-grey wool tunic with a leather belt"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Na quarta vigília da noite, Jesus vai até os discípulos andando sobre o mar",
+        "ref": "Mateus 14:25"
+      },
+      {
+        "n": 2,
+        "evento": "Os discípulos ficam apavorados e gritam: É um fantasma!",
+        "ref": "Mateus 14:26"
+      },
+      {
+        "n": 3,
+        "evento": "Jesus diz: Coragem! Sou eu! Não tenham medo.",
+        "ref": "Mateus 14:27"
+      },
+      {
+        "n": 4,
+        "evento": "Pedro pede: Senhor, se é você, mande-me ir até você sobre as águas",
+        "ref": "Mateus 14:28"
+      },
+      {
+        "n": 5,
+        "evento": "Jesus diz: Venha!",
+        "ref": "Mateus 14:29"
+      },
+      {
+        "n": 6,
+        "evento": "Pedro desce do barco e anda sobre as águas para ir até Jesus",
+        "ref": "Mateus 14:29"
+      },
+      {
+        "n": 7,
+        "evento": "Pedro vê que o vento é forte, tem medo, começa a afundar e grita: Senhor, salva-me!",
+        "ref": "Mateus 14:30"
+      },
+      {
+        "n": 8,
+        "evento": "Imediatamente Jesus estende a mão, segura Pedro e pergunta por que ele duvidou",
+        "ref": "Mateus 14:31"
+      }
+    ],
+    "versiculo": {
+      "ref": "Mateus 14:31",
+      "texto": "Imediatamente Jesus estendeu a mão, segurou-o e lhe disse: “Homem de pouca fé, por que você duvidou?”"
+    },
+    "cenas": [
+      {
+        "fala": "Pedro andou na água. Até ver o vento.",
+        "evento": 0,
+        "personagens": [
+          "pedro"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a bearded fisherman standing on top of stormy sea waves, turning in fear toward a towering wave, spray whipping around him, cold blue moonlight, open sea at night",
+        "busca": "stormy sea at night waves"
+      },
+      {
+        "fala": "De madrugada, Jesus andou no mar até os discípulos.",
+        "evento": 1,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot from behind of a man walking calmly on rolling waves toward a distant wooden fishing boat, cloak blowing in wind, faint grey predawn light, dark open sea",
+        "busca": "dark sea before dawn"
+      },
+      {
+        "fala": "Eles gritaram: É um fantasma!",
+        "evento": 2,
+        "personagens": [
+          "discipulo"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Close-up of a young man screaming in terror, pointing out at the dark sea, eyes wide, spray in the air, dim bluish moonlight, inside a wooden fishing boat at night",
+        "busca": "wooden boat storm night"
+      },
+      {
+        "fala": "Jesus disse: Coragem! Sou eu!",
+        "evento": 3,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a man standing on choppy water beside a fishing boat, one palm raised calmingly, gentle reassuring smile, soft light on his face, stormy sea at night",
+        "busca": "calm figure stormy sea"
+      },
+      {
+        "fala": "Pedro pediu: Senhor, se é você, manda eu ir.",
+        "evento": 4,
+        "personagens": [
+          "pedro"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a fisherman kneeling at a wooden boat's edge, gripping the rail, leaning toward the sea, hopeful yet nervous, wind in his hair, cold moonlight, choppy sea at night",
+        "busca": "fisherman wooden boat night"
+      },
+      {
+        "fala": "Jesus respondeu: Venha!",
+        "evento": 5,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium close-up of a man standing on stormy sea waves, extending an open hand toward the viewer in invitation, warm smile, soft light on his face, stormy sea at night",
+        "busca": "hand reaching out sea"
+      },
+      {
+        "fala": "Pedro desceu do barco. Andou na água.",
+        "evento": 6,
+        "personagens": [
+          "pedro"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Low angle close-up of bare feet stepping off a wooden boat edge onto dark water surface, ripples spreading, tense anticipation, cold moonlight, open sea at night",
+        "busca": "feet on water surface"
+      },
+      {
+        "fala": "Mas viu o vento forte. Teve medo.",
+        "evento": 7,
+        "personagens": [
+          "pedro"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Close-up profile of a fisherman turning toward huge wind-whipped waves, eyes wide with fear, mouth open, spray hitting his face, cold dark blue light, stormy sea at night",
+        "busca": "strong wind ocean waves"
+      },
+      {
+        "fala": "Começou a afundar. Gritou: Senhor, me salva!",
+        "evento": 7,
+        "personagens": [
+          "pedro"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a bearded fisherman sinking in churning waves up to his chest, screaming in desperation, one open hand raised upward, cold moonlight, open stormy sea at night",
+        "busca": "man sinking in dark water"
+      },
+      {
+        "fala": "Medo te afundando? Grita pra Jesus.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Close-up of a single hand reaching straight up out of churning dark water, fingers open, water streaming down, desperate hope, faint warm golden light from above, stormy sea",
+        "busca": "hand reaching out of water"
+      },
+      {
+        "fala": "Imediatamente, Jesus estendeu a mão e segurou Pedro.",
+        "evento": 8,
+        "personagens": [
+          "jesus",
+          "pedro"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Close-up of two hands, a firm hand gripping a wet wrist and pulling it up from dark waves, urgent rescue, spray flying, warm light against cold moonlight, stormy sea at night",
+        "busca": "hand pulling hand from water"
+      },
+      {
+        "fala": "Primeiro segurou. Depois perguntou: por que duvidou?",
+        "evento": 8,
+        "personagens": [
+          "jesus",
+          "pedro"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of two men standing on calm water facing each other, one gently questioning with an open hand, the other head bowed in relief, soft grey-blue dawn light, open sea",
+        "busca": "sea dawn after storm"
+      },
+      {
+        "fala": "Escreve amém.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a calm sea glowing at sunrise, gentle waves shimmering, a small wooden boat drifting in the distance, peaceful mood, golden morning light, quiet open sea",
+        "busca": "calm sea sunrise boat"
+      }
+    ],
+    "descricao": "\"Imediatamente Jesus estendeu a mão, segurou-o e lhe disse: “Homem de pouca fé, por que você duvidou?”\" (Mateus 14:31)\n\nPedro andou na água até ver o vento. Quando começou a afundar, Jesus segurou ele primeiro e só depois fez a pergunta.\n\nQual vento tá tirando o seu olhar hoje? Leia Mateus 14.\n\n#jesus #biblia #fé #palavradedeus #shorts\n\nVoz e imagens geradas por IA. Vídeos de apoio: Pexels.",
+    "hashtags": [
+      "#jesus",
+      "#biblia",
+      "#fé",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Qual é o vento que tá te dando medo agora? Escreve aqui que a gente ora por você 🙏",
+    "fontes": [
+      "Mateus 14:25-31 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Pedro andou na água. Até ver o vento.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 5
+      },
+      {
+        "texto": "O único homem que andou na água começou a afundar.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 5
+      },
+      {
+        "texto": "Jesus segurou primeiro. Perguntou depois.",
+        "choque": 3,
+        "clareza": 3,
+        "imagem": 3
+      },
+      {
+        "texto": "Para de rolar. Seu medo tem cura.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 2
+      },
+      {
+        "texto": "Pedro, vem. Mesmo com esse vento.",
+        "choque": 3,
+        "clareza": 3,
+        "imagem": 4
+      }
+    ],
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 5,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 5,
+        "imagem": 5
+      },
+      "juiz": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 3
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Stable Diffusion XL)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    }
+  }
+]

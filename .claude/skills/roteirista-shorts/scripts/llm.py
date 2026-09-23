@@ -1,0 +1,45 @@
+"""Chamada ao Claude em modo headless (`claude -p`), usando a assinatura já logada nesta máquina.
+
+--safe-mode: não carrega CLAUDE.md, hooks, skills nem plugins (o roteirista não herda o modo caveman).
+Cada chamada é uma conversa nova: o juiz nunca vê o raciocínio do roteirista.
+"""
+
+import json
+import shutil
+import subprocess
+import tempfile
+from pathlib import Path
+
+CLAUDE = shutil.which("claude") or "claude"
+
+
+class ErroLLM(RuntimeError):
+    pass
+
+
+def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeout: int = 600,
+           modelo: str | None = None) -> dict:
+    """Manda o prompt e devolve o JSON validado pelo schema. Com ler_arquivos_em, o modelo pode abrir
+    (só ler) arquivos daquela pasta, por exemplo imagens para o juiz visual."""
+    cmd = [CLAUDE, "-p", "--safe-mode", "--no-session-persistence", "--output-format", "json",
+           "--json-schema", json.dumps(schema)]
+    if ler_arquivos_em:
+        cmd += ["--tools", "Read", "--allowedTools", "Read", "--add-dir", str(ler_arquivos_em)]
+    else:
+        cmd += ["--tools", ""]
+    if modelo:
+        cmd += ["--model", modelo]
+    ultimo = ""
+    for _ in range(2):
+        with tempfile.TemporaryDirectory() as vazio:  # roda fora do projeto: nada de CLAUDE.md por perto
+            proc = subprocess.run(cmd, input=prompt, capture_output=True, text=True, cwd=vazio, timeout=timeout)
+        try:
+            saida = json.loads(proc.stdout)
+        except json.JSONDecodeError:
+            ultimo = (proc.stdout + proc.stderr)[-1500:]
+            continue
+        if saida.get("is_error") or "structured_output" not in saida:
+            ultimo = json.dumps(saida, ensure_ascii=False)[:1500]
+            continue
+        return saida["structured_output"]
+    raise ErroLLM(f"claude -p falhou duas vezes: {ultimo}")

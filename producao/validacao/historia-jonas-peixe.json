@@ -1,0 +1,151 @@
+{
+  "etapas": [
+    {
+      "quando": "12:46:47",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 1,
+      "problemas": [
+        "roteiro tem 86 palavras; o formato pede 60 a 85"
+      ],
+      "falas": [
+        "Ele pagou pra fugir de Deus.",
+        "Deus mandou Jonas pra Nínive.",
+        "Jonas pagou passagem num navio pra Társis.",
+        "Deus mandou uma tempestade.",
+        "Jonas disse aos marinheiros: me joguem no mar.",
+        "Detalhe: eles ainda remaram pra voltar à terra.",
+        "Não deu. Jogaram Jonas, e o mar se acalmou.",
+        "Deus mandou um grande peixe engolir Jonas.",
+        "No ventre do peixe, Jonas orou.",
+        "Se a culpa te afundou, Deus ainda ouve.",
+        "Deus mandou o peixe vomitar Jonas em terra seca.",
+        "Jonas fugiu, mas Deus não largou Jonas.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "12:47:48",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Jonas pagou pra fugir de Deus.",
+        "Deus mandou Jonas a Nínive.",
+        "Jonas pagou a passagem pra Társis.",
+        "Deus mandou um grande vento no mar.",
+        "Jonas disse aos marinheiros: me joguem no mar.",
+        "Detalhe: eles remaram pra voltar. Não conseguiram.",
+        "Jogaram Jonas, e o mar se acalmou.",
+        "Deus preparou um grande peixe pra engolir Jonas.",
+        "No ventre do peixe, Jonas orou.",
+        "Se a culpa te afundou, Deus ouve.",
+        "Deus falou ao peixe, e ele vomitou Jonas.",
+        "Jonas fugiu. Deus não largou ele.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "12:48:19",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Jonas fugiu de Deus num navio, foi jogado no mar durante uma tempestade, um peixe o engoliu e, depois que ele orou, Deus mandou o peixe cuspi-lo para fora: Deus não desistiu dele.",
+      "erros_factuais": [],
+      "problemas": [
+        "compreensao (nota 3): Cena 2: não diz para que Jonas foi mandado; acrescente 'pregar contra a maldade de Nínive'.",
+        "compreensao (nota 3): Cena 4 → 5: pula a tempestade quase despedaçando o navio e o motivo do pedido de Jonas; acrescente 'Jonas sabia: a tempestade era por causa dele' antes de 'me joguem no mar'.",
+        "compreensao (nota 3): Cena 6: o detalhe perde força porque não fica claro que eles remaram para salvar Jonas; reescreva como 'Os marinheiros remaram pra não jogar Jonas. Não conseguiram.'",
+        "payoff (nota 3): Cena 11: o clímax fica seco e sem a imagem de salvação; termine com 'vomitou Jonas na terra seca'.",
+        "payoff (nota 3): Cena 9: o versículo citado (Jonas 2:2) não é usado; acrescente 'Do ventre do Seol eu gritei. Tu ouviste a minha voz.' para dar emoção antes da aplicação.",
+        "payoff (nota 3): Cena 12: o loop responde ao gancho, mas pode espelhá-lo melhor; use 'Jonas pagou pra fugir. Deus não deixou ele ir.'"
+      ]
+    },
+    {
+      "quando": "12:50:07",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 3,
+      "problemas": [
+        "roteiro tem 109 palavras; o formato pede 60 a 85"
+      ],
+      "falas": [
+        "Jonas pagou pra fugir de Deus.",
+        "Deus mandou Jonas pregar contra a maldade de Nínive.",
+        "Jonas pagou um navio pra Társis.",
+        "Deus mandou um vento. O navio quase quebrou.",
+        "Jonas sabia que a culpa era dele. Pediu: me joguem no mar.",
+        "Os marinheiros remaram pra não jogar Jonas. Não conseguiram.",
+        "Jogaram Jonas. E o mar se acalmou.",
+        "Deus preparou um grande peixe pra engolir Jonas.",
+        "Jonas orou: do ventre do Seol eu gritei. Tu ouviste a minha voz.",
+        "Se a culpa te afundou, Deus ainda te ouve.",
+        "Deus falou ao peixe, e ele vomitou Jonas na terra seca.",
+        "Jonas pagou pra fugir. Deus não deixou ele ir.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "12:51:53",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Jonas pagou pra fugir de Deus.",
+        "Deus mandou Jonas pregar contra a maldade de Nínive.",
+        "Jonas embarcou pra Társis.",
+        "Deus mandou um vento. O navio quase quebrou.",
+        "Jonas sabia: a tempestade era culpa dele.",
+        "Pediu: me joguem no mar.",
+        "Os marinheiros remaram pra não jogar Jonas. Não conseguiram.",
+        "Jogaram Jonas. O mar parou.",
+        "Deus preparou um grande peixe. Engoliu Jonas.",
+        "No peixe, Jonas orou. Deus ouviu.",
+        "Afundou na culpa? Deus te ouve.",
+        "Deus falou. O peixe vomitou Jonas.",
+        "Deus não largou Jonas.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "12:52:18",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 3,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Jonas fugiu de Deus de navio, foi jogado no mar numa tempestade, foi engolido por um peixe, orou e foi vomitado: Deus não desistiu dele.",
+      "erros_factuais": [
+        "Cena 7: 'remaram pra não jogar Jonas' põe um motivo que o texto não diz; a fonte (1:13) só diz que remaram com força 'para voltar à terra'."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 7: 'remaram pra não jogar Jonas' põe um motivo que o texto não diz; a fonte (1:13) só diz que remaram com força 'para voltar à terra'.",
+        "personagens (nota 3): Cena 6: 'Pediu: me joguem no mar' é dito a marinheiros que a narração ainda não apresentou (eles só aparecem na cena 7); antes, na cena 5, insira 'Os marinheiros perguntaram: o que fazemos com você?' (1:11).",
+        "compreensao (nota 3): Cena 3: quem não conhece a história não sabe que Társis fica no rumo contrário de Nínive; troque por 'Jonas pegou um navio pro lado oposto, pra Társis.'",
+        "compreensao (nota 3): Cena 5: sem a pergunta dos marinheiros, não fica claro por que Jonas de repente fala em culpa; conecte com a pergunta de 1:11.",
+        "payoff (nota 3): Falta o momento-curiosidade: inclua 'três dias e três noites' na cena 9 ou 'do ventre do Seol eu gritei' na cena 10 (2:2).",
+        "payoff (nota 3): Cena 13: 'Deus não largou Jonas' responde o gancho de forma fraca; feche o loop com o próprio gancho: 'Jonas pagou pra fugir de Deus. Não tinha pra onde fugir.'"
+      ]
+    }
+  ]
+}

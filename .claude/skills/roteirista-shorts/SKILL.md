@@ -19,9 +19,32 @@ Arquivos desta skill:
 - `scripts/produzir.py` — gera os vídeos em lote e organiza em `videos_prontos/`.
 - `../../../producao/aprendizados.md` — o que já funcionou ou não. Ler antes de começar, atualizar no fim.
 
-Caminhos (Windows): raiz do projeto `C:\Users\Yonarhan\milionere`; MoneyPrinter em
-`MoneyPrinterTurbo\` com venv em `MoneyPrinterTurbo\.venv\Scripts\python.exe`.
+Caminhos: MoneyPrinter em `MoneyPrinterTurbo/`. Python do venv — Linux/WSL: `MoneyPrinterTurbo/.venv-linux/bin/python`
+(recriar com `cd MoneyPrinterTurbo && UV_PROJECT_ENVIRONMENT=.venv-linux uv sync --frozen`); Windows:
+`MoneyPrinterTurbo\.venv\Scripts\python.exe`. Os scripts escolhem sozinhos pelo sistema.
 Rode os scripts com esse Python.
+
+## 0. Pipeline automático gospel (1 comando → vídeo pronto)
+
+```
+MoneyPrinterTurbo/.venv-linux/bin/python .claude/skills/roteirista-shorts/scripts/pipeline.py            # menu
+... pipeline.py --formato historia|parabola|proverbio|personagem [--estilo cinema|oleo|pixar] [--qtd N] [--tema id]
+... pipeline.py --retomar producao/roteiros/<arquivo>.json    # roteiro já aprovado: só imagens + vídeo
+```
+Fluxo: tema (sorteado de `biblia/temas.json`, sem repetir `producao/usados.json`) → roteiro via `claude -p --safe-mode`
+com o texto EXATO da Bíblia Portuguesa Mundial (domínio público, `biblia/bpm.json`) → **camada 1** (código: tamanho,
+gancho, CTA, vocabulário de IA, versículo idêntico à fonte, eventos dentro do trecho e em ordem, cenas na ordem dos
+eventos, personagens declarados) → **camada 2** (juiz LLM em conversa nova: fidelidade, ordem, personagens, compreensão,
+gancho, ritmo, linguagem, payoff; nota < 4 ou erro factual = reescreve, máx. 3) → imagens no ComfyUI local (SDXL
+Juggernaut + IP-Adapter com o retrato fixo de cada personagem em `biblia/retratos/<estilo>/`) → **camada 3** (juiz
+visual abre cada imagem; reprovada = refaz com prompt corrigido, máx. 2) → `produzir.py` com e sem música → **camada 4**
+(duração 15–50 s). Tudo o que cada camada disse fica em `producao/validacao/<slug>.json`.
+
+- Formatos: `formatos.json` (receita, faixa de palavras, estilo padrão). Estilos: `estilos.json` (edite/crie à vontade).
+- Personagens fixos: `biblia/personagens.json` (id → aparência). Personagem bíblico novo é salvo sozinho na 1ª aparição.
+- Texto bíblico: `python scripts/biblia.py "Lucas 22:54-62"`.
+- ComfyUI em `~/projects/milionere/ComfyUI` (instalar: `scripts/instalar_comfy.sh`; `--animacao` baixa o Wan 2.2 para `movimento: ia`).
+  O pipeline sobe o ComfyUI se estiver fora do ar e derruba no fim.
 
 ## 1. Briefing
 
@@ -123,14 +146,6 @@ do Gemini (grátis; a API de imagem do Gemini exige faturamento — cota grátis
 2. Ele salva em `producao/midia/<slug>/cena_NN.jpg` (NN = número da cena; `cena_NNb.jpg` = 2ª tomada).
 3. Arquivos dessa pasta têm PRIORIDADE sobre curadoria/busca. 1 imagem numa cena longa vira 1 tomada contínua.
 Cenas genéricas (ampulheta, nascer do sol, mãos na Bíblia, abraço) seguem no banco com curadoria.
-
-## 7d. Geração AUTOMÁTICA de imagens (API do Gemini)
-
-Coloque em cada cena-chave o campo `"prompt_ia": "<personagens + cena + estilo + proibições>"` (sem o
-"Generate ONE single image", o script põe). O `produzir.py` chama `scripts/gerar_imagens.py` antes de montar:
-gera o que falta em `producao/midia/<slug>/`, usa a 1ª imagem como referência de personagem e pula o que já existe.
-Sem faturamento ativo a API devolve 429 → o script grava `prompts.txt` na pasta e o usuário gera no app (fallback).
-Refazer uma cena ruim: `gerar_imagens.py <roteiros.json> --refazer 5`.
 
 ## 8. Salvar e produzir
 

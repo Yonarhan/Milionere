@@ -1,0 +1,59 @@
+{
+  "_comentario": "Estilos visuais das imagens geradas no ComfyUI. Crie um novo copiando um bloco e trocando o nome. 'prompt' entra no fim de toda cena; 'negativo' é o que o modelo deve evitar; 'checkpoint' é o arquivo em ComfyUI/models/checkpoints; 'movimento' = 'zoom' (zoom lento, rápido) ou 'ia' (anima a cena com Wan 2.2, precisa de instalar_comfy.sh --animacao). 'ip_peso' = força do rosto de referência (0 desliga). 'ip_inicio' = em que ponto da geração o rosto entra (0.35 = depois da pose/composição; 0 = copia o retrato inteiro). 'motor': 'flux' usa o Flux schnell (instalar_comfy.sh --flux): obedece muito melhor ação e várias pessoas, não tem prompt negativo nem IP-Adapter.",
+  "cinema": {
+    "nome": "Cinematográfico realista",
+    "prompt": "cinematic film still, dramatic soft lighting, warm earthy tones, shallow depth of field, 35mm photograph, highly detailed, realistic skin texture",
+    "negativo": "text, watermark, logo, signature, caption, halo, cartoon, anime, 3d render, painting, deformed hands, extra fingers, extra limbs, blurry, lowres, bad anatomy, modern objects, sunglasses, wristwatch, smartphone",
+    "negativo_biblico": "modern clothing, jeans, t-shirt, sneakers, car, building, electric light, glasses, zipper",
+    "checkpoint": "juggernautXL_v9.safetensors",
+    "passos": 30,
+    "cfg": 6.0,
+    "sampler": "dpmpp_2m_sde",
+    "scheduler": "karras",
+    "ip_peso": 0.6,
+    "movimento": "zoom",
+    "ip_inicio": 0.35
+  },
+  "oleo": {
+    "nome": "Pintura clássica a óleo",
+    "prompt": "oil painting in the style of Rembrandt and Caravaggio, chiaroscuro, dramatic candle light, rich textured brushstrokes, baroque masterpiece, museum quality",
+    "negativo": "text, watermark, logo, signature, frame, photo, photorealistic, 3d render, cartoon, anime, deformed hands, extra fingers, blurry, lowres, modern objects",
+    "negativo_biblico": "modern clothing, jeans, t-shirt, car, building, glasses",
+    "checkpoint": "juggernautXL_v9.safetensors",
+    "passos": 30,
+    "cfg": 6.0,
+    "sampler": "dpmpp_2m_sde",
+    "scheduler": "karras",
+    "ip_peso": 0.6,
+    "movimento": "zoom",
+    "ip_inicio": 0.35
+  },
+  "pixar": {
+    "nome": "Animação 3D (estilo Pixar)",
+    "prompt": "3d animated movie still, pixar style, disney style, soft global illumination, expressive big eyes, vibrant colors, cute stylized characters, octane render, high detail",
+    "negativo": "text, watermark, logo, signature, photo, photorealistic, realistic skin, painting, sketch, deformed, extra fingers, blurry, lowres, creepy, uncanny",
+    "negativo_biblico": "modern clothing, jeans, t-shirt, car, building, glasses",
+    "checkpoint": "juggernautXL_v9.safetensors",
+    "passos": 30,
+    "cfg": 6.0,
+    "sampler": "dpmpp_2m_sde",
+    "scheduler": "karras",
+    "ip_peso": 0.6,
+    "movimento": "zoom",
+    "ip_inicio": 0.35
+  },
+  "cinema_flux": {
+    "nome": "Cinematográfico realista (Flux, melhor em ação)",
+    "motor": "flux",
+    "prompt": "cinematic film still, dramatic lighting, 35mm photograph, realistic, highly detailed, biblical epic movie",
+    "negativo": "",
+    "negativo_biblico": "",
+    "unet": "flux1-schnell-Q4_K_S.gguf",
+    "passos": 4,
+    "cfg": 1.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "ip_peso": 0,
+    "movimento": "zoom"
+  }
+}
