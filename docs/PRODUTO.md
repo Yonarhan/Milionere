@@ -106,7 +106,7 @@ Voz:     edge (só dev) | piper | kokoro
 
 **Peças que não podem ir para o produto:**
 - `claude -p` com a assinatura: é uso pessoal. No produto, usar API.
-- **Edge TTS:** acesso não oficial. Trocar por Piper ou Kokoro.
+- **Edge TTS:** acesso não oficial. OK no MVP; trocar pelo Azure oficial (mesma voz) antes de cobrar.
 - **NVI:** tem direitos autorais. Usar a Bíblia Portuguesa Mundial (domínio público), como o Rafael já fez.
 - **yt-dlp** para caçar ideias: só para uso interno.
 
@@ -152,7 +152,14 @@ Arquivos (Cloudflare R2)
 | 4. Planos | Login, créditos, Pix e cartão, limites |
 | 5. Extras | Postagem e agendamento no YouTube e no TikTok, novos nichos, animação |
 
-## 9. Decisões em aberto
+## 9. Decisões tomadas
+
+- **Voz (23/09/2026):** o MVP e os testes usam o **Edge TTS** (a voz Antonio que já aprovamos). **Antes de cobrar e
+  lançar**, trocar para o **Azure AI Speech oficial** (a mesma voz, com licença comercial, cota grátis mensal e
+  centavos depois). Piper ou Kokoro ficam como reserva grátis. A troca deve ser só configuração: a camada de voz
+  precisa aceitar `edge | azure | piper | kokoro`.
+
+## 10. Decisões em aberto
 
 - Nome e marca do produto (hoje, "Milionere Estúdio" no protótipo).
 - Limite do plano grátis (vídeos por mês) e preço do pago. Depende do custo real medido na fase 1.
