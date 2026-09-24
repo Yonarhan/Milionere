@@ -73,3 +73,19 @@ $env:MILIONERE_PRODUCAO = "..\servico\media\producao"
 .\.venv\Scripts\python.exe milionere\banco_imagens.py --indexar-repo
 ```
 Ver o banco: http://127.0.0.1:8000/banco · A busca por significado usa um modelo aberto e grátis (baixa ~120 MB na 1ª vez).
+
+### Lote automático (popular o canal)
+Vídeos end-to-end sem ninguém mexer: tema do catálogo → roteiro validado → imagens (ComfyUI) validadas → vídeo + texto do post.
+```powershell
+cd motor
+.\.venv\Scripts\python.exe milionere\lote.py --status          # temas livres por formato
+.\.venv\Scripts\python.exe milionere\lote.py --qtd 2           # 2 vídeos, alternando formatos
+```
+Saída: `videos_prontos/` (com música p/ YouTube, `_sem-musica` p/ TikTok) e a lista do que falta postar em `producao/fila_postagem.md`.
+Um vídeo que falha não para o lote; as imagens e roteiros aprovados entram nos bancos no fim.
+
+Agendar todo dia às 2h (Windows, na máquina com a GPU e o `claude` logado):
+```powershell
+schtasks /Create /TN "Milionere lote" /SC DAILY /ST 02:00 /TR "cmd /c cd /d C:\caminho\milionere\motor && .venv\Scripts\python.exe milionere\lote.py --qtd 2 >> ..\producao\lote.log 2>&1"
+```
+Linux (cron): `0 2 * * * cd ~/milionere/motor && .venv-linux/bin/python milionere/lote.py --qtd 2 >> ../producao/lote.log 2>&1`
