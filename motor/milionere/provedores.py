@@ -147,7 +147,8 @@ def _uma(roteiro: dict, nome_estilo: str, n: int, destino: Path, seed: int, banc
 
 
 def gerar_cenas(roteiro: dict, nome_estilo: str, pasta: Path, so: list[int] | None = None,
-                nova_seed: bool = False) -> list[Path]:
+                nova_seed: bool = False, banco: bool = True) -> list[Path]:
+    """banco=False: não consulta o banco aqui (o pipeline bíblico já consultou, com filtro de cena genérica)."""
     alvo = [n for n in range(1, len(roteiro["cenas"]) + 1) if not so or n in so]
     if modo() == "manual":
         _prompts_manuais(roteiro, nome_estilo, pasta, alvo)
@@ -159,7 +160,7 @@ def gerar_cenas(roteiro: dict, nome_estilo: str, pasta: Path, so: list[int] | No
         for velho in pasta.glob(f"cena_{n:02d}*"):
             velho.unlink()
         seed = base + n + (random.randint(1, 10**6) if nova_seed else 0)
-        feitos.append(_uma(roteiro, nome_estilo, n, pasta / f"cena_{n:02d}.png", seed))
+        feitos.append(_uma(roteiro, nome_estilo, n, pasta / f"cena_{n:02d}.png", seed, banco=banco))
     return feitos
 
 

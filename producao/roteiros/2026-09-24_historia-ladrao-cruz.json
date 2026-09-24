@@ -62,18 +62,15 @@
           "ladrao"
         ],
         "rosto_visivel": true,
-        "imagem": "Medium shot of a bearded man seated slumped against a wooden cross, weary face lit with quiet pain against dim orange sunset sky, dusty rocky ground below.",
+        "imagem": "Medium shot seated slumped against a wooden cross on a rocky hilltop, weary face lit by dim orange sunset light, dusty ground with scattered stones, distant hills and small village below.",
         "busca": "crucifixion cross sunset"
       },
       {
         "fala": "Dois criminosos pendiam ao lado de Jesus na cruz.",
         "evento": 1,
-        "personagens": [
-          "jesus",
-          "ladrao"
-        ],
+        "personagens": [],
         "rosto_visivel": false,
-        "imagem": "Wide shot of three wooden crosses standing on a rocky hill at dusk, silhouettes against a darkening sky, flat rocky ground scattered with stones, center cross taller.",
+        "imagem": "Wide shot of three wooden crosses on a rocky hill, three crucified figures as dark silhouettes against a stormy grey sky, bare rocky ground, cold dramatic light",
         "busca": "three crosses hill silhouette"
       },
       {
@@ -103,7 +100,7 @@
           "ladrao"
         ],
         "rosto_visivel": true,
-        "imagem": "Medium shot of a bearded man seated against a wooden cross, calm resigned expression with eyes turned upward toward a soft fading sky, rocky ground.",
+        "imagem": "Waist-up shot of the repentant criminal turning his head to the side, pleading, a rough wooden beam at the edge of the frame, stormy grey sky behind him",
         "busca": "man face upward sunset"
       },
       {
@@ -114,7 +111,7 @@
           "jesus"
         ],
         "rosto_visivel": true,
-        "imagem": "Medium shot of a bearded man seated against a wooden cross, pleading expression gazing toward a distant silhouetted cross across rocky ground, dim dusky light.",
+        "imagem": "Medium shot, man seated against a wooden cross on rocky ground, pleading expression, gazing toward a distant silhouetted cross across barren terrain, dim dusky light, muted sky.",
         "busca": "man pleading cross dusk"
       },
       {
@@ -125,7 +122,7 @@
           "jesus"
         ],
         "rosto_visivel": true,
-        "imagem": "Wide shot of two wooden crosses on a rocky hill at dusk, one man's seated silhouette bathed in warm light breaking through clouds, the other cross a dark silhouette, flat stony ground.",
+        "imagem": "Wide shot of two wooden crosses on a rocky hill at dusk, warm golden light breaking through clouds over one seated figure, the other cross a dark silhouette, flat stony ground, distant hills.",
         "busca": "golden light cross sky"
       },
       {
@@ -135,7 +132,7 @@
           "ladrao"
         ],
         "rosto_visivel": true,
-        "imagem": "Medium shot of a bearded man seated against a wooden cross, eyes closed in relief with a single tear on his cheek, warm fading sunset light over rocky hillside.",
+        "imagem": "Medium shot, seated on rocky ground against a rough wooden cross, head tilted back with eyes closed, single tear visible, warm fading sunset light casting long shadows over a barren rocky hillside.",
         "busca": "peaceful face relief sunset"
       },
       {
@@ -227,6 +224,9 @@
     ],
     "ajustes": {
       "voice_rate": 1.05
-    }
+    },
+    "_avisos": [
+      "imagens reprovadas: [2, 5]"
+    ]
   }
 ]

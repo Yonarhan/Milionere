@@ -540,6 +540,116 @@
         "ritmo (nota 3): Cena 5 termina com 'disse ele' solto no fim, soando como legenda de livro, não fala natural; cortar 'disse ele' e deixar a fala direta.",
         "linguagem (nota 3): Cena 5 ('Nós merecemos isso, mas esse homem não fez nada de errado, disse ele') tem construção de texto escrito, não de alguém narrando em voz alta; reescrever como fala corrida, ex: 'Ele mesmo admitiu: a gente merece isso, mas esse homem não fez nada de errado.'"
       ]
+    },
+    {
+      "quando": "10:29:01",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "A imagem usa coroa de espinhos, o que identifica a figura como Jesus, não como o criminoso arrependido citado na fala.",
+          "imagem_corrigida": "Medium shot seated slumped against a wooden cross on a rocky hilltop, weary face lit by dim orange sunset light, dusty ground with scattered stones, distant hills and small village below."
+        },
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "A imagem mostra um homem sentado em uma árvore sobre um vilarejo (cena de Zaqueu), sem cruz nem crucificação, nada relacionado à fala sobre os dois criminosos pendendo ao lado de Jesus na cruz.",
+          "imagem_corrigida": "Wide shot of three wooden crosses standing on a rocky hill at dusk, silhouettes against a darkening sky, flat rocky ground scattered with stones, center cross taller, thieves hanging on outer crosses."
+        },
+        {
+          "cena": 5,
+          "ok": false,
+          "problema": "O homem está usando a coroa de espinhos característica de Jesus crucificado, fazendo-o parecer o próprio Jesus em vez do ladrão arrependido, o que contradiz a fala em que ele se refere a 'esse homem' como alguém distinto de si mesmo.",
+          "imagem_corrigida": "Medium shot seated on rocky hillside ground beside a tall wooden cross, calm resigned expression, eyes turned upward toward a soft fading dusk sky, hands resting on knees, distant hills in background."
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "A imagem mostra uma cena completamente diferente (um homem sentado numa árvore diante de uma vila, tipo Zaqueu), sem cruz nem crucificação, contradizendo a fala sobre o criminoso pedindo para ser lembrado no Reino.",
+          "imagem_corrigida": "Medium shot, man seated against a wooden cross on rocky ground, pleading expression, gazing toward a distant silhouetted cross across barren terrain, dim dusky light, muted sky."
+        },
+        {
+          "cena": 7,
+          "ok": false,
+          "problema": "A imagem mostra uma cena completamente diferente (um homem sentado numa árvore num vilarejo, tipo Zaqueu), sem nenhuma cruz ou crucificação; não tem relação com a fala de Jesus e o criminoso arrependido na cruz.",
+          "imagem_corrigida": "Wide shot of two wooden crosses on a rocky hill at dusk, warm golden light breaking through clouds over one seated figure, the other cross a dark silhouette, flat stony ground, distant hills."
+        },
+        {
+          "cena": 8,
+          "ok": false,
+          "problema": "A imagem mostra um homem parado conversando com uma mulher idosa ajoelhada num pátio de vila, sem nenhuma cruz nem o criminoso arrependido descrito; não tem relação com a fala sobre Jesus ouvir a culpa de alguém junto à cruz.",
+          "imagem_corrigida": "Medium shot, seated on rocky ground against a rough wooden cross, head tilted back with eyes closed, single tear visible, warm fading sunset light casting long shadows over a barren rocky hillside."
+        }
+      ]
+    },
+    {
+      "quando": "10:45:38",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 2,
+      "reprovadas": [
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "A fala diz que os dois criminosos pendiam ao lado de Jesus na cruz, mas na imagem Jesus aparece em pé no chão (fora da cruz) em vez de crucificado, duplicando o mesmo rosto que já está no cruzeiro central.",
+          "imagem_corrigida": "Wide low-angle shot of three wooden crosses atop a rocky hilltop at dusk, three men nailed side by side to the crosses, barren dusty ground scattered with stones, distant hills, fading orange-purple sky."
+        },
+        {
+          "cena": 5,
+          "ok": false,
+          "problema": "O homem sentado usa coroa de espinhos e túnica completa, parecendo Jesus, não o criminoso arrependido descrito (magro, barba rala, ferimentos visíveis, apenas um pano rasgado); a fala é do criminoso, então a pessoa errada aparece na cena.",
+          "imagem_corrigida": "Medium shot, seated on rocky hillside beside tall wooden cross at dusk, face tilted upward toward fading pink-orange sky, hands resting on knees, dark silhouette of flat-roofed mud-brick village behind, loose stones and dirt underfoot."
+        }
+      ]
+    },
+    {
+      "quando": "10:46:07",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-ladrao-cruz.mp4",
+      "duracao": 38.2,
+      "avisos": []
+    },
+    {
+      "quando": "10:46:31",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-ladrao-cruz_sem-musica.mp4",
+      "duracao": 38.2,
+      "avisos": []
+    },
+    {
+      "quando": "10:51:06",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 1,
+      "reprovadas": []
+    },
+    {
+      "quando": "10:51:06",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "10:51:33",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-ladrao-cruz.mp4",
+      "duracao": 38.2,
+      "avisos": []
+    },
+    {
+      "quando": "10:51:55",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-ladrao-cruz_sem-musica.mp4",
+      "duracao": 38.2,
+      "avisos": []
     }
   ]
 }

@@ -1,0 +1,35 @@
+{
+ "usd": 0.7464,
+ "brl": 4.11,
+ "segundos": 1492.1,
+ "por_etapa": {
+  "imagens": {
+   "chamadas": 0,
+   "imagens": 26,
+   "tokens_entrada": 0,
+   "tokens_saida": 0,
+   "usd": 0.0,
+   "segundos": 1139.1,
+   "brl": 0.0
+  },
+  "juiz_visual": {
+   "chamadas": 26,
+   "imagens": 0,
+   "tokens_entrada": 515055,
+   "tokens_saida": 25943,
+   "usd": 0.7464,
+   "segundos": 370.6,
+   "brl": 4.11
+  }
+ },
+ "modelos": [
+  "banco",
+  "claude-sonnet-5",
+  "comfy"
+ ],
+ "videos": [
+  "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-ladrao-cruz.mp4",
+  "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-ladrao-cruz_sem-musica.mp4"
+ ],
+ "gpu_imagens_s": 1139.1
+}

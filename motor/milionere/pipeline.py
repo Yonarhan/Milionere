@@ -247,7 +247,9 @@ def imagens_validadas(r: dict, arq_roteiro: Path, reg: Registro) -> None:
     try:
         if faltando:
             log(f"imagens: gerando {len(faltando)} cenas ({provedores.modo()}) (estilo {r['estilo']})")
-            provedores.gerar_cenas(r, r["estilo"], pasta, so=faltando)
+            # banco=False: a consulta com filtro já foi feita em do_banco(); a do provedor reusava cena de outra
+            # história (Zaqueu na árvore no ladrão na cruz, nota 0,90)
+            provedores.gerar_cenas(r, r["estilo"], pasta, so=faltando, banco=False)
         # cena já aprovada (mesmo arquivo, pelo hash) não volta ao juiz: o juiz não é determinístico e trocava o veredito
         aprovadas = _aprovadas(pasta)
         pendentes = [n for n in range(1, len(r["cenas"]) + 1) if aprovadas.get(str(n)) != _hash_cena(pasta, n)]
