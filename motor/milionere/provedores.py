@@ -6,10 +6,11 @@
     MILIONERE_IMAGEM=cloudflare  -> Cloudflare Workers AI, FLUX.2 klein (cota grátis diária; reserva: Gemini/ComfyUI)
     MILIONERE_IMAGEM=manual      -> não gera nada: grava prompts.txt e espera o usuário subir as imagens
 
-Antes de qualquer gerador, cada cena consulta o BANCO do nicho:
-    nota >= banco_imagens.LIMIAR_REUSO (0,55) -> reusa a imagem (custo zero, nada é gerado)
-    nota >= LIMIAR_REFERENCIA (0,40)          -> gera usando a imagem do banco como referência de estilo/rosto
-    abaixo                                    -> gera do zero (com o retrato do personagem, se houver)
+Antes de qualquer gerador, cada cena consulta o BANCO do nicho (regra alinhada com a noite de 24/09 do Rafael):
+    cena SEM personagem + imagem SEM personagem com nota >= LIMIAR_REUSO (0,55) -> reusa (custo zero)
+    cena COM personagem -> nunca reusa (traria o Jesus de outra história, com outra roupa e outro lugar);
+        a imagem do banco com nota >= LIMIAR_REFERENCIA (0,40) entra só como referência de estilo/rosto
+    abaixo disso -> gera do zero (com o retrato do personagem, se houver)
 Imagens que o usuário já colocou em producao/midia/<slug>/cena_NN.* têm prioridade sempre
 (o pipeline só pede as cenas que faltam).
 """
@@ -86,19 +87,39 @@ def _prompts_manuais(roteiro: dict, nome_estilo: str, pasta: Path, cenas: list[i
         for n in cenas), encoding="utf-8")
 
 
-def _consultar_banco(roteiro: dict, n: int) -> dict | None:
-    """A imagem do banco do nicho que mais parece com a cena (ou None se o banco não estiver disponível)."""
+def _consultar_banco(roteiro: dict, n: int, k: int = 6) -> list[dict]:
+    """As imagens do banco do nicho mais parecidas com a cena, cada uma com a lista `personagens` dela."""
     try:
+        import json
+
         import banco_imagens
         cena = roteiro["cenas"][n - 1]
         nomes = {p["id"]: p.get("nome", "") for p in roteiro.get("personagens", [])}
         texto = " | ".join(x for x in (cena["fala"], " ".join(nomes.get(i, "") for i in cena.get("personagens", [])),
                                        cena.get("imagem", "")) if x.strip())
         nicho = banco_imagens.NICHO_DO_PRESET.get(roteiro.get("nicho", ""), roteiro.get("nicho", ""))
-        return next(iter(banco_imagens.buscar(nicho, texto, excluir=_sessao().usados_banco, k=1)), None)
+        achados = banco_imagens.buscar(nicho, texto, excluir=_sessao().usados_banco, k=k)
+        if achados:
+            con = banco_imagens._db()
+            pers = dict(con.execute(f"SELECT id, personagens FROM imagens WHERE id IN ({','.join('?' * len(achados))})",
+                                    [a["id"] for a in achados]).fetchall())
+            con.close()
+            for a in achados:
+                a["personagens"] = json.loads(pers.get(a["id"]) or "[]")
+        return achados
     except Exception as e:  # o banco nunca derruba a geração
         print(f"  banco de imagens indisponível: {e}")
-        return None
+        return []
+
+
+def escolher_do_banco(cena: dict, achados: list[dict]) -> tuple[dict | None, dict | None]:
+    """(imagem para reusar, imagem para usar como referência) segundo a regra do topo do arquivo."""
+    import banco_imagens
+    reuso = None
+    if not cena.get("personagens"):
+        reuso = next((a for a in achados if not a["personagens"] and a["nota"] >= banco_imagens.LIMIAR_REUSO), None)
+    referencia = None if reuso else next((a for a in achados if a["nota"] >= LIMIAR_REFERENCIA), None)
+    return reuso, referencia
 
 
 def _uma(roteiro: dict, nome_estilo: str, n: int, destino: Path, seed: int, banco: bool = True) -> Path:
@@ -106,21 +127,20 @@ def _uma(roteiro: dict, nome_estilo: str, n: int, destino: Path, seed: int, banc
     import medidor
     s = _sessao()
     inicio = _t.time()
-    achado = _consultar_banco(roteiro, n) if banco else None
-    if achado:
+    reuso, ref = escolher_do_banco(roteiro["cenas"][n - 1], _consultar_banco(roteiro, n)) if banco else (None, None)
+    if reuso:
         import banco_imagens
-        if achado["nota"] >= banco_imagens.LIMIAR_REUSO:
-            alvo = destino.with_suffix(achado["arquivo"].suffix)
-            shutil.copy(achado["arquivo"], alvo)
-            s.usados_banco.add(achado["id"])
-            banco_imagens.marcar_uso([achado["id"]])
-            medidor.imagem("banco", _t.time() - inicio)
-            print(f"  cena {n:>2} BANCO (nota {achado['nota']:.2f})  «{roteiro['cenas'][n - 1]['fala'][:50]}»")
-            return alvo
-    refs = [achado["arquivo"]] if achado and achado["nota"] >= LIMIAR_REFERENCIA else []
-    if refs:
-        s.usados_banco.add(achado["id"])
-        print(f"  cena {n:>2} referência do banco (nota {achado['nota']:.2f})")
+        alvo = destino.with_suffix(reuso["arquivo"].suffix)
+        shutil.copy(reuso["arquivo"], alvo)
+        s.usados_banco.add(reuso["id"])
+        banco_imagens.marcar_uso([reuso["id"]])
+        medidor.imagem("banco", _t.time() - inicio)
+        print(f"  cena {n:>2} BANCO (nota {reuso['nota']:.2f}, sem personagem)  «{roteiro['cenas'][n - 1]['fala'][:50]}»")
+        return alvo
+    refs = [ref["arquivo"]] if ref else []
+    if ref:
+        s.usados_banco.add(ref["id"])
+        print(f"  cena {n:>2} referência do banco (nota {ref['nota']:.2f})")
     if s.cloudflare_ok:
         import imagem_cloudflare
         try:
