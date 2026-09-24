@@ -126,8 +126,8 @@ com teto de RAM (cgroup, `COMFY_RAM_HIGH/MAX` em `imagens.py`): se estourar, mor
 4. `postar.py --pendentes` sobe como PRIVADO o que está pronto, sem aviso e ainda não postado (`producao/postados.json`).
 
 **Turno da noite:** `crontab -e` ->
-`0 23 * * * /home/rafael/projects/milionere/milionere/motor/milionere/noite.sh`
+`0 20 * * * /home/rafael/projects/milionere/milionere/motor/milionere/noite.sh`
 Gera vídeo atrás de vídeo até as 7h (`FIM_HORA`) e desliga o ComfyUI no fim. O upload é outro cron, 1 vídeo
-(privado) a cada 3h: `0 */3 * * * ... postar.py --pendentes --limite 1` (log em `producao/noite/postagem.log`).
+(privado) a cada 3h a partir das 23h: `0 2-23/3 * * * ... postar.py --pendentes --limite 1` (log em `producao/noite/postagem.log`).
 Log em `producao/noite/turno_<data>.log`. O WSL precisa estar aberto (deixe um terminal do Ubuntu aberto à noite).
 De manhã: YouTube Studio -> conferir cada vídeo privado -> Público (comentário fixado: à mão, está no `.txt`).

@@ -2,7 +2,7 @@
 # Turno da noite (cron): gera vídeo atrás de vídeo até FIM_HORA. O upload é outro cron, 1 vídeo a cada 3h
 # (postar.py --pendentes --limite 1), no ritmo em que o dono publica. Vídeo com aviso não sobe: fica pra revisão.
 #
-#   crontab: 0 23 * * * /home/rafael/projects/milionere/milionere/motor/milionere/noite.sh
+#   crontab: 0 20 * * * /home/rafael/projects/milionere/milionere/motor/milionere/noite.sh
 #   FIM_HORA=6 noite.sh      # para de começar vídeo novo às 6h (padrão 7h)
 set -u
 RAIZ=/home/rafael/projects/milionere/milionere
