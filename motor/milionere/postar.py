@@ -12,7 +12,7 @@ Uso:
     python postar.py videos_prontos/2026-09-24_historia-davi-golias.mp4                 # publica agora
     python postar.py <video.mp4> --agendar "2026-09-25 19:00"                            # agenda (horário de Brasília)
     python postar.py <video.mp4> --privado                                               # sobe privado (teste)
-    python postar.py --pendentes     # sobe privado tudo que está pronto, sem aviso e ainda não postado (cron)
+    python postar.py --pendentes --limite 1   # sobe privado o mais antigo pronto, sem aviso e não postado (cron 3/3h)
 """
 
 import argparse
@@ -177,9 +177,10 @@ def main() -> None:
     ap.add_argument("--agendar", help='"AAAA-MM-DD HH:MM" no horário de Brasília')
     ap.add_argument("--privado", action="store_true")
     ap.add_argument("--pendentes", action="store_true", help="sobe (privado) os vídeos prontos sem aviso ainda não postados")
+    ap.add_argument("--limite", type=int, default=6, help="com --pendentes: quantos no máximo (cron de 3 em 3h usa 1)")
     args = ap.parse_args()
     if args.pendentes:
-        postar_pendentes()
+        postar_pendentes(args.limite)
         return
     if args.autorizar:
         credenciais(autorizar=True)

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# Turno da noite (cron): gera vídeo atrás de vídeo até FIM_HORA e sobe cada um como PRIVADO no YouTube
-# (lote.py --postar). Vídeo com aviso (imagem reprovada, animação falhou) não sobe: fica pra revisão.
-# De manhã o dono entra no Studio, confere e deixa público.
+# Turno da noite (cron): gera vídeo atrás de vídeo até FIM_HORA. O upload é outro cron, 1 vídeo a cada 3h
+# (postar.py --pendentes --limite 1), no ritmo em que o dono publica. Vídeo com aviso não sobe: fica pra revisão.
 #
 #   crontab: 0 23 * * * /home/rafael/projects/milionere/milionere/motor/milionere/noite.sh
 #   FIM_HORA=6 noite.sh      # para de começar vídeo novo às 6h (padrão 7h)
@@ -24,7 +23,7 @@ while :; do
   h=$(date +%-H)
   if [ "$h" -ge "$FIM_HORA" ] && [ "$h" -lt 20 ]; then break; fi  # janela: 20h até FIM_HORA
   echo "--- vídeo começou $(date +%T)"
-  timeout 6000 "$PY" motor/milionere/lote.py --qtd 1 --musica ambas --postar > "$D/ultimo_video.log" 2>&1
+  timeout 6000 "$PY" motor/milionere/lote.py --qtd 1 --musica ambas > "$D/ultimo_video.log" 2>&1
   grep -E "===|LOTE|YouTube|NÃO subiu|DESISTI|FALHOU|AVISO|custo" "$D/ultimo_video.log" | cut -c1-300
   if grep -q "hit your session limit\|api_error_status\": 429\|rate_limit" "$D/ultimo_video.log"; then
     echo "limite de uso do Claude às $(date +%T); esperando 30 min"
