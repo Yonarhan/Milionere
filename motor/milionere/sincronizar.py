@@ -202,6 +202,21 @@ def baixar_candidato(c: dict, cache: Path) -> Path:
     return destino
 
 
+def baixar_ou_proximo(c: dict, alternativas: list[dict], cache: Path) -> tuple[dict, Path]:
+    """Baixa o candidato escolhido; se a fonte recusar (403, fora do ar...), tenta os outros da mesma cena,
+    primeiro os do mesmo tipo (vídeo/foto). Só falha se nenhum baixar."""
+    ordem = [c] + [a for a in alternativas if a["ref"] != c["ref"] and a["tipo"] == c["tipo"]] \
+                + [a for a in alternativas if a["ref"] != c["ref"] and a["tipo"] != c["tipo"]]
+    ultimo = None
+    for cand in ordem:
+        try:
+            return cand, baixar_candidato(cand, cache)
+        except Exception as e:  # noqa: BLE001
+            ultimo = e
+            print(f"AVISO  não baixou {cand['ref']} ({e}); tentando outro candidato da cena")
+    raise RuntimeError(f"nenhum candidato da cena baixou (último erro: {ultimo})")
+
+
 def animar_foto(origem: Path, destino: Path, frames: int, parte: int = 0) -> None:
     """Foto/pintura -> clipe vertical com zoom lento. Retrato preenche a tela; paisagem fica grande
     no meio com o fundo desfocado da própria imagem."""
@@ -268,8 +283,10 @@ def montar_tomadas(cenas, tempos, corte_max: float, pexels: Pexels, pasta: Path,
                 frames = limites[k + 1] - limites[k]
                 ref = escolha[min(k, len(escolha) - 1)]
                 repeticao = k - escolha.index(ref)  # mesma escolha em 2 tomadas -> pega outro trecho do vídeo
-                c = por_ref[ref]
-                origem = baixar_candidato(c, pexels.cache)
+                c, origem = baixar_ou_proximo(por_ref[ref], (curadoria or {}).get(str(i), []), pexels.cache)
+                if c["ref"] != ref:  # o crédito do post tem que ser o da imagem que entrou de verdade
+                    cena["escolha"] = [c["ref"] if e == ref else e for e in cena["escolha"]]
+                    por_ref[c["ref"]] = c
                 n += 1
                 destino = pasta / f"tomada_{n:02d}.mp4"
                 if c["tipo"] == "video":

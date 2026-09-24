@@ -6,7 +6,8 @@
 - pexels / pixabay: vídeos de banco (campo "busca" da cena)
 - wikimedia / met: pinturas e fotos em DOMÍNIO PÚBLICO (campo "arte" da cena) — ótimo para histórias bíblicas
 - nasa: imagens reais do espaço, domínio público (campo "arte" da cena) — astronomia
-- aic / cleveland: pinturas de museu em domínio público (CC0), sem chave — gospel (campo "arte")
+- cleveland: pinturas de museu em domínio público (CC0), sem chave — gospel (campo "arte")
+  (o Art Institute of Chicago saiu em 24/09: as imagens ficam atrás do desafio anti-robô da Cloudflare, 403 sempre)
 - openverse: fotos CC0 / domínio público / CC-BY de vários acervos (Flickr, museus), sem chave (campo "foto")
 - inaturalist: fotos de animais CC0 / CC-BY, sem chave (campo "foto") — animais
 Todas liberam uso comercial; as CC-BY exigem crédito, que vai no campo "credito" (entra na descrição do post).
@@ -155,23 +156,6 @@ def nasa_video(termo: str, chaves: dict, n: int = 6) -> list[dict]:
     return saida
 
 
-def aic(termo: str, chaves: dict, n: int = 5) -> list[dict]:
-    """Art Institute of Chicago: só obras em domínio público (imagens CC0), servidas por IIIF."""
-    dados = _json("https://api.artic.edu/api/v1/artworks/search?" + urllib.parse.urlencode({
-        "q": termo, "query[term][is_public_domain]": "true", "limit": 15,
-        "fields": "id,title,image_id,artist_title,is_public_domain"}))
-    saida = []
-    for o in dados.get("data", []):
-        if not o.get("image_id") or not o.get("is_public_domain"):
-            continue
-        base = f"https://www.artic.edu/iiif/2/{o['image_id']}/full"
-        saida.append({"ref": f"aic:{o['id']}", "tipo": "foto", "thumb": f"{base}/200,/0/default.jpg",
-                      "link": f"{base}/1686,/0/default.jpg", "desc": (o.get("title") or "")[:80],
-                      "credito": f"{o.get('title', '')} ({o.get('artist_title') or 'autor desconhecido'}), "
-                                 "Art Institute of Chicago, domínio público"})
-    return saida[:n]
-
-
 def cleveland(termo: str, chaves: dict, n: int = 5) -> list[dict]:
     """Cleveland Museum of Art Open Access: só obras CC0 com imagem."""
     dados = _json("https://openaccess-api.clevelandart.org/api/artworks/?" + urllib.parse.urlencode(
@@ -225,7 +209,7 @@ def inaturalist(termo: str, chaves: dict, n: int = 6) -> list[dict]:
 
 FONTES = {"pexels": pexels, "pixabay": pixabay, "wikimedia": wikimedia, "met": met, "nasa": nasa,
           "pixabay_foto": pixabay_foto, "pexels_foto": pexels_foto, "nasa_video": nasa_video,
-          "aic": aic, "cleveland": cleveland, "openverse": openverse, "inaturalist": inaturalist}
+          "cleveland": cleveland, "openverse": openverse, "inaturalist": inaturalist}
 
 
 def buscar_candidatos(cena: dict, fontes_video: list[str], fontes_arte: list[str], config: Path,
