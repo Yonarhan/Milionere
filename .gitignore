@@ -259,3 +259,6 @@ servico/media/
 # Banco de imagens (gerado; v1 em SQLite)
 producao/banco/
 *.rar
+
+# motor original (repositório próprio); o código usado está em motor/
+MoneyPrinterTurbo/
