@@ -141,9 +141,92 @@ def temas() -> dict:
     return json.loads(ARQ_TEMAS.read_text(encoding="utf-8"))
 
 
+O_QUE_E = {
+    "historias": "um EPISÓDIO narrativo da Bíblia (acontecimento com começo, conflito e virada), contado em ~40s",
+    "proverbios": "UM versículo de Provérbios (ou Eclesiastes) com um conselho prático do dia a dia",
+    "personagens": "UM personagem bíblico e a virada da vida dele, em 30s",
+    "versiculos": "um versículo famoso e a história/contexto por trás dele, que pouca gente conhece",
+}
+MINIMO_LIVRES = 3  # abaixo disso o catálogo é reposto sozinho (repor_temas) antes de sortear
+_SCHEMA_TEMAS = {"type": "object", "additionalProperties": False, "required": ["temas"], "properties": {"temas": {
+    "type": "array", "items": {"type": "object", "additionalProperties": False,
+                               "required": ["id", "titulo", "ref", "angulo", "personagens"],
+                               "properties": {"id": {"type": "string"}, "titulo": {"type": "string"},
+                                              "ref": {"type": "string"}, "angulo": {"type": "string"},
+                                              "personagens": {"type": "array", "items": {"type": "string"}}}}}}}
+
+
+def _versos(ref: str) -> set[str]:
+    try:
+        return {r for r, _ in versiculos(ref)}
+    except RefInvalida:
+        return set()
+
+
+def repor_temas(catalogo: str, qtd: int = 10) -> list[dict]:
+    """Pede ao LLM temas NOVOS tirados da Bíblia e só aceita os que passam na checagem: referência existe na BPM,
+    não repete título nem cobre o mesmo trecho (>40% dos versículos) de tema já cadastrado. Grava em temas.json."""
+    import llm
+
+    todos = temas()
+    atuais = todos[catalogo]
+    feitos = "\n".join(f"- {t['titulo']} ({t['ref']})" for c in todos.values() if isinstance(c, list) for t in c)
+    exemplos = json.dumps(atuais[:2], ensure_ascii=False, indent=1)
+    ids_personagens = ", ".join(sorted(personagens()))
+    prompt = (f"Você monta a pauta de um canal gospel de YouTube Shorts (Brasil). Proponha {qtd + 4} temas NOVOS para o "
+              f"catálogo '{catalogo}': cada tema é {O_QUE_E.get(catalogo, 'um trecho bíblico')}.\n\n"
+              f"JÁ FEITOS (não repita o episódio, o personagem principal nem o mesmo trecho):\n{feitos}\n\n"
+              f"Formato dos existentes (siga o estilo do 'angulo': um fato surpreendente, concreto, em linguagem simples):\n"
+              f"{exemplos}\n\nRegras:\n- `ref` em português com os nomes dos livros da Bíblia (ex.: '1 Samuel 17:4-11; "
+              "17:45-50'), só trechos que existem de verdade; 1 a 4 faixas curtas com o essencial.\n"
+              "- Prefira episódios com imagem forte e conflito (perigo, milagre, traição, virada) e conhecidos o bastante "
+              "pra despertar curiosidade.\n- `id` curto em minúsculas com hífen, sem acento.\n"
+              f"- `personagens`: ids de quem aparece; reuse estes quando for a mesma pessoa: {ids_personagens}. "
+              "Para outros, crie id em minúsculas com hífen.")
+    propostos = llm.chamar(prompt, _SCHEMA_TEMAS, papel="roteirista")["temas"]
+
+    ids = {t["id"] for c in todos.values() if isinstance(c, list) for t in c}
+    # checa contra TODOS os catálogos: o mesmo episódio como "história" e como "personagem" vira vídeo repetido
+    existentes = [t for c in todos.values() if isinstance(c, list) for t in c]
+    titulos = {normalizar(t["titulo"]) for t in existentes}
+    cobertos = [_versos(t["ref"]) for t in existentes]
+    aceitos = []
+    for t in propostos:
+        versos = _versos(t["ref"])
+        if not versos:
+            print(f"  tema recusado (referência inválida): {t['titulo']} ({t['ref']})")
+            continue
+        if normalizar(t["titulo"]) in titulos or any(len(versos & c) > 0.4 * min(len(versos), len(c)) for c in cobertos if c):
+            print(f"  tema recusado (já feito): {t['titulo']} ({t['ref']})")
+            continue
+        base, n = re.sub(r"[^a-z0-9]+", "-", normalizar(t["id"])).strip("-") or "tema", 2
+        t["id"] = base
+        while t["id"] in ids:
+            t["id"], n = f"{base}-{n}", n + 1
+        t["prioridade"] = 2
+        t["origem"] = "automatico"
+        aceitos.append(t)
+        ids.add(t["id"])
+        titulos.add(normalizar(t["titulo"]))
+        cobertos.append(versos)
+        if len(aceitos) == qtd:
+            break
+    todos[catalogo] = atuais + aceitos
+    ARQ_TEMAS.write_text(json.dumps(todos, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"  catálogo '{catalogo}': +{len(aceitos)} temas novos da Bíblia ({len(propostos) - len(aceitos)} recusados)")
+    return aceitos
+
+
 def sortear(formato: str, catalogo: str, usados: set[str], rng: random.Random | None = None) -> dict:
-    """Um tema do catálogo ainda não usado neste formato (prioridade maior primeiro, sorteio dentro dela)."""
+    """Um tema do catálogo ainda não usado neste formato (prioridade maior primeiro, sorteio dentro dela).
+    Com poucos temas livres, repõe o catálogo com temas novos da Bíblia (repor_temas) antes de sortear."""
     livres = [t for t in temas()[catalogo] if f"{formato}:{t['id']}" not in usados]
+    if len(livres) < MINIMO_LIVRES:
+        try:
+            repor_temas(catalogo)
+        except Exception as e:  # noqa: BLE001 - sem LLM agora: sorteia do que sobrou
+            print(f"  não consegui repor o catálogo '{catalogo}': {e}")
+        livres = [t for t in temas()[catalogo] if f"{formato}:{t['id']}" not in usados]
     if not livres:
         raise RuntimeError(f"catálogo '{catalogo}' esgotado para o formato '{formato}'")
     melhor = max(t.get("prioridade", 1) for t in livres)

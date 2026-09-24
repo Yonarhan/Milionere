@@ -34,7 +34,7 @@ def proximo_formato(formatos: dict, permitidos: list[str]) -> str | None:
     """O formato com menos vídeos feitos (entre os que ainda têm tema livre): o canal fica variado."""
     usados, restam = pipeline.usados(), livres(formatos)
     feitos = {f: sum(1 for u in usados if u.startswith(f"{f}:")) for f in permitidos}
-    candidatos = [f for f in permitidos if restam.get(f, 0) > 0]
+    candidatos = list(permitidos)  # catálogo vazio não sai da rotação: biblia.sortear repõe com temas novos da Bíblia
     return min(candidatos, key=lambda f: (feitos[f], -restam[f])) if candidatos else None
 
 
