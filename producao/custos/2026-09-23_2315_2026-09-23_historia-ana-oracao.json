@@ -1,0 +1,44 @@
+{
+ "usd": 0.7952,
+ "brl": 4.37,
+ "segundos": 1641.7,
+ "por_etapa": {
+  "roteiro": {
+   "chamadas": 5,
+   "imagens": 0,
+   "tokens_entrada": 58874,
+   "tokens_saida": 70523,
+   "usd": 0.7648,
+   "segundos": 675.2,
+   "brl": 4.21
+  },
+  "imagens": {
+   "chamadas": 0,
+   "imagens": 12,
+   "tokens_entrada": 0,
+   "tokens_saida": 0,
+   "usd": 0.0,
+   "segundos": 830.2,
+   "brl": 0.0
+  },
+  "juiz_visual": {
+   "chamadas": 1,
+   "imagens": 0,
+   "tokens_entrada": 18291,
+   "tokens_saida": 1217,
+   "usd": 0.0305,
+   "segundos": 21.1,
+   "brl": 0.17
+  }
+ },
+ "modelos": [
+  "claude-haiku-4-5-20251001",
+  "claude-sonnet-5",
+  "comfy"
+ ],
+ "videos": [
+  "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-ana-oracao.mp4",
+  "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-ana-oracao_sem-musica.mp4"
+ ],
+ "gpu_imagens_s": 830.2
+}

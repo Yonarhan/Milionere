@@ -1,0 +1,185 @@
+{
+  "etapas": [
+    {
+      "quando": "01:42:07",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 1,
+      "problemas": [
+        "evento 5 (Marcos 5:27) vem antes, no texto, do evento anterior: ordem trocada"
+      ],
+      "falas": [
+        "Doze anos sangrando. Ninguém sabia curar.",
+        "Gastou tudo com médicos, e piorou.",
+        "Ouviu falar de Jesus e foi atrás.",
+        "Ela pensou: só tocar na roupa, sara.",
+        "Por trás, ela tocou na roupa dele.",
+        "Na hora, o sangue parou. Ela sentiu: curada.",
+        "Jesus sentiu o poder sair, e perguntou quem tocou.",
+        "Os discípulos estranharam, mas Jesus seguiu procurando.",
+        "Com medo, ela se prostrou e contou tudo.",
+        "Jesus disse: filha, sua fé te curou.",
+        "Você também já gastou tudo sem melhorar.",
+        "Doze anos ninguém curou. Um toque bastou.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "01:44:14",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Doze anos doente. Um toque bastou.",
+        "Doze anos ela sangrava sem parar.",
+        "Gastou tudo com médicos, e piorou.",
+        "Ouviu falar de Jesus, e por trás, na multidão, tocou na roupa dele.",
+        "Ela pensava: só de tocar, eu saro.",
+        "Na hora o sangue parou. Ela sentiu: curada.",
+        "Jesus sentiu o poder saindo, e perguntou quem tocou.",
+        "Os discípulos estranharam, mas Jesus procurou quem foi.",
+        "Com medo, ela se prostrou e contou tudo.",
+        "Jesus disse: filha, sua fé te curou.",
+        "Você também já gastou tudo, sem melhorar.",
+        "Doze anos ninguém curou. Um toque, e sarou.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "01:45:57",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 5
+      },
+      "entendimento": "Uma mulher que sofreu uma hemorragia por doze anos foi curada de sua doença com um único toque em Jesus, movido pela fé.",
+      "erros_factuais": [],
+      "problemas": [
+        "compreensao (nota 3): Cena 2: 'Doze anos ela sangrava sem parar' começa com pronome indefinido sem antecedente claro no áudio. Mude para 'Uma mulher sangrava doze anos, sem parar' para apresentar o personagem de verdade ao ouvinte."
+      ]
+    },
+    {
+      "quando": "01:47:41",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Doze anos doente. Um toque bastou.",
+        "Uma mulher sangrava doze anos, sem parar.",
+        "Gastou tudo com médicos, e piorou.",
+        "Ouviu falar de Jesus, e por trás, na multidão, tocou na roupa dele.",
+        "Ela pensava: só de tocar, eu saro.",
+        "Na hora o sangue parou. Ela sentiu: curada.",
+        "Jesus sentiu poder saindo, e perguntou quem tocou.",
+        "Os discípulos estranharam, mas Jesus procurou quem foi.",
+        "Com medo, ela se prostrou e contou tudo.",
+        "Jesus disse: filha, sua fé te curou.",
+        "Você já gastou tudo, sem melhorar.",
+        "Doze anos ninguém curou. Um toque bastou.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "01:49:45",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 5,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 5
+      },
+      "entendimento": "Uma mulher doente há 12 anos cura-se ao tocar em Jesus, e ele revela que foi sua fé, não o toque, o verdadeiro poder.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "02:03:45",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 3,
+          "ok": false,
+          "problema": "Um dos vasos de cerâmica tem um padrão decorativo que se parece com texto/letras, parecendo um artefato de IA.\"",
+          "imagem_corrigida": "Medium shot of a woman kneeling on a cracked stone floor, head bowed in sorrow, hands resting together in her lap beside plain unadorned clay jars, warm candlelight, dim humble room, bare wall behind."
+        },
+        {
+          "cena": 4,
+          "ok": false,
+          "problema": "A imagem mostra Jesus andando sobre as águas à noite perto de um barco — cena de outra história bíblica, sem a mulher com fluxo de sangue nem a multidão, não tem relação com a fala sobre tocar a roupa dele.",
+          "imagem_corrigida": "Wide shot of a kneeling woman on a stone street reaching toward the trailing hem of a walking man's cloak ahead of her, full bodies, soft afternoon light, narrow village alley, flat dusty ground."
+        },
+        {
+          "cena": 7,
+          "ok": false,
+          "problema": "A imagem mostra Jesus andando sobre o mar (outro milagre), não a cena da mulher com hemorragia tocando sua veste na multidão — contradiz a fala \"Jesus sentiu poder saindo, e perguntou quem tocou\".",
+          "imagem_corrigida": "Medium shot, man standing on a sunlit dusty street, suddenly turning back over his shoulder with a startled, searching look, robe swaying, bright midday light, distant stone houses along the road."
+        },
+        {
+          "cena": 8,
+          "ok": false,
+          "problema": "A cena mostra Jesus resgatando um discípulo se afogando numa tempestade no mar (história de Pedro andando sobre as águas), que não tem relação com a fala sobre Jesus procurando quem tocou nele na multidão (história da mulher com fluxo de sangue).",
+          "imagem_corrigida": "Waist-up shot of a man turning to look back with searching, questioning eyes; another man beside him wears a surprised expression, standing on flat sandy ground, soft afternoon light, stone wall in background."
+        },
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "Há uma linha fina escura cruzando o fundo (parede/céu) que parece um fio ou cabo moderno, quebrando a ambientação de época.",
+          "imagem_corrigida": "Wide shot of a woman kneeling low, head bowed in fear on a dusty ancient alley, prostrate before a standing man; smooth bare dirt ground, warm sunset light, plain stone walls, clear open sky above."
+        },
+        {
+          "cena": 12,
+          "ok": false,
+          "problema": "Há um poste com fios elétricos (objeto moderno) visível no fundo à esquerda da cena, quebrando o realismo do cenário bíblico.",
+          "imagem_corrigida": "Medium shot of a woman standing alone on a dusty village street, gazing upward with hopeful longing, arms resting at her sides, flat dirt road, ancient mud-brick walls, warm golden sunset light."
+        },
+        {
+          "cena": 13,
+          "ok": false,
+          "problema": "O livro impresso com texto em tipografia moderna é anacrônico e o bloco de texto na página é visivelmente legível/estranho, o que reprova por defeito de texto e objeto fora da época.",
+          "imagem_corrigida": "Medium wide shot of a seated figure at a wooden table, quill poised over an open parchment scroll, hand resting near the scroll in soft shadow, flat wooden tabletop, warm candlelight, dim ancient room at night."
+        }
+      ]
+    },
+    {
+      "quando": "02:20:32",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "02:21:15",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-mulher-fluxo.mp4",
+      "duracao": 48.3,
+      "avisos": []
+    },
+    {
+      "quando": "02:21:40",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-mulher-fluxo_sem-musica.mp4",
+      "duracao": 48.3,
+      "avisos": []
+    }
+  ]
+}

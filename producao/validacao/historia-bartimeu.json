@@ -1,0 +1,534 @@
+{
+  "etapas": [
+    {
+      "quando": "23:19:11",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Mandaram o cego calar a boca.",
+        "Jesus saía de Jericó, e Bartimeu, cego, pedia esmola no caminho.",
+        "Ele ouviu que era Jesus e gritou: Filho de Davi, misericórdia!",
+        "Muitos mandaram ele calar a boca, mas gritou mais.",
+        "Jesus parou e mandou chamar ele.",
+        "Bartimeu jogou a capa longe e correu até ele.",
+        "Jesus perguntou o que ele queria. Ele disse: quero enxergar.",
+        "Jesus disse: sua fé te curou. Ele enxergou e seguiu.",
+        "Quando mandarem calar sua fé, grita mais alto.",
+        "Mandaram ele calar a boca. Mas o grito chegou até Jesus.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "23:20:41",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 2,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 2,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Um cego à beira do caminho gritou por Jesus apesar de a multidão querer silenciá-lo, e seu grito chegou até Jesus, que o curou.",
+      "erros_factuais": [],
+      "problemas": [
+        "ordem (nota 2): A cena 1 é um evento de Marcos 10:48 (repreensão), não um gancho. Deveria começar com gancho-paradoxo até 7 palavras (ex: 'Um cego que ninguém deixava falar'), depois prosseguir cronologicamente: evento 0 (Marcos 10:46), evento 1 (10:47), evento 2 (10:48), etc.",
+        "ordem (nota 2): Cenas 1 e 2 estão invertidas na cronologia: cena 1 é do meio da história (10:48) e cena 2 é do início (10:46).",
+        "compreensao (nota 3): Começar com 'Mandaram o cego calar a boca' sem contexto deixa a primeira audição confusa. Só na cena 2 descobre-se que é Bartimeu. Um gancho claro antes da narrativa evita isso.",
+        "gancho (nota 2): Cena 1 é uma afirmação ('Mandaram o cego calar a boca'), não um paradoxo que abre lacuna. Um gancho deve provocar curiosidade imediata. Reescreva como pergunta implícita: 'Um cego que ninguém deixava falar' ou 'O grito que queriam silenciar' (máx 7 palavras).",
+        "ritmo (nota 3): Cenas 1 e 2 não conectam: 'Mandaram o cego calar a boca. Jesus saía de Jericó...' Falta conectivo. Mude cena 2 para: 'Mas Jesus saía de Jericó, e Bartimeu, cego, pedia esmola no caminho.'",
+        "ritmo (nota 3): Cena 9 interrompe a narrativa com 2ª pessoa no meio (está colocada depois do clímax, o que está correto), mas o ritmo volta para após o clímax sem que a história tenha acabado de verdade. Está na ordem certa (pós-clímax), apenas revisar fluxo."
+      ]
+    },
+    {
+      "quando": "23:22:31",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Mandaram o cego calar a boca.",
+        "Mas Jesus saía de Jericó, e Bartimeu, cego, pedia esmola.",
+        "Ele ouviu que era Jesus e gritou: Filho de Davi, misericórdia!",
+        "Muitos mandaram ele calar, mas ele gritou mais alto.",
+        "Jesus parou e mandou chamar ele.",
+        "Bartimeu jogou a capa e correu até Jesus.",
+        "Jesus perguntou o que ele queria. Ele disse: quero enxergar.",
+        "Jesus disse que sua fé o curou, e ele enxergou.",
+        "Quando mandarem você calar sua fé, grita mais alto.",
+        "Mandaram ele calar, mas o grito chegou até Jesus.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "01:22:24",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Mandaram o cego calar a boca.",
+        "Bartimeu, cego, mendigava perto de Jericó.",
+        "Ouviu que era Jesus e gritou: Filho de Davi, piedade!",
+        "Mandaram ele calar, mas gritou mais.",
+        "Jesus parou e mandou chamá-lo.",
+        "Disseram: Anime-se, ele te chama.",
+        "Repare: ele jogou a capa fora e correu até Jesus.",
+        "Jesus perguntou o que queria. Ele respondeu: quero enxergar.",
+        "Sua fé te curou, disse Jesus, e ele enxergou.",
+        "E seguiu Jesus pelo caminho.",
+        "Se mandam calar sua fé, grita mais alto.",
+        "Mandaram calar. Gritando, ele voltou a ver.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "01:23:45",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 2,
+        "personagens": 5,
+        "compreensao": 2,
+        "gancho": 3,
+        "ritmo": 2,
+        "linguagem": 3,
+        "payoff": 3
+      },
+      "entendimento": "Um cego chamado Bartimeu gritava para Jesus apesar de mandarem calar, e foi curado pela sua fé.",
+      "erros_factuais": [
+        "Cena 1: evento de Marcos 10:48 aparece antes dos eventos de Marcos 10:46-47, quebrando a ordem cronológica"
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 1: evento de Marcos 10:48 aparece antes dos eventos de Marcos 10:46-47, quebrando a ordem cronológica",
+        "ordem (nota 2): Cena 1 apresenta evento de Marcos 10:48 antes de 10:46-47: reordene começando com 'Bartimeu, cego, mendigava perto de Jericó' (v. 46), depois 'Ouviu que era Jesus e gritou' (v. 47), depois 'Mandaram calar, mas gritou mais' (v. 48)",
+        "compreensao (nota 2): Cena 1 fora de ordem confunde quem nunca leu a história: parece que 'mandarem calar' é o ponto de partida, não contexto; reordene para fluxo cronológico claro",
+        "gancho (nota 3): 'Mandaram o cego calar a boca' é intrigante, mas estar fora de ordem e ser repetido na cena 4 enfraquece o impacto; reordene a história para que o gancho seja revelado de forma satisfatória no payoff, não repetido",
+        "ritmo (nota 2): Cena 1: remova ou reordene; Cena 7: 'Repare:' quebra tom narrativo, soa como instrução ao espectador durante a história; substitua por 'Ele jogou a capa fora e correu até Jesus'",
+        "linguagem (nota 3): Cena 2: 'Bartimeu, cego, mendigava' é formal/inverso; use 'Bartimeu era cego e mendigava perto de Jericó'; Cena 7: 'Repare:' quebra tom narrativo",
+        "payoff (nota 3): Cena 12 responde o gancho, mas a repetição entre cenas 1 e 4 sem revelação torna o payoff fraco; reordene a narrativa para que a resposta do gancho ('Gritando, ele voltou a ver') revele o mistério, não apenas repita"
+      ]
+    },
+    {
+      "quando": "01:26:49",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Por que mandaram o cego calar a boca?",
+        "Bartimeu era cego e mendigava perto de Jericó.",
+        "Ouviu que era Jesus e gritou: Filho de Davi, piedade!",
+        "Muitos mandaram calar, mas ele gritou mais alto.",
+        "Jesus parou e disseram a Bartimeu: anime-se, ele te chama.",
+        "Ele jogou a capa e correu até Jesus.",
+        "Jesus perguntou o que queria. Ele disse: quero enxergar.",
+        "Sua fé te curou, disse Jesus, e ele enxergou.",
+        "E seguiu Jesus pelo caminho.",
+        "Se mandarem calar sua fé, grita mais alto.",
+        "Mandaram calar, mas Deus abriu os olhos dele.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "01:28:38",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 3,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Um cego mendicante grita por Jesus, é repreendido pela multidão, mas Jesus o ouve, chama e o cura.",
+      "erros_factuais": [
+        "Cena 2: 'mendigava perto de Jericó' distorce o texto que diz 'estava sentado à beira do caminho' quando Jesus saía de Jericó (Marcos 10:46).",
+        "Cena 11: 'Deus abriu os olhos dele' muda personagem do texto que afirma 'Jesus lhe disse: Vá. A sua fé o curou' (Marcos 10:52)."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 2: 'mendigava perto de Jericó' distorce o texto que diz 'estava sentado à beira do caminho' quando Jesus saía de Jericó (Marcos 10:46).",
+        "ERRO FACTUAL: Cena 11: 'Deus abriu os olhos dele' muda personagem do texto que afirma 'Jesus lhe disse: Vá. A sua fé o curou' (Marcos 10:52).",
+        "fidelidade (nota 3): Cena 2: 'mendigava perto de Jericó' não é exato; mude para 'à beira do caminho' conforme Marcos 10:46.",
+        "fidelidade (nota 3): Cena 11: 'Deus abriu os olhos dele' substitui Jesus; mude para 'Jesus abriu os olhos dele' (Marcos 10:52).",
+        "personagens (nota 3): Cena 11: 'Deus' substitui Jesus como personagem central; texto indica que foi Jesus quem curou."
+      ]
+    },
+    {
+      "quando": "01:32:55",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Multidão quis calar um cego. Jesus não deixou.",
+        "Bartimeu, cego, estava sentado à beira do caminho, saindo de Jericó.",
+        "Ouvindo que era Jesus, gritou: Filho de Davi, piedade!",
+        "Muitos mandaram calar, mas ele gritou mais alto.",
+        "Jesus parou e mandou chamar Bartimeu: anime-se, ele te chama!",
+        "Bartimeu jogou a capa e correu até Jesus.",
+        "Jesus perguntou o que ele queria, e ele disse: quero enxergar.",
+        "Jesus disse: sua fé te curou. Ele enxergou e seguiu Jesus.",
+        "Se mandarem calar sua fé, grita mais alto ainda.",
+        "Multidão quis calar, mas Jesus escolheu ouvir.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "01:33:35",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 3,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 5,
+        "payoff": 4
+      },
+      "entendimento": "Um cego que gritava por Jesus era reprimido pela multidão, mas Jesus o ouve e o cura porque ele não desistiu.",
+      "erros_factuais": [
+        "Cena 1: 'Jesus não deixou' é interpretação, não consta no texto; Jesus apenas chamou Bartimeu (10:49)"
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 1: 'Jesus não deixou' é interpretação, não consta no texto; Jesus apenas chamou Bartimeu (10:49)",
+        "compreensao (nota 3): Gancho 'Multidão quis calar um cego' é genérico demais — alguém sem contexto pode não entender por que a multidão quer calar um cego ou quem é esse cego"
+      ]
+    },
+    {
+      "quando": "01:35:35",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Cego gritou. Multidão mandou calar a boca.",
+        "Bartimeu, cego, à beira do caminho, saindo de Jericó.",
+        "Soube que era Jesus e gritou: Filho de Davi, piedade!",
+        "Muitos mandaram calar, mas ele gritou mais alto.",
+        "Jesus parou e mandou chamá-lo: anime-se, ele te chama!",
+        "Bartimeu jogou a capa e correu até Jesus.",
+        "Jesus perguntou o que ele queria. Quero enxergar, ele disse.",
+        "Jesus disse: sua fé te curou. Ele enxergou e seguiu Jesus.",
+        "Se mandarem calar, grita mais alto.",
+        "Mandaram calar o cego, mas Jesus ouviu.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "01:37:49",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 3,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 5,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 3
+      },
+      "entendimento": "Um mendigo cego persiste em gritar por Jesus apesar da multidão reprimi-lo, e sua fé o cura quando Jesus o chama.",
+      "erros_factuais": [],
+      "problemas": [
+        "ordem (nota 3): Cenas 1-2: Gancho apresenta ação (gritou, mandaram calar) que ocorre em Marcos 10:47-48 antes do contexto de Marcos 10:46; mova contexto para cena 1 ou deixe gancho claramente como paradoxo temporal."
+      ]
+    },
+    {
+      "quando": "03:05:56",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Mandaram o cego calar a boca.",
+        "Bartimeu, cego, mendigava perto de Jericó.",
+        "Ouviu que era Jesus, gritou: Filho de Davi, misericórdia!",
+        "Muitos mandaram calar, mas ele gritou mais.",
+        "Jesus parou e mandou chamar ele.",
+        "Disseram: levanta, Jesus tá te chamando.",
+        "Ele jogou a capa e correu até Jesus.",
+        "Jesus perguntou o que ele queria. Bartimeu pediu pra enxergar.",
+        "Jesus disse: vá, sua fé te curou.",
+        "Na hora ele enxergou e seguiu Jesus.",
+        "Se ninguém ouve seu grito, grita mesmo assim.",
+        "Mandaram calar. O grito abriu os olhos dele.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "03:07:36",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 5
+      },
+      "entendimento": "Um cego chamado Bartimeu gritou pedindo misericórdia a Jesus apesar de mandar-lhe calar, e sua fé persistente o curou.",
+      "erros_factuais": [],
+      "problemas": [
+        "compreensao (nota 3): Cena 11 não está em 2ª pessoa ('você clama') e não menciona dor real (culpa, medo, espera, luto); reformule para 'Quando você clama e ninguém ouve, você grita mesmo assim?' conectando a uma dor específica do espectador."
+      ]
+    },
+    {
+      "quando": "03:08:51",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Mandaram o cego calar a boca.",
+        "Bartimeu, cego, mendigava perto de Jericó.",
+        "Ouviu que era Jesus, gritou: Filho de Davi, misericórdia!",
+        "Muitos mandaram calar, mas ele gritou mais.",
+        "Jesus parou e mandou chamar ele.",
+        "Disseram: levanta, Jesus tá te chamando.",
+        "Ele jogou a capa e correu até Jesus.",
+        "Jesus perguntou o que ele queria. Bartimeu pediu pra enxergar.",
+        "Jesus disse: vá, sua fé te curou.",
+        "Na hora ele enxergou e seguiu Jesus.",
+        "Quando o medo manda você calar, você grita mesmo assim?",
+        "Mandaram calar. O grito abriu os olhos dele.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "03:11:29",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 5,
+        "ritmo": 5,
+        "linguagem": 5,
+        "payoff": 5
+      },
+      "entendimento": "Um cego que grita insistentemente consegue ser curado por Jesus porque sua fé foi mais forte que o medo de ser silenciado.",
+      "erros_factuais": [
+        "Cena 7: 'correu até Jesus' não corresponde a Marcos 10:50, que diz 'deu um salto'. Salto é um movimento específico; correr é contínuo."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 7: 'correu até Jesus' não corresponde a Marcos 10:50, que diz 'deu um salto'. Salto é um movimento específico; correr é contínuo."
+      ]
+    },
+    {
+      "quando": "03:12:25",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 3,
+      "problemas": [
+        "cena 5 usa o personagem 'jesus', que não está na lista de personagens",
+        "cena 6 usa o personagem 'discipulo', que não está na lista de personagens",
+        "cena 8 usa o personagem 'jesus', que não está na lista de personagens",
+        "cena 10 usa o personagem 'jesus', que não está na lista de personagens"
+      ],
+      "falas": [
+        "Mandaram o cego calar a boca.",
+        "Bartimeu, cego, mendigava perto de Jericó.",
+        "Ouviu que era Jesus, gritou: Filho de Davi, misericórdia!",
+        "Muitos mandaram calar, mas ele gritou mais.",
+        "Jesus parou e mandou chamar ele.",
+        "Disseram: levanta, Jesus tá te chamando.",
+        "Ele jogou a capa e correu até Jesus.",
+        "Jesus perguntou o que ele queria. Bartimeu pediu pra enxergar.",
+        "Jesus disse: vá, sua fé te curou.",
+        "Na hora ele enxergou e seguiu Jesus.",
+        "Quando ninguém escuta sua dor e você quer desistir, grita mesmo assim.",
+        "Mandaram calar. O grito abriu os olhos dele.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "03:15:14",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Mandaram o cego calar a boca.",
+        "Bartimeu, cego, mendigava perto de Jericó.",
+        "Ouviu que era Jesus, gritou: Filho de Davi, misericórdia!",
+        "Mandaram calar, mas ele gritou mais alto.",
+        "Jesus parou e mandou chamar ele.",
+        "Disseram: Jesus tá te chamando!",
+        "Ele jogou a capa e deu um salto até Jesus.",
+        "Jesus perguntou: o que você quer? Bartimeu disse: enxergar.",
+        "Jesus disse: vá, sua fé te curou.",
+        "Na hora ele enxergou e seguiu Jesus.",
+        "Quando ninguém ouve sua dor e você quer desistir, você grita mesmo assim?",
+        "Mandaram calar. O grito abriu os olhos dele.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "03:18:10",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 3,
+        "payoff": 5
+      },
+      "entendimento": "Bartimeu, mendigo cego, gritou a Jesus mesmo sendo repreendido, e Jesus o curou pela fé.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "03:40:23",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "O chão é uma estrada de asfalto moderna com acostamento, um anacronismo grave que denuncia a cena como não sendo da época bíblica.",
+          "imagem_corrigida": "Medium shot, seated cross-legged on a dusty roadside, head bowed low in sorrow, hands resting quietly in lap, flat sand and dirt path, warm golden dusk light, empty hillside road, distant hills behind."
+        },
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "O fundo mostra uma estrada asfaltada moderna com carro e poste, quebrando a ambientação bíblica.",
+          "imagem_corrigida": "Medium shot of a blind beggar sitting cross-legged on a dusty dirt path outside an ancient city, hands resting quietly in his lap, head slightly tilted. Ground is bare packed dirt with scattered small stones. Warm harsh midday sun, dry hills and rocky outcrops in the background, no road, no modern structures."
+        },
+        {
+          "cena": 3,
+          "ok": false,
+          "problema": "A imagem mostra Jesus dormindo num barco durante tempestade (cena de \"acalmar a tempestade\"), enquanto a fala narra Bartimeu gritando \"Filho de Davi, misericórdia!\" — cena completamente errada, sem relação com a história de Bartimeu.",
+          "imagem_corrigida": "Medium shot of a beggar kneeling on a dusty roadside, head tilted up, mouth open shouting desperately, long robe covering legs, blurred crowd in background, bright midday sun, dusty road, rocky hillside behind."
+        },
+        {
+          "cena": 5,
+          "ok": false,
+          "problema": "A imagem mostra Jesus dormindo dentro de um barco durante tempestade (cena de outra história), enquanto a fala descreve Jesus parando e mandando chamar alguém — nada na imagem mostra Jesus parado ou chamando ninguém.",
+          "imagem_corrigida": "Wide shot of a man standing still on a dusty road, turning his head toward a distant seated beggar, calling out. Flat packed dirt ground, clear daytime sky, warm sunlight, roadside near town wall."
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "A imagem mostra apenas um homem sozinho, de pé num barco, olhando o mar — não há Bartimeu, nem um discípulo, nem qualquer indício de chamado; a cena não tem relação com a fala «Disseram: Jesus tá te chamando!».",
+          "imagem_corrigida": "Medium shot, full body, of a disciple standing beside a seated blind beggar on a dusty roadside, speaking urgently as the beggar turns his head with sudden hope, flat sandy ground, warm midday sun, dry hills behind."
+        },
+        {
+          "cena": 7,
+          "ok": false,
+          "problema": "A fala diz que ele jogou a capa fora, mas na imagem ele ainda está vestindo/envolto na capa, que flutua atrás dele como se estivesse sendo usada, não descartada.",
+          "imagem_corrigida": "Full-body shot of a man leaping forward mid-stride on a sunlit dirt road, arms swinging freely at his sides, a discarded cloak lying on the ground behind him, dust kicked up, bright daylight, open desert path."
+        },
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "A fala é sobre Bartimeu ser curado e poder enxergar, mas a imagem mostra seus olhos totalmente tapados por uma faixa preta tipo máscara de dormir, passando a impressão de que ele continua cego/vendado em vez de curado.",
+          "imagem_corrigida": "Wide shot of two men standing side by side on a sandy desert path, one gazing upward in wonder at bright sunlight breaking through the sky, arms at sides, flat rocky ground, warm midday light."
+        },
+        {
+          "cena": 10,
+          "ok": false,
+          "problema": "Bartimeu aparece com uma venda preta cobrindo os olhos, como se ainda estivesse cego, contradizendo a fala que diz que ele já enxergou.",
+          "imagem_corrigida": "Wide shot of two men walking side by side along a dusty dirt road, front figure walking confidently with eyes open and full of joy, dry hills, warm morning sunlight, sandy path."
+        },
+        {
+          "cena": 12,
+          "ok": false,
+          "problema": "A imagem mostra o homem andando calmamente e olhando normalmente pela estrada, sem nenhuma relação com o momento do grito e da abertura milagrosa dos olhos de Bartimeu descrito na fala.",
+          "imagem_corrigida": "Medium shot of a man kneeling on a dusty road, eyes suddenly opening wide with amazement, face turned up toward bright light, smooth sandy ground, open desert path, harsh midday sun overhead."
+        }
+      ]
+    },
+    {
+      "quando": "06:18:48",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "O fundo mostra uma estrada asfaltada moderna com carro e poste, quebrando o cenário bíblico.",
+          "imagem_corrigida": "Medium shot of a blind beggar sitting cross-legged on a dusty roadside near a city gate, head slightly bowed, hands resting in his lap. Ground is bare packed dirt with scattered pebbles, dry hills behind, warm midday sunlight, no modern structures."
+        },
+        {
+          "cena": 3,
+          "ok": false,
+          "problema": "A imagem mostra Jesus dormindo num barco durante uma tempestade (episódio da tempestade acalmada), e não Bartimeu gritando \"Filho de Davi, misericórdia!\" à beira do caminho.",
+          "imagem_corrigida": "Medium shot of a beggar seated on a dusty roadside path, head raised, mouth open shouting toward the sky, long robe covering legs and feet, blurred crowd walking behind, bright midday sun, rocky wall backdrop."
+        },
+        {
+          "cena": 5,
+          "ok": false,
+          "problema": "A fala descreve Jesus parando na estrada e mandando chamar Bartimeu, mas a imagem mostra Jesus dormindo dentro de um barco durante uma tempestade no mar (cena de outra história), sem nenhum chamado ou ação relacionada.",
+          "imagem_corrigida": "Wide shot of a man standing still on a dusty roadside path, body turned toward a seated beggar in the distance, calling out. Smooth packed dirt ground, warm daylight, sparse rocky hillside behind."
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "A imagem mostra apenas um homem sozinho de pé num barco de pesca olhando o mar ao entardecer; não há discípulo nem Bartimeu (mendigo cego) e nada sugere alguém sendo chamado, contradizendo a fala da cena.",
+          "imagem_corrigida": "Wide shot of a disciple standing beside a seated blind beggar on a dusty roadside, leaning in with urgency, beggar turning his head alert toward the voice. Flat bare dirt ground, warm midday sunlight, roadside near town gate."
+        },
+        {
+          "cena": 10,
+          "ok": false,
+          "problema": "O homem (Bartimeu) aparece com uma venda cobrindo os olhos, sugerindo que ainda está cego, o que contradiz a fala de que ele enxergou e seguiu Jesus.",
+          "imagem_corrigida": "Wide shot of two men walking together along a dusty road, one looking around with wonder at the open landscape, both walking forward side by side. Flat dirt path, warm golden afternoon light, open countryside."
+        }
+      ]
+    },
+    {
+      "quando": "06:28:40",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "06:29:15",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-bartimeu.mp4",
+      "duracao": 47.1,
+      "avisos": []
+    },
+    {
+      "quando": "06:29:44",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-bartimeu_sem-musica.mp4",
+      "duracao": 47.1,
+      "avisos": []
+    }
+  ]
+}

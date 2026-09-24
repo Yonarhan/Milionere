@@ -1,0 +1,368 @@
+[
+  {
+    "id": "boa_boa_pedro-agua_01",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_pedro-agua_02",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_pedro-agua_03",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_pedro-agua_04",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_pedro-agua_05",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_pedro-agua_06",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_pedro-agua_07",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_pedro-agua_08",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_pedro-agua_09",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_pedro-agua_10",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_pedro-agua_11",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_pedro-agua_12",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_pedro-agua_13",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_jonas-peixe_01",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_jonas-peixe_02",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_jonas-peixe_03",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_jonas-peixe_04",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_jonas-peixe_05",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_jonas-peixe_06",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_jonas-peixe_07",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_jonas-peixe_08",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_jonas-peixe_09",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_jonas-peixe_10",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_jonas-peixe_11",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_jonas-peixe_12",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "boa_boa_jonas-peixe_13",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "sdxl_sdxl_pedro_01",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "sdxl_sdxl_pedro_02",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "sdxl_sdxl_pedro_03",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "sdxl_sdxl_pedro_04",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "sdxl_sdxl_pedro_05",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "sdxl_sdxl_pedro_06",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "sdxl_sdxl_pedro_07",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "sdxl_sdxl_pedro_08",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "sdxl_sdxl_pedro_09",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "sdxl_sdxl_pedro_12",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "sdxl_sdxl_pedro_13",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_01_1",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_01_2",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_01_3",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_02_1",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_02_2",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_02_3",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_03_1",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_03_2",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_03_3",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_04_1",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_04_2",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_04_3",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_05_1",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_05_2",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_05_3",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_06_1",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_06_2",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_06_3",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_07_1",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_07_2",
+    "esperado_ok": true,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_07_3",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_08_1",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_08_2",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  },
+  {
+    "id": "dificil_dificil_08_3",
+    "esperado_ok": false,
+    "ok": null,
+    "problema": "ERRO: ollama (qwen3-vl:8b) devolveu JSON inválido duas vezes: "
+  }
+]

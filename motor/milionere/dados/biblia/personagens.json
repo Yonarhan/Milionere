@@ -27,7 +27,7 @@
   "anjo": {
     "nome": "Anjo do Senhor",
     "nome_en": "angel",
-    "descricao_visual": "a tall radiant man in flowing white robes, soft golden light around him, serene face, no wings"
+    "descricao_visual": "a youthful beardless man around 20, short light golden hair, smooth pale face, calm luminous eyes, plain white linen robe with a thin gold sash, large white feathered wings, soft white glow"
   },
   "discipulo": {
     "nome": "Discípulo",
@@ -43,5 +43,65 @@
     "nome": "Marinheiro",
     "nome_en": "sailor",
     "descricao_visual": "a muscular sailor in his 30s, short cropped dark hair, thick short dark beard, deeply sun-burned skin, sleeveless rough undyed linen tunic tied with a rope, bare feet"
+  },
+  "elias": {
+    "nome": "Elias",
+    "nome_en": "Elijah",
+    "descricao_visual": "a gaunt weathered man in his late 40s, long unkempt grey-streaked dark hair, long wild grey-black beard, deeply tanned leathery skin, rough dark camel-hair mantle over a coarse brown tunic, leather belt"
+  },
+  "jose": {
+    "nome": "José",
+    "nome_en": "Joseph",
+    "descricao_visual": "a young Hebrew man in his twenties, short black curly hair, no beard, olive skin, wearing a plain beige tunic"
+  },
+  "irmaos-jose": {
+    "nome": "Irmãos de José",
+    "nome_en": "Joseph's brothers",
+    "descricao_visual": "a group of bearded Hebrew shepherd men in their thirties to fifties, dark curly hair and beards, sun-weathered olive skin, rough brown wool tunics with leather belts"
+  },
+  "ana": {
+    "nome": "Ana",
+    "nome_en": "Hannah",
+    "descricao_visual": "a woman in her mid-20s, long dark hair under a beige head covering, plain undyed wool robe, sorrowful gentle eyes"
+  },
+  "eli": {
+    "nome": "Eli",
+    "nome_en": "Eli",
+    "descricao_visual": "an elderly priest in his late 70s, thinning white hair, long white beard, deeply lined weathered face, plain long white priestly robe"
+  },
+  "samuel-bebe": {
+    "nome": "Samuel",
+    "nome_en": "Samuel",
+    "descricao_visual": "a swaddled newborn infant wrapped in plain linen cloth, tiny sleeping face, no visible hair"
+  },
+  "mulher-fluxo": {
+    "nome": "Mulher com fluxo de sangue",
+    "nome_en": "Woman with the flow of blood",
+    "descricao_visual": "a frail woman in her 30s, long dark hair under a faded reddish-brown head covering, pale exhausted face, worn beige linen robe, olive skin, thin frame"
+  },
+  "abraao": {
+    "nome": "Abraão",
+    "nome_en": "Abraham",
+    "descricao_visual": "an elderly Hebrew man in his 90s, long white beard, thinning white hair, deeply wrinkled tanned skin, plain long beige robe with a brown cloak"
+  },
+  "hagar": {
+    "nome": "Hagar",
+    "nome_en": "Hagar",
+    "descricao_visual": "an Egyptian servant woman in her 30s, long dark wavy hair under a plain reddish-brown headscarf, olive skin, worn beige linen robe"
+  },
+  "ismael": {
+    "nome": "Ismael",
+    "nome_en": "Ishmael",
+    "descricao_visual": "a thin teenage boy around fifteen years old, short black curly hair, no beard, olive skin, simple undyed linen tunic"
+  },
+  "bartimeu": {
+    "nome": "Bartimeu",
+    "nome_en": "Bartimaeus",
+    "descricao_visual": "a blind beggar man in his 40s, tangled dark curly hair, short unkempt beard, weathered olive skin, ragged brown sackcloth tunic with a dark worn cloak over his shoulders"
+  },
+  "zaqueu": {
+    "nome": "Zaqueu",
+    "nome_en": "Zacchaeus",
+    "descricao_visual": "a short man in his 40s, balding short dark hair, thin trimmed beard, olive skin, fine embroidered blue robe with a leather coin pouch at the belt"
   }
 }

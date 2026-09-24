@@ -20,7 +20,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import biblia  # noqa: E402
 import llm  # noqa: E402
-from roteirista import REGRAS_IMAGEM  # noqa: E402
+from roteirista import regras_imagem  # noqa: E402
+import medidor  # noqa: E402
 
 VOCAB_IA = ["fascinante", "incrível jornada", "desvendar", "crucial", "notável", "intrigante", "vasto universo",
             "mistérios do", "não apenas", "não é só", "e sabe o que", "realmente", "cientistas acreditam",
@@ -132,7 +133,7 @@ def camada1(r: dict, formato: dict, tema: dict) -> list[str]:
 
 CRITERIOS = {
     "fidelidade": "todo fato narrado está na FONTE, sem acréscimo, troca ou exagero apresentado como fato",
-    "ordem": "os fatos aparecem na mesma ordem da fonte (e, na parábola, em ordem cronológica)",
+    "ordem": "da cena 2 em diante, os fatos aparecem na mesma ordem da fonte (e, na parábola, em ordem cronológica). A cena 1 é o gancho: pode antecipar qualquer momento da história (é pedido do formato) e não conta para a ordem",
     "personagens": "os mesmos personagens do começo ao fim, com os nomes e papéis certos, sem ninguém surgir do nada",
     "compreensao": "quem nunca leu a história entende tudo ouvindo UMA vez, sem ver a tela",
     "gancho": "a primeira frase faz parar de rolar o feed",
@@ -215,13 +216,18 @@ SCHEMA_VISUAL = {
 JUIZES_EM_PARALELO = 4
 
 
-def julgar_imagem(r: dict, n: int, arq: Path, epoca: str) -> dict:
-    """Juiz visual de UMA imagem, em resolução cheia. Devolve {cena, ok, problema, imagem_corrigida}."""
+def julgar_imagem(r: dict, n: int, arq: Path, epoca: str, juiz: str | None = None) -> dict:
+    """Juiz visual de UMA imagem, em resolução cheia. Devolve {cena, ok, problema, imagem_corrigida}.
+    juiz: None = padrão (llm.JUIZ_VISUAL, variável MILIONERE_JUIZ_VISUAL); 'claude' ou 'ollama:<modelo>'."""
+    juiz = juiz or llm.JUIZ_VISUAL
+    local = juiz.startswith("ollama:")
     c = r["cenas"][n - 1]
     pers = {p["id"]: p for p in r["personagens"]}
-    quem = "; ".join(pers[p]["nome"] for p in c["personagens"] if p in pers) or "ninguém (só paisagem ou objeto)"
+    quem = ("; ".join(pers[p]["nome"] for p in c["personagens"] if p in pers)
+            or "nenhum personagem da história (pessoa anônima pode aparecer, se combinar com a fala)")
     prompt = (
-        f"Abra a imagem {arq} com a ferramenta Read. Ela vai num vídeo cristão realista; defeito de IA derruba o vídeo.\n\n"
+        ("A imagem está anexada." if local else f"Abra a imagem {arq} com a ferramenta Read.")
+        + " Ela vai num vídeo cristão realista; defeito de IA derruba o vídeo.\n\n"
         "PASSO 1, anatomia e artefatos (o mais importante). Olhe devagar, parte por parte:\n"
         "- cada MÃO: conte os dedos, veja se o tamanho bate com o corpo, se está presa a um braço, se não há mão sobrando;\n"
         "- cada ROSTO: olhos, boca e proporção normais; nenhum rosto extra, cortado, fundido ou surgindo no meio da cena;\n"
@@ -236,19 +242,30 @@ def julgar_imagem(r: dict, n: int, arq: Path, epoca: str) -> dict:
         "`combina` = false só se a imagem CONTRADIZ a fala (pessoa errada, emoção oposta, ação oposta) ou não tem nada "
         "a ver. Imagem evocativa que não mostra a ação ao pé da letra combina. Cor de roupa, expressão exata e "
         "enquadramento NÃO são motivo de reprovação.\n\n"
-        "Se houver defeito ou não combinar, escreva o problema e um prompt novo que evite o problema. " + REGRAS_IMAGEM
+        "Se houver defeito ou não combinar, escreva o problema e um prompt novo que evite o problema. O prompt novo "
+        "descreve só enquadramento, ação, chão, luz e lugar; NUNCA a aparência de um personagem (idade, cabelo, barba, "
+        "roupa, asas), que vem da ficha fixa e entra sozinha. Regras para ESCREVER esse prompt novo (não são critério "
+        "de reprovação; reprove só pelos passos 1 e 2): " + regras_imagem()
     )
-    v = llm.chamar(prompt, SCHEMA_VISUAL, ler_arquivos_em=arq.parent, papel="juiz")
+    if local:
+        v = llm.chamar_ollama(prompt, SCHEMA_VISUAL, juiz.split(":", 1)[1], imagens=[arq])
+    else:
+        with medidor.etapa("juiz_visual"):
+            v = llm.chamar(prompt, SCHEMA_VISUAL, ler_arquivos_em=arq.parent)
     ok = not v["defeitos"] and v["combina"]
     problema = v["problema"] or "; ".join(v["defeitos"])
     return {"cena": n, "ok": ok, "problema": "" if ok else problema,
             "imagem_corrigida": "" if ok else v["imagem_corrigida"]}
 
 
-def julgar_varias(r: dict, itens: list[tuple[int, Path]], epoca: str) -> list[dict]:
+def julgar_varias(r: dict, itens: list[tuple[int, Path]], epoca: str, juiz: str | None = None) -> list[dict]:
     from concurrent.futures import ThreadPoolExecutor
-    with ThreadPoolExecutor(JUIZES_EM_PARALELO) as ex:
-        return list(ex.map(lambda it: julgar_imagem(r, it[0], it[1], epoca), itens))
+    local = (juiz or llm.JUIZ_VISUAL).startswith("ollama:")  # a GPU local julga uma por vez
+    import contextvars
+    # cada thread leva uma cópia do contexto: sem isso o medidor (contextvars) não vê as chamadas do juiz
+    ctxs = [contextvars.copy_context() for _ in itens]
+    with ThreadPoolExecutor(1 if local else JUIZES_EM_PARALELO) as ex:
+        return list(ex.map(lambda p: p[0].run(julgar_imagem, r, p[1][0], p[1][1], epoca, juiz), zip(ctxs, itens)))
 
 
 def camada3(r: dict, pasta: Path, epoca: str, so: list[int] | None = None) -> list[dict]:

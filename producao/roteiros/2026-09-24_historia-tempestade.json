@@ -1,0 +1,255 @@
+[
+  {
+    "slug": "historia-tempestade",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "tempestade",
+    "estilo": "cinema_zimage",
+    "epoca": "biblica",
+    "titulo": "Por que Jesus dormia numa tempestade?",
+    "cenario_en": "ancient Sea of Galilee, 1st century, small wooden fishing boats, rocky Middle Eastern shoreline",
+    "personagens": [
+      {
+        "id": "jesus",
+        "nome": "Jesus",
+        "nome_en": "Jesus",
+        "descricao_visual": "a man in his early 30s, shoulder-length wavy dark brown hair, short dark beard, olive skin, kind brown eyes, simple cream linen tunic with a brown cloak"
+      },
+      {
+        "id": "discipulo",
+        "nome": "Discípulo",
+        "nome_en": "disciple",
+        "descricao_visual": "a young man in his early 20s, short wavy black hair, sparse thin black beard, light olive skin, plain faded blue-grey wool tunic with a leather belt"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Jesus disse aos discípulos: 'Passemos para o outro lado.'",
+        "ref": "Marcos 4:35"
+      },
+      {
+        "n": 2,
+        "evento": "Eles deixaram a multidão e levaram Jesus no barco.",
+        "ref": "Marcos 4:36"
+      },
+      {
+        "n": 3,
+        "evento": "Levantou-se um forte vendaval e o barco já estava se enchendo de água.",
+        "ref": "Marcos 4:37"
+      },
+      {
+        "n": 4,
+        "evento": "Jesus dormia na popa sobre um travesseiro; eles o acordaram e perguntaram se ele não se importava que morressem.",
+        "ref": "Marcos 4:38"
+      },
+      {
+        "n": 5,
+        "evento": "Jesus despertou, repreendeu o vento e disse ao mar: 'Paz! Aquiete-se!' O vento cessou e houve grande calmaria.",
+        "ref": "Marcos 4:39"
+      },
+      {
+        "n": 6,
+        "evento": "Jesus perguntou por que estavam com tanto medo e por que não tinham fé.",
+        "ref": "Marcos 4:40"
+      },
+      {
+        "n": 7,
+        "evento": "Eles ficaram com muito medo e perguntavam uns aos outros quem era aquele a quem até o vento e o mar obedeciam.",
+        "ref": "Marcos 4:41"
+      }
+    ],
+    "versiculo": {
+      "ref": "Marcos 4:41",
+      "texto": "Eles ficaram com muito medo e diziam uns aos outros: “Quem é este, que até o vento e o mar lhe obedecem?”"
+    },
+    "cenas": [
+      {
+        "fala": "Jesus dormia enquanto o barco enchia de água.",
+        "evento": 0,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a man asleep, reclined in a wooden boat, long robe covering his feet completely, stormy dark sea and lightning behind, wet wooden boards, night light",
+        "busca": "stormy sea boat night"
+      },
+      {
+        "fala": "Ele disse: vamos atravessar, e veio um vendaval.",
+        "evento": 1,
+        "personagens": [
+          "jesus",
+          "discipulo"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot on a wooden fishing boat: one man stands scanning the darkening sky, another sits on the plank bench. Weathered wood deck, coiled rope, calm lake, distant rocky shore, storm clouds looming above.",
+        "busca": "fishing boat leaving shore dusk"
+      },
+      {
+        "fala": "As ondas bateram, e a água enchia tudo.",
+        "evento": 3,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a wooden boat pitching violently in towering storm waves, water pouring over its sides, dark clouds and lightning flashing above, turbulent open sea at night.",
+        "busca": "flooding boat storm waves"
+      },
+      {
+        "fala": "Mas Jesus continuava dormindo na popa, num travesseiro.",
+        "evento": 4,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a man lying asleep across the stern of a small wooden fishing boat, head resting on a folded cloak, body still and relaxed. Weathered wooden planks beneath him, bare feet covered by his long robe. Dark stormy sky, choppy sea, dim natural light, open water in the background, no other objects.",
+        "busca": "man sleeping boat storm"
+      },
+      {
+        "fala": "Os discípulos o acordaram e disseram: mestre, não se importa que a gente morra?",
+        "evento": 4,
+        "personagens": [
+          "discipulo",
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot inside a storm-tossed boat, a young disciple leaning forward with a terrified expression shouting toward the stern, a bearded man lying asleep nearby, waves crashing over the deck.",
+        "busca": "fisherman panicking storm boat"
+      },
+      {
+        "fala": "Ele disse ao mar: paz, aquiete-se.",
+        "evento": 5,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a bearded man standing at the boat's bow, arms calmly at his sides, silhouette against a dark churning sea and lightning, commanding stillness over the raging storm.",
+        "busca": "man silhouette boat storm sea"
+      },
+      {
+        "fala": "O vento parou, e houve grande calmaria.",
+        "evento": 5,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of an empty wooden boat resting on a glassy calm sea, golden sunlight breaking through parting storm clouds, smooth still water reflecting soft light, peaceful open horizon.",
+        "busca": "calm sea after storm boat"
+      },
+      {
+        "fala": "Ele perguntou: cadê a fé de vocês?",
+        "evento": 6,
+        "personagens": [
+          "jesus",
+          "discipulo"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a bearded man seated at a boat's stern facing a young disciple seated opposite him, calm morning sea around them, soft golden light, still water reflecting the sky.",
+        "busca": "teacher speaking boat calm sea"
+      },
+      {
+        "fala": "Com medo, disseram: quem é esse que o mar obedece?",
+        "evento": 7,
+        "personagens": [
+          "discipulo"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a disciple standing at the bow of a wooden fishing boat, gazing at the calm sea in awe, long robe reaching down to the wooden deck, flat wooden planks, calm water, distant rocky shore, warm sunset light.",
+        "busca": "amazed fisherman sea calm"
+      },
+      {
+        "fala": "No seu medo, Deus pode parecer dormindo.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Medium shot from behind of a man standing on wet sand, facing a raging stormy sea, robe whipped violently by wind, waves crashing near the shore, moonlight piercing dark storm clouds overhead.",
+        "busca": "dark sea night boat"
+      },
+      {
+        "fala": "Mas ele dormia porque sabia quem mandava no mar.",
+        "evento": 0,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Medium shot of a man lying asleep in the stern of a small wooden boat, calm peaceful face, feet tucked out of view, rocking on stormy dark sea, distant rocky coastline, heavy storm clouds, moonlight breaking through, no other boats.",
+        "busca": "calm sea sunrise boat"
+      },
+      {
+        "fala": "Escreve amém.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Close medium shot of an open Bible resting on a rough wooden table beside a lit oil lamp, warm flickering light, dark quiet background, smooth wooden surface beneath.",
+        "busca": "bible lamp calm"
+      }
+    ],
+    "descricao": "\"Eles ficaram com muito medo e diziam uns aos outros: 'Quem é este, que até o vento e o mar lhe obedecem?'\" (Marcos 4:41)\n\nJesus dormia no meio da tempestade enquanto os discípulos morriam de medo. Só uma palavra dele bastou pra acalmar o mar. Você já sentiu que Deus estava dormindo na sua tempestade? Leia Marcos 4.",
+    "hashtags": [
+      "#jesus",
+      "#biblia",
+      "#fé",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já sentiu que Deus tava \"dormindo\" enquanto você lutava sozinho?",
+    "fontes": [
+      "Marcos 4:35-41 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Jesus dormia enquanto o barco enchia de água.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 5
+      },
+      {
+        "texto": "O barco afundava e o mestre dormia tranquilo.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "Como alguém dorme enquanto o barco afunda?",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "Uma tempestade forte, e Jesus dormindo no meio dela.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "O barco quase virou. Jesus nem acordou.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 4
+      }
+    ],
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 4,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 4,
+        "ordem": 4,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 5
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Z-Image Turbo)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    }
+  }
+]

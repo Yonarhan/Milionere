@@ -258,3 +258,4 @@ servico/media/
 
 # Banco de imagens (gerado; v1 em SQLite)
 producao/banco/
+*.rar

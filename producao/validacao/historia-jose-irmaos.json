@@ -1,0 +1,247 @@
+{
+  "etapas": [
+    {
+      "quando": "21:13:45",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Quem o vendeu pediu comida a ele.",
+        "José era o favorito, com túnica especial.",
+        "Os irmãos tiraram a túnica e jogaram numa cisterna.",
+        "Judá disse: melhor vender do que matar.",
+        "Venderam José por vinte moedas de prata.",
+        "Anos depois, José não aguentou mais e chorou alto.",
+        "Eu sou José! Meu pai ainda vive?",
+        "Cheguem perto, sou eu, vendido por vocês.",
+        "Não se entristeçam: foi Deus quem mandou pra salvar vidas.",
+        "Talvez você carregue uma culpa que acha imperdoável.",
+        "Quem o vendeu, ele alimentou e perdoou.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "21:15:44",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 2,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 5
+      },
+      "entendimento": "José, o filho favorito, é odiado e vendido pelos irmãos, mas anos depois, como governador, os perdoa porque Deus converteu sua maldade em salvação.",
+      "erros_factuais": [
+        "Cena 1: 'quem o vendeu pediu comida a ele' não consta de Gênesis 37:3-45:5; este fato ocorre em Gênesis 42+, fora da fonte fornecida.",
+        "Cena 11: 'alimentou' não está na fonte citada, apenas em Gênesis 42+."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 1: 'quem o vendeu pediu comida a ele' não consta de Gênesis 37:3-45:5; este fato ocorre em Gênesis 42+, fora da fonte fornecida.",
+        "ERRO FACTUAL: Cena 11: 'alimentou' não está na fonte citada, apenas em Gênesis 42+.",
+        "fidelidade (nota 2): Cena 1: 'pedido comida' está fora do trecho fornecido (Gênesis 42+); altere gancho para paradoxo usando só fatos de 37-45 (ex: 'Seu ódio se tornaria fome depois').",
+        "fidelidade (nota 2): Cena 11: 'alimentou' não consta da fonte; mude para 'Quem o vendeu, ele perdoou.' (5 palavras, economiza espaço).",
+        "compreensao (nota 3): Cena 1: 'pediu comida' é antecipado sem ser contado depois na história, deixando o ouvinte confuso sobre quando/como ocorreu; o gancho usa fato não narrado."
+      ]
+    },
+    {
+      "quando": "21:18:26",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Quem o vendeu, ele chamou de irmão.",
+        "José era o favorito, com túnica de muitas cores.",
+        "Os irmãos tiraram a túnica e o jogaram numa cisterna vazia.",
+        "Judá disse: melhor vender do que matar.",
+        "Venderam José por vinte moedas de prata.",
+        "Anos depois, José não aguentou mais e chorou alto.",
+        "José perguntou: meu pai ainda vive?",
+        "José disse: cheguem perto, sou eu, o irmão que vocês venderam.",
+        "Não se entristeçam: foi Deus quem me mandou pra salvar vidas.",
+        "Talvez você ache que sua culpa não tem perdão.",
+        "Quem o vendeu, ele perdoou.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "21:20:31",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 5
+      },
+      "entendimento": "Um ouvinte entende que José foi vendido pelos irmãos que o odiavam, mas reencontra-os anos depois e os perdoa porque Deus o preservou para salvar vidas.",
+      "erros_factuais": [],
+      "problemas": [
+        "compreensao (nota 3): Cena 6: 'Anos depois, José não aguentou mais e chorou alto' não deixa claro que ele chorou quando os irmãos chegaram; mude para 'Quando seus irmãos chegaram, José chorou alto' (economiza 1 palavra, fica 93/95).",
+        "compreensao (nota 3): Cena 7: 'José perguntou: meu pai ainda vive?' deixa aberta a resposta sem confirmação, criando lacuna de informação."
+      ]
+    },
+    {
+      "quando": "21:22:28",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Quem o vendeu, ele chamou de irmão.",
+        "José era o filho favorito, e ganhou uma túnica especial.",
+        "Os irmãos tiraram a túnica dele e o jogaram numa cisterna vazia.",
+        "Judá disse: é melhor vender nosso irmão do que matar.",
+        "E venderam José por vinte moedas de prata.",
+        "Quando seus irmãos chegaram, José chorou alto.",
+        "José disse: cheguem perto, sou eu, o irmão que vocês venderam.",
+        "Não se entristeçam: foi Deus quem me mandou pra preservar vidas.",
+        "Talvez você ache que sua culpa não tem perdão.",
+        "Quem o vendeu, ele perdoou.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "21:24:04",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 5,
+        "ritmo": 4,
+        "linguagem": 5,
+        "payoff": 5
+      },
+      "entendimento": "Um homem perdoou os irmãos que o venderam, porque Deus transformou sua traição em salvação para muitas vidas.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "21:35:12",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "A cena tem uma multidão de pessoas ao fundo (uma delas com o rosto cortado) e um prédio de pedra elaborado, quando deveria ter no máximo 2 figuras e fundo só de paisagem natural.",
+          "imagem_corrigida": "Wide shot of two men standing face to face in tense confrontation, one with accusing stern posture, on flat sun-baked clay ground, open desert landscape with distant rocky hills, harsh midday sunlight, no other people."
+        },
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "O fundo tem uma multidão de figuras, um templo com colunas de estilo greco-romano/egípcio e um vaso decorativo com flores, elementos anacrônicos e uma cena lotada que fogem da ambientação simples pedida.",
+          "imagem_corrigida": "Wide shot of a young man standing alone in an open desert clearing, chin lifted with quiet pride, arms relaxed at his sides. Flat bare sand, distant tents on the horizon, warm light, clear sky."
+        },
+        {
+          "cena": 3,
+          "ok": false,
+          "problema": "A cisterna tem paredes decoradas com relevos e estátuas de estilo egípcio (figuras com cabeça de animal, hieróglifos), parecendo um templo egípcio em vez de um poço seco simples no deserto.",
+          "imagem_corrigida": "Full shot of a young man sitting alone at the bottom of a deep dry stone cistern, knees drawn up, looking upward in fear. Bare dirt ground, plain rough rock walls, harsh sunlight falling from the opening above."
+        },
+        {
+          "cena": 4,
+          "ok": false,
+          "problema": "O prédio ao fundo parece uma construção moderna (estilo mausoléu/monumento), anacrônica para a época bíblica.",
+          "imagem_corrigida": "Wide shot, two brothers standing on flat desert sand, one turning toward the other mid-argument, urgent expression, clear sky and bare rocky hillside behind them, warm late afternoon sunlight."
+        },
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "A cena deveria mostrar só paisagem/objeto (sem pessoa), mas a imagem tem um homem em pé como sujeito central da cena.",
+          "imagem_corrigida": "Wide static shot of a small clay oil lamp burning on a wooden table inside a quiet stone courtyard, empty space around it, dusty flat ground, warm late afternoon sunlight, ancient Egyptian ruins in background."
+        }
+      ]
+    },
+    {
+      "quando": "21:57:44",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 2,
+      "reprovadas": [
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "A fala não deveria ter ninguém em cena (só paisagem/objeto), mas a imagem mostra duas pessoas caminhando de costas no pátio do templo.",
+          "imagem_corrigida": "Wide empty shot of an ancient Egyptian temple courtyard, stone columns lining both sides, lit torches, flat stone floor, no people, desert hill behind, dusk light."
+        }
+      ]
+    },
+    {
+      "quando": "21:58:10",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-jose-irmaos.mp4",
+      "duracao": 39.8,
+      "avisos": []
+    },
+    {
+      "quando": "21:58:34",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-jose-irmaos_sem-musica.mp4",
+      "duracao": 39.8,
+      "avisos": []
+    },
+    {
+      "quando": "22:00:57",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "A cena deveria mostrar só paisagem/objeto (ninguém aparecendo), mas a imagem traz uma pessoa em destaque, o que não corresponde ao roteiro desta fala.",
+          "imagem_corrigida": "Wide shot of a flickering clay oil lamp resting on a rough stone wall at dusk, vast empty desert valley and hills fading into shadow behind, dry dirt ground, warm dim light, no people."
+        }
+      ]
+    },
+    {
+      "quando": "22:08:53",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 2,
+      "reprovadas": [
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "A cena pede que ninguém apareça (só paisagem ou objeto), mas a imagem mostra um homem de corpo inteiro junto ao altar.",
+          "imagem_corrigida": "Wide shot of a small stone altar with a lit flame beside a calm river at dusk, empty desert banks, smooth bare sand foreground, rocky hills behind, warm fading sunlight, no people, still landscape."
+        }
+      ]
+    },
+    {
+      "quando": "22:09:22",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-jose-irmaos.mp4",
+      "duracao": 39.8,
+      "avisos": []
+    },
+    {
+      "quando": "22:09:44",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-jose-irmaos_sem-musica.mp4",
+      "duracao": 39.8,
+      "avisos": []
+    }
+  ]
+}

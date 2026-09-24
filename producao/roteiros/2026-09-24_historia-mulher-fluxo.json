@@ -1,0 +1,288 @@
+[
+  {
+    "slug": "historia-mulher-fluxo",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "mulher-fluxo",
+    "estilo": "cinema_flux",
+    "epoca": "biblica",
+    "titulo": "O toque que parou Jesus no meio da multidão",
+    "cenario_en": "ancient Judea, 1st century, dusty roads and mudbrick village",
+    "personagens": [
+      {
+        "id": "jesus",
+        "nome": "Jesus",
+        "nome_en": "Jesus",
+        "descricao_visual": "a man in his early 30s, shoulder-length wavy dark brown hair, short dark beard, olive skin, kind brown eyes, simple cream linen tunic with a brown cloak"
+      },
+      {
+        "id": "mulher-fluxo",
+        "nome": "Mulher com fluxo de sangue",
+        "nome_en": "Woman with the flow of blood",
+        "descricao_visual": "a frail woman in her 30s, long dark hair under a faded reddish-brown head covering, pale exhausted face, worn beige linen robe, olive skin, thin frame"
+      },
+      {
+        "id": "discipulo",
+        "nome": "Discípulo",
+        "nome_en": "disciple",
+        "descricao_visual": "a young man in his early 20s, short wavy black hair, sparse thin black beard, light olive skin, plain faded blue-grey wool tunic with a leather belt"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Uma mulher tinha um fluxo de sangue havia doze anos",
+        "ref": "Marcos 5:25"
+      },
+      {
+        "n": 2,
+        "evento": "Sofreu nas mãos de vários médicos, gastou tudo o que tinha e piorou",
+        "ref": "Marcos 5:26"
+      },
+      {
+        "n": 3,
+        "evento": "Ouviu falar de Jesus, aproximou-se por trás no meio da multidão e tocou em suas vestes",
+        "ref": "Marcos 5:27"
+      },
+      {
+        "n": 4,
+        "evento": "Ela pensava que, se tocasse nas vestes dele, ficaria curada",
+        "ref": "Marcos 5:28"
+      },
+      {
+        "n": 5,
+        "evento": "Na mesma hora a hemorragia cessou e ela sentiu que estava curada",
+        "ref": "Marcos 5:29"
+      },
+      {
+        "n": 6,
+        "evento": "Jesus percebeu que poder havia saído dele e perguntou quem tinha tocado em suas vestes",
+        "ref": "Marcos 5:30"
+      },
+      {
+        "n": 7,
+        "evento": "Os discípulos estranharam a pergunta, e Jesus olhou ao redor para ver quem tinha feito aquilo",
+        "ref": "Marcos 5:31-32"
+      },
+      {
+        "n": 8,
+        "evento": "Com medo e tremendo, ela se prostrou diante dele e contou toda a verdade",
+        "ref": "Marcos 5:33"
+      },
+      {
+        "n": 9,
+        "evento": "Jesus disse que a fé dela a curou e mandou que fosse em paz, livre da doença",
+        "ref": "Marcos 5:34"
+      }
+    ],
+    "versiculo": {
+      "ref": "Marcos 5:34",
+      "texto": "Ele lhe disse: \"Filha, a sua fé a curou. Vá em paz e fique livre da sua doença.\""
+    },
+    "cenas": [
+      {
+        "fala": "Doze anos doente. Um toque bastou.",
+        "evento": 0,
+        "personagens": [
+          "mulher-fluxo"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a frail woman sitting cross-legged on a woven mat, exhausted expression, worn robe covering her feet, dim mudbrick room, flickering oil lamp light, smooth bare dirt floor.",
+        "busca": "sick woman ancient middle east"
+      },
+      {
+        "fala": "Uma mulher sangrava doze anos, sem parar.",
+        "evento": 1,
+        "personagens": [
+          "mulher-fluxo"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a weary woman lying on a low mat, long sleeve draped across her side in pain, dim room, flickering oil lamp light, smooth bare dirt floor, plain wall behind.",
+        "busca": "woman suffering illness ancient"
+      },
+      {
+        "fala": "Gastou tudo com médicos, e piorou.",
+        "evento": 2,
+        "personagens": [
+          "mulher-fluxo"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a woman kneeling on a cracked stone floor, head bowed in sorrow, hands resting together in her lap beside plain unadorned clay jars, warm candlelight, dim humble room, bare wall behind.",
+        "busca": "poverty empty jars ancient"
+      },
+      {
+        "fala": "Ouviu falar de Jesus, e por trás, na multidão, tocou na roupa dele.",
+        "evento": 3,
+        "personagens": [
+          "mulher-fluxo",
+          "jesus"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide back view down a narrow ancient dirt lane: a woman kneels low reaching toward the hem of a man's robe walking ahead, full bodies, warm golden sunlight, flat dusty stone ground, plain mudbrick walls, empty street.",
+        "busca": "silhouette figures dusty street"
+      },
+      {
+        "fala": "Ela pensava: só de tocar, eu saro.",
+        "evento": 4,
+        "personagens": [
+          "mulher-fluxo"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a woman's determined face on a dusty street corner, eyes fixed ahead, bright midday sunlight, plain stone wall behind, smooth bare ground.",
+        "busca": "hopeful woman ancient street"
+      },
+      {
+        "fala": "Na hora o sangue parou. Ela sentiu: curada.",
+        "evento": 5,
+        "personagens": [
+          "mulher-fluxo"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a woman standing still on a dusty street, eyes closed, face full of relief, soft daylight, plain wall behind, smooth bare ground.",
+        "busca": "relief wonder woman ancient"
+      },
+      {
+        "fala": "Jesus sentiu poder saindo, e perguntou quem tocou.",
+        "evento": 6,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a man walking through a narrow ancient stone alley, stopping and turning back with a startled, searching expression. Dusty bare ground, warm golden sunlight, rough stone walls, clear sky above.",
+        "busca": "man turning searching street"
+      },
+      {
+        "fala": "Os discípulos estranharam, mas Jesus procurou quem foi.",
+        "evento": 7,
+        "personagens": [
+          "jesus",
+          "discipulo"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a man turning to look back with searching, questioning eyes; another man beside him wears a surprised expression, standing on flat sandy ground, soft afternoon light, stone wall in background.",
+        "busca": "two men ancient street"
+      },
+      {
+        "fala": "Com medo, ela se prostrou e contou tudo.",
+        "evento": 8,
+        "personagens": [
+          "mulher-fluxo",
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a woman lying face down on a narrow dirt alley, robe fully covering her body to the ground, trembling in fear. A man stands a few steps away, listening calmly, arms at his sides. Flat packed dirt ground, warm late-afternoon light, ancient stone walls on both sides.",
+        "busca": "woman kneeling before man ancient"
+      },
+      {
+        "fala": "Jesus disse: filha, sua fé te curou.",
+        "evento": 9,
+        "personagens": [
+          "jesus",
+          "mulher-fluxo"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a calm bearded man speaking to a kneeling woman a few steps away, warm sunlight, dusty street, smooth bare ground, plain wall behind.",
+        "busca": "man speaking kneeling woman gentle"
+      },
+      {
+        "fala": "Você já gastou tudo, sem melhorar.",
+        "evento": 0,
+        "personagens": [
+          "mulher-fluxo"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Medium shot of a solitary weary woman sitting on bare ground at sunset, head down, open landscape, warm fading light, distant hills behind.",
+        "busca": "weary person alone sunset"
+      },
+      {
+        "fala": "Doze anos ninguém curou. Um toque bastou.",
+        "evento": 0,
+        "personagens": [
+          "mulher-fluxo"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a lone woman standing in a narrow ancient stone alley, gazing upward with quiet hope, hands resting together at her waist. Ground is packed dirt. Warm golden dusk light, mudbrick walls, clear open sky behind her.",
+        "busca": "woman peaceful sunrise"
+      },
+      {
+        "fala": "Escreve amém.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Medium shot of a man seated at a wooden table, writing intently on a blank papyrus scroll with a quill, calm focused expression, stone floor, warm candlelight, dim room at night.",
+        "busca": "open bible candlelight"
+      }
+    ],
+    "descricao": "\"Filha, a sua fé a curou. Vá em paz e fique livre da sua doença.\" — Marcos 5:34. Doze anos de doença e nenhum médico deu jeito, mas um toque de fé bastou. Você já sentiu que gastou tudo e nada mudou? Leia Marcos 5.",
+    "hashtags": [
+      "#jesus",
+      "#biblia",
+      "#fé",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já gastou tudo tentando resolver sozinho o que só Deus resolve? Conta aqui embaixo.",
+    "fontes": [
+      "Marcos 5:25-34 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Doze anos doente. Um toque bastou.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Ela só queria tocar a roupa dele.",
+        "choque": 3,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Gastou tudo. Só piorou. Até tocar nele.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Um toque parou o que médicos não pararam.",
+        "choque": 5,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Doze anos de doença. Um segundo de fé.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      }
+    ],
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 5,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 5,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 5
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (FLUX.1 schnell)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    }
+  }
+]

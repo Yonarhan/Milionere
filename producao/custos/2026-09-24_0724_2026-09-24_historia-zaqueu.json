@@ -1,0 +1,34 @@
+{
+ "usd": 0.0931,
+ "brl": 0.51,
+ "segundos": 270.6,
+ "por_etapa": {
+  "imagens": {
+   "chamadas": 0,
+   "imagens": 2,
+   "tokens_entrada": 0,
+   "tokens_saida": 0,
+   "usd": 0.0,
+   "segundos": 130.5,
+   "brl": 0.0
+  },
+  "juiz_visual": {
+   "chamadas": 2,
+   "imagens": 0,
+   "tokens_entrada": 36887,
+   "tokens_saida": 5595,
+   "usd": 0.0931,
+   "segundos": 66.9,
+   "brl": 0.51
+  }
+ },
+ "modelos": [
+  "claude-sonnet-5",
+  "comfy"
+ ],
+ "videos": [
+  "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-zaqueu.mp4",
+  "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-zaqueu_sem-musica.mp4"
+ ],
+ "gpu_imagens_s": 130.5
+}

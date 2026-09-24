@@ -1,0 +1,44 @@
+{
+ "usd": 1.96,
+ "brl": 10.78,
+ "segundos": 2593.3,
+ "por_etapa": {
+  "roteiro": {
+   "chamadas": 6,
+   "imagens": 0,
+   "tokens_entrada": 78888,
+   "tokens_saida": 82058,
+   "usd": 0.9078,
+   "segundos": 706.2,
+   "brl": 4.99
+  },
+  "imagens": {
+   "chamadas": 0,
+   "imagens": 25,
+   "tokens_entrada": 0,
+   "tokens_saida": 0,
+   "usd": 0.0,
+   "segundos": 1418.7,
+   "brl": 0.0
+  },
+  "juiz_visual": {
+   "chamadas": 28,
+   "imagens": 0,
+   "tokens_entrada": 583625,
+   "tokens_saida": 39379,
+   "usd": 1.0522,
+   "segundos": 568.9,
+   "brl": 5.79
+  }
+ },
+ "modelos": [
+  "claude-haiku-4-5-20251001",
+  "claude-sonnet-5",
+  "comfy"
+ ],
+ "videos": [
+  "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-mulher-fluxo.mp4",
+  "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-mulher-fluxo_sem-musica.mp4"
+ ],
+ "gpu_imagens_s": 1418.7
+}

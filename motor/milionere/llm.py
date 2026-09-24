@@ -4,6 +4,7 @@
 Cada chamada é uma conversa nova: o juiz nunca vê o raciocínio do roteirista.
 """
 
+import base64
 import json
 import os
 import sys
@@ -11,9 +12,13 @@ import shutil
 import subprocess
 import tempfile
 import time
+import urllib.request
 from pathlib import Path
 
 CLAUDE = shutil.which("claude") or "claude"
+OLLAMA = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
+# camada trocável do juiz visual: "claude" (padrão) ou "ollama:<modelo>" (modelo aberto na GPU local)
+JUIZ_VISUAL = os.environ.get("MILIONERE_JUIZ_VISUAL", "claude")
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import caminhos  # noqa: E402
@@ -97,3 +102,26 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
             continue
         return saida["structured_output"]
     raise ErroLLM(f"claude -p falhou duas vezes: {ultimo}")
+
+
+def chamar_ollama(prompt: str, schema: dict, modelo: str, imagens: list[Path] | None = None, timeout: int = 600) -> dict:
+    """Mesmo contrato de chamar(), mas num modelo aberto servido pelo Ollama (saída presa ao schema)."""
+    msg = {"role": "user", "content": prompt}
+    if imagens:
+        msg["images"] = [base64.b64encode(Path(i).read_bytes()).decode() for i in imagens]
+    corpo = json.dumps({"model": modelo, "messages": [msg], "format": schema, "stream": False,
+                        # raciocínio ligado deixa o Qwen3-VL ~10x mais lento; MILIONERE_OLLAMA_THINK=1 liga
+                        "think": os.environ.get("MILIONERE_OLLAMA_THINK") == "1",
+                        "options": {"temperature": 0}}).encode()
+    ultimo = ""
+    for _ in range(2):
+        req = urllib.request.Request(OLLAMA + "/api/chat", data=corpo, headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            m = json.load(r)["message"]
+        # Ollama 0.34 + Qwen3-VL com think=false devolve o JSON no campo "thinking" e "content" vazio
+        texto = m.get("content") or m.get("thinking", "")
+        try:
+            return json.loads(texto)
+        except json.JSONDecodeError:
+            ultimo = texto[-1500:]
+    raise ErroLLM(f"ollama ({modelo}) devolveu JSON inválido duas vezes: {ultimo}")

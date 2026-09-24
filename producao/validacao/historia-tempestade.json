@@ -1,0 +1,204 @@
+{
+  "etapas": [
+    {
+      "quando": "02:24:35",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Jesus dormia enquanto o barco afundava.",
+        "Ele mandou atravessar o mar, e embarcaram.",
+        "Veio um vendaval forte e as ondas bateram.",
+        "A água já enchia tudo.",
+        "Jesus dormia na popa, num travesseiro.",
+        "Gritaram: Mestre, não se importa que a gente morra?",
+        "Jesus disse ao mar: Paz, aquiete-se.",
+        "O vento parou. Ficou tudo calmo.",
+        "Ele perguntou: cadê a fé de vocês?",
+        "Com medo, disseram: quem é esse que o mar obedece?",
+        "Deus pode parecer dormindo na sua tempestade.",
+        "Mas ele já sabia quem mandava nela.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "02:26:40",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 2,
+        "compreensao": 3,
+        "gancho": 5,
+        "ritmo": 2,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Os discípulos vivem uma tempestade no barco enquanto Jesus dorme, mas quando o acordam, ele acalma o mar com uma palavra e questiona a fé deles.",
+      "erros_factuais": [],
+      "problemas": [
+        "personagens (nota 2): Pedro aparece nas imagens (cenas 2, 6, 8, 9, 10) mas nunca fala nem age especificamente—a fonte fala de 'discípulos', não de Pedro. Remover 'pedro' das legendas das imagens ou trocar por 'discípulos/apóstolos'",
+        "compreensao (nota 3): A repetição 'Jesus dormia' (cena 1) e 'Jesus dormia na popa' (cena 5) quebra a clareza: parece saltar para trás na história ou repetir o mesmo fato; ouvinte fica em dúvida se é antecipar ou contar duas vezes",
+        "ritmo (nota 2): Cenas 1 e 5 repetem 'Jesus dormia', quebrando a fluidez e dando sensação de lista telegráfica em vez de história contada",
+        "ritmo (nota 2): Faltam conectivos entre frases de cenas diferentes (não há 'então', 'e aí', 'mas', ligando a ação)",
+        "payoff (nota 3): Cena 11: 'Deus pode parecer dormindo na sua tempestade' é vaga quanto à dor real (culpa, espera, medo, luto); 'tempestade' é metáfora genérica. Especificar: 'Na sua espera, Deus pode parecer dormindo' ou 'No seu medo' (mantém 7 palavras)"
+      ]
+    },
+    {
+      "quando": "02:29:00",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "O barco afunda, e Jesus dorme.",
+        "Jesus mandou atravessar o mar, e os discípulos foram com ele.",
+        "Um vendaval forte encheu o barco, mas Jesus dormia na popa, num travesseiro.",
+        "Eles o acordaram: Mestre, não se importa que a gente morra?",
+        "Jesus acordou, repreendeu o vento, e disse ao mar: Paz, aquiete-se.",
+        "Tudo ficou calmo, e Jesus perguntou: cadê a fé de vocês?",
+        "Com medo, eles disseram: quem é esse que o mar obedece?",
+        "No seu medo, Deus pode parecer dormindo.",
+        "Mas ele nunca perdeu o controle dela.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "02:30:32",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Jesus dormia no barco durante uma tempestade que assustou os discípulos, mas ao acordar acalmou o mar, provando que nunca perdeu o controle—e que parecer adormecido não significa estar ausente.",
+      "erros_factuais": [
+        "Cena 1: 'O barco afunda' exagera o texto, que diz 'já estava se enchendo de água' (Marcos 4:37) — afundar é submersão completa, encher é diferente"
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 1: 'O barco afunda' exagera o texto, que diz 'já estava se enchendo de água' (Marcos 4:37) — afundar é submersão completa, encher é diferente",
+        "fidelidade (nota 3): Cena 1: 'O barco afunda' é exagero — o texto diz apenas 'enchendo de água', não que afundava.",
+        "fidelidade (nota 3): Cena 9: 'o controle dela' é vago — referência ambígua (dela de quê? da situação? do mar?), quebra clareza.",
+        "compreensao (nota 3): Cena 9: 'controle dela' é incompreensível na audição — ouvinte não sabe a que se refere.",
+        "compreensao (nota 3): Cenas 8-9: Transição abrupta de história (cena 7: 'Jesus') para aplicação (cena 8: 'Deus') sem marca clara."
+      ]
+    },
+    {
+      "quando": "02:33:46",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Jesus dormia enquanto o barco enchia de água.",
+        "Ele disse: vamos atravessar, e veio um vendaval.",
+        "As ondas bateram, e a água enchia tudo.",
+        "Mas Jesus continuava dormindo na popa, num travesseiro.",
+        "Os discípulos o acordaram e disseram: mestre, não se importa que a gente morra?",
+        "Ele disse ao mar: paz, aquiete-se.",
+        "O vento parou, e houve grande calmaria.",
+        "Ele perguntou: cadê a fé de vocês?",
+        "Com medo, disseram: quem é esse que o mar obedece?",
+        "No seu medo, Deus pode parecer dormindo.",
+        "Mas ele dormia porque sabia quem mandava no mar.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "02:35:43",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 4,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 5
+      },
+      "entendimento": "Um homem dorme em um barco que afunda em uma tempestade, mas acalma tudo com uma palavra porque tem autoridade até sobre o mar.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "02:47:11",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "Os pés aparecem em primeiríssimo plano, enormes e deformados, e há uma construção moderna na margem ao fundo, quebrando a ambientação da cena bíblica.",
+          "imagem_corrigida": "Medium shot of a man sleeping peacefully on a wooden boat deck, long robe fully covering his feet, stormy dark clouds above, calm sea and empty shoreline, warm lantern glow."
+        },
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "Há dois objetos com aparência de itens modernos (peça azul tipo equipamento e caixa branca) visíveis no barco, quebrando a ambientação bíblica.",
+          "imagem_corrigida": "Wide shot on a wooden fishing boat: one man stands scanning the darkening sky, another sits on the plank bench. Weathered wood deck, coiled rope, calm lake, distant rocky shore, storm clouds looming above."
+        },
+        {
+          "cena": 4,
+          "ok": false,
+          "problema": "Os pés ficam em destaque no primeiro plano com os dedos malformados, um defeito de anatomia visível.",
+          "imagem_corrigida": "Medium shot of a man reclining across the stern of a small wooden fishing boat, eyes closed asleep, long robe covering feet, stormy sea and dark clouds behind, faint torchlight, deck of weathered wooden planks."
+        },
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "O personagem usa sandálias modernas estilo chinelo de dedo com sola de borracha, um objeto anacrônico visível em primeiro plano.",
+          "imagem_corrigida": "Medium shot of a disciple standing at the bow of a wooden fishing boat, gazing at the calm sea in awe, long robe reaching down to the wooden deck, flat wooden planks, calm water, distant rocky shore, warm sunset light."
+        },
+        {
+          "cena": 10,
+          "ok": false,
+          "problema": "Há lixo/objetos metálicos modernos (cano e sucata) espalhados na areia, quebrando a ambientação de época.",
+          "imagem_corrigida": "Medium shot from behind of a man standing beside a wooden boat resting on the shore, facing the calm moonlit sea at night, clear sky, smooth bare wet sand, gentle moonlight reflecting on water."
+        },
+        {
+          "cena": 11,
+          "ok": false,
+          "problema": "A fala diz que ele dormia, mas a imagem mostra Jesus bem acordado e alerta, sentado à beira de um mar calmo durante um pôr do sol tranquilo, o oposto da ação descrita.",
+          "imagem_corrigida": "Wide shot, Jesus lying asleep in the stern of a small wooden fishing boat, waves rocking beneath a dark stormy sky, wooden deck, dim moonlight breaking through clouds."
+        }
+      ]
+    },
+    {
+      "quando": "03:00:38",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "03:01:10",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-tempestade.mp4",
+      "duracao": 43.4,
+      "avisos": []
+    },
+    {
+      "quando": "03:01:37",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-tempestade_sem-musica.mp4",
+      "duracao": 43.4,
+      "avisos": []
+    }
+  ]
+}

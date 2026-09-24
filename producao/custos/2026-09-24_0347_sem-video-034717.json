@@ -1,0 +1,22 @@
+{
+ "usd": 1.2875,
+ "brl": 7.08,
+ "segundos": 1066.6,
+ "por_etapa": {
+  "roteiro": {
+   "chamadas": 6,
+   "imagens": 0,
+   "tokens_entrada": 81168,
+   "tokens_saida": 119485,
+   "usd": 1.2875,
+   "segundos": 1059.9,
+   "brl": 7.08
+  }
+ },
+ "modelos": [
+  "claude-haiku-4-5-20251001",
+  "claude-sonnet-5"
+ ],
+ "videos": [],
+ "gpu_imagens_s": 0
+}

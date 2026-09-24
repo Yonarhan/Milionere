@@ -1,0 +1,278 @@
+[
+  {
+    "slug": "historia-bartimeu",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "bartimeu",
+    "estilo": "cinema_zimage",
+    "epoca": "biblica",
+    "titulo": "Por que Jesus parou por causa de um grito?",
+    "cenario_en": "ancient Judea, 1st century, dusty road outside Jericho, dry rocky hills, warm sunlight",
+    "personagens": [
+      {
+        "id": "jesus",
+        "nome": "Jesus",
+        "nome_en": "Jesus",
+        "descricao_visual": "a man in his early 30s, shoulder-length wavy dark brown hair, short dark beard, olive skin, kind brown eyes, simple cream linen tunic with a brown cloak"
+      },
+      {
+        "id": "bartimeu",
+        "nome": "Bartimeu",
+        "nome_en": "Bartimaeus",
+        "descricao_visual": "a blind beggar man in his 40s, tangled dark curly hair, short unkempt beard, weathered olive skin, ragged brown sackcloth tunic with a dark worn cloak over his shoulders"
+      },
+      {
+        "id": "discipulo",
+        "nome": "Discípulo",
+        "nome_en": "disciple",
+        "descricao_visual": "a young man in his early 20s, short wavy black hair, sparse thin black beard, light olive skin, plain faded blue-grey wool tunic with a leather belt"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Bartimeu, um mendigo cego, estava sentado à beira do caminho quando Jesus saía de Jericó com os discípulos e uma multidão.",
+        "ref": "Marcos 10:46"
+      },
+      {
+        "n": 2,
+        "evento": "Bartimeu ouviu que era Jesus e começou a gritar: Jesus, Filho de Davi, tem misericórdia de mim!",
+        "ref": "Marcos 10:47"
+      },
+      {
+        "n": 3,
+        "evento": "Muitos o repreendiam para que ficasse quieto, mas ele clamava ainda mais.",
+        "ref": "Marcos 10:48"
+      },
+      {
+        "n": 4,
+        "evento": "Jesus parou e mandou chamá-lo; disseram a Bartimeu para se animar e se levantar, pois Jesus estava chamando ele.",
+        "ref": "Marcos 10:49"
+      },
+      {
+        "n": 5,
+        "evento": "Bartimeu jogou a capa de lado, deu um salto e foi até Jesus.",
+        "ref": "Marcos 10:50"
+      },
+      {
+        "n": 6,
+        "evento": "Jesus perguntou o que ele queria, e Bartimeu respondeu que queria voltar a enxergar.",
+        "ref": "Marcos 10:51"
+      },
+      {
+        "n": 7,
+        "evento": "Jesus disse que a fé dele o curou; imediatamente ele recuperou a visão e seguiu Jesus pelo caminho.",
+        "ref": "Marcos 10:52"
+      }
+    ],
+    "versiculo": {
+      "ref": "Marcos 10:52",
+      "texto": "Jesus lhe disse: “Vá. A sua fé o curou.” Imediatamente ele recuperou a visão e seguiu Jesus pelo caminho."
+    },
+    "cenas": [
+      {
+        "fala": "Mandaram o cego calar a boca.",
+        "evento": 0,
+        "personagens": [
+          "bartimeu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a blind beggar sitting cross-legged on a dusty roadside, head bowed low, hands resting on his knees, smooth dirt road, bare rocky hillside behind, warm golden late-afternoon light.",
+        "busca": "blind beggar dusty road"
+      },
+      {
+        "fala": "Bartimeu, cego, mendigava perto de Jericó.",
+        "evento": 1,
+        "personagens": [
+          "bartimeu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a man sitting cross-legged on a dusty roadside near an ancient stone city gate, hands resting quietly in his lap, smooth bare sand ground, soft daylight, weathered stone wall behind.",
+        "busca": "beggar sitting road biblical"
+      },
+      {
+        "fala": "Ouviu que era Jesus, gritou: Filho de Davi, misericórdia!",
+        "evento": 2,
+        "personagens": [
+          "bartimeu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a man sitting on a dusty roadside, long robe covering his feet, head tilted up, mouth open crying out. Bare dirt ground, clear sky, rocky stone wall beside him, bright midday sun.",
+        "busca": "man shouting road ancient"
+      },
+      {
+        "fala": "Mandaram calar, mas ele gritou mais alto.",
+        "evento": 3,
+        "personagens": [
+          "bartimeu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a blind beggar seated on smooth bare sand, cloak covering his legs, shouting louder with more intensity, face straining, dry hills behind, harsh midday sunlight.",
+        "busca": "crowd blurred ancient road"
+      },
+      {
+        "fala": "Jesus parou e mandou chamar ele.",
+        "evento": 4,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a man standing still on a dusty roadside path, body turned toward a seated beggar in the distance, calling out. Smooth packed dirt ground, warm daylight, sparse rocky hillside behind.",
+        "busca": "man standing road biblical"
+      },
+      {
+        "fala": "Disseram: Jesus tá te chamando!",
+        "evento": 4,
+        "personagens": [
+          "discipulo",
+          "bartimeu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a disciple standing beside a seated blind beggar on a dusty roadside, leaning in with urgency, beggar turning his head alert toward the voice. Flat bare dirt ground, warm midday sunlight, roadside near town gate.",
+        "busca": "two men ancient road"
+      },
+      {
+        "fala": "Ele jogou a capa e deu um salto até Jesus.",
+        "evento": 5,
+        "personagens": [
+          "bartimeu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a former beggar leaping up from smooth bare sand, cloak falling behind him mid-motion, arms close to his body, dry hills behind, bright daylight.",
+        "busca": "man jumping ancient road"
+      },
+      {
+        "fala": "Jesus perguntou: o que você quer? Bartimeu disse: enxergar.",
+        "evento": 6,
+        "personagens": [
+          "bartimeu",
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of Jesus and a beggar in long robes standing several steps apart on smooth bare sand, beggar's face turned up eagerly toward Jesus, clear sky behind, golden afternoon light.",
+        "busca": "two men facing road biblical"
+      },
+      {
+        "fala": "Jesus disse: vá, sua fé te curou.",
+        "evento": 7,
+        "personagens": [
+          "bartimeu",
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of Jesus and a beggar in long robes standing apart on smooth bare sand, beggar's face lifted toward the sky in wonder, clear sky behind, radiant golden light.",
+        "busca": "man amazed face sunlight"
+      },
+      {
+        "fala": "Na hora ele enxergou e seguiu Jesus.",
+        "evento": 7,
+        "personagens": [
+          "bartimeu",
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of two men walking together along a dusty road, one looking around with wonder at the open landscape, both walking forward side by side. Flat dirt path, warm golden afternoon light, open countryside.",
+        "busca": "two men walking road sunset"
+      },
+      {
+        "fala": "Quando ninguém ouve sua dor e você quer desistir, você grita mesmo assim?",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a lone silhouetted figure in a long robe kneeling on smooth bare sand at dusk, arms resting close to his body, head bowed in despair, fading golden light.",
+        "busca": "silhouette kneeling road sunset"
+      },
+      {
+        "fala": "Mandaram calar. O grito abriu os olhos dele.",
+        "evento": 0,
+        "personagens": [
+          "bartimeu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a healed man walking confidently along smooth bare sand, eyes open and clear, cloak flowing behind him, dry hills around, bright warm sunlight.",
+        "busca": "man walking joyfully road"
+      },
+      {
+        "fala": "Escreve amém.",
+        "evento": 0,
+        "personagens": [
+          "bartimeu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium close shot of a healed man's face turned upward in joy, eyes wide with wonder, wearing a long robe, standing on smooth bare sand, clear sky behind, radiant golden light.",
+        "busca": "joyful face sunlight biblical"
+      }
+    ],
+    "descricao": "\"Jesus lhe disse: Vá. A sua fé o curou. Imediatamente ele recuperou a visão e seguiu Jesus pelo caminho.\" — Marcos 10:52\nBartimeu gritou mesmo quando mandaram ele calar a boca. Jesus parou o caminho só por causa dele.\nJá se sentiu invisível na hora que mais precisava ser ouvido? Leia Marcos 10.",
+    "hashtags": [
+      "#jesus",
+      "#biblia",
+      "#fé",
+      "#milagre",
+      "#shorts"
+    ],
+    "comentario_fixado": "Já gritou por socorro e sentiu que ninguém escutava? Conta aqui embaixo.",
+    "fontes": [
+      "Marcos 10:46-52 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Mandaram o cego calar a boca.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 5
+      },
+      {
+        "texto": "Quanto mais mandavam calar, mais ele gritava.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "Pediram pro cego ficar quieto. Ele gritou mais.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Jesus parou o caminho por causa de um grito.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "Um cego gritou tão alto que Jesus parou.",
+        "choque": 5,
+        "clareza": 5,
+        "imagem": 4
+      }
+    ],
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 5,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 3,
+        "payoff": 5
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Z-Image Turbo)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    }
+  }
+]

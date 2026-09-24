@@ -1,0 +1,241 @@
+[
+  {
+    "slug": "historia-elias-deserto",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "elias-deserto",
+    "estilo": "cinema_flux",
+    "epoca": "biblica",
+    "titulo": "Por que Deus mandou pão pra quem pediu pra morrer? 🍞",
+    "cenario_en": "ancient Israel, 9th century BC, barren wilderness south of Beersheba, broom trees, rocky sand, distant rugged mountains",
+    "personagens": [
+      {
+        "id": "elias",
+        "nome": "Elias",
+        "nome_en": "Elijah",
+        "descricao_visual": "a gaunt weathered man in his late 40s, long unkempt grey-streaked dark hair, long wild grey-black beard, deeply tanned leathery skin, rough dark camel-hair mantle over a coarse brown tunic, leather belt"
+      },
+      {
+        "id": "anjo",
+        "nome": "Anjo do Senhor",
+        "nome_en": "angel",
+        "descricao_visual": "a tall radiant man in flowing white robes, soft golden light around him, serene face, no wings"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Elias foge para salvar a vida, caminha um dia pelo deserto e senta debaixo de um zimbro",
+        "ref": "1 Reis 19:3-4"
+      },
+      {
+        "n": 2,
+        "evento": "Elias pede a morte: 'Já basta. Agora, ó SENHOR, tira a minha vida'",
+        "ref": "1 Reis 19:4"
+      },
+      {
+        "n": 3,
+        "evento": "Elias dorme e um anjo o toca e diz: 'Levante-se e coma!'",
+        "ref": "1 Reis 19:5"
+      },
+      {
+        "n": 4,
+        "evento": "À cabeceira há pão assado sobre brasas e um jarro de água; Elias come, bebe e deita-se novamente",
+        "ref": "1 Reis 19:6"
+      },
+      {
+        "n": 5,
+        "evento": "O anjo do SENHOR volta pela segunda vez: 'a jornada é longa demais para você'",
+        "ref": "1 Reis 19:7"
+      },
+      {
+        "n": 6,
+        "evento": "Com a força daquela comida, Elias caminha quarenta dias e quarenta noites até Horebe",
+        "ref": "1 Reis 19:8"
+      }
+    ],
+    "versiculo": {
+      "ref": "1 Reis 19:7",
+      "texto": "O anjo do SENHOR veio novamente pela segunda vez, tocou-o e disse: “Levante-se e coma, porque a jornada é longa demais para você.”"
+    },
+    "cenas": [
+      {
+        "fala": "Um profeta pediu a Deus pra morrer.",
+        "evento": 0,
+        "personagens": [
+          "elias"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of an exhausted man lying face-down on desert sand beneath a lone withered shrub, body limp with despair, bare ground around him, harsh sunlight, barren desert wilderness at midday.",
+        "busca": "lonely man desert tree"
+      },
+      {
+        "fala": "Elias fugiu pro deserto e sentou debaixo de um zimbro.",
+        "evento": 1,
+        "personagens": [
+          "elias"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Full body shot of a weary man sinking down in the thin shade of a broom tree, head lowered in defeat, dusty cloak, barren rocky desert, hot hazy light",
+        "busca": "desert broom tree"
+      },
+      {
+        "fala": "E disse: já basta, Senhor, tira minha vida.",
+        "evento": 2,
+        "personagens": [
+          "elias"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a lone bearded man sitting collapsed under a sparse desert tree, head tilted back toward the sky, face full of despair and exhaustion, vast empty desert, harsh midday sun, cracked dry ground.",
+        "busca": "desperate man looking at sky desert"
+      },
+      {
+        "fala": "Elias dormiu, e um anjo disse: levante e coma!",
+        "evento": 3,
+        "personagens": [
+          "anjo",
+          "elias"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a radiant angel standing several steps from a man sleeping on the sand under a broom tree, gentle watchful mood, soft golden glow, desert at dusk",
+        "busca": "man sleeping desert night"
+      },
+      {
+        "fala": "Na cabeceira tinha pão assado nas brasas e água.",
+        "evento": 4,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Low close shot of a round flatbread baking on glowing embers beside a clay water jar in the sand, thin smoke rising, warm firelight, desert at dawn",
+        "busca": "bread on hot coals"
+      },
+      {
+        "fala": "E olha: Elias comeu e deitou de novo.",
+        "evento": 4,
+        "personagens": [
+          "elias"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a weary prophet lying asleep on his side under a broom tree, cloak wrapped around him, peaceful exhausted face, clay jar and bread beside him, golden late afternoon light, empty desert wilderness",
+        "busca": "man resting under tree"
+      },
+      {
+        "fala": "O anjo voltou e disse: o caminho é longo demais pra você.",
+        "evento": 5,
+        "personagens": [
+          "anjo",
+          "elias"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of an exhausted bearded prophet sitting on desert sand, weary expression, gazing up at a tall winged angel standing a few steps away. Golden sunset light, rocky desert landscape.",
+        "busca": "sunrise desert light"
+      },
+      {
+        "fala": "Com aquela comida, Elias andou quarenta dias até Horebe.",
+        "evento": 6,
+        "personagens": [
+          "elias"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a lone prophet in a long wool robe and simple sandals trudging across vast desert dunes toward a towering rocky mountain, weary but determined, golden sunset light, ancient Sinai wilderness",
+        "busca": "man walking desert mountain"
+      },
+      {
+        "fala": "Se você disse 'já basta', Deus começa pelo pão.",
+        "evento": 0,
+        "personagens": [
+          "elias"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a weary prophet lying asleep under a lone broom tree, a round loaf baking on glowing stones and a clay water jar beside him, peaceful, soft dawn light, desert wilderness",
+        "busca": "campfire desert night stars"
+      },
+      {
+        "fala": "Elias pediu a morte. E recebeu pão.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Close shot of a warm round bread resting on glowing embers beneath broom tree branches, soft heavenly light falling from above, quiet desert morning",
+        "busca": "bread fire morning"
+      },
+      {
+        "fala": "Manda pra quem precisa ouvir isso.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of sunrise breaking over a rugged desert mountain, golden rays sweeping across the sand, hopeful peaceful mood, vast open desert",
+        "busca": "sunrise desert mountain"
+      }
+    ],
+    "descricao": "\"O anjo do SENHOR veio novamente pela segunda vez, tocou-o e disse: “Levante-se e coma, porque a jornada é longa demais para você.”\" (1 Reis 19:7)\n\nElias chegou no limite e pediu pra morrer. A resposta não foi bronca: foi pão, água e descanso.\n\nVocê já chegou no seu \"já basta\"?\n\nLeia 1 Reis 19.\n\n#jesus #biblia #fé #palavradedeus #shorts\n\nVoz e imagens geradas por IA. Vídeos de apoio: Pexels.",
+    "hashtags": [
+      "#jesus",
+      "#biblia",
+      "#fé",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já teve um dia em que falou pra Deus \"já basta\"? Conta aqui que eu oro por você. 🙏",
+    "fontes": [
+      "1 Reis 19:3-8 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Um profeta pediu a Deus pra morrer.",
+        "choque": 5,
+        "clareza": 5,
+        "imagem": 5
+      },
+      {
+        "texto": "Elias pediu a morte. Recebeu pão.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "Já basta, Senhor. Tira minha vida.",
+        "choque": 4,
+        "clareza": 3,
+        "imagem": 4
+      },
+      {
+        "texto": "Você já disse pra Deus: chega?",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Deus respondeu um pedido de morte com comida.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 3
+      }
+    ],
+    "notas": {
+      "roteirista": {
+        "gancho": 5,
+        "clareza": 5,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (FLUX.1 schnell)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    }
+  }
+]

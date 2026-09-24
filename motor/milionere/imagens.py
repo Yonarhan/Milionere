@@ -80,11 +80,12 @@ def derrubar(proc: subprocess.Popen | None) -> None:
 
 
 def workflow_flux(positivo: str, estilo: dict, seed: int) -> dict:
-    """Flux schnell GGUF: sem prompt negativo (cfg 1) e sem IP-Adapter; a consistência vem da descrição fixa + seed."""
-    return {
+    """Flux schnell GGUF: cfg 1 e sem IP-Adapter; a consistência vem da descrição fixa + seed. Negativo só via NAG."""
+    wf = {
         "1": {"class_type": "UnetLoaderGGUF", "inputs": {"unet_name": estilo["unet"]}},
         "2": {"class_type": "DualCLIPLoader", "inputs": {"clip_name1": "t5xxl_fp8_e4m3fn.safetensors",
-                                                         "clip_name2": "clip_l.safetensors", "type": "flux"}},
+                                                         "clip_name2": "clip_l.safetensors", "type": "flux",
+                                                         "device": "cpu"}},  # texto na CPU: o modelo fica fixo na VRAM
         "3": {"class_type": "VAELoader", "inputs": {"vae_name": "flux_ae.safetensors"}},
         "4": {"class_type": "CLIPTextEncode", "inputs": {"text": positivo, "clip": ["2", 0]}},
         "5": {"class_type": "ConditioningZeroOut", "inputs": {"conditioning": ["4", 0]}},
@@ -96,11 +97,49 @@ def workflow_flux(positivo: str, estilo: dict, seed: int) -> dict:
         "8": {"class_type": "VAEDecode", "inputs": {"samples": ["7", 0], "vae": ["3", 0]}},
         "9": {"class_type": "SaveImage", "inputs": {"images": ["8", 0], "filename_prefix": "roteirista"}},
     }
+    if estilo.get("nag_negativo"):
+        _com_nag(wf, estilo)
+    return wf
+
+
+def _com_nag(wf: dict, estilo: dict) -> None:
+    """NAG (custom_nodes/ComfyUI-NAG): prompt negativo de verdade em modelo destilado de cfg 1 (Flux schnell).
+    Tira o que o juiz mais reprova (calçado, relógio, metal) sem citar isso no prompt positivo.
+    Desligado: o ComfyUI-NAG (nov/2025) não carrega no ComfyUI atual. Liga com "nag_negativo" no estilo."""
+    wf["11"] = {"class_type": "CLIPTextEncode", "inputs": {"text": estilo["nag_negativo"], "clip": ["2", 0]}}
+    k = wf["7"]["inputs"]
+    wf["7"] = {"class_type": "KSamplerWithNAG", "inputs": {
+        **k, "nag_negative": ["11", 0], "nag_scale": estilo.get("nag_scale", 5.0), "nag_tau": estilo.get("nag_tau", 2.5),
+        "nag_alpha": estilo.get("nag_alpha", 0.25), "nag_sigma_end": estilo.get("nag_sigma_end", 0.75)}}
+
+
+def workflow_zimage(positivo: str, estilo: dict, seed: int) -> dict:
+    """Z-Image Turbo (Alibaba) GGUF: text encoder Qwen3-4B, cfg 1 sem negativo, shift AuraFlow 3, ~9 passos."""
+    return {
+        "1": {"class_type": "UnetLoaderGGUF", "inputs": {"unet_name": estilo["unet"]}},
+        "2": {"class_type": "CLIPLoader", "inputs": {"clip_name": estilo["text_encoder"], "type": "lumina2",
+                                                  "device": "cpu"}},
+        "3": {"class_type": "VAELoader", "inputs": {"vae_name": estilo["vae"]}},
+        "4": {"class_type": "CLIPTextEncode", "inputs": {"text": positivo, "clip": ["2", 0]}},
+        "5": {"class_type": "ConditioningZeroOut", "inputs": {"conditioning": ["4", 0]}},
+        "6": {"class_type": "EmptySD3LatentImage", "inputs": {"width": LARGURA, "height": ALTURA, "batch_size": 1}},
+        "10": {"class_type": "ModelSamplingAuraFlow", "inputs": {"model": ["1", 0], "shift": estilo.get("shift", 3.0)}},
+        "7": {"class_type": "KSampler", "inputs": {
+            "model": ["10", 0], "positive": ["4", 0], "negative": ["5", 0], "latent_image": ["6", 0],
+            "seed": seed, "steps": estilo["passos"], "cfg": 1.0, "sampler_name": estilo["sampler"],
+            "scheduler": estilo["scheduler"], "denoise": 1.0}},
+        # decodifica em blocos: o VAEDecode normal expulsa o modelo da VRAM e ele recarrega na cena seguinte
+        "8": {"class_type": "VAEDecodeTiled", "inputs": {"samples": ["7", 0], "vae": ["3", 0], "tile_size": 512,
+                                                   "overlap": 64, "temporal_size": 64, "temporal_overlap": 8}},
+        "9": {"class_type": "SaveImage", "inputs": {"images": ["8", 0], "filename_prefix": "roteirista"}},
+    }
 
 
 def montar_workflow(positivo: str, negativo: str, estilo: dict, seed: int, referencia: str | None, peso_ref: float) -> dict:
     if estilo.get("motor") == "flux":
         return workflow_flux(positivo, estilo, seed)
+    if estilo.get("motor") == "zimage":
+        return workflow_zimage(positivo, estilo, seed)
     wf = {
         "1": {"class_type": "CheckpointLoaderSimple", "inputs": {"ckpt_name": estilo["checkpoint"]}},
         "2": {"class_type": "CLIPTextEncode", "inputs": {"text": positivo, "clip": ["1", 1]}},
@@ -178,10 +217,11 @@ def _seed_fixa(texto: str) -> int:
     return zlib.crc32(texto.encode()) % (2**31)
 
 
-def prompt_cena(cena: dict, personagens: dict, estilo: dict, cenario: str) -> str:
+def prompt_cena(cena: dict, personagens: dict, estilo: dict, cenario: str, biblico: bool = False) -> str:
     quem = [f"{personagens[i]['nome_en']}: {personagens[i]['descricao_visual']}" for i in cena.get("personagens", [])
             if i in personagens]
-    partes = [cena["imagem"], *quem, cenario, estilo["prompt"], "vertical composition"]
+    epoca = estilo.get("prompt_biblico", "") if biblico else ""
+    partes = [cena["imagem"], *quem, cenario, epoca, estilo["prompt"], "vertical composition"]
     return ", ".join(p.strip().rstrip(".") for p in partes if p and p.strip())
 
 
@@ -197,7 +237,7 @@ def _gerar_cena(roteiro: dict, nome_estilo: str, n: int, destino: Path, seed: in
     usa_ref = estilo.get("motor") != "flux" and estilo.get("ip_peso", 0) > 0
     ref = retrato(principal, nome_estilo, biblico) if usa_ref and principal and cena.get("rosto_visivel", True) and close else None
     inicio = time.time()
-    gerar(prompt_cena(cena, personagens, estilo, roteiro.get("cenario_en", "")), negativo_de(estilo, biblico), estilo,
+    gerar(prompt_cena(cena, personagens, estilo, roteiro.get("cenario_en", ""), biblico), negativo_de(estilo, biblico), estilo,
           destino, seed, ref, estilo["ip_peso"] if ref else 0.0)
     print(f"  cena {n:>2} {time.time() - inicio:4.0f}s  {destino.name}  «{cena['fala'][:50]}»")
     return destino
