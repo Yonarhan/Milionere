@@ -1,0 +1,269 @@
+[
+  {
+    "slug": "historia-ana-oracao",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "ana-oracao",
+    "estilo": "cinema_zimage",
+    "epoca": "biblica",
+    "titulo": "Por que o sacerdote achou que Ana estava bêbada?",
+    "cenario_en": "ancient Israel, 11th century BC, dusty stone temple courtyard in Siló, warm golden biblical-era light",
+    "personagens": [
+      {
+        "id": "ana",
+        "nome": "Ana",
+        "nome_en": "Hannah",
+        "descricao_visual": "a woman in her mid-20s, long dark hair under a beige head covering, plain undyed wool robe, sorrowful gentle eyes"
+      },
+      {
+        "id": "eli",
+        "nome": "Eli",
+        "nome_en": "Eli",
+        "descricao_visual": "an elderly priest in his late 70s, thinning white hair, long white beard, deeply lined weathered face, plain long white priestly robe"
+      },
+      {
+        "id": "samuel-bebe",
+        "nome": "Samuel",
+        "nome_en": "Samuel",
+        "descricao_visual": "a swaddled newborn infant wrapped in plain linen cloth, tiny sleeping face, no visible hair"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Depois de comerem e beberem em Siló, Ana se levanta para orar, enquanto Eli está sentado à porta do templo",
+        "ref": "1 Samuel 1:9"
+      },
+      {
+        "n": 2,
+        "evento": "Ana ora com a alma amargurada, chorando muito",
+        "ref": "1 Samuel 1:10"
+      },
+      {
+        "n": 3,
+        "evento": "Ana faz um voto: se Deus lhe der um filho, ela o dedicará ao SENHOR todos os dias de sua vida",
+        "ref": "1 Samuel 1:11"
+      },
+      {
+        "n": 4,
+        "evento": "Enquanto ela ora, Eli fica observando a boca dela",
+        "ref": "1 Samuel 1:12"
+      },
+      {
+        "n": 5,
+        "evento": "Só os lábios de Ana se moviam, sem som algum, e Eli pensa que ela está embriagada",
+        "ref": "1 Samuel 1:13"
+      },
+      {
+        "n": 6,
+        "evento": "Eli manda que ela largue o vinho",
+        "ref": "1 Samuel 1:14"
+      },
+      {
+        "n": 7,
+        "evento": "Ana responde que não bebeu vinho, mas derramou a alma diante do SENHOR",
+        "ref": "1 Samuel 1:15-16"
+      },
+      {
+        "n": 8,
+        "evento": "Eli responde: vá em paz, que Deus conceda o que você pediu",
+        "ref": "1 Samuel 1:17"
+      },
+      {
+        "n": 9,
+        "evento": "Ana concebe e dá à luz um filho, chamando-o de Samuel, porque o pediu ao SENHOR",
+        "ref": "1 Samuel 1:20"
+      }
+    ],
+    "versiculo": {
+      "ref": "1 Samuel 1:13",
+      "texto": "Ora, Ana falava no seu coração; apenas os seus lábios se moviam, mas não se ouvia a sua voz. Por isso, Eli pensou que ela estivesse embriagada."
+    },
+    "cenas": [
+      {
+        "fala": "Ana orou tanto que pareceu bêbada.",
+        "evento": 0,
+        "personagens": [
+          "ana"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a woman kneeling on flat rocks in a dusty courtyard at dusk, head bowed low, lips moving in silent prayer, arms folded close to her body, tears on her face, plain temple wall behind, warm fading light.",
+        "busca": "woman praying silently tears temple"
+      },
+      {
+        "fala": "Em Siló, Ana levantou pra orar, e Eli vigiava a porta.",
+        "evento": 1,
+        "personagens": [
+          "ana",
+          "eli"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a plain stone doorway at dusk; a man stands guard beside the entrance while a woman sits quietly on the step, head bowed, smooth stone floor, warm fading light, quiet courtyard.",
+        "busca": "priest sitting temple doorway ancient"
+      },
+      {
+        "fala": "Ela chorava orando, e prometeu dedicar a Deus o filho que pedia.",
+        "evento": 2,
+        "personagens": [
+          "ana"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a woman kneeling on smooth sand, head lowered, weeping quietly, arms held close against her chest under a long sleeve robe, dim temple courtyard wall behind, soft dusk light.",
+        "busca": "woman weeping praying vow bible"
+      },
+      {
+        "fala": "Só os lábios dela se moviam, sem som.",
+        "evento": 5,
+        "personagens": [
+          "ana",
+          "eli"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a woman kneeling with lips moving in silent prayer, an elderly priest seated apart nearby watching with a confused stare, flat dusty courtyard, clear sky above, warm evening light.",
+        "busca": "priest watching woman lips moving confused"
+      },
+      {
+        "fala": "Eli achou que ela tava bêbada: solta esse vinho!",
+        "evento": 6,
+        "personagens": [
+          "eli",
+          "ana"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of an elderly priest standing with a stern expression facing a woman kneeling several steps away on flat dusty ground, temple courtyard, warm evening light, clear sky behind.",
+        "busca": "priest scolding woman stern temple"
+      },
+      {
+        "fala": "Ana disse: não bebi, derramei minha alma a Deus.",
+        "evento": 7,
+        "personagens": [
+          "ana"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a woman kneeling on bare rock, face lifted upward with a calm sincere expression, arms resting close to her sides, plain temple courtyard wall behind, soft warm light.",
+        "busca": "woman speaking humbly praying bible"
+      },
+      {
+        "fala": "Eli disse: vá em paz, Deus atenda seu pedido.",
+        "evento": 8,
+        "personagens": [
+          "eli",
+          "ana"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of an elderly priest standing calmly apart from a kneeling woman on flat stone ground, peaceful sunset light over the temple courtyard, clear sky above.",
+        "busca": "priest blessing woman temple sunset"
+      },
+      {
+        "fala": "Tempo depois, nasceu Samuel: ela o pediu ao Senhor.",
+        "evento": 9,
+        "personagens": [
+          "ana",
+          "samuel-bebe"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a woman seated on a woven mat, gently cradling a swaddled newborn close against her body, long robe covering her legs and feet, warm soft light inside a simple tent.",
+        "busca": "woman holding newborn baby ancient"
+      },
+      {
+        "fala": "Se hoje sua oração é só silêncio, Deus escuta.",
+        "evento": 0,
+        "personagens": [
+          "ana"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide silhouette shot of a lone woman kneeling on smooth bare ground in an open field at dawn, head bowed low in silent prayer, soft golden light on the horizon, clear sky.",
+        "busca": "silhouette woman praying dawn field"
+      },
+      {
+        "fala": "Ela parecia bêbada, mas só estava orando.",
+        "evento": 0,
+        "personagens": [
+          "ana"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a woman kneeling on flat rocks in a dusty temple courtyard at dusk, head lowered, lips moving silently in calm prayer, arms close to her body, soft warm light.",
+        "busca": "woman praying silently temple"
+      },
+      {
+        "fala": "Escreve amém.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Close shot of an open ancient scroll resting on a low wooden table, warm candlelight glow, flat stone floor, bare stone wall behind, quiet still atmosphere.",
+        "busca": "open scroll candlelight bible"
+      }
+    ],
+    "descricao": "\"Ora, Ana falava no seu coração; apenas os seus lábios se moviam, mas não se ouvia a sua voz.\" (1 Samuel 1:13) Ana chorava em silêncio e o sacerdote achou que ela estava bêbada, mas Deus ouviu cada palavra que ninguém escutou. Você já orou tão fundo que só saiu silêncio? Leia 1 Samuel 1.",
+    "hashtags": [
+      "#biblia",
+      "#fé",
+      "#oração",
+      "#deus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já orou tão fundo que só saiu silêncio e lágrima?",
+    "fontes": [
+      "1 Samuel 1:9-17; 1:20 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Silêncio que Deus escuta.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Ela orava sem soltar um som.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Ana orou tanto que pareceu bêbada.",
+        "choque": 5,
+        "clareza": 5,
+        "imagem": 5
+      },
+      {
+        "texto": "Chamaram de bêbada uma mulher em oração.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "Você já orou e não saiu nada?",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 3
+      }
+    ],
+    "notas": {
+      "roteirista": {
+        "gancho": 5,
+        "clareza": 5,
+        "ritmo": 4,
+        "payoff": 5,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 5,
+        "ordem": 4,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 5,
+        "ritmo": 5,
+        "linguagem": 5,
+        "payoff": 4
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Z-Image Turbo)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    }
+  }
+]

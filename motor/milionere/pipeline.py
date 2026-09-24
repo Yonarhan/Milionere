@@ -23,6 +23,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import biblia  # noqa: E402
 import imagens  # noqa: E402
+import medidor  # noqa: E402  (custo e uso por etapa)
 import provedores  # noqa: E402  (ComfyUI | Gemini | manual, conforme MILIONERE_IMAGEM/PLANO)
 import roteirista  # noqa: E402
 import validar  # noqa: E402
@@ -34,6 +35,7 @@ USADOS = PROD / "usados.json"
 from caminhos import PYTHON_MOTOR as PY_MPT  # noqa: E402
 MAX_REESCRITAS = 4
 MAX_REFACAO_IMAGEM = 2
+LIMIAR_BANCO = 0.70  # reuso do banco; 0.55 (padrão do serviço) trouxe cena de outra história (rodada 04 da noite)
 OPCOES_POR_CENA = 3
 DURACAO_OK = (15.0, 58.0)
 
@@ -162,47 +164,126 @@ def guardar_reprovada(r: dict, arq: Path, veredito: dict) -> None:
                             "prompt": c["imagem"], "motivo": veredito["problema"]}, ensure_ascii=False) + "\n")
 
 
+def do_banco(r: dict, pasta: Path, faltando: list[int]) -> dict[int, int]:
+    """Antes de gerar: cena que já tem imagem aprovada parecida no banco (mesmo nicho e estilo) reusa ela.
+    Devolve {cena: id no banco}. O banco nunca derruba o vídeo."""
+    achadas: dict[int, int] = {}
+    try:
+        import banco_imagens
+        pasta.mkdir(parents=True, exist_ok=True)
+        import hashlib
+        # imagem que já está neste vídeo não volta do banco (senão a mesma imagem aparece em duas cenas)
+        no_video = {hashlib.sha1(a.read_bytes()).hexdigest()[:20] for a in pasta.glob("cena_*.*")}
+        pers = {p["id"]: p for p in r.get("personagens", [])}
+        # a imagem do banco também tem que ser genérica (sem personagem): uma cena de multidão do Zaqueu recebia
+        # Jesus e Bartimeu (nota 0,84)
+        genericas = {i["id"] for i in banco_imagens.listar(r["nicho"]) if not i["personagens"]}
+        for n in faltando:
+            c = r["cenas"][n - 1]
+            if c.get("personagens"):
+                # cena com personagem é narrativa: a busca por significado trazia cena de OUTRA história com o mesmo
+                # personagem (Jesus da tempestade no Bartimeu, nota 0,78). Só paisagem, objeto e chamada se reusam.
+                continue
+            # quem aparece vem do roteiro (a fala nem sempre cita o nome: "ele dormiu")
+            nomes = " ".join(pers[i]["nome"] for i in c.get("personagens", []) if i in pers)
+            # fala + o que a imagem mostra: só a fala ("Jesus respondeu") casava com qualquer cena de Jesus
+            texto = " | ".join(x for x in (f"{c['fala']} ({nomes})" if nomes else c["fala"], c.get("imagem", "")) if x)
+            a = next((a for a in banco_imagens.buscar(r["nicho"], texto, excluir=set(achadas.values()),
+                                                        estilo=r["estilo"])
+                      if a["nota"] >= LIMIAR_BANCO and a["id"] in genericas
+                      and hashlib.sha1(a["arquivo"].read_bytes()).hexdigest()[:20] not in no_video), None)
+            if a:
+                shutil.copy(a["arquivo"], pasta / f"cena_{n:02d}{a['arquivo'].suffix}")
+                achadas[n] = a["id"]
+                log(f"  cena {n} veio do banco (nota {a['nota']:.2f}): {a['descricao'][:70]}")
+    except Exception as e:
+        log(f"  banco de imagens indisponível: {e}")
+    return achadas
+
+
+def alimentar_banco(r: dict, pasta: Path, do_banco_ids: dict[int, int], reprovadas: set[int]) -> None:
+    """Depois do juiz: marca o uso das que vieram do banco e guarda as novas aprovadas."""
+    try:
+        import banco_imagens
+        banco_imagens.marcar_uso(list(do_banco_ids.values()))
+        novas = 0
+        for n, c in enumerate(r["cenas"], 1):
+            if n in do_banco_ids or n in reprovadas:
+                continue
+            img = next(iter(sorted(pasta.glob(f"cena_{n:02d}.*"))), None)
+            desc = " | ".join(x for x in (c["fala"], c.get("imagem", "")) if x)
+            if img and banco_imagens.adicionar(img, r["nicho"], desc, c.get("personagens"), r["estilo"], "ia-time",
+                                               "Imagem gerada por IA", True, "time"):
+                novas += 1
+        log(f"  banco: {len(do_banco_ids)} reusadas, {novas} novas guardadas")
+    except Exception as e:
+        log(f"  banco de imagens indisponível: {e}")
+
+
+def _hash_cena(pasta: Path, n: int) -> str | None:
+    import hashlib
+    arq = next(iter(sorted(pasta.glob(f"cena_{n:02d}.*"))), None)
+    return hashlib.sha1(arq.read_bytes()).hexdigest() if arq else None
+
+
+def _aprovadas(pasta: Path) -> dict:
+    arq = pasta / "aprovadas.json"
+    return json.loads(arq.read_text(encoding="utf-8")) if arq.exists() else {}
+
+
+def _marcar_aprovadas(pasta: Path, cenas: list[int]) -> None:
+    """Guarda o hash de cada imagem aprovada pelo juiz (retomada não julga de novo o mesmo arquivo)."""
+    ap = _aprovadas(pasta)
+    ap.update({str(n): _hash_cena(pasta, n) for n in cenas})
+    (pasta / "aprovadas.json").write_text(json.dumps(ap, indent=1), encoding="utf-8")
+
+
 def imagens_validadas(r: dict, arq_roteiro: Path, reg: Registro) -> None:
     pasta = PROD / "midia" / r["slug"]
     faltando = [i for i in range(1, len(r["cenas"]) + 1) if not any(pasta.glob(f"cena_{i:02d}.*"))]
+    reusadas = do_banco(r, pasta, faltando) if faltando else {}
+    faltando = [i for i in faltando if i not in reusadas]
     proc = provedores.garantir_comfy()
     try:
         if faltando:
             log(f"imagens: gerando {len(faltando)} cenas ({provedores.modo()}) (estilo {r['estilo']})")
             provedores.gerar_cenas(r, r["estilo"], pasta, so=faltando)
-        log("camada 3: juiz visual (todas as cenas, uma por vez)")
-        ruins = validar.camada3(r, pasta, r["epoca"])
+        # cena já aprovada (mesmo arquivo, pelo hash) não volta ao juiz: o juiz não é determinístico e trocava o veredito
+        aprovadas = _aprovadas(pasta)
+        pendentes = [n for n in range(1, len(r["cenas"]) + 1) if aprovadas.get(str(n)) != _hash_cena(pasta, n)]
+        log(f"camada 3: juiz visual ({len(pendentes)} cenas; {len(r['cenas']) - len(pendentes)} já aprovadas antes)")
+        ruins = validar.camada3(r, pasta, r["epoca"], so=pendentes) if pendentes else []
         reg.add("camada3", not ruins, rodada=1, reprovadas=ruins)
+        _marcar_aprovadas(pasta, [n for n in pendentes if n not in {c["cena"] for c in ruins}])
         for c in ruins:
             guardar_reprovada(r, next(iter(sorted(pasta.glob(f"cena_{c['cena']:02d}.*")))), c)
-        # cena aprovada fica travada; só as reprovadas voltam, com OPCOES_POR_CENA tentativas por rodada
-        for rodada in range(1, MAX_REFACAO_IMAGEM + 1):
-            if not ruins:
-                break
-            for c in ruins:
-                log(f"  cena {c['cena']} reprovada: {c['problema']}")
-                if c["imagem_corrigida"].strip():
-                    r["cenas"][c["cena"] - 1]["imagem"] = c["imagem_corrigida"].strip()
-            arq_roteiro.write_text(json.dumps([r], ensure_ascii=False, indent=2), encoding="utf-8")
-            log(f"refação {rodada}: {OPCOES_POR_CENA} opções para as cenas {[c['cena'] for c in ruins]}")
-            ainda = []
-            for c in ruins:
-                n = c["cena"]
-                opcoes = provedores.gerar_opcoes(r, r["estilo"], pasta, n, OPCOES_POR_CENA)
-                vereditos = validar.julgar_varias(r, [(n, o) for o in opcoes], r["epoca"])
-                boa = next((o for o, v in zip(opcoes, vereditos) if v["ok"]), None)
-                for o, v in zip(opcoes, vereditos):
-                    if not v["ok"]:
-                        guardar_reprovada(r, o, v)
-                if boa:
+            log(f"  cena {c['cena']} reprovada: {c['problema']}")
+        # refação sequencial: UMA opção por vez; o juiz analisa antes da próxima existir, e o prompt corrigido
+        # por ele entra na tentativa seguinte (antes: 3 opções de uma vez, e em 7 de 8 casos 1-2 eram desperdício)
+        maximo = OPCOES_POR_CENA * MAX_REFACAO_IMAGEM
+        ainda = []
+        for c in ruins:
+            n, v = c["cena"], c
+            for tentativa in range(1, maximo + 1):
+                if v["imagem_corrigida"].strip():
+                    r["cenas"][n - 1]["imagem"] = v["imagem_corrigida"].strip()
+                    arq_roteiro.write_text(json.dumps([r], ensure_ascii=False, indent=2), encoding="utf-8")
+                log(f"refação cena {n}: tentativa {tentativa}/{maximo}")
+                opcao = provedores.gerar_opcoes(r, r["estilo"], pasta, n, 1)[0]
+                v = validar.julgar_imagem(r, n, opcao, r["epoca"])
+                if v["ok"]:
                     for velho in pasta.glob(f"cena_{n:02d}.*"):
                         velho.unlink()
-                    shutil.move(boa, pasta / f"cena_{n:02d}.png")
-                    log(f"  cena {n} aprovada ({boa.name})")
-                else:
-                    ainda.append(vereditos[-1])
-            reg.add("camada3", not ainda, rodada=rodada + 1, reprovadas=ainda)
-            ruins = ainda
+                    shutil.move(opcao, pasta / f"cena_{n:02d}.png")
+                    _marcar_aprovadas(pasta, [n])
+                    log(f"  cena {n} aprovada ({opcao.name}, tentativa {tentativa})")
+                    break
+                guardar_reprovada(r, opcao, v)
+                log(f"  cena {n} reprovada: {v['problema']}")
+            else:
+                ainda.append(v)
+        reg.add("camada3", not ainda, rodada=2, reprovadas=ainda)
+        ruins = ainda
         shutil.rmtree(pasta / "opcoes", ignore_errors=True)
         if ruins:
             for c in ruins:
@@ -211,6 +292,7 @@ def imagens_validadas(r: dict, arq_roteiro: Path, reg: Registro) -> None:
             r.setdefault("_avisos", []).append(f"imagens reprovadas: {[c['cena'] for c in ruins]}")
         else:
             log("  todas as imagens aprovadas")
+        alimentar_banco(r, pasta, reusadas, {c["cena"] for c in ruins})
     finally:
         provedores.derrubar(proc)  # libera a memória da placa pro render
 
@@ -246,7 +328,7 @@ def produzir(arq_roteiro: Path, musica: str, reg: Registro) -> list[Path]:
 
 # ---------------------------------------------------------------- orquestração
 
-def um_video(formato_id: str, estilo: str | None, tema_id: str | None, musica: str) -> list[Path]:
+def um_video(formato_id: str, estilo: str | None, tema_id: str | None, musica: str, so_roteiro: bool = False) -> list[Path]:
     formatos = carregar("formatos.json")
     formato = formatos[formato_id]
     catalogo = biblia.temas()[formato["catalogo"]]
@@ -261,11 +343,13 @@ def um_video(formato_id: str, estilo: str | None, tema_id: str | None, musica: s
     reg = Registro(slug)
     log(f"=== {formato['nome']} | {tema['titulo']} ({tema['ref']}) | estilo {estilo}")
 
-    r = roteiro_validado(formato, tema, reg)
+    with medidor.etapa("roteiro"):
+        r = roteiro_validado(formato, tema, reg)
     if not r:
         log(f"DESISTI de '{slug}': o roteiro não passou nas validações em {MAX_REESCRITAS} tentativas. Veja {reg.arq}")
         return []
-    roteirista.reescrever_imagens(r)  # prompts de imagem no formato que o SDXL obedece
+    with medidor.etapa("roteiro"):
+        roteirista.reescrever_imagens(r)  # prompts de imagem no formato que o SDXL obedece
     pacote = empacotar(r, formato_id, formato, tema, estilo, slug)
     salvar_fichas(pacote)
     arq = PROD / "roteiros" / f"{date.today():%Y-%m-%d}_{slug}.json"
@@ -273,15 +357,23 @@ def um_video(formato_id: str, estilo: str | None, tema_id: str | None, musica: s
     log(f"roteiro aprovado -> {arq.relative_to(RAIZ)}")
     for c in pacote["cenas"]:
         log(f"   «{c['fala']}»")
+    if so_roteiro:
+        # esteira: o roteiro fica pronto enquanto a GPU faz o vídeo anterior; o tema é reservado já, senão o
+        # próximo sorteio (rodando em paralelo) pode pegar o mesmo
+        marcar_usado(f"{formato_id}:{tema['id']}")
+        log(f"roteiro pronto -> {arq}")
+        return []
     return imagens_e_video(arq, musica, reg)
 
 
 def imagens_e_video(arq: Path, musica: str, reg: Registro | None = None) -> list[Path]:
     r = json.loads(arq.read_text(encoding="utf-8"))[0]
     reg = reg or Registro(r["slug"])
-    imagens_validadas(r, arq, reg)
+    with medidor.etapa("imagens"):
+        imagens_validadas(r, arq, reg)
     arq.write_text(json.dumps([r], ensure_ascii=False, indent=2), encoding="utf-8")
-    prontos = produzir(arq, musica, reg)
+    with medidor.etapa("render"):
+        prontos = produzir(arq, musica, reg)
     if prontos:
         marcar_usado(f"{r['formato']}:{r['tema']}")
     return prontos
@@ -314,20 +406,51 @@ def main() -> None:
     ap.add_argument("--qtd", type=int, default=1)
     ap.add_argument("--musica", choices=["com", "sem", "ambas"], default="ambas")
     ap.add_argument("--retomar", help="roteiro já aprovado: faz só imagens + vídeo")
+    ap.add_argument("--so-roteiro", action="store_true", help="para depois do roteiro aprovado (esteira da noite)")
     args = ap.parse_args()
     if not args.formato and not args.retomar:
         args = menu()
 
+    with medidor.medir() as m:
+        prontos = _rodar(args)
+        salvar_custos(m.resumo(), prontos)
+
+
+def salvar_custos(resumo: dict, prontos: list[Path]) -> None:
+    """Custo e uso da rodada (medidor.py): uma linha no log e um JSON em producao/custos/ para o relatório."""
+    pe = resumo["por_etapa"]
+    img = sum(e["imagens"] for e in pe.values())
+    gpu = sum(i["segundos"] for i in pe.values() if i["imagens"]) if img else 0
+    log(f"custo: US$ {resumo['usd']:.2f} (R$ {resumo['brl']:.2f}) | {sum(e['chamadas'] for e in pe.values())} chamadas "
+        f"de IA | {img} imagens | " + " | ".join(f"{k} {v['segundos'] / 60:.1f} min" for k, v in pe.items()))
+    pasta = PROD / "custos"
+    pasta.mkdir(exist_ok=True)
+    nome = prontos[0].stem if prontos else f"sem-video-{datetime.now():%H%M%S}"
+    (pasta / f"{datetime.now():%Y-%m-%d_%H%M}_{nome}.json").write_text(
+        json.dumps({**resumo, "videos": [str(p) for p in prontos], "gpu_imagens_s": round(gpu, 1)},
+                   ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+def _rodar(args: argparse.Namespace) -> list[Path]:
     inicio = time.time()
     prontos: list[Path] = []
     if args.retomar:
-        prontos = imagens_e_video(Path(args.retomar).resolve(), args.musica)
+        arq = Path(args.retomar).resolve()
+        r = json.loads(arq.read_text(encoding="utf-8"))[0]
+        # mesmas linhas do fluxo normal: o painel (monitor.py) acha o tema, a pasta de imagens e as falas
+        log(f"=== Retomando | {r['titulo']} | estilo {r['estilo']}")
+        log(f"roteiro aprovado -> {arq.relative_to(RAIZ) if arq.is_relative_to(RAIZ) else arq}")
+        for c in r["cenas"]:
+            log(f"   «{c['fala']}»")
+        prontos = imagens_e_video(arq, args.musica)
     else:
         for n in range(args.qtd):
-            prontos += um_video(args.formato, args.estilo, args.tema if n == 0 else None, args.musica)
+            prontos += um_video(args.formato, args.estilo, args.tema if n == 0 else None, args.musica,
+                                getattr(args, "so_roteiro", False))
     log(f"FIM em {(time.time() - inicio) / 60:.1f} min. Vídeos prontos:")
     for p in prontos:
         log(f"  {p}  (+ {p.with_suffix('.txt').name})")
+    return prontos
 
 
 if __name__ == "__main__":

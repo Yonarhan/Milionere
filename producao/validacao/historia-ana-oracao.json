@@ -1,0 +1,129 @@
+{
+  "etapas": [
+    {
+      "quando": "22:52:08",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Eli, o sacerdote, achou que Ana tava bêbada.",
+        "Em Siló, Ana se levantou pra orar.",
+        "Ela chorava muito, com a alma amargurada.",
+        "Ela prometeu dedicar ao SENHOR o filho que pedia.",
+        "Eli só via os lábios dela mexerem, e achou que ela tava bêbada.",
+        "Eli disse: jogue fora esse vinho.",
+        "Ana disse: não bebi vinho, derramei minha alma a Deus.",
+        "Eli disse: vá em paz, Deus atende.",
+        "Tempo depois, Ana teve um filho: Samuel.",
+        "Você já orou tanto que só saiu silêncio?",
+        "Deus escuta mesmo quando ninguém ouve nada.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "22:53:26",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 1,
+        "personagens": 5,
+        "compreensao": 2,
+        "gancho": 1,
+        "ritmo": 2,
+        "linguagem": 4,
+        "payoff": 2
+      },
+      "entendimento": "Uma mulher orou tão silenciosamente que um sacerdote a confundiu com embriagada, mas Deus a escutou e lhe deu um filho.",
+      "erros_factuais": [],
+      "problemas": [
+        "ordem (nota 1): Cena 1 apresenta o CLÍMAX (Eli acha embriaguez) antes do gancho-paradoxo e do contexto — a história começa no final.",
+        "compreensao (nota 2): Começar com 'Eli achou que Ana tava bêbada' sem antes apresentar Ana, o contexto (Siló, refeição) e o motivo dela orar confunde quem ouve pela primeira vez.",
+        "gancho (nota 1): Cena 1: 'Eli, o sacerdote, achou que Ana tava bêbada' (8 palavras) ultrapassa o limite de 7 e não é um paradoxo/lacuna — é um fato comum, não cria suspense.",
+        "gancho (nota 1): Deveria ser 'Silêncio que Deus escuta' (5 palavras) ou 'Oração sem ninguém ouvir' (4 palavras).",
+        "ritmo (nota 2): Cenas 1 e 5 são redundantes (ambas: Eli achou Ana bêbada) — 'nenhuma frase sobrando' é violado.",
+        "ritmo (nota 2): Por estar fora de ordem, a história não flui cronologicamente — pula do clímax para o começo.",
+        "payoff (nota 2): Cena 11 'Deus escuta mesmo quando ninguém ouve nada' responde bem o tema, mas o gancho é fraco — não há lacuna clara para resolver.",
+        "payoff (nota 2): Se gancho fosse 'Silêncio que Deus escuta', o payoff fecharia perfeitamente."
+      ]
+    },
+    {
+      "quando": "22:56:26",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Ana orou tanto que pareceu bêbada.",
+        "Em Siló, Ana levantou pra orar, e Eli vigiava a porta.",
+        "Ela chorava orando, e prometeu dedicar a Deus o filho que pedia.",
+        "Só os lábios dela se moviam, sem som.",
+        "Eli achou que ela tava bêbada: solta esse vinho!",
+        "Ana disse: não bebi, derramei minha alma a Deus.",
+        "Eli disse: vá em paz, Deus atenda seu pedido.",
+        "Tempo depois, nasceu Samuel: ela o pediu ao Senhor.",
+        "Se hoje sua oração é só silêncio, Deus escuta.",
+        "Ela parecia bêbada, mas só estava orando.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "22:59:20",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 4,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 5,
+        "ritmo": 5,
+        "linguagem": 5,
+        "payoff": 4
+      },
+      "entendimento": "Uma mulher que orou silenciosamente pareceu bêbada, mas Deus a escutou profundamente e cumpriu sua promessa com um filho.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "23:13:19",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "A porta do santuário tem talhes de hieróglifos e cornija egípcia, um símbolo arquitetônico de outra cultura/religião incompatível com o cenário bíblico israelita.",
+          "imagem_corrigida": "Wide shot of a plain stone doorway at dusk; a man stands guard beside the entrance while a woman sits quietly on the step, head bowed, smooth stone floor, warm fading light, quiet courtyard."
+        }
+      ]
+    },
+    {
+      "quando": "23:14:41",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "23:15:09",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-ana-oracao.mp4",
+      "duracao": 40.2,
+      "avisos": []
+    },
+    {
+      "quando": "23:15:34",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-ana-oracao_sem-musica.mp4",
+      "duracao": 40.2,
+      "avisos": []
+    }
+  ]
+}

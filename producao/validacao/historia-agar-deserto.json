@@ -1,0 +1,134 @@
+{
+  "etapas": [
+    {
+      "quando": "03:07:00",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Ela não quis ver o filho morrer.",
+        "Abraão despediu Agar, com pão e água.",
+        "A água acabou, e o menino ficou sob um arbusto.",
+        "Ela se afastou, e chorou alto.",
+        "Mas Deus ouviu a voz do menino.",
+        "O anjo chamou Agar e disse: não tema, farei dele uma grande nação.",
+        "Deus abriu os olhos dela, e ela viu um poço de água.",
+        "Ela encheu o odre, e deu água ao menino.",
+        "Se seu choro parece invisível, Deus ouve.",
+        "Ela ia perder o filho, mas Deus abriu seus olhos.",
+        "Manda pra quem precisa ouvir isso."
+      ]
+    },
+    {
+      "quando": "03:09:37",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 3,
+        "compreensao": 3,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Deus salva uma mãe que não quer ver o filho morrer, abrindo os olhos dela para um poço de água quando tudo parecia perdido.",
+      "erros_factuais": [
+        "Cena 2: 'Agar' deveria ser 'Hagar' conforme Gênesis 21:14 da fonte",
+        "Cena 6: 'Agar' deveria ser 'Hagar' conforme Gênesis 21:17 da fonte"
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 2: 'Agar' deveria ser 'Hagar' conforme Gênesis 21:14 da fonte",
+        "ERRO FACTUAL: Cena 6: 'Agar' deveria ser 'Hagar' conforme Gênesis 21:17 da fonte",
+        "fidelidade (nota 3): Cenas 2 e 6: trocar 'Agar' por 'Hagar' (a fonte usa 'Hagar' em 21:14 e 21:17)",
+        "personagens (nota 3): Cena 2 ou 3: nomear o menino como Ismael pelo menos uma vez, pois ele é personagem mas nunca recebe nome",
+        "compreensao (nota 3): Cena 1: 'Ela' não é identificada; mudar para 'Uma mãe não quis ver o filho morrer' para clareza na primeira audição"
+      ]
+    },
+    {
+      "quando": "03:11:06",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Uma mãe não quis ver o filho morrer.",
+        "Abraão despediu Hagar, com pão e água.",
+        "A água acabou, e Ismael ficou sob um arbusto.",
+        "Ela se afastou, e chorou alto.",
+        "Mas Deus ouviu a voz do menino.",
+        "O anjo chamou Hagar e disse: não tema, farei dele uma grande nação.",
+        "Deus abriu os olhos dela, e ela viu um poço de água.",
+        "Ela encheu o odre, e deu água ao menino.",
+        "Se seu choro parece invisível, Deus ouve.",
+        "Ela ia perder o filho, mas Deus abriu seus olhos.",
+        "Manda pra quem precisa ouvir isso."
+      ]
+    },
+    {
+      "quando": "03:14:09",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Uma mãe desesperada é ouvida por Deus quando seu choro parece invisível para o mundo.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "03:25:03",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "Os objetos da cena (cantil metálico e sandálias de borracha) são anacrônicos e quebram a ambientação bíblica.",
+          "imagem_corrigida": "Wide shot of a man and woman standing apart in a desert camp, long robes hiding their feet, a clay jug and flatbread on smooth sand between them, soft dawn light, tents behind."
+        },
+        {
+          "cena": 8,
+          "ok": false,
+          "problema": "Os pés de ambos os personagens aparecem calçados com sandálias de aparência moderna (flip-flops de borracha), um objeto anacrônico visível em primeiro plano.",
+          "imagem_corrigida": "Medium shot of a woman and boy seated together at a stone well in the desert, boy drinking from a waterskin she holds to his lips, long robes draped fully over their feet, bare sandy ground, bright harsh midday sunlight, open desert dunes in the background."
+        }
+      ]
+    },
+    {
+      "quando": "03:28:15",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "03:28:43",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-agar-deserto.mp4",
+      "duracao": 37.8,
+      "avisos": []
+    },
+    {
+      "quando": "03:29:06",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-agar-deserto_sem-musica.mp4",
+      "duracao": 37.8,
+      "avisos": []
+    }
+  ]
+}

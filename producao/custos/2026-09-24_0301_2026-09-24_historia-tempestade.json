@@ -1,0 +1,44 @@
+{
+ "usd": 1.8881,
+ "brl": 10.38,
+ "segundos": 2350.8,
+ "por_etapa": {
+  "roteiro": {
+   "chamadas": 7,
+   "imagens": 0,
+   "tokens_entrada": 85053,
+   "tokens_saida": 93277,
+   "usd": 0.9595,
+   "segundos": 831.0,
+   "brl": 5.28
+  },
+  "imagens": {
+   "chamadas": 0,
+   "imagens": 23,
+   "tokens_entrada": 0,
+   "tokens_saida": 0,
+   "usd": 0.0,
+   "segundos": 1080.6,
+   "brl": 0.0
+  },
+  "juiz_visual": {
+   "chamadas": 24,
+   "imagens": 0,
+   "tokens_entrada": 533863,
+   "tokens_saida": 40924,
+   "usd": 0.9285,
+   "segundos": 561.5,
+   "brl": 5.11
+  }
+ },
+ "modelos": [
+  "claude-haiku-4-5-20251001",
+  "claude-sonnet-5",
+  "comfy"
+ ],
+ "videos": [
+  "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-tempestade.mp4",
+  "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-tempestade_sem-musica.mp4"
+ ],
+ "gpu_imagens_s": 1080.6
+}

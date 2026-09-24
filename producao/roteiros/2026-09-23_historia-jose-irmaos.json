@@ -1,0 +1,260 @@
+[
+  {
+    "slug": "historia-jose-irmaos",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "jose-irmaos",
+    "estilo": "cinema_zimage",
+    "epoca": "biblica",
+    "titulo": "José perdoou quem o vendeu como escravo 😢",
+    "cenario_en": "ancient Near East, Bronze Age, dry desert hills, rocky ground",
+    "personagens": [
+      {
+        "id": "jose",
+        "nome": "José",
+        "nome_en": "Joseph",
+        "descricao_visual": "a young Hebrew man in his twenties, short black curly hair, no beard, olive skin, wearing a plain beige tunic"
+      },
+      {
+        "id": "irmaos-jose",
+        "nome": "Irmãos de José",
+        "nome_en": "Joseph's brothers",
+        "descricao_visual": "a group of bearded Hebrew shepherd men in their thirties to fifties, dark curly hair and beards, sun-weathered olive skin, rough brown wool tunics with leather belts"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "José era o mais amado do pai e ganhou dele uma túnica especial",
+        "ref": "Gênesis 37:3"
+      },
+      {
+        "n": 2,
+        "evento": "Os irmãos tiraram a túnica dele e o jogaram numa cisterna vazia",
+        "ref": "Gênesis 37:23-24"
+      },
+      {
+        "n": 3,
+        "evento": "Judá disse aos irmãos para vender José em vez de matá-lo",
+        "ref": "Gênesis 37:26-27"
+      },
+      {
+        "n": 4,
+        "evento": "Venderam José por vinte moedas de prata aos ismaelitas",
+        "ref": "Gênesis 37:28"
+      },
+      {
+        "n": 5,
+        "evento": "Anos depois, José não se conteve diante dos irmãos e chorou em alta voz",
+        "ref": "Gênesis 45:1-2"
+      },
+      {
+        "n": 6,
+        "evento": "José perguntou aos irmãos se o pai ainda vivia",
+        "ref": "Gênesis 45:3"
+      },
+      {
+        "n": 7,
+        "evento": "José disse: cheguem perto, sou eu, o irmão que vocês venderam",
+        "ref": "Gênesis 45:4"
+      },
+      {
+        "n": 8,
+        "evento": "José disse pra não se entristecerem, pois foi Deus quem o mandou à frente pra preservar vidas",
+        "ref": "Gênesis 45:5"
+      }
+    ],
+    "versiculo": {
+      "ref": "Gênesis 45:5",
+      "texto": "Agora, não se entristeçam, nem fiquem irados com vocês mesmos por terem me vendido para cá, pois foi para preservar vidas que Deus me enviou adiante de vocês."
+    },
+    "cenas": [
+      {
+        "fala": "Quem o vendeu, ele chamou de irmão.",
+        "evento": 0,
+        "personagens": [
+          "jose",
+          "irmaos-jose"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of two men standing face to face on flat sandy ground, one bowing his head in shame, long robes reaching down to hide their feet, soft desert sunlight, arid landscape behind them.",
+        "busca": "ancient egyptian palace hall reunion"
+      },
+      {
+        "fala": "José era o filho favorito, e ganhou uma túnica especial.",
+        "evento": 1,
+        "personagens": [
+          "jose"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a young man standing alone in an open desert clearing, chin lifted with quiet pride, arms relaxed at his sides. Flat bare sand, distant tents on the horizon, warm light, clear sky.",
+        "busca": "young shepherd colorful robe desert"
+      },
+      {
+        "fala": "Os irmãos tiraram a túnica dele e o jogaram numa cisterna vazia.",
+        "evento": 2,
+        "personagens": [
+          "jose"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Full-body low-angle shot of a man lying at the bottom of a dry stone cistern pit, gazing up in fear, rough rock walls, sandy floor, bright sunlight from the opening above.",
+        "busca": "ancient dry well desert"
+      },
+      {
+        "fala": "Judá disse: é melhor vender nosso irmão do que matar.",
+        "evento": 3,
+        "personagens": [
+          "irmaos-jose"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium wide shot of two bearded men facing each other on flat desert sand, one leaning in with urgent, decisive expression during a tense argument. Only these two figures present, empty desert with distant dunes behind, bare sand ground, clear midday sky.",
+        "busca": "shepherds desert hillside caravan"
+      },
+      {
+        "fala": "E venderam José por vinte moedas de prata.",
+        "evento": 4,
+        "personagens": [
+          "jose"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a young man walking alone across a desert road, long robe reaching his sandals, smooth sandy ground, clear sky, somber dusk light.",
+        "busca": "camel caravan desert road"
+      },
+      {
+        "fala": "Quando seus irmãos chegaram, José chorou alto.",
+        "evento": 5,
+        "personagens": [
+          "jose"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a robed official seated alone in a stone hall, head bowed, visibly weeping, long robe covering his feet, smooth stone floor, soft light.",
+        "busca": "man weeping ancient hall"
+      },
+      {
+        "fala": "José disse: cheguem perto, sou eu, o irmão que vocês venderam.",
+        "evento": 7,
+        "personagens": [
+          "jose",
+          "irmaos-jose"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a robed official standing near shepherd men at a respectful distance, full bodies visible, inside a stone hall, smooth stone floor, warm golden light.",
+        "busca": "brothers reunion ancient palace"
+      },
+      {
+        "fala": "Não se entristeçam: foi Deus quem me mandou pra preservar vidas.",
+        "evento": 8,
+        "personagens": [
+          "jose"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a robed official standing calmly in a stone hall, long robe reaching the floor, smooth stone floor, plain rock wall behind, warm golden light, peaceful expression.",
+        "busca": "man peaceful ancient palace"
+      },
+      {
+        "fala": "Talvez você ache que sua culpa não tem perdão.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a stone altar with a burning oil lamp on a riverbank at dusk, empty landscape, rocky hills and river in background, smooth bare sand ground, soft golden light.",
+        "busca": "candle lamp dark room quiet"
+      },
+      {
+        "fala": "Quem o vendeu, ele perdoou.",
+        "evento": 0,
+        "personagens": [
+          "jose",
+          "irmaos-jose"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a robed official and shepherd men standing together at a calm distance, full bodies visible, inside a sunlit stone hall, smooth stone floor, warm reunion light.",
+        "busca": "reunion ancient stone hall"
+      },
+      {
+        "fala": "Escreve amém.",
+        "evento": 0,
+        "personagens": [
+          "jose"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a robed man standing calmly in a stone courtyard, long robe reaching the ground, flat stone floor, clear sky, warm golden hour light, peaceful expression.",
+        "busca": "peaceful man ancient courtyard sunset"
+      }
+    ],
+    "descricao": "\"Não se entristeçam... foi para preservar vidas que Deus me enviou adiante de vocês.\" (Gênesis 45:5)\n\nOs irmãos de José o venderam como escravo, cheios de inveja. Anos depois, com todo o poder nas mãos, ele os perdoou em vez de se vingar.\n\nVocê já perdoou alguém que te machucou profundamente?\n\nLeia Gênesis 45",
+    "hashtags": [
+      "#jose",
+      "#biblia",
+      "#perdao",
+      "#fé",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já sentiu que não merece ser perdoado pelo que fez?",
+    "fontes": [
+      "Gênesis 37:3-4; 37:23-28; 45:1-5 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Quem o vendeu, ele chamou de irmão.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Ele foi vendido por vinte moedas de prata.",
+        "choque": 3,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Se vendessem José, ganhavam vinte moedas de prata.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Ele perdoou quem o jogou num poço.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 3
+      },
+      {
+        "texto": "Por que José chorou ao ver quem o traiu?",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 3
+      }
+    ],
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 4,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 4,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 5,
+        "ritmo": 4,
+        "linguagem": 5,
+        "payoff": 5
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Z-Image Turbo)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    },
+    "_avisos": [
+      "imagens reprovadas: [9]",
+      "imagens reprovadas: [9]"
+    ]
+  }
+]

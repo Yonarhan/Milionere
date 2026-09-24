@@ -1,0 +1,296 @@
+{
+  "etapas": [
+    {
+      "quando": "03:35:58",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "O mais odiado da cidade subiu numa árvore.",
+        "Jesus entrou em Jericó.",
+        "Ali morava Zaqueu, cobrador de impostos.",
+        "Baixinho, não conseguia ver Jesus na multidão.",
+        "Correu na frente e subiu num sicômoro.",
+        "Jesus disse: Zaqueu, desça, hoje fico na sua casa.",
+        "Desceu correndo e recebeu Jesus com alegria.",
+        "Todos resmungaram: Jesus ficou com um pecador.",
+        "Zaqueu disse: dou metade aos pobres, devolvo quatro vezes o roubado.",
+        "Jesus disse: salvação chegou.",
+        "Vim salvar o perdido.",
+        "Se todos te rejeitaram, Jesus ainda te escolhe.",
+        "Mais odiado virou mais amado. Escreve amém."
+      ]
+    },
+    {
+      "quando": "03:38:14",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 2,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 5
+      },
+      "entendimento": "Um cobrador de impostos odiado subiu numa árvore para ver Jesus, foi escolhido por ele, e sua vida se transformou em generosidade e aceitação.",
+      "erros_factuais": [
+        "Cena 1: Usa 'árvore' mas depois especifica 'sicômoro' (Lucas 19:4 sempre menciona sicômoro, não apenas árvore)",
+        "Cena 10: Omite 'a esta casa' e 'hoje' (Lucas 19:9 é específico: 'Hoje, a salvação chegou a esta casa')"
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 1: Usa 'árvore' mas depois especifica 'sicômoro' (Lucas 19:4 sempre menciona sicômoro, não apenas árvore)",
+        "ERRO FACTUAL: Cena 10: Omite 'a esta casa' e 'hoje' (Lucas 19:9 é específico: 'Hoje, a salvação chegou a esta casa')",
+        "fidelidade (nota 3): Cena 1: 'Mais odiado da cidade' é dramatização não apoiada em Lucas (o texto só o chama de 'pecador', não 'o mais odiado'); mude para 'O cobrador de impostos que desprezavam subiu num sicômoro'",
+        "fidelidade (nota 3): Cena 3: Omite 'chefe dos cobradores de impostos' e 'rico' de Lucas 19:2; ambos são essenciais (chefe explica posição de poder, rico explica por que pode devolver)—mude para 'Zaqueu, chefe dos cobradores de impostos'",
+        "fidelidade (nota 3): Cena 1: 'árvore' genérica conflita com 'sicômoro' específico da cena 5—padronize em 'sicômoro' desde o gancho",
+        "compreensao (nota 3): Cena 10: 'Salvação chegou' sem 'a esta casa' fica ambíguo para quem ouve sem imagem—mude para 'Salvação chegou a sua casa' ou adicione pronome clarificador",
+        "compreensao (nota 3): Cena 7: Falta pronome 'Ele' no começo ('Desceu' aparece logo após fala de Jesus sem claro quem age)—corrija para 'Ele desceu correndo'",
+        "gancho (nota 2): Cena 1: 'Mais odiado da cidade' é exagero dramatizado e não é apoiado no texto; um gancho-paradoxo deve apontar algo genuinamente contraditório—mude para 'O publicano que ninguém tocaria subiu numa árvore' ou 'O homem que a cidade desprezava esperou por alguém lá em cima'",
+        "ritmo (nota 3): Cena 6→7: Falta conectivo entre a ordem de Jesus ('fico na sua casa') e a ação de Zaqueu ('Desceu')—insira 'Ele' ou 'Zaqueu' para clarificar o agente",
+        "ritmo (nota 3): Cena 10→11: Duas falas consecutivas de Jesus sem marcador de continuidade ('Jesus disse' repetido); parecem frases soltas—considere unificá-las em 'Jesus disse: salvação chegou hoje, porque vim buscar e salvar o que estava perdido' ou confirme visualmente que é mesma fala"
+      ]
+    },
+    {
+      "quando": "03:41:38",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 2,
+      "problemas": [
+        "cena 10 com 17 palavras (máx. 14-16), divida: «Jesus disse: hoje a salvação chegou a esta casa, vim buscar e salvar o que estava perdido.»"
+      ],
+      "falas": [
+        "O publicano que ninguém tocaria subiu num sicômoro.",
+        "Jesus entrou em Jericó.",
+        "Ali morava Zaqueu, chefe dos cobradores de impostos, rico.",
+        "Baixinho, não via Jesus na multidão.",
+        "Correu na frente e subiu no sicômoro.",
+        "Jesus disse: desça, hoje fico na sua casa.",
+        "Ele desceu e recebeu Jesus com alegria.",
+        "Todos resmungaram: Jesus ficou com um pecador.",
+        "Zaqueu disse: dou metade aos pobres, devolvo quatro vezes o roubado.",
+        "Jesus disse: hoje a salvação chegou a esta casa, vim buscar e salvar o que estava perdido.",
+        "Todos te rejeitam, Jesus te escolhe.",
+        "Desprezado virou escolhido.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "03:44:51",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "O publicano que ninguém tocaria subiu num sicômoro.",
+        "Jesus entrou em Jericó.",
+        "Ali morava Zaqueu, chefe dos cobradores de impostos, rico.",
+        "Baixinho, não via Jesus na multidão.",
+        "Correu na frente e subiu no sicômoro.",
+        "Jesus disse: desça, hoje fico na sua casa.",
+        "Zaqueu desceu e recebeu Jesus com alegria.",
+        "Todos resmungaram: Jesus ficou com um pecador.",
+        "Zaqueu disse: dou metade aos pobres, devolvo quatro vezes o roubado.",
+        "Jesus disse: hoje a salvação chegou a esta casa.",
+        "Vim buscar e salvar quem estava perdido.",
+        "Todos te rejeitam, Jesus te escolhe.",
+        "Desprezado virou escolhido.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "03:46:33",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Um publicano desprezado procura ver Jesus e é miraculosamente escolhido por Ele para salvação, apesar da rejeição social.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "06:44:04",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 4,
+          "ok": false,
+          "problema": "Há um poste de iluminação moderno ao fundo, um objeto anacrônico que não existia na época bíblica.",
+          "imagem_corrigida": "Medium shot of a short man standing on tiptoes straining to see over a crowd, neck craned upward, frustrated expression. Blurred crowd in background. Flat dusty street, ancient stone houses, bright midday sun, clear sky."
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "A cena mostra três pessoas (Jesus, um homem de azul no chão e outro homem na árvore), criando confusão sobre qual delas é Zaqueu, além do corpo malformado do homem na árvore.",
+          "imagem_corrigida": "Wide shot of two men only: one seated on a low sycamore branch looking down with hope, the other standing on flat dusty ground looking up, warm afternoon sunlight, dusty village street background."
+        },
+        {
+          "cena": 7,
+          "ok": false,
+          "problema": "A fala diz que Zaqueu já desceu e recebeu Jesus com alegria, mas a imagem mostra Zaqueu ainda em cima da árvore, sem ter descido nem havendo qualquer recepção alegre entre os dois homens.",
+          "imagem_corrigida": "Wide shot of a man climbing down a tree trunk toward another man standing on bare dirt ground, joyful welcoming expression, warm golden afternoon light, sycamore tree, dirt courtyard, stone houses in soft focus background."
+        },
+        {
+          "cena": 8,
+          "ok": false,
+          "problema": "A fala descreve a multidão resmungando com desaprovação, mas a imagem mostra dois homens olhando para o céu com expressão de espanto/admiração, e um deles usa uma venda preta que parece item moderno, sem relação com a cena de reprovação popular.",
+          "imagem_corrigida": "Medium shot of a disapproving townsman standing in a sunlit sandy street, scowling and muttering, arms crossed against his chest. Flat rock walls behind him, clear blue sky, smooth bare sand underfoot."
+        },
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "A luminária de parede com suporte metálico e globo de vidro parece um lampião elétrico moderno, quebrando a ambientação bíblica.",
+          "imagem_corrigida": "Medium wide shot of a man standing in a mud-brick courtyard at dusk, speaking earnestly to someone off-frame, arms relaxed at his sides. Flat stone-paved ground, warm glow from a small clay oil lamp resting on a wooden table nearby."
+        },
+        {
+          "cena": 10,
+          "ok": false,
+          "problema": "A arandela de parede em formato de chama e o móvel de madeira à direita parecem objetos/decoração modernos, quebrando a ambientação bíblica.",
+          "imagem_corrigida": "Wide shot, two men standing side by side inside a plain stone house, one speaking with calm authority, the other listening humbly. Flat clay floor, soft daylight from a small window, bare stone walls."
+        }
+      ]
+    },
+    {
+      "quando": "06:52:59",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "06:53:33",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-zaqueu.mp4",
+      "duracao": 47.3,
+      "avisos": []
+    },
+    {
+      "quando": "06:54:02",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-zaqueu_sem-musica.mp4",
+      "duracao": 47.3,
+      "avisos": []
+    },
+    {
+      "quando": "07:12:00",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "No fundo à esquerda aparece um objeto redondo escuro que parece pneu/roda de veículo moderno, quebrando a ambientação bíblica.",
+          "imagem_corrigida": "Wide shot: a man sitting on a thick tree branch looking down at another man standing below in a dusty village street, flat bare dirt ground, stone houses, clear sky, soft daylight, biblical era setting"
+        }
+      ]
+    },
+    {
+      "quando": "07:18:47",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "07:19:20",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-zaqueu.mp4",
+      "duracao": 47.3,
+      "avisos": []
+    },
+    {
+      "quando": "07:19:49",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-zaqueu_sem-musica.mp4",
+      "duracao": 47.3,
+      "avisos": []
+    },
+    {
+      "quando": "07:22:13",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "A imagem tem um veículo moderno visível ao fundo e uma terceira pessoa desnecessária em primeiro plano, quebrando o realismo da cena bíblica.",
+          "imagem_corrigida": "Wide shot: a man sits on a thick sycamore branch looking down, another man stands below on a flat dirt street looking up. Ancient stone houses in background, soft warm daylight, dry hills beyond."
+        }
+      ]
+    },
+    {
+      "quando": "07:23:44",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "07:24:11",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-zaqueu.mp4",
+      "duracao": 47.3,
+      "avisos": []
+    },
+    {
+      "quando": "07:24:40",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-zaqueu_sem-musica.mp4",
+      "duracao": 47.3,
+      "avisos": []
+    },
+    {
+      "quando": "07:27:02",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 1,
+      "reprovadas": []
+    },
+    {
+      "quando": "07:27:02",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "07:27:33",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-zaqueu.mp4",
+      "duracao": 47.3,
+      "avisos": []
+    },
+    {
+      "quando": "07:28:02",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-zaqueu_sem-musica.mp4",
+      "duracao": 47.3,
+      "avisos": []
+    }
+  ]
+}

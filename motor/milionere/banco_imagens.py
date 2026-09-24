@@ -132,13 +132,16 @@ def marcar_uso(ids: list[int]) -> None:
 
 # ------------------------------------------------------------------ busca
 
-def buscar(nicho: str, texto: str, dono: str = "", excluir: set[int] | None = None, k: int = 5) -> list[dict]:
-    """As k imagens do nicho que melhor ilustram o texto, com nota de 0 a 1."""
+def buscar(nicho: str, texto: str, dono: str = "", excluir: set[int] | None = None, k: int = 5,
+           estilo: str = "") -> list[dict]:
+    """As k imagens do nicho que melhor ilustram o texto, com nota de 0 a 1.
+    estilo: se dado, só imagens desse estilo (não mistura Flux com SDXL no mesmo vídeo)."""
     import numpy as np
 
     con = _db()
     linhas = con.execute("SELECT id,arquivo,descricao,personagens,origem,credito,compartilhada,dono,usos,emb FROM imagens "
-                         "WHERE nicho=? AND (compartilhada=1 OR dono=?)", (nicho, dono or "\x00")).fetchall()
+                         "WHERE nicho=? AND (compartilhada=1 OR dono=?)" + (" AND estilo=?" if estilo else ""),
+                         (nicho, dono or "\x00", *([estilo] if estilo else []))).fetchall()
     con.close()
     linhas = [l for l in linhas if l[0] not in (excluir or set())]
     if not linhas:

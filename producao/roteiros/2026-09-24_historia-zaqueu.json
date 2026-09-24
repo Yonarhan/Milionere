@@ -1,0 +1,297 @@
+[
+  {
+    "slug": "historia-zaqueu",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "zaqueu",
+    "estilo": "cinema_zimage",
+    "epoca": "biblica",
+    "titulo": "Por que Jesus escolheu a casa do mais odiado?",
+    "cenario_en": "ancient Judea, 1st century, dusty walled town of Jericho, dry hills, warm Mediterranean sunlight",
+    "personagens": [
+      {
+        "id": "jesus",
+        "nome": "Jesus",
+        "nome_en": "Jesus",
+        "descricao_visual": "a man in his early 30s, shoulder-length wavy dark brown hair, short dark beard, olive skin, kind brown eyes, simple cream linen tunic with a brown cloak"
+      },
+      {
+        "id": "zaqueu",
+        "nome": "Zaqueu",
+        "nome_en": "Zacchaeus",
+        "descricao_visual": "a short man in his 40s, balding short dark hair, thin trimmed beard, olive skin, fine embroidered blue robe with a leather coin pouch at the belt"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Jesus entra e passa por Jericó",
+        "ref": "Lucas 19:1"
+      },
+      {
+        "n": 2,
+        "evento": "Zaqueu, chefe dos cobradores de impostos, é rico",
+        "ref": "Lucas 19:2"
+      },
+      {
+        "n": 3,
+        "evento": "Zaqueu tenta ver Jesus mas não consegue por causa da multidão e de sua baixa estatura",
+        "ref": "Lucas 19:3"
+      },
+      {
+        "n": 4,
+        "evento": "Ele corre à frente e sobe em um sicômoro",
+        "ref": "Lucas 19:4"
+      },
+      {
+        "n": 5,
+        "evento": "Jesus olha para cima, o vê e manda descer, dizendo que ficará em sua casa",
+        "ref": "Lucas 19:5"
+      },
+      {
+        "n": 6,
+        "evento": "Zaqueu desce depressa e o recebe com alegria",
+        "ref": "Lucas 19:6"
+      },
+      {
+        "n": 7,
+        "evento": "Todos murmuram que Jesus se hospedou com um homem pecador",
+        "ref": "Lucas 19:7"
+      },
+      {
+        "n": 8,
+        "evento": "Zaqueu promete dar metade dos bens aos pobres e restituir quatro vezes mais a quem defraudou",
+        "ref": "Lucas 19:8"
+      },
+      {
+        "n": 9,
+        "evento": "Jesus declara que a salvação chegou àquela casa, pois ele também é filho de Abraão",
+        "ref": "Lucas 19:9"
+      },
+      {
+        "n": 10,
+        "evento": "Jesus diz que o Filho do Homem veio buscar e salvar o que estava perdido",
+        "ref": "Lucas 19:10"
+      }
+    ],
+    "versiculo": {
+      "ref": "Lucas 19:10",
+      "texto": "Pois o Filho do Homem veio buscar e salvar o que estava perdido."
+    },
+    "cenas": [
+      {
+        "fala": "O publicano que ninguém tocaria subiu num sicômoro.",
+        "evento": 0,
+        "personagens": [
+          "zaqueu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Low angle shot of a short man climbing a thick sycamore branch, long sleeves covering his arms, hopeful tense expression, clear sky above, smooth bare dusty ground below, warm afternoon light.",
+        "busca": "man climbing tree ancient village"
+      },
+      {
+        "fala": "Jesus entrou em Jericó.",
+        "evento": 1,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a bearded man walking alone toward a walled ancient town, smooth dusty road underfoot, long robe covering his feet, clear sky, warm midday light over dry hills.",
+        "busca": "biblical man walking dusty road"
+      },
+      {
+        "fala": "Ali morava Zaqueu, chefe dos cobradores de impostos, rico.",
+        "evento": 2,
+        "personagens": [
+          "zaqueu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a well-dressed short man standing beside a plain stone wall, a leather coin pouch at his belt, long sleeves covering his arms, flat dusty ground, warm afternoon light.",
+        "busca": "wealthy man ancient robe"
+      },
+      {
+        "fala": "Baixinho, não via Jesus na multidão.",
+        "evento": 3,
+        "personagens": [
+          "zaqueu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a short man standing on tiptoes straining to see over a crowd, neck craned upward, frustrated expression. Blurred crowd in background. Flat dusty street, ancient stone houses, bright midday sun, clear sky.",
+        "busca": "man straining to see crowd"
+      },
+      {
+        "fala": "Correu na frente e subiu no sicômoro.",
+        "evento": 4,
+        "personagens": [
+          "zaqueu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a short man climbing a thick sycamore branch, determined expression, long sleeves covering his arms, dry hills and smooth dusty road below, bright sun, clear sky above.",
+        "busca": "man climbing sycamore tree"
+      },
+      {
+        "fala": "Jesus disse: desça, hoje fico na sua casa.",
+        "evento": 5,
+        "personagens": [
+          "zaqueu",
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot: a man sits on a thick sycamore branch looking down, another man stands below on a flat dirt street looking up. Ancient stone houses in background, soft warm daylight, dry hills beyond.",
+        "busca": "man looking up tree calling"
+      },
+      {
+        "fala": "Zaqueu desceu e recebeu Jesus com alegria.",
+        "evento": 6,
+        "personagens": [
+          "zaqueu",
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a man climbing down a tree trunk toward another man standing on bare dirt ground, joyful welcoming expression, warm golden afternoon light, sycamore tree, dirt courtyard, stone houses in soft focus background.",
+        "busca": "man climbing down tree joyful"
+      },
+      {
+        "fala": "Todos resmungaram: Jesus ficou com um pecador.",
+        "evento": 7,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Medium shot of a disapproving townsman standing in a sunlit sandy street, scowling and muttering, arms crossed against his chest. Flat rock walls behind him, clear blue sky, smooth bare sand underfoot.",
+        "busca": "crowd whispering ancient village"
+      },
+      {
+        "fala": "Zaqueu disse: dou metade aos pobres, devolvo quatro vezes o roubado.",
+        "evento": 8,
+        "personagens": [
+          "zaqueu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a man standing in a courtyard, arms open wide in a sincere, generous gesture, facing another person nearby. Flat stone ground, mud-brick wall behind, clear empty sky, soft dusk light.",
+        "busca": "man speaking sincerely ancient home"
+      },
+      {
+        "fala": "Jesus disse: hoje a salvação chegou a esta casa.",
+        "evento": 9,
+        "personagens": [
+          "jesus",
+          "zaqueu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot, two men standing side by side inside a plain stone house, one speaking with calm authority, the other listening humbly. Flat clay floor, soft daylight from a small window, bare stone walls.",
+        "busca": "two men talking ancient home"
+      },
+      {
+        "fala": "Vim buscar e salvar quem estava perdido.",
+        "evento": 10,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a bearded man standing alone in a humble room, long sleeves covering his arms, warm lamp glow, plain stone wall behind him, calm compassionate expression.",
+        "busca": "man speaking compassion ancient home"
+      },
+      {
+        "fala": "Todos te rejeitam, Jesus te escolhe.",
+        "evento": 0,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a bearded man walking along a dusty road at sunset, long robe covering his feet, warm inviting light, dry hills behind, empty smooth path ahead.",
+        "busca": "man walking road sunset"
+      },
+      {
+        "fala": "Desprezado virou escolhido.",
+        "evento": 0,
+        "personagens": [
+          "zaqueu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a short man standing confidently outside a modest home at golden sunset, long sleeves covering his arms, calm joyful expression, warm light, smooth dusty ground, clear sky.",
+        "busca": "man standing confident sunset"
+      },
+      {
+        "fala": "Escreve amém.",
+        "evento": 0,
+        "personagens": [
+          "zaqueu",
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a short man and a bearded man standing apart outside a modest home at golden sunset, long sleeves covering their arms, warm joyful light, smooth dusty ground, dry hills beyond.",
+        "busca": "two men sunset village"
+      }
+    ],
+    "descricao": "\"Pois o Filho do Homem veio buscar e salvar o que estava perdido.\" Lucas 19:10\n\nZaqueu era rico, mas era o homem mais odiado de Jericó. Jesus parou no meio da multidão e escolheu ficar exatamente na casa dele.\n\nVocê já achou que era rejeitado demais pra Deus te escolher?\n\nLeia Lucas 19",
+    "hashtags": [
+      "#jesus",
+      "#biblia",
+      "#fé",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já se sentiu como Zaqueu, rejeitado demais pra merecer atenção? Conta aqui embaixo.",
+    "fontes": [
+      "Lucas 19:1-10 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "O publicano que ninguém tocaria subiu num sicômoro.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 5
+      },
+      {
+        "texto": "Jesus parou embaixo do sicômoro e chamou pelo nome.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 2
+      },
+      {
+        "texto": "Ninguém queria a casa dele. Jesus quis.",
+        "choque": 5,
+        "clareza": 4,
+        "imagem": 2
+      },
+      {
+        "texto": "Um cobrador de impostos virou dono da festa de Jesus.",
+        "choque": 4,
+        "clareza": 3,
+        "imagem": 2
+      },
+      {
+        "texto": "Baixinho, rico e odiado. Jesus escolheu ele.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 4
+      }
+    ],
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 4,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 4,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 4
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Z-Image Turbo)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    }
+  }
+]

@@ -31,7 +31,7 @@ SCHEMA = {
             "properties": {"texto": {"type": "string"}, "choque": {"type": "integer"},
                            "clareza": {"type": "integer"}, "imagem": {"type": "integer"}}}},
         "titulo": {"type": "string", "description": "título do post, até 60 caracteres, pode ter 1 emoji"},
-        "cenario_en": {"type": "string", "description": "em inglês: época e lugar comuns a todas as cenas (ex.: 'ancient Judea, 1st century, stone houses, dusty roads')"},
+        "cenario_en": {"type": "string", "description": "em inglês: SÓ o que vale para TODAS as cenas: época e paisagem geral (ex.: 'ancient Judea, 1st century, dusty hills'). Se a história muda de lugar (Canaã e depois Egito), o lugar específico vai no prompt de cada cena, nunca aqui"},
         "personagens": {"type": "array", "items": {
             "type": "object", "additionalProperties": False, "required": ["id", "nome", "nome_en", "descricao_visual"],
             "properties": {"id": {"type": "string"}, "nome": {"type": "string"}, "nome_en": {"type": "string"},
@@ -69,8 +69,23 @@ REGRAS_IMAGEM = (
     "Proibido: close-up de mãos, dedo apontando, mão estendida para a câmera, duas pessoas se tocando, mãos dadas, "
     "multidão. Ação com as mãos se mostra pelo corpo inteiro em plano aberto ou em silhueta contra a luz. Dois "
     "personagens juntos = plano aberto, separados, de corpo inteiro (ou silhuetas). Nada de negação ('no halo'), nada "
-    "de texto, e não descreva a aparência dos personagens (ela entra sozinha). Termine com luz e lugar."
+    "de texto, e não descreva a aparência dos personagens (ela entra sozinha). Termine com luz e lugar. "
+    # erros mais frequentes do juiz visual (auditoria historia-elias-deserto): pés, chão, fundo e pulsos
+    "Pés erram muito: pessoa sentada ou deitada em plano médio, com o manto longo cobrindo os pés; nunca pés em "
+    "primeiro plano. Descreva o chão ('smooth bare sand', 'flat rocks'): chão sem descrição ganha objetos inventados. "
+    "No máximo 2 figuras em primeiro plano; multidão só quando a fala pede, ao fundo e desfocada. Sem animais ou "
+    "pássaros, a menos que a fala peça. Braços cobertos por mangas longas. A última cena (a chamada) mostra o momento "
+    "mais forte da própria história, nunca alguém escrevendo, lendo ou olhando um pergaminho."
 )
+
+
+def regras_imagem() -> str:
+    """REGRAS_IMAGEM + as lições que o juiz visual mais repetiu nos vídeos anteriores (guia_visual.py)."""
+    try:
+        import guia_visual
+        return REGRAS_IMAGEM + guia_visual.bloco()
+    except Exception:
+        return REGRAS_IMAGEM
 
 
 def _ler(p: Path) -> str:
@@ -103,13 +118,14 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
         f"# Personagens com aparência fixa (reuse o id e NÃO mude a descrição)\n{fichas}\n"
         f"Personagens esperados neste tema: {esperados}. Para quem não está na lista, crie id em minúsculas com hífen "
         "e uma descricao_visual em inglês bem específica (idade, cabelo, barba, pele, roupa), sem nome próprio.\n"
-        "Numa cena, `personagens` lista só quem aparece na imagem. Máximo 2 por cena. Rosto de Deus nunca aparece.",
-        f"# Tamanho\n{lo} a {hi} palavras no total, {c_lo} a {c_hi} cenas. Uma frase por cena, 3 a 14 palavras. "
+        "Numa cena, `personagens` lista só quem aparece na imagem, NA MESMA ORDEM em que o prompt de imagem os descreve "
+        "(a primeira ficha vai para a primeira figura descrita). Máximo 2 por cena. Rosto de Deus nunca aparece.",
+        f"# Tamanho\nMire em {lo} a {hi - 8} palavras no total (limite duro: {hi}; conte antes de entregar), {c_lo} a {c_hi} cenas. Uma frase por cena, 3 a 14 palavras. "
         "A primeira cena é o gancho (até 8 palavras). A última é o CTA.",
         f"# Ganchos\n{_ler(REFS / 'ganchos.md')}\nEscreva 5 ganchos, dê nota 1-5 e use o melhor na cena 1.",
         f"# Linguagem\n{_ler(REFS / 'anti-ia.md')}",
         f"# O que já funcionou no canal\n{_ler(REFS / 'persona-gospel.md')}\n{_ler(RAIZ / 'producao' / 'aprendizados.md')}",
-        "# Imagens\nCada `imagem` mostra literalmente o que a fala diz. Varie o enquadramento. " + REGRAS_IMAGEM + " "
+        "# Imagens\nCada `imagem` mostra literalmente o que a fala diz. Varie o enquadramento. " + regras_imagem() + " "
         f"Época: {'bíblica, sem nenhum objeto moderno' if formato['epoca'] == 'biblica' else 'Brasil atual, pessoas comuns'}.",
         "# Post\nTítulo até 60 caracteres (pergunta ou curiosidade, não repita o gancho). Descrição: o versículo entre aspas "
         "com referência, 2 frases, uma pergunta e 'Leia <livro capítulo>'. 5 hashtags com #shorts. Comentário fixado com "
@@ -150,7 +166,7 @@ def reescrever_imagens(r: dict) -> None:
     """Reescreve os prompts de imagem de um roteiro já aprovado nas regras de REGRAS_IMAGEM (as falas não mudam)."""
     linhas = "\n".join(f"{i}. fala: «{c['fala']}» | personagens na imagem: {', '.join(c['personagens']) or 'nenhum'} | "
                        f"atual: {c['imagem']}" for i, c in enumerate(r["cenas"], 1))
-    novo = llm.chamar(f"{REGRAS_IMAGEM}\n\nReescreva o prompt de cada cena abaixo seguindo essas regras, mantendo o que a "
+    novo = llm.chamar(f"{regras_imagem()}\n\nReescreva o prompt de cada cena abaixo seguindo essas regras, mantendo o que a "
                       f"cena precisa mostrar. Devolva {len(r['cenas'])} prompts, na ordem.\n\n{linhas}", SCHEMA_PROMPTS)
     if len(novo["imagens"]) == len(r["cenas"]):
         for c, t in zip(r["cenas"], novo["imagens"]):

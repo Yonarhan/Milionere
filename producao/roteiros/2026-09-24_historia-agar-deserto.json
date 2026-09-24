@@ -1,0 +1,264 @@
+[
+  {
+    "slug": "historia-agar-deserto",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "agar-deserto",
+    "estilo": "cinema_zimage",
+    "epoca": "biblica",
+    "titulo": "O choro que só Deus podia ouvir no deserto",
+    "cenario_en": "ancient Near East desert near Beersheba, sparse thorny bushes, dry cracked ground, harsh sunlight",
+    "personagens": [
+      {
+        "id": "abraao",
+        "nome": "Abraão",
+        "nome_en": "Abraham",
+        "descricao_visual": "an elderly Hebrew man in his 90s, long white beard, thinning white hair, deeply wrinkled tanned skin, plain long beige robe with a brown cloak"
+      },
+      {
+        "id": "hagar",
+        "nome": "Hagar",
+        "nome_en": "Hagar",
+        "descricao_visual": "an Egyptian servant woman in her 30s, long dark wavy hair under a plain reddish-brown headscarf, olive skin, worn beige linen robe"
+      },
+      {
+        "id": "ismael",
+        "nome": "Ismael",
+        "nome_en": "Ishmael",
+        "descricao_visual": "a thin teenage boy around fifteen years old, short black curly hair, no beard, olive skin, simple undyed linen tunic"
+      },
+      {
+        "id": "anjo",
+        "nome": "Anjo do Senhor",
+        "nome_en": "angel",
+        "descricao_visual": "a youthful beardless man around 20, short light golden hair, smooth pale face, calm luminous eyes, plain white linen robe with a thin gold sash, large white feathered wings, soft white glow"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Abraão se levanta de madrugada e entrega pão e um odre de água a Hagar, colocando também o menino com ela, e a despede",
+        "ref": "Gênesis 21:14"
+      },
+      {
+        "n": 2,
+        "evento": "A água do odre acaba no deserto de Berseba, e ela coloca o menino debaixo de um arbusto",
+        "ref": "Gênesis 21:15"
+      },
+      {
+        "n": 3,
+        "evento": "Hagar se afasta a uma boa distância, senta, levanta a voz e chora, dizendo que não quer ver a morte do menino",
+        "ref": "Gênesis 21:16"
+      },
+      {
+        "n": 4,
+        "evento": "Deus ouve a voz do menino; o anjo de Deus chama Hagar do céu e diz que ela não tema, pois Deus ouviu a voz do menino onde ele está",
+        "ref": "Gênesis 21:17"
+      },
+      {
+        "n": 5,
+        "evento": "O anjo manda ela levantar e segurar o menino, pois Deus fará dele uma grande nação",
+        "ref": "Gênesis 21:18"
+      },
+      {
+        "n": 6,
+        "evento": "Deus abre os olhos dela, ela vê um poço de água, enche o odre e dá de beber ao menino",
+        "ref": "Gênesis 21:19"
+      }
+    ],
+    "versiculo": {
+      "ref": "Gênesis 21:19",
+      "texto": "Deus abriu os olhos dela, e ela viu um poço de água. Ela foi, encheu o odre com água e deu de beber ao menino."
+    },
+    "cenas": [
+      {
+        "fala": "Uma mãe não quis ver o filho morrer.",
+        "evento": 0,
+        "personagens": [
+          "hagar",
+          "ismael"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide desert shot, a woman sitting apart on cracked dry sand, grief on her face, a boy lying under a small thorny bush nearby, harsh sunlight.",
+        "busca": "desert mother grief sorrow"
+      },
+      {
+        "fala": "Abraão despediu Hagar, com pão e água.",
+        "evento": 1,
+        "personagens": [
+          "abraao",
+          "hagar"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a man and woman standing apart in a desert camp, long robes hiding their feet, a clay jug and flatbread on smooth sand between them, soft dawn light, tents behind.",
+        "busca": "elderly man giving supplies desert biblical"
+      },
+      {
+        "fala": "A água acabou, e Ismael ficou sob um arbusto.",
+        "evento": 2,
+        "personagens": [
+          "ismael",
+          "hagar"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide desert shot, a boy lying under a small thorny bush on cracked sand, an empty water skin nearby, a woman standing distant behind him, harsh midday sun.",
+        "busca": "boy lying exhausted desert shade"
+      },
+      {
+        "fala": "Ela se afastou, e chorou alto.",
+        "evento": 3,
+        "personagens": [
+          "hagar"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide shot, a woman sitting alone on dry sand at a distance, head bowed low in grief, shoulders trembling, harsh desert light, empty horizon.",
+        "busca": "woman crying alone desert wilderness"
+      },
+      {
+        "fala": "Mas Deus ouviu a voz do menino.",
+        "evento": 4,
+        "personagens": [
+          "ismael"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot, a weak boy lying under a thorny bush on cracked sand, eyes closed, faint warm light breaking through the branches above him.",
+        "busca": "weak boy desert bush light"
+      },
+      {
+        "fala": "O anjo chamou Hagar e disse: não tema, farei dele uma grande nação.",
+        "evento": 5,
+        "personagens": [
+          "anjo",
+          "hagar"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot, a glowing winged figure appearing in the sky above a kneeling woman on desert sand, soft golden light, awe on her face, dunes below.",
+        "busca": "angel appearing desert glow"
+      },
+      {
+        "fala": "Deus abriu os olhos dela, e ela viu um poço de água.",
+        "evento": 6,
+        "personagens": [
+          "hagar"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot, a woman staring in amazement at a stone well among desert rocks, bright water glinting inside, morning sunlight, her long robe covering her feet.",
+        "busca": "desert well water discovery amazement"
+      },
+      {
+        "fala": "Ela encheu o odre, e deu água ao menino.",
+        "evento": 6,
+        "personagens": [
+          "hagar",
+          "ismael"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a woman sitting on a low stone well ledge, tilting a leather waterskin to give a boy sitting beside her a drink, both calm and tender. Smooth bare sand, desert dunes behind, bright harsh sunlight, clear sky.",
+        "busca": "mother boy drinking water relief"
+      },
+      {
+        "fala": "Se seu choro parece invisível, Deus ouve.",
+        "evento": 0,
+        "personagens": [
+          "hagar"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot, a woman looking up at the sky with tearful relief, seated on dry sand near a stone well, warm golden desert light.",
+        "busca": "woman relief looking up sky desert"
+      },
+      {
+        "fala": "Ela ia perder o filho, mas Deus abriu seus olhos.",
+        "evento": 0,
+        "personagens": [
+          "hagar",
+          "ismael"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide shot, a woman and a boy resting peacefully near a desert well at sunset, silhouettes against golden sky, long shadows across the sand.",
+        "busca": "family desert well sunset silhouette"
+      },
+      {
+        "fala": "Manda pra quem precisa ouvir isso.",
+        "evento": 0,
+        "personagens": [
+          "hagar",
+          "ismael"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot, a woman kneeling at a stone well drawing water with joy, a boy standing beside her watching, warm sunset light over desert rocks.",
+        "busca": "joyful water well desert biblical"
+      }
+    ],
+    "descricao": "\"Deus abriu os olhos dela, e ela viu um poço de água. Ela foi, encheu o odre com água e deu de beber ao menino.\" (Gênesis 21:19)\n\nHagar achou que ia perder o filho no deserto. Mas Deus ouviu o choro que ninguém mais escutou. Já sentiu que seu clamor era invisível pra Deus? Leia Gênesis 21.",
+    "hashtags": [
+      "#biblia",
+      "#fé",
+      "#deusouve",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já chorou um choro que parecia que ninguém ouvia?",
+    "fontes": [
+      "Gênesis 21:14-19 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Uma mãe não quis ver o filho morrer.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 5
+      },
+      {
+        "texto": "Ela abandonou o filho debaixo de um arbusto.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 5
+      },
+      {
+        "texto": "Deus ouviu o choro que ninguém mais ouviu.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Sem água, ela esperava ver o filho morrer.",
+        "choque": 5,
+        "clareza": 4,
+        "imagem": 5
+      },
+      {
+        "texto": "O menino ia morrer de sede no deserto.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      }
+    ],
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 5,
+        "ritmo": 4,
+        "payoff": 5,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 3
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Z-Image Turbo)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    }
+  }
+]

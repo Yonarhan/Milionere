@@ -156,6 +156,55 @@
           "imagem_corrigida": "Wide shot of a weary prophet sitting alone under a lone broom tree, head bowed in despair, robe draped over folded legs, lifting his face to the sky, harsh midday sun, barren desert wilderness"
         }
       ]
+    },
+    {
+      "quando": "20:35:04",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "Há uma ferramenta de metal com aparência moderna (tipo alicate/pinça cromada) caída na areia, um anacronismo visível num cenário do deserto bíblico.",
+          "imagem_corrigida": "Wide shot of an exhausted man lying face-down on desert sand beneath a lone withered shrub, body limp with despair, bare ground around him, harsh sunlight, barren desert wilderness at midday."
+        },
+        {
+          "cena": 3,
+          "ok": false,
+          "problema": "Os galhos secos atrás da cabeça parecem fundidos/brotando da cabeça do personagem, parecendo chifres ou um cocar em vez de vegetação de fundo.",
+          "imagem_corrigida": "Wide shot of a lone bearded man sitting collapsed under a sparse desert tree, head tilted back toward the sky, face full of despair and exhaustion, vast empty desert, harsh midday sun, cracked dry ground."
+        },
+        {
+          "cena": 7,
+          "ok": false,
+          "problema": "Os pés de Elias em primeiro plano mostram dedos fundidos e malformados, um artefato de IA visível mesmo em tela pequena.",
+          "imagem_corrigida": "Wide shot of an exhausted bearded prophet sitting on desert sand, weary expression, gazing up at a tall winged angel standing a few steps away. Golden sunset light, rocky desert landscape."
+        }
+      ]
+    },
+    {
+      "quando": "20:46:00",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "20:46:46",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-elias-deserto.mp4",
+      "duracao": 40.7,
+      "avisos": []
+    },
+    {
+      "quando": "20:47:13",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-23_historia-elias-deserto_sem-musica.mp4",
+      "duracao": 40.7,
+      "avisos": []
     }
   ]
 }

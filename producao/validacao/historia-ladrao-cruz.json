@@ -1,0 +1,205 @@
+{
+  "etapas": [
+    {
+      "quando": "06:57:28",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Um criminoso entrou no paraíso sem fazer nada.",
+        "Do lado de Jesus, um criminoso zombava: se é o Cristo, se salve!",
+        "Mas o outro repreendeu: nem teme a Deus?",
+        "A gente merece, mas ele não fez nada de errado.",
+        "Repara: ele pediu lugar no Reino, vendo um rei morrer.",
+        "Senhor, lembra de mim quando entrar no seu Reino.",
+        "Jesus respondeu: hoje você vai estar comigo no paraíso.",
+        "Não importa o que fez, só falta pedir.",
+        "Ele não fez nada. Só confiou. E entrou no paraíso.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "06:58:36",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 2,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 2
+      },
+      "entendimento": "Um ladrão condenado pediu a Jesus para ser lembrado no Reino e foi aceito no paraíso sem ter feito nada de bom—apenas confiando.",
+      "erros_factuais": [
+        "Cena 5: 'vendo um rei morrer' não está em Lucas 23:42; é interpretação adicionada, não detalhe exato do texto"
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 5: 'vendo um rei morrer' não está em Lucas 23:42; é interpretação adicionada, não detalhe exato do texto",
+        "fidelidade (nota 3): Cena 5: 'vendo um rei morrer' adiciona inferência que não está na fonte.",
+        "fidelidade (nota 3): Cena 8: 'Não importa o que fez, só falta pedir' é lição genérica sem raiz específica no texto do ladrão.",
+        "ordem (nota 2): Cena 5 antecipa e comenta o pedido antes dele acontecer (cena 6), quebrando cronologia; mova para após cena 7 como reflexão.",
+        "compreensao (nota 3): Cena 5 sai do fluxo narrativo sem aviso, confundindo quem ouve sobre sequência dos fatos.",
+        "compreensao (nota 3): Cenas 8-9: '[na imagem: ninguém]' não funciona narrativamente; use '[na imagem: ladrão]' ou personagem que faça sentido.",
+        "ritmo (nota 3): Cena 5 quebra o ritmo ao sair da cronologia; remove fluidez de 'uma história contada de uma vez'.",
+        "ritmo (nota 3): Cenas 2-7 precisam de conectivos mais marcados entre elas (faltam ligações de 'então', 'aí', 'daí').",
+        "linguagem (nota 3): Cena 8: 'Não importa o que fez' soa como lição TED Talk, não como fechamento de uma história específica do ladrão.",
+        "linguagem (nota 3): Cenas 8-9 usam linguagem genérica e perdem o tom coloquial que dominava até cena 7.",
+        "payoff (nota 2): Cena 9 é repetitiva ('Ele não fez nada. Só confiou...') e não cria emoção; não fecha o gancho com força.",
+        "payoff (nota 2): Falta aplicação em 2ª pessoa ligada a dor real (culpa, espera, medo, luto); cena 8 é genérica demais para criar impacto."
+      ]
+    },
+    {
+      "quando": "07:01:29",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Um criminoso entrou no paraíso sem fazer nada.",
+        "Um dos criminosos zombava de Jesus: se é o Cristo, se salve!",
+        "Mas o outro repreendeu: você nem teme a Deus?",
+        "A gente merece, disse ele.",
+        "Mas esse homem não fez nada de errado.",
+        "Então pediu: Senhor, lembra de mim quando entrares no teu Reino.",
+        "E Jesus respondeu: hoje você estará comigo no paraíso.",
+        "Talvez você ache que fez coisa demais pra ser perdoado.",
+        "Mas esse homem não fez nada.",
+        "Só confiou, e entrou no paraíso.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "07:03:07",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 4
+      },
+      "entendimento": "Um ladrão condenado, arrependido, pede a Jesus na cruz e entra no paraíso apenas por sua confiança, sem ter feito nada de bom.",
+      "erros_factuais": [],
+      "problemas": [
+        "compreensao (nota 3): Cenas 8-10: formato exige 1 frase de aplicação + 1 frase-loop após clímax; aqui há 3 frases de reflexão fragmentadas, quebrando a estrutura esperada.",
+        "compreensao (nota 3): Cenas 2-3, 6-7: ambiguidade se são narração ou fala direta dos personagens (sem aspas, fica confuso quem fala)."
+      ]
+    },
+    {
+      "quando": "07:05:37",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Um criminoso entrou no paraíso sem fazer nada.",
+        "Um dos criminosos zombava de Jesus: “se és o Cristo, salva a nós!”",
+        "O outro repreendeu: “você nem teme a Deus?”",
+        "Nós merecemos, disse ele.",
+        "Mas esse homem não fez nada de errado.",
+        "Então pediu: “Senhor, lembra de mim no teu Reino.”",
+        "Jesus respondeu: “hoje você estará comigo no paraíso.”",
+        "Não importa o que você já fez, ainda dá tempo de pedir socorro.",
+        "Ele não teve obra nem tempo. Só teve fé.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "07:06:45",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 2,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 2,
+        "gancho": 3,
+        "ritmo": 2,
+        "linguagem": 3,
+        "payoff": 3
+      },
+      "entendimento": "Um ladrão condenado à morte pediu a Jesus e foi levado ao paraíso no mesmo dia, sem ter feito nada de bom em vida.",
+      "erros_factuais": [
+        "Cena 2: Omite 'a ti mesmo' — a zombaria completa é 'salva a ti mesmo E a nós', não apenas 'a nós' (Lucas 23:39)",
+        "Cena 3: Omite 'vendo que está sob a mesma condenação?' — essa cláusula é a base do argumento de por que o criminoso teme a Deus (Lucas 23:40)",
+        "Cena 6: Omite 'quando entrares' — a petição especifica futuro: 'quando entrares no teu Reino', não apenas 'no teu Reino' (Lucas 23:42)",
+        "Cena 7: Omite 'Em verdade te digo' — fórmula solene de Jesus que marca a importância da promessa (Lucas 23:43)"
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 2: Omite 'a ti mesmo' — a zombaria completa é 'salva a ti mesmo E a nós', não apenas 'a nós' (Lucas 23:39)",
+        "ERRO FACTUAL: Cena 3: Omite 'vendo que está sob a mesma condenação?' — essa cláusula é a base do argumento de por que o criminoso teme a Deus (Lucas 23:40)",
+        "ERRO FACTUAL: Cena 6: Omite 'quando entrares' — a petição especifica futuro: 'quando entrares no teu Reino', não apenas 'no teu Reino' (Lucas 23:42)",
+        "ERRO FACTUAL: Cena 7: Omite 'Em verdade te digo' — fórmula solene de Jesus que marca a importância da promessa (Lucas 23:43)",
+        "fidelidade (nota 2): Cena 2: 'salva a nós!' remove 'a ti mesmo', perdendo que a zombaria é dupla (salvação própria + dos inocentes)",
+        "fidelidade (nota 2): Cena 3: Corta a razão 'vendo que está sob a mesma condenação?', deixando o repreendo sem lógica clara",
+        "fidelidade (nota 2): Cena 6-7: Omitir 'quando entrares' (v.42) e 'Em verdade te digo' (v.43) diminui o peso das falas de Jesus",
+        "compreensao (nota 2): Sem contexto visual ou menção de crucificação/morte, um novo ouvinte não entende por que há dois 'criminosos' pendurados lado a lado",
+        "compreensao (nota 2): Cenas 2-5 são muito telegráficas; falta uma frase que situe 'Isso acontecia enquanto Jesus morria crucificado' ou similar",
+        "gancho (nota 3): Cena 1 tem 8 palavras, não 7: 'Um criminoso entrou no paraíso sem fazer nada' excede o limite em 1 palavra",
+        "ritmo (nota 2): Cenas 2-5 soam como lista de frases desconexas; faltam conectivos fluidos entre elas ('Mas um repreendeu...', 'O criminoso disse...')",
+        "ritmo (nota 2): Transição abrupta entre cena 7 (3ª pessoa, clímax) e cena 8 (2ª pessoa, aplicação) é esperada mas quebrante; poderia haver frase de transição suave",
+        "linguagem (nota 3): Cena 4 soa artificial: 'Nós merecemos, disse ele' — inversão estranha; melhor 'Ele disse: nós merecemos'",
+        "linguagem (nota 3): Mistura perspectivas confusamente: 'nós' (cena 4-5) → 'você' (cena 8) → 'ele' (cena 9), sem clareza de transição",
+        "payoff (nota 3): Cena 9 ('Só teve fé') responde o gancho de forma genérica; ganho era 'entrou no paraíso SEM FAZER NADA', e a resposta deveria ser mais direta sobre a graça sem obras",
+        "payoff (nota 3): Falta um 'momento-curiosidade' solicitado no formato — nenhuma frase realça um detalhe exato do texto que pouca gente nota (ex: 'O ladrão foi o único que acreditou naquela hora')"
+      ]
+    },
+    {
+      "quando": "07:08:28",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Um criminoso entrou no paraíso sem fazer nada.",
+        "Um deles zombou: 'Se és o Cristo, salva a nós!'",
+        "O outro repreendeu: 'Você nem teme a Deus?'",
+        "Ele admitiu: 'Nós merecemos, mas Jesus não fez nada de errado.'",
+        "Os dois sofriam a mesma condenação, mas só um creu.",
+        "Então pediu: 'Senhor, lembra de mim no teu Reino.'",
+        "Jesus respondeu: 'Hoje você estará comigo no paraíso.'",
+        "Se você acha que fez demais pra ser perdoado, basta pedir com fé.",
+        "Ele não fez nada. Só confiou. E foi salvo.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "07:09:30",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 4,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Um criminoso crucificado ao lado de Jesus pediu perdão e foi salvo no mesmo dia, sem fazer nada de extraordinário além de confiar.",
+      "erros_factuais": [
+        "Cena 1: 'sem fazer nada' é enganoso — ele repreendeu o outro e pediu explicitamente a Jesus, não está inativo.",
+        "Cena 8: 'com fé' é adição não mencionada na fonte; Lucas 23:43 não nomeia fé como condição."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 1: 'sem fazer nada' é enganoso — ele repreendeu o outro e pediu explicitamente a Jesus, não está inativo.",
+        "ERRO FACTUAL: Cena 8: 'com fé' é adição não mencionada na fonte; Lucas 23:43 não nomeia fé como condição.",
+        "compreensao (nota 3): Cena 5 interrompe a narrativa como pausa reflexiva antes do clímax, quebrando o fluxo — mova-a para após cena 7 ou remova.",
+        "compreensao (nota 3): Cena 1 diz 'sem fazer nada' mas depois ele repreende e pede: confuso para quem nunca leu o texto."
+      ]
+    }
+  ]
+}

@@ -42,6 +42,7 @@ def estado() -> dict:
                 e["erro"] = (e["erro"] or "") + bruta + "\n"
             continue
         hora, msg = m.groups()
+        msg = msg.strip()
         e["eventos"].append({"hora": hora, "msg": msg.strip()})
         e["inicio"] = e["inicio"] or _seg(hora)
         e["ultimo"] = _seg(hora)
@@ -106,6 +107,13 @@ def estado() -> dict:
             e["erro"] = msg
         elif "videos_prontos" in msg:
             e.setdefault("videos", []).append(msg.split("(+")[0].strip())
+    if not e["slug"] and e["eventos"] and MIDIA.exists():
+        # log sem cabeçalho (retomada antiga): a pasta de imagens mexida por último é a do vídeo em andamento
+        pastas = [p for p in MIDIA.iterdir() if p.is_dir() and not p.name.startswith("_")]
+        if pastas:
+            e["slug"] = max(pastas, key=lambda p: p.stat().st_mtime).name
+            e["tema"] = e["tema"] or e["slug"]
+            e["total_cenas"] = e["total_cenas"] or len(list((MIDIA / e["slug"]).glob("cena_*.png")))
     # progresso das imagens pelos arquivos (o print do ComfyUI chega atrasado no log)
     e["imagens"] = []
     if e["slug"] and (MIDIA / e["slug"]).exists():
