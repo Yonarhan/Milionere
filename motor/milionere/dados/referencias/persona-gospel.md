@@ -20,7 +20,7 @@ Evitar as batidas demais (Davi e Golias). Fila: José do Egito, Jonas, Pedro (ne
 4. **Aplicação pessoal** em 1 frase, em 2ª pessoa: "antes de tirar a sua dor, ele sente ela com você."
 5. **Clímax/milagre**: "Lázaro, venha para fora! E o morto saiu."
 6. **Frase-loop** que responde o gancho: "Ele pode parecer atrasado. Mas nunca chega tarde."
-7. **CTA**: "Escreve amém."
+7. **CTA**: amém + inscrição, com frase diferente a cada vídeo (rodízio em `motor/milionere/cta.py`; fechamento idêntico em todo vídeo conta como "produzido em massa" na revisão do YPP).
 
 **Duração:** mirar 30–35 s (~65 palavras). O do Lázaro saiu com 90 palavras e 48 s: funcionou, mas dá pra enxugar.
 

@@ -31,6 +31,10 @@ from caminhos import DADOS as SKILL  # noqa: E402  (presets, formatos, estilos, 
 from caminhos import RAIZ  # noqa: E402
 from caminhos import COMFY  # noqa: E402
 URL = "http://127.0.0.1:8188"
+# Host tem 32GB e o Windows já usa ~15GB: o WSL inteiro precisa ficar perto de 15GB. Acima de HIGH o kernel
+# joga cache/anon pro swap (lento, mas seguro); em MAX mata o ComfyUI.
+COMFY_RAM_HIGH = "9G"
+COMFY_RAM_MAX = "11G"
 RETRATOS = SKILL / "biblia" / "retratos"
 LARGURA, ALTURA = 768, 1344  # resolução nativa do SDXL mais próxima de 9:16
 IPADAPTER = "ip-adapter-plus-face_sdxl_vit-h.safetensors"
@@ -60,10 +64,16 @@ def garantir_comfy() -> subprocess.Popen | None:
     if no_ar():
         return None
     log = open(caminhos.PRODUCAO / "comfy.log", "w")
-    proc = subprocess.Popen([str(COMFY / ".venv" / "bin" / "python"), "main.py", "--listen", "127.0.0.1",
-                             "--port", "8188", "--disable-auto-launch",
-                             # WSL: a memória fixada (pinned) do driver dxg esgota e o ComfyUI trava ao carregar o IP-Adapter
-                             "--disable-dynamic-vram", "--disable-pinned-memory"], cwd=COMFY, stdout=log, stderr=subprocess.STDOUT)
+    cmd = [str(COMFY / ".venv" / "bin" / "python"), "main.py", "--listen", "127.0.0.1",
+           "--port", "8188", "--disable-auto-launch",
+           # WSL: a memória fixada (pinned) do driver dxg esgota e o ComfyUI trava ao carregar o IP-Adapter
+           "--disable-dynamic-vram", "--disable-pinned-memory"]
+    if shutil.which("systemd-run"):
+        # Teto de RAM: sem ele, um modelo grande (Wan 14B) esgota os 16GB do WSL e a VM inteira cai.
+        # Com o teto, o kernel mata só o ComfyUI (OOM) e o resto da máquina segue de pé.
+        cmd = ["systemd-run", "--user", "--scope", "--quiet", "--collect", "-p", f"MemoryHigh={COMFY_RAM_HIGH}",
+               "-p", f"MemoryMax={COMFY_RAM_MAX}", "-p", "MemorySwapMax=4G", *cmd]
+    proc = subprocess.Popen(cmd, cwd=COMFY, stdout=log, stderr=subprocess.STDOUT)
     for _ in range(180):
         if no_ar():
             return proc

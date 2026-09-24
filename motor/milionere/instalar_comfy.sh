@@ -62,12 +62,21 @@ if [ "${1:-}" = "--animacao" ]; then
     git clone --depth 1 https://github.com/city96/ComfyUI-GGUF custom_nodes/ComfyUI-GGUF
     uv pip install --python .venv/bin/python -r custom_nodes/ComfyUI-GGUF/requirements.txt
   fi
-  baixar "$HF/QuantStack/Wan2.2-TI2V-5B-GGUF/resolve/main/Wan2.2-TI2V-5B-Q5_K_M.gguf" \
-    models/unet/Wan2.2-TI2V-5B-Q5_K_M.gguf
+  # Wan 2.2 I2V 14B (GGUF Q3, 2 especialistas) + LoRA lightx2v de 4 passos: o que animar.py usa
+  Q="$HF/QuantStack/Wan2.2-I2V-A14B-GGUF/resolve/main"
+  K="$HF/Kijai/WanVideo_comfy/resolve/main/LoRAs/Wan22_Lightx2v"
+  baixar "$Q/HighNoise/Wan2.2-I2V-A14B-HighNoise-Q3_K_M.gguf" models/unet/Wan2.2-I2V-A14B-HighNoise-Q3_K_M.gguf
+  baixar "$Q/LowNoise/Wan2.2-I2V-A14B-LowNoise-Q3_K_M.gguf" models/unet/Wan2.2-I2V-A14B-LowNoise-Q3_K_M.gguf
+  baixar "$K/Wan_2_2_I2V_A14B_HIGH_lightx2v_4step_lora_260412_rank_64_fp16.safetensors" \
+    models/loras/wan22_i2v_high_lightx2v_4step.safetensors
+  baixar "$K/Wan_2_2_I2V_A14B_LOW_lightx2v_4step_lora_260412_rank_64_fp16.safetensors" \
+    models/loras/wan22_i2v_low_lightx2v_4step.safetensors
   baixar "$HF/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors" \
     models/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
-  baixar "$HF/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan2.2_vae.safetensors" \
-    models/vae/wan2.2_vae.safetensors
+  baixar "$HF/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors" \
+    models/vae/wan_2.1_vae.safetensors
+  # nó do milionere: salva o texto codificado em disco (o encoder sai da RAM antes do modelo de vídeo)
+  ln -sf "$(dirname "$(readlink -f "$0")")/comfy_nodes/milionere_condicionamento.py" custom_nodes/
 fi
 
 echo "ComfyUI pronto em $DEST"

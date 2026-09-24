@@ -113,5 +113,20 @@
     "nome": "Criminoso zombador",
     "nome_en": "mocking criminal",
     "descricao_visual": "a lean man in his 40s, matted grey-streaked hair, rough stubble beard, sun-worn tanned skin, torn dark brown loincloth wrap"
+  },
+  "davi": {
+    "nome": "Davi",
+    "nome_en": "David",
+    "descricao_visual": "a young shepherd boy around fifteen years old, short curly brown hair, no beard, olive skin, simple beige tunic with a leather sling tucked at the belt"
+  },
+  "golias": {
+    "nome": "Golias",
+    "nome_en": "Goliath",
+    "descricao_visual": "a giant Philistine warrior in his 40s, long braided black beard, deeply tanned muscular skin, bronze scale armor with bronze helmet and bronze greaves"
+  },
+  "saul": {
+    "nome": "Saul",
+    "nome_en": "Saul",
+    "descricao_visual": "an Israelite king in his 50s, grey-streaked dark hair and beard, weathered olive skin, deep-blue robe trimmed with purple over leather armor"
   }
 }

@@ -4,40 +4,50 @@
     "nome": "História bíblica narrada",
     "catalogo": "historias",
     "nicho": "gospel",
-    "palavras": [60, 95],
+    "palavras": [60, 102],
     "cenas": [10, 14],
-    "estilo": "cinema_flux",
+    "estilo": "cinema_zimage",
     "epoca": "biblica",
-    "receita": "Conte um episódio real da Bíblia como um plot twist, na ORDEM em que aconteceu no texto.\n1. Gancho-paradoxo (até 7 palavras) que abre uma lacuna: algo que parece errado ou impossível.\n2. A história em frases curtas, uma imagem por frase, seguindo a ordem do trecho bíblico.\n3. Um momento-curiosidade no meio (um detalhe exato do texto que pouca gente nota).\n4. O clímax/virada do texto. A história corre sem interrupção do começo até aqui.\n5. Só DEPOIS do clímax, uma aplicação pessoal em 1 frase, em 2ª pessoa, ligada a uma dor real (culpa, espera, medo, luto).\n6. Uma frase-loop que responde o gancho.\n7. CTA curto: 'Escreve amém.' ou 'Manda pra quem precisa ouvir isso.'"
+    "receita": "Conte um episódio real da Bíblia como um plot twist, na ORDEM em que aconteceu no texto.\n1. Gancho-paradoxo (até 7 palavras) que abre uma lacuna: algo que parece errado ou impossível.\n2. A história em frases curtas, uma imagem por frase, seguindo a ordem do trecho bíblico.\n3. Um momento-curiosidade no meio (um detalhe exato do texto que pouca gente nota).\n4. O clímax/virada do texto. A história corre sem interrupção do começo até aqui.\n5. Só DEPOIS do clímax, uma aplicação pessoal em 1 frase, em 2ª pessoa, ligada a uma dor real (culpa, espera, medo, luto).\n6. Uma frase-loop que responde o gancho.\n7. CTA de fechamento (1 ou 2 cenas curtas, SEMPRE as duas coisas): pedir o amém e pedir a inscrição, com frase nova a cada vídeo (ver # Fechamento)."
   },
   "parabola": {
     "nome": "Parábola moderna de Provérbio",
     "catalogo": "proverbios",
     "nicho": "gospel",
-    "palavras": [55, 75],
+    "palavras": [55, 82],
     "cenas": [9, 13],
     "estilo": "cinema",
     "epoca": "moderna",
-    "receita": "Invente uma história curta, nos dias de hoje, que ilustra o provérbio SEM citá-lo até o fim.\n1. Gancho com uma situação concreta e tensa (até 8 palavras): 'Ele tinha 300 reais e uma decisão.'\n2. UM protagonista com nome brasileiro comum e no máximo 1 personagem secundário. Os mesmos do começo ao fim, com a mesma aparência.\n3. Conflito do dia a dia (trabalho, família, dinheiro, amizade), em frases curtas, uma cena por frase, em ordem cronológica.\n4. Uma virada que ninguém esperava.\n5. Revelação: o provérbio citado com a referência exata ('Provérbios 15:1').\n6. Uma frase que aplica ao espectador em 2ª pessoa.\n7. CTA curto."
+    "receita": "Invente uma história curta, nos dias de hoje, que ilustra o provérbio SEM citá-lo até o fim.\n1. Gancho com uma situação concreta e tensa (até 8 palavras): 'Ele tinha 300 reais e uma decisão.'\n2. UM protagonista com nome brasileiro comum e no máximo 1 personagem secundário. Os mesmos do começo ao fim, com a mesma aparência.\n3. Conflito do dia a dia (trabalho, família, dinheiro, amizade), em frases curtas, uma cena por frase, em ordem cronológica.\n4. Uma virada que ninguém esperava.\n5. Revelação: o provérbio citado com a referência exata ('Provérbios 15:1').\n6. Uma frase que aplica ao espectador em 2ª pessoa.\n7. CTA de fechamento (1 ou 2 cenas curtas, SEMPRE as duas coisas): pedir o amém e pedir a inscrição, com frase nova a cada vídeo (ver # Fechamento)."
   },
   "proverbio": {
     "nome": "Provérbio explicado",
     "catalogo": "proverbios",
     "nicho": "gospel",
-    "palavras": [35, 55],
+    "palavras": [35, 62],
     "cenas": [6, 9],
     "estilo": "cinema",
     "epoca": "moderna",
-    "receita": "Vídeo curto (15-25s) que faz o provérbio parecer escrito pra hoje.\n1. Gancho que conecta com uma dor ou situação comum (até 8 palavras), sem citar ainda.\n2. O versículo, com referência exata, lido do texto oficial (pode encurtar com reticências, sem mudar o sentido).\n3. O que ele quer dizer na prática, com UM exemplo concreto de hoje.\n4. Uma frase de impacto em 2ª pessoa.\n5. CTA curto."
+    "receita": "Vídeo curto (15-25s) que faz o provérbio parecer escrito pra hoje.\n1. Gancho que conecta com uma dor ou situação comum (até 8 palavras), sem citar ainda.\n2. O versículo, com referência exata, lido do texto oficial (pode encurtar com reticências, sem mudar o sentido).\n3. O que ele quer dizer na prática, com UM exemplo concreto de hoje.\n4. Uma frase de impacto em 2ª pessoa.\n5. CTA de fechamento (1 ou 2 cenas curtas, SEMPRE as duas coisas): pedir o amém e pedir a inscrição, com frase nova a cada vídeo (ver # Fechamento)."
   },
   "personagem": {
     "nome": "Personagem bíblico em 30s",
     "catalogo": "personagens",
     "nicho": "gospel",
-    "palavras": [60, 85],
+    "palavras": [60, 92],
     "cenas": [9, 13],
     "estilo": "cinema",
     "epoca": "biblica",
-    "receita": "Série 'quem foi X em 30 segundos'. Os fatos da vida dele em ORDEM cronológica.\n1. Gancho com o fato mais surpreendente da vida dele (até 8 palavras).\n2. Quem ele era, em 1 frase.\n3. A grande vitória ou chamado.\n4. A queda, fraqueza ou crise (a Bíblia não esconde).\n5. A virada: como Deus agiu mesmo assim.\n6. Lição em 1 frase, em 2ª pessoa.\n7. CTA: 'Qual personagem eu conto no próximo? Comenta.'"
+    "receita": "Série 'quem foi X em 30 segundos'. Os fatos da vida dele em ORDEM cronológica.\n1. Gancho com o fato mais surpreendente da vida dele (até 8 palavras).\n2. Quem ele era, em 1 frase.\n3. A grande vitória ou chamado.\n4. A queda, fraqueza ou crise (a Bíblia não esconde).\n5. A virada: como Deus agiu mesmo assim.\n6. Lição em 1 frase, em 2ª pessoa.\n7. CTA de fechamento (1 ou 2 cenas curtas, SEMPRE as duas coisas): pedir o amém e pedir a inscrição, com frase nova a cada vídeo (ver # Fechamento)."
+  },
+  "versiculo": {
+    "nome": "Versículo famoso e a história por trás",
+    "catalogo": "versiculos",
+    "nicho": "gospel",
+    "palavras": [60, 97],
+    "cenas": [9, 13],
+    "estilo": "cinema",
+    "epoca": "biblica",
+    "receita": "Um dos versículos mais lidos da Bíblia, contado a partir de ONDE e PRA QUEM ele foi escrito. Quem assiste conhece a frase, mas quase nunca o contexto: é aí que está a surpresa.\n1. Gancho (até 8 palavras) que vira do avesso o que a pessoa acha que sabe do versículo.\n2. O contexto, com fatos do texto: quem falou, pra quem, em que situação (prisão, exílio, luto, medo).\n3. O versículo lido do texto oficial, com a referência falada ('Jeremias 29, versículo 11').\n4. O que ele quer dizer de verdade, à luz desse contexto.\n5. Aplicação em 2ª pessoa, ligada a uma dor real (ansiedade, espera, medo, cansaço).\n6. CTA de fechamento (1 ou 2 cenas curtas, SEMPRE as duas coisas): pedir o amém e pedir a inscrição, com frase nova a cada vídeo (ver # Fechamento)."
   }
 }

@@ -100,14 +100,14 @@
       "bgm_volume": 0.22,
       "subtitle_enabled": true,
       "subtitle_position": "custom",
-      "subtitle_display_mode": "sentence",
+      "subtitle_display_mode": "karaoke",
       "subtitle_animation": "none",
-      "font_name": "BeVietnamPro-Medium.ttf",
-      "font_size": 62,
+      "font_name": "BeVietnamPro-Bold.ttf",
+      "font_size": 74,
       "text_fore_color": "#FFFFFF",
       "stroke_color": "#000000",
-      "stroke_width": 2.0,
-      "custom_position": 62
+      "stroke_width": 3.0,
+      "custom_position": 66
     },
     "corte_max": 3.5,
     "evitar_termos": [

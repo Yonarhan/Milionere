@@ -52,6 +52,7 @@ def duracao_audio(caminho: Path) -> float:
 
 PAUSA_MIN = 0.35  # entre duas falas, menos que isso soa como frase colada / pedaço perdido
 PAUSA_ALVO = 0.8  # pausa normal do Edge TTS depois de ponto final
+PAUSA_MAX = 0.45  # compactar_pausas(): 0.8s entre frases derruba o ritmo (60% pulavam o vídeo no começo)
 
 
 def _tempo_srt(t: float) -> str:
@@ -121,6 +122,43 @@ def respirar(cenas: list[dict], audio: Path, srt_arq: Path) -> list[str]:
     return [f"pausa inserida depois de «{srt[k][2]}» (era {PAUSA_ALVO - s:.2f}s)" for k, s in cortes]
 
 
+def compactar_pausas(audio: Path, srt_arq: Path) -> float:
+    """Encurta o silêncio entre frases para PAUSA_MAX (fica acima de PAUSA_MIN: não soa colado), no áudio e na
+    legenda. Mantém 0.25s depois do fim da frase (o srt às vezes corta no meio da última sílaba) e 0.2s antes da
+    próxima. Devolve quantos segundos tirou."""
+    srt = ler_srt(srt_arq)
+    cortes = []  # (início, fim) do trecho de silêncio removido
+    if srt and srt[0][0] > 0.2:
+        cortes.append((0.0, srt[0][0] - 0.1))
+    for (_, fim, _), (ini_prox, _, _) in zip(srt, srt[1:]):
+        if ini_prox - fim > PAUSA_MAX:
+            a, b = fim + 0.25, ini_prox - 0.2
+            if b - a > 0.05:
+                cortes.append((a, b))
+    if not cortes:
+        return 0.0
+    filtros, rotulos, ant = [], [], 0.0
+    for j, (a, b) in enumerate(cortes):
+        if a > ant:
+            filtros.append(f"[0:a]atrim={ant:.3f}:{a:.3f},asetpts=PTS-STARTPTS[p{j}]")
+            rotulos.append(f"[p{j}]")
+        ant = b
+    filtros.append(f"[0:a]atrim=start={ant:.3f},asetpts=PTS-STARTPTS[fim]")
+    rotulos.append("[fim]")
+    filtros.append(f"{''.join(rotulos)}concat=n={len(rotulos)}:v=0:a=1[a]")
+    antes = audio.with_name(audio.stem + "_pausas" + audio.suffix)
+    audio.replace(antes)
+    subprocess.run([FFMPEG, "-y", "-v", "error", "-i", str(antes), "-filter_complex", ";".join(filtros),
+                    "-map", "[a]", str(audio)], check=True)
+
+    def novo(t: float) -> float:
+        return t - sum(min(b, t) - a for a, b in cortes if t > a)
+
+    srt_arq.write_text("\n".join(f"{n}\n{_tempo_srt(novo(a))} --> {_tempo_srt(novo(b))}\n{t}\n"
+                                 for n, (a, b, t) in enumerate(srt, 1)), encoding="utf-8")
+    return sum(b - a for a, b in cortes)
+
+
 def tempos_das_cenas(cenas: list[dict], srt: list, dur_audio: float) -> tuple[list[tuple[float, float]], list[str]]:
     """Início/fim de cada cena. Cada palavra do srt ganha um horário (interpolado dentro do bloco)."""
     linha_do_tempo = []
@@ -183,7 +221,9 @@ def cortar(origem: Path, destino: Path, inicio_origem: float, frames: int) -> No
         FFMPEG, "-y", "-loglevel", "error",
         "-ss", f"{inicio_origem:.2f}", "-i", str(origem),
         "-frames:v", str(frames),
-        "-vf", f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps={FPS},setsar=1",
+        # tpad: clipe mais curto que a fala congela no último quadro em vez de encurtar a tomada (desincroniza)
+        "-vf", f"scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,fps={FPS},setsar=1,"
+               "tpad=stop_mode=clone:stop_duration=30",
         "-an", "-pix_fmt", "yuv420p",
     ]
     # placa de vídeo primeiro (bem mais rápido no i3); processador se a placa falhar
@@ -202,14 +242,28 @@ def baixar_candidato(c: dict, cache: Path) -> Path:
     return destino
 
 
+# (z, x, y) do zoompan; P = progresso 0->1 da tomada. Um movimento diferente a cada tomada: o mesmo zoom central em
+# todas as imagens é o "slideshow" que a política de conteúdo não original do YouTube cita como produzido em massa.
+_CX, _CY = "iw/2-(iw/zoom/2)", "ih/2-(ih/zoom/2)"
+MOVIMENTOS = [
+    ("1+0.08*P", _CX, _CY),                          # aproxima no centro
+    ("1.1", "(iw-iw/zoom)*P", _CY),                  # desliza pra direita
+    ("1.08-0.08*P", _CX, _CY),                       # afasta
+    ("1+0.08*P", _CX, "(ih/2-(ih/zoom/2))*0.55"),    # aproxima no terço de cima (rostos)
+    ("1.1", "(iw-iw/zoom)*(1-P)", _CY),              # desliza pra esquerda
+    ("1.1", _CX, "(ih-ih/zoom)*(1-P)"),              # sobe
+]
+
+
 def animar_foto(origem: Path, destino: Path, frames: int, parte: int = 0) -> None:
-    """Foto/pintura -> clipe vertical com zoom lento. Retrato preenche a tela; paisagem fica grande
-    no meio com o fundo desfocado da própria imagem."""
+    """Foto/pintura -> clipe vertical com movimento lento (MOVIMENTOS[parte], em rodízio). Retrato preenche a tela;
+    paisagem fica grande no meio com o fundo desfocado da própria imagem."""
     from PIL import Image
 
     with Image.open(origem) as im:
         proporcao = im.width / im.height
-    zoom = f"zoompan=z='1+0.07*on/{frames}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=1080x1920:fps={FPS}"
+    z, x, y = (e.replace("P", f"(on/{frames})") for e in MOVIMENTOS[parte % len(MOVIMENTOS)])
+    zoom = f"zoompan=z='{z}':x='{x}':y='{y}':d=1:s=1080x1920:fps={FPS}"
     if proporcao < 0.75:
         filtro = f"[0:v]scale=2160:3840:force_original_aspect_ratio=increase,crop=2160:3840,{zoom},setsar=1[v]"
     else:
@@ -245,6 +299,9 @@ def montar_tomadas(cenas, tempos, corte_max: float, pexels: Pexels, pasta: Path,
         # 1º: arquivos do usuário em producao/midia/<slug>/cena_05.jpg, cena_05b.mp4... (prioridade total)
         manuais = sorted(p for p in (pasta_midia.glob(f"cena_{i:02d}*") if pasta_midia and pasta_midia.exists() else [])
                          if p.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp", ".mp4", ".mov"})
+        videos = [p for p in manuais if p.suffix.lower() in {".mp4", ".mov"}]
+        if videos and any(p.stem == f"cena_{i:02d}" for p in videos):
+            manuais = videos  # cena animada (animar.py) substitui a imagem de onde saiu
         if manuais:
             if len(manuais) < partes:  # 1 imagem para cena longa = 1 tomada contínua (o zoom não "reinicia")
                 partes = len(manuais)
@@ -257,7 +314,7 @@ def montar_tomadas(cenas, tempos, corte_max: float, pexels: Pexels, pasta: Path,
                 if origem.suffix.lower() in {".mp4", ".mov"}:
                     cortar(origem, destino, 0.0, frames)
                 else:
-                    animar_foto(origem, destino, frames)
+                    animar_foto(origem, destino, frames, n)
                 tomadas.append({"provider": "local", "url": str(destino), "duration": max(1, math.ceil(frames / FPS)), "frames": frames})
                 relatorio.append(f"  {ini:5.1f}s–{fim:5.1f}s  cena {i:>2}.{k + 1}  {frames / FPS:4.1f}s  SUA PASTA: {origem.name}  «{cena['fala'][:50]}»")
             continue
@@ -277,7 +334,7 @@ def montar_tomadas(cenas, tempos, corte_max: float, pexels: Pexels, pasta: Path,
                     inicio_origem = min(max(0.0, c.get("dur", 0) - dur - 0.2), 0.5 + repeticao * (dur + 0.5))
                     cortar(origem, destino, inicio_origem, frames)
                 else:
-                    animar_foto(origem, destino, frames)
+                    animar_foto(origem, destino, frames, n)
                 tomadas.append({"provider": "local", "url": str(destino), "duration": max(1, math.ceil(frames / FPS)), "frames": frames})
                 relatorio.append(f"  {ini:5.1f}s–{fim:5.1f}s  cena {i:>2}.{k + 1}  {frames / FPS:4.1f}s  {ref}  «{cena['fala'][:50]}»")
             continue

@@ -63,6 +63,9 @@ class Canal(models.Model):
     ativo = models.BooleanField(default=False)
     meta_dia = models.PositiveSmallIntegerField(default=3)
     musica = models.CharField(max_length=5, default="sem")  # com | sem: UM vídeo por produção, escolhido no painel
+    modo = models.CharField(max_length=10, default="unitario")  # unitario | serie | misto (o que o automático gera)
+    serie_max = models.PositiveSmallIntegerField(default=3)  # teto de partes; a IA usa só as que a história aguenta
+    serie_cada = models.PositiveSmallIntegerField(default=3)  # misto: 1 série a cada N vídeos únicos
 
     def __str__(self):
         return f"{self.nicho} · {self.meta_dia}/dia · {'ativo' if self.ativo else 'parado'}"
@@ -90,8 +93,39 @@ class Pauta(models.Model):
         return f"{self.nicho}/{self.formato}: {self.titulo}"
 
 
+class Serie(models.Model):
+    """Uma história em 2 a 5 partes. Cada parte é uma Producao; a série vai para a revisão como um bloco só."""
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    pauta = models.ForeignKey(Pauta, null=True, blank=True, on_delete=models.SET_NULL)
+    nicho = models.CharField(max_length=20)
+    formato = models.CharField(max_length=30)
+    tema = models.CharField(max_length=200)
+    max_partes = models.PositiveSmallIntegerField(default=3)
+    automatica = models.BooleanField(default=False)  # pedida pelo produtor: tema curto demais cai para vídeo único
+    titulo = models.CharField(max_length=200, blank=True)
+    plano = models.JSONField(default=dict, blank=True)
+    status = models.CharField(max_length=10, default="fila")  # os mesmos de Producao.Status
+    etapa = models.CharField(max_length=20, blank=True)
+    mensagem = models.CharField(max_length=300, blank=True)
+    avisos = models.JSONField(default=list, blank=True)  # juiz visual da série: personagem que mudou de cara
+    log = models.TextField(blank=True)
+    custos = models.JSONField(default=dict, blank=True)
+    erro = models.TextField(blank=True)
+    motivo = models.CharField(max_length=300, blank=True)
+    criado = models.DateTimeField(auto_now_add=True)
+    iniciado = models.DateTimeField(null=True, blank=True)
+    terminado = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["-criado"]
+
+    def __str__(self):
+        return f"série {self.nicho} · {self.titulo or self.tema} · {self.status}"
+
+
 class Producao(models.Model):
-    """Um vídeo do canal, do tema até a postagem."""
+    """Um vídeo do canal, do tema até a postagem (sozinho ou uma parte de uma Serie)."""
 
     class Status(models.TextChoices):
         FILA = "fila", "Na fila"
@@ -104,6 +138,8 @@ class Producao(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     pauta = models.ForeignKey(Pauta, null=True, blank=True, on_delete=models.SET_NULL)
+    serie = models.ForeignKey(Serie, null=True, blank=True, on_delete=models.CASCADE, related_name="partes")
+    parte = models.PositiveSmallIntegerField(null=True, blank=True)
     nicho = models.CharField(max_length=20)
     formato = models.CharField(max_length=30)
     tema = models.CharField(max_length=200)

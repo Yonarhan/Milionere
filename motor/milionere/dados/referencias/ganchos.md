@@ -10,6 +10,13 @@ A primeira frase é também o primeiro texto na tela, então precisa funcionar l
   (perigo, escala absurda, algo impossível). Se o fato não passa, troque de fato — não adianta caprichar no gancho.
 
 - No máximo 8 palavras. Ideal: 4–6.
+- **Palavra do dia a dia, sem termo bíblico técnico na abertura** ("publicano", "sicômoro", "fariseu", "levita"):
+  quem ainda não decidiu ficar não para pra decifrar. "O homem mais odiado da cidade subiu numa árvore" >
+  "O publicano subiu num sicômoro". O termo técnico pode vir depois, já explicado.
+- **Texto de tela (`gancho_tela`)**: 3–6 palavras que aparecem GRANDES no primeiro quadro, antes da voz. Quem rola
+  o feed sem som decide por ele. Complementa a fala (não repete): fala "Uma mãe não quis ver o filho morrer" ->
+  tela "ELA DESISTIU. DEUS NÃO."
+- Dados do canal (2026-09-24): 60% pulam o vídeo antes de começar; o problema está no 1º segundo, não no meio.
 - Nada de "Olá", "Você sabia que...", "Hoje vou te contar", "Neste vídeo".
 - Abre uma lacuna de curiosidade que só fecha no fim (ou quase no fim).
 - Concreto > abstrato. "Seu cérebro apaga 50 mil pensamentos por dia" > "O cérebro é fascinante".

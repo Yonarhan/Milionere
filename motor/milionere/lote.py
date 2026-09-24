@@ -64,6 +64,7 @@ def main() -> None:
     ap.add_argument("--musica", choices=["com", "sem", "ambas"], default="sem",
                     help="um vídeo só (com ou sem música); ambas = monta uma vez e mistura a música numa 2ª cópia")
     ap.add_argument("--status", action="store_true")
+    ap.add_argument("--postar", action="store_true", help="no fim, sobe como PRIVADO no YouTube o que ficou pronto sem aviso")
     a = ap.parse_args()
 
     formatos = pipeline.carregar("formatos.json")
@@ -97,6 +98,13 @@ def main() -> None:
             falhas.append(f"{fmt}:{tema['id']}: {type(e).__name__}: {e}")
     if prontos:
         anotar_fila(prontos)
+    if a.postar:
+        try:
+            import postar
+            ids = postar.postar_pendentes()
+            pipeline.log(f"YouTube: {len(ids)} vídeo(s) enviados como privados: {[f'https://youtu.be/{i}' for i in ids]}")
+        except BaseException as e:  # noqa: BLE001 - sys.exit do postar (sem token) não pode derrubar o lote
+            pipeline.log(f"YouTube: não postei ({e})")
     pipeline.log(alimentar_bancos())
     pipeline.log(f"LOTE FIM em {(time.time() - inicio) / 60:.1f} min: {len(prontos)} arquivo(s) de vídeo, "
                  f"{len(falhas)} falha(s)" + (f" -> {falhas}" if falhas else ""))

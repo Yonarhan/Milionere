@@ -262,3 +262,10 @@ producao/banco/
 
 # motor original (repositório próprio); o código usado está em motor/
 MoneyPrinterTurbo/
+
+# credenciais da API do YouTube (postar.py)
+motor/segredos/
+
+# testes locais de animação e trava do turno da noite
+producao/testes_video/
+producao/noite/.turno.lock
