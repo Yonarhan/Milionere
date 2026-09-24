@@ -1,0 +1,81 @@
+[
+  {
+    "slug": "campo-profundo",
+    "nicho": "astronomia",
+    "canal": "Space Atlas",
+    "titulo": "Miraram no nada e acharam 3 mil galáxias 🌌",
+    "fontes": [
+      "NASA/STScI: Hubble Deep Field, 18 a 28/12/1995, região da Ursa Maior, cerca de 3 mil galáxias (PIA12110)",
+      "NASA: primeiro Campo Profundo do Webb (SMACS 0723), 11/07/2022, área do céu do tamanho de um grão de areia com o braço esticado"
+    ],
+    "cenas": [
+      {
+        "fala": "Miraram no nada e acharam galáxias.",
+        "busca": "galaxies deep space"
+      },
+      {
+        "fala": "Em 1995, o Hubble mirou num pedaço vazio do céu.",
+        "busca": "hubble space telescope orbit"
+      },
+      {
+        "fala": "Um cantinho escuro, perto da Ursa Maior.",
+        "busca": "big dipper night sky|ursa major constellation",
+        "foto": "big dipper night sky",
+        "escolha": [
+          "pexelsfoto:20746616"
+        ]
+      },
+      {
+        "fala": "Ficou dez dias olhando pro mesmo lugar.",
+        "busca": "hubble telescope moon"
+      },
+      {
+        "fala": "Quando a foto chegou, ninguém acreditou.",
+        "busca": "hubble deep field"
+      },
+      {
+        "fala": "Tinha cerca de três mil galáxias ali.",
+        "busca": "hubble deep field galaxies"
+      },
+      {
+        "fala": "Quase todo pontinho é uma galáxia inteira.",
+        "busca": "spiral galaxy"
+      },
+      {
+        "fala": "Em 2022, o James Webb foi ainda mais fundo.",
+        "busca": "james webb telescope mirrors"
+      },
+      {
+        "fala": "Era do tamanho de um grão de areia com o braço esticado.",
+        "busca": "hand holding sand grain|sand on fingertip macro|sand falling through fingers",
+        "foto": "grain of sand on finger",
+        "escolha": [
+          "pexels:7624037"
+        ]
+      },
+      {
+        "fala": "E ainda assim, milhares de galáxias.",
+        "busca": "webb deep field"
+      },
+      {
+        "fala": "Salva e se inscreve no Space Atlas.",
+        "busca": "hubble deep field"
+      }
+    ],
+    "descricao": "Em dezembro de 1995, o Hubble passou 10 dias olhando para um pedacinho escuro do céu, perto da Ursa Maior, que parecia vazio. Achou cerca de 3 mil galáxias. Em 2022, o James Webb repetiu a façanha num pedaço do tamanho de um grão de areia com o braço esticado. Quantas galáxias você acha que existem? 🌌",
+    "hashtags": [
+      "#astronomia",
+      "#hubble",
+      "#jameswebb",
+      "#espaço",
+      "#shorts"
+    ],
+    "comentario_fixado": "Qual foto do espaço você quer ver explicada aqui no Space Atlas? 👇",
+    "_creditos": [
+      "Hubble Deep Field (PIA12110): NASA, STScI",
+      "Webb's First Deep Field (SMACS 0723): NASA, ESA, CSA, STScI",
+      "Hubble em órbita (S90-34002) e Hubble com a Lua (STS061-57-021): NASA",
+      "Espelhos do James Webb: NASA/Goddard Space Flight Center"
+    ]
+  }
+]

@@ -55,7 +55,7 @@
       "video_transition_mode": "FadeIn",
       "video_clip_duration": 3,
       "voice_name": "pt-BR-AntonioNeural-Male",
-      "voice_rate": 1.1,
+      "voice_rate": 1.05,
       "voice_volume": 1.0,
       "bgm_volume": 0.15,
       "subtitle_enabled": true,
@@ -86,7 +86,8 @@
     ],
     "cta_canal": "'Salva e se inscreve no Space Atlas.'",
     "inscreva_canal": "Space Atlas",
-    "inscreva_segundos": 3.0
+    "inscreva_segundos": 3.0,
+    "voice_pitch": "-8Hz"
   },
   "gospel": {
     "palavras_min": 45,
