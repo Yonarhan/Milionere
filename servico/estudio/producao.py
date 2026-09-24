@@ -328,6 +328,9 @@ def estado() -> dict:
     cat = sp.catalogo()["nichos"]
     prod = Produtor.get()
     vivo = bool(prod.batimento and timezone.now() - prod.batimento < timedelta(seconds=75))
+    import caminhos
+    import provedores
+    sem_comfy = provedores.modo() == "comfy" and not caminhos.COMFY.exists()
     canais = []
     for c in Canal.objects.filter(nicho__in=NICHOS):
         feitos, falhas = hoje(c.nicho)
@@ -335,6 +338,8 @@ def estado() -> dict:
         canais.append({"nicho": c.nicho, "nome": cat[c.nicho]["nome"], "cor": cat[c.nicho]["cor"], "ativo": c.ativo,
                        "meta_dia": c.meta_dia, "musica": c.musica, "hoje": feitos, "falhas_hoje": falhas,
                        "restantes": livres.count(), "formatos": formatos_do_nicho(c.nicho),
+                       "aviso": "Este PC não tem o ComfyUI: os temas do catálogo bíblico falham na etapa das imagens. "
+                                "Rode o gospel na máquina com a GPU." if c.nicho == "gospel" and sem_comfy else "",
                        "pauta": [{"id": p.pk, "titulo": p.titulo, "formato": p.formato, "origem": p.origem}
                                  for p in livres[:40]]})
     canais.sort(key=lambda c: NICHOS.index(c["nicho"]))

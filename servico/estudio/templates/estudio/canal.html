@@ -196,6 +196,7 @@ function renderCanais(){
       <div class="bar"><i style="width:${c.ativo?pct:0}%"></i></div>
       <div class="small">${c.ativo ? `${c.hoje} de ${c.meta_dia} hoje` : "automático desligado"}${c.falhas_hoje?` · <span class="warn">${c.falhas_hoje} falha(s) hoje</span>`:""}</div>
       <div class="small ${pouca?"warn":""}">${c.restantes} tema(s) na pauta${pouca?" · está acabando":""}</div>
+      ${c.aviso?`<p class="aviso" style="margin-top:10px">${esc(c.aviso)}</p>`:""}
       <div class="row" style="margin-top:12px">
         <button class="btn small primary" data-a="gerar">Gerar um agora</button>
         <span class="seg" role="group" aria-label="Música">${["com","sem","ambas"].map(m=>`<button data-a="musica" data-v="${m}" aria-pressed="${c.musica===m}">${m==="com"?"com música":m==="sem"?"sem música":"as duas"}</button>`).join("")}</span>

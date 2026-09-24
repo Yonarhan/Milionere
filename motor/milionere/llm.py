@@ -5,6 +5,7 @@ Cada chamada é uma conversa nova: o juiz nunca vê o raciocínio do roteirista.
 """
 
 import json
+import os
 import sys
 import shutil
 import subprocess
@@ -38,6 +39,23 @@ def _flags_opcionais() -> list[str]:
     return _FLAGS
 
 
+def _rodar(cmd: list[str], entrada: str, cwd: str, timeout: int) -> subprocess.CompletedProcess:
+    """subprocess.run com timeout de verdade: no Windows o claude.CMD abre um node filho que o kill normal
+    não derruba, e o run ficava esperando o filho terminar (30 min em vez de 10)."""
+    p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                         encoding="utf-8", errors="replace", cwd=cwd)
+    try:
+        out, err = p.communicate(entrada, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        if os.name == "nt":
+            subprocess.run(["taskkill", "/F", "/T", "/PID", str(p.pid)], capture_output=True)
+        else:
+            p.kill()
+        p.communicate()
+        raise
+    return subprocess.CompletedProcess(cmd, p.returncode, out, err)
+
+
 def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeout: int = 600,
            modelo: str | None = None, papel: str = "roteirista") -> dict:
     """Manda o prompt e devolve o JSON validado pelo schema. Com ler_arquivos_em, o modelo pode abrir
@@ -62,8 +80,7 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
     for _ in range(2):
         inicio = time.time()
         with tempfile.TemporaryDirectory() as vazio:  # roda fora do projeto: nada de CLAUDE.md por perto
-            proc = subprocess.run(cmd, input=prompt, capture_output=True, text=True, encoding="utf-8",
-                                  errors="replace", cwd=vazio, timeout=timeout)
+            proc = _rodar(cmd, prompt, vazio, timeout)
         try:
             saida = json.loads(proc.stdout)
         except json.JSONDecodeError:
