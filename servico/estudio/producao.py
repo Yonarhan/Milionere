@@ -67,7 +67,13 @@ def formatos_do_nicho(nicho: str) -> dict[str, str]:
 def escolher_pauta(nicho: str) -> Pauta | None:
     """O formato com menos vídeos vai primeiro (canal variado); dentro dele, a maior prioridade e o mais antigo."""
     ocupadas = Producao.objects.filter(status__in=ATIVOS).values_list("pauta_id", flat=True)
-    livres = list(Pauta.objects.filter(nicho=nicho, usado=False, falhas__lt=2).exclude(pk__in=ocupadas))
+    q = Pauta.objects.filter(nicho=nicho, usado=False, falhas__lt=2).exclude(pk__in=ocupadas)
+    canal = Canal.objects.filter(nicho=nicho).first()
+    if canal and canal.imagens == "nativo":  # mesmos personagens em todas as cenas: banco de fotos não sustenta
+        _motor()
+        import nativo
+        q = q.exclude(formato__in=nativo.FORMATOS_SO_IA)
+    livres = list(q)
     if not livres:
         return None
     feitos = {}
@@ -197,6 +203,9 @@ def _nativo(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
     def log(msg):
         diario(msg, _etapa_nativo(msg))
     pauta = prod.pauta
+    if prod.formato in nativo.FORMATOS_SO_IA:
+        raise RuntimeError("parábola moderna tem os mesmos personagens em todas as cenas: com banco de fotos cada "
+                           "cena mostra uma pessoa diferente. Gere esse formato com Imagens: geradas por IA")
     biblico = prod.nicho == "gospel" and pauta and pauta.tema_id and pauta.origem == "catalogo"
     if biblico:
         r = nativo.roteiro_biblico(prod.formato, pauta.tema_id, log)
