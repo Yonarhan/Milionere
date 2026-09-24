@@ -52,3 +52,91 @@ class Job(models.Model):
                 estado = "pendente"
             out.append({"chave": k, "nome": nome, "estado": estado})
         return out
+
+
+# ------------------------------------------------------------------ produção do nosso canal (painel /canal)
+
+class Canal(models.Model):
+    """Meta de produção automática de um nicho do nosso canal."""
+
+    nicho = models.CharField(max_length=20, primary_key=True)
+    ativo = models.BooleanField(default=False)
+    meta_dia = models.PositiveSmallIntegerField(default=3)
+    musica = models.CharField(max_length=5, default="ambas")  # com (YouTube) | sem (TikTok) | ambas
+
+    def __str__(self):
+        return f"{self.nicho} · {self.meta_dia}/dia · {'ativo' if self.ativo else 'parado'}"
+
+
+class Pauta(models.Model):
+    """Um tema esperando a vez: do catálogo, digitado por nós ou sugerido pela IA."""
+
+    nicho = models.CharField(max_length=20)
+    formato = models.CharField(max_length=30)
+    formato_nome = models.CharField(max_length=80, blank=True)
+    titulo = models.CharField(max_length=200)
+    tema_id = models.CharField(max_length=60, blank=True)  # id do catálogo (o gospel precisa: traz a referência bíblica)
+    origem = models.CharField(max_length=10, default="catalogo")  # catalogo | manual | ia
+    prioridade = models.SmallIntegerField(default=1)
+    usado = models.BooleanField(default=False)
+    falhas = models.PositiveSmallIntegerField(default=0)
+    criado = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-prioridade", "criado"]
+        constraints = [models.UniqueConstraint(fields=["nicho", "formato", "titulo"], name="pauta_unica")]
+
+    def __str__(self):
+        return f"{self.nicho}/{self.formato}: {self.titulo}"
+
+
+class Producao(models.Model):
+    """Um vídeo do canal, do tema até a postagem."""
+
+    class Status(models.TextChoices):
+        FILA = "fila", "Na fila"
+        GERANDO = "gerando", "Gerando"
+        REVISAR = "revisar", "Para revisar"
+        APROVADO = "aprovado", "Aprovado"
+        REPROVADO = "reprovado", "Reprovado"
+        POSTADO = "postado", "Postado"
+        FALHOU = "falhou", "Falhou"
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    pauta = models.ForeignKey(Pauta, null=True, blank=True, on_delete=models.SET_NULL)
+    nicho = models.CharField(max_length=20)
+    formato = models.CharField(max_length=30)
+    tema = models.CharField(max_length=200)
+    status = models.CharField(max_length=10, choices=Status.choices, default=Status.FILA)
+    etapa = models.CharField(max_length=20, blank=True)
+    mensagem = models.CharField(max_length=300, blank=True)
+    log = models.TextField(blank=True)
+    titulo = models.CharField(max_length=200, blank=True)
+    post = models.TextField(blank=True)
+    videos = models.JSONField(default=list, blank=True)  # [{"nome", "url", "variante": "com" | "sem"}]
+    custos = models.JSONField(default=dict, blank=True)
+    erro = models.TextField(blank=True)
+    motivo = models.CharField(max_length=300, blank=True)  # por que reprovamos (vira lição para o roteirista)
+    postado_youtube = models.DateTimeField(null=True, blank=True)
+    postado_tiktok = models.DateTimeField(null=True, blank=True)
+    criado = models.DateTimeField(auto_now_add=True)
+    iniciado = models.DateTimeField(null=True, blank=True)
+    terminado = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["-criado"]
+
+    def __str__(self):
+        return f"{self.nicho} · {self.tema} · {self.get_status_display()}"
+
+
+class Produtor(models.Model):
+    """Estado do processo `manage.py produtor` (linha única)."""
+
+    pausado = models.BooleanField(default=False)
+    intervalo_min = models.PositiveSmallIntegerField(default=20)  # descanso entre um vídeo e o próximo
+    batimento = models.DateTimeField(null=True, blank=True)
+
+    @classmethod
+    def get(cls) -> "Produtor":
+        return cls.objects.get_or_create(pk=1)[0]

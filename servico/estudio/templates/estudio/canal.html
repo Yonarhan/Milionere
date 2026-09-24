@@ -1,0 +1,314 @@
+{% verbatim %}<!doctype html>
+<html lang="pt-br"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Produção do Canal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ground:#F2F3F0; --surface:#FFFFFF; --sunk:#E8EAE5; --ink:#15181C; --muted:#5C636B; --line:#D6D9D2;
+  --accent:#0E7C66; --accent-ink:#FFFFFF; --accent-soft:#D5EEE7;
+  --ok:#1F8A4C; --warn:#B7791F; --bad:#C0392B; --shadow:0 1px 2px rgba(20,24,28,.06),0 8px 24px rgba(20,24,28,.06);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark; --ground:#111316; --surface:#1A1D21; --sunk:#23272C; --ink:#ECEDEA; --muted:#9AA1A8; --line:#30353B;
+  --accent:#35C29D; --accent-ink:#06231C; --accent-soft:#16372F; --ok:#4CC27E; --warn:#E3A948; --bad:#EF6B5E;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);}}
+:root[data-theme="dark"]{
+  color-scheme:dark; --ground:#111316; --surface:#1A1D21; --sunk:#23272C; --ink:#ECEDEA; --muted:#9AA1A8; --line:#30353B;
+  --accent:#35C29D; --accent-ink:#06231C; --accent-soft:#16372F; --ok:#4CC27E; --warn:#E3A948; --bad:#EF6B5E;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.5 var(--body);margin:0;padding:0 16px 56px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto}
+header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:20px 12px}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.brand h1{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.tag{font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:5px 7px;border-radius:4px}
+.nav{display:flex;gap:14px;font-size:14px;flex-wrap:wrap}
+.intro{color:var(--muted);max-width:72ch;margin:0 0 18px}
+.label{font:500 11px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+section{margin-top:26px}
+section>.head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+section>.head h2{font-size:20px;font-weight:700}
+.count{font:500 12px var(--mono);color:var(--muted)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:8px 13px;cursor:pointer;font-weight:600;display:inline-flex;gap:7px;align-items:center;font-size:14px;text-decoration:none;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.bad{color:var(--bad)}
+.btn.small{padding:5px 9px;font-size:12px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn[aria-pressed="true"]{border-color:var(--ok);color:var(--ok)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.seg button{border:0;background:var(--surface);padding:6px 11px;cursor:pointer;font-weight:600;font-size:12px}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--ground)}
+input[type=text],select{background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:0}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+.status{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pill{font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;border:1px solid var(--line);display:inline-flex;gap:7px;align-items:center;background:var(--surface)}
+.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.pill.ok{color:var(--ok)} .pill.warn{color:var(--warn)} .pill.bad{color:var(--bad)}
+.aviso{border-left:3px solid var(--warn);background:var(--surface);padding:10px 14px;border-radius:8px;margin:8px 0 0;font-size:14px}
+.aviso code{font:500 12px var(--mono);background:var(--sunk);padding:2px 6px;border-radius:4px;word-break:break-all}
+
+.canais{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.canal .top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.canal h3{font-size:18px;font-weight:700}
+.dot{width:12px;height:12px;border-radius:4px;flex:none}
+.switch{margin-left:auto;border:1px solid var(--line);border-radius:999px;width:46px;height:26px;background:var(--sunk);position:relative;cursor:pointer;padding:0;flex:none}
+.switch::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:var(--surface);box-shadow:var(--shadow);transition:left .15s}
+.switch[aria-checked="true"]{background:var(--accent);border-color:var(--accent)}
+.switch[aria-checked="true"]::after{left:22px}
+.meta{display:flex;align-items:center;gap:10px;margin:4px 0 10px}
+.step{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.step button{border:0;background:var(--surface);width:32px;height:32px;cursor:pointer;font-weight:700}
+.step span{min-width:30px;text-align:center;font:500 14px var(--mono)}
+.bar{height:8px;background:var(--sunk);border-radius:99px;overflow:hidden;margin:6px 0 4px}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+.small{font-size:13px;color:var(--muted)}
+.small.warn{color:var(--warn)}
+details.pauta{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+details.pauta summary{cursor:pointer;font-weight:600;font-size:14px}
+.pauta ol{margin:8px 0;padding-left:22px;max-height:220px;overflow:auto;font-size:13px}
+.pauta li{margin:3px 0}
+.pauta li small{color:var(--muted)}
+.pauta li .x{border:0;background:none;color:var(--muted);cursor:pointer;padding:0 4px}
+.pauta form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;margin-top:6px}
+.pauta form select{grid-column:1/-1}
+
+.atual{display:grid;gap:12px}
+.etapas{display:flex;flex-wrap:wrap;gap:6px}
+.etapa{font:500 12px var(--mono);padding:5px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.etapa.feito{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+.etapa.agora{border-color:var(--accent);color:var(--accent);animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.45}}
+@media (prefers-reduced-motion:reduce){.etapa.agora{animation:none}}
+pre.log{margin:0;max-height:260px;overflow:auto;background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:10px;font:12px/1.5 var(--mono);white-space:pre-wrap}
+.fila{display:grid;gap:6px;margin-top:10px}
+.fila div{display:flex;gap:8px;align-items:center;font-size:14px}
+
+.videos{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.video{display:grid;gap:10px;align-content:start}
+.video video{width:100%;aspect-ratio:9/16;background:#000;border-radius:10px;display:block}
+.video h3{font-size:16px;font-weight:700}
+.video .acoes{display:flex;flex-wrap:wrap;gap:6px}
+.copybox{border:1px solid var(--line);border-radius:10px;background:var(--ground)}
+.copybox summary{cursor:pointer;padding:8px 10px;font-size:13px;font-weight:600}
+.copybox pre{margin:0;padding:0 10px 10px;white-space:pre-wrap;font:13px/1.45 var(--body);max-height:220px;overflow:auto}
+.motivo{display:grid;gap:6px}
+
+.tabela{width:100%;border-collapse:collapse;font-size:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.tabela th,.tabela td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.tabela th{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tabela tr:last-child td{border-bottom:0}
+.scroll{overflow-x:auto}
+.vazio{color:var(--muted);font-size:14px;padding:14px;border:1px dashed var(--line);border-radius:12px;text-align:center}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);transform:translateX(-50%);background:var(--ink);color:var(--ground);padding:9px 16px;border-radius:9px;font-weight:600;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw}
+.toast.show{opacity:1}
+@media (max-width:600px){.brand h1{font-size:22px}.canais,.videos{grid-template-columns:1fr}}
+</style>
+</head><body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><h1>Produção do Canal</h1><span class="tag">interno · 1 vídeo por vez</span></div>
+    <nav class="nav"><a href="/">Estúdio</a><a href="/banco">Banco de imagens</a><a href="/admin/estudio/producao/">Admin</a></nav>
+  </header>
+  <p class="intro">O produtor gera um vídeo por vez, sempre para o nicho mais longe da meta de hoje, e descansa entre um e outro. Nada é postado sozinho: todo vídeo passa pela sua revisão aqui.</p>
+
+  <div class="status" id="status"></div>
+  <div id="avisoProdutor"></div>
+
+  <section><div class="head"><h2>Metas de hoje</h2><span class="count" id="totalHoje"></span></div>
+    <div class="canais" id="canais"></div></section>
+
+  <section><div class="head"><h2>Gerando agora</h2><span class="count" id="countFila"></span></div>
+    <div id="atual"></div></section>
+
+  <section><div class="head"><h2>Para revisar</h2><span class="count" id="countRevisar"></span></div>
+    <div id="revisar"></div></section>
+
+  <section><div class="head"><h2>Aprovados · falta postar</h2><span class="count" id="countAprovados"></span></div>
+    <div id="aprovados"></div></section>
+
+  <section><div class="head"><h2>Histórico</h2></div><div class="scroll" id="historico"></div></section>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function csrf(){return (document.cookie.match(/csrftoken=([^;]+)/)||[])[1]||""}
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2600)}
+async function acao(corpo, ok){
+  const r = await fetch("/api/canal/acao",{method:"POST",headers:{"Content-Type":"application/json","X-CSRFToken":csrf()},body:JSON.stringify(corpo)});
+  const j = await r.json().catch(()=>({}));
+  if(!r.ok){toast(j.erro||"Não deu certo");return false}
+  if(ok) toast(ok);
+  await carregar(true);
+  return j;
+}
+const hora = iso => iso ? new Date(iso).toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}) : "";
+const dia = iso => { if(!iso) return ""; const d=new Date(iso), h=new Date();
+  return d.toDateString()===h.toDateString() ? "hoje "+hora(iso) : d.toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit"})+" "+hora(iso) };
+const minutos = (a,b) => a ? Math.max(0,Math.round(((b?new Date(b):new Date())-new Date(a))/60000)) : null;
+const reais = v => v==null ? "" : "R$ "+Number(v).toFixed(2).replace(".",",");
+let E = null, abertos = new Set(), logAberto = false, assinatura = {};
+
+function mudou(chave, dados){const s=JSON.stringify(dados); if(assinatura[chave]===s) return false; assinatura[chave]=s; return true}
+function dentroDeCampo(el){const a=document.activeElement; return a && el.contains(a) && /INPUT|SELECT|TEXTAREA/.test(a.tagName)}
+
+function renderStatus(){
+  const p=E.produtor;
+  const pill = !p.vivo ? `<span class="pill bad">produtor parado</span>` : p.pausado ? `<span class="pill warn">pausado</span>` : `<span class="pill ok">produtor no ar</span>`;
+  $("#status").innerHTML = `${pill}
+    <button class="btn small" id="bPausa">${p.pausado?"Retomar":"Pausar"}</button>
+    <label class="small">descanso entre vídeos
+      <select id="intervalo">${[0,10,20,30,60,90,120].map(v=>`<option value="${v}" ${v===p.intervalo_min?"selected":""}>${v} min</option>`).join("")}</select></label>`;
+  $("#bPausa").onclick=()=>acao({acao:"produtor",pausado:!p.pausado}, p.pausado?"Produção retomada":"Produção pausada");
+  $("#intervalo").onchange=e=>acao({acao:"produtor",intervalo_min:+e.target.value},"Descanso ajustado");
+  $("#avisoProdutor").innerHTML = p.vivo ? "" : `<p class="aviso">O produtor não está rodando: as metas só andam com ele ligado. Abra um terminal na pasta <code>servico</code> e rode <code>..\\motor\\.venv\\Scripts\\python.exe manage.py produtor</code></p>`;
+}
+
+function renderCanais(){
+  const box=$("#canais");
+  if(dentroDeCampo(box) || !mudou("canais",E.canais)) return;
+  let feitos=0, metas=0;
+  box.innerHTML = E.canais.map(c=>{
+    if(c.ativo){feitos+=Math.min(c.hoje,c.meta_dia); metas+=c.meta_dia}
+    const pct = c.meta_dia ? Math.min(100,Math.round(100*c.hoje/c.meta_dia)) : 0;
+    const pouca = c.restantes < c.meta_dia*3;
+    return `<article class="card canal" data-nicho="${c.nicho}">
+      <div class="top"><span class="dot" style="background:${c.cor}"></span><h3>${esc(c.nome)}</h3>
+        <button class="switch" role="switch" aria-checked="${c.ativo}" aria-label="Produção automática de ${esc(c.nome)}" data-a="ativo"></button></div>
+      <div class="meta"><span class="step"><button data-a="menos" aria-label="Menos">−</button><span>${c.meta_dia}</span><button data-a="mais" aria-label="Mais">+</button></span>
+        <span class="small">vídeos por dia</span></div>
+      <div class="bar"><i style="width:${c.ativo?pct:0}%"></i></div>
+      <div class="small">${c.ativo ? `${c.hoje} de ${c.meta_dia} hoje` : "automático desligado"}${c.falhas_hoje?` · <span class="warn">${c.falhas_hoje} falha(s) hoje</span>`:""}</div>
+      <div class="small ${pouca?"warn":""}">${c.restantes} tema(s) na pauta${pouca?" · está acabando":""}</div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn small primary" data-a="gerar">Gerar um agora</button>
+        <span class="seg" role="group" aria-label="Música">${["com","sem","ambas"].map(m=>`<button data-a="musica" data-v="${m}" aria-pressed="${c.musica===m}">${m==="com"?"com música":m==="sem"?"sem música":"as duas"}</button>`).join("")}</span>
+      </div>
+      <details class="pauta" ${abertos.has(c.nicho)?"open":""}><summary>Pauta (próximos temas)</summary>
+        <ol>${c.pauta.map(p=>`<li>${esc(p.titulo)} <small>· ${esc(c.formatos[p.formato]||p.formato)}${p.origem!=="catalogo"?" · "+p.origem:""}</small>
+          <button class="x" data-a="gerarPauta" data-id="${p.id}" title="Gerar este agora" aria-label="Gerar este agora">▶</button><button class="x" data-a="remover" data-id="${p.id}" title="Tirar da pauta" aria-label="Tirar da pauta">✕</button></li>`).join("") || "<li>vazia</li>"}</ol>
+        <form data-a="add"><input type="text" name="titulo" placeholder="Novo tema (ex.: O planeta que gira de lado)" aria-label="Novo tema">
+          <button class="btn small">Adicionar</button>
+          <select name="formato" aria-label="Formato">${Object.entries(c.formatos).map(([k,v])=>`<option value="${k}">${esc(v)}</option>`).join("")}</select></form>
+        <button class="btn small" data-a="sugerir" style="margin-top:8px">IA sugere 10 temas</button>
+      </details></article>`}).join("");
+  $("#totalHoje").textContent = metas ? `${feitos} de ${metas} vídeos hoje` : "";
+  box.querySelectorAll(".canal").forEach(el=>{
+    const n=el.dataset.nicho, c=E.canais.find(x=>x.nicho===n);
+    el.querySelector("details").ontoggle=e=>e.target.open?abertos.add(n):abertos.delete(n);
+    el.onclick=async e=>{
+      const b=e.target.closest("[data-a]"); if(!b||b.tagName==="FORM") return;
+      const a=b.dataset.a;
+      if(a==="ativo") acao({acao:"canal",nicho:n,ativo:!c.ativo}, !c.ativo?`${c.nome}: automático ligado`:`${c.nome}: automático desligado`);
+      if(a==="menos") acao({acao:"canal",nicho:n,meta_dia:c.meta_dia-1});
+      if(a==="mais") acao({acao:"canal",nicho:n,meta_dia:c.meta_dia+1});
+      if(a==="musica") acao({acao:"canal",nicho:n,musica:b.dataset.v},"Música ajustada");
+      if(a==="gerar") acao({acao:"gerar",nicho:n},"Entrou na fila");
+      if(a==="gerarPauta") acao({acao:"gerar",nicho:n,pauta:+b.dataset.id},"Entrou na fila");
+      if(a==="remover") acao({acao:"pauta_remover",id:+b.dataset.id},"Tirado da pauta");
+      if(a==="sugerir"){b.disabled=true;b.textContent="A IA está pensando…";
+        const j=await acao({acao:"sugerir",nicho:n}); if(j) toast(`${j.novos} tema(s) novo(s) na pauta`); b.disabled=false;b.textContent="IA sugere 10 temas"}
+    };
+    el.querySelector("form").onsubmit=e=>{e.preventDefault();const f=e.target;
+      acao({acao:"pauta_add",nicho:n,titulo:f.titulo.value,formato:f.formato.value},"Tema adicionado")};
+  });
+}
+
+const ETAPAS = n => n==="gospel" ? ["roteiro","imagens","montagem"] : ["roteiro","voz","imagens","montagem","post"];
+function renderAtual(){
+  const a=E.atual, box=$("#atual");
+  $("#countFila").textContent = E.fila.length ? `${E.fila.length} na fila` : "";
+  let html="";
+  if(a){
+    const et=ETAPAS(a.nicho), i=et.indexOf(a.etapa);
+    html += `<div class="card atual"><div><span class="label">${esc(a.nicho)} · ${esc(a.formato)}</span><h3 style="font-size:18px;margin-top:4px">${esc(a.tema)}</h3></div>
+      <div class="etapas">${et.map((e,k)=>`<span class="etapa ${k<i?"feito":k===i?"agora":""}">${e}</span>`).join("")}</div>
+      <div class="small">${esc(a.mensagem)} · há ${minutos(a.iniciado)} min</div>
+      <details ${logAberto?"open":""} id="dLog"><summary class="small" style="cursor:pointer">ver o log</summary><pre class="log">${esc(a.log)}</pre></details></div>`;
+  } else {
+    html += `<div class="vazio">${E.produtor.pausado?"Pausado.":"Nada gerando agora."} ${E.fila.length?"":"Metas de hoje cumpridas, em descanso ou nenhum nicho ligado."}</div>`;
+  }
+  if(E.fila.length) html += `<div class="fila">${E.fila.map(f=>`<div><span class="label">na fila</span> ${esc(f.nicho)} · ${esc(f.tema)} <button class="btn small bad" data-cancelar="${f.id}">tirar</button></div>`).join("")}</div>`;
+  box.innerHTML=html;
+  const d=$("#dLog"); if(d){d.ontoggle=()=>logAberto=d.open; const pre=d.querySelector("pre"); pre.scrollTop=pre.scrollHeight}
+  box.querySelectorAll("[data-cancelar]").forEach(b=>b.onclick=()=>acao({acao:"cancelar",id:b.dataset.cancelar},"Tirado da fila"));
+}
+
+function cartao(p, modo){
+  const com=p.videos.find(v=>v.variante==="com")||p.videos[0], sem=p.videos.find(v=>v.variante==="sem");
+  const dur=minutos(p.iniciado,p.terminado);
+  const base = `<article class="card video" data-id="${p.id}">
+    ${com&&com.url?`<video controls preload="metadata" src="${esc(com.url)}"></video>`:""}
+    <div><span class="label">${esc(p.nicho)} · ${esc(p.formato)} · ${dia(p.terminado)}</span><h3>${esc(p.titulo||p.tema)}</h3>
+      <div class="small">${dur!=null?dur+" min para gerar":""}${p.custo_brl?" · "+reais(p.custo_brl)+" em valor de API":""}</div></div>
+    <details class="copybox"><summary>Texto do post</summary><pre>${esc(p.post)}</pre></details>`;
+  const baixar = p.videos.map(v=>`<a class="btn small" href="${esc(v.url)}" download>${v.variante==="sem"?"Baixar p/ TikTok (sem música)":"Baixar p/ YouTube"}</a>`).join("");
+  if(modo==="revisar") return base+`<div class="acoes"><button class="btn primary" data-a="aprovar">Aprovar</button><button class="btn bad" data-a="reprovar">Reprovar</button>
+      <button class="btn small" data-a="copiar">Copiar post</button></div>
+    <div class="motivo" hidden><input type="text" placeholder="O que ficou ruim? (vira lição para a IA)" aria-label="Motivo da reprovação"><button class="btn small bad" data-a="confirmar">Confirmar reprovação</button></div></article>`;
+  return base+`<div class="acoes">${baixar}</div><div class="acoes">
+      <button class="btn small" data-a="youtube" aria-pressed="${p.youtube}">${p.youtube?"✓ postado no YouTube":"Postei no YouTube"}</button>
+      <button class="btn small" data-a="tiktok" aria-pressed="${p.tiktok}">${p.tiktok?"✓ postado no TikTok":"Postei no TikTok"}</button>
+      <button class="btn small" data-a="copiar">Copiar post</button><button class="btn small" data-a="voltar">Voltar p/ revisão</button></div></article>`;
+}
+function renderVideos(chave, lista, modo, alvo, contador){
+  $(contador).textContent = lista.length ? String(lista.length) : "";
+  const box=$(alvo);
+  const tocando=[...box.querySelectorAll("video")].some(v=>!v.paused);
+  if(tocando || dentroDeCampo(box) || !mudou(chave,lista)) return;
+  box.innerHTML = lista.length ? `<div class="videos">${lista.map(p=>cartao(p,modo)).join("")}</div>`
+    : `<div class="vazio">${modo==="revisar"?"Nenhum vídeo esperando revisão.":"Nada aprovado esperando postagem."}</div>`;
+  box.querySelectorAll(".video").forEach(el=>{
+    const p=lista.find(x=>x.id===el.dataset.id);
+    el.onclick=async e=>{
+      const b=e.target.closest("[data-a]"); if(!b) return;
+      const a=b.dataset.a;
+      if(a==="copiar"){try{await navigator.clipboard.writeText(p.post);toast("Texto do post copiado")}catch{toast("Não consegui copiar: selecione o texto")}}
+      if(a==="aprovar") acao({acao:"aprovar",id:p.id},"Aprovado: agora é postar");
+      if(a==="reprovar"){const m=el.querySelector(".motivo");m.hidden=false;m.querySelector("input").focus()}
+      if(a==="confirmar") acao({acao:"reprovar",id:p.id,motivo:el.querySelector(".motivo input").value},"Reprovado: o nicho gera outro no lugar");
+      if(a==="youtube"||a==="tiktok") acao({acao:a,id:p.id});
+      if(a==="voltar") acao({acao:"voltar",id:p.id});
+    };
+  });
+}
+
+function renderHistorico(){
+  if(!mudou("hist",E.historico)) return;
+  const cls={revisar:"warn",aprovado:"ok",postado:"ok",reprovado:"bad",falhou:"bad"};
+  $("#historico").innerHTML = E.historico.length ? `<table class="tabela"><thead><tr><th>Quando</th><th>Nicho</th><th>Tema</th><th>Status</th><th>Tempo</th><th>Custo</th></tr></thead><tbody>
+    ${E.historico.map(p=>`<tr><td>${dia(p.criado)}</td><td>${esc(p.nicho)}</td><td>${esc(p.titulo||p.tema)}${p.erro?`<div class="small">${esc(p.erro)}</div>`:""}${p.motivo?`<div class="small">motivo: ${esc(p.motivo)}</div>`:""}</td>
+      <td><span class="pill ${cls[p.status]||""}">${esc(p.status_nome)}</span></td><td>${minutos(p.iniciado,p.terminado)??""}${p.iniciado?" min":""}</td><td>${reais(p.custo_brl)}</td></tr>`).join("")}</tbody></table>`
+    : `<div class="vazio">Ainda não saiu nenhum vídeo.</div>`;
+}
+
+async function carregar(forcar){
+  try{
+    const r=await fetch("/api/canal"); if(!r.ok) throw new Error(r.status);
+    E=await r.json();
+    if(forcar) assinatura={};
+    renderStatus(); renderCanais(); renderAtual();
+    renderVideos("rev",E.revisar,"revisar","#revisar","#countRevisar");
+    renderVideos("apr",E.aprovados,"aprovados","#aprovados","#countAprovados");
+    renderHistorico();
+  }catch(e){ $("#status").innerHTML=`<span class="pill bad">sem conexão com o servidor</span>` }
+}
+carregar(); setInterval(carregar,5000);
+</script>
+</body></html>{% endverbatim %}

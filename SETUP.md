@@ -89,3 +89,15 @@ Agendar todo dia às 2h (Windows, na máquina com a GPU e o `claude` logado):
 schtasks /Create /TN "Milionere lote" /SC DAILY /ST 02:00 /TR "cmd /c cd /d C:\caminho\milionere\motor && .venv\Scripts\python.exe milionere\lote.py --qtd 2 >> ..\producao\lote.log 2>&1"
 ```
 Linux (cron): `0 2 * * * cd ~/milionere/motor && .venv-linux/bin/python milionere/lote.py --qtd 2 >> ../producao/lote.log 2>&1`
+
+### Painel de produção do canal (`/canal`)
+Controle interno da geração automática: meta de vídeos por dia em cada nicho, **um vídeo por vez**, fila, revisão
+(aprovar/reprovar com motivo, que vira lição para a IA) e marcação de postado no YouTube/TikTok.
+Rode o site e, num segundo terminal, o produtor (na máquina com a GPU e o `claude` logado):
+```powershell
+cd servico
+..\motor\.venv\Scripts\python.exe manage.py migrate
+..\motor\.venv\Scripts\python.exe manage.py produtor          # fica rodando; Ctrl+C para parar
+```
+Abra http://127.0.0.1:8000/canal, ligue os nichos e ajuste a meta. Gospel com tema do catálogo usa o pipeline bíblico
+completo (ComfyUI + 4 camadas); astronomia, animais e temas livres usam o roteirista guiado + banco/Pexels.
