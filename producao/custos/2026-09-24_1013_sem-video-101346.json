@@ -1,0 +1,21 @@
+{
+ "usd": 0.7329,
+ "brl": 4.03,
+ "segundos": 402.3,
+ "por_etapa": {
+  "roteiro": {
+   "chamadas": 8,
+   "imagens": 0,
+   "tokens_entrada": 121996,
+   "tokens_saida": 43239,
+   "usd": 0.7329,
+   "segundos": 399.4,
+   "brl": 4.03
+  }
+ },
+ "modelos": [
+  "claude-sonnet-5"
+ ],
+ "videos": [],
+ "gpu_imagens_s": 0
+}

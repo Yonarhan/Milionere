@@ -1,0 +1,232 @@
+[
+  {
+    "slug": "historia-ladrao-cruz",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "ladrao-cruz",
+    "estilo": "cinema_zimage",
+    "epoca": "biblica",
+    "titulo": "O último minuto que virou eternidade ✝️",
+    "cenario_en": "1st century Judea, dusty rocky hill outside Jerusalem, dim fading sunset light",
+    "personagens": [
+      {
+        "id": "ladrao",
+        "nome": "Criminoso arrependido",
+        "nome_en": "repentant criminal",
+        "descricao_visual": "a thin man in his 30s, disheveled short dark hair, patchy beard, dirty pale skin with visible bruises, torn undyed loincloth wrap"
+      },
+      {
+        "id": "outro-criminoso",
+        "nome": "Criminoso zombador",
+        "nome_en": "mocking criminal",
+        "descricao_visual": "a lean man in his 40s, matted grey-streaked hair, rough stubble beard, sun-worn tanned skin, torn dark brown loincloth wrap"
+      },
+      {
+        "id": "jesus",
+        "nome": "Jesus",
+        "nome_en": "Jesus",
+        "descricao_visual": "a man in his early 30s, shoulder-length wavy dark brown hair, short dark beard, olive skin, kind brown eyes, simple cream linen tunic with a brown cloak"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Dois criminosos estavam pendurados ao lado de Jesus na cruz, e um deles o insultava dizendo para salvar a si mesmo e a eles",
+        "ref": "Lucas 23:39"
+      },
+      {
+        "n": 2,
+        "evento": "O outro criminoso repreendeu o primeiro, dizendo que eles recebiam o justo castigo por seus atos, mas que Jesus não tinha feito nada de errado",
+        "ref": "Lucas 23:40-41"
+      },
+      {
+        "n": 3,
+        "evento": "O criminoso pediu a Jesus que se lembrasse dele quando entrasse no seu Reino",
+        "ref": "Lucas 23:42"
+      },
+      {
+        "n": 4,
+        "evento": "Jesus respondeu que naquele mesmo dia ele estaria com ele no Paraíso",
+        "ref": "Lucas 23:43"
+      }
+    ],
+    "versiculo": {
+      "ref": "Lucas 23:42-43",
+      "texto": "“Senhor, lembra-te de mim quando entrares no teu Reino.” Jesus lhe disse: “Em verdade te digo, hoje estarás comigo no Paraíso.”"
+    },
+    "cenas": [
+      {
+        "fala": "Um criminoso morrendo ganhou o paraíso.",
+        "evento": 0,
+        "personagens": [
+          "ladrao"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a bearded man seated slumped against a wooden cross, weary face lit with quiet pain against dim orange sunset sky, dusty rocky ground below.",
+        "busca": "crucifixion cross sunset"
+      },
+      {
+        "fala": "Dois criminosos pendiam ao lado de Jesus na cruz.",
+        "evento": 1,
+        "personagens": [
+          "jesus",
+          "ladrao"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of three wooden crosses standing on a rocky hill at dusk, silhouettes against a darkening sky, flat rocky ground scattered with stones, center cross taller.",
+        "busca": "three crosses hill silhouette"
+      },
+      {
+        "fala": "Um deles zombava: salva a ti mesmo e a nós!",
+        "evento": 1,
+        "personagens": [
+          "outro-criminoso"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a bearded man seated against a wooden cross, head turned sideways with a mocking sneer, harsh evening light over a rocky hillside.",
+        "busca": "man on cross dusk"
+      },
+      {
+        "fala": "Mas o outro repreendeu: você nem teme a Deus?",
+        "evento": 2,
+        "personagens": [
+          "ladrao"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a bearded man seated against a wooden cross, stern rebuking expression facing sideways toward another cross, dusty rocky ground, fading daylight.",
+        "busca": "crucified man face dusk"
+      },
+      {
+        "fala": "Nós merecemos a pena, mas esse homem nada fez.",
+        "evento": 2,
+        "personagens": [
+          "ladrao"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a bearded man seated against a wooden cross, calm resigned expression with eyes turned upward toward a soft fading sky, rocky ground.",
+        "busca": "man face upward sunset"
+      },
+      {
+        "fala": "Ele pediu: lembra de mim quando entrares no teu Reino.",
+        "evento": 3,
+        "personagens": [
+          "ladrao",
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a bearded man seated against a wooden cross, pleading expression gazing toward a distant silhouetted cross across rocky ground, dim dusky light.",
+        "busca": "man pleading cross dusk"
+      },
+      {
+        "fala": "Jesus respondeu na hora: hoje estarás comigo no Paraíso.",
+        "evento": 4,
+        "personagens": [
+          "ladrao",
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of two wooden crosses on a rocky hill at dusk, one man's seated silhouette bathed in warm light breaking through clouds, the other cross a dark silhouette, flat stony ground.",
+        "busca": "golden light cross sky"
+      },
+      {
+        "fala": "Se a culpa diz que é tarde demais, Jesus ainda te ouve.",
+        "evento": 0,
+        "personagens": [
+          "ladrao"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a bearded man seated against a wooden cross, eyes closed in relief with a single tear on his cheek, warm fading sunset light over rocky hillside.",
+        "busca": "peaceful face relief sunset"
+      },
+      {
+        "fala": "Ele não fez nada bom. Só pediu. E ganhou o paraíso.",
+        "evento": 0,
+        "personagens": [
+          "ladrao"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a bearded man seated against a wooden cross, peaceful face turned upward, warm golden light breaking through clouds over a rocky hill.",
+        "busca": "peaceful face golden light"
+      },
+      {
+        "fala": "Escreve amém.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of three wooden crosses silhouetted against a glowing golden sunset sky, flat rocky hillside below, dusty ground bathed in peaceful warm light.",
+        "busca": "three crosses golden sunset"
+      }
+    ],
+    "descricao": "\"Hoje estarás comigo no Paraíso.\" (Lucas 23:43). Um homem morrendo na cruz ao lado de Jesus não teve tempo de fazer nada. Só teve uma frase de fé. E se o seu último minuto fosse hoje, você já ouviu essa promessa? Leia Lucas 23.",
+    "hashtags": [
+      "#jesus",
+      "#biblia",
+      "#fé",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já sentiu que fez coisa demais errada pra Deus ainda te aceitar?",
+    "fontes": [
+      "Lucas 23:39-43 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Um criminoso morrendo ganhou o paraíso.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Ele não tinha tempo pra se arrepender.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Só uma frase salvou um criminoso.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 3
+      },
+      {
+        "texto": "Jesus prometeu o paraíso pra quem estava morrendo.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "Ele não fez nada bom. E foi pro paraíso.",
+        "choque": 5,
+        "clareza": 5,
+        "imagem": 4
+      }
+    ],
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 5,
+        "ritmo": 4,
+        "payoff": 5,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 5,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Z-Image Turbo)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    }
+  }
+]

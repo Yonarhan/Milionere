@@ -71,8 +71,8 @@ REGRAS_IMAGEM = (
     "personagens juntos = plano aberto, separados, de corpo inteiro (ou silhuetas). Nada de negação ('no halo'), nada "
     "de texto, e não descreva a aparência dos personagens (ela entra sozinha). Termine com luz e lugar. "
     # erros mais frequentes do juiz visual (auditoria historia-elias-deserto): pés, chão, fundo e pulsos
-    "Pés erram muito: pessoa sentada ou deitada em plano médio, com o manto longo cobrindo os pés; nunca pés em "
-    "primeiro plano. Descreva o chão ('smooth bare sand', 'flat rocks'): chão sem descrição ganha objetos inventados. "
+    "Pés erram muito (chinelo moderno, dedos fundidos): pessoa sentada ou ajoelhada em plano da cintura para cima "
+    "('waist-up shot'); deitada, em plano aberto de lado com o manto até os pés; nunca pés em primeiro plano. Descreva o chão ('smooth bare sand', 'flat rocks'): chão sem descrição ganha objetos inventados. "
     "No máximo 2 figuras em primeiro plano; multidão só quando a fala pede, ao fundo e desfocada. Sem animais ou "
     "pássaros, a menos que a fala peça. Braços cobertos por mangas longas. A última cena (a chamada) mostra o momento "
     "mais forte da própria história, nunca alguém escrevendo, lendo ou olhando um pergaminho."
