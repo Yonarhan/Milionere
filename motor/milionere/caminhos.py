@@ -59,3 +59,6 @@ MODELO_JUIZ_ROTEIRO = _cfg("MILIONERE_MODELO_JUIZ_ROTEIRO", MODELO_JUIZ)
 JUIZ_ROTEIRO = _cfg("MILIONERE_JUIZ_ROTEIRO", "1") == "1"     # juiz de IA no roteiro genérico (desligar = só código)
 ESFORCO_ROTEIRO = _cfg("MILIONERE_ESFORCO_ROTEIRO", "medium")  # API: low | medium | high (ignorado no Haiku)
 ESFORCO_JUIZ = _cfg("MILIONERE_ESFORCO_JUIZ", "low")
+# raciocínio interno (thinking) no claude -p: 0 = desligado. Medido no roteiro bíblico (24/09): esforço médio passou de
+# 10 min; baixo, 225 s e 16,5 mil tokens; com 0, 83 s e 5 mil tokens (quase só o JSON). Suba se a qualidade cair.
+PENSAR_TOKENS = _cfg("MILIONERE_PENSAR_TOKENS", "0")

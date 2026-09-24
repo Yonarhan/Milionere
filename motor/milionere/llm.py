@@ -63,11 +63,11 @@ SISTEMA = ("Você executa uma única tarefa de um pipeline automático de vídeo
 SISTEMA_ARQUIVOS = " Abra os arquivos citados com a ferramenta Read antes de responder."
 
 
-def _rodar(cmd: list[str], entrada: str, cwd: str, timeout: int) -> subprocess.CompletedProcess:
+def _rodar(cmd: list[str], entrada: str, cwd: str, timeout: int, env: dict | None = None) -> subprocess.CompletedProcess:
     """subprocess.run com timeout de verdade: no Windows o claude.CMD abre um node filho que o kill normal
     não derruba, e o run ficava esperando o filho terminar (30 min em vez de 10)."""
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
-                         encoding="utf-8", errors="replace", cwd=cwd)
+                         encoding="utf-8", errors="replace", cwd=cwd, env=env)
     try:
         out, err = p.communicate(entrada, timeout=timeout)
     except subprocess.TimeoutExpired:
@@ -112,7 +112,7 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
         inicio = time.time()
         with tempfile.TemporaryDirectory() as vazio:  # roda fora do projeto: nada de CLAUDE.md por perto
             try:
-                proc = _rodar(cmd, prompt, vazio, timeout)
+                proc = _rodar(cmd, prompt, vazio, timeout, {**os.environ, "MAX_THINKING_TOKENS": caminhos.PENSAR_TOKENS})
             except subprocess.TimeoutExpired:
                 raise ErroLLM(f"o claude -p passou de {timeout // 60} min sem responder ({papel}, modelo {modelo})") from None
         try:
