@@ -32,7 +32,7 @@ def tempo_ass(t: float) -> str:
     return f"{cs // 360000}:{cs // 6000 % 60:02d}:{cs // 100 % 60:02d}.{cs % 100:02d}"
 
 
-def gerar_ass(srt: Path, destino: Path, p: dict) -> None:
+def gerar_ass(srt: Path, destino: Path, p: dict, total: float | None = None) -> None:
     familia, negrito = FONTES.get(p.get("font_name", ""), ("Arial", True))
     tamanho = round(float(p.get("font_size", 60)) * ESCALA_FONTE)
     emenda = EMENDA_MAX.get(p.get("subtitle_display_mode", "sentence"), 0.35)
@@ -69,10 +69,16 @@ def gerar_ass(srt: Path, destino: Path, p: dict) -> None:
                 f"Style: Legenda,{familia},{tamanho},{cor_ass(p.get('text_fore_color', '#FFFFFF'))},&H000000FF,"
                 f"{cor_ass(p.get('stroke_color', '#000000'))},&H80000000,{-1 if negrito else 0},0,0,0,100,100,0,0,1,"
                 f"{contorno:.1f},1,5,90,90,0,1",
+                # cartão do fim: caixa vermelha (BorderStyle 3) com INSCREVA-SE e o nome do canal
+                f"Style: Inscreva,{familia},{round(tamanho * 0.95)},&H00FFFFFF,&H000000FF,&H001C1CE0,&H001C1CE0,-1,0,0,0,"
+                "100,100,2,0,3,18,0,5,90,90,0,1",
+                f"Style: Canal,{familia},{round(tamanho * 0.6)},&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,"
+                "100,100,1,0,1,3,1,5,90,90,0,1",
                 "",
                 "[Events]",
                 "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
                 *linhas,
+                *_cartao_inscreva(p, total or (blocos[-1][1] if blocos else 0)),
                 "",
             ]
         ),
@@ -103,12 +109,24 @@ def _duracao(video: Path) -> float:
     return int(h) * 3600 + int(m) * 60 + float(s)
 
 
+def _cartao_inscreva(p: dict, total: float) -> list[str]:
+    """Os últimos segundos ganham o cartão "INSCREVA-SE" + o nome do canal (preset: inscreva_canal, inscreva_segundos)."""
+    canal = p.get("inscreva_canal")
+    if not canal or total <= 0:
+        return []
+    ini = max(0.0, total - float(p.get("inscreva_segundos", 3.0)))
+    y = round(ALTURA * 0.80)
+    pop = r"\fscx70\fscy70\t(0,160,\fscx108\fscy108)\t(160,260,\fscx100\fscy100)"
+    return [f"Dialogue: 1,{tempo_ass(ini)},{tempo_ass(total)},Inscreva,,0,0,0,,{{\\an5\\pos({LARGURA // 2},{y}){pop}}}INSCREVA-SE",
+            f"Dialogue: 1,{tempo_ass(ini + 0.15)},{tempo_ass(total)},Canal,,0,0,0,,{{\\an5\\pos({LARGURA // 2},{y + 105})\\fad(150,0)}}{canal}"]
+
+
 def renderizar(tomadas: list[Path], frames_total: int, audio: Path, srt: Path, musica: Path | None,
                p: dict, pasta: Path, fontes: Path, saida: Path) -> str:
     """Devolve o encoder usado. Roda com cwd=pasta para os caminhos do filtro ass não terem 'C:'."""
     (pasta / "lista.txt").write_text("".join(f"file '{t.name}'\n" for t in tomadas), encoding="utf-8")
-    gerar_ass(srt, pasta / "legenda.ass", p)
     total = frames_total / FPS
+    gerar_ass(srt, pasta / "legenda.ass", p, total)
     fontes_rel = Path(*[".."] * len(pasta.relative_to(fontes.parents[1]).parts), fontes.relative_to(fontes.parents[1])).as_posix()
 
     entradas = ["-f", "concat", "-safe", "0", "-i", "lista.txt", "-i", str(audio)]

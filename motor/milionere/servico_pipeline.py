@@ -170,7 +170,8 @@ def _roteiro_generico(entrada: dict, log) -> dict:
         "Você é roteirista de Shorts/TikTok em português do Brasil. Escreva UM roteiro dividido em cenas.",
         f"# Nicho: {nicho} · formato: {formato}\n# Tema: {tema}",
         f"# Tamanho\n{lo} a {hi} palavras no total, 7 a 13 cenas, uma frase por cena (3 a 14 palavras). "
-        "A 1ª é o gancho (até 8 palavras); a última é um CTA curto (comenta, manda pra alguém, escreve...).",
+        "A 1ª é o gancho (até 8 palavras); a última é um CTA curto (comenta, manda pra alguém, escreve...)"
+        + (f", e ela chama pra se inscrever no canal: {preset['cta_canal']}" if preset.get("cta_canal") else "") + ".",
         "# Fatos\nO fato central tem que ser verdadeiro. O resto pode ser dramatização em tom de hipótese ('imagina', 'provavelmente').",
         guia.bloco(nicho, formato, tema),
         f"# Ganchos\n{ler('ganchos.md')}", f"# Linguagem\n{ler('anti-ia.md')}",

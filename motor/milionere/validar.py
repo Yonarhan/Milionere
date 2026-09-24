@@ -26,7 +26,7 @@ import medidor  # noqa: E402
 VOCAB_IA = ["fascinante", "incrível jornada", "desvendar", "crucial", "notável", "intrigante", "vasto universo",
             "mistérios do", "não apenas", "não é só", "e sabe o que", "realmente", "cientistas acreditam",
             "jornada", "tapeçaria", "mergulhar", "inspirador", "poderosa lição", "nos ensina que"]
-CTA = re.compile(r"\b(amém|amem|comenta|manda|escreve|compartilha|salva)\b", re.I)
+CTA = re.compile(r"\b(amém|amem|comenta|manda|escreve|compartilha|salva|inscreve|inscreva)\b", re.I)
 ORDEM_LIVROS = list(biblia.LIVROS.values())
 
 

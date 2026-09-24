@@ -19,7 +19,7 @@ import caminhos  # noqa: E402
 VOCAB_IA = ["fascinante", "incrível jornada", "desvendar", "crucial", "notável", "intrigante", "vasto universo",
             "mistérios do", "não apenas", "não é só", "e sabe o que", "realmente", "cientistas acreditam", "jornada",
             "tapeçaria", "mergulhar", "inspirador", "poderosa lição", "nos ensina que"]
-CTA = re.compile(r"\b(amém|amem|comenta|comente|manda|escreve|compartilha|salva|segue|qual)\b", re.I)
+CTA = re.compile(r"\b(amém|amem|comenta|comente|manda|escreve|compartilha|salva|segue|qual|inscreve|inscreva)\b", re.I)
 
 
 def _palavras(t: str) -> int:

@@ -31,6 +31,7 @@ import argparse
 import json
 import random
 import shutil
+import os
 import subprocess
 import sys
 from datetime import date, datetime
@@ -153,6 +154,8 @@ def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, r
     """Etapa A (motor): narração + legenda. Etapa B: clipes cortados no tempo de cada cena,
     montados por render.py (ffmpeg + placa de vídeo) ou, com --render-mpt, pelo motor (lento)."""
     print("ETAPA voz", flush=True)
+    # tom da voz do nicho (ex.: "-8Hz"): fica fora dos params porque o cli.py do motor só aceita os campos dele
+    os.environ["MILIONERE_VOZ_TOM"] = str(preset.get("voice_pitch", ""))
     item = rodar_cli([tarefa], stop_at="subtitle")["tasks"][0]
     if falhou(item, r["slug"]):
         return
@@ -201,9 +204,11 @@ def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, r
         saida = pasta_sync / "final.mp4"
         inicio = datetime.now()
         duas = r.get("_duas_versoes")  # monta UMA vez sem música; a versão com música é só a mistura do áudio
+        # cartão INSCREVA-SE do canal (preset do nicho) entra só no render, fora dos params do motor
+        p_render = {**tarefa, **{k: preset[k] for k in ("inscreva_canal", "inscreva_segundos") if k in preset}}
         encoder = render.renderizar(
             [Path(t["url"]) for t in tomadas], sum(t["frames"] for t in tomadas), pasta_a / "audio.mp3",
-            pasta_a / "subtitle.srt", None if duas else musica, tarefa, pasta_sync, MPT / "resource" / "fonts", saida,
+            pasta_a / "subtitle.srt", None if duas else musica, p_render, pasta_sync, MPT / "resource" / "fonts", saida,
         )
         print(f"render [{r['slug']}] {encoder} em {(datetime.now() - inicio).total_seconds():.0f}s")
         sync.painel([Path(t["url"]) for t in tomadas], pasta_sync / "painel.png")

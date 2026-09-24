@@ -1177,6 +1177,10 @@ def create_edge_tts_communicate(
     """
     communicate_kwargs = {"rate": rate_str}
     communicate_signature = inspect.signature(edge_tts.Communicate)
+    # tom mais grave/agudo (ex.: "-8Hz"), vindo do preset do nicho pelo produzir.py (MILIONERE_VOZ_TOM)
+    tom = os.environ.get("MILIONERE_VOZ_TOM", "").strip()
+    if tom and "pitch" in communicate_signature.parameters:
+        communicate_kwargs["pitch"] = tom
 
     if "boundary" in communicate_signature.parameters:
         communicate_kwargs["boundary"] = "WordBoundary"

@@ -1,0 +1,105 @@
+[
+  {
+    "slug": "pale-blue-dot",
+    "nicho": "astronomia",
+    "canal": "Space Atlas",
+    "titulo": "Tudo que você ama cabe nesse pontinho 🌍",
+    "fontes": [
+      "NASA/JPL: Pale Blue Dot, 14/02/1990, Voyager 1 a cerca de 6 bilhões de km (PIA00452; versão 2020: PIA23645)",
+      "NASA: Voyager 1 passou dos 24 bilhões de km da Terra (voyager.jpl.nasa.gov)"
+    ],
+    "cenas": [
+      {
+        "fala": "Tudo que você ama cabe nesse pontinho.",
+        "busca": "space stars slow zoom",
+        "arte": "pale blue dot|Voyager Earth",
+        "foto": "pale blue dot"
+      },
+      {
+        "fala": "Em 1990, a Voyager 1 estava a 6 bilhões de quilômetros.",
+        "busca": "voyager spacecraft|spacecraft deep space",
+        "arte": "Voyager spacecraft|Voyager 1",
+        "foto": "voyager spacecraft",
+        "escolha": [
+          "pixabay:20042"
+        ]
+      },
+      {
+        "fala": "Antes de apagar as câmeras, ela olhou pra trás.",
+        "busca": "voyager animation|spacecraft camera",
+        "arte": "Voyager family portrait|solar system family portrait",
+        "foto": "spacecraft"
+      },
+      {
+        "fala": "O pedido veio do astrônomo Carl Sagan.",
+        "busca": "astronomer telescope night",
+        "arte": "Carl Sagan",
+        "foto": "Carl Sagan"
+      },
+      {
+        "fala": "Num raio de sol, um grão azul.",
+        "busca": "sun rays space|sunbeam dust",
+        "arte": "pale blue dot revisited|pale blue dot",
+        "foto": "sunbeam dust particles"
+      },
+      {
+        "fala": "Esse grão é a Terra.",
+        "busca": "earth from space rotating|planet earth space",
+        "arte": "Earth from space|blue marble",
+        "foto": "earth from space",
+        "escolha": [
+          "pexelsfoto:30596292"
+        ]
+      },
+      {
+        "fala": "Ela ocupa menos de um pixel da foto.",
+        "busca": "pixel screen macro|zoom into pixels",
+        "arte": "pale blue dot|Voyager 1 Earth image",
+        "foto": "pixels macro"
+      },
+      {
+        "fala": "Toda guerra, todo amor, toda gente que já viveu.",
+        "busca": "crowd people city timelapse|people walking crowd",
+        "arte": "",
+        "foto": "crowd people street",
+        "escolha": [
+          "pexels:38779837"
+        ]
+      },
+      {
+        "fala": "Hoje ela já passou dos 24 bilhões.",
+        "busca": "voyager interstellar|spacecraft stars",
+        "arte": "Voyager interstellar space|Voyager 1 heliopause",
+        "foto": "spacecraft stars"
+      },
+      {
+        "fala": "E segue sozinha, sem nunca voltar.",
+        "busca": "flying through stars space|deep space stars",
+        "arte": "",
+        "foto": "deep space stars",
+        "escolha": [
+          "pexels:37988519"
+        ]
+      },
+      {
+        "fala": "Salva pra lembrar do tamanho dos seus problemas.",
+        "busca": "earth night from space|milky way night sky",
+        "arte": "pale blue dot",
+        "foto": "earth from space night"
+      }
+    ],
+    "descricao": "Em 14 de fevereiro de 1990, a pedido de Carl Sagan, a Voyager 1 virou a câmera para trás a cerca de 6 bilhões de km e fotografou a Terra: um ponto azul menor que um pixel. Depois disso, as câmeras foram desligadas para sempre. O que você sente olhando esse pontinho? 🌍",
+    "hashtags": [
+      "#astronomia",
+      "#voyager",
+      "#espaço",
+      "#curiosidades",
+      "#shorts"
+    ],
+    "comentario_fixado": "Qual foto do espaço você quer ver explicada aqui no Space Atlas? 👇",
+    "_creditos": [
+      "Pale Blue Dot Revisited (PIA23645), Solar System Portrait (PIA00451) e Voyager 1 Entering Interstellar Space (PIA17462): NASA/JPL-Caltech",
+      "Carl Sagan e David Morrison, 1994 (ARC-1994-A94-0009-1): NASA Ames Research Center"
+    ]
+  }
+]

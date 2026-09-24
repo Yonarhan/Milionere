@@ -83,7 +83,10 @@
       "pixabay_foto",
       "pexels_foto",
       "openverse"
-    ]
+    ],
+    "cta_canal": "'Salva e se inscreve no Space Atlas.'",
+    "inscreva_canal": "Space Atlas",
+    "inscreva_segundos": 3.0
   },
   "gospel": {
     "palavras_min": 45,
