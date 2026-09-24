@@ -103,5 +103,15 @@
     "nome": "Zaqueu",
     "nome_en": "Zacchaeus",
     "descricao_visual": "a short man in his 40s, balding short dark hair, thin trimmed beard, olive skin, fine embroidered blue robe with a leather coin pouch at the belt"
+  },
+  "ladrao": {
+    "nome": "Criminoso arrependido",
+    "nome_en": "repentant criminal",
+    "descricao_visual": "a thin man in his 30s, disheveled short dark hair, patchy beard, dirty pale skin with visible bruises, torn undyed loincloth wrap"
+  },
+  "outro-criminoso": {
+    "nome": "Criminoso zombador",
+    "nome_en": "mocking criminal",
+    "descricao_visual": "a lean man in his 40s, matted grey-streaked hair, rough stubble beard, sun-worn tanned skin, torn dark brown loincloth wrap"
   }
 }

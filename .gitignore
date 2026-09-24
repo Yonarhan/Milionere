@@ -260,5 +260,5 @@ servico/media/
 producao/banco/
 *.rar
 
-# pasta antiga do motor (absorvido em motor/): nunca versionar
-/MoneyPrinterTurbo/
+# motor original (repositório próprio); o código usado está em motor/
+MoneyPrinterTurbo/

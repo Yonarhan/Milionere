@@ -25,7 +25,7 @@ MAX_REGRAS = 5
 # tipo -> (padrão no motivo, regra escrita só com o que DEVE aparecer)
 TIPOS = {
     "pes": (r"\bp[ée]s?\b|dedos do p[ée]|sola|cal[çc]ad|sapato|chinelo|sand[áa]lia|t[êe]nis|bota",
-            "pessoa sentada ou deitada em plano médio, manto longo até o chão cobrindo os pés"),
+            "pessoa sentada ou ajoelhada em plano da cintura para cima (waist-up), sem os pés na imagem"),
     "pulso": (r"rel[óo]gio|pulseira|pulso",
               "mangas longas de lã cobrindo os braços até as mãos"),
     "objeto": (r"modern|met[áa]lic|metal|pl[áa]stic|ferramenta|anacron",

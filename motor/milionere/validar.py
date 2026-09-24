@@ -21,7 +21,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import biblia  # noqa: E402
 import llm  # noqa: E402
-from roteirista import regras_imagem  # noqa: E402
 import medidor  # noqa: E402
 
 VOCAB_IA = ["fascinante", "incrível jornada", "desvendar", "crucial", "notável", "intrigante", "vasto universo",
@@ -179,7 +178,9 @@ def camada2(r: dict, formato: dict, tema: dict) -> tuple[list[str], dict]:
         + "\n".join(f"- {k}: {v}" for k, v in CRITERIOS.items()) +
         "\n\nErro factual = algo apresentado como fato que não está na fonte ou a contradiz (fala inventada atribuída a "
         "alguém, número errado, nome trocado, milagre que não houve, ordem invertida). Emoção e ambiente em tom de "
-        "hipótese ('imagina o medo') não são erro. Na parábola moderna a história é inventada de propósito: aí só o "
+        "hipótese ('imagina o medo') não são erro. Omitir, resumir ou encurtar uma fala ou citação (deixar de fora "
+        "uma cláusula, um 'a ti mesmo') NUNCA é erro factual: é omissão, e omissão só vira problema de compreensao se "
+        "mudar o sentido. Na parábola moderna a história é inventada de propósito: aí só o "
         "provérbio e o sentido dele precisam ser fiéis.\n"
         "A narrativa não pode ser interrompida: frase falando com o espectador (2ª pessoa, pergunta ao público, "
         "aplicação) no meio da história, antes do clímax, soa como se tivesse pulado um pedaço. Isso é problema de "
@@ -187,7 +188,8 @@ def camada2(r: dict, formato: dict, tema: dict) -> tuple[list[str], dict]:
         f"O vídeo tem limite de {formato['palavras'][0]} a {formato['palavras'][1]} palavras ({sum(len(_palavras(c['fala'])) for c in r['cenas'])} agora): "
         "não dá pra contar tudo. Omitir um detalhe secundário NÃO é erro; só é erro se a omissão mudar o sentido. "
         "Toda correção que você sugerir precisa caber no limite: se pedir para acrescentar, diga o que cortar.\n"
-        "Cada problema deve dizer o número da cena e como corrigir, em 1 frase."
+        "Cada problema deve dizer o número da cena e como corrigir, em 1 frase. Aponte no máximo os 5 problemas mais "
+        "graves: o roteirista corrige o que você apontar, e uma lista longa de detalhes faz ele desmontar o que estava bom."
     )
     import caminhos
     j = llm.chamar(prompt, SCHEMA_JUIZ, papel="juiz", modelo=caminhos.MODELO_JUIZ_ROTEIRO)
@@ -221,7 +223,8 @@ JUIZES_EM_PARALELO = 4
 def _quem(r: dict, n: int) -> str:
     c = r["cenas"][n - 1]
     pers = {p["id"]: p for p in r["personagens"]}
-    return ("; ".join(pers[p]["nome"] for p in c["personagens"] if p in pers)
+    # nome + aparência da ficha: sem a aparência o juiz não sabe quem é quem e não pega papéis trocados
+    return ("; ".join(f"{pers[p]['nome']} ({pers[p]['descricao_visual']})" for p in c["personagens"] if p in pers)
             or "nenhum personagem da história (pessoa anônima pode aparecer, se combinar com a fala)")
 
 
@@ -239,13 +242,17 @@ def _instrucoes_visuais(epoca: str, historia: str) -> str:
         "Liste em `defeitos` só o que um espectador comum perceberia num celular. Mão em silhueta ou borrada pelo "
         "movimento não é defeito.\n\n"
         f"PASSO 2, história. {historia}\n"
+        "Use o prompt de cada cena só para saber quem é quem e onde cada um está; cenário, luz ou fundo diferentes do "
+        "prompt NÃO reprovam (só reprova fundo com defeito do passo 1).\n"
         "`combina` = false só se a imagem CONTRADIZ a fala (pessoa errada, emoção oposta, ação oposta) ou não tem nada "
-        "a ver. Imagem evocativa que não mostra a ação ao pé da letra combina. Cor de roupa, expressão exata e "
+        "a ver. Confira também QUEM FAZ O QUÊ: cada personagem citado aparece uma única vez (o mesmo rosto e roupa "
+        "repetido na cena é defeito) e no papel que a fala descreve (quem está em cima e quem está embaixo, quem chama e "
+        "quem é chamado); papéis trocados = `combina` false. Imagem evocativa que não mostra a ação ao pé da letra combina. Cor de roupa, expressão exata e "
         "enquadramento NÃO são motivo de reprovação.\n\n"
         "Se houver defeito ou não combinar, escreva o problema e um prompt novo que evite o problema. O prompt novo "
         "descreve só enquadramento, ação, chão, luz e lugar; NUNCA a aparência de um personagem (idade, cabelo, barba, "
-        "roupa, asas), que vem da ficha fixa e entra sozinha. Regras para ESCREVER esse prompt novo (não são critério "
-        "de reprovação; reprove só pelos passos 1 e 2): " + regras_imagem()
+        "roupa, asas), que vem da ficha fixa e entra sozinha. Em inglês, até 35 palavras, sem negação ('no people' "
+        "atrai gente), com o chão e o fundo descritos."
     )
 
 
@@ -265,7 +272,8 @@ def julgar_imagem(r: dict, n: int, arq: Path, epoca: str, juiz: str | None = Non
     prompt = (
         ("A imagem está anexada." if local else f"Abra a imagem {arq} com a ferramenta Read.")
         + " Ela vai num vídeo cristão realista; defeito de IA derruba o vídeo.\n\n"
-        + _instrucoes_visuais(epoca, f"Fala narrada nesta cena: «{c['fala']}». Quem deve aparecer: {_quem(r, n)}.")
+        + _instrucoes_visuais(epoca, f"Fala narrada nesta cena: «{c['fala']}». Quem deve aparecer: {_quem(r, n)}.\n"
+                                     f"O que a cena deveria mostrar (prompt usado): {c.get('imagem', '')}")
     )
     if local:
         v = llm.chamar_ollama(prompt, SCHEMA_VISUAL, juiz.split(":", 1)[1], imagens=[arq])
@@ -295,12 +303,12 @@ def julgar_lote(itens: list[tuple[dict, int, Path]], epoca: str) -> list[dict]:
     """Um lote de imagens (r, cena, arquivo) da MESMA pasta numa chamada só. Imagem que o modelo esquecer de
     devolver é julgada sozinha, então o resultado sempre tem um veredito por item, na mesma ordem."""
     lista = "\n".join(f"{k}. arquivo {arq} · fala narrada: «{r['cenas'][n - 1]['fala']}» · quem deve aparecer: {_quem(r, n)}"
-                       for k, (r, n, arq) in enumerate(itens, 1))
+                       f" · prompt usado: {r['cenas'][n - 1].get('imagem', '')}" for k, (r, n, arq) in enumerate(itens, 1))
     prompt = (
         f"Abra com a ferramenta Read cada uma das {len(itens)} imagens da lista no fim e julgue CADA UMA sozinha, com a "
         "mesma atenção, sem comparar uma com a outra. Elas vão num vídeo cristão realista; defeito de IA derruba o "
         "vídeo.\n\n"
-        + _instrucoes_visuais(epoca, "A fala narrada em cada imagem e quem deve aparecer nela estão na lista abaixo.")
+        + _instrucoes_visuais(epoca, "A fala narrada em cada imagem, quem deve aparecer e o prompt usado estão na lista abaixo.")
         + f"\n\n# Imagens\n{lista}\n\nDevolva um item por imagem, com o número dela em `imagem`. Em cada uma, preencha "
         "`maos_e_rostos` olhando a imagem de perto ANTES de decidir `defeitos`: mão deformada ou com dedo a mais é o "
         "defeito mais comum e o que mais escapa."

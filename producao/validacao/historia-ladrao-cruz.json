@@ -200,6 +200,456 @@
         "compreensao (nota 3): Cena 5 interrompe a narrativa como pausa reflexiva antes do clímax, quebrando o fluxo — mova-a para após cena 7 ou remova.",
         "compreensao (nota 3): Cena 1 diz 'sem fazer nada' mas depois ele repreende e pede: confuso para quem nunca leu o texto."
       ]
+    },
+    {
+      "quando": "09:53:34",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Um ladrão morrendo ganhou o paraíso.",
+        "Dois criminosos pendiam ao lado de Jesus na cruz.",
+        "Um deles zombava: se você é o Cristo, salva a nós.",
+        "Mas o outro repreendeu ele: você nem teme a Deus?",
+        "Nós merecemos o castigo, mas esse homem nada fez.",
+        "Ele se virou pra Jesus: lembra de mim no teu Reino.",
+        "Jesus respondeu na hora: hoje você estará comigo no Paraíso.",
+        "Você também acha que é tarde demais pra Deus?",
+        "Ele não fez nada bom. Só confiou. E ganhou o paraíso.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "09:55:06",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 5,
+        "ritmo": 4,
+        "linguagem": 5,
+        "payoff": 5
+      },
+      "entendimento": "Um criminoso condenado pediu a Jesus que o lembrasse no Paraíso e recebeu a promessa naquele mesmo dia—salvação que depende só de fé, não de obras.",
+      "erros_factuais": [],
+      "problemas": [
+        "compreensao (nota 3): Cena 3: Falta 'a ti mesmo'—deveria ser 'salva a ti mesmo e a nós' para deixar claro que é um insulto/desafio, não um pedido.",
+        "compreensao (nota 3): Cena 8: Aplicação pessoal genérica ('Você também acha que é tarde demais?'); conecte a uma dor real específica—culpa, medo, desespero—em vez de pergunta aberta."
+      ]
+    },
+    {
+      "quando": "09:55:55",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Um ladrão morrendo ganhou o paraíso.",
+        "Dois criminosos pendiam ao lado de Jesus na cruz.",
+        "Um deles zombava: salva a ti mesmo e a nós, se és o Cristo.",
+        "Mas o outro repreendeu: você nem teme a Deus?",
+        "Nós merecemos o castigo, mas esse homem nada fez.",
+        "Ele se virou pra Jesus: lembra de mim no teu Reino.",
+        "Jesus respondeu na hora: hoje você estará comigo no Paraíso.",
+        "Você acha que sua culpa é grande demais pra Deus te salvar?",
+        "Ele não fez nada bom. Só confiou. E ganhou o paraíso.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "09:58:55",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 4,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 4,
+        "linguagem": 5,
+        "payoff": 5
+      },
+      "entendimento": "Uma pessoa condenada ganhou o paraíso apenas pela confiança em Jesus, e isso mostra que culpa não é barreira para salvação.",
+      "erros_factuais": [
+        "Cena 1: 'Um ladrão' deveria ser 'Um criminoso' (Lucas 23:39 diz 'Um dos criminosos')",
+        "Cena 6: 'lembra de mim no teu Reino' omite 'quando entrares/entra', mudando o sentido de futuro para ambíguo — na fonte é claramente um pedido para Jesus se lembrar dele quando entrar no Reino, não agora"
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 1: 'Um ladrão' deveria ser 'Um criminoso' (Lucas 23:39 diz 'Um dos criminosos')",
+        "ERRO FACTUAL: Cena 6: 'lembra de mim no teu Reino' omite 'quando entrares/entra', mudando o sentido de futuro para ambíguo — na fonte é claramente um pedido para Jesus se lembrar dele quando entrar no Reino, não agora",
+        "fidelidade (nota 3): Cena 1-2: inconsistência — 'ladrão' (C1) vs 'criminosos' (C2); padronizar para 'criminoso' conforme fonte",
+        "fidelidade (nota 3): Cena 6: omissão do temporal 'quando entrares' muda o significado do pedido do criminoso",
+        "compreensao (nota 3): Cena 6: sem 'quando entrares', fica ambíguo se é pedido presente ou futuro; uma pessoa ouvindo UMA vez pode não captar o sentido temporal correto da promessa de Jesus"
+      ]
+    },
+    {
+      "quando": "10:00:11",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Um ladrão morrendo ganhou o paraíso.",
+        "Dois criminosos pendiam ao lado de Jesus.",
+        "Um deles zombava: se você é o Cristo, salva a ti mesmo e a nós.",
+        "Mas o outro repreendeu: você nem teme a Deus?",
+        "Nós merecemos o castigo, mas esse homem nada fez.",
+        "Ele disse a Jesus: lembra de mim no teu Reino.",
+        "Jesus respondeu na hora: hoje você estará comigo no Paraíso.",
+        "Você acha que pecou demais pra ser perdoado?",
+        "Ele não fez nada bom. Só confiou. E ganhou o paraíso.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "10:02:15",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 5,
+        "gancho": 5,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 5
+      },
+      "entendimento": "Um criminoso morrendo na cruz reconheceu Jesus e pediu ser lembrado no Reino, e Jesus o prometeu paraíso naquele dia — mostrando que confiança, não obras, salva.",
+      "erros_factuais": [
+        "Cena 6: omite 'Senhor' da fonte ('Senhor, lembra-te de mim'), detalhe importante que mostra reconhecimento divino do ladrão"
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 6: omite 'Senhor' da fonte ('Senhor, lembra-te de mim'), detalhe importante que mostra reconhecimento divino do ladrão"
+      ]
+    },
+    {
+      "quando": "10:02:54",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Um criminoso morrendo ganhou o paraíso.",
+        "Dois criminosos pendiam ao lado de Jesus na cruz.",
+        "Um deles zombava: salva a ti mesmo e a nós!",
+        "Mas o outro repreendeu: você nem teme a Deus?",
+        "Nós merecemos a pena, mas esse homem nada fez.",
+        "Ele pediu: lembra de mim quando entrares no teu Reino.",
+        "Jesus respondeu na hora: hoje estarás comigo no Paraíso.",
+        "Se a culpa diz que é tarde demais, Jesus ainda te ouve.",
+        "Ele não fez nada bom. Só pediu. E ganhou o paraíso.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "10:06:36",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 5,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Um ladrão na cruz, sem boa ação, pediu apenas lembrança a Jesus e ganhou a eternidade no paraíso naquele mesmo dia.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "10:08:31",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Um criminoso foi pro paraíso sem batismo.",
+        "Jesus tava na cruz, entre dois criminosos.",
+        "Um deles zombava: se és o Cristo, salva a nós!",
+        "Mas o outro repreendeu: você nem teme a Deus?",
+        "Nós merecemos isso, mas esse homem não fez nada de errado.",
+        "Aí ele disse: Jesus, lembra de mim no teu Reino.",
+        "E Jesus respondeu: hoje você estará comigo no paraíso.",
+        "Você não precisa se limpar antes de vir a ele.",
+        "Ele não teve tempo de nada. Só teve fé no último minuto.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "10:08:56",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 2,
+        "linguagem": 3,
+        "payoff": 4
+      },
+      "entendimento": "Um dos dois criminosos crucificados com Jesus se arrepende e é o único, mesmo sem tempo de \"se limpar\", que recebe a promessa de ir ao paraíso.",
+      "erros_factuais": [],
+      "problemas": [
+        "ritmo (nota 2): Cenas 3 a 7 são falas soltas encadeadas ('Um deles... Mas o outro... Aí ele disse... E Jesus respondeu'), soando como lista de diálogos e não uma cena contínua; una com conectores de causa/consequência para dar fluidez de narrativa única.",
+        "linguagem (nota 3): Mistura registro coloquial ('tava', 'aí ele disse') com frases mais formais ('não fez nada de errado'); padronize o tom em todas as cenas para não soar remendado."
+      ]
+    },
+    {
+      "quando": "10:10:05",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Um criminoso foi pro paraíso sem batismo.",
+        "Jesus estava na cruz, entre dois criminosos.",
+        "Um deles zombava: se és o Cristo, salva a nós!",
+        "Mas o outro repreendeu ele: você nem teme a Deus?",
+        "Pois nós merecemos isso, mas esse homem não fez nada de errado.",
+        "Então pediu: Jesus, lembra de mim no teu Reino.",
+        "E Jesus respondeu: hoje você estará comigo no paraíso.",
+        "Você não precisa se limpar antes de vir a ele.",
+        "Ele não teve tempo de nada, só teve fé no fim.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "10:10:24",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Um criminoso crucificado ao lado de Jesus reconhece sua culpa, defende a inocência de Jesus e pede para ser lembrado, e Jesus promete que ele estará com ele no paraíso naquele mesmo dia.",
+      "erros_factuais": [
+        "Cena 1: 'sem batismo' é uma informação inventada, não está na fonte (o texto não fala de batismo)."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 1: 'sem batismo' é uma informação inventada, não está na fonte (o texto não fala de batismo).",
+        "fidelidade (nota 3): Cena 1: 'foi pro paraíso sem batismo' é acréscimo que não está no texto; troque por algo como 'sem fazer nada por merecer' para manter o paradoxo sem inventar fato."
+      ]
+    },
+    {
+      "quando": "10:11:54",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Um criminoso foi pro paraíso sem batismo.",
+        "Jesus estava na cruz, entre dois criminosos.",
+        "Um deles zombava: se és o Cristo, salva a nós!",
+        "Mas o outro repreendeu: você nem teme a Deus?",
+        "Nós merecemos essa pena, mas esse homem não fez nada de errado.",
+        "Ele não fez nenhuma obra, só falou uma frase.",
+        "Jesus, lembra de mim no teu Reino.",
+        "Jesus respondeu na hora: hoje você estará comigo no paraíso.",
+        "Você também não precisa se limpar antes de vir a ele.",
+        "Sem batismo, sem obra, ele só teve fé.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "10:12:23",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 3,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Um criminoso pendurado ao lado de Jesus na cruz foi salvo só por pedir a ele, sem batismo ou boas obras.",
+      "erros_factuais": [
+        "Cena 6: 'Ele não fez nenhuma obra, só falou uma frase' é uma interpretação teológica do roteirista (contraste obra x fé), não um fato da fonte — soa como afirmação factual sobre o que aconteceu, mas o texto bíblico não fala em 'obras' nesse sentido."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 6: 'Ele não fez nenhuma obra, só falou uma frase' é uma interpretação teológica do roteirista (contraste obra x fé), não um fato da fonte — soa como afirmação factual sobre o que aconteceu, mas o texto bíblico não fala em 'obras' nesse sentido.",
+        "fidelidade (nota 3): Cena 6 apresenta como fato bíblico uma conclusão teológica ('não fez nenhuma obra, só falou uma frase') que não está no texto; corte essa cena e deixe a lição implícita no loop final (cena 10).",
+        "ordem (nota 3): Cena 6 interrompe a sequência cronológica (entre o pedido de perdão dos atos e o pedido a Jesus) com um comentário do narrador; mova ou remova essa cena para não quebrar o fluxo evento3→evento4.",
+        "compreensao (nota 3): Cena 6 funciona como uma pausa explicativa no meio da ação, antes do clímax (cena 8), o que faz o ouvinte sentir que pulou um pedaço; corte a cena 6 e leve essa ideia para depois do clímax, junto da cena 9."
+      ]
+    },
+    {
+      "quando": "10:13:24",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Pendurado numa cruz, ele ganhou o paraíso.",
+        "Jesus estava crucificado entre dois criminosos.",
+        "Um deles zombava, mandando Jesus se salvar e salvar os dois.",
+        "Mas o outro repreendeu: você nem teme a Deus, sofrendo a mesma pena?",
+        "Nós merecemos isso, mas esse homem não fez nada de errado, disse ele.",
+        "Então pediu: Jesus, lembra de mim quando entrares no teu Reino.",
+        "E Jesus respondeu: hoje você estará comigo no paraíso.",
+        "Você não precisa se limpar antes de vir a ele.",
+        "Ele não teve tempo de nada, só teve fé no último minuto.",
+        "Escreve amém."
+      ]
+    },
+    {
+      "quando": "10:13:46",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 4
+      },
+      "entendimento": "Um dos dois criminosos crucificados com Jesus zomba dele, mas o outro reconhece sua culpa, pede para ser lembrado no Reino, e Jesus promete que ele estará com ele no paraíso naquele mesmo dia.",
+      "erros_factuais": [],
+      "problemas": [
+        "gancho (nota 3): Cena 1 tem 8 palavras (limite é 7) e o paradoxo é fraco/previsível para quem já conhece a história de Jesus na cruz; trocar por algo mais chocante, ex: 'Ele não fez nada de bom e foi pro céu.'",
+        "ritmo (nota 3): Cena 5 termina com 'disse ele' solto no fim, soando como legenda de livro, não fala natural; cortar 'disse ele' e deixar a fala direta.",
+        "linguagem (nota 3): Cena 5 ('Nós merecemos isso, mas esse homem não fez nada de errado, disse ele') tem construção de texto escrito, não de alguém narrando em voz alta; reescrever como fala corrida, ex: 'Ele mesmo admitiu: a gente merece isso, mas esse homem não fez nada de errado.'"
+      ]
+    },
+    {
+      "quando": "10:29:01",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "A imagem usa coroa de espinhos, o que identifica a figura como Jesus, não como o criminoso arrependido citado na fala.",
+          "imagem_corrigida": "Medium shot seated slumped against a wooden cross on a rocky hilltop, weary face lit by dim orange sunset light, dusty ground with scattered stones, distant hills and small village below."
+        },
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "A imagem mostra um homem sentado em uma árvore sobre um vilarejo (cena de Zaqueu), sem cruz nem crucificação, nada relacionado à fala sobre os dois criminosos pendendo ao lado de Jesus na cruz.",
+          "imagem_corrigida": "Wide shot of three wooden crosses standing on a rocky hill at dusk, silhouettes against a darkening sky, flat rocky ground scattered with stones, center cross taller, thieves hanging on outer crosses."
+        },
+        {
+          "cena": 5,
+          "ok": false,
+          "problema": "O homem está usando a coroa de espinhos característica de Jesus crucificado, fazendo-o parecer o próprio Jesus em vez do ladrão arrependido, o que contradiz a fala em que ele se refere a 'esse homem' como alguém distinto de si mesmo.",
+          "imagem_corrigida": "Medium shot seated on rocky hillside ground beside a tall wooden cross, calm resigned expression, eyes turned upward toward a soft fading dusk sky, hands resting on knees, distant hills in background."
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "A imagem mostra uma cena completamente diferente (um homem sentado numa árvore diante de uma vila, tipo Zaqueu), sem cruz nem crucificação, contradizendo a fala sobre o criminoso pedindo para ser lembrado no Reino.",
+          "imagem_corrigida": "Medium shot, man seated against a wooden cross on rocky ground, pleading expression, gazing toward a distant silhouetted cross across barren terrain, dim dusky light, muted sky."
+        },
+        {
+          "cena": 7,
+          "ok": false,
+          "problema": "A imagem mostra uma cena completamente diferente (um homem sentado numa árvore num vilarejo, tipo Zaqueu), sem nenhuma cruz ou crucificação; não tem relação com a fala de Jesus e o criminoso arrependido na cruz.",
+          "imagem_corrigida": "Wide shot of two wooden crosses on a rocky hill at dusk, warm golden light breaking through clouds over one seated figure, the other cross a dark silhouette, flat stony ground, distant hills."
+        },
+        {
+          "cena": 8,
+          "ok": false,
+          "problema": "A imagem mostra um homem parado conversando com uma mulher idosa ajoelhada num pátio de vila, sem nenhuma cruz nem o criminoso arrependido descrito; não tem relação com a fala sobre Jesus ouvir a culpa de alguém junto à cruz.",
+          "imagem_corrigida": "Medium shot, seated on rocky ground against a rough wooden cross, head tilted back with eyes closed, single tear visible, warm fading sunset light casting long shadows over a barren rocky hillside."
+        }
+      ]
+    },
+    {
+      "quando": "10:45:38",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 2,
+      "reprovadas": [
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "A fala diz que os dois criminosos pendiam ao lado de Jesus na cruz, mas na imagem Jesus aparece em pé no chão (fora da cruz) em vez de crucificado, duplicando o mesmo rosto que já está no cruzeiro central.",
+          "imagem_corrigida": "Wide low-angle shot of three wooden crosses atop a rocky hilltop at dusk, three men nailed side by side to the crosses, barren dusty ground scattered with stones, distant hills, fading orange-purple sky."
+        },
+        {
+          "cena": 5,
+          "ok": false,
+          "problema": "O homem sentado usa coroa de espinhos e túnica completa, parecendo Jesus, não o criminoso arrependido descrito (magro, barba rala, ferimentos visíveis, apenas um pano rasgado); a fala é do criminoso, então a pessoa errada aparece na cena.",
+          "imagem_corrigida": "Medium shot, seated on rocky hillside beside tall wooden cross at dusk, face tilted upward toward fading pink-orange sky, hands resting on knees, dark silhouette of flat-roofed mud-brick village behind, loose stones and dirt underfoot."
+        }
+      ]
+    },
+    {
+      "quando": "10:46:07",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-ladrao-cruz.mp4",
+      "duracao": 38.2,
+      "avisos": []
+    },
+    {
+      "quando": "10:46:31",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-ladrao-cruz_sem-musica.mp4",
+      "duracao": 38.2,
+      "avisos": []
+    },
+    {
+      "quando": "10:51:06",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 1,
+      "reprovadas": []
+    },
+    {
+      "quando": "10:51:06",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "10:51:33",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-ladrao-cruz.mp4",
+      "duracao": 38.2,
+      "avisos": []
+    },
+    {
+      "quando": "10:51:55",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-ladrao-cruz_sem-musica.mp4",
+      "duracao": 38.2,
+      "avisos": []
     }
   ]
 }
