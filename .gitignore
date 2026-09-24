@@ -259,3 +259,6 @@ servico/media/
 # Banco de imagens (gerado; v1 em SQLite)
 producao/banco/
 *.rar
+
+# pasta antiga do motor (absorvido em motor/): nunca versionar
+/MoneyPrinterTurbo/

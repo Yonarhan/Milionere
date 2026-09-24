@@ -144,7 +144,7 @@ UPLOAD_POST_MANAGE_USERS_URL = "https://app.upload-post.com/manage-users"
 # 素材设置与视频来源说明共用推广入口，避免两个位置的链接参数不一致。
 OFOX_REFERRAL_URL = (
     "https://ofox.ai/?utm_source=github"
-    "&utm_medium=sponsorship&utm_content=moneyprinterturbo"
+    "&utm_medium=sponsorship"
 )
 # “默认”是 WebUI 专用哨兵，不会写入 config.toml，也不会传给 FFmpeg。
 # 后端在 video_codec 未配置时继续采用稳定的 libx264；单独保留该哨兵可以区分
@@ -247,12 +247,12 @@ _RUNTIME_CONFIG_SECTIONS = {
 }
 # 设置预设与密钥备份使用各自的文件标识。导入时先校验 schema 和版本，
 # 避免把任务记录、config.toml 或其它 JSON 误当成本功能的导出文件。
-SETTINGS_PRESET_SCHEMA = "moneyprinterturbo.settings-preset"
+SETTINGS_PRESET_SCHEMA = "milionere.settings-preset"
 SETTINGS_PRESET_VERSION = 1
-SETTINGS_PRESET_FILE_NAME = "moneyprinterturbo-settings.json"
-KEY_BACKUP_SCHEMA = "moneyprinterturbo.key-backup"
+SETTINGS_PRESET_FILE_NAME = "milionere-settings.json"
+KEY_BACKUP_SCHEMA = "milionere.key-backup"
 KEY_BACKUP_VERSION = 1
-KEY_BACKUP_FILE_NAME = "moneyprinterturbo-keys.json"
+KEY_BACKUP_FILE_NAME = "milionere-keys.json"
 # 预设只描述生成参数。素材、配音和配乐都是本机文件路径，预设通常要在另一台
 # 机器或另一个容器里导入，带上这些路径只会指向不存在的文件。
 PRESET_EXCLUDED_PARAM_KEYS = frozenset(

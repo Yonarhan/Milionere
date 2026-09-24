@@ -240,7 +240,7 @@ sonilo_timeout = 600
 llm_provider = "moonshot"
 
 # Kimi / Moonshot AI
-# API key: https://platform.kimi.com?track_id=track-2f5441d6ffd84c509dd079d78e9db5dc&aff=moneyprinterturbo
+# API key: https://platform.kimi.com
 moonshot_api_key = ""
 moonshot_base_url = ""
 moonshot_model_name = ""
@@ -252,7 +252,7 @@ shengsuanyun_base_url = ""
 shengsuanyun_model_name = ""
 
 # APIMart, OpenAI-compatible multi-model API.
-# Sign up: https://go.apimart.ai/gh-moneyprinterturbo
+# Sign up: https://go.apimart.ai
 # API docs: https://docs.apimart.ai/cn
 apimart_api_key = ""
 apimart_base_url = ""

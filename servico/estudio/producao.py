@@ -154,19 +154,7 @@ def _gospel(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
         pipeline.log = original
     if not videos:
         raise RuntimeError("o roteiro ou o render não passou nas validações (veja o log)")
-    try:  # as imagens aprovadas pelo juiz visual entram no banco: o próximo vídeo gera menos
-        import json
-
-        import banco_imagens
-        import caminhos
-        import provedores
-        slug = f"{prod.formato}-{prod.pauta.tema_id}"
-        arq = sorted((caminhos.PRODUCAO / "roteiros").glob(f"*_{slug}.json"))[-1]
-        r = json.loads(arq.read_text(encoding="utf-8"))[0]
-        n = banco_imagens.indexar_roteiro(r, caminhos.PRODUCAO / "midia" / slug, origem=f"ia-{provedores.modo()}", dono="canal")
-        diario(f"banco de imagens: +{n} imagem(ns) aprovada(s)")
-    except Exception as e:  # noqa: BLE001 - banco é bônus, não derruba o vídeo pronto
-        diario(f"AVISO: imagens não entraram no banco ({e})")
+    # as imagens aprovadas já entram no banco dentro do pipeline (pipeline.alimentar_banco)
     return videos
 
 

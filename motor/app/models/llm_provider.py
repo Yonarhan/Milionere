@@ -203,31 +203,15 @@ LLM_PROVIDER_REGISTRY = (
                 endpoint_id="china",
                 default_label="China",
                 base_url="https://api.moonshot.cn/v1",
-                api_key_url=(
-                    "https://platform.kimi.com?"
-                    "track_id=track-2f5441d6ffd84c509dd079d78e9db5dc&"
-                    "aff=moneyprinterturbo"
-                ),
-                model_docs_url=(
-                    "https://platform.kimi.com/docs/models?"
-                    "track_id=track-2f5441d6ffd84c509dd079d78e9db5dc&"
-                    "aff=moneyprinterturbo"
-                ),
+                api_key_url="https://platform.kimi.com",
+                model_docs_url="https://platform.kimi.com/docs/models",
             ),
             LLMProviderEndpoint(
                 endpoint_id="global",
                 default_label="Global",
                 base_url="https://api.moonshot.ai/v1",
-                api_key_url=(
-                    "https://platform.kimi.ai?"
-                    "track_id=track-f6b0a640d35c41deb03b247242a1058c&"
-                    "aff=moneyprinterturbo"
-                ),
-                model_docs_url=(
-                    "https://platform.kimi.ai/docs/models?"
-                    "track_id=track-f6b0a640d35c41deb03b247242a1058c&"
-                    "aff=moneyprinterturbo"
-                ),
+                api_key_url="https://platform.kimi.ai",
+                model_docs_url="https://platform.kimi.ai/docs/models",
             ),
         ),
         default_service_endpoint_id="china",
@@ -332,7 +316,7 @@ LLM_PROVIDER_REGISTRY = (
     LLMProviderSpec(
         "apimart",
         "APIMart",
-        api_key_url="https://go.apimart.ai/gh-moneyprinterturbo",
+        api_key_url="https://go.apimart.ai",
         default_model="gpt-5.6-terra",
         default_base_url="https://api.apimart.ai/v1",
     ),
@@ -406,7 +390,7 @@ LLM_PROVIDER_REGISTRY = (
         "Fluxion AI",
         api_key_url=(
             "https://fluxionai.space/register?source=github"
-            "&campaign=moneyprinterturbo&promo=MONEYPRINTERTURBO"
+            ""
         ),
         default_model="gpt-5.5",
         default_base_url="https://fluxionai.space/v1",

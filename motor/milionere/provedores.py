@@ -6,17 +6,15 @@
     MILIONERE_IMAGEM=cloudflare  -> Cloudflare Workers AI, FLUX.2 klein (cota grátis diária; reserva: Gemini/ComfyUI)
     MILIONERE_IMAGEM=manual      -> não gera nada: grava prompts.txt e espera o usuário subir as imagens
 
-Antes de qualquer gerador, cada cena consulta o BANCO do nicho (regra alinhada com a noite de 24/09 do Rafael):
-    cena SEM personagem + imagem SEM personagem com nota >= LIMIAR_REUSO (0,55) -> reusa (custo zero)
-    cena COM personagem -> nunca reusa (traria o Jesus de outra história, com outra roupa e outro lugar);
-        a imagem do banco com nota >= LIMIAR_REFERENCIA (0,40) entra só como referência de estilo/rosto
-    abaixo disso -> gera do zero (com o retrato do personagem, se houver)
+Banco de imagens: o REUSO (cena sem personagem com imagem sem personagem, mesmo estilo) e a alimentação do banco
+ficam no pipeline (pipeline.do_banco / pipeline.alimentar_banco). Aqui entra só a REFERÊNCIA: para a cena que vai
+ser gerada, a imagem do banco mais parecida (mesmo nicho e estilo, nota >= LIMIAR_REFERENCIA) vai junto como
+referência de estilo e rosto para os geradores que aceitam imagem (Cloudflare FLUX.2 klein).
 Imagens que o usuário já colocou em producao/midia/<slug>/cena_NN.* têm prioridade sempre
 (o pipeline só pede as cenas que faltam).
 """
 
 import random
-import shutil
 import sys
 from pathlib import Path
 
@@ -46,7 +44,7 @@ class Sessao:
         self.comfy_ligado = False
         self.gemini_ok = modo() == "gemini"
         self.cloudflare_ok = modo() == "cloudflare"
-        self.usados_banco: set[int] = set()  # a mesma imagem do banco não repete dentro de um vídeo
+        self.usados_banco: set[int] = set()  # a mesma referência do banco não repete dentro de um vídeo
 
     def comfy(self):
         if not self.comfy_ligado:
@@ -87,39 +85,20 @@ def _prompts_manuais(roteiro: dict, nome_estilo: str, pasta: Path, cenas: list[i
         for n in cenas), encoding="utf-8")
 
 
-def _consultar_banco(roteiro: dict, n: int, k: int = 6) -> list[dict]:
-    """As imagens do banco do nicho mais parecidas com a cena, cada uma com a lista `personagens` dela."""
+def referencia_do_banco(roteiro: dict, n: int, nome_estilo: str) -> dict | None:
+    """A imagem do banco (mesmo nicho e estilo) mais parecida com a cena, se passar de LIMIAR_REFERENCIA."""
     try:
-        import json
-
         import banco_imagens
         cena = roteiro["cenas"][n - 1]
         nomes = {p["id"]: p.get("nome", "") for p in roteiro.get("personagens", [])}
         texto = " | ".join(x for x in (cena["fala"], " ".join(nomes.get(i, "") for i in cena.get("personagens", [])),
                                        cena.get("imagem", "")) if x.strip())
         nicho = banco_imagens.NICHO_DO_PRESET.get(roteiro.get("nicho", ""), roteiro.get("nicho", ""))
-        achados = banco_imagens.buscar(nicho, texto, excluir=_sessao().usados_banco, k=k)
-        if achados:
-            con = banco_imagens._db()
-            pers = dict(con.execute(f"SELECT id, personagens FROM imagens WHERE id IN ({','.join('?' * len(achados))})",
-                                    [a["id"] for a in achados]).fetchall())
-            con.close()
-            for a in achados:
-                a["personagens"] = json.loads(pers.get(a["id"]) or "[]")
-        return achados
+        achados = banco_imagens.buscar(nicho, texto, excluir=_sessao().usados_banco, k=1, estilo=nome_estilo)
+        return next((a for a in achados if a["nota"] >= LIMIAR_REFERENCIA), None)
     except Exception as e:  # o banco nunca derruba a geração
         print(f"  banco de imagens indisponível: {e}")
-        return []
-
-
-def escolher_do_banco(cena: dict, achados: list[dict]) -> tuple[dict | None, dict | None]:
-    """(imagem para reusar, imagem para usar como referência) segundo a regra do topo do arquivo."""
-    import banco_imagens
-    reuso = None
-    if not cena.get("personagens"):
-        reuso = next((a for a in achados if not a["personagens"] and a["nota"] >= banco_imagens.LIMIAR_REUSO), None)
-    referencia = None if reuso else next((a for a in achados if a["nota"] >= LIMIAR_REFERENCIA), None)
-    return reuso, referencia
+        return None
 
 
 def _uma(roteiro: dict, nome_estilo: str, n: int, destino: Path, seed: int, banco: bool = True) -> Path:
@@ -127,16 +106,7 @@ def _uma(roteiro: dict, nome_estilo: str, n: int, destino: Path, seed: int, banc
     import medidor
     s = _sessao()
     inicio = _t.time()
-    reuso, ref = escolher_do_banco(roteiro["cenas"][n - 1], _consultar_banco(roteiro, n)) if banco else (None, None)
-    if reuso:
-        import banco_imagens
-        alvo = destino.with_suffix(reuso["arquivo"].suffix)
-        shutil.copy(reuso["arquivo"], alvo)
-        s.usados_banco.add(reuso["id"])
-        banco_imagens.marcar_uso([reuso["id"]])
-        medidor.imagem("banco", _t.time() - inicio)
-        print(f"  cena {n:>2} BANCO (nota {reuso['nota']:.2f}, sem personagem)  «{roteiro['cenas'][n - 1]['fala'][:50]}»")
-        return alvo
+    ref = referencia_do_banco(roteiro, n, nome_estilo) if banco and s.cloudflare_ok else None
     refs = [ref["arquivo"]] if ref else []
     if ref:
         s.usados_banco.add(ref["id"])
@@ -188,6 +158,6 @@ def gerar_opcoes(roteiro: dict, nome_estilo: str, pasta: Path, n: int, k: int = 
     destino.mkdir(parents=True, exist_ok=True)
     for velho in destino.glob(f"cena_{n:02d}_*"):
         velho.unlink()
-    # refação de cena reprovada: gera de novo (reusar do banco traria de volta a mesma imagem ruim)
+    # refação de cena reprovada: sem referência do banco (ela pode ter puxado o defeito)
     return [_uma(roteiro, nome_estilo, n, destino / f"cena_{n:02d}_{j}.png", random.randint(0, 2**31 - 1), banco=False)
             for j in range(1, k + 1)]
