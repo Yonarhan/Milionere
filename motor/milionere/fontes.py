@@ -6,6 +6,10 @@
 - pexels / pixabay: vídeos de banco (campo "busca" da cena)
 - wikimedia / met: pinturas e fotos em DOMÍNIO PÚBLICO (campo "arte" da cena) — ótimo para histórias bíblicas
 - nasa: imagens reais do espaço, domínio público (campo "arte" da cena) — astronomia
+- aic / cleveland: pinturas de museu em domínio público (CC0), sem chave — gospel (campo "arte")
+- openverse: fotos CC0 / domínio público / CC-BY de vários acervos (Flickr, museus), sem chave (campo "foto")
+- inaturalist: fotos de animais CC0 / CC-BY, sem chave (campo "foto") — animais
+Todas liberam uso comercial; as CC-BY exigem crédito, que vai no campo "credito" (entra na descrição do post).
 """
 
 import json
@@ -18,9 +22,18 @@ UA = {"User-Agent": "roteirista-shorts/1.0 (personal non-commercial video tool)"
 
 
 def _json(url: str, headers: dict | None = None) -> dict:
-    req = urllib.request.Request(url, headers={**UA, **(headers or {})})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.load(r)
+    """GET com JSON. Resposta 429 (muitos pedidos, comum no Wikimedia em paralelo): espera e tenta de novo."""
+    import time
+    import urllib.error
+    for tentativa in range(3):
+        req = urllib.request.Request(url, headers={**UA, **(headers or {})})
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return json.load(r)
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or tentativa == 2:
+                raise
+            time.sleep(3 * (tentativa + 1))
 
 
 def _chaves(config: Path) -> dict:
@@ -142,8 +155,77 @@ def nasa_video(termo: str, chaves: dict, n: int = 6) -> list[dict]:
     return saida
 
 
+def aic(termo: str, chaves: dict, n: int = 5) -> list[dict]:
+    """Art Institute of Chicago: só obras em domínio público (imagens CC0), servidas por IIIF."""
+    dados = _json("https://api.artic.edu/api/v1/artworks/search?" + urllib.parse.urlencode({
+        "q": termo, "query[term][is_public_domain]": "true", "limit": 15,
+        "fields": "id,title,image_id,artist_title,is_public_domain"}))
+    saida = []
+    for o in dados.get("data", []):
+        if not o.get("image_id") or not o.get("is_public_domain"):
+            continue
+        base = f"https://www.artic.edu/iiif/2/{o['image_id']}/full"
+        saida.append({"ref": f"aic:{o['id']}", "tipo": "foto", "thumb": f"{base}/200,/0/default.jpg",
+                      "link": f"{base}/1686,/0/default.jpg", "desc": (o.get("title") or "")[:80],
+                      "credito": f"{o.get('title', '')} ({o.get('artist_title') or 'autor desconhecido'}), "
+                                 "Art Institute of Chicago, domínio público"})
+    return saida[:n]
+
+
+def cleveland(termo: str, chaves: dict, n: int = 5) -> list[dict]:
+    """Cleveland Museum of Art Open Access: só obras CC0 com imagem."""
+    dados = _json("https://openaccess-api.clevelandart.org/api/artworks/?" + urllib.parse.urlencode(
+        {"q": termo, "cc0": 1, "has_image": 1, "limit": 12}))
+    saida = []
+    for o in dados.get("data", []):
+        web = ((o.get("images") or {}).get("web") or {}).get("url")
+        if not web:
+            continue
+        autor = ((o.get("creators") or [{}])[0].get("description") or "autor desconhecido").split("(")[0].strip()
+        saida.append({"ref": f"cleveland:{o['id']}", "tipo": "foto", "thumb": web, "link": web,
+                      "desc": (o.get("title") or "")[:80],
+                      "credito": f"{o.get('title', '')} ({autor}), Cleveland Museum of Art, CC0"})
+    return saida[:n]
+
+
+LICENCAS_LIVRES = {"cc0", "pdm", "by"}  # sem NC (não comercial), ND (sem derivação) nem SA (obriga a mesma licença)
+
+
+def openverse(termo: str, chaves: dict, n: int = 6) -> list[dict]:
+    """Openverse (WordPress): milhões de fotos abertas. Só CC0, domínio público e CC-BY (com crédito)."""
+    dados = _json("https://api.openverse.org/v1/images/?" + urllib.parse.urlencode(
+        {"q": termo, "license": ",".join(sorted(LICENCAS_LIVRES)), "page_size": 15, "mature": "false"}))
+    saida = []
+    for o in dados.get("results", []):
+        if o.get("license") not in LICENCAS_LIVRES or not o.get("url"):
+            continue
+        lic = "domínio público" if o["license"] in ("cc0", "pdm") else f"CC BY {o.get('license_version', '')}".strip()
+        saida.append({"ref": f"openverse:{o['id']}", "tipo": "foto", "thumb": o.get("thumbnail") or o["url"],
+                      "link": o["url"], "desc": (o.get("title") or "")[:80],
+                      "credito": f"\"{o.get('title', '')}\" por {o.get('creator') or 'autor desconhecido'} ({lic}), via Openverse"})
+    return saida[:n]
+
+
+def inaturalist(termo: str, chaves: dict, n: int = 6) -> list[dict]:
+    """iNaturalist: fotos de observações verificadas (research grade), só CC0 e CC-BY."""
+    dados = _json("https://api.inaturalist.org/v1/observations?" + urllib.parse.urlencode({
+        "q": termo, "photo_license": "cc0,cc-by", "quality_grade": "research", "photos": "true",
+        "per_page": 15, "order_by": "votes"}))
+    saida = []
+    for o in dados.get("results", []):
+        for foto in o.get("photos", [])[:1]:
+            if (foto.get("license_code") or "") not in ("cc0", "cc-by") or not foto.get("url"):
+                continue
+            nome = ((o.get("taxon") or {}).get("preferred_common_name") or (o.get("taxon") or {}).get("name") or "")
+            saida.append({"ref": f"inaturalist:{foto['id']}", "tipo": "foto", "thumb": foto["url"].replace("square", "small"),
+                          "link": foto["url"].replace("square", "large"), "desc": nome[:80],
+                          "credito": f"{nome}: {foto.get('attribution') or 'iNaturalist'}"})
+    return saida[:n]
+
+
 FONTES = {"pexels": pexels, "pixabay": pixabay, "wikimedia": wikimedia, "met": met, "nasa": nasa,
-          "pixabay_foto": pixabay_foto, "pexels_foto": pexels_foto, "nasa_video": nasa_video}
+          "pixabay_foto": pixabay_foto, "pexels_foto": pexels_foto, "nasa_video": nasa_video,
+          "aic": aic, "cleveland": cleveland, "openverse": openverse, "inaturalist": inaturalist}
 
 
 def buscar_candidatos(cena: dict, fontes_video: list[str], fontes_arte: list[str], config: Path,

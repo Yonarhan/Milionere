@@ -30,6 +30,17 @@ class ErroLLM(RuntimeError):
     pass
 
 
+import threading  # noqa: E402
+
+# ligado pelo produtor quando o vídeo é cancelado no painel: a próxima chamada (e as tentativas que viriam) param na hora
+CANCELADO = threading.Event()
+
+
+def _conferir_cancelado() -> None:
+    if CANCELADO.is_set():
+        raise ErroLLM("cancelado no painel")
+
+
 _FLAGS: list[str] | None = None
 
 
@@ -73,6 +84,7 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
            modelo: str | None = None, papel: str = "roteirista") -> dict:
     """Manda o prompt e devolve o JSON validado pelo schema. Com ler_arquivos_em, o modelo pode abrir
     (só ler) arquivos daquela pasta, por exemplo imagens para o juiz visual."""
+    _conferir_cancelado()
     if caminhos.LLM == "api":  # API direta da Anthropic: sem o overhead do Claude Code CLI
         import llm_api
         try:
@@ -96,6 +108,7 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
         cmd += ["--effort", caminhos.ESFORCO_JUIZ if papel == "juiz" else caminhos.ESFORCO_ROTEIRO]
     ultimo = ""
     for _ in range(2):
+        _conferir_cancelado()
         inicio = time.time()
         with tempfile.TemporaryDirectory() as vazio:  # roda fora do projeto: nada de CLAUDE.md por perto
             try:

@@ -180,6 +180,37 @@ def _generico(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
     return videos
 
 
+def _etapa_nativo(msg: str) -> str | None:
+    m = msg.lower()
+    if m.startswith(("buscando fotos", "escolhendo as imagens", "curadoria")):
+        return "imagens"
+    if m.startswith("montando"):
+        return "montagem"
+    return None
+
+
+def _nativo(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
+    """Sem gerar imagem: roteiro + fotos, pinturas e vídeos de acervos grátis (curadoria automática) + ffmpeg."""
+    _, pipeline, _ = _motor()
+    import nativo
+
+    def log(msg):
+        diario(msg, _etapa_nativo(msg))
+    pauta = prod.pauta
+    biblico = prod.nicho == "gospel" and pauta and pauta.tema_id and pauta.origem == "catalogo"
+    if biblico:
+        r = nativo.roteiro_biblico(prod.formato, pauta.tema_id, log)
+    else:
+        r = nativo.roteiro_generico(prod.nicho, (pauta.formato_nome if pauta else "") or prod.formato, prod.tema,
+                                    f"canal-{str(prod.id)[:8]}", log)
+    diario("roteiro aprovado:\n" + "\n".join(f"  «{c['fala']}»" for c in r["cenas"]), "imagens")
+    nativo.curar(r, log)
+    videos = nativo.montar(r, Path(settings.MEDIA_ROOT) / "canal" / str(prod.id), musica, log)
+    if biblico:  # o tema do catálogo não volta (o pipeline marca isso sozinho só no modo IA)
+        pipeline.marcar_usado(f"{prod.formato}:{pauta.tema_id}")
+    return videos
+
+
 def _url(p: Path) -> str:
     try:
         return settings.MEDIA_URL + p.resolve().relative_to(Path(settings.MEDIA_ROOT).resolve()).as_posix()
@@ -207,7 +238,10 @@ def executar(prod: Producao) -> None:
     with medidor.medir() as m:
         try:
             biblico = prod.nicho == "gospel" and prod.pauta and prod.pauta.tema_id and prod.pauta.origem == "catalogo"
-            videos = (_gospel if biblico else _generico)(prod, musica, diario)
+            if canal and canal.imagens == "nativo":
+                videos = _nativo(prod, musica, diario)
+            else:
+                videos = (_gospel if biblico else _generico)(prod, musica, diario)
             videos.sort(key=lambda p: "_sem-musica" in p.stem)  # com música primeiro
             post = next((p.with_suffix(".txt").read_text(encoding="utf-8") for p in videos if p.with_suffix(".txt").exists()), "")
             Producao.objects.filter(pk=prod.pk).update(
@@ -217,6 +251,11 @@ def executar(prod: Producao) -> None:
             if prod.pauta_id:
                 Pauta.objects.filter(pk=prod.pauta_id).update(usado=True)
         except BaseException as e:  # noqa: BLE001 - SystemExit do pipeline também vira falha legível
+            if Producao.objects.filter(pk=prod.pk, cancelar=True).exists():
+                diario("CANCELADO no painel")
+                Producao.objects.filter(pk=prod.pk).update(status=Producao.Status.FALHOU, mensagem="cancelado por você",
+                                                           terminado=timezone.now(), custos=m.resumo())
+                return  # cancelado não conta como falha do tema: ele volta na pauta
             if isinstance(e, KeyboardInterrupt):
                 Producao.objects.filter(pk=prod.pk).update(status=Producao.Status.FALHOU, erro="produtor interrompido",
                                                            terminado=timezone.now())
@@ -230,6 +269,38 @@ def executar(prod: Producao) -> None:
 
 
 # ------------------------------------------------------------------ o processo
+
+def _matar_filhos() -> None:
+    """Derruba os processos que o produtor abriu (claude -p, produzir.py, ffmpeg), com os filhos deles."""
+    eu = os.getpid()
+    try:
+        if os.name == "nt":
+            saida = subprocess.run(["powershell", "-NoProfile", "-Command",
+                                    f"(Get-CimInstance Win32_Process -Filter 'ParentProcessId={eu}').ProcessId"],
+                                   capture_output=True, text=True, timeout=30).stdout.split()
+            for pid in saida:
+                subprocess.run(["taskkill", "/F", "/T", "/PID", pid], capture_output=True)
+        else:
+            subprocess.run(["pkill", "-TERM", "-P", str(eu)], capture_output=True)
+    except Exception:  # noqa: BLE001
+        pass
+
+
+def _vigiar_cancelamento(parar: threading.Event) -> None:
+    """A cada 3 s: se o vídeo que está gerando foi cancelado no painel, para as chamadas e mata os filhos."""
+    import llm
+    while not parar.is_set():
+        try:
+            if Producao.objects.filter(status=Producao.Status.GERANDO, cancelar=True).exists():
+                if not llm.CANCELADO.is_set():
+                    llm.CANCELADO.set()
+                    _matar_filhos()
+        except Exception:  # noqa: BLE001
+            pass
+        finally:
+            close_old_connections()
+        parar.wait(3)
+
 
 def _batimento(parar: threading.Event) -> None:
     while not parar.is_set():
@@ -251,13 +322,17 @@ def rodar(uma_vez: bool = False, log=print) -> None:
         presas.update(status=Producao.Status.FALHOU, mensagem="o produtor foi reiniciado no meio", terminado=timezone.now())
     parar = threading.Event()
     threading.Thread(target=_batimento, args=(parar,), daemon=True).start()
+    threading.Thread(target=_vigiar_cancelamento, args=(parar,), daemon=True).start()
     log("produtor no ar: um vídeo por vez, seguindo as metas do painel /canal (Ctrl+C para parar)")
     try:
         while True:
             prod = None if Produtor.get().pausado else proxima()
             if prod:
+                import llm
+                llm.CANCELADO.clear()
                 log(f"{timezone.localtime():%H:%M} gerando: {prod.nicho} · {prod.tema}")
                 executar(prod)
+                llm.CANCELADO.clear()
                 prod.refresh_from_db()
                 log(f"{timezone.localtime():%H:%M} {prod.get_status_display()}: {prod.mensagem}")
                 if uma_vez:
@@ -337,7 +412,8 @@ def _prod(p: Producao, log: bool = False) -> dict:
          "videos": p.videos, "custo_brl": (p.custos or {}).get("brl"), "motivo": p.motivo,
          "criado": p.criado.isoformat(), "iniciado": p.iniciado.isoformat() if p.iniciado else None,
          "terminado": p.terminado.isoformat() if p.terminado else None,
-         "youtube": bool(p.postado_youtube), "tiktok": bool(p.postado_tiktok), "erro": p.mensagem if p.status == "falhou" else ""}
+         "youtube": bool(p.postado_youtube), "tiktok": bool(p.postado_tiktok), "erro": p.mensagem if p.status == "falhou" else "",
+         "cancelando": p.cancelar}
     if log:
         d["log"] = "\n".join(p.log.splitlines()[-60:])
     return d
@@ -357,10 +433,12 @@ def estado() -> dict:
         feitos, falhas = hoje(c.nicho)
         livres = Pauta.objects.filter(nicho=c.nicho, usado=False, falhas__lt=2)
         canais.append({"nicho": c.nicho, "nome": cat[c.nicho]["nome"], "cor": cat[c.nicho]["cor"], "ativo": c.ativo,
-                       "meta_dia": c.meta_dia, "musica": c.musica, "hoje": feitos, "falhas_hoje": falhas,
+                       "meta_dia": c.meta_dia, "musica": c.musica, "imagens": c.imagens, "hoje": feitos,
+                       "falhas_hoje": falhas,
                        "restantes": livres.count(), "formatos": formatos_do_nicho(c.nicho),
                        "aviso": "Este PC não tem o ComfyUI: os temas do catálogo bíblico falham na etapa das imagens. "
-                                "Rode o gospel na máquina com a GPU." if c.nicho == "gospel" and sem_comfy else "",
+                                "Rode o gospel na máquina com a GPU ou troque para Banco grátis."
+                                if c.nicho == "gospel" and sem_comfy and c.imagens == "ia" else "",
                        "pauta": [{"id": p.pk, "titulo": p.titulo, "formato": p.formato, "origem": p.origem}
                                  for p in livres[:40]]})
     canais.sort(key=lambda c: NICHOS.index(c["nicho"]))

@@ -82,23 +82,24 @@ def folha(numero: int, fala: str, cands: list[dict], destino: Path) -> None:
 POR_LINHA = 8  # candidatos por cena na folha geral
 
 
-def folha_geral(cenas: list[dict], cache: dict, destino: Path) -> None:
-    """Uma folha só por vídeo: 1 linha por cena, rótulo "cena.número" em cada miniatura."""
+def folha_geral(cenas: list[dict], cache: dict, destino: Path, inicio: int = 1) -> None:
+    """Uma folha só por vídeo: 1 linha por cena, rótulo "cena.número" em cada miniatura.
+    inicio: número da primeira cena da lista (para dividir um vídeo longo em mais de uma folha)."""
     lw, lh, txt = 150, 200, 360
     img = Image.new("RGB", (txt + POR_LINHA * lw, len(cenas) * lh), (0, 0, 0))
     d = ImageDraw.Draw(img)
     f_txt, f_num = ImageFont.truetype(str(FONTE), 20), ImageFont.truetype(str(FONTE), 24)
     miniaturas = {}
     with ThreadPoolExecutor(8) as ex:
-        tarefas = {ex.submit(miniatura, c["thumb"]): (i, j) for i, cena in enumerate(cenas, 1)
+        tarefas = {ex.submit(miniatura, c["thumb"]): (i, j) for i, cena in enumerate(cenas, inicio)
                    for j, c in enumerate(cache.get(str(i), [])[:POR_LINHA])}
         for fut, pos in tarefas.items():
             try:
                 miniaturas[pos] = fut.result()
             except Exception:
                 pass
-    for i, cena in enumerate(cenas, 1):
-        y = (i - 1) * lh
+    for i, cena in enumerate(cenas, inicio):
+        y = (i - inicio) * lh
         d.text((8, y + 8), "\n".join(textwrap.wrap(f"{i}. {cena['fala']}", 30)[:6]), font=f_txt, fill=(255, 230, 0))
         for j, c in enumerate(cache.get(str(i), [])[:POR_LINHA]):
             x = txt + j * lw
@@ -107,6 +108,30 @@ def folha_geral(cenas: list[dict], cache: dict, destino: Path) -> None:
             rot = f"{i}.{j + 1}{'F' if c['tipo'] == 'foto' else 'V'}"
             d.text((x + 4, y + 2), rot, font=f_num, fill=(255, 255, 0), stroke_width=3, stroke_fill=(0, 0, 0))
     img.save(destino)
+
+
+def _alternar(lista: list[dict]) -> list[dict]:
+    """1 de cada fonte por vez, para nenhuma fonte ocupar a folha toda."""
+    por_fonte = {}
+    for c in lista:
+        por_fonte.setdefault(c["ref"].split(":")[0], []).append(c)
+    filas, saida = list(por_fonte.values()), []
+    while any(filas):
+        for f in filas:
+            if f:
+                saida.append(f.pop(0))
+    return saida
+
+
+def candidatos_para(cena: dict, preset: dict) -> list[dict]:
+    """Os candidatos de uma cena, de todas as fontes do preset do nicho, na ordem da folha:
+    até 3 fotos/artes (mais específicas) + vídeos + o resto."""
+    cands = fontes.buscar_candidatos(cena, preset.get("fontes_video", ["pexels", "pixabay"]),
+                                     preset.get("fontes_arte", []), MPT / "config.toml",
+                                     preset.get("evitar_termos"), preset.get("fontes_foto"))
+    fotos = _alternar([c for c in cands if c["tipo"] == "foto"])
+    videos = _alternar([c for c in cands if c["tipo"] == "video"])
+    return (fotos[:3] + videos[:5] + fotos[3:] + videos[5:])[:MAX_CANDIDATOS]
 
 
 def main() -> None:
@@ -129,24 +154,7 @@ def main() -> None:
         cache = json.loads(cache_arq.read_text(encoding="utf-8")) if cache_arq.exists() else {}
         def buscar(i_cena):
             i, cena = i_cena
-            cands = fontes.buscar_candidatos(cena, preset.get("fontes_video", ["pexels", "pixabay"]),
-                                             preset.get("fontes_arte", []), MPT / "config.toml",
-                                             preset.get("evitar_termos"), preset.get("fontes_foto"))
-            # folha geral mostra ~7 por cena: até 4 fotos/artes (mais específicas) + vídeos
-            def alternar(lista):  # 1 de cada fonte por vez, para nenhuma fonte ocupar a folha toda
-                por_fonte = {}
-                for c in lista:
-                    por_fonte.setdefault(c["ref"].split(":")[0], []).append(c)
-                filas, saida = list(por_fonte.values()), []
-                while any(filas):
-                    for f in filas:
-                        if f:
-                            saida.append(f.pop(0))
-                return saida
-
-            fotos = alternar([c for c in cands if c["tipo"] == "foto"])
-            videos = alternar([c for c in cands if c["tipo"] == "video"])
-            return i, (fotos[:3] + videos[:5] + fotos[3:] + videos[5:])[:MAX_CANDIDATOS]
+            return i, candidatos_para(cena, preset)
 
         alvo = [(i, c) for i, c in enumerate(r["cenas"], 1) if not so_cenas or i in so_cenas]
         with ThreadPoolExecutor(4) as ex:  # buscas em paralelo

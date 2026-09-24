@@ -63,6 +63,8 @@ class Canal(models.Model):
     ativo = models.BooleanField(default=False)
     meta_dia = models.PositiveSmallIntegerField(default=3)
     musica = models.CharField(max_length=5, default="sem")  # com | sem: UM vídeo por produção, escolhido no painel
+    # ia: imagens geradas (ComfyUI/Gemini/Cloudflare) | nativo: fotos, pinturas e vídeos de acervos grátis + ffmpeg
+    imagens = models.CharField(max_length=10, default="ia")
 
     def __str__(self):
         return f"{self.nicho} · {self.meta_dia}/dia · {'ativo' if self.ativo else 'parado'}"
@@ -117,6 +119,7 @@ class Producao(models.Model):
     custos = models.JSONField(default=dict, blank=True)
     erro = models.TextField(blank=True)
     motivo = models.CharField(max_length=300, blank=True)  # por que reprovamos (vira lição para o roteirista)
+    cancelar = models.BooleanField(default=False)  # pedido do painel; o produtor confere a cada 3 s e interrompe
     postado_youtube = models.DateTimeField(null=True, blank=True)
     postado_tiktok = models.DateTimeField(null=True, blank=True)
     criado = models.DateTimeField(auto_now_add=True)

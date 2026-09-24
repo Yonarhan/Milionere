@@ -203,6 +203,10 @@ function renderCanais(){
         <button class="btn small primary" data-a="gerar">Gerar um agora</button>
         <span class="seg" role="group" aria-label="Música">${["com","sem"].map(m=>`<button data-a="musica" data-v="${m}" aria-pressed="${c.musica===m}">${m==="com"?"com música":"sem música"}</button>`).join("")}</span>
       </div>
+      <div class="row" style="margin-top:8px">
+        <span class="small">Imagens</span>
+        <span class="seg" role="group" aria-label="Imagens">${[["ia","geradas por IA"],["nativo","banco grátis"]].map(([v,n])=>`<button data-a="imagens" data-v="${v}" aria-pressed="${c.imagens===v}" title="${v==="nativo"?"Fotos, pinturas de museu e vídeos grátis (Pexels, Pixabay, NASA, museus, Openverse, iNaturalist) montados no ffmpeg: roda em PC fraco":"Imagens geradas por IA (ComfyUI, Gemini ou Cloudflare)"}">${n}</button>`).join("")}</span>
+      </div>
       <details class="pauta" ${abertos.has(c.nicho)?"open":""}><summary>Pauta (próximos temas)</summary>
         <ol>${c.pauta.map(p=>`<li>${esc(p.titulo)} <small>· ${esc(c.formatos[p.formato]||p.formato)}${p.origem!=="catalogo"?" · "+p.origem:""}</small>
           <button class="x" data-a="gerarPauta" data-id="${p.id}" title="Gerar este agora" aria-label="Gerar este agora">▶</button><button class="x" data-a="remover" data-id="${p.id}" title="Tirar da pauta" aria-label="Tirar da pauta">✕</button></li>`).join("") || "<li>vazia</li>"}</ol>
@@ -222,6 +226,7 @@ function renderCanais(){
       if(a==="menos") acao({acao:"canal",nicho:n,meta_dia:c.meta_dia-1});
       if(a==="mais") acao({acao:"canal",nicho:n,meta_dia:c.meta_dia+1});
       if(a==="musica") acao({acao:"canal",nicho:n,musica:b.dataset.v},"Música ajustada");
+      if(a==="imagens") acao({acao:"canal",nicho:n,imagens:b.dataset.v},b.dataset.v==="nativo"?"Imagens: banco grátis (roda em PC fraco)":"Imagens: geradas por IA");
       if(a==="gerar") acao({acao:"gerar",nicho:n},"Entrou na fila");
       if(a==="gerarPauta") acao({acao:"gerar",nicho:n,pauta:+b.dataset.id},"Entrou na fila");
       if(a==="remover") acao({acao:"pauta_remover",id:+b.dataset.id},"Tirado da pauta");
@@ -242,13 +247,16 @@ function renderAtual(){
     const et=ETAPAS(a.nicho), i=et.indexOf(a.etapa);
     html += `<div class="card atual"><div><span class="label">${esc(a.nicho)} · ${esc(a.formato)}</span><h3 style="font-size:18px;margin-top:4px">${esc(a.tema)}</h3></div>
       <div class="etapas">${et.map((e,k)=>`<span class="etapa ${k<i?"feito":k===i?"agora":""}">${e}</span>`).join("")}</div>
-      <div class="small">${esc(a.mensagem)} · há ${minutos(a.iniciado)} min</div>
+      <div class="row"><span class="small">${esc(a.mensagem)} · há ${minutos(a.iniciado)} min</span>
+        <button class="btn small bad" id="bCancelarAtual" ${a.cancelando?"disabled":""}>${a.cancelando?"Cancelando…":"Cancelar este vídeo"}</button></div>
       <details ${logAberto?"open":""} id="dLog"><summary class="small" style="cursor:pointer">ver o log</summary><pre class="log">${esc(a.log)}</pre></details></div>`;
   } else {
     html += `<div class="vazio">${E.produtor.pausado?"Pausado.":"Nada gerando agora."} ${E.fila.length?"":"Metas de hoje cumpridas, em descanso ou nenhum nicho ligado."}</div>`;
   }
   if(E.fila.length) html += `<div class="fila">${E.fila.map(f=>`<div><span class="label">na fila</span> ${esc(f.nicho)} · ${esc(f.tema)} <button class="btn small bad" data-cancelar="${f.id}">tirar</button></div>`).join("")}</div>`;
   box.innerHTML=html;
+  const bc=$("#bCancelarAtual"); if(bc) bc.onclick=()=>{ if(!confirm("Cancelar o vídeo que está gerando? O tema volta para a pauta.")) return;
+    bc.disabled=true; bc.textContent="Cancelando…"; acao({acao:"cancelar_atual",id:a.id},"Cancelando: para em alguns segundos") };
   const d=$("#dLog"); if(d){d.ontoggle=()=>logAberto=d.open; const pre=d.querySelector("pre"); pre.scrollTop=pre.scrollHeight}
   box.querySelectorAll("[data-cancelar]").forEach(b=>b.onclick=()=>acao({acao:"cancelar",id:b.dataset.cancelar},"Tirado da fila"));
 }

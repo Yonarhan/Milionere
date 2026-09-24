@@ -36,8 +36,10 @@
       "wikimedia"
     ],
     "fontes_foto": [
+      "inaturalist",
       "pixabay_foto",
-      "pexels_foto"
+      "pexels_foto",
+      "openverse"
     ]
   },
   "astronomia": {
@@ -79,7 +81,8 @@
     ],
     "fontes_foto": [
       "pixabay_foto",
-      "pexels_foto"
+      "pexels_foto",
+      "openverse"
     ]
   },
   "gospel": {
@@ -133,12 +136,15 @@
       "pixabay"
     ],
     "fontes_arte": [
-      "wikimedia",
-      "met"
+      "aic",
+      "met",
+      "cleveland",
+      "wikimedia"
     ],
     "fontes_foto": [
       "pixabay_foto",
-      "pexels_foto"
+      "pexels_foto",
+      "openverse"
     ]
   }
 }

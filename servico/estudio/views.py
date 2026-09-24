@@ -95,7 +95,9 @@ def api_canal_acao(request):
         c = Canal.objects.get(pk=d["nicho"])
         if "musica" in d and d["musica"] not in ("com", "sem"):  # um vídeo só: com ou sem música
             return JsonResponse({"erro": "Escolha com ou sem música."}, status=400)
-        for campo in ("ativo", "meta_dia", "musica"):
+        if "imagens" in d and d["imagens"] not in ("ia", "nativo"):
+            return JsonResponse({"erro": "Imagens: ia ou nativo."}, status=400)
+        for campo in ("ativo", "meta_dia", "musica", "imagens"):
             if campo in d:
                 setattr(c, campo, max(0, min(12, int(d[campo]))) if campo == "meta_dia" else d[campo])
         c.save()
@@ -140,6 +142,15 @@ def api_canal_acao(request):
         Producao.objects.create(pauta=falha.pauta, nicho=falha.nicho, formato=falha.formato, tema=falha.tema)
         if not producao.vivo():
             producao.ligar_produtor()
+    elif acao == "cancelar_atual":
+        p = Producao.objects.filter(pk=d["id"], status=Producao.Status.GERANDO).first()
+        if not p:
+            return JsonResponse({"erro": "Esse vídeo não está gerando."}, status=400)
+        if producao.vivo():  # o produtor interrompe e marca como cancelado
+            Producao.objects.filter(pk=p.pk).update(cancelar=True, mensagem="cancelando…")
+        else:  # nada rodando de verdade (o produtor caiu no meio): só marca
+            Producao.objects.filter(pk=p.pk).update(cancelar=True, status=Producao.Status.FALHOU,
+                                                    mensagem="cancelado por você", terminado=timezone.now())
     elif acao == "cancelar":
         Producao.objects.filter(pk=d["id"], status=Producao.Status.FILA).delete()
     elif acao == "pauta_add":
