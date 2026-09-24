@@ -17,7 +17,8 @@ from pathlib import Path
 
 CLAUDE = shutil.which("claude") or "claude"
 OLLAMA = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
-# camada trocável do juiz visual: "claude" (padrão) ou "ollama:<modelo>" (modelo aberto na GPU local)
+# camada trocável do juiz visual: "claude" (padrão, uma imagem por chamada), "claude-lote" (várias por chamada)
+# ou "ollama:<modelo>" (modelo aberto na GPU local)
 JUIZ_VISUAL = os.environ.get("MILIONERE_JUIZ_VISUAL", "claude")
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -40,8 +41,15 @@ def _flags_opcionais() -> list[str]:
             ajuda = subprocess.run([CLAUDE, "--help"], capture_output=True, text=True, timeout=30).stdout
         except (OSError, subprocess.TimeoutExpired):
             ajuda = ""
-        _FLAGS = [f for f in ("--safe-mode", "--no-session-persistence", "--effort") if f in ajuda]
+        _FLAGS = [f for f in ("--safe-mode", "--no-session-persistence", "--effort", "--system-prompt") if f in ajuda]
     return _FLAGS
+
+
+# substitui as ~13 mil tokens de instruções do Claude Code que iam em toda chamada (medido: 18,1 mil -> 5,3 mil
+# tokens de entrada numa chamada vazia). Consome bem menos do limite da assinatura.
+SISTEMA = ("Você executa uma única tarefa de um pipeline automático de vídeos curtos e responde só no formato "
+           "estruturado pedido, sem conversa.")
+SISTEMA_ARQUIVOS = " Abra os arquivos citados com a ferramenta Read antes de responder."
 
 
 def _rodar(cmd: list[str], entrada: str, cwd: str, timeout: int) -> subprocess.CompletedProcess:
@@ -73,7 +81,10 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
             raise ErroLLM(f"API: {e}") from e
     if caminhos.LLM != "claude-cli":
         raise ErroLLM(f"MILIONERE_LLM={caminhos.LLM!r} desconhecido (use claude-cli ou api)")
-    cmd = [CLAUDE, "-p", *[f for f in _flags_opcionais() if f != "--effort"], "--output-format", "json", "--json-schema", json.dumps(schema)]
+    cmd = [CLAUDE, "-p", *[f for f in _flags_opcionais() if f not in ("--effort", "--system-prompt")],
+           "--output-format", "json", "--json-schema", json.dumps(schema)]
+    if "--system-prompt" in _flags_opcionais():
+        cmd += ["--system-prompt", SISTEMA + (SISTEMA_ARQUIVOS if ler_arquivos_em else "")]
     if ler_arquivos_em:
         cmd += ["--tools", "Read", "--allowedTools", "Read", "--add-dir", str(ler_arquivos_em)]
     else:

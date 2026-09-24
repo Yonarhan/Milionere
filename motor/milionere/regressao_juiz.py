@@ -9,6 +9,7 @@ Uso:
     python regressao_juiz.py montar                          # gera as difíceis e grava o gabarito (usa o juiz atual)
     python regressao_juiz.py rodar --juiz ollama:qwen2.5vl:7b  # compara um juiz com o gabarito
     python regressao_juiz.py rodar --juiz claude             # confere a estabilidade do próprio juiz atual
+    python regressao_juiz.py rodar --juiz claude-lote        # juiz em lote (5 imagens por chamada) contra o gabarito
 
 Regra para aprovar um juiz: pega 100% dos defeitos do gabarito. Reprovar imagem boa custa só tempo de GPU;
 deixar passar defeito derruba o vídeo.
@@ -125,6 +126,15 @@ def montar() -> None:
 def _julgar(itens: list[dict], juiz: str) -> list[dict]:
     from concurrent.futures import ThreadPoolExecutor
     paralelo = 1 if juiz.startswith("ollama:") else validar.JUIZES_EM_PARALELO
+    if juiz == "claude-lote":  # lotes de LOTE_VISUAL imagens por chamada, cada uma com o próprio roteiro
+        def lote(grupo):
+            try:
+                return validar.julgar_lote([(_como_roteiro(it), 1, PASTA / it["arquivo"]) for it in grupo], grupo[0]["epoca"])
+            except Exception as e:
+                return [{"ok": None, "problema": f"ERRO: {e}"}] * len(grupo)
+        grupos = [itens[i:i + validar.LOTE_VISUAL] for i in range(0, len(itens), validar.LOTE_VISUAL)]
+        with ThreadPoolExecutor(paralelo) as ex:
+            return [v for vs in ex.map(lote, grupos) for v in vs]
 
     def um(it):
         try:

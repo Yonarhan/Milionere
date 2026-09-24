@@ -54,6 +54,8 @@ IMAGEM = _cfg("MILIONERE_IMAGEM", "auto")
 PLANO = _cfg("MILIONERE_PLANO", "gratis")
 MODELO_ROTEIRO = _cfg("MILIONERE_MODELO_ROTEIRO", "sonnet")   # escreve: precisa de qualidade em pt-BR
 MODELO_JUIZ = _cfg("MILIONERE_MODELO_JUIZ", "haiku")          # confere contra critérios fixos: o barato basta
+# juiz do ROTEIRO separado do visual: o Haiku tratou omissão como erro factual e fez 2 de 9 rodadas desistirem (noite 24/09)
+MODELO_JUIZ_ROTEIRO = _cfg("MILIONERE_MODELO_JUIZ_ROTEIRO", MODELO_JUIZ)
 JUIZ_ROTEIRO = _cfg("MILIONERE_JUIZ_ROTEIRO", "1") == "1"     # juiz de IA no roteiro genérico (desligar = só código)
 ESFORCO_ROTEIRO = _cfg("MILIONERE_ESFORCO_ROTEIRO", "medium")  # API: low | medium | high (ignorado no Haiku)
 ESFORCO_JUIZ = _cfg("MILIONERE_ESFORCO_JUIZ", "low")

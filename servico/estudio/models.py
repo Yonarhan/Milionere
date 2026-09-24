@@ -62,7 +62,7 @@ class Canal(models.Model):
     nicho = models.CharField(max_length=20, primary_key=True)
     ativo = models.BooleanField(default=False)
     meta_dia = models.PositiveSmallIntegerField(default=3)
-    musica = models.CharField(max_length=5, default="ambas")  # com (YouTube) | sem (TikTok) | ambas
+    musica = models.CharField(max_length=5, default="sem")  # com | sem: UM vídeo por produção, escolhido no painel
 
     def __str__(self):
         return f"{self.nicho} · {self.meta_dia}/dia · {'ativo' if self.ativo else 'parado'}"

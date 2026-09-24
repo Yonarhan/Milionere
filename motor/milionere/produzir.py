@@ -131,7 +131,7 @@ def falhou(item: dict, slug: str) -> bool:
     return False
 
 
-def entregar(r: dict, pasta: Path, so_audio: bool) -> None:
+def entregar(r: dict, pasta: Path, so_audio: bool, video: Path | None = None) -> None:
     SAIDA.mkdir(exist_ok=True)
     base = SAIDA / f"{date.today():%Y-%m-%d}_{r['slug']}{r.get('_sufixo', '')}"
     if so_audio:
@@ -140,7 +140,7 @@ def entregar(r: dict, pasta: Path, so_audio: bool) -> None:
             shutil.copy(audio, base.with_suffix(".mp3"))
             print(f"ÁUDIO  [{r['slug']}] {base.with_suffix('.mp3')}")
         return
-    video = next(iter(sorted(pasta.glob("final*.mp4"))), None)
+    video = video or next(iter(sorted(pasta.glob("final*.mp4"))), None)
     if not video:
         print(f"FALHOU [{r['slug']}] vídeo final não encontrado em {pasta}")
         return
@@ -186,6 +186,7 @@ def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, r
         musica_cred = json.loads(creditos_bgm.read_text(encoding="utf-8")).get(tarefa["bgm_file"])
         if musica_cred:
             r.setdefault("_creditos", []).append(musica_cred)
+            r["_credito_musica"] = musica_cred
     if curadoria:
         por_ref = {c["ref"]: c for lista in curadoria.values() for c in lista}
         usados = [por_ref[ref] for c in r["cenas"] for ref in c.get("escolha", []) if ref in por_ref]
@@ -199,14 +200,25 @@ def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, r
         musica = MPT / "storage" / "bgm" / tarefa["bgm_file"] if tarefa.get("bgm_type") == "custom" else None
         saida = pasta_sync / "final.mp4"
         inicio = datetime.now()
+        duas = r.get("_duas_versoes")  # monta UMA vez sem música; a versão com música é só a mistura do áudio
         encoder = render.renderizar(
             [Path(t["url"]) for t in tomadas], sum(t["frames"] for t in tomadas), pasta_a / "audio.mp3",
-            pasta_a / "subtitle.srt", musica, tarefa, pasta_sync, MPT / "resource" / "fonts", saida,
+            pasta_a / "subtitle.srt", None if duas else musica, tarefa, pasta_sync, MPT / "resource" / "fonts", saida,
         )
         print(f"render [{r['slug']}] {encoder} em {(datetime.now() - inicio).total_seconds():.0f}s")
         sync.painel([Path(t["url"]) for t in tomadas], pasta_sync / "painel.png")
         print(f"painel [{r['slug']}] {pasta_sync / 'painel.png'}  <- REVISAR as imagens antes de entregar")
-        entregar(r, pasta_sync, so_audio=False)
+        if not duas:
+            entregar(r, pasta_sync, so_audio=False)
+            return
+        credito_musica = r.pop("_credito_musica", None)
+        sem = {**r, "_sufixo": "_sem-musica", "_creditos": [c for c in r.get("_creditos", []) if c != credito_musica]}
+        entregar(sem, pasta_sync, so_audio=False, video=saida)
+        if musica:
+            inicio = datetime.now()
+            render.com_musica(saida, musica, tarefa, pasta_sync / "final_musica.mp4")
+            print(f"música [{r['slug']}] mistura em {(datetime.now() - inicio).total_seconds():.0f}s (sem montar de novo)")
+            entregar(r, pasta_sync, so_audio=False, video=pasta_sync / "final_musica.mp4")
         return
 
     for t in tomadas:
@@ -233,7 +245,11 @@ def main() -> None:
     ap.add_argument("--seco", action="store_true", help="não executa, só mostra")
     ap.add_argument("--sem-musica", action="store_true", help="versão sem música (p/ usar áudio do TikTok); salva como <slug>_sem-musica")
     ap.add_argument("--render-mpt", action="store_true", help="monta pelo motor (lento), em vez do ffmpeg")
+    ap.add_argument("--duas-versoes", action="store_true",
+                    help="monta uma vez sem música (TikTok) e faz a versão com música (YouTube) só misturando o áudio")
     args = ap.parse_args()
+    if args.duas_versoes and (args.sem_musica or args.render_mpt):
+        sys.exit("--duas-versoes não combina com --sem-musica nem com --render-mpt")
 
     presets = json.loads((SKILL / "presets.json").read_text(encoding="utf-8"))
     roteiros = json.loads(Path(args.arquivo).read_text(encoding="utf-8"))
@@ -248,6 +264,9 @@ def main() -> None:
             tarefa.pop("bgm_file", None)
             r["_sufixo"] = "_sem-musica"
             avisos.append("SEM música (versão TikTok)")
+        if args.duas_versoes:
+            r["_duas_versoes"] = True
+            avisos.append("duas versões: monta sem música e mistura a música depois")
         planos.append((r, tarefa))
         print(f"[{r['slug']}] " + " | ".join(avisos))
     if args.seco:

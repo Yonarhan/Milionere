@@ -80,6 +80,29 @@ def gerar_ass(srt: Path, destino: Path, p: dict) -> None:
     )
 
 
+def com_musica(video: Path, musica: Path, p: dict, saida: Path) -> None:
+    """Versão com música a partir do vídeo já montado sem música: só mistura o áudio e copia o vídeo
+    (segundos, em vez de montar tudo de novo)."""
+    total = _duracao(video)
+    vol = float(p.get("bgm_volume", 0.2))
+    filtro = (f"[1:a]volume={vol},afade=t=out:st={max(0, total - 1.5):.2f}:d=1.5[bg];"
+              "[0:a][bg]amix=inputs=2:duration=first:normalize=0[a]")
+    proc = subprocess.run([FFMPEG, "-y", "-loglevel", "error", "-i", str(video), "-stream_loop", "-1", "-i", str(musica),
+                           "-filter_complex", filtro, "-map", "0:v", "-map", "[a]", "-c:v", "copy",
+                           "-c:a", "aac", "-b:a", "192k", "-ar", "44100", "-ac", "2", "-t", f"{total:.3f}",
+                           "-movflags", "+faststart", str(saida)], capture_output=True, text=True)
+    if proc.returncode != 0:
+        raise RuntimeError(f"ffmpeg (música) falhou:\n{proc.stderr[-800:]}")
+
+
+def _duracao(video: Path) -> float:
+    """Duração pelo próprio ffmpeg (não depende de ffprobe estar instalado)."""
+    import re
+    err = subprocess.run([FFMPEG, "-i", str(video)], capture_output=True, text=True).stderr
+    h, m, s = re.search(r"Duration: (\d+):(\d+):([\d.]+)", err).groups()
+    return int(h) * 3600 + int(m) * 60 + float(s)
+
+
 def renderizar(tomadas: list[Path], frames_total: int, audio: Path, srt: Path, musica: Path | None,
                p: dict, pasta: Path, fontes: Path, saida: Path) -> str:
     """Devolve o encoder usado. Roda com cwd=pasta para os caminhos do filtro ass não terem 'C:'."""

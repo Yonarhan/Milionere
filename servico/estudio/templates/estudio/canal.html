@@ -201,7 +201,7 @@ function renderCanais(){
       ${c.aviso?`<p class="aviso" style="margin-top:10px">${esc(c.aviso)}</p>`:""}
       <div class="row" style="margin-top:12px">
         <button class="btn small primary" data-a="gerar">Gerar um agora</button>
-        <span class="seg" role="group" aria-label="Música">${["com","sem","ambas"].map(m=>`<button data-a="musica" data-v="${m}" aria-pressed="${c.musica===m}">${m==="com"?"com música":m==="sem"?"sem música":"as duas"}</button>`).join("")}</span>
+        <span class="seg" role="group" aria-label="Música">${["com","sem"].map(m=>`<button data-a="musica" data-v="${m}" aria-pressed="${c.musica===m}">${m==="com"?"com música":"sem música"}</button>`).join("")}</span>
       </div>
       <details class="pauta" ${abertos.has(c.nicho)?"open":""}><summary>Pauta (próximos temas)</summary>
         <ol>${c.pauta.map(p=>`<li>${esc(p.titulo)} <small>· ${esc(c.formatos[p.formato]||p.formato)}${p.origem!=="catalogo"?" · "+p.origem:""}</small>
@@ -261,7 +261,7 @@ function cartao(p, modo){
     <div><span class="label">${esc(p.nicho)} · ${esc(p.formato)} · ${dia(p.terminado)}</span><h3>${esc(p.titulo||p.tema)}</h3>
       <div class="small">${dur!=null?dur+" min para gerar":""}${p.custo_brl?" · "+reais(p.custo_brl)+" em valor de API":""}</div></div>
     <details class="copybox"><summary>Texto do post</summary><pre>${esc(p.post)}</pre></details>`;
-  const baixar = p.videos.map(v=>`<a class="btn small" href="${esc(v.url)}" download>${v.variante==="sem"?"Baixar p/ TikTok (sem música)":"Baixar p/ YouTube"}</a>`).join("");
+  const baixar = p.videos.map(v=>`<a class="btn small" href="${esc(v.url)}" download>${v.variante==="sem"?"Baixar (sem música)":"Baixar (com música)"}</a>`).join("");
   if(modo==="revisar") return base+`<div class="acoes"><button class="btn primary" data-a="aprovar">Aprovar</button><button class="btn bad" data-a="reprovar">Reprovar</button>
       <button class="btn small" data-a="copiar">Copiar post</button></div>
     <div class="motivo" hidden><input type="text" placeholder="O que ficou ruim? (vira lição para a IA)" aria-label="Motivo da reprovação"><button class="btn small bad" data-a="confirmar">Confirmar reprovação</button></div></article>`;

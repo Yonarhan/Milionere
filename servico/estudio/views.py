@@ -93,6 +93,8 @@ def api_canal_acao(request):
     acao = d.get("acao")
     if acao == "canal":
         c = Canal.objects.get(pk=d["nicho"])
+        if "musica" in d and d["musica"] not in ("com", "sem"):  # um vídeo só: com ou sem música
+            return JsonResponse({"erro": "Escolha com ou sem música."}, status=400)
         for campo in ("ativo", "meta_dia", "musica"):
             if campo in d:
                 setattr(c, campo, max(0, min(12, int(d[campo]))) if campo == "meta_dia" else d[campo])

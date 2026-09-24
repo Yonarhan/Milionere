@@ -146,7 +146,7 @@ def _juiz(r: dict, entrada: dict, tema: str) -> tuple[list[str], dict]:
         "- precisao: o FATO CENTRAL está correto? Dramatização em tom de hipótese ('imagina') não é erro.\n"
         "erros_factuais = só afirmações apresentadas como fato que estão erradas. "
         "Cada problema: número da cena + como corrigir, em 1 frase.")
-    j = llm.chamar(prompt, SCHEMA_JUIZ, papel="juiz")
+    j = llm.chamar(prompt, SCHEMA_JUIZ, papel="juiz", modelo=caminhos.MODELO_JUIZ_ROTEIRO)
     notas = j["notas"]
     reprova = bool(j["erros_factuais"]) or min(notas.values()) < 3 or sum(notas.values()) / len(notas) < 3.6
     problemas = [f"ERRO FACTUAL: {e}" for e in j["erros_factuais"]] + (j["problemas"] if reprova else [])
@@ -319,19 +319,23 @@ def gerar_video(entrada: dict, pasta_job: Path, log) -> dict:
     arq.write_text(json.dumps([r], ensure_ascii=False, indent=2), encoding="utf-8")
     log("roteiro", f"{len(r['cenas'])} cenas prontas")
     cmd = [str(caminhos.PYTHON_MOTOR), str(Path(__file__).with_name("produzir.py")), str(arq)]
-    if entrada.get("mus", "sem") == "sem":
+    mus = entrada.get("mus", "sem")
+    if mus == "sem":
         cmd.append("--sem-musica")
+    elif mus == "ambas":
+        cmd.append("--duas-versoes")  # monta uma vez; a versão com música é só a mistura do áudio
     env = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUNBUFFERED": "1"}
     proc = subprocess.Popen(cmd, cwd=caminhos.MOTOR, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                             text=True, encoding="utf-8", errors="replace")
-    video, falhas, saida = None, [], []
+    video, videos, falhas, saida = None, [], [], []
     for linha in proc.stdout:
         linha = linha.rstrip()
         saida.append(linha)
         if linha.startswith("ETAPA "):
             log(linha.split()[1], "")
         elif linha.startswith("PRONTO"):
-            video = Path(linha.split("] ", 1)[1].strip())
+            videos.append(Path(linha.split("] ", 1)[1].strip()))
+            video = next((v for v in videos if "_sem-musica" not in v.stem), videos[0])
         elif linha.startswith("FALHOU"):
             falhas.append(linha)
     proc.wait()
@@ -349,7 +353,8 @@ def gerar_video(entrada: dict, pasta_job: Path, log) -> dict:
     except Exception as e:
         print(f"banco de roteiros indisponível: {e}")
     txt = video.with_suffix(".txt")
-    return {"video": str(video), "post_txt": txt.read_text(encoding="utf-8") if txt.exists() else "",
+    return {"video": str(video), "videos": [str(v) for v in videos if v.exists()],
+            "post_txt": txt.read_text(encoding="utf-8") if txt.exists() else "",
             "titulo": r["titulo"], "descricao": r["descricao"], "hashtags": " ".join(r["hashtags"]), "banco": banco}
 
 

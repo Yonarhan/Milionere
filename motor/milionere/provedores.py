@@ -14,8 +14,11 @@ Imagens que o usuário já colocou em producao/midia/<slug>/cena_NN.* têm prior
 (o pipeline só pede as cenas que faltam).
 """
 
+import json
+import os
 import random
 import sys
+import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -61,9 +64,41 @@ def garantir_comfy() -> Sessao:
     return s
 
 
+_COMFY_PROC = None  # o ComfyUI que ficou no ar entre vídeos (MILIONERE_COMFY_MANTER=1)
+
+
+def _liberar_vram() -> None:
+    """Tira os modelos da placa (o render e o próximo job têm memória) sem desligar o ComfyUI."""
+    try:
+        req = urllib.request.Request(imagens.URL + "/free", data=json.dumps({"unload_models": True, "free_memory": True}).encode(),
+                                     headers={"Content-Type": "application/json"})
+        urllib.request.urlopen(req, timeout=30).read()
+    except Exception as e:  # noqa: BLE001
+        print(f"  não consegui liberar a memória da placa no ComfyUI: {e}")
+
+
 def derrubar(s: Sessao | None) -> None:
-    if s and s.proc:
+    """Fim das imagens de um vídeo. Com MILIONERE_COMFY_MANTER=1 (produtor e lotes) o ComfyUI fica no ar e só libera
+    a memória da placa: o próximo vídeo não espera ele subir de novo. Sem isso, desliga como antes."""
+    global _COMFY_PROC
+    if not s:
+        return
+    if os.environ.get("MILIONERE_COMFY_MANTER") == "1":
+        if s.proc:
+            _COMFY_PROC = s.proc
+        if s.comfy_ligado:
+            _liberar_vram()
+        return
+    if s.proc:
         imagens.derrubar(s.proc)
+
+
+def encerrar() -> None:
+    """Desliga o ComfyUI que ficou no ar (chamar no fim do produtor ou do lote)."""
+    global _COMFY_PROC
+    if _COMFY_PROC:
+        imagens.derrubar(_COMFY_PROC)
+        _COMFY_PROC = None
 
 
 _SESSAO: Sessao | None = None

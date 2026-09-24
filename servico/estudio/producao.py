@@ -173,20 +173,10 @@ def _generico(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
                "cenas": [{"fala": c["fala"], "busca": c.get("busca", ""), "imagem": c.get("imagem", "")} for c in r["cenas"]],
                "post": {"titulo": r["titulo"], "desc": r["descricao"], "tags": " ".join(r["hashtags"]),
                         "comentario": r["comentario_fixado"]},
-               "mus": "sem" if musica == "sem" else "com"}
+               "mus": musica}  # com | sem: um vídeo só
     pasta = Path(settings.MEDIA_ROOT) / "canal" / str(prod.id)
     saida = sp.gerar_video(entrada, pasta, log)
-    videos = [Path(saida["video"])]
-    if musica == "ambas":  # a mesma montagem de novo, sem música (TikTok)
-        diario("render sem música (TikTok)", "montagem")
-        proc = subprocess.run([str(caminhos.PYTHON_MOTOR), str(Path(sp.__file__).with_name("produzir.py")),
-                               str(pasta / "roteiro.json"), "--sem-musica"], cwd=caminhos.MOTOR, capture_output=True,
-                              text=True, encoding="utf-8", errors="replace", env={**os.environ, "PYTHONIOENCODING": "utf-8"})
-        sem = next((Path(l.split("] ", 1)[1].strip()) for l in proc.stdout.splitlines() if l.startswith("PRONTO")), None)
-        if sem and sem.exists():
-            videos.append(sem)
-        else:
-            diario("AVISO: a versão sem música falhou; ficou só a com música")
+    videos = [Path(v) for v in saida.get("videos") or [saida["video"]]]
     return videos
 
 
@@ -210,7 +200,7 @@ def executar(prod: Producao) -> None:
     import medidor
 
     canal = Canal.objects.filter(nicho=prod.nicho).first()
-    musica = canal.musica if canal else "ambas"
+    musica = canal.musica if canal and canal.musica in ("com", "sem") else "sem"  # um vídeo só
     diario = _Diario(prod.pk)
     Producao.objects.filter(pk=prod.pk).update(status=Producao.Status.GERANDO, etapa="roteiro", iniciado=timezone.now(),
                                                mensagem="começando")
@@ -253,6 +243,7 @@ def _batimento(parar: threading.Event) -> None:
 
 
 def rodar(uma_vez: bool = False, log=print) -> None:
+    os.environ["MILIONERE_COMFY_MANTER"] = "1"  # o ComfyUI fica no ar entre um vídeo e outro
     preparar()
     Produtor.get()
     presas = Producao.objects.filter(status=Producao.Status.GERANDO)
@@ -278,6 +269,12 @@ def rodar(uma_vez: bool = False, log=print) -> None:
             time.sleep(30)
     finally:
         parar.set()
+        try:
+            _motor()
+            import provedores
+            provedores.encerrar()
+        except Exception:  # noqa: BLE001
+            pass
 
 
 # ------------------------------------------------------------------ painel

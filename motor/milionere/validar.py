@@ -8,7 +8,8 @@
            payoff (média >= 3.5, nenhum <= 2). Qualquer erro factual = reprovado, e os problemas voltam pro roteirista reescrever.
   Camada 3 (juiz visual, depois das imagens): uma imagem por vez, em resolução cheia. Primeiro anatomia e
            artefatos (mãos, rostos extras, corpos fundidos, texto, objeto moderno), depois se contradiz a fala.
-           Cena reprovada ganha 3 opções novas e fica a primeira aprovada.
+           Cena reprovada é refeita uma opção por vez (julgada antes da próxima). Em teste: MILIONERE_JUIZ_VISUAL=claude-lote
+           julga 5 imagens por chamada; só vira padrão se pegar 100% dos defeitos no regressao_juiz.py.
   Camada 4 (pipeline.py, depois do render): duração do vídeo e sincronia legenda/cenas.
 """
 
@@ -188,7 +189,8 @@ def camada2(r: dict, formato: dict, tema: dict) -> tuple[list[str], dict]:
         "Toda correção que você sugerir precisa caber no limite: se pedir para acrescentar, diga o que cortar.\n"
         "Cada problema deve dizer o número da cena e como corrigir, em 1 frase."
     )
-    j = llm.chamar(prompt, SCHEMA_JUIZ, papel="juiz")
+    import caminhos
+    j = llm.chamar(prompt, SCHEMA_JUIZ, papel="juiz", modelo=caminhos.MODELO_JUIZ_ROTEIRO)
     problemas = [f"ERRO FACTUAL: {e}" for e in j["erros_factuais"]]
     notas = {c["criterio"]: c["nota"] for c in j["criterios"]}
     subjetivas = [notas[k] for k in SUBJETIVOS]
@@ -216,18 +218,16 @@ SCHEMA_VISUAL = {
 JUIZES_EM_PARALELO = 4
 
 
-def julgar_imagem(r: dict, n: int, arq: Path, epoca: str, juiz: str | None = None) -> dict:
-    """Juiz visual de UMA imagem, em resolução cheia. Devolve {cena, ok, problema, imagem_corrigida}.
-    juiz: None = padrão (llm.JUIZ_VISUAL, variável MILIONERE_JUIZ_VISUAL); 'claude' ou 'ollama:<modelo>'."""
-    juiz = juiz or llm.JUIZ_VISUAL
-    local = juiz.startswith("ollama:")
+def _quem(r: dict, n: int) -> str:
     c = r["cenas"][n - 1]
     pers = {p["id"]: p for p in r["personagens"]}
-    quem = ("; ".join(pers[p]["nome"] for p in c["personagens"] if p in pers)
+    return ("; ".join(pers[p]["nome"] for p in c["personagens"] if p in pers)
             or "nenhum personagem da história (pessoa anônima pode aparecer, se combinar com a fala)")
-    prompt = (
-        ("A imagem está anexada." if local else f"Abra a imagem {arq} com a ferramenta Read.")
-        + " Ela vai num vídeo cristão realista; defeito de IA derruba o vídeo.\n\n"
+
+
+def _instrucoes_visuais(epoca: str, historia: str) -> str:
+    """Os dois passos do juiz visual (iguais para uma imagem ou para um lote)."""
+    return (
         "PASSO 1, anatomia e artefatos (o mais importante). Olhe devagar, parte por parte:\n"
         "- cada MÃO: conte os dedos, veja se o tamanho bate com o corpo, se está presa a um braço, se não há mão sobrando;\n"
         "- cada ROSTO: olhos, boca e proporção normais; nenhum rosto extra, cortado, fundido ou surgindo no meio da cena;\n"
@@ -238,7 +238,7 @@ def julgar_imagem(r: dict, n: int, arq: Path, epoca: str, juiz: str | None = Non
            if epoca == "biblica" else "- símbolo de outra religião ou algo constrangedor;\n") +
         "Liste em `defeitos` só o que um espectador comum perceberia num celular. Mão em silhueta ou borrada pelo "
         "movimento não é defeito.\n\n"
-        f"PASSO 2, história. Fala narrada nesta cena: «{c['fala']}». Quem deve aparecer: {quem}.\n"
+        f"PASSO 2, história. {historia}\n"
         "`combina` = false só se a imagem CONTRADIZ a fala (pessoa errada, emoção oposta, ação oposta) ou não tem nada "
         "a ver. Imagem evocativa que não mostra a ação ao pé da letra combina. Cor de roupa, expressão exata e "
         "enquadramento NÃO são motivo de reprovação.\n\n"
@@ -247,21 +247,81 @@ def julgar_imagem(r: dict, n: int, arq: Path, epoca: str, juiz: str | None = Non
         "roupa, asas), que vem da ficha fixa e entra sozinha. Regras para ESCREVER esse prompt novo (não são critério "
         "de reprovação; reprove só pelos passos 1 e 2): " + regras_imagem()
     )
-    if local:
-        v = llm.chamar_ollama(prompt, SCHEMA_VISUAL, juiz.split(":", 1)[1], imagens=[arq])
-    else:
-        with medidor.etapa("juiz_visual"):
-            v = llm.chamar(prompt, SCHEMA_VISUAL, ler_arquivos_em=arq.parent)
+
+
+def _veredito(n: int, v: dict) -> dict:
     ok = not v["defeitos"] and v["combina"]
     problema = v["problema"] or "; ".join(v["defeitos"])
     return {"cena": n, "ok": ok, "problema": "" if ok else problema,
             "imagem_corrigida": "" if ok else v["imagem_corrigida"]}
 
 
+def julgar_imagem(r: dict, n: int, arq: Path, epoca: str, juiz: str | None = None) -> dict:
+    """Juiz visual de UMA imagem, em resolução cheia. Devolve {cena, ok, problema, imagem_corrigida}.
+    juiz: None = padrão (llm.JUIZ_VISUAL, variável MILIONERE_JUIZ_VISUAL); 'claude', 'claude-lote' ou 'ollama:<modelo>'."""
+    juiz = juiz or llm.JUIZ_VISUAL
+    local = juiz.startswith("ollama:")
+    c = r["cenas"][n - 1]
+    prompt = (
+        ("A imagem está anexada." if local else f"Abra a imagem {arq} com a ferramenta Read.")
+        + " Ela vai num vídeo cristão realista; defeito de IA derruba o vídeo.\n\n"
+        + _instrucoes_visuais(epoca, f"Fala narrada nesta cena: «{c['fala']}». Quem deve aparecer: {_quem(r, n)}.")
+    )
+    if local:
+        v = llm.chamar_ollama(prompt, SCHEMA_VISUAL, juiz.split(":", 1)[1], imagens=[arq])
+    else:
+        with medidor.etapa("juiz_visual"):
+            v = llm.chamar(prompt, SCHEMA_VISUAL, ler_arquivos_em=arq.parent)
+    return _veredito(n, v)
+
+
+# juiz em lote: várias imagens numa chamada só (a noite de 24/09 gastou ~22 das ~27 chamadas por vídeo no juiz
+# visual, uma por imagem). Liga com MILIONERE_JUIZ_VISUAL=claude-lote DEPOIS de passar no regressao_juiz.py.
+LOTE_VISUAL = 5
+SCHEMA_VISUAL_LOTE = {
+    "type": "object", "additionalProperties": False, "required": ["imagens"],
+    "properties": {"imagens": {"type": "array", "items": {
+        "type": "object", "additionalProperties": False, "required": ["imagem", "maos_e_rostos", *SCHEMA_VISUAL["required"]],
+        "properties": {"imagem": {"type": "integer", "description": "o número da imagem na lista"},
+                       # obriga a olhar de perto cada imagem ANTES do veredito: sem isso o lote deixou passar mãos
+                       # deformadas que o juiz de uma imagem pegava (teste de 24/09, cenas 2 e 5 do Pedro)
+                       "maos_e_rostos": {"type": "string", "description": "ANTES de julgar: cada mão visível (de quem, "
+                                         "quantos dedos, se está inteira e presa ao braço) e cada rosto, um por um"},
+                       **SCHEMA_VISUAL["properties"]}}}},
+}
+
+
+def julgar_lote(itens: list[tuple[dict, int, Path]], epoca: str) -> list[dict]:
+    """Um lote de imagens (r, cena, arquivo) da MESMA pasta numa chamada só. Imagem que o modelo esquecer de
+    devolver é julgada sozinha, então o resultado sempre tem um veredito por item, na mesma ordem."""
+    lista = "\n".join(f"{k}. arquivo {arq} · fala narrada: «{r['cenas'][n - 1]['fala']}» · quem deve aparecer: {_quem(r, n)}"
+                       for k, (r, n, arq) in enumerate(itens, 1))
+    prompt = (
+        f"Abra com a ferramenta Read cada uma das {len(itens)} imagens da lista no fim e julgue CADA UMA sozinha, com a "
+        "mesma atenção, sem comparar uma com a outra. Elas vão num vídeo cristão realista; defeito de IA derruba o "
+        "vídeo.\n\n"
+        + _instrucoes_visuais(epoca, "A fala narrada em cada imagem e quem deve aparecer nela estão na lista abaixo.")
+        + f"\n\n# Imagens\n{lista}\n\nDevolva um item por imagem, com o número dela em `imagem`. Em cada uma, preencha "
+        "`maos_e_rostos` olhando a imagem de perto ANTES de decidir `defeitos`: mão deformada ou com dedo a mais é o "
+        "defeito mais comum e o que mais escapa."
+    )
+    with medidor.etapa("juiz_visual"):
+        v = llm.chamar(prompt, SCHEMA_VISUAL_LOTE, ler_arquivos_em=itens[0][2].parent)
+    por_numero = {x["imagem"]: x for x in v["imagens"]}
+    return [_veredito(n, por_numero[k]) if k in por_numero else julgar_imagem(r, n, arq, epoca, "claude")
+            for k, (r, n, arq) in enumerate(itens, 1)]
+
+
 def julgar_varias(r: dict, itens: list[tuple[int, Path]], epoca: str, juiz: str | None = None) -> list[dict]:
     from concurrent.futures import ThreadPoolExecutor
-    local = (juiz or llm.JUIZ_VISUAL).startswith("ollama:")  # a GPU local julga uma por vez
+    juiz = juiz or llm.JUIZ_VISUAL
+    local = juiz.startswith("ollama:")  # a GPU local julga uma por vez
     import contextvars
+    if juiz == "claude-lote":
+        lotes = [[(r, n, a) for n, a in itens[i:i + LOTE_VISUAL]] for i in range(0, len(itens), LOTE_VISUAL)]
+        ctxs = [contextvars.copy_context() for _ in lotes]
+        with ThreadPoolExecutor(JUIZES_EM_PARALELO) as ex:
+            return [v for vs in ex.map(lambda p: p[0].run(julgar_lote, p[1], epoca), zip(ctxs, lotes)) for v in vs]
     # cada thread leva uma cópia do contexto: sem isso o medidor (contextvars) não vê as chamadas do juiz
     ctxs = [contextvars.copy_context() for _ in itens]
     with ThreadPoolExecutor(1 if local else JUIZES_EM_PARALELO) as ex:
@@ -269,7 +329,7 @@ def julgar_varias(r: dict, itens: list[tuple[int, Path]], epoca: str, juiz: str 
 
 
 def camada3(r: dict, pasta: Path, epoca: str, so: list[int] | None = None) -> list[dict]:
-    """Juiz visual, uma imagem por vez. Devolve as cenas reprovadas: [{cena, problema, imagem_corrigida}]."""
+    """Juiz visual (uma imagem por chamada, ou em lote com claude-lote). Devolve as reprovadas: [{cena, problema, imagem_corrigida}]."""
     itens = [(i, a) for i in range(1, len(r["cenas"]) + 1) if not so or i in so
              for a in [next(iter(sorted(pasta.glob(f"cena_{i:02d}.*"))), None)] if a]
     return [v for v in julgar_varias(r, itens, epoca) if not v["ok"]]

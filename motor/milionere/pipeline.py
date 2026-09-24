@@ -302,27 +302,28 @@ def imagens_validadas(r: dict, arq_roteiro: Path, reg: Registro) -> None:
 def produzir(arq_roteiro: Path, musica: str, reg: Registro) -> list[Path]:
     import sincronizar as sync
 
-    variantes = {"com": [[]], "sem": [["--sem-musica"]], "ambas": [[], ["--sem-musica"]]}[musica]
+    # "ambas": monta UMA vez (sem música) e a versão com música é só a mistura do áudio (antes: 2 renders completos)
+    extra = {"com": [], "sem": ["--sem-musica"], "ambas": ["--duas-versoes"]}[musica]
+    log({"com": "render com música (YouTube)", "sem": "render SEM música (TikTok)",
+         "ambas": "render sem música + mistura da versão com música"}[musica])
+    proc = subprocess.run([str(PY_MPT), str(Path(__file__).parent / "produzir.py"), str(arq_roteiro), *extra],
+                          capture_output=True, text=True)
+    saida = proc.stdout + proc.stderr
+    avisos = [l for l in saida.splitlines() if l.startswith(("AVISO", "FALHOU"))]
+    videos = [Path(l.split("] ", 1)[1].strip()) for l in saida.splitlines() if l.startswith("PRONTO")]
     prontos = []
-    for extra in variantes:
-        log(f"render {'SEM música (TikTok)' if extra else 'com música (YouTube)'}")
-        proc = subprocess.run([str(PY_MPT), str(Path(__file__).parent / "produzir.py"), str(arq_roteiro), *extra],
-                              capture_output=True, text=True)
-        saida = proc.stdout + proc.stderr
-        avisos = [l for l in saida.splitlines() if l.startswith(("AVISO", "FALHOU"))]
-        video = next((Path(l.split("] ", 1)[1].strip()) for l in saida.splitlines() if l.startswith("PRONTO")), None)
-        if not video or not video.exists():
-            reg.add("render", False, saida=saida[-3000:])
-            log("  FALHOU o render:\n" + saida[-2000:])
-            continue
+    if not any(v.exists() for v in videos):
+        reg.add("render", False, saida=saida[-3000:])
+        log("  FALHOU o render:\n" + saida[-2000:])
+    for video in (v for v in videos if v.exists()):
         dur = sync.duracao_audio(video)
         ok = DURACAO_OK[0] <= dur <= DURACAO_OK[1]
         reg.add("camada4", ok, video=str(video), duracao=round(dur, 1), avisos=avisos)
-        log(f"  camada 4: {dur:.1f}s {'ok' if ok else f'FORA de {DURACAO_OK}'}" + (f" | {avisos}" if avisos else ""))
-        painel = next((l.split("] ", 1)[1].split()[0] for l in saida.splitlines() if l.startswith("painel")), None)
-        if painel:
-            log(f"  painel: {painel}")
+        log(f"  camada 4 ({video.name}): {dur:.1f}s {'ok' if ok else f'FORA de {DURACAO_OK}'}" + (f" | {avisos}" if avisos else ""))
         prontos.append(video)
+    painel = next((l.split("] ", 1)[1].split()[0] for l in saida.splitlines() if l.startswith("painel")), None)
+    if painel:
+        log(f"  painel: {painel}")
     return prontos
 
 
@@ -348,8 +349,7 @@ def um_video(formato_id: str, estilo: str | None, tema_id: str | None, musica: s
     if not r:
         log(f"DESISTI de '{slug}': o roteiro não passou nas validações em {MAX_REESCRITAS} tentativas. Veja {reg.arq}")
         return []
-    with medidor.etapa("roteiro"):
-        roteirista.reescrever_imagens(r)  # prompts de imagem no formato que o SDXL obedece
+    # (sem roteirista.reescrever_imagens: o roteirista já escreve os prompts com regras_imagem(); era 1 chamada a mais)
     pacote = empacotar(r, formato_id, formato, tema, estilo, slug)
     salvar_fichas(pacote)
     arq = PROD / "roteiros" / f"{date.today():%Y-%m-%d}_{slug}.json"
@@ -404,7 +404,8 @@ def main() -> None:
     ap.add_argument("--estilo", choices=list(carregar("estilos.json")))
     ap.add_argument("--tema", help="id do tema em biblia/temas.json (senão sorteia um não usado)")
     ap.add_argument("--qtd", type=int, default=1)
-    ap.add_argument("--musica", choices=["com", "sem", "ambas"], default="ambas")
+    ap.add_argument("--musica", choices=["com", "sem", "ambas"], default="sem",
+                    help="um vídeo só (com ou sem música); ambas = monta uma vez e mistura a música numa 2ª cópia")
     ap.add_argument("--retomar", help="roteiro já aprovado: faz só imagens + vídeo")
     ap.add_argument("--so-roteiro", action="store_true", help="para depois do roteiro aprovado (esteira da noite)")
     args = ap.parse_args()

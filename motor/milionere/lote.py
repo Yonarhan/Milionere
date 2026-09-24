@@ -61,7 +61,8 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--qtd", type=int, default=1)
     ap.add_argument("--formatos", help="lista separada por vírgula (padrão: todos)")
-    ap.add_argument("--musica", choices=["com", "sem", "ambas"], default="ambas")
+    ap.add_argument("--musica", choices=["com", "sem", "ambas"], default="sem",
+                    help="um vídeo só (com ou sem música); ambas = monta uma vez e mistura a música numa 2ª cópia")
     ap.add_argument("--status", action="store_true")
     a = ap.parse_args()
 
