@@ -154,6 +154,19 @@ def _gospel(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
         pipeline.log = original
     if not videos:
         raise RuntimeError("o roteiro ou o render não passou nas validações (veja o log)")
+    try:  # as imagens aprovadas pelo juiz visual entram no banco: o próximo vídeo gera menos
+        import json
+
+        import banco_imagens
+        import caminhos
+        import provedores
+        slug = f"{prod.formato}-{prod.pauta.tema_id}"
+        arq = sorted((caminhos.PRODUCAO / "roteiros").glob(f"*_{slug}.json"))[-1]
+        r = json.loads(arq.read_text(encoding="utf-8"))[0]
+        n = banco_imagens.indexar_roteiro(r, caminhos.PRODUCAO / "midia" / slug, origem=f"ia-{provedores.modo()}", dono="canal")
+        diario(f"banco de imagens: +{n} imagem(ns) aprovada(s)")
+    except Exception as e:  # noqa: BLE001 - banco é bônus, não derruba o vídeo pronto
+        diario(f"AVISO: imagens não entraram no banco ({e})")
     return videos
 
 
@@ -281,6 +294,30 @@ def rodar(uma_vez: bool = False, log=print) -> None:
 
 # ------------------------------------------------------------------ painel
 
+def vivo() -> bool:
+    p = Produtor.get()
+    return bool(p.batimento and timezone.now() - p.batimento < timedelta(seconds=75))
+
+
+def ligar_produtor() -> bool:
+    """Sobe o `manage.py produtor` como processo separado (continua rodando mesmo se o site reiniciar).
+    O que ele escreve vai para media/produtor.log."""
+    import sys
+    if vivo():
+        return False
+    log = open(Path(settings.MEDIA_ROOT) / "produtor.log", "a", encoding="utf-8")
+    extra = {}
+    if os.name == "nt":
+        extra["creationflags"] = subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
+    else:
+        extra["start_new_session"] = True
+    subprocess.Popen([sys.executable, str(settings.BASE_DIR / "manage.py"), "produtor"], cwd=settings.BASE_DIR,
+                     stdout=log, stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL,
+                     env={**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUNBUFFERED": "1"}, **extra)
+    Produtor.objects.filter(pk=1).update(batimento=timezone.now())  # evita dois cliques subirem dois produtores
+    return True
+
+
 def sugerir(nicho: str, n: int = 10) -> int:
     """A IA propõe temas novos para a pauta, sem repetir o que já temos."""
     _motor()
@@ -327,7 +364,6 @@ def estado() -> dict:
     sp, _, _ = _motor()
     cat = sp.catalogo()["nichos"]
     prod = Produtor.get()
-    vivo = bool(prod.batimento and timezone.now() - prod.batimento < timedelta(seconds=75))
     import caminhos
     import provedores
     sem_comfy = provedores.modo() == "comfy" and not caminhos.COMFY.exists()
@@ -345,7 +381,7 @@ def estado() -> dict:
     canais.sort(key=lambda c: NICHOS.index(c["nicho"]))
     q = Producao.objects.all()
     atual = q.filter(status=Producao.Status.GERANDO).first()
-    return {"produtor": {"vivo": vivo, "pausado": prod.pausado, "intervalo_min": prod.intervalo_min},
+    return {"produtor": {"vivo": vivo(), "pausado": prod.pausado, "intervalo_min": prod.intervalo_min},
             "canais": canais, "atual": _prod(atual, log=True) if atual else None,
             "fila": [_prod(p) for p in q.filter(status=Producao.Status.FILA).order_by("criado")],
             "revisar": [_prod(p) for p in q.filter(status=Producao.Status.REVISAR)],

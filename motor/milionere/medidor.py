@@ -17,7 +17,8 @@ import time
 DOLAR = float(os.environ.get("MILIONERE_DOLAR", "5.5"))
 PRECO_IMAGEM_USD = {  # por imagem 1K (ai.google.dev/gemini-api/docs/pricing, 09/2026)
     "gemini-3.1-flash-image": 0.067, "gemini-3.1-flash-lite-image": 0.0336, "gemini-2.5-flash-image": 0.039,
-    "gemini-3-pro-image": 0.134, "comfy": 0.0, "banco": 0.0, "pexels": 0.0, "upload": 0.0,
+    "gemini-3-pro-image": 0.134, "cloudflare-flux2-klein": 0.0,  # dentro da cota grátis diária
+    "comfy": 0.0, "banco": 0.0, "pexels": 0.0, "upload": 0.0,
 }
 
 _medicao: contextvars.ContextVar = contextvars.ContextVar("medicao", default=None)

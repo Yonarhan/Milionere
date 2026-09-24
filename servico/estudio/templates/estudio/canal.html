@@ -172,12 +172,14 @@ function renderStatus(){
   const p=E.produtor;
   const pill = !p.vivo ? `<span class="pill bad">produtor parado</span>` : p.pausado ? `<span class="pill warn">pausado</span>` : `<span class="pill ok">produtor no ar</span>`;
   $("#status").innerHTML = `${pill}
+    ${p.vivo ? "" : `<button class="btn small primary" id="bLigar">Ligar produtor</button>`}
     <button class="btn small" id="bPausa">${p.pausado?"Retomar":"Pausar"}</button>
     <label class="small">descanso entre vídeos
       <select id="intervalo">${[0,10,20,30,60,90,120].map(v=>`<option value="${v}" ${v===p.intervalo_min?"selected":""}>${v} min</option>`).join("")}</select></label>`;
+  const bl=$("#bLigar"); if(bl) bl.onclick=()=>{bl.disabled=true;bl.textContent="Ligando…";acao({acao:"ligar_produtor"},"Produtor ligando: em alguns segundos ele aparece no ar")};
   $("#bPausa").onclick=()=>acao({acao:"produtor",pausado:!p.pausado}, p.pausado?"Produção retomada":"Produção pausada");
   $("#intervalo").onchange=e=>acao({acao:"produtor",intervalo_min:+e.target.value},"Descanso ajustado");
-  $("#avisoProdutor").innerHTML = p.vivo ? "" : `<p class="aviso">O produtor não está rodando: as metas só andam com ele ligado. Abra um terminal na pasta <code>servico</code> e rode <code>..\\motor\\.venv\\Scripts\\python.exe manage.py produtor</code></p>`;
+  $("#avisoProdutor").innerHTML = p.vivo ? "" : `<p class="aviso">O produtor não está rodando: as metas só andam com ele ligado. Clique em <b>Ligar produtor</b> (o log fica em <code>servico/media/produtor.log</code>).</p>`;
 }
 
 function renderCanais(){
@@ -294,9 +296,11 @@ function renderHistorico(){
   if(!mudou("hist",E.historico)) return;
   const cls={revisar:"warn",aprovado:"ok",postado:"ok",reprovado:"bad",falhou:"bad"};
   $("#historico").innerHTML = E.historico.length ? `<table class="tabela"><thead><tr><th>Quando</th><th>Nicho</th><th>Tema</th><th>Status</th><th>Tempo</th><th>Custo</th></tr></thead><tbody>
-    ${E.historico.map(p=>`<tr><td>${dia(p.criado)}</td><td>${esc(p.nicho)}</td><td>${esc(p.titulo||p.tema)}${p.erro?`<div class="small">${esc(p.erro)}</div>`:""}${p.motivo?`<div class="small">motivo: ${esc(p.motivo)}</div>`:""}</td>
+    ${E.historico.map(p=>`<tr><td>${dia(p.criado)}</td><td>${esc(p.nicho)}</td><td>${esc(p.titulo||p.tema)}${p.erro?`<div class="small">${esc(p.erro)}</div>`:""}${p.status==="falhou"?`<button class="btn small" data-retry="${p.id}" style="margin-top:6px">Tentar de novo</button>`:""}${p.motivo?`<div class="small">motivo: ${esc(p.motivo)}</div>`:""}</td>
       <td><span class="pill ${cls[p.status]||""}">${esc(p.status_nome)}</span></td><td>${minutos(p.iniciado,p.terminado)??""}${p.iniciado?" min":""}</td><td>${reais(p.custo_brl)}</td></tr>`).join("")}</tbody></table>`
     : `<div class="vazio">Ainda não saiu nenhum vídeo.</div>`;
+  $("#historico").querySelectorAll("[data-retry]").forEach(b=>b.onclick=()=>{b.disabled=true;
+    acao({acao:"tentar_de_novo",id:b.dataset.retry},"Voltou para a fila: é o próximo a ser gerado")});
 }
 
 async function carregar(forcar){

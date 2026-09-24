@@ -35,7 +35,7 @@ def _flags_opcionais() -> list[str]:
             ajuda = subprocess.run([CLAUDE, "--help"], capture_output=True, text=True, timeout=30).stdout
         except (OSError, subprocess.TimeoutExpired):
             ajuda = ""
-        _FLAGS = [f for f in ("--safe-mode", "--no-session-persistence") if f in ajuda]
+        _FLAGS = [f for f in ("--safe-mode", "--no-session-persistence", "--effort") if f in ajuda]
     return _FLAGS
 
 
@@ -68,7 +68,7 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
             raise ErroLLM(f"API: {e}") from e
     if caminhos.LLM != "claude-cli":
         raise ErroLLM(f"MILIONERE_LLM={caminhos.LLM!r} desconhecido (use claude-cli ou api)")
-    cmd = [CLAUDE, "-p", *_flags_opcionais(), "--output-format", "json", "--json-schema", json.dumps(schema)]
+    cmd = [CLAUDE, "-p", *[f for f in _flags_opcionais() if f != "--effort"], "--output-format", "json", "--json-schema", json.dumps(schema)]
     if ler_arquivos_em:
         cmd += ["--tools", "Read", "--allowedTools", "Read", "--add-dir", str(ler_arquivos_em)]
     else:
@@ -76,11 +76,16 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
     modelo = modelo or (caminhos.MODELO_JUIZ if papel == "juiz" else caminhos.MODELO_ROTEIRO)
     if modelo:
         cmd += ["--model", modelo]
+    if "--effort" in _flags_opcionais():  # não herda o esforço da sessão de quem roda (ex.: "high" no settings.json)
+        cmd += ["--effort", caminhos.ESFORCO_JUIZ if papel == "juiz" else caminhos.ESFORCO_ROTEIRO]
     ultimo = ""
     for _ in range(2):
         inicio = time.time()
         with tempfile.TemporaryDirectory() as vazio:  # roda fora do projeto: nada de CLAUDE.md por perto
-            proc = _rodar(cmd, prompt, vazio, timeout)
+            try:
+                proc = _rodar(cmd, prompt, vazio, timeout)
+            except subprocess.TimeoutExpired:
+                raise ErroLLM(f"o claude -p passou de {timeout // 60} min sem responder ({papel}, modelo {modelo})") from None
         try:
             saida = json.loads(proc.stdout)
         except json.JSONDecodeError:

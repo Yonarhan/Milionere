@@ -178,25 +178,37 @@ def listar(nicho: str | None = None) -> list[dict]:
 
 # ------------------------------------------------------------------ carga inicial
 
+def indexar_roteiro(r: dict, pasta: Path, origem: str = "ia-time", dono: str = "time") -> int:
+    """As imagens das cenas de um roteiro (pasta/cena_NN.*) entram no banco. Cenas que terminaram
+    reprovadas pelo juiz visual (r["_avisos"]: "imagens reprovadas: [..]") ficam de fora."""
+    if not r.get("cenas") or not Path(pasta).is_dir():
+        return 0
+    reprovadas = set()
+    for aviso in r.get("_avisos", []):
+        if aviso.startswith("imagens reprovadas"):
+            reprovadas |= {int(x) for x in re.findall(r"\d+", aviso)}
+    nicho = NICHO_DO_PRESET.get(r.get("nicho", ""), r.get("nicho", ""))
+    n = 0
+    for i, c in enumerate(r["cenas"], 1):
+        img = next((p for p in sorted(Path(pasta).glob(f"cena_{i:02d}*"))
+                    if p.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"}), None)
+        if not img or i in reprovadas:
+            continue
+        # só o que descreve a IMAGEM (termos de busca de banco não descrevem a imagem gerada)
+        desc = " | ".join(x for x in (c["fala"], c.get("imagem", "")) if x)
+        pers = c.get("personagens") or detectar_personagens(desc)
+        if adicionar(img, nicho, desc, pers, r.get("estilo", "cinema"), origem, "Imagem gerada por IA", True, dono):
+            n += 1
+    return n
+
+
 def indexar_repo() -> int:
     """Importa as imagens já aprovadas pelo time: producao/midia/<slug>/cena_NN.* dos roteiros do repositório."""
     repo = caminhos.RAIZ / "producao"
     n = 0
     for arq in sorted(repo.glob("roteiros/*.json")):
         for r in json.loads(arq.read_text(encoding="utf-8")):
-            pasta = repo / "midia" / r.get("slug", "")
-            if not r.get("cenas") or not pasta.is_dir():
-                continue
-            nicho = NICHO_DO_PRESET.get(r.get("nicho", ""), r.get("nicho", ""))
-            for i, c in enumerate(r["cenas"], 1):
-                img = next((p for p in sorted(pasta.glob(f"cena_{i:02d}*")) if p.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"}), None)
-                if not img:
-                    continue
-                # só o que descreve a IMAGEM (termos de busca de banco não descrevem a imagem gerada)
-                desc = " | ".join(x for x in (c["fala"], c.get("imagem", "")) if x)
-                pers = c.get("personagens") or detectar_personagens(desc)
-                if adicionar(img, nicho, desc, pers, r.get("estilo", "cinema"), "ia-time", "Imagem gerada por IA", True, "time"):
-                    n += 1
+            n += indexar_roteiro(r, repo / "midia" / r.get("slug", ""))
     return n
 
 

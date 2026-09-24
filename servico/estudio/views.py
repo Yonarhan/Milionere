@@ -128,6 +128,16 @@ def api_canal_acao(request):
             elif p.status == Producao.Status.POSTADO:
                 p.status = Producao.Status.APROVADO
         p.save()
+    elif acao == "ligar_produtor":
+        if not producao.ligar_produtor():
+            return JsonResponse({"erro": "O produtor já está rodando."}, status=400)
+    elif acao == "tentar_de_novo":
+        falha = Producao.objects.get(pk=d["id"], status=Producao.Status.FALHOU)
+        if falha.pauta_id:
+            Pauta.objects.filter(pk=falha.pauta_id).update(falhas=0, usado=False)
+        Producao.objects.create(pauta=falha.pauta, nicho=falha.nicho, formato=falha.formato, tema=falha.tema)
+        if not producao.vivo():
+            producao.ligar_produtor()
     elif acao == "cancelar":
         Producao.objects.filter(pk=d["id"], status=Producao.Status.FILA).delete()
     elif acao == "pauta_add":
