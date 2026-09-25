@@ -129,6 +129,8 @@ def api_canal_acao(request):
         serie_max = max(0, min(5, int(d.get("serie_max") or 0)))  # 0 = vídeo único; 2 a 5 = série
         if not producao.enfileirar(d["nicho"], pauta, serie_max):
             return JsonResponse({"erro": "Acabaram os temas desse nicho: adicione na pauta."}, status=400)
+        if not producao.vivo():  # pedido manual: não espera alguém ligar o produtor
+            producao.ligar_produtor()
     elif acao in ("aprovar", "reprovar") and d.get("serie"):  # a série é revisada como um bloco só
         s = Serie.objects.get(pk=d["serie"])
         if acao == "aprovar":
@@ -197,6 +199,8 @@ def api_canal_acao(request):
     elif acao == "zerar_falhas":
         Produtor.objects.filter(pk=Produtor.get().pk).update(falhas_zeradas_em=timezone.now())
         Pauta.objects.filter(usado=False, falhas__gt=0).update(falhas=0)
+    elif acao == "iniciar_agora":
+        return JsonResponse({"ok": True, "msg": producao.iniciar_agora(d["id"])})
     elif acao == "cancelar":
         Producao.objects.filter(pk=d["id"], status=Producao.Status.FILA).delete()
         Serie.objects.filter(pk=d["id"], status=Producao.Status.FILA).delete()

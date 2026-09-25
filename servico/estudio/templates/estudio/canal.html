@@ -105,6 +105,9 @@ details.pauta summary{cursor:pointer;font-weight:600;font-size:14px}
 @keyframes pulse{50%{opacity:.45}}
 @media (prefers-reduced-motion:reduce){.etapa.agora,.bar.loading i{animation:none}.bar i{transition:none}}
 pre.log{margin:0;max-height:260px;overflow:auto;background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:10px;font:12px/1.5 var(--mono);white-space:pre-wrap}
+.postbox{display:grid;gap:8px;margin-top:10px;padding:10px 12px;border:1px solid var(--line,#ccc3);border-radius:10px}
+.postcampo pre{margin:4px 0 0;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:14px}
+.postcampo .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .fila{display:grid;gap:6px;margin-top:10px}
 .fila div{display:flex;gap:8px;align-items:center;font-size:14px}
 
@@ -242,8 +245,6 @@ function renderCanais(){
           c.musica==="sem"?"Pro TikTok: você põe um som em alta no app.":"Trilha ambiente baixinha sob a voz.")}
         ${opcao(c,"legenda","Legenda",[["padrao","padrão"],["karaoke","destaque"],["word_by_word","palavra"]],
           c.legenda==="karaoke"?"2 ou 3 palavras por vez, a falada em amarelo (estilo viral).":c.legenda==="word_by_word"?"Uma palavra por vez, bem grande.":"Como o nicho já usava.")}
-        ${opcao(c,"efeitos","Efeitos sonoros",[[false,"desligado"],[true,"ligado"]],
-          c.efeitos?"Whoosh em cada troca de cena e impacto grave no início.":"Só voz (e música, se ligada).")}
         ${opcao(c,"volume","Volume",[[false,"como sai"],[true,"padrão -14 LUFS"]],
           c.volume?"Mesmo volume do resto do feed (TikTok, YouTube, Instagram).":"Sem ajuste no volume final.")}
       </div>
@@ -312,13 +313,35 @@ function renderAtual(){
   } else {
     html += `<div class="vazio">${E.produtor.pausado?"Pausado.":"Nada gerando agora."} ${E.fila.length?"":"Metas de hoje cumpridas, em descanso ou nenhum nicho ligado."}</div>`;
   }
-  if(E.fila.length) html += `<div class="fila">${E.fila.map(f=>`<div><span class="label">na fila</span> ${f.tipo==="serie"?`<span class="parte-tag">série até ${f.max_partes}</span>`:""} ${esc(f.nicho)} · ${esc(f.tema)} <button class="btn small bad" data-cancelar="${f.id}">tirar</button></div>`).join("")}</div>`;
+  if(E.fila.length) html += `<div class="fila">${E.fila.map(f=>`<div><span class="label">na fila</span> ${f.tipo==="serie"?`<span class="parte-tag">série até ${f.max_partes}</span>`:""} ${esc(f.nicho)} · ${esc(f.tema)} <button class="btn small primary" data-agora="${f.id}" title="Passa na frente da fila e começa sem esperar o descanso">▶ iniciar agora</button> <button class="btn small bad" data-cancelar="${f.id}">tirar</button></div>`).join("")}</div>`;
   box.innerHTML=html;
   const bc=$("#bCancelarAtual"); if(bc) bc.onclick=()=>{ if(!confirm("Cancelar o vídeo que está gerando? O tema volta para a pauta.")) return;
     bc.disabled=true; bc.textContent="Cancelando…"; acao({acao:"cancelar_atual",id:a.id},"Cancelando: para em alguns segundos") };
   const d=$("#dLog"); if(d){d.ontoggle=()=>logAberto=d.open; const pre=d.querySelector("pre"); pre.scrollTop=pre.scrollHeight}
+  box.querySelectorAll("[data-agora]").forEach(b=>b.onclick=async()=>{ b.disabled=true;
+    const j=await acao({acao:"iniciar_agora",id:b.dataset.agora}); if(j&&j.msg) toast(j.msg) });
   box.querySelectorAll("[data-cancelar]").forEach(b=>b.onclick=()=>acao({acao:"cancelar",id:b.dataset.cancelar},"Tirado da fila"));
 }
+
+// separa o .txt do post (TÍTULO:, DESCRIÇÃO:, CRÉDITOS...) no que se cola no YouTube/TikTok
+function partesPost(txt){
+  const sec={}; let atual=null;
+  for(const l of (txt||"").split("\n")){
+    const m=l.match(/^([\p{Lu} ]{4,}?)(?: \(.*\))?:(.*)$/u);
+    if(m){atual=m[1].trim(); sec[atual]=m[2].trim()?[m[2].trim()]:[]; continue}
+    if(atual) sec[atual].push(l);
+  }
+  const j=k=>(sec[k]||[]).join("\n").trim();
+  const creditos=j("CRÉDITOS");
+  return {titulo:j("TÍTULO"), desc:[j("DESCRIÇÃO"),creditos].filter(Boolean).join("\n\n"), comentario:j("COMENTÁRIO FIXADO")};
+}
+function blocoPost(txt){
+  const q=partesPost(txt); if(!q.titulo&&!q.desc) return "";
+  const campo=(rot,v)=>v?`<div class="postcampo"><div class="row"><span class="label">${rot}</span><button class="btn small" data-copiar-texto="${esc(v)}">Copiar</button></div><pre>${esc(v)}</pre></div>`:"";
+  return `<div class="postbox"><b>Como vai ficar no post</b>${campo("Título",q.titulo)}${campo("Descrição",q.desc)}${campo("Comentário fixado",q.comentario)}</div>`;
+}
+document.addEventListener("click",async e=>{const b=e.target.closest("[data-copiar-texto]"); if(!b) return;
+  try{await navigator.clipboard.writeText(b.dataset.copiarTexto);toast("Copiado")}catch{toast("Não consegui copiar: selecione o texto")}});
 
 function cartao(p, modo){
   const com=p.videos.find(v=>v.variante==="com")||p.videos[0], sem=p.videos.find(v=>v.variante==="sem");
@@ -330,6 +353,7 @@ function cartao(p, modo){
     <div><div class="bar" role="progressbar" aria-label="Vídeo concluído" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><i style="width:100%"></i></div>
       <div class="row"><span class="small">Concluído</span><strong>${p.custo_brl!=null?reais(p.custo_brl)+" em valor de API":"Custo indisponível"}</strong></div></div>
     ${p.avisos&&p.avisos.length?`<div class="aviso"><b>Revise antes de aprovar.</b> O juiz apontou e não ficou resolvido:<ul style="margin:6px 0 0;padding-left:18px">${p.avisos.slice(0,6).map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>`:""}
+    ${blocoPost(p.post)}
     <details class="copybox"><summary>Texto do post</summary><pre>${esc(p.post)}</pre></details>`;
   const baixar = p.videos.map(v=>`<a class="btn small" href="${esc(v.url)}" download>${v.variante==="sem"?"Baixar (sem música)":"Baixar (com música)"}</a>`).join("");
   if(modo==="parte") return base+`<div class="acoes"><button class="btn small" data-a="copiar">Copiar post</button></div></article>`;

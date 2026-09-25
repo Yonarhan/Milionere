@@ -136,7 +136,7 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
         try:
             saida = json.loads(proc.stdout)
         except json.JSONDecodeError:
-            ultimo = (proc.stdout + proc.stderr)[-1500:]
+            ultimo = (proc.stdout + proc.stderr)[-1500:].strip() or                 f"o claude -p saiu com código {proc.returncode} sem escrever nada (confira o login: rode 'claude' no terminal)"
             continue
         medidor.llm(saida, time.time() - inicio)  # conta também as tentativas que falharam (foram pagas)
         if saida.get("is_error") or "structured_output" not in saida:
