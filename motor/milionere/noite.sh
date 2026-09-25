@@ -34,14 +34,14 @@ while :; do
   grep -E "===|LOTE|YouTube|NÃO subiu|DESISTI|FALHOU|AVISO|custo|Traceback|Error" "$D/ultimo_video.log" | cut -c1-300
   if grep -q "hit your session limit\|api_error_status\": 429\|rate_limit" "$D/ultimo_video.log"; then
     echo "limite de uso do Claude às $(date +%T); esperando 30 min"
-    sleep 1800
+    sleep 1800 9>&-  # sem herdar a trava (um sleep órfão prendia o turno seguinte)
     continue
   fi
   if grep -q "LOTE FIM.*: 0 arquivo" "$D/ultimo_video.log" || ! grep -q "LOTE FIM" "$D/ultimo_video.log"; then
     falhas=$((falhas + 1))
     echo "vídeo falhou ($falhas seguidas); esperando 10 min"
     [ "$falhas" -ge 4 ] && { echo "4 falhas seguidas: encerrando o turno"; break; }
-    sleep 600
+    sleep 600 9>&-
   else
     falhas=0
   fi
