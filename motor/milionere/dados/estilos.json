@@ -116,5 +116,25 @@
     "ip_peso": 0,
     "movimento": "zoom",
     "movimento_video": ", simple 2D cartoon animation, the character moves gently and blinks, clean black outlines, plain white background stays still, smooth motion"
+  },
+  "doodle_cena": {
+    "motor": "zimage",
+    "unet": "z_image_turbo-Q6_K.gguf",
+    "text_encoder": "qwen_3_4b_fp8_mixed.safetensors",
+    "vae": "z_image_ae.safetensors",
+    "passos": 9,
+    "cfg": 1.0,
+    "shift": 3.0,
+    "sampler": "res_multistep",
+    "scheduler": "simple",
+    "nome": "Doodle 'cena ilustrada' (elenco fixo, parede branca e chão bege; Z-Image)",
+    "modelo_credito": "Z-Image Turbo",
+    "prompt": "hand-drawn doodle cartoon illustration, thick black marker outlines slightly wobbly like drawn by hand, flat colors, no shading, whiteboard explainer video style, expressive stick figure characters acting out the moment, simple clear composition with empty space",
+    "prompt_biblico": "",
+    "negativo": "",
+    "negativo_biblico": "",
+    "ip_peso": 0,
+    "movimento": "zoom",
+    "movimento_video": ", simple 2D cartoon animation, the stick figures move and react naturally, clean black outlines, the background stays still, smooth motion"
   }
 }

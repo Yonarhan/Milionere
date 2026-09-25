@@ -1,0 +1,164 @@
+[
+  {
+    "slug": "propria-voz",
+    "nicho": "curiosidades",
+    "formato": "doodle narrado",
+    "epoca": "moderna",
+    "estilo": "doodle_cena",
+    "titulo": "Por que você odeia ouvir a própria voz? 🎙️",
+    "gancho_tela": "Por que sua voz soa estranha?",
+    "descricao": "Quando você fala, escuta a sua voz pelo ar e também pelos ossos da cabeça, e esse caminho por dentro deixa ela mais grave. O gravador só pega o que vem pelo ar. Você já teve vergonha de mandar áudio por causa disso?",
+    "hashtags": [
+      "#shorts",
+      "#curiosidades",
+      "#ciencia",
+      "#voz",
+      "#cerebro"
+    ],
+    "comentario_fixado": "Você regrava áudio antes de mandar? Confessa 👇",
+    "tiktok_titulo": "Por isso sua voz no áudio parece de outra pessoa 🎙️",
+    "tiktok_legenda": "A voz que você odeia é a que todo mundo escuta. Você regrava áudio? #curiosidades #ciencia #voz",
+    "cenario_en": "plain white wall and a beige floor separated by one thin black line",
+    "personagens": [
+      {
+        "id": "bob",
+        "nome_en": "Bob",
+        "descricao_visual": "a stick figure with a big round white head, simple round eyes with expressive eyebrows, thin black line body, arms and legs"
+      },
+      {
+        "id": "amigo",
+        "nome_en": "his friend",
+        "descricao_visual": "a stick figure with a big round blue head, simple round eyes with expressive eyebrows, thin black line body, arms and legs"
+      }
+    ],
+    "cenas": [
+      {
+        "fala": "Você grava um áudio, aperta o play...",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob smiling with curious raised eyebrows, holding a smartphone in front of him and pressing a big play button on the screen"
+      },
+      {
+        "fala": "e pensa: pera, essa voz é minha?",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "animar": true,
+        "busca": "doodle",
+        "imagem": "Bob recoiling in horror away from a smartphone on the floor that is playing audio, a blue speaker icon with sound waves above it, the phone screen shows big text EU??, his friend standing on the other side looking awkward"
+      },
+      {
+        "fala": "Calma, isso acontece com quase todo mundo.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob covering his face with both hands in embarrassment, his friend patting his shoulder and smiling kindly"
+      },
+      {
+        "fala": "E tem uma explicação bem física pra isso.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob with a thinking bubble above his head, inside the bubble a big cartoon ear with sound waves and a small lightbulb"
+      },
+      {
+        "fala": "Quando você fala, o som chega no seu ouvido por dois caminhos.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob talking, two thick arrows going from his mouth to his own ear, one arrow outside labeled AR and one arrow inside his head labeled OSSO"
+      },
+      {
+        "fala": "Um vem pelo ar, como pra todo mundo.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob talking, blue curved sound waves traveling through the air from his mouth, reaching both his own ear and the ear of his friend who is listening"
+      },
+      {
+        "fala": "O outro vibra por dentro da sua cabeça, pelos ossos do crânio.",
+        "personagens": [
+          "bob"
+        ],
+        "animar": true,
+        "busca": "doodle",
+        "imagem": "Bob talking with his mouth open, orange zig-zag vibration lines traveling INSIDE his round white head from his mouth up to his ear, a small label OSSO next to the lines, Bob looking surprised"
+      },
+      {
+        "fala": "E esse caminho por dentro deixa a sua voz mais grave e mais cheia.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob proudly singing into a microphone with a giant bass speaker behind him, big text GRAVE, thick low sound waves"
+      },
+      {
+        "fala": "Só que o gravador só pega o som que vem pelo ar.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "a smartphone standing on a small table catching blue sound waves that come through the air from Bob's mouth, while an orange zig-zag line coming from Bob's head stops at a big red X in the air before reaching the phone, Bob standing next to the table"
+      },
+      {
+        "fala": "Então a voz da gravação sai mais fina do que a que você escuta na cabeça.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob shocked listening to a phone that plays thin squeaky zig-zag sound waves, a tiny cartoon mouse squeaking next to the phone"
+      },
+      {
+        "fala": "E aí vem a parte estranha:",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob leaning forward and whispering behind his hand to the viewer, curious raised eyebrows"
+      },
+      {
+        "fala": "essa voz que você odeia é exatamente a que os outros escutam o tempo todo.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "animar": true,
+        "busca": "doodle",
+        "imagem": "Bob talking normally while his friend listens smiling and relaxed, a small sign next to the friend with big text NORMAL, Bob looking surprised"
+      },
+      {
+        "fala": "Pra eles, não tem nada de estranho.",
+        "personagens": [
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "his friend shrugging with a relaxed smile and giving a thumbs up"
+      },
+      {
+        "fala": "O estranho é só você, ouvindo a sua voz de fora pela primeira vez.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob standing confused in front of a second identical Bob who is talking, a question mark above the first Bob"
+      },
+      {
+        "fala": "E você, já teve vergonha de mandar áudio por causa disso?",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob sweating nervously, his finger hovering over a big send button on a smartphone, big text ENVIAR?"
+      }
+    ]
+  }
+]
