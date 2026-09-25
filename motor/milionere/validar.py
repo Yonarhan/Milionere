@@ -32,6 +32,8 @@ ORDEM_LIVROS = list(biblia.LIVROS.values())
 # folga de 10% em todo limite de TEXTO (pedido do dono, 25/09): palavras, gancho, tamanho da cena e notas do juiz.
 # A série do José caiu 3 vezes por 1-4 palavras a mais e por uma nota 3 isolada. Fidelidade e erro factual seguem sem folga.
 MARGEM = 0.10
+# faixa de palavras é meta, não trava: só reprova fora de 15% dela (mesma regra do juiz geral do CEO, guia.checar)
+MARGEM_PALAVRAS = 0.15
 
 
 def _pos(rotulo: str) -> tuple[int, int, int]:
@@ -71,7 +73,7 @@ def camada1(r: dict, formato: dict, tema: dict) -> list[str]:
     cenas = r["cenas"]
     total = sum(len(_palavras(c["fala"])) for c in cenas)
     lo, hi = formato["palavras"]
-    lo, hi = int(lo * (1 - MARGEM)), round(hi * (1 + MARGEM))  # 103 palavras num formato de 102 custava uma reescrita inteira
+    lo, hi = int(lo * (1 - MARGEM_PALAVRAS)), round(hi * (1 + MARGEM_PALAVRAS))  # 103 palavras num formato de 102 custava uma reescrita inteira
     if not lo <= total <= hi:
         erros.append(f"roteiro tem {total} palavras; o formato pede {lo} a {hi}")
     c_lo, c_hi = formato["cenas"]

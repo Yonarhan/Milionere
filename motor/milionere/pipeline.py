@@ -34,6 +34,9 @@ from caminhos import PRODUCAO as PROD  # noqa: E402
 USADOS = PROD / "usados.json"
 from caminhos import PYTHON_MOTOR as PY_MPT  # noqa: E402
 MAX_REESCRITAS = 4
+# teto de tempo do roteiro (escrever + juiz + reescritas), como no juiz geral do CEO (servico_pipeline, 25/09): passou,
+# não começa outra tentativa e segue a melhor versão SEM erro factual, com o que o juiz apontou nos avisos da revisão
+TEMPO_MAX_ROTEIRO = 240
 MAX_REFACAO_IMAGEM = 2
 LIMIAR_BANCO = 0.70  # reuso do banco; 0.55 (padrão do serviço) trouxe cena de outra história (rodada 04 da noite)
 OPCOES_POR_CENA = 3
@@ -77,7 +80,11 @@ def roteiro_validado(formato: dict, tema: dict, reg: Registro, correcoes: list[s
     melhor = None  # (pontos, roteiro, problemas)
     melhor_notas: dict | None = None
     historico: list[str] = []  # erros de fato/compreensão já apontados: a reescrita não pode voltar a cometê-los
+    comeco = time.time()
     for tentativa in range(1, MAX_REESCRITAS + 1):
+        if _aceitavel(melhor) and time.time() - comeco > TEMPO_MAX_ROTEIRO:
+            log(f"  roteiro passou de {TEMPO_MAX_ROTEIRO // 60} min: segue a melhor versão, sem nova tentativa")
+            break
         log(f"roteiro: tentativa {tentativa} (claude -p)")
         r = roteirista.escrever(formato, tema, correcoes, anterior)
         falas = [c["fala"] for c in r["cenas"]]
@@ -106,16 +113,21 @@ def roteiro_validado(formato: dict, tema: dict, reg: Registro, correcoes: list[s
             continue
         r["_notas_juiz"] = notas
         return r
-    # 4 reescritas sem nota máxima: aproveita a melhor se o problema é só de estilo (sem erro de fato, nenhuma nota
-    # abaixo de 3, média >= 3.75). Jogar fora ~12 min de roteiro por "ritmo 3" travava o turno da noite (24/09);
-    # o dono revisa cada vídeo antes de publicar.
-    if melhor and melhor_notas and not any(p.startswith("ERRO FACTUAL") for p in melhor[2]) \
-            and min(melhor_notas.values()) >= 3 and sum(melhor_notas.values()) / len(melhor_notas) >= 3.75 * (1 - validar.MARGEM):
-        log(f"  aceito a melhor versão (só ressalvas de estilo): {melhor_notas}")
+    # sem aprovação (tentativas ou tempo esgotados): segue a melhor versão, como no juiz geral do CEO, desde que não
+    # tenha erro factual nem fidelidade < 4 (no gospel, história bíblica errada não vai ao ar). O que o juiz apontou
+    # vai para os avisos: o vídeo não sobe sozinho, fica para a revisão do dono.
+    if _aceitavel(melhor):
+        log(f"  segue a melhor versão, com {len(melhor[2])} aviso(s) do juiz para a revisão: {melhor_notas}")
         reg.add("camada2", True, aceito_com_ressalvas=melhor[2], notas=melhor_notas)
         melhor[1]["_notas_juiz"] = melhor_notas
+        melhor[1]["_avisos_juiz"] = [f"juiz: {a}" for a in melhor[2]]
         return melhor[1]
     return None
+
+
+def _aceitavel(melhor: tuple | None) -> bool:
+    """Versão que pode seguir sem a aprovação do juiz: nada de erro factual nem fidelidade abaixo de 4."""
+    return bool(melhor) and not any(p.startswith("ERRO FACTUAL") or p.startswith("fidelidade") for p in melhor[2])
 
 
 def empacotar(r: dict, formato_id: str, formato: dict, tema: dict, estilo: str, slug: str) -> dict:
@@ -148,6 +160,7 @@ def empacotar(r: dict, formato_id: str, formato: dict, tema: dict, estilo: str, 
         "_creditos": [f"Imagens geradas por IA ({imagens.estilos()[estilo].get('modelo_credito', 'Stable Diffusion XL')})",
                       f"Texto bíblico: {biblia.TRADUCAO}"],
         "ajustes": {"voice_rate": 1.05},
+        "_avisos_juiz": list(r.get("_avisos_juiz", [])),  # roteiro que seguiu sem aprovação: revisão antes de postar
     }
 
 
@@ -391,7 +404,7 @@ def um_video(formato_id: str, estilo: str | None, tema_id: str | None, musica: s
         return []
     # (sem roteirista.reescrever_imagens: o roteirista já escreve os prompts com regras_imagem(); era 1 chamada a mais)
     pacote = empacotar(r, formato_id, formato, tema, estilo, slug)
-    pacote["_avisos"] = list(r.get("_avisos", []))  # o que o juiz não conseguiu resolver vai para a revisão
+    pacote["_avisos"] = list(r.get("_avisos_juiz", []))  # o que o juiz não conseguiu resolver vai para a revisão
     salvar_fichas(pacote)
     arq = PROD / "roteiros" / f"{date.today():%Y-%m-%d}_{slug}.json"
     arq.parent.mkdir(parents=True, exist_ok=True)  # no painel /canal a produção fica em servico/media/producao (pasta nova)
@@ -410,7 +423,8 @@ def um_video(formato_id: str, estilo: str | None, tema_id: str | None, musica: s
 
 def imagens_e_video(arq: Path, musica: str, reg: Registro | None = None) -> list[Path]:
     r = json.loads(arq.read_text(encoding="utf-8"))[0]
-    r["_avisos"] = []  # recalculados nesta rodada (aviso de uma rodada antiga, já corrigido, travava a postagem)
+    # recalculados nesta rodada (aviso de uma rodada antiga, já corrigido, travava a postagem); os do juiz do roteiro ficam
+    r["_avisos"] = list(r.get("_avisos_juiz", []))
     reg = reg or Registro(r["slug"])
     with medidor.etapa("imagens"):
         imagens_validadas(r, arq, reg)
