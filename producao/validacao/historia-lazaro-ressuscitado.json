@@ -1,0 +1,387 @@
+{
+  "etapas": [
+    {
+      "quando": "05:27:38",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 1,
+      "problemas": [
+        "evento 1 ('Lázaro, de Betânia, estava doente, e as irmãs mandaram avisar Jesus') cita João 11:1,3, fora do trecho fornecido (João 11:1-6; 11:32-44)"
+      ],
+      "falas": [
+        "O corpo já cheirava mal quando Jesus chegou.",
+        "Lázaro estava doente, e as irmãs chamaram Jesus.",
+        "Mas Jesus esperou dois dias a mais, de propósito.",
+        "Maria chorou: se estivesses aqui, ele viveria.",
+        "Todos choravam, e a Bíblia diz: Jesus chorou.",
+        "Chegaram à caverna fechada com uma pedra.",
+        "Marta avisou: já tem quatro dias, cheira mal.",
+        "Tiraram a pedra, e Jesus gritou: Lázaro, vem para fora!",
+        "E o morto saiu andando, enrolado nas faixas.",
+        "Quando Deus demora, ele guarda glória pra sua dor.",
+        "Ele chega atrasado pro relógio, mas nunca pro milagre.",
+        "Escreve amém se você cré, e se inscreve."
+      ]
+    },
+    {
+      "quando": "05:28:41",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "O corpo já cheirava mal quando Jesus chegou.",
+        "Lázaro estava doente, e as irmãs chamaram Jesus.",
+        "Mas Jesus esperou dois dias a mais, de propósito.",
+        "Maria chorou: se estivesses aqui, ele viveria.",
+        "Todos choravam, e a Bíblia diz: Jesus chorou.",
+        "Chegaram à caverna fechada com uma pedra.",
+        "Marta avisou: já tem quatro dias, cheira mal.",
+        "Tiraram a pedra, e Jesus gritou: Lázaro, vem para fora!",
+        "E o morto saiu andando, enrolado nas faixas.",
+        "Quando Deus demora, ele guarda glória pra sua dor.",
+        "Ele chega atrasado pro relógio, mas nunca pro milagre.",
+        "Escreve amém se você crê, e se inscreve."
+      ]
+    },
+    {
+      "quando": "05:29:03",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Jesus deixou o amigo Lázaro morrer de propósito e, quatro dias depois, na frente de todos, o ressuscitou chamando-o para fora do túmulo.",
+      "erros_factuais": [
+        "Cena 9: 'saiu andando' — a fonte diz apenas que ele 'saiu', não menciona que andava (ele estava amarrado de pés e mãos)."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 9: 'saiu andando' — a fonte diz apenas que ele 'saiu', não menciona que andava (ele estava amarrado de pés e mãos)."
+      ]
+    },
+    {
+      "quando": "05:30:08",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "O corpo já cheirava mal quando Jesus chegou.",
+        "Lázaro estava doente, e as irmãs chamaram Jesus.",
+        "Mas Jesus esperou dois dias a mais, de propósito.",
+        "Maria chorou: se estivesses aqui, ele viveria.",
+        "Todos choravam, e a Bíblia diz: Jesus chorou.",
+        "Chegaram à caverna fechada com uma pedra.",
+        "Marta avisou: já tem quatro dias, cheira mal.",
+        "Tiraram a pedra, e Jesus gritou: Lázaro, vem para fora!",
+        "E o morto saiu, enrolado nas faixas.",
+        "Quando Deus demora, ele guarda glória pra sua dor.",
+        "Ele chega atrasado pro relógio, mas nunca pro milagre.",
+        "Escreve amém se você crê, e se inscreve."
+      ]
+    },
+    {
+      "quando": "05:30:40",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Jesus deixou Lázaro morrer de propósito para depois ressuscitá-lo e mostrar a glória de Deus, mesmo com o corpo já em decomposição.",
+      "erros_factuais": [
+        "Cena 3: 'de propósito' é interpretação do roteirista — a fonte não afirma explicitamente essa intenção, apenas relata o atraso e depois dá a razão teológica (glória de Deus) separadamente."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 3: 'de propósito' é interpretação do roteirista — a fonte não afirma explicitamente essa intenção, apenas relata o atraso e depois dá a razão teológica (glória de Deus) separadamente."
+      ]
+    },
+    {
+      "quando": "05:31:52",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "O corpo já cheirava mal quando Jesus chegou.",
+        "Lázaro estava doente, e as irmãs chamaram Jesus.",
+        "Jesus disse: isso é para a glória de Deus, e ficou dois dias.",
+        "Maria chorou: se estivesses aqui, meu irmão não teria morrido.",
+        "Todos choravam, e a Bíblia diz: Jesus chorou.",
+        "Chegaram à caverna, fechada com pedra.",
+        "Marta avisou: já tem quatro dias, cheira mal.",
+        "Tiraram a pedra, e Jesus gritou: Lázaro, vem para fora!",
+        "E o morto saiu, enrolado nas faixas.",
+        "Quando Deus demora, ele guarda glória pra sua dor.",
+        "Ele demora, mas nunca chega tarde.",
+        "Escreve amém se você crê, e se inscreve."
+      ]
+    },
+    {
+      "quando": "05:32:16",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Jesus deixou o amigo Lázaro morrer de propósito, esperou, chorou, e depois o ressuscitou da tumba já com quatro dias, mostrando que a demora de Deus guarda um propósito maior.",
+      "erros_factuais": [
+        "Cena 1: o cheiro do corpo é mencionado pela fonte como aviso de Marta no túmulo (João 11:39), não como fato constatado por Jesus ao 'chegar' — o roteiro funde dois momentos distintos como se fossem um só evento."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 1: o cheiro do corpo é mencionado pela fonte como aviso de Marta no túmulo (João 11:39), não como fato constatado por Jesus ao 'chegar' — o roteiro funde dois momentos distintos como se fossem um só evento."
+      ]
+    },
+    {
+      "quando": "05:45:38",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 1,
+      "problemas": [
+        "evento 1 ('Lázaro, amigo de Jesus, estava doente em Betânia, e as irmãs Marta e Maria mandaram avisar Jesus') cita João 11:1,3, fora do trecho fornecido (João 11:1-6; 11:32-44)"
+      ],
+      "falas": [
+        "O corpo já cheirava mal quando Jesus chegou.",
+        "Lázaro estava doente em Betânia, e avisaram Jesus.",
+        "Jesus disse: não é pra morte. Mas esperou dois dias.",
+        "Maria chorou: se estivesses aqui, ele viveria.",
+        "Jesus viu o choro e ficou perturbado.",
+        "A Bíblia usa só duas palavras: Jesus chorou.",
+        "No túmulo, avisaram: já cheira mal, quatro dias morto.",
+        "Jesus gritou: Lázaro, venha! E o morto saiu, amarrado.",
+        "Antes de tirar sua dor, ele sente com você.",
+        "Ele pode demorar quatro dias, mas nunca chega tarde.",
+        "Se já sentiu Deus atrasado, escreve amém.",
+        "Se inscreve pra ouvir mais histórias assim."
+      ]
+    },
+    {
+      "quando": "05:46:11",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "O corpo já cheirava mal quando Jesus chegou.",
+        "Lázaro estava doente em Betânia, e avisaram Jesus.",
+        "Jesus disse: não é pra morte. Mas esperou dois dias.",
+        "Maria chorou: se estivesses aqui, ele viveria.",
+        "Jesus viu o choro e ficou perturbado.",
+        "A Bíblia usa só duas palavras: Jesus chorou.",
+        "No túmulo, avisaram: já cheira mal, quatro dias morto.",
+        "Jesus gritou: Lázaro, venha! E o morto saiu, amarrado.",
+        "Antes de tirar sua dor, ele sente com você.",
+        "Ele pode demorar quatro dias, mas nunca chega tarde.",
+        "Se já sentiu Deus atrasado, escreve amém.",
+        "Se inscreve pra ouvir mais histórias assim."
+      ]
+    },
+    {
+      "quando": "05:46:37",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 3,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Jesus deixou o amigo Lázaro morrer de propósito, chorou com a dor das irmãs e depois o ressuscitou gritando seu nome no túmulo.",
+      "erros_factuais": [
+        "Nenhum fato inventado ou trocado; o único risco é o gancho da cena 1 sugerir que o cheiro já existia na chegada de Jesus à cidade, quando na fonte isso só é dito no túmulo, dias depois."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Nenhum fato inventado ou trocado; o único risco é o gancho da cena 1 sugerir que o cheiro já existia na chegada de Jesus à cidade, quando na fonte isso só é dito no túmulo, dias depois.",
+        "personagens (nota 3): Cena 4 apresenta Maria sem dizer que é irmã de Lázaro; corrija a cena 2 para 'Lázaro estava doente em Betânia, e as irmãs Marta e Maria avisaram Jesus.'",
+        "personagens (nota 3): Cena 7 usa Marta sem nunca ter sido apresentada como irmã; a correção da cena 2 acima resolve as duas em uma frase, sem estourar o limite de palavras.",
+        "compreensao (nota 3): Quem não conhece a história não entende quem são Maria e Marta nem por que choram perto de Jesus; corrigir junto com o problema de personagens na cena 2."
+      ]
+    },
+    {
+      "quando": "05:47:39",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 3,
+      "problemas": [
+        "cena 2 tem travessão ou ponto e vírgula (o TTS lê mal): «Lázaro estava doente em Betânia; as irmãs Marta e Maria avisaram Jesus.»",
+        "cena 3 tem travessão ou ponto e vírgula (o TTS lê mal): «Jesus disse: não é pra morte; esperou dois dias.»"
+      ],
+      "falas": [
+        "Jesus chegou quatro dias atrasado. De propósito.",
+        "Lázaro estava doente em Betânia; as irmãs Marta e Maria avisaram Jesus.",
+        "Jesus disse: não é pra morte; esperou dois dias.",
+        "Maria caiu aos pés: se estivesses aqui, ele viveria.",
+        "Jesus viu o choro e ficou perturbado.",
+        "A Bíblia usa só duas palavras: Jesus chorou.",
+        "No túmulo, avisaram: já cheira mal, quatro dias morto.",
+        "Jesus gritou: Lázaro, venha! E o morto saiu, amarrado.",
+        "Antes de tirar sua dor, ele sente com você.",
+        "Ele pode demorar quatro dias, mas nunca chega tarde.",
+        "Se já sentiu Deus atrasado, escreve amém.",
+        "Se inscreve pra ouvir mais histórias assim."
+      ]
+    },
+    {
+      "quando": "05:49:52",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Jesus chegou quatro dias atrasado. De propósito.",
+        "Lázaro estava doente, e suas irmãs Marta e Maria chamaram Jesus.",
+        "Jesus disse: não era pra morte, mas esperou dois dias.",
+        "Maria caiu aos pés e disse: se estivesse aqui, ele viveria.",
+        "Jesus viu o choro e ficou perturbado.",
+        "Só duas palavras: Jesus chorou.",
+        "No túmulo, avisaram: já cheira mal, quatro dias morto.",
+        "Jesus gritou: Lázaro, venha! E o morto saiu, amarrado.",
+        "Antes de tirar sua dor, ele sente com você.",
+        "Ele pode demorar quatro dias, mas nunca chega tarde.",
+        "Se já sentiu Deus atrasado, escreve amém.",
+        "Se inscreve pra ouvir mais histórias assim."
+      ]
+    },
+    {
+      "quando": "05:50:22",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Jesus deixou Lázaro morrer de propósito, chorou com as irmãs e depois o ressuscitou, mostrando que ele sente a dor antes de resolvê-la.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "06:07:47",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 4,
+          "ok": false,
+          "problema": "Há um poste/fio moderno visível no fundo, atrás do telhado de pedra à direita, quebrando a ambientação bíblica.",
+          "imagem_corrigida": "Wide shot, woman kneeling on dusty ground at the man's feet, grief on her face, dry rocky hills and simple stone village houses behind, overcast natural light, flat rocks scattered on the ground."
+        },
+        {
+          "cena": 8,
+          "ok": false,
+          "problema": "A fala diz que Lázaro saiu \"amarrado\", mas na imagem ele aparece andando livremente com um manto solto normal, mãos soltas, sem faixas de linho enrolando o corpo como um morto amortalhado.",
+          "imagem_corrigida": "Wide shot of a man tightly wrapped head to feet in strips of coarse white linen bandages, arms bound against his body, stepping out of a dark rocky cave tomb entrance, dusty ground, bright light behind him, figure watching from a distance."
+        },
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "O fundo mostra um povoado com construções de aparência moderna (telhados planos, estilo urbano atual) no vale distante, quebrando a ambientação bíblica.",
+          "imagem_corrigida": "Wide shot of an empty rock-cut tomb entrance carved into a bare hillside, soft morning light streaming through the opening, dust particles floating, quiet dawn colors, bare rocky ground, distant hills with no buildings, ancient stone terrain only."
+        },
+        {
+          "cena": 10,
+          "ok": false,
+          "problema": "O vilarejo ao fundo parece uma vila moderna com luzes elétricas acesas, um anacronismo para uma cena bíblica",
+          "imagem_corrigida": "Wide shot of golden sunrise breaking over dusty Judean hills, warm light through clouds, winding dirt path bordered by rough stone walls, dry rocky terrain, distant bare hills, no buildings visible"
+        },
+        {
+          "cena": 11,
+          "ok": false,
+          "problema": "A entrada do túmulo tem uma cruz cristã esculpida na pedra, um símbolo anacrônico para a época de Jesus.",
+          "imagem_corrigida": "Medium shot of a bearded man looking upward with a hopeful expression near a plain rocky tomb entrance carved into stone, no carvings, warm sunlight, dusty rocky ground, distant hills."
+        },
+        {
+          "cena": 12,
+          "ok": false,
+          "problema": "Botão de plástico/moderno visível na manga do manto do homem à direita (perto do punho), elemento anacrônico",
+          "imagem_corrigida": ""
+        }
+      ]
+    },
+    {
+      "quando": "06:31:00",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 2,
+      "reprovadas": [
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "O fundo mostra um povoado com arquitetura e ruas visivelmente modernas, um anacronismo perceptível numa cena que deveria ser um terreno antigo e isolado",
+          "imagem_corrigida": "Wide shot of a rock-cut tomb entrance carved into a bare hillside, figure standing before the dark opening, soft morning light, dust particles floating, empty rocky valley, distant bare uninhabited hills, remote ancient isolated terrain"
+        }
+      ]
+    },
+    {
+      "quando": "06:49:20",
+      "etapa": "animacao",
+      "ok": true,
+      "cenas": [
+        1,
+        5,
+        8
+      ],
+      "feitas": [
+        1,
+        5,
+        8
+      ],
+      "segundos": 1099
+    },
+    {
+      "quando": "06:49:53",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-25_historia-lazaro-ressuscitado_sem-musica.mp4",
+      "duracao": 45.0,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    },
+    {
+      "quando": "06:49:53",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-25_historia-lazaro-ressuscitado.mp4",
+      "duracao": 45.0,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    }
+  ]
+}

@@ -84,5 +84,23 @@
     "id": null,
     "manual": true,
     "obs": "existia antes da postagem automática (2026-09-24)"
+  },
+  "2026-09-25_historia-ester-rainha.mp4": {
+    "id": "4mvJ2nMX6Z8",
+    "quando": "2026-09-25T02:00:11-03:00",
+    "status": "private",
+    "publica_em": null
+  },
+  "2026-09-25_historia-daniel-leoes.mp4": {
+    "id": "UKbVv3qDffI",
+    "quando": "2026-09-25T05:00:13-03:00",
+    "status": "private",
+    "publica_em": null
+  },
+  "2026-09-25_historia-jaco-luta-anjo.mp4": {
+    "id": "ccdDG-9ZI58",
+    "quando": "2026-09-25T08:00:12-03:00",
+    "status": "private",
+    "publica_em": null
   }
 }

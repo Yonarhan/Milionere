@@ -263,6 +263,129 @@
       ],
       "prioridade": 2,
       "origem": "automatico"
+    },
+    {
+      "id": "abraao-isaque",
+      "titulo": "Abraão levou o próprio filho pra ser sacrificado",
+      "ref": "Gênesis 22:1-2; 22:9-13",
+      "angulo": "Deus pediu a coisa mais impossível: o filho da promessa, na faca, no altar. Abraão obedeceu até o último segundo — e Deus parou tudo.",
+      "personagens": [
+        "abraao",
+        "isaque"
+      ],
+      "prioridade": 2,
+      "origem": "automatico"
+    },
+    {
+      "id": "jo-perde-tudo",
+      "titulo": "Ele perdeu os filhos, os bens e a saúde num só dia",
+      "ref": "Jó 1:13-21; 2:9-10",
+      "angulo": "Notícia atrás de notícia: gado roubado, servos mortos, os dez filhos debaixo de uma casa que caiu. Jó se ajoelhou e adorou mesmo assim.",
+      "personagens": [
+        "jo",
+        "esposa-jo"
+      ],
+      "prioridade": 2,
+      "origem": "automatico"
+    },
+    {
+      "id": "jericonicais",
+      "titulo": "Uma cidade caiu depois de sete voltas e um grito",
+      "ref": "Josué 6:2-5; 6:20",
+      "angulo": "Sem aríete, sem escada, sem exército escalando o muro. Só sete voltas, trombetas e um grito — e a muralha mais forte da região virou pó.",
+      "personagens": [
+        "josue"
+      ],
+      "prioridade": 2,
+      "origem": "automatico"
+    },
+    {
+      "id": "viuva-sarepta",
+      "titulo": "A farinha que não acabava numa fome que matava todo mundo",
+      "ref": "1 Reis 17:10-16",
+      "angulo": "Ela ia fazer o último pão antes de morrer de fome com o filho. Um profeta pediu pra ela servir ele primeiro — e o pote nunca mais esvaziou.",
+      "personagens": [
+        "viuva-sarepta",
+        "elias"
+      ],
+      "prioridade": 2,
+      "origem": "automatico"
+    },
+    {
+      "id": "naama-jordao",
+      "titulo": "O general mais poderoso teve que se banhar num rio comum",
+      "ref": "2 Reis 5:1-3; 5:9-14",
+      "angulo": "Naamã era herói de guerra e leproso. Mandaram ele mergulhar sete vezes num rio barrento — ele quase foi embora com raiva antes de obedecer.",
+      "personagens": [
+        "naama",
+        "eliseu"
+      ],
+      "prioridade": 2,
+      "origem": "automatico"
+    },
+    {
+      "id": "lazaro-ressuscitado",
+      "titulo": "Chegou quatro dias atrasado de propósito",
+      "ref": "João 11:1-6; 11:32-44",
+      "angulo": "O amigo já estava enterrado há quatro dias, o corpo já cheirava mal. Jesus chorou, gritou o nome dele — e Lázaro saiu andando de dentro do túmulo.",
+      "personagens": [
+        "lazaro",
+        "marta",
+        "maria-betania",
+        "jesus"
+      ],
+      "prioridade": 2,
+      "origem": "automatico"
+    },
+    {
+      "id": "salomao-julgamento",
+      "titulo": "Duas mães, um bebê, e uma ordem pra cortar a criança ao meio",
+      "ref": "1 Reis 3:16-28",
+      "angulo": "As duas juravam ser mãe do mesmo filho. Salomão mandou trazer a espada — e a reação de uma delas revelou a verdade na hora.",
+      "personagens": [
+        "salomao",
+        "mae-verdadeira",
+        "mae-falsa"
+      ],
+      "prioridade": 2,
+      "origem": "automatico"
+    },
+    {
+      "id": "debora-jael-sisera",
+      "titulo": "O general fugiu da batalha e foi morto dormindo numa tenda",
+      "ref": "Juízes 4:4-9; 4:17-21",
+      "angulo": "Débora profetizou que uma mulher entregaria o general inimigo. Ele fugiu, se escondeu numa tenda pedindo água — e nunca mais acordou.",
+      "personagens": [
+        "debora",
+        "jael",
+        "sisera"
+      ],
+      "prioridade": 2,
+      "origem": "automatico"
+    },
+    {
+      "id": "balaao-jumenta",
+      "titulo": "O animal viu o anjo antes do próprio profeta ver",
+      "ref": "Números 22:21-31",
+      "angulo": "Balaão batia na jumenta porque ela parava do nada no caminho. Ela via um anjo de espada na frente deles — e Deus abriu a boca dela pra falar.",
+      "personagens": [
+        "balaao",
+        "anjo"
+      ],
+      "prioridade": 2,
+      "origem": "automatico"
+    },
+    {
+      "id": "jaco-luta-anjo",
+      "titulo": "Ele lutou a noite inteira e não largou até ser abençoado",
+      "ref": "Gênesis 32:24-30",
+      "angulo": "Sozinho no escuro, um homem apareceu e começou a lutar com ele até o amanhecer. Jacó saiu mancando, mas com um novo nome.",
+      "personagens": [
+        "jaco",
+        "anjo"
+      ],
+      "prioridade": 2,
+      "origem": "automatico"
     }
   ],
   "proverbios": [

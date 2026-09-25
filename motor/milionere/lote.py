@@ -123,7 +123,8 @@ def main() -> None:
                 raise
             traceback.print_exc()
             erros.append(f"{fmt}:{tema['id']}: {type(e).__name__}: {e}")
-            anotar_falha(f"{fmt}:{tema['id']}")
+            if "session limit" not in str(e) and "rate_limit" not in str(e):  # limite do Claude não é culpa do tema
+                anotar_falha(f"{fmt}:{tema['id']}")
     if prontos:
         anotar_fila(prontos)
     if a.postar:

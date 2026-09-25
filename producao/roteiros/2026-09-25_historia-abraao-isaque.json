@@ -1,0 +1,297 @@
+[
+  {
+    "slug": "historia-abraao-isaque",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "abraao-isaque",
+    "estilo": "cinema_zimage",
+    "epoca": "biblica",
+    "titulo": "Ele quase matou o próprio filho. Por quê?",
+    "cenario_en": "ancient land of Moriah, Bronze Age Canaan, dry rocky mountains, sparse dusty vegetation",
+    "personagens": [
+      {
+        "id": "abraao",
+        "nome": "Abraão",
+        "nome_en": "Abraham",
+        "descricao_visual": "an elderly Hebrew man in his 90s, long white beard, thinning white hair, deeply wrinkled tanned skin, plain long beige robe with a brown cloak"
+      },
+      {
+        "id": "isaque",
+        "nome": "Isaque",
+        "nome_en": "Isaac",
+        "descricao_visual": "a lean teenage boy around fifteen years old, short black curly hair, no beard, olive skin, simple undyed linen tunic"
+      },
+      {
+        "id": "anjo",
+        "nome": "Anjo do Senhor",
+        "nome_en": "angel",
+        "descricao_visual": "a youthful beardless man around 20, short light golden hair, smooth pale face, calm luminous eyes, plain white linen robe with a thin gold sash, large white feathered wings, soft white glow"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Deus prova Abraão e o chama pelo nome",
+        "ref": "Gênesis 22:1"
+      },
+      {
+        "n": 2,
+        "evento": "Deus pede que ele leve Isaque e o ofereça em holocausto",
+        "ref": "Gênesis 22:2"
+      },
+      {
+        "n": 3,
+        "evento": "Abraão constrói o altar, arruma a lenha e amarra Isaque sobre ela",
+        "ref": "Gênesis 22:9"
+      },
+      {
+        "n": 4,
+        "evento": "Abraão pega a faca para matar o filho",
+        "ref": "Gênesis 22:10"
+      },
+      {
+        "n": 5,
+        "evento": "O anjo do Senhor o chama do céu",
+        "ref": "Gênesis 22:11"
+      },
+      {
+        "n": 6,
+        "evento": "O anjo diz para não tocar no rapaz, pois Abraão temeu a Deus e não negou seu único filho",
+        "ref": "Gênesis 22:12"
+      },
+      {
+        "n": 7,
+        "evento": "Abraão vê um carneiro preso pelos chifres num arbusto",
+        "ref": "Gênesis 22:13"
+      },
+      {
+        "n": 8,
+        "evento": "Abraão oferece o carneiro como holocausto em lugar do filho",
+        "ref": "Gênesis 22:13"
+      }
+    ],
+    "versiculo": {
+      "ref": "Gênesis 22:12",
+      "texto": "Não estenda a mão sobre o rapaz nem lhe faça nada. Pois agora sei que você teme a Deus, visto que não me negou seu filho, seu único filho."
+    },
+    "cenas": [
+      {
+        "fala": "O pai ergueu a faca sobre o filho.",
+        "evento": 0,
+        "personagens": [
+          "abraao",
+          "isaque"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of an elderly man gripping a knife raised above a teenage boy lying on a stone altar, tense expression, bare rocky mountaintop, harsh daylight.",
+        "busca": "man knife altar biblical sacrifice"
+      },
+      {
+        "fala": "Deus chamou Abraão. Ele disse: Eis-me aqui.",
+        "evento": 1,
+        "personagens": [
+          "abraao"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of an elderly bearded man standing alone outside a tent at night, looking up startled toward the sky, open desert, moonlight.",
+        "busca": "elderly man praying night desert"
+      },
+      {
+        "fala": "Deus disse: leve Isaque e ofereça-o como sacrifício.",
+        "evento": 2,
+        "personagens": [
+          "abraao",
+          "isaque"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of an elderly man and a teenage boy walking together on a dusty dirt trail at sunrise, carrying wood bundles on shoulders, dry desert hills and scattered rocks in the background, clear ground.",
+        "busca": "father son journey desert morning"
+      },
+      {
+        "fala": "Abraão montou o altar e amarrou Isaque.",
+        "evento": 3,
+        "personagens": [
+          "abraao",
+          "isaque"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of an elderly man stacking stones into an altar on a rocky hilltop, a teenage boy standing still beside him, bare rock ground, clear sky.",
+        "busca": "stone altar mountain top ancient"
+      },
+      {
+        "fala": "Ele pegou a faca pra matar o filho.",
+        "evento": 4,
+        "personagens": [
+          "abraao",
+          "isaque"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of an elderly man raising a knife above a stone altar, a teenage boy lying still on wood beneath him, dramatic side light, rocky backdrop.",
+        "busca": "man raising knife altar tense"
+      },
+      {
+        "fala": "O anjo gritou: Abraão, Abraão!",
+        "evento": 5,
+        "personagens": [
+          "abraao",
+          "anjo"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot on a rocky mountaintop, elderly man in foreground looking up startled, glowing winged figure above in bright sky, empty barren desert valley with sand dunes, dry rugged mountains, dramatic clouds, natural sunlight, no roads or structures visible.",
+        "busca": "angel appearing bright sky biblical"
+      },
+      {
+        "fala": "Não toque nele, sei que você teme a Deus.",
+        "evento": 6,
+        "personagens": [
+          "anjo",
+          "abraao"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a winged glowing figure standing on a rocky ledge, an elderly man below lowering his knife, soft golden light, rocky mountainside.",
+        "busca": "angel speaking man kneeling"
+      },
+      {
+        "fala": "Você não negou seu único filho.",
+        "evento": 6,
+        "personagens": [
+          "abraao",
+          "isaque"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of an elderly man looking down tenderly at a teenage boy still lying on the altar, relief on his face, warm sunrise light.",
+        "busca": "father relieved son safe altar"
+      },
+      {
+        "fala": "Abraão viu um carneiro preso pelos chifres.",
+        "evento": 7,
+        "personagens": [
+          "abraao"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of an elderly man turning with wide eyes toward a ram tangled by its horns in a thorny bush, rocky hillside, bright daylight.",
+        "busca": "ram caught thicket bush desert"
+      },
+      {
+        "fala": "Ofereceu o carneiro ali, no lugar de Isaque.",
+        "evento": 8,
+        "personagens": [
+          "abraao",
+          "isaque"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide shot on a barren rocky mountaintop, an elderly man placing a hand on a ram atop a stone altar with smoke rising, a teenage boy standing beside watching, dry dirt ground, distant empty bare hills under clear sky.",
+        "busca": "sacrifice altar smoke ancient ritual"
+      },
+      {
+        "fala": "Deus também pode pedir o que você mais teme perder.",
+        "evento": 0,
+        "personagens": [
+          "abraao"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Silhouette of an elderly man kneeling alone on a rocky hilltop at sunset, hands resting on his knees, vast orange sky, quiet mood.",
+        "busca": "man kneeling sunset silhouette prayer"
+      },
+      {
+        "fala": "A faca não desceu: Deus mesmo proveu o sacrifício.",
+        "evento": 0,
+        "personagens": [
+          "abraao",
+          "isaque"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of an elderly man and a teenage boy walking away from a smoking stone altar, warm morning light, rocky hillside, peaceful mood.",
+        "busca": "father son walking away altar relief"
+      },
+      {
+        "fala": "Se creu, escreve amém e se inscreve agora.",
+        "evento": 0,
+        "personagens": [
+          "abraao",
+          "isaque"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of an elderly man and a teenage boy walking together down a rocky mountain trail at sunset, warm golden light, peaceful mood.",
+        "busca": "father son walking mountain sunset"
+      }
+    ],
+    "descricao": "\"Não estenda a mão sobre o rapaz... visto que não me negou seu filho\" (Gênesis 22:12). Abraão obedeceu até o último segundo, e Deus proveu o sacrifício. Você entregaria a Deus o que mais ama? Leia Gênesis 22.",
+    "hashtags": [
+      "#biblia",
+      "#abraao",
+      "#fe",
+      "#deus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já teve que largar algo que mais amava, confiando que Deus ia prover? Conta aqui embaixo.",
+    "tiktok_titulo": "Deus pediu o filho da promessa. Abraão obedeceu.",
+    "tiktok_legenda": "A faca já estava no ar quando Deus parou tudo. Você teria essa fé? #abraao #biblia #fe #deusprove",
+    "fontes": [
+      "Gênesis 22:1-2; 22:9-13 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "O pai ergueu a faca sobre o filho.",
+        "choque": 5,
+        "clareza": 5,
+        "imagem": 5
+      },
+      {
+        "texto": "Deus pediu o filho que ele mais amava.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Ele levou o próprio filho pra matar.",
+        "choque": 5,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "A faca já estava no ar. E ele obedeceu.",
+        "choque": 5,
+        "clareza": 4,
+        "imagem": 5
+      },
+      {
+        "texto": "Você entregaria seu filho a Deus?",
+        "choque": 3,
+        "clareza": 5,
+        "imagem": 3
+      }
+    ],
+    "gancho_tela": "A FACA ESTAVA NO AR",
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 5,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Z-Image Turbo)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    },
+    "_avisos": [
+      "imagens reprovadas: [6]"
+    ]
+  }
+]

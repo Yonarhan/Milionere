@@ -1,0 +1,150 @@
+{
+  "etapas": [
+    {
+      "quando": "01:26:37",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 1,
+      "problemas": [
+        "roteiro tem 104 palavras; o formato pede 60 a 102"
+      ],
+      "falas": [
+        "Nunca tinha chovido. Ele construiu um barco.",
+        "Deus viu a terra cheia de violência.",
+        "Mandou Noé fazer uma arca coberta de piche.",
+        "Disse: entre na arca com sua família, você é justo.",
+        "Leve os animais em casais, e as aves.",
+        "Em sete dias viria a chuva.",
+        "Noé obedeceu, mesmo sem nunca ver chuva.",
+        "Veio o dilúvio, e a arca flutuou.",
+        "As águas cobriram as montanhas mais altas.",
+        "Toda carne da terra morreu.",
+        "Só Noé e os seus sobreviveram.",
+        "Se ninguém acredita no que Deus pediu, faz assim.",
+        "Nunca tinha chovido, mas só quem construiu ficou seco.",
+        "Escreve amém, e se inscreve pra próxima história."
+      ]
+    },
+    {
+      "quando": "01:27:27",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Nunca tinha chovido. Ele construiu um barco.",
+        "Deus viu a terra cheia de violência.",
+        "Mandou Noé fazer uma arca coberta de piche.",
+        "Disse: entre na arca, você é justo.",
+        "Leve os animais em casais, e as aves.",
+        "Em sete dias viria a chuva.",
+        "Noé obedeceu, mesmo sem nunca ver chuva.",
+        "Veio o dilúvio, e a arca flutuou.",
+        "As águas cobriram as montanhas mais altas.",
+        "Toda carne da terra morreu.",
+        "Só Noé e os seus sobreviveram.",
+        "Se ninguém acredita em você, faz assim mesmo.",
+        "Nunca tinha chovido, mas só quem construiu ficou seco.",
+        "Escreve amém, e se inscreve pra próxima história."
+      ]
+    },
+    {
+      "quando": "01:27:47",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 2,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 2,
+        "linguagem": 3,
+        "payoff": 4
+      },
+      "entendimento": "Deus mandou Noé construir uma arca porque ia destruir a terra com um dilúvio, Noé obedeceu mesmo sem provas, e só ele e sua família sobreviveram às águas.",
+      "erros_factuais": [
+        "Cena 1: 'Nunca tinha chovido' não está na fonte fornecida, é acréscimo apresentado como fato.",
+        "Cena 13: repete o mesmo fato não sourced ('Nunca tinha chovido')."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 1: 'Nunca tinha chovido' não está na fonte fornecida, é acréscimo apresentado como fato.",
+        "ERRO FACTUAL: Cena 13: repete o mesmo fato não sourced ('Nunca tinha chovido').",
+        "fidelidade (nota 2): Cenas 1 e 13 afirmam como fato que 'nunca tinha chovido' antes do dilúvio — isso não está na fonte fornecida, é tradição extrabíblica apresentada como fato; corrigir trocando por algo que está no texto, como 'ninguém tinha visto um dilúvio assim'.",
+        "ritmo (nota 2): Cenas 2 a 11 são frases curtas soltas sem conectivos, soam como lista telegráfica ('Deus viu... Mandou Noé... Disse... Leve...') em vez de narrativa fluida; adicionar conectivos como 'então', 'por isso', 'mas' ligando as cenas.",
+        "linguagem (nota 3): O encadeamento seco de ordens diretas (cenas 3-6) soa como resumo de lista bíblica, não como alguém contando uma história; reescrever unindo 2-3 dessas cenas em frases corridas."
+      ]
+    },
+    {
+      "quando": "01:29:40",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 3,
+      "problemas": [
+        "roteiro tem 105 palavras; o formato pede 60 a 102"
+      ],
+      "falas": [
+        "Noé passou anos martelando um barco gigante.",
+        "Deus viu a terra cheia de violência.",
+        "Então mandou Noé fazer uma arca de piche.",
+        "E disse: entre na arca, você é justo.",
+        "Leve casais de animais, e pares de aves.",
+        "Em sete dias viria a chuva, por quarenta dias.",
+        "Noé obedeceu tudo o que o Senhor mandou.",
+        "Veio o dilúvio, e a arca flutuou.",
+        "As águas cobriram as montanhas altas.",
+        "Toda carne que se movia na terra morreu.",
+        "Só restaram Noé e os seus.",
+        "Se ninguém te entende, obedece assim mesmo.",
+        "Ninguém acreditava nele, mas só ele ficou seco.",
+        "Escreve amém, e se inscreve pra próxima história."
+      ]
+    },
+    {
+      "quando": "01:31:17",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Noé passou anos martelando um barco enorme.",
+        "Deus viu a terra cheia de violência.",
+        "Mandou Noé fazer uma arca, coberta de piche.",
+        "Disse: entre na arca, você é justo.",
+        "Leve casais de animais, sete pares de aves.",
+        "Em sete dias, chuva por quarenta dias.",
+        "Noé obedeceu tudo o que o Senhor mandou.",
+        "Veio o dilúvio, e a arca flutuou nas águas.",
+        "As águas cobriram as montanhas, e tudo morreu.",
+        "Só restaram Noé e os que estavam com ele.",
+        "Se ninguém te entende, obedece assim mesmo.",
+        "Ninguém via motivo pra chuva, só Noé obedeceu.",
+        "Escreve amém, e se inscreve pra próxima história."
+      ]
+    },
+    {
+      "quando": "01:31:40",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 2,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Deus mandou Noé construir uma arca e nela se salvar com os seus, enquanto um dilúvio destruía todo o resto da vida na terra, porque Noé obedeceu mesmo sem entender.",
+      "erros_factuais": [],
+      "problemas": [
+        "compreensao (nota 3): Cena 4 corta 'com toda a sua família' e cena 10 diz 'os que estavam com ele' sem nunca ter apresentado quem são — quem não conhece a história não entende quem entrou na arca com Noé; acrescente 'família' na cena 4.",
+        "gancho (nota 2): Cena 1 'Noé passou anos martelando um barco enorme' não abre paradoxo nem lacuna real, não gera tensão de algo impossível ou absurdo; reescreva como paradoxo, ex.: 'Ele construiu um barco gigante sem nunca ter visto chuva.'",
+        "ritmo (nota 3): Cenas 2 a 9 soam como lista de fatos soltos sem conectivos ('Deus viu... Mandou... Disse...'), quebrando a sensação de história contada de uma vez; ligue as frases com 'então', 'por isso', 'e' para criar fluxo."
+      ]
+    }
+  ]
+}

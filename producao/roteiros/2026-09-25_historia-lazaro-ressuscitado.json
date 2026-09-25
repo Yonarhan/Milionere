@@ -1,0 +1,279 @@
+[
+  {
+    "slug": "historia-lazaro-ressuscitado",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "lazaro-ressuscitado",
+    "estilo": "cinema_zimage",
+    "epoca": "biblica",
+    "titulo": "Por que Jesus esperou Lázaro morrer? 😢",
+    "cenario_en": "ancient Judea, 1st century AD, dusty hills and stone villages near Bethany",
+    "personagens": [
+      {
+        "id": "jesus",
+        "nome": "Jesus",
+        "nome_en": "Jesus",
+        "descricao_visual": "a man in his early 30s, shoulder-length wavy dark brown hair, short dark beard, olive skin, kind brown eyes, simple cream linen tunic with a brown cloak"
+      },
+      {
+        "id": "lazaro",
+        "nome": "Lázaro",
+        "nome_en": "Lazarus",
+        "descricao_visual": "a thin pale man in his 30s, short dark hair, light beard, plain off-white linen garment"
+      },
+      {
+        "id": "marta",
+        "nome": "Marta",
+        "nome_en": "Martha",
+        "descricao_visual": "a woman in her late 20s, dark hair under a beige head covering, simple brown woven robe"
+      },
+      {
+        "id": "maria-betania",
+        "nome": "Maria de Betânia",
+        "nome_en": "Mary of Bethany",
+        "descricao_visual": "a young woman in her early 20s, long dark hair under a light blue head covering, simple cream woven robe"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Lázaro estava doente em Betânia, e suas irmãs Marta e Maria mandaram avisar Jesus",
+        "ref": "João 11:1-3"
+      },
+      {
+        "n": 2,
+        "evento": "Jesus disse que a doença não era pra morte, mas mesmo assim ficou dois dias onde estava",
+        "ref": "João 11:4-6"
+      },
+      {
+        "n": 3,
+        "evento": "Maria caiu aos pés de Jesus dizendo que, se ele estivesse ali, seu irmão não teria morrido",
+        "ref": "João 11:32"
+      },
+      {
+        "n": 4,
+        "evento": "Jesus viu todos chorando ao redor e ficou profundamente perturbado",
+        "ref": "João 11:33-34"
+      },
+      {
+        "n": 5,
+        "evento": "Jesus chorou",
+        "ref": "João 11:35"
+      },
+      {
+        "n": 6,
+        "evento": "No túmulo, avisaram que já cheirava mal, pois Lázaro estava morto há quatro dias",
+        "ref": "João 11:38-39"
+      },
+      {
+        "n": 7,
+        "evento": "Jesus clamou em alta voz e Lázaro, o morto, saiu, com as mãos e os pés amarrados em faixas e o rosto envolto num lenço",
+        "ref": "João 11:43-44"
+      }
+    ],
+    "versiculo": {
+      "ref": "João 11:35",
+      "texto": "Jesus chorou."
+    },
+    "cenas": [
+      {
+        "fala": "Jesus chegou quatro dias atrasado. De propósito.",
+        "evento": 0,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a bearded man in a cream tunic walking toward a rock-cut tomb sealed with a large stone, determined somber face, dusty afternoon light, flat rocky ground.",
+        "busca": "tomb stone ancient"
+      },
+      {
+        "fala": "Lázaro estava doente, e suas irmãs Marta e Maria chamaram Jesus.",
+        "evento": 1,
+        "personagens": [
+          "lazaro",
+          "marta"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a thin pale man lying weak on a mat inside a modest stone house, a woman kneeling beside him with worried face, warm oil lamp light, bare floor.",
+        "busca": "sick man bed ancient house"
+      },
+      {
+        "fala": "Jesus disse: não era pra morte, mas esperou dois dias.",
+        "evento": 2,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a bearded man standing calmly beside a stone well outside a village, clear sky, dry hills behind, contemplative expression.",
+        "busca": "man standing well ancient"
+      },
+      {
+        "fala": "Maria caiu aos pés e disse: se estivesse aqui, ele viveria.",
+        "evento": 3,
+        "personagens": [
+          "maria-betania",
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot, woman kneeling on dusty ground at the man's feet, grief on her face, dry rocky hills and simple stone village houses behind, overcast natural light, flat rocks scattered on the ground.",
+        "busca": "woman weeping kneeling ancient"
+      },
+      {
+        "fala": "Jesus viu o choro e ficou perturbado.",
+        "evento": 4,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a bearded man with sorrowful face, a blurred grieving crowd faint in the background, warm sunset light, dusty open ground.",
+        "busca": "man sorrowful crowd background"
+      },
+      {
+        "fala": "Só duas palavras: Jesus chorou.",
+        "evento": 5,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a bearded man alone on a rocky hillside, tears on his face, eyes lifted upward, soft overcast light, plain rocky ground.",
+        "busca": "man crying alone hillside"
+      },
+      {
+        "fala": "No túmulo, avisaram: já cheira mal, quatro dias morto.",
+        "evento": 6,
+        "personagens": [
+          "marta",
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a woman standing beside a bearded man in front of a stone cave tomb sealed with a large rock, dry desert ground.",
+        "busca": "tomb cave entrance stone"
+      },
+      {
+        "fala": "Jesus gritou: Lázaro, venha! E o morto saiu, amarrado.",
+        "evento": 7,
+        "personagens": [
+          "lazaro",
+          "jesus"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a man tightly wrapped head to feet in strips of coarse white linen bandages, arms bound against his body, stepping out of a dark rocky cave tomb entrance, dusty ground, bright light behind him, figure watching from a distance.",
+        "busca": "man emerging cave light"
+      },
+      {
+        "fala": "Antes de tirar sua dor, ele sente com você.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a rock-cut tomb entrance carved into a bare hillside, figure standing before the dark opening, soft morning light, dust particles floating, empty rocky valley, distant bare hills, remote ancient isolated terrain",
+        "busca": "empty tomb light dawn"
+      },
+      {
+        "fala": "Ele pode demorar quatro dias, mas nunca chega tarde.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Wide shot from behind of a lone figure walking away down a winding dirt path bordered by rough dry stone walls, dusty rocky hills, golden sunrise light breaking through clouds, empty barren horizon, no structures in sight",
+        "busca": "sunrise hills judea"
+      },
+      {
+        "fala": "Se já sentiu Deus atrasado, escreve amém.",
+        "evento": 0,
+        "personagens": [
+          "jesus"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a bearded man looking upward with a hopeful expression near a plain rocky tomb entrance carved into stone, dusty rocky ground, warm sunlight, empty distant hills and open sky, no settlements visible.",
+        "busca": "man praying hopeful"
+      },
+      {
+        "fala": "Se inscreve pra ouvir mais histórias assim.",
+        "evento": 0,
+        "personagens": [
+          "jesus",
+          "lazaro"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of two men standing facing each other near a tomb entrance, joyful expressions, warm sunset light, dusty open ground between them.",
+        "busca": "two men reunion joy"
+      }
+    ],
+    "descricao": "\"Jesus chorou.\" (João 11:35). Jesus esperou de propósito, viu o sofrimento das irmãs de Lázaro e ainda assim chorou antes do milagre. Você já sentiu que Deus estava atrasado demais? Leia João 11.",
+    "hashtags": [
+      "#jesus",
+      "#biblia",
+      "#fe",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já sentiu que Deus tava atrasado na sua vida? Conta aqui embaixo 👇",
+    "tiktok_titulo": "O corpo já cheirava mal. Jesus foi mesmo assim.",
+    "tiktok_legenda": "Quatro dias morto. Jesus chegou de propósito. Você já esperou algo que parecia tarde demais? #jesus #biblia #fe #milagre",
+    "fontes": [
+      "João 11:1-6; 11:32-44 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Jesus chegou quatro dias atrasado. De propósito.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 5
+      },
+      {
+        "texto": "O amigo dele já estava enterrado há quatro dias.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "Ele podia ter chegado antes. Mas esperou de propósito.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Um corpo que já cheirava mal. E Jesus foi mesmo assim.",
+        "choque": 5,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Deus não é atrasado. Ele é intencional.",
+        "choque": 2,
+        "clareza": 3,
+        "imagem": 2
+      }
+    ],
+    "gancho_tela": "O ATRASO TINHA UM PLANO",
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 4,
+        "ritmo": 4,
+        "payoff": 5,
+        "precisao": 4,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Z-Image Turbo)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    },
+    "_avisos": [
+      "imagens reprovadas: [9]"
+    ]
+  }
+]

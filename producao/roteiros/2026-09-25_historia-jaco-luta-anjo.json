@@ -1,0 +1,260 @@
+[
+  {
+    "slug": "historia-jaco-luta-anjo",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "jaco-luta-anjo",
+    "estilo": "cinema_zimage",
+    "epoca": "biblica",
+    "titulo": "Ele lutou com Deus a noite toda 🌙",
+    "cenario_en": "ancient Canaan, riverside plain near the Jabbok, dry hills and open desert ground, biblical era, night into dawn",
+    "personagens": [
+      {
+        "id": "jaco",
+        "nome": "Jacó",
+        "nome_en": "Jacob",
+        "descricao_visual": "a man in his 70s, long grey-streaked dark hair and full grey beard, weathered olive skin, worn dark brown wool tunic with a leather belt"
+      },
+      {
+        "id": "anjo",
+        "nome": "Anjo do Senhor",
+        "nome_en": "angel",
+        "descricao_visual": "a youthful beardless man around 20, short light golden hair, smooth pale face, calm luminous eyes, plain white linen robe with a thin gold sash, large white feathered wings, soft white glow"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Jacó ficou sozinho e lutou com um homem até o raiar do dia",
+        "ref": "Gênesis 32:24"
+      },
+      {
+        "n": 2,
+        "evento": "Vendo que não prevalecia, o homem tocou na articulação da coxa de Jacó, deslocando-a durante a luta",
+        "ref": "Gênesis 32:25"
+      },
+      {
+        "n": 3,
+        "evento": "O homem pediu para ir embora pois o dia raiava, e Jacó disse que não o deixaria ir sem ser abençoado",
+        "ref": "Gênesis 32:26"
+      },
+      {
+        "n": 4,
+        "evento": "O homem perguntou o nome de Jacó, e ele respondeu: Jacó",
+        "ref": "Gênesis 32:27"
+      },
+      {
+        "n": 5,
+        "evento": "O homem disse que seu nome não seria mais Jacó, mas Israel, pois lutou com Deus e com homens e prevaleceu",
+        "ref": "Gênesis 32:28"
+      },
+      {
+        "n": 6,
+        "evento": "Jacó perguntou o nome do homem, que não respondeu diretamente e o abençoou ali",
+        "ref": "Gênesis 32:29"
+      },
+      {
+        "n": 7,
+        "evento": "Jacó chamou o lugar de Peniel, dizendo que viu a Deus face a face e sua vida foi preservada",
+        "ref": "Gênesis 32:30"
+      }
+    ],
+    "versiculo": {
+      "ref": "Gênesis 32:28",
+      "texto": "Seu nome não será mais Jacó, mas Israel; pois você lutou com Deus e com os homens, e prevaleceu."
+    },
+    "cenas": [
+      {
+        "fala": "Sozinho no escuro, um homem lutou com Jacó.",
+        "evento": 0,
+        "personagens": [
+          "jaco",
+          "anjo"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide shot, two men in close wrestling grip under a full moon, dusty open plain, flat bare dry ground, distant dark hills silhouette, no lights, deep night shadows, tense struggle atmosphere",
+        "busca": "two men wrestling silhouette night"
+      },
+      {
+        "fala": "Lutaram a noite inteira.",
+        "evento": 1,
+        "personagens": [
+          "jaco",
+          "anjo"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of two figures locked in a tense wrestling grapple, straining bodies, gripping shoulders and forearms, feet braced deep in sandy desert ground, deep night sky full of stars, dramatic low moonlight casting long shadows.",
+        "busca": "wrestling silhouette desert night"
+      },
+      {
+        "fala": "Sem vencer, o homem deslocou a coxa de Jacó.",
+        "evento": 2,
+        "personagens": [
+          "jaco"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a weathered man wincing in pain, one hand pressed to his own leg, moonlit background, flat bare sand.",
+        "busca": "man in pain desert night"
+      },
+      {
+        "fala": "O homem pediu pra ir, mas Jacó exigiu a bênção.",
+        "evento": 3,
+        "personagens": [
+          "jaco",
+          "anjo"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide shot on a rocky hilltop at dawn, two figures gripping each other's arms, standing on barren stone ground, pale golden light, winding untouched river valley with wild trees and empty desert hills below, ancient wilderness, no modern structures",
+        "busca": "silhouette struggle dawn desert"
+      },
+      {
+        "fala": "O homem perguntou o nome dele, e ele respondeu: Jacó.",
+        "evento": 4,
+        "personagens": [
+          "anjo",
+          "jaco"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a luminous robed figure facing a weathered man, calm expression, soft dawn light, flat rocky ground, figures apart.",
+        "busca": "biblical figures facing dawn"
+      },
+      {
+        "fala": "Ele disse: seu nome é Israel, porque lutou com Deus e venceu.",
+        "evento": 5,
+        "personagens": [
+          "anjo",
+          "jaco"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a glowing figure standing and a kneeling man facing each other on flat desert sand, golden dawn light, river and dry hills in the background, separated, barefoot, no touching.",
+        "busca": "man blessing dawn light"
+      },
+      {
+        "fala": "Jacó perguntou o nome dele, mas só ganhou a bênção.",
+        "evento": 6,
+        "personagens": [
+          "jaco",
+          "anjo"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a weathered man looking up questioningly toward a luminous robed figure, warm dawn light, flat rocky ground, apart.",
+        "busca": "man looking up dawn desert"
+      },
+      {
+        "fala": "Jacó disse: vi a Deus face a face, e vivi.",
+        "evento": 7,
+        "personagens": [
+          "jaco"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a lone weathered man kneeling on flat sand at sunrise, arms raised in awe, golden light, empty open field.",
+        "busca": "man kneeling sunrise desert"
+      },
+      {
+        "fala": "Talvez essa luta seja Deus te abençoando.",
+        "evento": 0,
+        "personagens": [
+          "jaco"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a lone weathered man sitting quietly on flat sand at early morning light, head bowed, empty horizon.",
+        "busca": "man praying alone sunrise"
+      },
+      {
+        "fala": "Ele saiu mancando, mas não largou até ser abençoado.",
+        "evento": 0,
+        "personagens": [
+          "jaco"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a man walking slowly across flat desert sand toward camera, empty barren dunes and distant hills in background, golden sunrise light, long shadow stretching across ground, peaceful mood.",
+        "busca": "man walking limping desert sunrise"
+      },
+      {
+        "fala": "Se você crê nisso, escreve amém, e se inscreve.",
+        "evento": 0,
+        "personagens": [
+          "jaco"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a man standing tall on flat desert ground at sunrise, arms slightly raised in gratitude, warm golden light, hopeful mood.",
+        "busca": "man arms raised sunrise desert"
+      }
+    ],
+    "descricao": "\"Seu nome não será mais Jacó, mas Israel; pois você lutou com Deus e com os homens, e prevaleceu.\" (Gênesis 32:28)\n\nJacó ficou sozinho à noite e um homem começou a lutar com ele até o amanhecer. Ele só soltou depois de ser abençoado, mesmo mancando pro resto da vida. Você já enfrentou uma luta que não largava você? Leia Gênesis 32.",
+    "hashtags": [
+      "#biblia",
+      "#fé",
+      "#jacó",
+      "#genesis",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já lutou uma noite inteira sem largar de Deus?",
+    "tiktok_titulo": "Por que Jacó não largou o homem que lutava com ele?",
+    "tiktok_legenda": "Ele lutou a noite toda e saiu mancando, mas abençoado. Você já enfrentou uma luta assim na sua vida? #biblia #fé #jacó #genesis",
+    "fontes": [
+      "Gênesis 32:24-30 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Sozinho no escuro, alguém começou a lutar com ele.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 5
+      },
+      {
+        "texto": "Ele lutou a noite toda contra Deus.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Um homem apareceu do nada e o atacou.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "Ele saiu mancando, mas ganhou a luta.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Ele não largou até ser abençoado.",
+        "choque": 3,
+        "clareza": 5,
+        "imagem": 3
+      }
+    ],
+    "gancho_tela": "ATÉ O AMANHECER",
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 5,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 3
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Z-Image Turbo)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    },
+    "_avisos": []
+  }
+]

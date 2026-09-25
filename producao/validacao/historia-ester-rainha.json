@@ -1,0 +1,280 @@
+{
+  "etapas": [
+    {
+      "quando": "00:44:59",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Uma lei podia matar a própria rainha.",
+        "Mardoqueu avisou: nem no palácio você escapa.",
+        "Quem sabe você chegou ao reino pra isto?",
+        "Ester pediu jejum de três dias.",
+        "Vou ao rei. Se eu perecer, pereci.",
+        "Diante do rei, ela pediu: minha vida e meu povo.",
+        "Fomos vendidos, disse ela, pra morrer.",
+        "O rei perguntou: quem fez isso?",
+        "Um inimigo! Este perverso Hamã, disse Ester.",
+        "Hamã tremeu diante do rei e da rainha.",
+        "Talvez você só precise dar esse passo.",
+        "Ester podia morrer entrando sem ser chamada. Mas entrou.",
+        "Se isso te tocou, escreve amém e inscreve-se."
+      ]
+    },
+    {
+      "quando": "00:45:42",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 3,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Ester arrisca a vida indo ao rei sem ser chamada para salvar seu povo e denuncia Hamã como o inimigo responsável pelo decreto de extermínio dos judeus.",
+      "erros_factuais": [],
+      "problemas": [
+        "personagens (nota 3): Cena 9: Hamã surge do nada como 'inimigo' sem nunca ter sido mencionado ou mostrado como vilão antes; adicione uma menção breve dele (ex: substituir parte da cena 1 por 'Hamã tramou matar todo o povo de Ester') para não parecer um personagem chegando sem contexto.",
+        "compreensao (nota 3): Cenas 8-9: quem nunca leu a história não sabe por que Ester acusa Hamã nem qual foi o crime dele; falta 1 frase curta estabelecendo o complô de Hamã contra os judeus antes da acusação."
+      ]
+    },
+    {
+      "quando": "00:47:16",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Uma lei podia matar a própria rainha.",
+        "Hamã tramava matar todo o povo dela.",
+        "Mardoqueu avisou: você não escapa, e chegou ao reino pra isto.",
+        "Ester pediu jejum de três dias.",
+        "Vou ao rei. Se eu perecer, pereci.",
+        "Diante do rei, ela pediu sua vida e seu povo.",
+        "Fomos vendidos, disse ela, pra morrer.",
+        "O rei perguntou: quem fez isso?",
+        "Foi Hamã, o inimigo, quem tramou isso, disse Ester.",
+        "Hamã tremeu diante do rei e da rainha.",
+        "Talvez você tema dar esse passo também.",
+        "Ester podia morrer entrando sem ser chamada. Mas entrou.",
+        "Se isso te tocou, escreve amém e inscreve-se."
+      ]
+    },
+    {
+      "quando": "00:47:48",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "A rainha Ester arrisca a própria vida para denunciar Hamã ao rei e salvar seu povo da destruição.",
+      "erros_factuais": [
+        "Cena 12: 'entrando sem ser chamada' é um detalhe (a lei de não entrar sem ser chamado) que não consta na FONTE fornecida — é acréscimo não sourced, mesmo sendo biblicamente verdadeiro em outro trecho."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 12: 'entrando sem ser chamada' é um detalhe (a lei de não entrar sem ser chamado) que não consta na FONTE fornecida — é acréscimo não sourced, mesmo sendo biblicamente verdadeiro em outro trecho.",
+        "fidelidade (nota 3): Cena 12 acrescenta 'sem ser chamada', fato não presente na fonte fornecida (só 4:13-16 e 7:3-6); corrija para 'Mas entrou, mesmo podendo morrer', usando só o 'contra a lei' já citado na cena 5."
+      ]
+    },
+    {
+      "quando": "00:49:11",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Uma lei podia matar a própria rainha.",
+        "Hamã tramava matar todo o povo judeu.",
+        "Mardoqueu avisou: nem no palácio escapa.",
+        "Quem sabe você chegou ao reino pra isto?",
+        "Ester pediu jejum de três dias.",
+        "Vou ao rei. Se eu perecer, pereci.",
+        "Diante do rei, ela pediu: minha vida, meu povo.",
+        "Fomos vendidos, disse ela, pra morrer.",
+        "O rei perguntou: quem fez isso?",
+        "Um inimigo! Este perverso Hamã, disse Ester.",
+        "Hamã tremeu diante do rei e da rainha.",
+        "Talvez você só precise dar esse passo.",
+        "Ester podia morrer entrando sem ser chamada. Mas entrou.",
+        "Se isso te tocou, escreve amém e inscreve-se."
+      ]
+    },
+    {
+      "quando": "00:49:38",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 2,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Ester arriscou a vida indo sem ser chamada ao rei para salvar seu povo do plano de extermínio de Hamã, e o rei descobriu e puniu o vilão.",
+      "erros_factuais": [
+        "Cena 13: 'Ester podia morrer entrando sem ser chamada' é um detalhe que não consta na FONTE fornecida (só aparece a lei genérica contra ir ao rei, em Ester 4:16); apresentar isso como fato específico é acréscimo não sustentado pelo trecho dado."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 13: 'Ester podia morrer entrando sem ser chamada' é um detalhe que não consta na FONTE fornecida (só aparece a lei genérica contra ir ao rei, em Ester 4:16); apresentar isso como fato específico é acréscimo não sustentado pelo trecho dado.",
+        "fidelidade (nota 3): Cena 13 afirma como fato 'entrando sem ser chamada', detalhe ausente na FONTE citada; ou remova essa cláusula ou baseie-a apenas em 'contra a lei' (já dito na cena 6).",
+        "ordem (nota 2): Cena 13 volta no tempo e reconta a decisão de ir ao rei (evento já narrado nas cenas 6-7) depois do clímax (cena 11 - Hamã tremendo), quebrando a cronologia; mova o conteúdo de 'entrar sem ser chamada' para antes da cena 7, junto da decisão, e deixe a cena 13 só com a frase-loop sem reintroduzir o fato.",
+        "compreensao (nota 3): A cena 13, ao repetir 'Ester podia morrer entrando' depois de todo o desfecho já ter acontecido (cenas 7-11), confunde quem ouve pela primeira vez, parecendo um novo fato solto no fim; reescreva a cena 13 apenas como fechamento emocional sem novo dado factual."
+      ]
+    },
+    {
+      "quando": "00:51:24",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Ela escolheu morrer para salvar seu povo.",
+        "Hamã jurou destruir o povo dela.",
+        "Mardoqueu avisou: nem no palácio ela escapava.",
+        "Quem sabe você chegou ao reino pra isto?",
+        "Ester pediu jejum de três dias.",
+        "Vou ao rei. Se eu perecer, pereci.",
+        "Diante do rei, ela pediu: minha vida e meu povo.",
+        "Fomos vendidos, disse ela, pra morrer.",
+        "O rei perguntou: quem fez isso?",
+        "Um inimigo! Este perverso Hamã, disse Ester.",
+        "Hamã tremeu diante do rei e da rainha.",
+        "Talvez você só precise dar esse passo.",
+        "Ela podia recuar. Mas foi.",
+        "Se isso te tocou, escreve amém e inscreve-se."
+      ]
+    },
+    {
+      "quando": "00:51:55",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 3,
+        "personagens": 4,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Ester arrisca a vida indo falar com o rei sem ser chamada para salvar seu povo do plano de Hamã, e no fim acusa Hamã diante do rei, que fica apavorado.",
+      "erros_factuais": [
+        "Cena 2: 'Hamã jurou destruir o povo dela' é um fato que não está no trecho da FONTE fornecido (o decreto de Hamã não aparece nos versículos citados); apresentar isso como fato extrapola a fonte."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 2: 'Hamã jurou destruir o povo dela' é um fato que não está no trecho da FONTE fornecido (o decreto de Hamã não aparece nos versículos citados); apresentar isso como fato extrapola a fonte.",
+        "fidelidade (nota 3): Cena 2 afirma como fato que Hamã 'jurou destruir o povo dela', detalhe/motivação que não consta no texto fornecido (Ester 4:13-16 e 7:3-6); troque por algo extraído da fonte, como reforçar o perigo que Mardoqueu já cita em 4:13-14.",
+        "ordem (nota 3): Cena 2 (evento 0) entra entre o gancho (cena 1) e o início cronológico (cena 3, evento 1), quebrando a regra de que só a cena 1 pode antecipar/fugir da ordem; mova a informação de Hamã para perto de onde ele é citado no clímax (cena 10) ou remova.",
+        "compreensao (nota 3): Quem não conhece a história ouve cena 2 e não entende de onde vem essa ameaça de Hamã nem por que Ester teria que se arriscar, já que a fonte só explica o perigo pela boca de Mardoqueu (4:13-14); substitua cena 2 por uma frase que já apoie o aviso de Mardoqueu da cena 3."
+      ]
+    },
+    {
+      "quando": "00:51:55",
+      "etapa": "camada2",
+      "ok": true,
+      "aceito_com_ressalvas": [
+        "personagens (nota 3): Cena 9: Hamã surge do nada como 'inimigo' sem nunca ter sido mencionado ou mostrado como vilão antes; adicione uma menção breve dele (ex: substituir parte da cena 1 por 'Hamã tramou matar todo o povo de Ester') para não parecer um personagem chegando sem contexto.",
+        "compreensao (nota 3): Cenas 8-9: quem nunca leu a história não sabe por que Ester acusa Hamã nem qual foi o crime dele; falta 1 frase curta estabelecendo o complô de Hamã contra os judeus antes da acusação."
+      ],
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 3,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      }
+    },
+    {
+      "quando": "01:03:09",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 5,
+          "ok": false,
+          "problema": "Sandália dourada com salto de plataforma tem visual moderno, destoando de calçado de época",
+          "imagem_corrigida": ""
+        },
+        {
+          "cena": 8,
+          "ok": false,
+          "problema": "Pés com sandálias mostram dedos deformados/fundidos, parecendo derretidos em vez de dedos separados",
+          "imagem_corrigida": ""
+        },
+        {
+          "cena": 12,
+          "ok": false,
+          "problema": "Objeto dourado na cintura parece uma mão deformada/fundida ao vestido, artefato de anatomia perceptível",
+          "imagem_corrigida": "Wide shot of a queen walking forward through an ornate golden palace doorway toward the camera, marble floor reflecting warm torchlight, grand hallway stretching behind her, hands clearly visible at her sides."
+        }
+      ]
+    },
+    {
+      "quando": "01:07:23",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "01:22:42",
+      "etapa": "animacao",
+      "ok": true,
+      "cenas": [
+        1,
+        5,
+        9
+      ],
+      "feitas": [
+        1,
+        5,
+        9
+      ],
+      "segundos": 919
+    },
+    {
+      "quando": "01:23:12",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-25_historia-ester-rainha_sem-musica.mp4",
+      "duracao": 40.9,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    },
+    {
+      "quando": "01:23:12",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-25_historia-ester-rainha.mp4",
+      "duracao": 40.9,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "etapas": [
+    {
+      "quando": "04:06:33",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "O pai ergueu a faca sobre o filho.",
+        "Deus chamou Abraão. Ele disse: Eis-me aqui.",
+        "Deus disse: leve Isaque e ofereça-o como sacrifício.",
+        "Abraão montou o altar e amarrou Isaque.",
+        "Ele pegou a faca pra matar o filho.",
+        "O anjo gritou: Abraão, Abraão!",
+        "Não toque nele, sei que você teme a Deus.",
+        "Você não negou seu único filho.",
+        "Abraão viu um carneiro preso pelos chifres.",
+        "Ofereceu o carneiro ali, no lugar de Isaque.",
+        "Deus pede o que dói largar, mas provê.",
+        "Ele ergueu a faca, mas Deus parou tudo.",
+        "Se creu nisso, escreve amém e se inscreve."
+      ]
+    },
+    {
+      "quando": "04:06:57",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 3,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Abraão foi testado por Deus a sacrificar o próprio filho Isaque, mas no último instante um anjo o deteve e um carneiro foi oferecido em seu lugar.",
+      "erros_factuais": [],
+      "problemas": [
+        "ordem (nota 3): Cena 12 repete o clímax (faca erguida/Deus parou) já mostrado nas cenas 5-7, dando a impressão de um novo evento depois do desfecho; mova essa frase para logo após a cena 1 ou funda com a frase-loop sem repetir a ação da faca de novo.",
+        "compreensao (nota 3): Cena 11 é genérica e não deixa claro de quem é a dor nem liga a uma dor real (culpa, espera, medo, luto) como pede o formato; reescreva em 2ª pessoa ('Deus também te pede o que dói largar...').",
+        "compreensao (nota 3): Cena 12 reintroduz 'ergueu a faca' depois do carneiro já ter sido oferecido, soando como se a história voltasse no tempo; corte essa repetição."
+      ]
+    },
+    {
+      "quando": "04:08:09",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 2,
+      "problemas": [
+        "roteiro tem 103 palavras; o formato pede 60 a 102"
+      ],
+      "falas": [
+        "O pai ergueu a faca sobre o filho.",
+        "Deus chamou Abraão. Ele disse: Eis-me aqui.",
+        "Deus disse: leve Isaque e ofereça-o como sacrifício.",
+        "Abraão montou o altar e amarrou Isaque.",
+        "Ele pegou a faca pra matar o filho.",
+        "O anjo gritou: Abraão, Abraão!",
+        "Não toque nele, sei que você teme a Deus.",
+        "Você não negou seu único filho.",
+        "Abraão viu um carneiro preso pelos chifres.",
+        "Ofereceu o carneiro ali, no lugar de Isaque.",
+        "Deus também pede o que dói largar, mas ele provê.",
+        "Ele quase perdeu o filho, mas Deus proveu a tempo.",
+        "Se creu nisso, escreve amém e se inscreve."
+      ]
+    },
+    {
+      "quando": "04:09:12",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "O pai ergueu a faca sobre o filho.",
+        "Deus chamou Abraão. Ele disse: Eis-me aqui.",
+        "Deus disse: leve Isaque e ofereça-o como sacrifício.",
+        "Abraão montou o altar e amarrou Isaque.",
+        "Ele pegou a faca pra matar o filho.",
+        "O anjo gritou: Abraão, Abraão!",
+        "Não toque nele, sei que você teme a Deus.",
+        "Você não negou seu único filho.",
+        "Abraão viu um carneiro preso pelos chifres.",
+        "Ofereceu o carneiro ali, no lugar de Isaque.",
+        "Deus também pode pedir o que você mais teme perder.",
+        "A faca não desceu: Deus mesmo proveu o sacrifício.",
+        "Se creu, escreve amém e se inscreve agora."
+      ]
+    },
+    {
+      "quando": "04:09:39",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Abraão quase sacrifica o filho Isaque por ordem de Deus, mas um anjo o impede no último instante e um carneiro é oferecido em seu lugar.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "04:29:36",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 3,
+          "ok": false,
+          "problema": "Há detritos brancos no chão que parecem lixo moderno (papel/plástico), quebrando a ambientação bíblica.",
+          "imagem_corrigida": "Wide shot of an elderly man and a teenage boy walking together on a dusty dirt trail at sunrise, carrying wood bundles on shoulders, dry desert hills and scattered rocks in the background, clear ground."
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "Ao fundo, no vale à esquerda, há um aglomerado de construções modernas (telhados retangulares brancos) que quebra a ambientação bíblica da cena.",
+          "imagem_corrigida": "Wide shot on a rocky mountaintop, elderly man in foreground looking up startled, glowing figure with wings above in bright sky, barren desert valley and distant mountains below, dramatic clouds, no buildings visible."
+        },
+        {
+          "cena": 10,
+          "ok": false,
+          "problema": "Fundo mostra casas modernas ao longe, quebrando a ambientação bíblica",
+          "imagem_corrigida": "Wide shot of an elderly man placing a ram on a stone altar with smoke rising, a teenage boy standing beside watching, on a barren rocky mountaintop, clear sky, dry dirt ground, distant empty hills with no structures."
+        }
+      ]
+    },
+    {
+      "quando": "04:43:59",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 2,
+      "reprovadas": [
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "Fundo distante mostra o que parecem ser construções modernas e uma estrada pavimentada no vale, quebrando a ambientação bíblica antiga.",
+          "imagem_corrigida": "Wide shot on a rocky mountaintop, man in foreground looking up, glowing winged figure hovering above in bright sky, empty barren desert valley with sand dunes, dry rugged natural mountains, dramatic clouds, sunlight, untouched wilderness terrain."
+        }
+      ]
+    },
+    {
+      "quando": "05:01:48",
+      "etapa": "animacao",
+      "ok": true,
+      "cenas": [
+        1,
+        5,
+        9
+      ],
+      "feitas": [
+        1,
+        5,
+        9
+      ],
+      "segundos": 1068
+    },
+    {
+      "quando": "05:02:11",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-25_historia-abraao-isaque_sem-musica.mp4",
+      "duracao": 39.2,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    },
+    {
+      "quando": "05:02:11",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-25_historia-abraao-isaque.mp4",
+      "duracao": 39.2,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    }
+  ]
+}

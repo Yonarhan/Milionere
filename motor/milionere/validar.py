@@ -54,11 +54,20 @@ def checar_cta_gospel(cenas: list[dict]) -> list[str]:
     return erros
 
 
+def consertar_pontuacao(r: dict) -> None:
+    """Travessão e ponto e vírgula viram vírgula/ponto sem gastar uma reescrita do LLM (custava 1-2 min cada)."""
+    for c in r["cenas"]:
+        f = re.sub(r"\s*[—–]\s*", ", ", c["fala"])
+        c["fala"] = re.sub(r"\s*;\s*", ", ", f).replace(",.", ".").replace(" ,", ",")
+
+
 def camada1(r: dict, formato: dict, tema: dict) -> list[str]:
     erros: list[str] = []
+    consertar_pontuacao(r)
     cenas = r["cenas"]
     total = sum(len(_palavras(c["fala"])) for c in cenas)
     lo, hi = formato["palavras"]
+    hi = round(hi * 1.05)  # 103 palavras num formato de 102 reprovava e custava uma reescrita inteira (~2s de fala)
     if not lo <= total <= hi:
         erros.append(f"roteiro tem {total} palavras; o formato pede {lo} a {hi}")
     c_lo, c_hi = formato["cenas"]

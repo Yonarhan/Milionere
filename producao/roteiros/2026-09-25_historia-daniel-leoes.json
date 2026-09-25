@@ -1,0 +1,267 @@
+[
+  {
+    "slug": "historia-daniel-leoes",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "daniel-leoes",
+    "estilo": "cinema_zimage",
+    "epoca": "biblica",
+    "titulo": "Daniel orou sabendo que podia ir pros leões 🦁",
+    "cenario_en": "ancient Persian empire under King Darius the Mede, 6th century BC, stone palace halls and rocky courtyards",
+    "personagens": [
+      {
+        "id": "daniel",
+        "nome": "Daniel",
+        "nome_en": "Daniel",
+        "descricao_visual": "an elderly Hebrew man in his 80s, thinning white hair, long white beard, deeply wrinkled olive skin, simple long dark blue robe with a woven sash"
+      },
+      {
+        "id": "rei-dario",
+        "nome": "Rei Dario",
+        "nome_en": "King Darius",
+        "descricao_visual": "a Persian-Median king in his 50s, short grey-streaked dark beard, greying dark hair under a jeweled crown, richly embroidered deep purple and gold royal robe, olive skin"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Daniel soube que o documento havia sido assinado",
+        "ref": "Daniel 6:10"
+      },
+      {
+        "n": 2,
+        "evento": "Foi para casa e orou três vezes ao dia, com a janela aberta pra Jerusalém, como sempre",
+        "ref": "Daniel 6:10"
+      },
+      {
+        "n": 3,
+        "evento": "Foi jogado na cova dos leões, e o rei disse que o Deus dele o livraria",
+        "ref": "Daniel 6:16"
+      },
+      {
+        "n": 4,
+        "evento": "Selaram a boca da cova com uma pedra e o anel do rei",
+        "ref": "Daniel 6:17"
+      },
+      {
+        "n": 5,
+        "evento": "O rei passou a noite jejuando, sem dormir",
+        "ref": "Daniel 6:18"
+      },
+      {
+        "n": 6,
+        "evento": "De manhã cedo, o rei foi correndo até a cova",
+        "ref": "Daniel 6:19"
+      },
+      {
+        "n": 7,
+        "evento": "O rei chamou Daniel com voz angustiada, perguntando se Deus o livrou dos leões",
+        "ref": "Daniel 6:20"
+      },
+      {
+        "n": 8,
+        "evento": "Daniel respondeu que Deus mandou um anjo e fechou a boca dos leões, porque nele não foi achado mal",
+        "ref": "Daniel 6:21-22"
+      }
+    ],
+    "versiculo": {
+      "ref": "Daniel 6:10",
+      "texto": "Quando Daniel soube que o documento havia sido assinado, ele foi para sua casa (ora, as janelas do seu quarto estavam abertas em direção a Jerusalém) e ele se ajoelhou três vezes ao dia, e orou, e deu graças diante do seu Deus, como costumava fazer antes."
+    },
+    "cenas": [
+      {
+        "fala": "Um documento foi assinado. Ele orou assim mesmo.",
+        "evento": 1,
+        "personagens": [
+          "daniel"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of an elderly bearded man kneeling at an open stone window, hands near chest, worried determined face, dawn light, bare wall.",
+        "busca": "elderly man praying window dawn"
+      },
+      {
+        "fala": "Foi pra casa, abriu a janela voltada pra Jerusalém.",
+        "evento": 2,
+        "personagens": [
+          "daniel"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of an elderly bearded man walking toward an open window in a plain stone room, determined face, soft morning light, bare wall.",
+        "busca": "man walking toward window ancient room"
+      },
+      {
+        "fala": "E se ajoelhou pra orar, três vezes ao dia.",
+        "evento": 2,
+        "personagens": [
+          "daniel"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of elderly bearded man kneeling at open window shutters, calm face lifted upward, soft morning light, bare stone wall.",
+        "busca": "man praying ancient window sunrise"
+      },
+      {
+        "fala": "Por isso foi jogado na cova dos leões.",
+        "evento": 3,
+        "personagens": [
+          "daniel"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of an elderly bearded man standing at the edge of a dark stone pit, guard silhouettes behind, torchlight, faint lion shapes below in shadow.",
+        "busca": "stone pit torchlight ancient prison"
+      },
+      {
+        "fala": "O rei disse: seu Deus vai te livrar.",
+        "evento": 3,
+        "personagens": [
+          "rei-dario"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a worried king standing at a pit's edge, torchlight on his face, looking down with concern, rough stone wall background.",
+        "busca": "worried ancient king torchlight"
+      },
+      {
+        "fala": "Selaram a cova com pedra e o anel do rei.",
+        "evento": 4,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a large flat stone sealing a pit opening at night, a wax seal pressed with a royal ring mark, torches around, ominous mood.",
+        "busca": "sealed stone ancient tomb night"
+      },
+      {
+        "fala": "O rei jejuou a noite toda, sem dormir.",
+        "evento": 5,
+        "personagens": [
+          "rei-dario"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a king sitting alone on the floor of a dim palace hall, restless face, single oil lamp flickering, empty stone room, night.",
+        "busca": "king restless night palace lamp"
+      },
+      {
+        "fala": "De manhã, correu à cova: Daniel, foi livrado?",
+        "evento": 7,
+        "personagens": [
+          "rei-dario"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a king kneeling at a sealed stone pit at dawn, calling out with an anguished face, early golden morning light, rocky ground.",
+        "busca": "king kneeling stone pit dawn"
+      },
+      {
+        "fala": "Deus mandou um anjo e fechou a boca deles.",
+        "evento": 8,
+        "personagens": [
+          "daniel"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of an elderly bearded man standing calm inside a stone pit, faint golden light above him, lions resting peacefully in shadowed corners.",
+        "busca": "man calm stone pit golden light"
+      },
+      {
+        "fala": "Sua fé pode custar caro, mas Deus não esquece.",
+        "evento": 0,
+        "personagens": [
+          "daniel"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of elderly bearded man looking upward with peaceful relief, soft warm light on his face, bare stone wall behind him.",
+        "busca": "man peaceful relief face light"
+      },
+      {
+        "fala": "Ele orou sabendo do risco, e saiu vivo.",
+        "evento": 0,
+        "personagens": [
+          "daniel"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of an elderly bearded man walking out of a stone pit opening, calm expression, early morning light, flat rocky ground around him.",
+        "busca": "man walking out stone pit sunrise"
+      },
+      {
+        "fala": "Se você crê, escreve amém, e se inscreve.",
+        "evento": 0,
+        "personagens": [
+          "daniel"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Close-medium shot of elderly bearded man kneeling in prayer at an open window, warm sunrise light, peaceful powerful expression, bare stone sill.",
+        "busca": "man praying sunrise window peaceful"
+      }
+    ],
+    "descricao": "\"Ele se ajoelhou três vezes ao dia, e orou, e deu graças diante do seu Deus, como costumava fazer antes.\" (Daniel 6:10). Mesmo sabendo do risco, Daniel não escondeu sua fé. E Deus fechou a boca dos leões. Você oraria do mesmo jeito? Leia Daniel 6.",
+    "hashtags": [
+      "#daniel",
+      "#biblia",
+      "#fe",
+      "#deus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você continuaria orando mesmo sabendo do risco que corria?",
+    "tiktok_titulo": "O rei que jejuou a noite toda esperando um milagre",
+    "tiktok_legenda": "Daniel sabia do risco e orou do mesmo jeito. Você teria coragem de fazer igual? #daniel #biblia #fe #oracao",
+    "fontes": [
+      "Daniel 6:10; 6:16-22 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Um documento foi assinado. Ele orou assim mesmo.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Ele sabia que podia morrer. Orou mesmo assim.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Orar virou coisa proibida. Ele não parou.",
+        "choque": 5,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "Um rei jejuou a noite toda por medo.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Ele foi jogado aos leões, e sorriu depois.",
+        "choque": 5,
+        "clareza": 3,
+        "imagem": 4
+      }
+    ],
+    "gancho_tela": "MESMO SABENDO DO RISCO",
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 5,
+        "ritmo": 4,
+        "payoff": 5,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Z-Image Turbo)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    },
+    "_avisos": []
+  }
+]

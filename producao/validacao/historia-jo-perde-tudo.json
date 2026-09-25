@@ -1,0 +1,141 @@
+{
+  "etapas": [
+    {
+      "quando": "05:05:32",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 1,
+      "problemas": [
+        "as cenas contam os eventos fora de ordem: [0, 1, 2, 5, 2, 6, 9, 0, 0, 0]"
+      ],
+      "falas": [
+        "Ele perdeu tudo num só dia.",
+        "Os filhos de Jó comiam juntos, em festa.",
+        "Um mensageiro veio: sabeus mataram os servos, e fogo queimou as ovelhas.",
+        "Outro veio: caldeus levaram os camelos, e um vento matou todos os filhos.",
+        "Cada mensageiro disse a mesma frase: só eu escapei pra contar.",
+        "Jó rasgou o manto, caiu por terra e disse: o Senhor deu, e tomou.",
+        "Sua mulher mandou amaldiçoar Deus, mas ele não pecou.",
+        "Quando tudo desaba, você ainda pode adorar.",
+        "Ele perdeu tudo num dia. E abençoou o Senhor mesmo assim.",
+        "Se isso tocou você, escreve amém e se inscreve."
+      ]
+    },
+    {
+      "quando": "05:07:55",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Jó perdeu tudo num só dia.",
+        "Seus filhos comiam juntos, em festa.",
+        "Sabeus mataram os servos, e fogo queimou ovelhas.",
+        "Caldeus levaram os camelos, e mataram servos.",
+        "Um vento derrubou a casa, e matou os filhos de Jó.",
+        "Cada mensageiro disse: só eu escapei pra contar.",
+        "Jó rasgou o manto, caiu por terra e adorou.",
+        "Ele disse: o Senhor deu, e o Senhor tomou.",
+        "Sua mulher mandou amaldiçoar Deus e morrer.",
+        "Jó respondeu: receberemos o bem e o mal, sem pecar.",
+        "Quando tudo desaba, você ainda pode adorar.",
+        "Escreve amém, e se inscreve pra mais histórias assim."
+      ]
+    },
+    {
+      "quando": "05:08:34",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 4,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Jó perde tudo em um dia (bens, servos e filhos), mas mesmo assim adora a Deus e, quando a esposa manda amaldiçoá-lo, ele responde que aceita o bem e o mal da mão do Senhor sem pecar.",
+      "erros_factuais": [],
+      "problemas": [
+        "compreensao (nota 3): Quem não conhece a história pode achar que a cena 6 é um novo evento (um quinto mensageiro) em vez de um padrão repetido nos anteriores — integre a frase 'só eu escapei' a cada desastre ou deixe claro que é um refrão.",
+        "gancho (nota 3): Cena 1 'Jó perdeu tudo num só dia' é um resumo, não um paradoxo real que gera lacuna — troque por algo como 'Ele perdeu tudo e agradeceu a Deus', que já entrega a tensão bem/mal sem contar o final.",
+        "ritmo (nota 3): Cenas 3, 4 e 5 repetem a estrutura 'X atacou e matou servos' três vezes seguidas soando como lista telegráfica em vez de história contada — ligue as cenas com conectivos de urgência ('mal ele terminava de falar, outro chegava dizendo...') para dar sensação de golpe contínuo.",
+        "payoff (nota 3): Falta a frase-loop que responde ao gancho antes do CTA: depois da aplicação pessoal (cena 11) o roteiro pula direto pro CTA sem fechar o paradoxo aberto na cena 1 — adicione uma cena curta tipo 'Jó perdeu tudo, menos a fé' logo antes de 'escreve amém', cortando alguma palavra das cenas 3-5 para caber no limite."
+      ]
+    },
+    {
+      "quando": "05:10:34",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 3,
+      "problemas": [
+        "cena 9 tem travessão ou ponto e vírgula (o TTS lê mal): «Sua mulher mandou amaldiçoar Deus; Jó disse: recebemos o bem e o mal.»"
+      ],
+      "falas": [
+        "Ele perdeu tudo, e agradeceu a Deus.",
+        "Os filhos de Jó festejavam juntos, em paz.",
+        "Um mensageiro chegou: sabeus mataram os servos.",
+        "Mal calou, outro disse: fogo queimou ovelhas.",
+        "Ainda outro: caldeus levaram os camelos e mataram servos.",
+        "Por fim, um vento derrubou a casa, matando os dez filhos.",
+        "Jó rasgou o manto, caiu por terra, e adorou.",
+        "Ele disse: o Senhor deu, e o Senhor tomou.",
+        "Sua mulher mandou amaldiçoar Deus; Jó disse: recebemos o bem e o mal.",
+        "Quando tudo desaba, você ainda pode adorar.",
+        "Jó perdeu tudo, menos a fé.",
+        "Escreve amém, e se inscreve pra mais histórias assim."
+      ]
+    },
+    {
+      "quando": "05:12:57",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Ele perdeu dez filhos em um único dia.",
+        "Os filhos de Jó festejavam juntos.",
+        "Um mensageiro chegou: sabeus mataram os servos.",
+        "Mal calou, outro disse: fogo queimou ovelhas.",
+        "Ainda outro: caldeus levaram os camelos e mataram servos.",
+        "De novo vieram avisar: um vento derrubou a casa e matou os dez filhos.",
+        "Jó rasgou o manto, caiu por terra, e adorou.",
+        "Ele disse: o Senhor deu, e o Senhor tomou.",
+        "Sua mulher mandou amaldiçoar Deus. Jó disse: recebemos o bem e o mal.",
+        "Quando tudo desaba, você pode adorar.",
+        "Jó perdeu tudo, menos a fé.",
+        "Escreve amém, e se inscreve pra mais histórias."
+      ]
+    },
+    {
+      "quando": "05:13:44",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Jó perde todos os bens e os filhos em um só dia através de mensageiros sucessivos, mas mesmo assim adora a Deus e, quando a esposa manda amaldiçoá-lo, ele reafirma sua fé sem pecar.",
+      "erros_factuais": [
+        "Cenas 1 e 6: 'dez filhos' é um número não explicitado no trecho da FONTE fornecido (apenas 'filhos e filhas')."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cenas 1 e 6: 'dez filhos' é um número não explicitado no trecho da FONTE fornecido (apenas 'filhos e filhas').",
+        "fidelidade (nota 3): Cenas 1 e 6: o número 'dez filhos' não aparece no trecho da FONTE fornecido (só se sabe que eram filhos e filhas) — trocar por 'todos os seus filhos e filhas' para não afirmar um número que a fonte dada não confirma.",
+        "gancho (nota 3): Cena 1 'Ele perdeu dez filhos em um único dia' é trágico mas não é um paradoxo/lacuna real (não soa impossível nem contraditório) — trocar por algo como 'Ele perdeu tudo e agradeceu a Deus', que abre a lacuna de como isso é possível.",
+        "ritmo (nota 3): Falta o momento-curiosidade pedido pelo formato: o detalhe exato e repetido 'só eu escapei para lhe contar' de cada mensageiro não aparece — inserir essa frase curta em uma das cenas dos mensageiros (3, 4 ou 5), cortando o detalhe secundário 'camelos' da cena 5 para caber no limite de palavras.",
+        "payoff (nota 3): Cena 11 'Jó perdeu tudo, menos a fé' é um loop genérico que não ecoa as palavras específicas do gancho — reescrever para espelhar o gancho escolhido, ex.: se o gancho for 'perdeu tudo e agradeceu', o loop deve fechar com 'foi assim que ele agradeceu mesmo perdendo tudo'."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,301 @@
+[
+  {
+    "slug": "historia-ester-rainha",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "ester-rainha",
+    "estilo": "cinema_zimage",
+    "epoca": "biblica",
+    "titulo": "Ela podia morrer só por entrar na sala do rei 👑",
+    "cenario_en": "ancient Persian royal palace, 5th century BC, ornate golden halls with marble floors and torchlight",
+    "personagens": [
+      {
+        "id": "ester",
+        "nome": "Ester",
+        "nome_en": "Esther",
+        "descricao_visual": "a young queen in her early 20s, long dark hair under a jeweled headpiece, elegant purple silk robe embroidered with gold, olive skin"
+      },
+      {
+        "id": "mardoqueu",
+        "nome": "Mardoqueu",
+        "nome_en": "Mordecai",
+        "descricao_visual": "an elderly Jewish man in his 60s, long grey beard, grey hair, plain sackcloth robe, olive skin"
+      },
+      {
+        "id": "rei-assuero",
+        "nome": "Rei Assuero",
+        "nome_en": "King Ahasuerus",
+        "descricao_visual": "a Persian king in his 40s, short black beard, dark hair under a tall jeweled crown, richly embroidered royal robe with gold trim, olive skin"
+      },
+      {
+        "id": "hama",
+        "nome": "Hamã",
+        "nome_en": "Haman",
+        "descricao_visual": "a Persian noble man in his 50s, groomed grey-streaked beard, dark hair, ornate dark red robe with gold sash, olive skin"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Mardoqueu pede que digam a Ester que ela não vai escapar só por estar na casa do rei",
+        "ref": "Ester 4:13"
+      },
+      {
+        "n": 2,
+        "evento": "Mardoqueu diz que, se ela calar, o alívio virá de outro lugar, mas ela e a casa do pai perecerão, e pergunta se não foi pra um momento como este que ela chegou ao reino",
+        "ref": "Ester 4:14"
+      },
+      {
+        "n": 3,
+        "evento": "Ester pede que reúnam os judeus em Susã e jejuem por ela três dias, sem comer nem beber",
+        "ref": "Ester 4:16"
+      },
+      {
+        "n": 4,
+        "evento": "Ester decide ir ao rei mesmo sendo contra a lei, dizendo: se eu perecer, pereci",
+        "ref": "Ester 4:16"
+      },
+      {
+        "n": 5,
+        "evento": "Diante do rei Assuero, a rainha Ester pede que sua vida lhe seja concedida, e o seu povo",
+        "ref": "Ester 7:3"
+      },
+      {
+        "n": 6,
+        "evento": "Ester explica que ela e seu povo foram vendidos para serem destruídos, mortos e aniquilados",
+        "ref": "Ester 7:4"
+      },
+      {
+        "n": 7,
+        "evento": "O rei Assuero pergunta quem ousou fazer tal coisa",
+        "ref": "Ester 7:5"
+      },
+      {
+        "n": 8,
+        "evento": "Ester responde que é um adversário e inimigo, o perverso Hamã",
+        "ref": "Ester 7:6"
+      },
+      {
+        "n": 9,
+        "evento": "Hamã fica apavorado diante do rei e da rainha",
+        "ref": "Ester 7:6"
+      }
+    ],
+    "versiculo": {
+      "ref": "Ester 4:16",
+      "texto": "Vá, reúna todos os judeus que estão presentes em Susã, e jejuem por mim; não comam nem bebam por três dias, nem de noite nem de dia. Eu e as minhas servas também jejuaremos da mesma forma. Depois, irei ao rei, o que é contra a lei; e se eu perecer, pereci."
+    },
+    "cenas": [
+      {
+        "fala": "Uma lei podia matar a própria rainha.",
+        "evento": 0,
+        "personagens": [
+          "ester"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a young queen standing alone in an ornate Persian palace hall, worried expression, golden lamps, marble floor, soft evening light.",
+        "busca": "queen palace worried"
+      },
+      {
+        "fala": "Mardoqueu avisou: nem no palácio você escapa.",
+        "evento": 1,
+        "personagens": [
+          "mardoqueu",
+          "ester"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of an elderly bearded man in a sackcloth robe speaking urgently at a stone palace gate, a young queen listening nearby, torchlight, worried faces.",
+        "busca": "elderly man speaking urgently gate"
+      },
+      {
+        "fala": "Quem sabe você chegou ao reino pra isto?",
+        "evento": 2,
+        "personagens": [
+          "mardoqueu"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of an elderly bearded man in a sackcloth robe standing at a stone gate, looking up thoughtfully, torches lit, night sky above.",
+        "busca": "elderly man thoughtful gate night"
+      },
+      {
+        "fala": "Ester pediu jejum de três dias.",
+        "evento": 3,
+        "personagens": [
+          "ester"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a young queen kneeling in a bare palace chamber, eyes closed in prayer, a simple oil lamp beside her, stone floor, dim light.",
+        "busca": "woman praying palace"
+      },
+      {
+        "fala": "Vou ao rei. Se eu perecer, pereci.",
+        "evento": 4,
+        "personagens": [
+          "ester"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a young queen walking alone toward tall ornate palace doors, marble floor with reflections, golden torches on stone pedestals lining the hallway, warm sunlight glowing through the distant doorway ahead.",
+        "busca": "queen walking palace determined"
+      },
+      {
+        "fala": "Diante do rei, ela pediu: minha vida e meu povo.",
+        "evento": 5,
+        "personagens": [
+          "ester",
+          "rei-assuero"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a young queen kneeling before a Persian king seated on an ornate throne, pleading expression, golden hall, soft torchlight.",
+        "busca": "queen kneeling before king throne"
+      },
+      {
+        "fala": "Fomos vendidos, disse ela, pra morrer.",
+        "evento": 6,
+        "personagens": [
+          "ester",
+          "rei-assuero"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a young queen standing before a Persian king on his throne, sorrowful pleading expression, ornate golden hall behind her.",
+        "busca": "queen pleading king throne"
+      },
+      {
+        "fala": "O rei perguntou: quem fez isso?",
+        "evento": 7,
+        "personagens": [
+          "rei-assuero"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot, seated on ornate golden throne, furious expression, torchlit stone hall behind, polished marble floor, warm flickering firelight, golden pillars and archway in background",
+        "busca": "angry king throne"
+      },
+      {
+        "fala": "Um inimigo! Este perverso Hamã, disse Ester.",
+        "evento": 8,
+        "personagens": [
+          "ester",
+          "hama"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a young queen standing firmly before a Persian king, a noble man in a dark red robe stepping back in fear nearby, golden hall.",
+        "busca": "queen accusing noble man"
+      },
+      {
+        "fala": "Hamã tremeu diante do rei e da rainha.",
+        "evento": 9,
+        "personagens": [
+          "hama"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a Persian noble man in a dark red robe, trembling with fear, golden torchlit hall around him, eyes wide with terror.",
+        "busca": "man trembling with fear"
+      },
+      {
+        "fala": "Talvez você só precise dar esse passo.",
+        "evento": 0,
+        "personagens": [
+          "ester"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a young queen standing at open palace doors, silhouette against bright dawn light, contemplative pose, stone floor.",
+        "busca": "silhouette woman doorway dawn"
+      },
+      {
+        "fala": "Ester podia morrer entrando sem ser chamada. Mas entrou.",
+        "evento": 0,
+        "personagens": [
+          "ester"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a queen walking forward through an ornate golden palace doorway toward the camera, marble floor reflecting warm torchlight, grand hallway stretching behind her, hands clearly visible at her sides.",
+        "busca": "queen walking golden light"
+      },
+      {
+        "fala": "Se isso te tocou, escreve amém e inscreve-se.",
+        "evento": 0,
+        "personagens": [
+          "ester",
+          "rei-assuero"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a young queen standing tall before a Persian king on his throne, golden torchlit hall, powerful confident expression.",
+        "busca": "queen confident throne room"
+      }
+    ],
+    "descricao": "\"Vá, reúna todos os judeus... e se eu perecer, pereci.\" Ester 4:16. Uma rainha entrou na sala do rei sabendo que podia morrer só por isso. Ela escolheu arriscar tudo pelo seu povo. Você teria essa coragem? Leia Ester 4",
+    "hashtags": [
+      "#ester",
+      "#biblia",
+      "#fé",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já sentiu medo de dar o passo que Deus tava pedindo pra você dar?",
+    "tiktok_titulo": "A rainha que quebrou a lei pra salvar seu povo",
+    "tiktok_legenda": "Ela sabia que podia morrer só de entrar naquela sala. Entrou assim mesmo. Você teria coragem de arriscar tudo pelos seus? #ester #biblia #fé #coragem",
+    "fontes": [
+      "Ester 4:13-16; 7:3-6 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Entrar sem ser chamada dava em morte.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Se eu morrer, que morra.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Ela arriscou a vida por seu povo.",
+        "choque": 3,
+        "clareza": 5,
+        "imagem": 3
+      },
+      {
+        "texto": "Ninguém entra sem ser chamado. Nem a rainha.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Uma lei podia matar a própria rainha.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      }
+    ],
+    "gancho_tela": "SE EU PERECER, PERECI",
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 5,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 3,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Z-Image Turbo)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    },
+    "_avisos": []
+  }
+]
