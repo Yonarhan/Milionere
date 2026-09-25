@@ -103,7 +103,14 @@ def roteiro_validado(formato: dict, tema: dict, reg: Registro) -> dict | None:
             continue
         r["_notas_juiz"] = notas
         return r
-    return None
+    # nenhuma versão passou em tudo: em vez de desistir, vai a melhor (o que o juiz apontou chega na revisão humana)
+    if melhor:
+        r = melhor[1]
+        r["_avisos"] = [f"juiz: {p}" for p in melhor[2]]
+    else:
+        r["_avisos"] = [f"regra: {e}" for e in e1]
+    log(f"  entregando a melhor versão com {len(r['_avisos'])} aviso(s) para a revisão")
+    return r
 
 
 def empacotar(r: dict, formato_id: str, formato: dict, tema: dict, estilo: str, slug: str) -> dict:
@@ -353,6 +360,7 @@ def um_video(formato_id: str, estilo: str | None, tema_id: str | None, musica: s
         return []
     # (sem roteirista.reescrever_imagens: o roteirista já escreve os prompts com regras_imagem(); era 1 chamada a mais)
     pacote = empacotar(r, formato_id, formato, tema, estilo, slug)
+    pacote["_avisos"] = list(r.get("_avisos", []))  # o que o juiz não conseguiu resolver vai para a revisão
     salvar_fichas(pacote)
     arq = PROD / "roteiros" / f"{date.today():%Y-%m-%d}_{slug}.json"
     arq.write_text(json.dumps([pacote], ensure_ascii=False, indent=2), encoding="utf-8")

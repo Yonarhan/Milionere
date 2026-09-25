@@ -213,6 +213,7 @@ def roteiro_biblico(formato_id: str, tema_id: str, log=print) -> dict:
     if not r:
         raise RuntimeError(f"o roteiro não passou nas validações em {pipeline.MAX_REESCRITAS} tentativas")
     pacote = pipeline.empacotar(r, formato_id, formato, tema, formato["estilo"], slug)
+    pacote["_avisos"] = list(r.get("_avisos", []))
     pacote["_creditos"] = [f"Texto bíblico: {biblia.TRADUCAO}"]  # sem imagem de IA: os créditos das fotos entram na montagem
     return pacote
 
@@ -223,11 +224,12 @@ def roteiro_generico(nicho: str, formato_nome: str, tema: str, slug: str, log=pr
     r = sp._roteiro_generico({"nicho": nicho, "formato_nome": formato_nome, "tema_livre": tema},
                              lambda etapa, msg: log(msg or etapa))
     if r.get("_avisos"):
-        raise RuntimeError("o juiz reprovou o roteiro nas 3 tentativas: " + " | ".join(r["_avisos"][:3]))
+        log(f"o juiz não aprovou nenhuma das tentativas: vai a melhor versão, com {len(r['_avisos'])} aviso(s) na revisão")
     epoca = "moderna" if nicho != "gospel" or "parábola" in formato_nome.lower() or "parabola" in formato_nome.lower() else "biblica"
     return {"slug": slug, "nicho": sp.PRESET_DO_NICHO.get(nicho, "curiosidades"), "titulo": r["titulo"], "epoca": epoca,
             "cenas": [{"fala": c["fala"], "busca": c.get("busca", ""), "imagem": c.get("imagem", "")} for c in r["cenas"]],
-            "descricao": r["descricao"], "hashtags": r["hashtags"], "comentario_fixado": r["comentario_fixado"]}
+            "descricao": r["descricao"], "hashtags": r["hashtags"], "comentario_fixado": r["comentario_fixado"],
+            "_avisos": [f"juiz: {a}" for a in r.get("_avisos", [])]}
 
 
 def main() -> None:

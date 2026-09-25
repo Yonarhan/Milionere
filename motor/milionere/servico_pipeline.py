@@ -325,7 +325,8 @@ def gerar_video(entrada: dict, pasta_job: Path, log) -> dict:
         cmd.append("--sem-musica")
     elif mus == "ambas":
         cmd.append("--duas-versoes")  # monta uma vez; a versão com música é só a mistura do áudio
-    env = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUNBUFFERED": "1"}
+    env = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUNBUFFERED": "1",
+           "MILIONERE_LLM": entrada.get("llm", caminhos.LLM)}
     proc = subprocess.Popen(cmd, cwd=caminhos.MOTOR, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                             text=True, encoding="utf-8", errors="replace")
     video, videos, falhas, saida = None, [], [], []

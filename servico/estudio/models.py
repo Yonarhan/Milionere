@@ -119,7 +119,8 @@ class Producao(models.Model):
     custos = models.JSONField(default=dict, blank=True)
     erro = models.TextField(blank=True)
     motivo = models.CharField(max_length=300, blank=True)  # por que reprovamos (vira lição para o roteirista)
-    cancelar = models.BooleanField(default=False)  # pedido do painel; o produtor confere a cada 3 s e interrompe
+    cancelar = models.BooleanField(default=False)
+    avisos = models.JSONField(default=list, blank=True)  # o que o juiz apontou e ficou sem resolver (vai para a revisão)  # pedido do painel; o produtor confere a cada 3 s e interrompe
     postado_youtube = models.DateTimeField(null=True, blank=True)
     postado_tiktok = models.DateTimeField(null=True, blank=True)
     criado = models.DateTimeField(auto_now_add=True)
@@ -137,8 +138,10 @@ class Produtor(models.Model):
     """Estado do processo `manage.py produtor` (linha única)."""
 
     pausado = models.BooleanField(default=False)
+    llm = models.CharField(max_length=10, default="claude-cli")
     intervalo_min = models.PositiveSmallIntegerField(default=20)  # descanso entre um vídeo e o próximo
     batimento = models.DateTimeField(null=True, blank=True)
+    falhas_zeradas_em = models.DateTimeField(null=True, blank=True)  # a trava de 3 falhas/dia conta a partir daqui
 
     @classmethod
     def get(cls) -> "Produtor":

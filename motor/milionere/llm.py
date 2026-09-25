@@ -5,6 +5,8 @@ Cada chamada é uma conversa nova: o juiz nunca vê o raciocínio do roteirista.
 """
 
 import base64
+from contextlib import contextmanager
+from contextvars import ContextVar
 import json
 import os
 import sys
@@ -24,6 +26,17 @@ JUIZ_VISUAL = os.environ.get("MILIONERE_JUIZ_VISUAL", "claude")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import caminhos  # noqa: E402
 import medidor  # noqa: E402
+
+_provedor_job = ContextVar("provedor_llm_job", default=None)
+
+
+@contextmanager
+def usar_provedor(provedor: str):
+    token = _provedor_job.set(provedor)
+    try:
+        yield
+    finally:
+        _provedor_job.reset(token)
 
 
 class ErroLLM(RuntimeError):
@@ -85,14 +98,15 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
     """Manda o prompt e devolve o JSON validado pelo schema. Com ler_arquivos_em, o modelo pode abrir
     (só ler) arquivos daquela pasta, por exemplo imagens para o juiz visual."""
     _conferir_cancelado()
-    if caminhos.LLM == "api":  # API direta da Anthropic: sem o overhead do Claude Code CLI
+    provedor = _provedor_job.get() or caminhos.LLM
+    if provedor == "api":  # API direta da Anthropic: sem o overhead do Claude Code CLI
         import llm_api
         try:
             return llm_api.chamar(prompt, schema, ler_arquivos_em, modelo, papel)
         except Exception as e:
             raise ErroLLM(f"API: {e}") from e
-    if caminhos.LLM != "claude-cli":
-        raise ErroLLM(f"MILIONERE_LLM={caminhos.LLM!r} desconhecido (use claude-cli ou api)")
+    if provedor != "claude-cli":
+        raise ErroLLM(f"MILIONERE_LLM={provedor!r} desconhecido (use claude-cli ou api)")
     cmd = [CLAUDE, "-p", *[f for f in _flags_opcionais() if f not in ("--effort", "--system-prompt")],
            "--output-format", "json", "--json-schema", json.dumps(schema)]
     if "--system-prompt" in _flags_opcionais():

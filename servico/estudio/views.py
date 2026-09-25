@@ -1,5 +1,7 @@
 import json
+import os
 
+from django.views.decorators.cache import never_cache
 from django.http import Http404, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -70,6 +72,7 @@ def banco(request):
 
 # ------------------------------------------------------------------ painel do nosso canal
 
+@never_cache
 @ensure_csrf_cookie
 def canal(request):
     return render(request, "estudio/canal.html")
@@ -103,6 +106,14 @@ def api_canal_acao(request):
         c.save()
     elif acao == "produtor":
         p = Produtor.get()
+        if "llm" in d:
+            if d["llm"] not in ("claude-cli", "api"):
+                return JsonResponse({"erro": "Provedor de IA inválido."}, status=400)
+            if d["llm"] == "api":
+                jobs._pipeline()
+                if not os.environ.get("ANTHROPIC_API_KEY"):
+                    return JsonResponse({"erro": "Preencha ANTHROPIC_API_KEY no .env da raiz."}, status=400)
+            p.llm = d["llm"]
         if "pausado" in d:
             p.pausado = bool(d["pausado"])
         if "intervalo_min" in d:
@@ -151,6 +162,9 @@ def api_canal_acao(request):
         else:  # nada rodando de verdade (o produtor caiu no meio): só marca
             Producao.objects.filter(pk=p.pk).update(cancelar=True, status=Producao.Status.FALHOU,
                                                     mensagem="cancelado por você", terminado=timezone.now())
+    elif acao == "zerar_falhas":
+        Produtor.objects.filter(pk=Produtor.get().pk).update(falhas_zeradas_em=timezone.now())
+        Pauta.objects.filter(usado=False, falhas__gt=0).update(falhas=0)
     elif acao == "cancelar":
         Producao.objects.filter(pk=d["id"], status=Producao.Status.FILA).delete()
     elif acao == "pauta_add":

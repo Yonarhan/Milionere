@@ -33,6 +33,8 @@ header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-
 .brand h1{font-size:26px;font-weight:800;letter-spacing:-.02em}
 .tag{font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:5px 7px;border-radius:4px}
 .nav{display:flex;gap:14px;font-size:14px;flex-wrap:wrap}
+.topControls{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topControls label{display:flex;align-items:center;gap:8px;font-size:13px}
 .intro{color:var(--muted);max-width:72ch;margin:0 0 18px}
 .label{font:500 11px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 section{margin-top:26px}
@@ -76,6 +78,8 @@ input[type=text],select{background:var(--ground);border:1px solid var(--line);bo
 .step span{min-width:30px;text-align:center;font:500 14px var(--mono)}
 .bar{height:8px;background:var(--sunk);border-radius:99px;overflow:hidden;margin:6px 0 4px}
 .bar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+.bar.loading i{background-image:repeating-linear-gradient(110deg,transparent 0 12px,rgba(255,255,255,.3) 12px 22px);background-size:34px 100%;animation:loading 1s linear infinite}
+@keyframes loading{to{background-position:34px 0}}
 .small{font-size:13px;color:var(--muted)}
 .small.warn{color:var(--warn)}
 details.pauta{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
@@ -93,7 +97,7 @@ details.pauta summary{cursor:pointer;font-weight:600;font-size:14px}
 .etapa.feito{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
 .etapa.agora{border-color:var(--accent);color:var(--accent);animation:pulse 1.4s ease-in-out infinite}
 @keyframes pulse{50%{opacity:.45}}
-@media (prefers-reduced-motion:reduce){.etapa.agora{animation:none}}
+@media (prefers-reduced-motion:reduce){.etapa.agora,.bar.loading i{animation:none}.bar i{transition:none}}
 pre.log{margin:0;max-height:260px;overflow:auto;background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:10px;font:12px/1.5 var(--mono);white-space:pre-wrap}
 .fila{display:grid;gap:6px;margin-top:10px}
 .fila div{display:flex;gap:8px;align-items:center;font-size:14px}
@@ -122,7 +126,9 @@ pre.log{margin:0;max-height:260px;overflow:auto;background:var(--ground);border:
 <div class="wrap">
   <header class="top">
     <div class="brand"><h1>Produção do Canal</h1><span class="tag">interno · 1 vídeo por vez</span></div>
-    <nav class="nav"><a href="/">Estúdio</a><a href="/banco">Banco de imagens</a><a href="/admin/estudio/producao/">Admin</a></nav>
+    <div class="topControls"><label for="provedor">IA do canal
+      <select id="provedor"><option value="claude-cli">Claude -p local</option><option value="api">API Anthropic</option></select></label>
+      <nav class="nav"><a href="/">Estúdio</a><a href="/banco">Banco de imagens</a><a href="/admin/estudio/producao/">Admin</a></nav></div>
   </header>
   <p class="intro">O produtor gera um vídeo por vez, sempre para o nicho mais longe da meta de hoje, e descansa entre um e outro. Nada é postado sozinho: todo vídeo passa pela sua revisão aqui.</p>
 
@@ -170,6 +176,12 @@ function dentroDeCampo(el){const a=document.activeElement; return a && el.contai
 
 function renderStatus(){
   const p=E.produtor;
+  const seletor=$("#provedor");
+  if(document.activeElement!==seletor) seletor.value=p.llm;
+  seletor.onchange=async e=>{const anterior=p.llm; e.target.disabled=true;
+    const salvo=await acao({acao:"produtor",llm:e.target.value},"IA ajustada para os próximos vídeos");
+    if(!salvo) e.target.value=anterior;
+    e.target.disabled=false};
   const pill = !p.vivo ? `<span class="pill bad">produtor parado</span>` : p.pausado ? `<span class="pill warn">pausado</span>` : `<span class="pill ok">produtor no ar</span>`;
   $("#status").innerHTML = `${pill}
     ${p.vivo ? "" : `<button class="btn small primary" id="bLigar">Ligar produtor</button>`}
@@ -196,7 +208,7 @@ function renderCanais(){
       <div class="meta"><span class="step"><button data-a="menos" aria-label="Menos">−</button><span>${c.meta_dia}</span><button data-a="mais" aria-label="Mais">+</button></span>
         <span class="small">vídeos por dia</span></div>
       <div class="bar"><i style="width:${c.ativo?pct:0}%"></i></div>
-      <div class="small">${c.ativo ? `${c.hoje} de ${c.meta_dia} hoje` : "automático desligado"}${c.falhas_hoje?` · <span class="warn">${c.falhas_hoje} falha(s) hoje</span>`:""}</div>
+      <div class="small">${c.ativo ? `${c.hoje} de ${c.meta_dia} hoje` : "automático desligado"}${c.falhas_hoje?` · <span class="warn">${c.falhas_hoje} falha(s) hoje</span>${c.falhas_hoje>=3?` (automático parado até amanhã) <button class="x" data-a="zerar" title="Zerar as falhas de hoje e voltar a gerar">zerar</button>`:""}`:""}</div>
       <div class="small ${pouca?"warn":""}">${c.restantes} tema(s) na pauta${pouca?" · está acabando":""}</div>
       ${c.aviso?`<p class="aviso" style="margin-top:10px">${esc(c.aviso)}</p>`:""}
       <div class="row" style="margin-top:12px">
@@ -228,6 +240,7 @@ function renderCanais(){
       if(a==="musica") acao({acao:"canal",nicho:n,musica:b.dataset.v},"Música ajustada");
       if(a==="imagens") acao({acao:"canal",nicho:n,imagens:b.dataset.v},b.dataset.v==="nativo"?"Imagens: banco grátis (roda em PC fraco)":"Imagens: geradas por IA");
       if(a==="gerar") acao({acao:"gerar",nicho:n},"Entrou na fila");
+      if(a==="zerar") acao({acao:"zerar_falhas"},"Falhas zeradas: o automático volta a gerar");
       if(a==="gerarPauta") acao({acao:"gerar",nicho:n,pauta:+b.dataset.id},"Entrou na fila");
       if(a==="remover") acao({acao:"pauta_remover",id:+b.dataset.id},"Tirado da pauta");
       if(a==="sugerir"){b.disabled=true;b.textContent="A IA está pensando…";
@@ -246,6 +259,7 @@ function renderAtual(){
   if(a){
     const et=ETAPAS(a.nicho), i=et.indexOf(a.etapa);
     html += `<div class="card atual"><div><span class="label">${esc(a.nicho)} · ${esc(a.formato)}</span><h3 style="font-size:18px;margin-top:4px">${esc(a.tema)}</h3></div>
+      <div><div class="bar loading" role="progressbar" aria-label="Etapas do vídeo" aria-valuemin="0" aria-valuemax="${et.length}" aria-valuenow="${Math.max(0,i)}"><i style="width:${Math.max(0,i)/et.length*100}%"></i></div><span class="small">${Math.max(0,i)} de ${et.length} etapas concluídas</span></div>
       <div class="etapas">${et.map((e,k)=>`<span class="etapa ${k<i?"feito":k===i?"agora":""}">${e}</span>`).join("")}</div>
       <div class="row"><span class="small">${esc(a.mensagem)} · há ${minutos(a.iniciado)} min</span>
         <button class="btn small bad" id="bCancelarAtual" ${a.cancelando?"disabled":""}>${a.cancelando?"Cancelando…":"Cancelar este vídeo"}</button></div>
@@ -267,7 +281,10 @@ function cartao(p, modo){
   const base = `<article class="card video" data-id="${p.id}">
     ${com&&com.url?`<video controls preload="metadata" src="${esc(com.url)}"></video>`:""}
     <div><span class="label">${esc(p.nicho)} · ${esc(p.formato)} · ${dia(p.terminado)}</span><h3>${esc(p.titulo||p.tema)}</h3>
-      <div class="small">${dur!=null?dur+" min para gerar":""}${p.custo_brl?" · "+reais(p.custo_brl)+" em valor de API":""}</div></div>
+      <div class="small">${dur!=null?dur+" min para gerar":""}</div></div>
+    <div><div class="bar" role="progressbar" aria-label="Vídeo concluído" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><i style="width:100%"></i></div>
+      <div class="row"><span class="small">Concluído</span><strong>${p.custo_brl!=null?reais(p.custo_brl)+" em valor de API":"Custo indisponível"}</strong></div></div>
+    ${p.avisos&&p.avisos.length?`<div class="aviso"><b>Revise antes de aprovar.</b> O juiz apontou e não ficou resolvido:<ul style="margin:6px 0 0;padding-left:18px">${p.avisos.slice(0,6).map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>`:""}
     <details class="copybox"><summary>Texto do post</summary><pre>${esc(p.post)}</pre></details>`;
   const baixar = p.videos.map(v=>`<a class="btn small" href="${esc(v.url)}" download>${v.variante==="sem"?"Baixar (sem música)":"Baixar (com música)"}</a>`).join("");
   if(modo==="revisar") return base+`<div class="acoes"><button class="btn primary" data-a="aprovar">Aprovar</button><button class="btn bad" data-a="reprovar">Reprovar</button>

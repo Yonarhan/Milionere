@@ -86,7 +86,11 @@ def hoje(nicho: str) -> tuple[int, int]:
     """(vídeos que contam para a meta de hoje, falhas de hoje)."""
     q = Producao.objects.filter(nicho=nicho, criado__date=timezone.localdate())
     feitos = q.exclude(status__in=[Producao.Status.FALHOU, Producao.Status.REPROVADO]).count()
-    return feitos, q.filter(status=Producao.Status.FALHOU).count()
+    falhas = q.filter(status=Producao.Status.FALHOU).exclude(mensagem="cancelado por você")
+    zeradas = Produtor.get().falhas_zeradas_em
+    if zeradas:
+        falhas = falhas.filter(criado__gt=zeradas)
+    return feitos, falhas.count()
 
 
 def enfileirar(nicho: str, pauta: Pauta | None = None) -> Producao | None:
@@ -124,6 +128,7 @@ class _Diario:
 
     def __init__(self, prod_id):
         self.id, self.linhas = prod_id, []
+        self.avisos: list[str] = []  # o que o juiz apontou e não foi resolvido: aparece no card de revisão
 
     def __call__(self, msg: str, etapa: str | None = None) -> None:
         msg = (msg or "").strip()
@@ -159,12 +164,20 @@ def _gospel(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
     finally:
         pipeline.log = original
     if not videos:
-        raise RuntimeError("o roteiro ou o render não passou nas validações (veja o log)")
+        raise RuntimeError("o render não gerou o vídeo (veja o log)")
+    try:  # avisos do roteiro e das imagens que o pipeline gravou no roteiro final
+        import json
+
+        import caminhos
+        arq = sorted((caminhos.PRODUCAO / "roteiros").glob(f"*_{prod.formato}-{prod.pauta.tema_id}.json"))[-1]
+        diario.avisos += json.loads(arq.read_text(encoding="utf-8"))[0].get("_avisos", [])
+    except Exception:  # noqa: BLE001
+        pass
     # as imagens aprovadas já entram no banco dentro do pipeline (pipeline.alimentar_banco)
     return videos
 
 
-def _generico(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
+def _generico(prod: Producao, musica: str, diario: _Diario, provedor: str) -> list[Path]:
     sp, _, _ = _motor()
     import caminhos
 
@@ -173,13 +186,14 @@ def _generico(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
     r = sp._roteiro_generico({"nicho": prod.nicho, "formato": prod.formato,
                               "formato_nome": pauta.formato_nome if pauta else prod.formato, "tema_livre": prod.tema}, log)
     if r.get("_avisos"):
-        raise RuntimeError("o juiz reprovou o roteiro nas 3 tentativas: " + " | ".join(r["_avisos"][:3]))
+        diario.avisos += [f"juiz: {a}" for a in r["_avisos"]]
+        diario(f"o juiz não aprovou nenhuma das tentativas: segue a melhor versão, com {len(r['_avisos'])} aviso(s)")
     diario("roteiro aprovado:\n" + "\n".join(f"  «{c['fala']}»" for c in r["cenas"]), "roteiro")
     entrada = {"nicho": prod.nicho, "formato": prod.formato, "tema_livre": prod.tema, "dono": "canal",
                "cenas": [{"fala": c["fala"], "busca": c.get("busca", ""), "imagem": c.get("imagem", "")} for c in r["cenas"]],
                "post": {"titulo": r["titulo"], "desc": r["descricao"], "tags": " ".join(r["hashtags"]),
                         "comentario": r["comentario_fixado"]},
-               "mus": musica}  # com | sem: um vídeo só
+               "mus": musica, "llm": provedor}  # com | sem: um vídeo só
     pasta = Path(settings.MEDIA_ROOT) / "canal" / str(prod.id)
     saida = sp.gerar_video(entrada, pasta, log)
     videos = [Path(v) for v in saida.get("videos") or [saida["video"]]]
@@ -213,6 +227,7 @@ def _nativo(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
         r = nativo.roteiro_generico(prod.nicho, (pauta.formato_nome if pauta else "") or prod.formato, prod.tema,
                                     f"canal-{str(prod.id)[:8]}", log)
     diario("roteiro aprovado:\n" + "\n".join(f"  «{c['fala']}»" for c in r["cenas"]), "imagens")
+    diario.avisos += r.get("_avisos", [])
     nativo.curar(r, log)
     videos = nativo.montar(r, Path(settings.MEDIA_ROOT) / "canal" / str(prod.id), musica, log)
     if biblico:  # o tema do catálogo não volta (o pipeline marca isso sozinho só no modo IA)
@@ -237,24 +252,27 @@ def _titulo(post: str) -> str:
 
 def executar(prod: Producao) -> None:
     _motor()
+    import llm
     import medidor
 
     canal = Canal.objects.filter(nicho=prod.nicho).first()
+    provedor = Produtor.get().llm
     musica = canal.musica if canal and canal.musica in ("com", "sem") else "sem"  # um vídeo só
     diario = _Diario(prod.pk)
     Producao.objects.filter(pk=prod.pk).update(status=Producao.Status.GERANDO, etapa="roteiro", iniciado=timezone.now(),
                                                mensagem="começando")
-    with medidor.medir() as m:
+    with medidor.medir() as m, llm.usar_provedor(provedor):
         try:
             biblico = prod.nicho == "gospel" and prod.pauta and prod.pauta.tema_id and prod.pauta.origem == "catalogo"
             if canal and canal.imagens == "nativo":
                 videos = _nativo(prod, musica, diario)
             else:
-                videos = (_gospel if biblico else _generico)(prod, musica, diario)
+                videos = _gospel(prod, musica, diario) if biblico else _generico(prod, musica, diario, provedor)
             videos.sort(key=lambda p: "_sem-musica" in p.stem)  # com música primeiro
             post = next((p.with_suffix(".txt").read_text(encoding="utf-8") for p in videos if p.with_suffix(".txt").exists()), "")
             Producao.objects.filter(pk=prod.pk).update(
-                status=Producao.Status.REVISAR, etapa="post", mensagem="pronto para revisar", post=post,
+                status=Producao.Status.REVISAR, etapa="post", post=post, avisos=diario.avisos,
+                mensagem=f"pronto para revisar · {len(diario.avisos)} aviso(s) do juiz" if diario.avisos else "pronto para revisar",
                 titulo=_titulo(post)[:200], terminado=timezone.now(), custos=m.resumo(),
                 videos=[{"nome": p.name, "url": _url(p), "variante": "sem" if "_sem-musica" in p.stem else "com"} for p in videos])
             if prod.pauta_id:
@@ -408,7 +426,9 @@ def sugerir(nicho: str, n: int = 10) -> int:
                                    "properties": {"formato": {"type": "string", "enum": list(formatos)},
                                                   "titulo": {"type": "string"}}}}}}
     novos = 0
-    for t in llm.chamar(prompt, schema, papel="juiz")["temas"]:
+    with llm.usar_provedor(Produtor.get().llm):
+        temas = llm.chamar(prompt, schema, papel="juiz")["temas"]
+    for t in temas:
         _, criado = Pauta.objects.get_or_create(nicho=nicho, formato=t["formato"], titulo=t["titulo"].strip()[:200],
                                                 defaults={"formato_nome": formatos.get(t["formato"], ""), "origem": "ia"})
         novos += criado
@@ -418,7 +438,7 @@ def sugerir(nicho: str, n: int = 10) -> int:
 def _prod(p: Producao, log: bool = False) -> dict:
     d = {"id": str(p.pk), "nicho": p.nicho, "formato": p.formato, "tema": p.tema, "status": p.status,
          "status_nome": p.get_status_display(), "etapa": p.etapa, "mensagem": p.mensagem, "titulo": p.titulo, "post": p.post,
-         "videos": p.videos, "custo_brl": (p.custos or {}).get("brl"), "motivo": p.motivo,
+         "videos": p.videos, "custo_brl": (p.custos or {}).get("brl"), "motivo": p.motivo, "avisos": p.avisos or [],
          "criado": p.criado.isoformat(), "iniciado": p.iniciado.isoformat() if p.iniciado else None,
          "terminado": p.terminado.isoformat() if p.terminado else None,
          "youtube": bool(p.postado_youtube), "tiktok": bool(p.postado_tiktok), "erro": p.mensagem if p.status == "falhou" else "",
@@ -453,7 +473,7 @@ def estado() -> dict:
     canais.sort(key=lambda c: NICHOS.index(c["nicho"]))
     q = Producao.objects.all()
     atual = q.filter(status=Producao.Status.GERANDO).first()
-    return {"produtor": {"vivo": vivo(), "pausado": prod.pausado, "intervalo_min": prod.intervalo_min},
+    return {"produtor": {"vivo": vivo(), "pausado": prod.pausado, "intervalo_min": prod.intervalo_min, "llm": prod.llm},
             "canais": canais, "atual": _prod(atual, log=True) if atual else None,
             "fila": [_prod(p) for p in q.filter(status=Producao.Status.FILA).order_by("criado")],
             "revisar": [_prod(p) for p in q.filter(status=Producao.Status.REVISAR)],
