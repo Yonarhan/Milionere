@@ -47,6 +47,37 @@ def bloco(nicho: str, formato: str, tema: str) -> str:
     return "\n\n".join(p for p in partes if p)
 
 
+# frases dos exemplos que o roteirista tende a copiar ao pé da letra (valem só no tema de onde saíram)
+COPIADAS = ["pronto, acabou", "casa da sua avó", "casa da avó", "gato branco", "colo do seu avô"]
+# nomes das peças da fórmula: se aparecem na fala, o roteirista narrou a instrução ("tem um detalhe concreto que...")
+META = ["detalhe concreto", "quebra de expectativa", "virada que faz pensar", "cena ilustrada", "o fato é:"]
+_TEXTO_NA_IMAGEM = re.compile(r"\b(?:big |small |large )?text\b|['\"][A-ZÀ-Ú0-9!?. ]{2,}['\"]|\b[A-ZÀ-Ú]{3,}[!?]*\b")
+
+
+def checar_elenco(cenas: list[dict], preset: dict) -> list[str]:
+    """Canal com elenco fixo (animações): os critérios dos pilotos aprovados, checados por código."""
+    erros, n = [], len(cenas)
+    imgs = [c.get("imagem", "") for c in cenas]
+    com_texto = [i for i, t in enumerate(imgs, 1) if _TEXTO_NA_IMAGEM.search(t.replace("Bob", "").replace("OSSO", "osso"))]
+    if len(com_texto) > max(3, round(n * 0.4)):
+        erros.append(f"texto escrito em {len(com_texto)} de {n} imagens (máx. {max(3, round(n * 0.4))}): deixe só onde "
+                     "uma piada curta ajuda, nunca um rótulo que repete a fala (ex.: 'PARTE ESTRANHA')")
+    amigo = [i for i, t in enumerate(imgs, 1) if "friend" in t.lower()]
+    if len(amigo) > round(n * 0.6):
+        erros.append(f"o Amigo aparece em {len(amigo)} de {n} imagens (máx. {round(n * 0.6)}): ele só reage em parte das cenas")
+    for i, t in enumerate(imgs, 1):
+        if re.search(r"\b(bright|colorful|gradient|dark)\s+background\b", t, re.I):
+            erros.append(f"cena {i}: não mude o fundo ('{re.search(r'\w+ background', t).group(0)}'); o cenário é fixo")
+    narracao = " ".join(c.get("fala", "") for c in cenas).lower()
+    for f in META:
+        if f in narracao:
+            erros.append(f"a narração usa o nome da instrução «{f}»: fale como uma pessoa, sem citar a fórmula")
+    for f in COPIADAS:
+        if f in narracao:
+            erros.append(f"copiou a frase do exemplo «{f}»: crie uma quebra de expectativa e um detalhe que sejam DESTE tema")
+    return erros
+
+
 def checar(cenas: list[dict], preset: dict) -> list[str]:
     """Camada 1 genérica (código, grátis). Devolve a lista de problemas; vazia = passou."""
     erros = []
@@ -64,7 +95,10 @@ def checar(cenas: list[dict], preset: dict) -> list[str]:
         erros.append(f"{len(falas)} cenas; use de {cmin} a {cmax}")
     if _palavras(falas[0]) > gmax:
         erros.append(f"gancho com {_palavras(falas[0])} palavras (máx. {gmax}): «{falas[0]}»")
-    if not CTA.search(falas[-1]):
+    if preset.get("elenco"):
+        erros += checar_elenco(cenas, preset)
+    # narrado: terminar com uma pergunta pra quem assiste já é a chamada ("E você, já teve vergonha de...?")
+    if not CTA.search(falas[-1]) and not (preset.get("narrado") and falas[-1].rstrip().endswith("?")):
         erros.append(f"a última cena não é uma chamada (comenta, manda, escreve...): «{falas[-1]}»")
     for i, f in enumerate(falas, 1):
         if _palavras(f) > fmax:

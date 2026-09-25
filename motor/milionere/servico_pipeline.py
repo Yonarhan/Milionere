@@ -151,6 +151,20 @@ BLOCO_NARRADO = (
     "palavras grandes escritas na imagem quando ajudar (ex.: THE END, 0:00); nada de números pequenos.")
 
 
+def _exemplo_piloto() -> str:
+    """O roteiro do piloto aprovado (falas + imagens) como MODELO de forma: o roteirista copia o jeito, não as frases."""
+    arq = caminhos.RAIZ / "producao" / "roteiros" / "2026-09-25_propria-voz.json"
+    if not arq.exists():
+        return ""
+    r = json.loads(arq.read_text(encoding="utf-8"))[0]
+    linhas = "\n".join(f"{i}. fala: «{c['fala']}»\n   imagem: {c['imagem']}" for i, c in enumerate(r["cenas"], 1))
+    return ("# MODELO APROVADO (siga a FORMA, nunca as frases nem as piadas dele)\n"
+            f"Tema: {r['titulo']}\n{linhas}\n"
+            "Repare: a narração soa como uma pessoa contando; a quebra de expectativa nasce do próprio tema; o detalhe "
+            "concreto é do tema; só ~1/3 das imagens tem texto escrito, e é piada (EU??, NORMAL, ENVIAR?), nunca rótulo; "
+            "o Amigo aparece em ~1/3 das cenas, reagindo; o cenário nunca muda sem motivo.")
+
+
 def _bloco_elenco(preset: dict) -> str:
     """Nicho com elenco fixo (canal de animações): cada `imagem` encena a fala com os personagens do canal."""
     elenco = preset.get("elenco")
@@ -164,7 +178,10 @@ def _bloco_elenco(preset: dict) -> str:
             "ícone simples (celular tocando, alto-falante com ondas, seta, balão de pensamento, X vermelho); (3) quando "
             "ajudar, 1 a 3 palavras grandes escritas, de preferência uma piada curta (ex.: EU??, NORMAL, ENVIAR?); (4) em "
             "parte das cenas, o outro personagem reagindo; (5) lugar só se a história pedir (caverna, hospital), senão o "
-            "cenário padrão. Nunca números pequenos, nunca texto longo, nunca rosto de caveira ou algo assustador.")
+            "cenário padrão. Nunca números pequenos, nunca texto longo, nunca rosto de caveira ou algo assustador.\n"
+            "Regras que decidem se o vídeo passa: texto escrito em no máximo 1/3 das imagens (e só piada curta, nunca "
+            "um rótulo repetindo a fala); o Amigo em no máximo metade das cenas; nunca mude o fundo (nada de 'bright "
+            "background'); não copie frases, piadas nem detalhes do modelo: crie os DESTE tema.\n\n" + _exemplo_piloto())
 
 
 SCHEMA_JUIZ = {
@@ -185,7 +202,12 @@ TEMPO_MAX_ROTEIRO = 240
 
 
 def _preset(nicho: str) -> dict:
-    return json.loads((caminhos.DADOS / "presets.json").read_text(encoding="utf-8"))[PRESET_DO_NICHO.get(nicho, "curiosidades")]
+    presets = json.loads((caminhos.DADOS / "presets.json").read_text(encoding="utf-8"))
+    preset = presets[PRESET_DO_NICHO.get(nicho, "curiosidades")]
+    # canal do Bob em outro nicho (MILIONERE_ELENCO, ligado pelo painel no estilo doodle cena): mesmo elenco e cenário
+    if os.environ.get("MILIONERE_ELENCO") == "1" and not preset.get("elenco"):
+        preset = {**preset, "elenco": presets["animacoes"]["elenco"], "cenario_en": presets["animacoes"]["cenario_en"]}
+    return preset
 
 
 def _juiz(r: dict, entrada: dict, tema: str) -> tuple[list[str], dict]:
@@ -195,7 +217,14 @@ def _juiz(r: dict, entrada: dict, tema: str) -> tuple[list[str], dict]:
     cenas = "\n".join(f"{i}. {c['fala']}" for i, c in enumerate(r["cenas"], 1))
     narrado = ("\n# Este roteiro é NARRADO\nAs cenas são pedaços de UMA narração corrida (a imagem troca no meio da "
                "frase, é de propósito). Leia tudo junto. Em ritmo e linguagem, conta se soa como uma pessoa contando uma "
-               "história, com as frases ligadas; lista de frases soltas é nota 2.\n" if entrada.get("narrado") else "")
+               "história, com as frases ligadas; lista de frases soltas é nota 2. A quebra de expectativa do começo tem "
+               "que fazer sentido NESTE tema (frase feita que não combina é problema) e o detalhe concreto tem que ser "
+               "do tema, não forçado.\n" if entrada.get("narrado") else "")
+    if entrada.get("narrado") and any(c.get("imagem") for c in r["cenas"]):
+        narrado += ("\n# Imagens (desenho doodle com o elenco fixo: Bob e o Amigo)\n"
+                    + "\n".join(f"{i}. {c.get('imagem', '')}" for i, c in enumerate(r["cenas"], 1))
+                    + "\nEm clareza, conta também: cada imagem ENCENA a fala da mesma cena (emoção do Bob + a ideia virando "
+                      "objeto)? Imagem genérica ou que não mostra a fala é problema, com o número da cena.\n")
     prompt = (
         "Você revisa roteiros de Shorts/TikTok em pt-BR antes de publicar. Ache problemas, não elogie. "
         "Nota 5 só se não há nada a melhorar; 3 = publicável com defeito visível.\n\n"
