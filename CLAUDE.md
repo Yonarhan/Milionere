@@ -19,8 +19,11 @@ A fórmula completa está em **`docs/animacoes.md`**; leia antes de mexer. Em re
 - **Pilotos aprovados** (em `producao/roteiros/`): `2026-09-25_propria-voz.json` e
   `2026-09-25_ultimo-minuto-da-vida-v2.json`.
 
-Os outros canais continuam existindo: Gospel (do Rafael), Space Atlas (astronomia) e animais. O Space Atlas é só
-de espaço: não postar animação de outro tema nele.
+**Um canal do Bob por nicho** (decidido em 25/09/2026): o Bob Curioso fica com as curiosidades gerais e o Space
+Atlas vira animação do Bob com curiosidades de astronomia. Os próximos nichos seguem o mesmo modelo. Para um nicho
+virar canal do Bob, configure no painel: imagens "IA no pod", estilo "doodle cena" e roteiro "narrado". O elenco vem
+sozinho do preset `animacoes` (`MILIONERE_ELENCO`). O Space Atlas continua só de espaço. Gospel (do Rafael) e
+animais seguem como estão.
 
 ## Como funciona
 
@@ -44,6 +47,20 @@ de espaço: não postar animação de outro tema nele.
 - **Roteiro:** o Claude roda pelo `claude -p`, chamado via node direto, e usa a sessão do Yonarhan. Quando a sessão
   chega ao limite, o vídeo falha com "You've hit your limit".
 - **Tempos medidos:** ~28 s por imagem e 1 a 5 min por cena animada. Um Short de 15 imagens com 3 animadas leva ~15 min.
+
+## Objetivo permanente: refinar a geração de vídeo
+
+Sempre que houver trabalho no canal de animações, um dos objetivos é **melhorar a qualidade do vídeo gerado**:
+- a qualidade dos **objetos e ícones** que saem do roteiro (a ideia da fala virando coisa);
+- a **ambientação** (cenário, lugar, clima da cena);
+- a **expressão e a pose** dos personagens, e a consistência do elenco;
+- o **texto na imagem**, as **animações** e a **montagem**.
+
+Na prática:
+- ao olhar um vídeo ou uma imagem, apontar o que ficou fraco e transformar isso em regra no prompt, na checagem ou
+  no juiz;
+- propor melhorias mesmo quando o pedido for outro;
+- comparar sempre com os vídeos aprovados (a voz e a morte).
 
 ## Regras (combinadas com o Yonarhan)
 
