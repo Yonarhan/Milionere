@@ -65,6 +65,12 @@ input[type=text],select{background:var(--ground);border:1px solid var(--line);bo
 .aviso code{font:500 12px var(--mono);background:var(--sunk);padding:2px 6px;border-radius:4px;word-break:break-all}
 
 .canais{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+/* foco em animações: um cartão vertical só, no centro, e a cor do canal */
+body.foco .canais{grid-template-columns:minmax(0,480px);justify-content:center}
+body.foco{--accent:#C4502A;--accent-ink:#FFFFFF;--accent-soft:#F7DED3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body.foco{--accent:#F08A5D;--accent-ink:#2A1208;--accent-soft:#3A1E12}}
+:root[data-theme="dark"] body.foco{--accent:#F08A5D;--accent-ink:#2A1208;--accent-soft:#3A1E12}
+.brand .todos{font-size:12px;margin-left:10px}
 .canal .top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .canal h3{font-size:18px;font-weight:700}
 .dot{width:12px;height:12px;border-radius:4px;flex:none}
@@ -145,7 +151,8 @@ pre.log{margin:0;max-height:260px;overflow:auto;background:var(--ground);border:
 </head><body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><h1>Produção do Canal</h1><span class="tag">interno · 1 vídeo por vez</span></div>
+    <div class="brand"><h1 id="marca">Produção do Canal</h1><span class="tag" id="marcaTag">interno · 1 vídeo por vez</span>
+      <a class="todos" id="linkTodos" href="?todos=1"></a></div>
     <div class="topControls"><label for="provedor">IA do canal
       <select id="provedor"><option value="claude-cli">Claude -p local</option><option value="api">API Anthropic</option></select></label>
       <nav class="nav"><a href="/">Estúdio</a><a href="/banco">Banco de imagens</a><a href="/admin/estudio/producao/">Admin</a></nav></div>
@@ -155,7 +162,7 @@ pre.log{margin:0;max-height:260px;overflow:auto;background:var(--ground);border:
   <div class="status" id="status"></div>
   <div id="avisoProdutor"></div>
 
-  <section><div class="head"><h2>Metas de hoje</h2><span class="count" id="totalHoje"></span></div>
+  <section><div class="head"><h2 id="tituloCanais">Metas de hoje</h2><span class="count" id="totalHoje"></span></div>
     <div class="canais" id="canais"></div></section>
 
   <section><div class="head"><h2>Gerando agora</h2><span class="count" id="countFila"></span></div>
@@ -452,10 +459,23 @@ function renderHistorico(){
     acao({acao:"tentar_de_novo",id:b.dataset.retry,serie:b.dataset.serie},"Voltou para a fila: é o próximo a ser gerado")});
 }
 
+// /canal = estúdio de animações; /canal?todos=1 = o painel de todos os canais (gospel do Rafael etc.)
+const FOCO = new URLSearchParams(location.search).has("todos") ? null : "animacoes";
+if(FOCO){
+  document.body.classList.add("foco"); document.title="Estúdio de Animações";
+  $("#marca").textContent="Estúdio de Animações"; $("#marcaTag").textContent="doodle · Bob e o Amigo";
+  $("#linkTodos").textContent="ver todos os canais"; $("#tituloCanais").textContent="Criar animação";
+}else{ $("#linkTodos").textContent="só animações"; $("#linkTodos").href="?"; }
+function focar(E){  // mostra só o canal de animações e os vídeos dele
+  if(!FOCO) return E;
+  const so = l => (l||[]).filter(x=>x.nicho===FOCO);
+  return {...E, canais:so(E.canais), revisar:so(E.revisar), aprovados:so(E.aprovados), historico:so(E.historico),
+          fila:so(E.fila), series_revisar:so(E.series_revisar)};
+}
 async function carregar(forcar){
   try{
     const r=await fetch("/api/canal"); if(!r.ok) throw new Error(r.status);
-    E=await r.json();
+    E=focar(await r.json());
     if(forcar) assinatura={};
     renderStatus(); renderCanais(); renderAtual();
     renderSeries();
