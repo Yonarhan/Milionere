@@ -52,7 +52,9 @@ VOZ = _cfg("MILIONERE_VOZ", "edge")
 LLM = _cfg("MILIONERE_LLM", "claude-cli")
 IMAGEM = _cfg("MILIONERE_IMAGEM", "auto")
 PLANO = _cfg("MILIONERE_PLANO", "gratis")
-MODELO_ROTEIRO = _cfg("MILIONERE_MODELO_ROTEIRO", "sonnet")   # escreve: precisa de qualidade em pt-BR
+# versão fixa: o alias "sonnet" virou Sonnet 5 em 25/09 e ele entrega 150-250 palavras num limite de ~110 (ignora o
+# total e até orçamento por cena); o 4.6 fica em 99-109. Trocar de modelo só depois de testar tamanho e nota do juiz.
+MODELO_ROTEIRO = _cfg("MILIONERE_MODELO_ROTEIRO", "claude-sonnet-4-6")
 MODELO_JUIZ = _cfg("MILIONERE_MODELO_JUIZ", "haiku")          # confere contra critérios fixos: o barato basta
 # juiz do ROTEIRO separado do visual: o Haiku tratou omissão como erro factual e fez 2 de 9 rodadas desistirem (noite 24/09)
 MODELO_JUIZ_ROTEIRO = _cfg("MILIONERE_MODELO_JUIZ_ROTEIRO", MODELO_JUIZ)

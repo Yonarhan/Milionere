@@ -183,5 +183,40 @@
     "nome": "Jacó",
     "nome_en": "Jacob",
     "descricao_visual": "a man in his 70s, long grey-streaked dark hair and full grey beard, weathered olive skin, worn dark brown wool tunic with a leather belt"
+  },
+  "ruben": {
+    "nome": "Rúben",
+    "nome_en": "Reuben",
+    "descricao_visual": "a bearded Hebrew man in his late thirties, thick curly dark hair and full dark beard, sun-weathered olive skin, rough dark brown wool tunic with a leather belt"
+  },
+  "juda": {
+    "nome": "Judá",
+    "nome_en": "Judah",
+    "descricao_visual": "a bearded Hebrew man in his mid-thirties, short curly dark hair and trimmed dark beard, sun-weathered olive skin, rough brown wool tunic with a leather belt"
+  },
+  "potifar": {
+    "nome": "Potifar",
+    "nome_en": "Potiphar",
+    "descricao_visual": "an Egyptian official in his 40s, clean-shaven, short dark hair, dark bronze skin, fine white linen robe with a gold collar, commanding posture"
+  },
+  "mulher-potifar": {
+    "nome": "Mulher de Potifar",
+    "nome_en": "Potiphar's wife",
+    "descricao_visual": "an Egyptian woman in her 30s, long dark hair in braids under a gold headdress, kohl-lined eyes, smooth bronze skin, fine white linen dress with gold jewellery"
+  },
+  "farao": {
+    "nome": "Faraó",
+    "nome_en": "Pharaoh",
+    "descricao_visual": "an Egyptian pharaoh in his 40s, clean-shaven with a striped blue and gold nemes headdress, bronze skin, fine white linen robe with a golden pectoral collar and a crook and flail"
+  },
+  "ismaelita": {
+    "nome": "Mercador ismaelita",
+    "nome_en": "Ishmaelite merchant",
+    "descricao_visual": "a weathered merchant man in his 40s, long dark beard, wrapped dark headscarf, tanned skin, coarse striped brown and grey travelling robe with a rope belt, leading a camel"
+  },
+  "carcereiro": {
+    "nome": "Carcereiro",
+    "nome_en": "prison warden",
+    "descricao_visual": "an Egyptian prison guard in his 40s, short dark hair, clean-shaven, dark bronze skin, simple dark linen guard tunic with a leather belt, stern watchful expression"
   }
 }

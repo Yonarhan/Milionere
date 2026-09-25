@@ -113,6 +113,8 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
         "- Todo fato bíblico narrado precisa estar NESTE texto. Não acrescente milagre, fala, número ou detalhe que não está nele.\n"
         "- Dramatização é permitida só como emoção ou ambiente ('imagina o medo'), nunca como fato novo.\n"
         "- Conte os fatos NA ORDEM em que aparecem no texto. Cada cena aponta o evento que narra.\n"
+        "- Você NÃO precisa narrar todos os versículos: escolha os momentos essenciais que cabem no limite de palavras. "
+        "Pular um detalhe não é erro; inventar é. Personagem secundário que só aparece uma vez pode virar 'um dos irmãos'.\n"
         "- Os personagens têm os nomes do texto e não trocam de nome nem de papel no meio.\n"
         "- Quem ouve nunca leu essa história e não vê a tela: cada fala diz QUEM fez, O QUE fez e, quando importa, POR QUÊ. "
         "Nada de 'ele' sem nome antes, 'lá dentro' sem dizer onde, ou personagem que surge sem apresentação. "

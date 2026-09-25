@@ -110,7 +110,7 @@ def roteiro_validado(formato: dict, tema: dict, reg: Registro, correcoes: list[s
     # abaixo de 3, média >= 3.75). Jogar fora ~12 min de roteiro por "ritmo 3" travava o turno da noite (24/09);
     # o dono revisa cada vídeo antes de publicar.
     if melhor and melhor_notas and not any(p.startswith("ERRO FACTUAL") for p in melhor[2]) \
-            and min(melhor_notas.values()) >= 3 and sum(melhor_notas.values()) / len(melhor_notas) >= 3.75:
+            and min(melhor_notas.values()) >= 3 and sum(melhor_notas.values()) / len(melhor_notas) >= 3.75 * (1 - validar.MARGEM):
         log(f"  aceito a melhor versão (só ressalvas de estilo): {melhor_notas}")
         reg.add("camada2", True, aceito_com_ressalvas=melhor[2], notas=melhor_notas)
         melhor[1]["_notas_juiz"] = melhor_notas

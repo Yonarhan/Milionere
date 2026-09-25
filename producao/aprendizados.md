@@ -26,3 +26,5 @@ Regras que vieram de feedback real. A skill `roteirista-shorts` lê este arquivo
 - 2026-09-22: 90 palavras a 1.0x = 48s (longo). Mirar ~65 palavras ou voz 1.1x.
 - 2026-09-22: para histórias bíblicas, pinturas clássicas (Rembrandt, Rubens, Van Gogh) e fotos históricas do lugar (Túmulo de Lázaro, Betânia) ilustram muito melhor que vídeo de banco.
 - 2026-09-22: imagens geradas no app do Gemini (1 prompt por mensagem, mesmo Jesus) = melhor resultado até agora para cenas bíblicas. Banco de imagens não tem os momentos exatos da história.
+- 2026-09-25: margem de 10% em todo limite de texto (pedido do dono, `validar.MARGEM`): palavras, cenas, gancho (9), cena (17), e juiz aceita UM 3 isolado em ordem/personagens/compreensão se a média dos rígidos ≥ 3.6; gosto: média ≥ 3.15. Fidelidade e erro factual seguem sem folga. Motivo: série do José caiu 3x por 1-4 palavras a mais e nota 3 isolada.
+- 2026-09-25: ref com vírgula ("Gênesis 37:4,18-20") era lida como capítulos 18-20 → evento "fora do trecho". Corrigido no biblia.versiculos.
