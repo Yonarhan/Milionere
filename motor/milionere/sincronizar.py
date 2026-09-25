@@ -183,7 +183,10 @@ def cortar(origem: Path, destino: Path, inicio_origem: float, frames: int) -> No
         FFMPEG, "-y", "-loglevel", "error",
         "-ss", f"{inicio_origem:.2f}", "-i", str(origem),
         "-frames:v", str(frames),
-        "-vf", f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps={FPS},setsar=1",
+        # tpad: clipe mais curto que a cena congela o último quadro até completar. Sem isso a tomada saía curta e
+        # tudo depois dela ficava adiantado em relação à voz (24/09: animação de 2,4 s numa cena de 3,4 s)
+        "-vf", f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps={FPS},setsar=1,"
+               f"tpad=stop_mode=clone:stop_duration={frames / FPS + 1:.2f}",
         "-an", "-pix_fmt", "yuv420p",
     ]
     # placa de vídeo primeiro (bem mais rápido no i3); processador se a placa falhar

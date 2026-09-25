@@ -1,0 +1,94 @@
+[
+  {
+    "slug": "sol-apagasse",
+    "nicho": "astronomia",
+    "canal": "Space Atlas",
+    "titulo": "E se o Sol apagasse agora? ☀️",
+    "fontes": [
+      "Luz do Sol até a Terra: ~149,6 milhões de km / ~300 mil km/s = ~499 s (8 min 19 s)",
+      "A gravidade também se propaga na velocidade da luz: a Terra seguiria a órbita por ~8 min e depois sairia pela tangente",
+      "Estimativa (David Stevenson, Caltech): média global abaixo de -17,8 °C em uma semana e cerca de -73 °C em um ano; oceano profundo segue líquido sob o gelo; vida em fontes hidrotermais não depende da luz do Sol"
+    ],
+    "cenas": [
+      {
+        "fala": "E se o Sol apagasse agora?",
+        "busca": "sun solar activity|sun surface closeup",
+        "escolha": [
+          "pexels:37944582"
+        ]
+      },
+      {
+        "fala": "Nos primeiros 8 minutos, nada mudaria.",
+        "busca": "sun light space"
+      },
+      {
+        "fala": "A luz ainda estaria a caminho.",
+        "busca": "sun light space"
+      },
+      {
+        "fala": "Depois, escuridão total.",
+        "busca": "earth at night from space|dark earth space"
+      },
+      {
+        "fala": "A Lua sumiria do céu.",
+        "busca": "full moon night sky|moon"
+      },
+      {
+        "fala": "E a Terra sairia em linha reta pelo espaço.",
+        "busca": "earth orbit"
+      },
+      {
+        "fala": "Em uma semana, a média cairia pra menos 17 graus.",
+        "busca": "frozen lake winter|snow storm blizzard",
+        "foto": "frozen landscape ice",
+        "escolha": [
+          "pexels:29035027"
+        ]
+      },
+      {
+        "fala": "Em um ano, uns 70 graus negativos.",
+        "busca": "arctic ice sheet|frozen ice cracks",
+        "foto": "arctic ice",
+        "escolha": [
+          "pixabay:316"
+        ]
+      },
+      {
+        "fala": "Mas embaixo do gelo, o oceano ficaria líquido por muito tempo.",
+        "busca": "under ice water|ocean under ice",
+        "foto": "underwater ice",
+        "escolha": [
+          "pexels:37545504"
+        ]
+      },
+      {
+        "fala": "Perto das fontes quentes do fundo do mar, a vida resistiria.",
+        "busca": "deep sea hydrothermal vent|deep ocean",
+        "foto": "hydrothermal vent",
+        "arte": "hydrothermal vent",
+        "escolha": [
+          "pixabayfoto:10194173"
+        ]
+      },
+      {
+        "fala": "Salva e se inscreve no Space Atlas.",
+        "busca": "sun solar activity",
+        "escolha": [
+          "pexels:37944582"
+        ]
+      }
+    ],
+    "descricao": "Se o Sol apagasse agora, a gente continuaria vendo ele por uns 8 minutos: é o tempo que a luz leva pra chegar aqui. Depois, a Terra sairia em linha reta pelo espaço e esfriaria rápido, mas o oceano sob o gelo e a vida nas fontes quentes do fundo do mar poderiam resistir. Você sobreviveria? ☀️",
+    "hashtags": [
+      "#astronomia",
+      "#sol",
+      "#espaço",
+      "#ese",
+      "#shorts"
+    ],
+    "comentario_fixado": "Qual 'E se' do espaço você quer ver no Space Atlas? 👇",
+    "_creditos": [
+      "Animações: Space Atlas (Manim)"
+    ]
+  }
+]
