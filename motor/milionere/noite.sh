@@ -4,6 +4,7 @@
 #
 #   crontab: 0 20 * * * /home/rafael/projects/milionere/milionere/motor/milionere/noite.sh
 #   FIM_HORA=6 noite.sh      # para de começar vídeo novo às 6h (padrão 7h)
+#   FORMATOS=historia,personagem noite.sh
 set -u
 RAIZ=/home/rafael/projects/milionere/milionere
 cd "$RAIZ" || exit 1
@@ -12,6 +13,9 @@ export XDG_RUNTIME_DIR="/run/user/$(id -u)"  # systemd-run --user (teto de RAM d
 export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
 export MILIONERE_COMFY_MANTER=1  # ComfyUI fica no ar entre um vídeo e outro (não espera subir a cada vídeo)
 FIM_HORA=${FIM_HORA:-7}
+# só formatos com histórico de aprovação: história = 12/13 roteiros aprovados e as melhores views; parábola e
+# provérbio reprovavam no juiz quase sempre (24/09) e ficam fora até o roteirista deles ser ajustado de dia
+FORMATOS=${FORMATOS:-historia}
 PY=motor/.venv-linux/bin/python
 D=producao/noite
 mkdir -p "$D"
@@ -25,7 +29,7 @@ while :; do
   h=$(date +%-H)
   if [ "$h" -ge "$FIM_HORA" ] && [ "$h" -lt 20 ]; then break; fi  # janela: 20h até FIM_HORA
   echo "--- vídeo começou $(date +%T)"
-  timeout 6000 "$PY" motor/milionere/lote.py --qtd 1 --musica ambas > "$D/ultimo_video.log" 2>&1
+  timeout 6000 "$PY" motor/milionere/lote.py --qtd 1 --musica ambas --formatos "$FORMATOS" > "$D/ultimo_video.log" 2>&1
   cat "$D/ultimo_video.log" >> "$D/videos_$(date +%F).log"  # log inteiro: toda falha precisa ser analisável
   grep -E "===|LOTE|YouTube|NÃO subiu|DESISTI|FALHOU|AVISO|custo|Traceback|Error" "$D/ultimo_video.log" | cut -c1-300
   if grep -q "hit your session limit\|api_error_status\": 429\|rate_limit" "$D/ultimo_video.log"; then
