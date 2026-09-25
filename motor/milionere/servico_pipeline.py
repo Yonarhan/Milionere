@@ -190,7 +190,7 @@ def _roteiro_generico(entrada: dict, log) -> dict:
         "# Fatos\nO fato central tem que ser verdadeiro. O resto pode ser dramatização em tom de hipótese ('imagina', 'provavelmente').",
         guia.bloco(nicho, formato, tema),
         f"# Ganchos\n{ler('ganchos.md')}", f"# Linguagem\n{ler('anti-ia.md')}",
-        "# Post\nTítulo até 60 caracteres, descrição com 1-2 frases e uma pergunta, 5 hashtags com #shorts. "
+        "# Post\nTítulo até 60 caracteres. " + cta.REGRA_TITULO + " Descrição com 1-2 frases e uma pergunta, 5 hashtags com #shorts. "
         "TikTok: título próprio até 70 caracteres e legenda curta com uma pergunta e 3 a 5 hashtags do nicho, sem #shorts.",
     ])
     melhor, correcoes = None, []

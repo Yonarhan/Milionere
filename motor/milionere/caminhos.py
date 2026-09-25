@@ -56,6 +56,8 @@ PLANO = _cfg("MILIONERE_PLANO", "gratis")
 # total e até orçamento por cena); o 4.6 fica em 99-109. Trocar de modelo só depois de testar tamanho e nota do juiz.
 MODELO_ROTEIRO = _cfg("MILIONERE_MODELO_ROTEIRO", "claude-sonnet-4-6")
 MODELO_JUIZ = _cfg("MILIONERE_MODELO_JUIZ", "haiku")          # confere contra critérios fixos: o barato basta
+# corte da série em episódios (episodios.py): tarefa mecânica, candidata a modelo mais rápido (medir antes)
+MODELO_CORTE = _cfg("MILIONERE_MODELO_CORTE", MODELO_ROTEIRO)
 # juiz do ROTEIRO separado do visual: o Haiku tratou omissão como erro factual e fez 2 de 9 rodadas desistirem (noite 24/09)
 MODELO_JUIZ_ROTEIRO = _cfg("MILIONERE_MODELO_JUIZ_ROTEIRO", MODELO_JUIZ)
 JUIZ_ROTEIRO = _cfg("MILIONERE_JUIZ_ROTEIRO", "1") == "1"     # juiz de IA no roteiro genérico (desligar = só código)

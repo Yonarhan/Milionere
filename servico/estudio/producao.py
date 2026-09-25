@@ -463,12 +463,12 @@ def executar(prod: Producao) -> None:
 
 # ------------------------------------------------------------------ série (2 a 5 partes)
 
-TEMPO_MAX_JUIZ_SERIE = 8 * 60  # rodadas do juiz da série (com as reescritas): passou, segue com os avisos
 
 
 def executar_serie(s: Serie) -> None:
-    """Plano -> juiz do plano -> roteiro de cada parte (juízes de sempre) -> juiz da série (reescreve só a parte
-    apontada) -> imagens e vídeo de cada parte -> juiz visual da série -> revisão como um bloco só."""
+    """História completa -> juiz -> corte em episódios (episodios.py) -> juiz da série (1 passada, refaz só o corte)
+    -> imagens e vídeo de cada parte -> juiz visual da série -> revisão como um bloco só. Nada joga a série fora
+    por estilo: o que os juízes não resolveram vai para a revisão."""
     sp, pipeline, biblia = _motor()
     import medidor
     import serie as ms
@@ -493,65 +493,28 @@ def executar_serie(s: Serie) -> None:
                 formato = {"nome": (pauta.formato_nome if pauta else "") or s.formato, "receita": "",
                            "palavras": [preset["palavras_min"], preset["palavras_max"]]}
                 tema, fonte, chave = {"titulo": s.tema, "angulo": ""}, None, str(s.pk)[:8]
-            plano = ms.planejar(s.nicho, formato, tema, s.max_partes, log=lambda msg: diario(msg, "plano"))
+            slug_serie = f"serie-{s.formato}-{chave}"
+            avisos_roteiro: list[str] = []  # o que os juízes apontaram e não ficou resolvido (vai para a revisão)
+            # história completa primeiro, depois o corte em episódios (motor/milionere/episodios.py). Antes cada parte
+            # era escrita do zero e o juiz da série mandava reescrever: 27+ min e a série do José nunca fechou (25/09)
+            import episodios
+            if biblico:
+                with _LogGospel(diario):
+                    plano, roteiros = episodios.serie_biblica(s.formato, formato, tema, s.max_partes, slug_serie,
+                                                              log=lambda msg: diario(msg, "roteiro"))
+                avisos_roteiro += list(dict.fromkeys(a for _, pk in roteiros for a in pk.get("_avisos_juiz", [])))
+            else:
+                plano, roteiros = episodios.serie_generica(s.nicho, formato["nome"], s.tema, s.max_partes,
+                                                           log=lambda msg: diario(msg, "roteiro"))
+                avisos_roteiro += roteiros[0].get("_avisos", [])
+                for k, r in enumerate(roteiros, 1):
+                    diario(f"episódio {k}/{len(roteiros)}:\n" + "\n".join(f"  «{c['fala']}»" for c in r["cenas"]), "roteiro")
             N = len(plano["partes"])
             Serie.objects.filter(pk=s.pk).update(plano=plano, titulo=plano["titulo_serie"][:200], etapa="roteiro")
             partes = [Producao.objects.create(serie=s, parte=k, pauta=pauta, nicho=s.nicho, formato=s.formato,
                                               tema=f"{plano['titulo_serie']} · parte {k}/{N}: {x['titulo']}"[:200],
                                               status=Producao.Status.GERANDO, iniciado=agora(), etapa="roteiro")
                       for k, x in enumerate(plano["partes"], 1)]
-            slug_serie = f"serie-{s.formato}-{chave}"
-            roteiros: list = [None] * N  # gospel: (arquivo, pacote); outros: o roteiro do roteirista genérico
-            avisos_roteiro: list[str] = []  # o que os juízes apontaram e não ficou resolvido (vai para a revisão)
-
-            def falas(k: int) -> list[str]:
-                r = roteiros[k - 1][1] if biblico else roteiros[k - 1]
-                return [c["fala"] for c in r["cenas"]]
-
-            def escrever(k: int, correcoes: list[str] | None = None) -> None:
-                anteriores = [falas(j) for j in range(1, k)]
-                diario(f"parte {k}/{N}: escrevendo" + (" de novo (juiz da série)" if correcoes else ""), "roteiro")
-                if biblico:
-                    anterior = roteiros[k - 1][1] if correcoes and roteiros[k - 1] else None
-                    with _LogGospel(diario):
-                        roteiros[k - 1] = ms.roteiro_gospel(s.formato, tema, plano, k, slug_serie, anteriores, correcoes, anterior)
-                else:
-                    x = plano["partes"][k - 1]
-                    r = sp._roteiro_generico({"nicho": s.nicho, "formato": s.formato, "formato_nome": formato["nome"],
-                                              "tema_livre": f"{s.tema} (parte {k} de {N}: {x['titulo']})",
-                                              "serie": ms.contexto_parte(plano, k, s.nicho, anteriores, correcoes)},
-                                             lambda etapa, msg: diario(msg or etapa, "roteiro"))
-                    if r.get("_avisos"):  # não joga a série fora: segue a melhor versão e o ponto vai para a revisão
-                        avisos_roteiro.extend(f"parte {k}: {a}" for a in r["_avisos"][:3])
-                    r["titulo"] = ms.titulo_parte(r["titulo"], k, N)
-                    if r.get("tiktok_titulo"):
-                        r["tiktok_titulo"] = ms.titulo_parte(r["tiktok_titulo"], k, N)
-                    roteiros[k - 1] = r
-                diario(f"parte {k}/{N} aprovada:\n" + "\n".join(f"  «{f}»" for f in falas(k)), "roteiro")
-
-            for k in range(1, N + 1):
-                escrever(k)
-            comeco_juiz = time.time()
-            for rodada in range(ms.RODADAS_SERIE + 1):
-                diario(f"juiz da série: lendo as {N} partes juntas (rodada {rodada + 1})", "roteiro")
-                vistos = [{"falas": falas(k), "personagens": (roteiros[k - 1][1] if biblico else {}).get("personagens", [])}
-                          for k in range(1, N + 1)]
-                problemas = ms.julgar_roteiros(plano, vistos, s.nicho, fonte)
-                if not problemas:
-                    diario("juiz da série: aprovada", "roteiro")
-                    break
-                for k, p in problemas.items():
-                    diario(f"  juiz da série, parte {k}: " + " | ".join(p), "roteiro")
-                estourou = time.time() - comeco_juiz > TEMPO_MAX_JUIZ_SERIE
-                if rodada == ms.RODADAS_SERIE or estourou:
-                    # antes a série inteira ia fora aqui (27 min de roteiro aprovado parte a parte). O juiz ajuda,
-                    # mas não segura o vídeo: segue esta versão e o que ele apontou vai para a revisão.
-                    diario("juiz da série não aprovou tudo " + ("(passou do tempo)" if estourou else "depois das reescritas")
-                           + ": segue esta versão, os pontos vão para a revisão", "roteiro")
-                    avisos_roteiro.extend(f"juiz da série, parte {k}: {p[0]}" for k, p in problemas.items())
-                    break
-                for k in sorted(problemas):
-                    escrever(k, problemas[k])
 
             Serie.objects.filter(pk=s.pk).update(etapa="imagens")
             visuais = []

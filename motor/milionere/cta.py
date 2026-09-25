@@ -40,6 +40,17 @@ def exemplos(nicho: str, prox: int | None = None, n: int = 2) -> list[str]:
     return [e.format(prox=prox) for e in random.sample(lista, min(n, len(lista)))]
 
 
+# título do post (25/09): pergunta intriga mais no Shorts; o tipo de cada título postado fica em postados.json e
+# metricas_youtube.py compara pergunta x afirmação com views e retenção reais antes de virar regra fixa
+REGRA_TITULO = ("Título: uma PERGUNTA específica que o vídeo responde ('Por que José ficou 2 anos esquecido na prisão?', "
+                "'O que acontece se o Sol apagar?'). Nada de pergunta vaga ('Você sabia disso?') nem de pergunta que o "
+                "vídeo não responde. Não repita o gancho palavra por palavra.")
+
+
+def tipo_titulo(titulo: str) -> str:
+    return "pergunta" if "?" in titulo else "afirmacao"
+
+
 def bloco(nicho: str, prox: int | None = None) -> str:
     ex = " | ".join(f"'{e}'" for e in exemplos(nicho, prox))
     if nicho == "gospel":

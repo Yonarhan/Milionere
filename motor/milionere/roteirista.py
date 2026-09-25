@@ -33,7 +33,7 @@ SCHEMA = {
                            "clareza": {"type": "integer"}, "imagem": {"type": "integer"}}}},
         "gancho_tela": {"type": "string", "description": "texto GRANDE na tela nos 2 primeiros segundos, 3 a 6 palavras, "
                         "sem emoji; complementa a fala da cena 1 (não repete palavra por palavra) e abre a lacuna"},
-        "titulo": {"type": "string", "description": "título do post, até 60 caracteres, pode ter 1 emoji"},
+        "titulo": {"type": "string", "description": "título do post, até 60 caracteres, uma pergunta específica que o vídeo responde, pode ter 1 emoji"},
         "cenario_en": {"type": "string", "description": "em inglês: SÓ o que vale para TODAS as cenas: época e paisagem geral (ex.: 'ancient Judea, 1st century, dusty hills'). Se a história muda de lugar (Canaã e depois Egito), o lugar específico vai no prompt de cada cena, nunca aqui"},
         "personagens": {"type": "array", "items": {
             "type": "object", "additionalProperties": False, "required": ["id", "nome", "nome_en", "descricao_visual"],
@@ -133,15 +133,21 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
         "e uma descricao_visual em inglês bem específica (idade, cabelo, barba, pele, roupa), sem nome próprio.\n"
         "Numa cena, `personagens` lista só quem aparece na imagem, NA MESMA ORDEM em que o prompt de imagem os descreve "
         "(a primeira ficha vai para a primeira figura descrita). Máximo 2 por cena. Rosto de Deus nunca aparece.",
-        f"# Tamanho\nMire em {lo} a {hi - 8} palavras no total (limite duro: {hi}; conte antes de entregar), {c_lo} a {c_hi} cenas. Uma frase por cena, 3 a 14 palavras. "
-        "A primeira cena é o gancho (até 8 palavras). A última é o CTA.",
-        "" if "# Fechamento" in formato["receita"] else cta.bloco("gospel"),  # parte de série traz o próprio
+        (f"# Tamanho\nMire em {lo} a {hi - 8} palavras no total (limite duro: {hi}; conte antes de entregar), {c_lo} a {c_hi} cenas. Uma frase por cena, 3 a 14 palavras. "
+         "A primeira cena é o gancho (até 8 palavras). A última é o CTA.") if not formato.get("completa") else
+        # história inteira de uma série (episodios.py): o gancho, a recapitulação e o CTA de cada parte vêm depois
+        (f"# Tamanho\nHISTÓRIA COMPLETA, {lo} a {hi} palavras, {c_lo} a {c_hi} cenas, uma frase por cena (3 a 14 palavras). "
+         "Ela vai ser cortada depois em episódios de ~40 s: NÃO escreva gancho, aplicação ao espectador nem CTA; só a "
+         "narração, do primeiro ao último fato, na ordem, com viradas claras (onde dá pra cortar deixando suspense). "
+         "Nos campos ganchos/versiculo/titulo/post, preencha para a série inteira."),
+        "" if "# Fechamento" in formato["receita"] or formato.get("completa") else cta.bloco("gospel"),
+        "" if formato.get("completa") else
         f"# Ganchos\n{_ler(REFS / 'ganchos.md')}\nEscreva 5 ganchos, dê nota 1-5 e use o melhor na cena 1.",
         f"# Linguagem\n{_ler(REFS / 'anti-ia.md')}",
         f"# O que já funcionou no canal\n{_ler(REFS / 'persona-gospel.md')}\n{_ler(RAIZ / 'producao' / 'aprendizados.md')}",
         "# Imagens\nCada `imagem` mostra literalmente o que a fala diz. Varie o enquadramento. " + regras_imagem() + " "
         f"Época: {'bíblica, sem nenhum objeto moderno' if formato['epoca'] == 'biblica' else 'Brasil atual, pessoas comuns'}.",
-        "# Post\nTítulo até 60 caracteres (pergunta ou curiosidade, não repita o gancho). Descrição: o versículo entre aspas "
+        "# Post\nTítulo até 60 caracteres. " + cta.REGRA_TITULO + " Descrição: o versículo entre aspas "
         "com referência, 2 frases, uma pergunta e 'Leia <livro capítulo>'. 5 hashtags com #shorts. Comentário fixado com "
         "pergunta pessoal. TikTok: título próprio até 70 caracteres (não repita o do YouTube) e legenda curta com uma "
         "pergunta e 3 a 5 hashtags do nicho, sem #shorts. Autoavaliação honesta de 1 a 5.",
@@ -164,7 +170,7 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
                       + f"\n\nLIMITE RÍGIDO: {lo} a {hi} palavras no total (a versão anterior tinha "
                       + f"{sum(len(c['fala'].split()) for c in anterior['cenas'])}). Para cada palavra que acrescentar, corte "
                       "outra: junte cenas, tire adjetivos, troque frase explicativa por uma mais curta. Passar do limite = reprovado.")
-    return "\n\n".join(partes)
+    return "\n\n".join(x for x in partes if x)
 
 
 def escrever(formato: dict, tema: dict, correcoes: list[str] | None = None, anterior: dict | None = None) -> dict:
