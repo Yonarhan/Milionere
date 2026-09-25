@@ -187,6 +187,12 @@ def api_canal_acao(request):
         Producao.objects.create(pauta=falha.pauta, nicho=falha.nicho, formato=falha.formato, tema=falha.tema)
         if not producao.vivo():
             producao.ligar_produtor()
+    elif acao == "cancelar_atual" and Serie.objects.filter(pk=d["id"], status=Producao.Status.GERANDO).exists():
+        # série: marca como cancelada na hora (sai do "Gerando agora"); o produtor vê e derruba as chamadas
+        Serie.objects.filter(pk=d["id"]).update(status=Producao.Status.FALHOU, mensagem="cancelado por você",
+                                                terminado=timezone.now())
+        Producao.objects.filter(serie_id=d["id"], status__in=[Producao.Status.GERANDO, Producao.Status.FILA]).update(
+            status=Producao.Status.FALHOU, mensagem="cancelado por você", terminado=timezone.now())
     elif acao == "cancelar_atual":
         p = Producao.objects.filter(pk=d["id"], status=Producao.Status.GERANDO).first()
         if not p:

@@ -372,7 +372,12 @@ def _opcoes_video(nicho: str) -> None:
     os.environ["MILIONERE_VOLUME"] = "1" if c and c.volume else "0"
 
 
+_ATUAL: "Producao | Serie | None" = None  # o que o produtor está gerando agora (o vigia de cancelamento olha)
+
+
 def executar_qualquer(item: "Producao | Serie") -> None:
+    global _ATUAL
+    _ATUAL = item
     _opcoes_video(item.nicho)
     (executar_serie if isinstance(item, Serie) else executar)(item)
 
@@ -578,7 +583,11 @@ def _vigiar_cancelamento(parar: threading.Event) -> None:
     import llm
     while not parar.is_set():
         try:
-            if Producao.objects.filter(status=Producao.Status.GERANDO, cancelar=True).exists():
+            atual = _ATUAL
+            # série não tem o campo cancelar: o painel a marca como falhou enquanto ela ainda roda aqui
+            serie_cancelada = isinstance(atual, Serie) and Serie.objects.filter(
+                pk=atual.pk, status=Producao.Status.FALHOU).exists()
+            if serie_cancelada or Producao.objects.filter(status=Producao.Status.GERANDO, cancelar=True).exists():
                 if not llm.CANCELADO.is_set():
                     llm.CANCELADO.set()
                     _matar_filhos()
