@@ -322,7 +322,7 @@ def animacao(r: dict, reg: Registro) -> None:
     import os
     import animar
     qtd = int(os.environ.get("MILIONERE_ANIMAR", animar.QTD_PADRAO))
-    if qtd <= 0 or not (imagens.COMFY / "models" / "unet" / animar.ALTO[0]).exists():
+    if qtd <= 0 or not animar.pronto_para_animar():
         return  # sem o Wan 14B instalado (instalar_comfy.sh --animacao) o vídeo sai só com imagens
     cenas = animar.escolher(r, qtd)
     log(f"animação: cenas {cenas} no Wan 2.2 14B (~5 min cada)")
