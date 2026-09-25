@@ -221,14 +221,14 @@ def _roteiro_generico(entrada: dict, log) -> dict:
                 erros, notas = _juiz(r, entrada, tema)
         pontos = (sum(notas.values()) if notas else 0) - 3 * len(erros)
         if melhor is None or pontos >= melhor[2]:
-            melhor = (r, notas, pontos)
+            melhor = (r, notas, pontos, erros)  # os avisos da revisão são os DESTA versão, não os da última
         banco_roteiros.registrar_erros(nicho, formato, erros)          # a memória aprende com cada reprovação
         if not erros:
             banco_roteiros.adicionar(nicho, formato, tema, r["titulo"], [c["fala"] for c in r["cenas"]], notas, "ia")
             return {**r, "_notas_juiz": notas, "_tentativas": tentativa}
         correcoes = erros
-    r, notas, _ = melhor
-    return {**r, "_notas_juiz": notas, "_tentativas": tentativa, "_avisos": correcoes}
+    r, notas, _, erros_dela = melhor
+    return {**r, "_notas_juiz": notas, "_tentativas": tentativa, "_avisos": erros_dela}
 
 
 def gerar_roteiro(entrada: dict, log) -> dict:

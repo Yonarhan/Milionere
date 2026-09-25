@@ -38,6 +38,9 @@ PALAVRAS_POR_SEGUNDO = 2.4  # medido nas tomadas do Zaqueu (fala por cena, sem a
 SEED = 1234
 ALTO = ("Wan2.2-I2V-A14B-HighNoise-Q3_K_M.gguf", "wan22_i2v_high_lightx2v_4step.safetensors")
 BAIXO = ("Wan2.2-I2V-A14B-LowNoise-Q3_K_M.gguf", "wan22_i2v_low_lightx2v_4step.safetensors")
+# no ComfyUI remoto (pod com 20 GB ou mais): o Wan inteiro em fp8, bem melhor que o Q3 que cabe na placa de 8 GB
+ALTO_FP8 = ("wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors", "wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors")
+BAIXO_FP8 = ("wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors", "wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors")
 ENCODER = "umt5_xxl_fp8_e4m3fn_scaled.safetensors"
 VAE = "wan_2.1_vae.safetensors"
 MOVIMENTO = ", subtle natural movement, gentle breeze, slow cinematic camera push-in, realistic film, sharp faces"
@@ -114,6 +117,62 @@ def wf_baixo(img: str, pos: str, neg: str, n_quadros: int, latente: str, prefixo
     return wf
 
 
+def wf_completo(img: str, pos: str, neg: str, n_quadros: int, prefixo: str) -> dict:
+    """Remoto: uma chamada só por cena (texto, ruído alto, ruído baixo e o mp4), sem nós próprios nem latentes em
+    disco. Com 20 GB o ComfyUI troca os dois especialistas na placa sozinho."""
+    return {
+        "1": {"class_type": "UNETLoader", "inputs": {"unet_name": ALTO_FP8[0], "weight_dtype": "default"}},
+        "2": {"class_type": "UNETLoader", "inputs": {"unet_name": BAIXO_FP8[0], "weight_dtype": "default"}},
+        "3": {"class_type": "LoraLoaderModelOnly", "inputs": {"model": ["1", 0], "lora_name": ALTO_FP8[1], "strength_model": 1.0}},
+        "4": {"class_type": "LoraLoaderModelOnly", "inputs": {"model": ["2", 0], "lora_name": BAIXO_FP8[1], "strength_model": 1.0}},
+        "5": {"class_type": "ModelSamplingSD3", "inputs": {"model": ["3", 0], "shift": 5.0}},
+        "6": {"class_type": "ModelSamplingSD3", "inputs": {"model": ["4", 0], "shift": 5.0}},
+        "7": {"class_type": "CLIPLoader", "inputs": {"clip_name": ENCODER, "type": "wan", "device": "default"}},
+        "8": {"class_type": "CLIPTextEncode", "inputs": {"clip": ["7", 0], "text": pos}},
+        "9": {"class_type": "CLIPTextEncode", "inputs": {"clip": ["7", 0], "text": neg}},
+        "10": {"class_type": "VAELoader", "inputs": {"vae_name": VAE}},
+        "11": {"class_type": "LoadImage", "inputs": {"image": img}},
+        "12": {"class_type": "WanImageToVideo", "inputs": {"positive": ["8", 0], "negative": ["9", 0], "vae": ["10", 0],
+                                                            "start_image": ["11", 0], "width": LARGURA, "height": ALTURA,
+                                                            "length": n_quadros, "batch_size": 1}},
+        "13": {"class_type": "KSamplerAdvanced", "inputs": {
+            "model": ["5", 0], "positive": ["12", 0], "negative": ["12", 1], "latent_image": ["12", 2],
+            "add_noise": "enable", "noise_seed": SEED, "steps": 4, "cfg": 1.0, "sampler_name": "euler",
+            "scheduler": "simple", "start_at_step": 0, "end_at_step": 2, "return_with_leftover_noise": "enable"}},
+        "14": {"class_type": "KSamplerAdvanced", "inputs": {
+            "model": ["6", 0], "positive": ["12", 0], "negative": ["12", 1], "latent_image": ["13", 0],
+            "add_noise": "disable", "noise_seed": SEED, "steps": 4, "cfg": 1.0, "sampler_name": "euler",
+            "scheduler": "simple", "start_at_step": 2, "end_at_step": 4, "return_with_leftover_noise": "disable"}},
+        "15": {"class_type": "VAEDecode", "inputs": {"samples": ["14", 0], "vae": ["10", 0]}},
+        "16": {"class_type": "CreateVideo", "inputs": {"images": ["15", 0], "fps": QPS}},
+        "17": {"class_type": "SaveVideo", "inputs": {"video": ["16", 0], "filename_prefix": prefixo, "format": "mp4",
+                                                      "codec": "h264"}},
+    }
+
+
+def pronto_para_animar() -> bool:
+    """Tem Wan para animar? Local: o GGUF na pasta do ComfyUI. Remoto: os fp8 que o pod enxerga."""
+    if imagens.REMOTO:
+        tem = set(imagens.modelos("diffusion_models"))
+        return ALTO_FP8[0] in tem and BAIXO_FP8[0] in tem
+    return (imagens.COMFY / "models" / "unet" / ALTO[0]).exists()
+
+
+def _animar_remoto(r: dict, pasta: Path, faltam: list[int]) -> list[int]:
+    t0 = time.time()
+    for i in faltam:
+        img = imagens.enviar(pasta / f"cena_{i:02d}.png", f"{r['slug']}_cena_{i:02d}.png")
+        texto = r["cenas"][i - 1]["imagem"].rstrip(". ") + MOVIMENTO
+        h = _rodar(wf_completo(img, texto, NEG, quadros(r["cenas"][i - 1]["fala"]), f"{r['slug']}_{i:02d}"), None)
+        video = next(o for out in h["outputs"].values() for tipo in ("videos", "images", "gifs") for o in out.get(tipo, [])
+                     if o["filename"].endswith(".mp4"))
+        parcial = imagens.trazer(video, pasta / f".cena_{i:02d}.mp4")
+        parcial.rename(pasta / f"cena_{i:02d}.mp4")  # só aparece para a montagem quando completo
+        print(f"  animação (pod): cena {i} pronta ({time.time() - t0:.0f}s)", flush=True)
+    _liberar()
+    return faltam
+
+
 # ---------------------------------------------------------------- execução
 
 def _post(caminho: str, dados: dict) -> dict:
@@ -169,6 +228,10 @@ def animar(r: dict, pasta: Path, cenas: list[int] | None = None) -> list[int]:
     faltam = [i for i in cenas if (pasta / f"cena_{i:02d}.png").exists() and not (pasta / f"cena_{i:02d}.mp4").exists()]
     if not faltam:
         return []
+    if imagens.REMOTO:
+        if not imagens.no_ar():
+            raise RuntimeError(f"ComfyUI remoto fora do ar ({imagens.URL}): ligue o pod na RunPod")
+        return _animar_remoto(r, pasta, faltam)
     proc = imagens.garantir_comfy()
     try:
         if not _no_disponivel():

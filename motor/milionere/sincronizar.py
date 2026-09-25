@@ -216,6 +216,24 @@ class Pexels:
         return destino
 
 
+# vídeo de agência abre com vinheta e logo ("NASA Planetary Science"): o corte começa depois dela
+PULO_VINHETA = {"nasavideo": 6.0, "svs": 3.0}
+
+
+def _vazio(video: Path) -> bool:
+    """Quadro do meio quase todo de uma cor só (tela preta/branca de transição ou de fundo): não mostra nada."""
+    try:
+        meio = max(0.0, duracao_audio(video) / 2)
+        cru = subprocess.run([FFMPEG, "-v", "error", "-ss", f"{meio:.2f}", "-i", str(video), "-frames:v", "1",
+                              "-vf", "scale=32:32,format=gray", "-f", "rawvideo", "-"], capture_output=True).stdout
+    except Exception:  # noqa: BLE001 - na dúvida, fica o corte que já deu certo
+        return False
+    if len(cru) < 1024:
+        return False
+    media = sum(cru) / len(cru)
+    return (sum((b - media) ** 2 for b in cru) / len(cru)) ** 0.5 < 7
+
+
 def cortar(origem: Path, destino: Path, inicio_origem: float, frames: int) -> None:
     base = [
         FFMPEG, "-y", "-loglevel", "error",
@@ -348,8 +366,21 @@ def montar_tomadas(cenas, tempos, corte_max: float, pexels: Pexels, pasta: Path,
                 destino = pasta / f"tomada_{n:02d}.mp4"
                 if c["tipo"] == "video":
                     dur = frames / FPS
-                    inicio_origem = min(max(0.0, c.get("dur", 0) - dur - 0.2), 0.5 + repeticao * (dur + 0.5))
+                    pulo = PULO_VINHETA.get(c["ref"].split(":")[0], 0.5)
+                    total = None
+                    if pulo > 0.5:  # a duração do candidato é estimativa: vídeo curto não pode começar depois do fim
+                        total = duracao_audio(origem)
+                        pulo = min(pulo, max(0.5, total - dur - 0.2))
+                    inicio_origem = min(max(0.0, c.get("dur", 0) - dur - 0.2), pulo + repeticao * (dur + 0.5))
                     cortar(origem, destino, inicio_origem, frames)
+                    for _ in range(2):  # trecho vazio (tela preta/branca): tenta mais adiante no mesmo vídeo
+                        if not _vazio(destino):
+                            break
+                        total = total or duracao_audio(origem)
+                        if inicio_origem + 2 * dur + 1.0 > total:
+                            break
+                        inicio_origem += dur + 1.0
+                        cortar(origem, destino, inicio_origem, frames)
                 else:
                     animar_foto(origem, destino, frames, n)
                 tomadas.append({"provider": "local", "url": str(destino), "duration": max(1, math.ceil(frames / FPS)), "frames": frames})

@@ -30,7 +30,17 @@ import caminhos  # noqa: E402
 from caminhos import DADOS as SKILL  # noqa: E402  (presets, formatos, estilos, bíblia, referências)
 from caminhos import RAIZ  # noqa: E402
 from caminhos import COMFY  # noqa: E402
-URL = "http://127.0.0.1:8188"
+import os  # noqa: E402
+
+# ComfyUI remoto (ex.: pod da RunPod): MILIONERE_COMFY_URL=https://<pod>-8188.proxy.runpod.net. Vazio = o ComfyUI local
+# de sempre, que o motor liga e desliga sozinho. No remoto os arquivos vão e voltam por HTTP (upload/view).
+URL_REMOTA = os.environ.get("MILIONERE_COMFY_URL", "").strip().rstrip("/")
+URL = URL_REMOTA or "http://127.0.0.1:8188"
+REMOTO = bool(URL_REMOTA)
+if REMOTO:  # o proxy da RunPod (Cloudflare) recusa o User-Agent padrão do Python com 403
+    _abridor = urllib.request.build_opener()
+    _abridor.addheaders = [("User-Agent", "Mozilla/5.0 (milionere motor)")]
+    urllib.request.install_opener(_abridor)
 # Host tem 32GB e o Windows já usa ~15GB: o WSL inteiro precisa ficar perto de 15GB. Acima de HIGH o kernel
 # joga cache/anon pro swap (lento, mas seguro); em MAX mata o ComfyUI.
 COMFY_RAM_HIGH = "9G"
@@ -53,7 +63,7 @@ def _get(caminho: str, timeout: float = 10):
 
 def no_ar() -> bool:
     try:
-        _get("/system_stats", timeout=3)
+        _get("/system_stats", timeout=15 if REMOTO else 3)
         return True
     except (urllib.error.URLError, OSError):
         return False
@@ -63,6 +73,8 @@ def garantir_comfy() -> subprocess.Popen | None:
     """Sobe o ComfyUI se não estiver rodando. Devolve o processo (para derrubar no fim) ou None se já estava no ar."""
     if no_ar():
         return None
+    if REMOTO:  # o pod não é ligado daqui: se ele está parado, avisa em vez de subir um ComfyUI local
+        sys.exit(f"ComfyUI remoto fora do ar ({URL}): ligue o pod na RunPod")
     log = open(caminhos.PRODUCAO / "comfy.log", "w")
     cmd = [str(COMFY / ".venv" / "bin" / "python"), "main.py", "--listen", "127.0.0.1",
            "--port", "8188", "--disable-auto-launch",
@@ -91,6 +103,45 @@ def derrubar(proc: subprocess.Popen | None) -> None:
     if proc:
         proc.terminate()
         proc.wait(timeout=30)
+
+
+def enviar(arquivo: Path, nome: str) -> str:
+    """Coloca o arquivo na pasta input do ComfyUI: cópia no local, upload no remoto. Devolve o nome lá dentro."""
+    if not REMOTO:
+        shutil.copy(arquivo, COMFY / "input" / nome)
+        return nome
+    limite = uuid.uuid4().hex
+    corpo = (f"--{limite}\r\nContent-Disposition: form-data; name=\"image\"; filename=\"{nome}\"\r\n"
+             "Content-Type: application/octet-stream\r\n\r\n").encode() + arquivo.read_bytes()
+    corpo += f"\r\n--{limite}\r\nContent-Disposition: form-data; name=\"overwrite\"\r\n\r\ntrue\r\n--{limite}--\r\n".encode()
+    req = urllib.request.Request(URL + "/upload/image", data=corpo,
+                                 headers={"Content-Type": f"multipart/form-data; boundary={limite}"})
+    with urllib.request.urlopen(req, timeout=300) as r:
+        return json.load(r)["name"]
+
+
+def trazer(saida: dict, destino: Path) -> Path:
+    """Traz um arquivo que o ComfyUI gerou (o item de "outputs": filename/subfolder/type) para `destino`."""
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    if not REMOTO:
+        shutil.move(COMFY / saida.get("type", "output") / saida.get("subfolder", "") / saida["filename"], destino)
+        return destino
+    import urllib.parse
+    q = urllib.parse.urlencode({"filename": saida["filename"], "subfolder": saida.get("subfolder", ""),
+                                "type": saida.get("type", "output")})
+    parcial = destino.with_name(destino.name + ".parcial")
+    with urllib.request.urlopen(f"{URL}/view?{q}", timeout=600) as r, open(parcial, "wb") as f:
+        shutil.copyfileobj(r, f)
+    parcial.replace(destino)
+    return destino
+
+
+def modelos(pasta: str) -> list[str]:
+    """Arquivos que o ComfyUI enxerga numa pasta de modelos (ex.: "diffusion_models"); [] se não responder."""
+    try:
+        return _get(f"/models/{pasta}", timeout=30)
+    except (urllib.error.URLError, OSError, ValueError):
+        return []
 
 
 def workflow_flux(positivo: str, estilo: dict, seed: int) -> dict:
@@ -185,8 +236,7 @@ def gerar(positivo: str, negativo: str, estilo: dict, destino: Path, seed: int,
           referencia: Path | None = None, peso_ref: float = 0.0) -> Path:
     nome_ref = None
     if referencia:
-        nome_ref = f"ref_{referencia.parent.name}_{referencia.name}"
-        shutil.copy(referencia, COMFY / "input" / nome_ref)
+        nome_ref = enviar(referencia, f"ref_{referencia.parent.name}_{referencia.name}")
     wf = montar_workflow(positivo, negativo, estilo, seed, nome_ref, peso_ref)
     corpo = json.dumps({"prompt": wf, "client_id": uuid.uuid4().hex}).encode()
     req = urllib.request.Request(URL + "/prompt", data=corpo, headers={"Content-Type": "application/json"})
@@ -202,10 +252,7 @@ def gerar(positivo: str, negativo: str, estilo: dict, destino: Path, seed: int,
             if item.get("status", {}).get("status_str") == "error":
                 raise RuntimeError(f"ComfyUI falhou: {json.dumps(item['status'])[:1500]}")
             img = next(i for saida in item["outputs"].values() for i in saida.get("images", []))
-            origem = COMFY / "output" / img.get("subfolder", "") / img["filename"]
-            destino.parent.mkdir(parents=True, exist_ok=True)
-            shutil.move(origem, destino)
-            return destino
+            return trazer(img, destino)
         time.sleep(1)
     raise RuntimeError("ComfyUI não terminou a imagem em 10 minutos")
 
