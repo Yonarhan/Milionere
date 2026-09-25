@@ -101,3 +101,12 @@ cd servico
 ```
 Abra http://127.0.0.1:8000/canal, ligue os nichos e ajuste a meta. Gospel com tema do catálogo usa o pipeline bíblico
 completo (ComfyUI + 4 camadas); astronomia, animais e temas livres usam o roteirista guiado + banco/Pexels.
+
+### Animações (Manim) para o Space Atlas
+Cenas explicativas animadas (órbitas, distâncias, a luz viajando), verticais 1080x1920, no mesmo visual do canal.
+```powershell
+cd motor
+.\.venv\Scripts\python.exe -m pip install manim        # uma vez (só no ambiente do projeto)
+.\.venv\Scripts\python.exe milionere\animacoes\luz_do_sol.py   # -> milionere\animacoes\saida\luz_do_sol.mp4
+```
+Para usar num vídeo, copie o .mp4 para `producao/midia/<slug>/cena_NN.mp4` (mídia manual tem prioridade na montagem).

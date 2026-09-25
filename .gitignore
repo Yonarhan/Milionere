@@ -262,3 +262,6 @@ producao/banco/
 
 # motor original (repositório próprio); o código usado está em motor/
 MoneyPrinterTurbo/
+
+# animações Manim geradas (vídeos e cache): recria com python motor/milionere/animacoes/<nome>.py
+motor/milionere/animacoes/saida/
