@@ -5,7 +5,7 @@
     python metricas_youtube.py --autorizar        # 1 vez: libera a retenção (YouTube Analytics API)
 
 Views, likes e comentários vêm da Data API com o token da postagem (postar.py). A retenção (% médio assistido e
-duração média) precisa do escopo do YouTube Analytics, num token SEPARADO (segredos/youtube_token_analytics.json)
+duração média, com 24-48 h de atraso em relação às views) precisa do escopo do YouTube Analytics, num token SEPARADO (segredos/youtube_token_analytics.json)
 para não mexer no token que o cron de postagem usa. Antes de --autorizar: ative a "YouTube Analytics API" no mesmo
 projeto do Google Cloud do youtube_cliente.json (grátis). Sem esse token, o relatório sai sem a retenção.
 """
@@ -84,7 +84,7 @@ def coletar() -> list[dict]:
         try:
             rep = ya.reports().query(ids="channel==MINE", startDate=inicio, endDate=date.today().isoformat(),
                                      metrics="views,averageViewPercentage,averageViewDuration", dimensions="video",
-                                     filters="video==" + ",".join(v["id"] for v in videos), maxResults=200).execute()
+                                     filters="video==" + ",".join(v["id"] for v in videos), sort="-views", maxResults=200).execute()
             ret = {r[0]: r for r in rep.get("rows", [])}
             for v in videos:
                 if v["id"] in ret:
