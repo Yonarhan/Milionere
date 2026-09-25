@@ -25,10 +25,11 @@ import caminhos  # noqa: E402
 import cta  # noqa: E402
 
 REPO_PRODUCAO = caminhos.RAIZ / "producao"   # roteiros e mídias já feitos pelo time (fonte dos "prontos")
-PRESET_DO_NICHO = {"gospel": "gospel", "astronomia": "astronomia", "animais": "curiosidades"}
+PRESET_DO_NICHO = {"gospel": "gospel", "astronomia": "astronomia", "animais": "curiosidades", "animacoes": "animacoes"}
 VOZES = {"antonio": "pt-BR-AntonioNeural-Male", "francisca": "pt-BR-FranciscaNeural-Female",
          "thalita": "pt-BR-ThalitaMultilingualNeural-Female"}
-BUSCA_PADRAO = {"gospel": "man praying with bible", "astronomia": "galaxy stars space", "animais": "wild animal close up"}
+BUSCA_PADRAO = {"gospel": "man praying with bible", "astronomia": "galaxy stars space", "animais": "wild animal close up",
+                "animacoes": "doodle cartoon"}
 # tema da tela -> slug do roteiro pronto em producao/roteiros (os do pipeline do Rafael usam o campo "tema")
 PRONTOS_POR_SLUG = {"jesus-chorou-lazaro": "lazaro", "isaias-41-10-nao-tema": "isaias-41-10",
                     "ele-negou-jesus-3-vezes": "pedro-negou", "planeta-chove-vidro": "vidro",
@@ -89,6 +90,15 @@ def catalogo() -> dict:
             "animais": {"nome": "Animais bizarros", "cor": "#2E9E6B", "grad": ["#062016", "#146b4a", "#7fd6a8"], "formatos": {
                 "bizarro": {"nome": "Bicho bizarro", "temas": [["enguia", "A enguia que escapa do estômago"],
                             ["polvo", "Três corações e sangue azul"], ["agua-viva", "O animal que não morre de velhice"]]}}},
+            "animacoes": {"nome": "Animações", "cor": "#E0633A", "grad": ["#2a1208", "#8a3a1c", "#f2a27d"], "formatos": {
+                "porque": {"nome": "Por que…?", "temas": [["propria-voz", "Por que você odeia ouvir a própria voz?"],
+                           ["bocejo", "Por que o bocejo é contagioso?"],
+                           ["comodo", "Por que você esquece o que ia fazer ao entrar num cômodo?"],
+                           ["tempo-rapido", "Por que o tempo passa mais rápido quando a gente fica mais velho?"]]},
+                "ese": {"nome": "E se…?", "temas": [["sem-dormir", "E se você ficasse 11 dias sem dormir?"],
+                        ["hibernar", "E se os humanos pudessem hibernar?"]]},
+                "corpo": {"nome": "O que acontece…", "temas": [["ultimo-minuto", "O que acontece no último minuto da vida?"],
+                          ["susto", "O que acontece no seu corpo quando você leva um susto?"]]}}},
             "tecnologia": {"nome": "Tecnologia", "cor": "#8A8F98", "breve": True},
             "historia": {"nome": "História", "cor": "#9C5B3B", "breve": True},
             "mitologia": {"nome": "Mitologia", "cor": "#7A5AC8", "breve": True},
@@ -139,6 +149,22 @@ BLOCO_NARRADO = (
     "tem que sair exatamente a narração. A 1ª cena é o gancho (até 10 palavras); a última é a pergunta/CTA. "
     "Em cada cena, `imagem` descreve o desenho daquele trecho: quem aparece, fazendo o quê, e no máximo 1 ou 2 "
     "palavras grandes escritas na imagem quando ajudar (ex.: THE END, 0:00); nada de números pequenos.")
+
+
+def _bloco_elenco(preset: dict) -> str:
+    """Nicho com elenco fixo (canal de animações): cada `imagem` encena a fala com os personagens do canal."""
+    elenco = preset.get("elenco")
+    if not elenco:
+        return ""
+    fichas = "\n".join(f"- {p['nome_en']}: {p['papel']}" for p in elenco)
+    return ("# Imagens: cena ilustrada com o elenco fixo do canal\n"
+            f"Personagens (use estes nomes em inglês dentro de `imagem`):\n{fichas}\n"
+            "Cada `imagem` ENCENA o momento da fala, em inglês, com estas peças: (1) quem aparece, com EMOÇÃO e POSE "
+            "claras (scared, recoiling, curious, embarrassed, proud...); (2) a ideia da fala virando um objeto ou "
+            "ícone simples (celular tocando, alto-falante com ondas, seta, balão de pensamento, X vermelho); (3) quando "
+            "ajudar, 1 a 3 palavras grandes escritas, de preferência uma piada curta (ex.: EU??, NORMAL, ENVIAR?); (4) em "
+            "parte das cenas, o outro personagem reagindo; (5) lugar só se a história pedir (caverna, hospital), senão o "
+            "cenário padrão. Nunca números pequenos, nunca texto longo, nunca rosto de caveira ou algo assustador.")
 
 
 SCHEMA_JUIZ = {
@@ -211,6 +237,7 @@ def _roteiro_generico(entrada: dict, log) -> dict:
     base = "\n\n".join(p for p in [
         "Você é roteirista de Shorts/TikTok em português do Brasil. Escreva UM roteiro dividido em cenas.",
         f"# Nicho: {nicho} · formato: {formato}\n# Tema: {tema}",
+        _bloco_elenco(preset),
         BLOCO_NARRADO.format(lo=lo, hi=hi) if entrada["narrado"] else
         f"# Tamanho\n{lo} a {hi} palavras no total, 7 a 13 cenas, uma frase por cena (3 a 14 palavras). "
         "A 1ª é o gancho (até 8 palavras); a última é um CTA curto.",

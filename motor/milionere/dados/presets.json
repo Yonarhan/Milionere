@@ -152,5 +152,62 @@
       "pexels_foto",
       "openverse"
     ]
+  },
+  "animacoes": {
+    "palavras_min": 110,
+    "palavras_max": 150,
+    "bgm_prefixo": "curiosidade_",
+    "params": {
+      "video_language": "pt-BR",
+      "video_aspect": "9:16",
+      "video_source": "pexels",
+      "video_concat_mode": "sequential",
+      "match_materials_to_script": true,
+      "video_transition_mode": "None",
+      "video_clip_duration": 2,
+      "voice_name": "pt-BR-AntonioNeural-Male",
+      "voice_rate": 1.15,
+      "voice_volume": 1.0,
+      "bgm_volume": 0.12,
+      "subtitle_enabled": true,
+      "subtitle_position": "custom",
+      "subtitle_display_mode": "word_by_word",
+      "subtitle_animation": "pop_spring",
+      "font_name": "BeVietnamPro-Bold.ttf",
+      "font_size": 80,
+      "text_fore_color": "#FFE600",
+      "stroke_color": "#000000",
+      "stroke_width": 3.0,
+      "custom_position": 66
+    },
+    "corte_max": 2.5,
+    "fontes_video": [
+      "pexels",
+      "pixabay"
+    ],
+    "fontes_arte": [
+      "wikimedia"
+    ],
+    "fontes_foto": [
+      "inaturalist",
+      "pixabay_foto",
+      "pexels_foto",
+      "openverse"
+    ],
+    "elenco": [
+      {
+        "id": "bob",
+        "nome_en": "Bob",
+        "papel": "protagonista, vive a situação do vídeo",
+        "descricao_visual": "a stick figure with a big round white head, simple round eyes with expressive eyebrows, thin black line body, arms and legs"
+      },
+      {
+        "id": "amigo",
+        "nome_en": "his friend",
+        "papel": "coadjuvante, reage ao que acontece com o Bob",
+        "descricao_visual": "a stick figure with a big round blue head, simple round eyes with expressive eyebrows, thin black line body, arms and legs"
+      }
+    ],
+    "cenario_en": "plain white wall and a beige floor separated by one thin black line"
   }
 }

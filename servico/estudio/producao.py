@@ -20,7 +20,10 @@ from django.utils import timezone
 from . import jobs
 from .models import Canal, Pauta, Producao, Produtor, Serie
 
-NICHOS = ["gospel", "astronomia", "animais"]
+NICHOS = ["gospel", "astronomia", "animais", "animacoes"]
+# canal criado já configurado como o piloto (Short doodle "própria voz"): IA no pod, cena ilustrada, narrado
+PADRAO_CANAL = {"animacoes": {"imagens": "ia_pod", "estilo_pod": "doodle_cena", "roteiro": "narrado",
+                              "legenda": "karaoke", "volume": True, "musica": "com"}}
 MODOS = ("unitario", "serie", "misto")
 MAX_FALHAS_DIA = 3  # um nicho que falhou 3 vezes hoje descansa até amanhã (não fica gastando em loop)
 # YouTube: volume alto de vídeos parecidos pesa como "produzido em massa" na revisão do YPP (política de conteúdo
@@ -42,7 +45,7 @@ def preparar() -> None:
     """Cria os canais e traz para a pauta os temas do catálogo que ainda não estão lá (idempotente)."""
     sp, pipeline, biblia = _motor()
     for n in NICHOS:
-        Canal.objects.get_or_create(nicho=n)
+        Canal.objects.get_or_create(nicho=n, defaults=PADRAO_CANAL.get(n, {}))
     usados = pipeline.usados()
     repo = settings.BASE_DIR.parent / "producao" / "usados.json"  # o que o time já produziu fora do site
     if repo.exists():
@@ -291,8 +294,9 @@ def _nativo(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
     return videos
 
 
-ESTILO_POD = {"astronomia": "espaco_zimage"}  # nicho sem estilo aqui usa o do gospel (cinema_zimage)
-ESTILOS_POD = {"espaco_zimage": "espaço", "doodle_zimage": "doodle", "cinema_zimage": "cinema"}  # escolhas do painel
+ESTILO_POD = {"astronomia": "espaco_zimage", "animacoes": "doodle_cena"}  # sem estilo aqui: o do gospel (cinema_zimage)
+ESTILOS_POD = {"espaco_zimage": "espaço", "doodle_zimage": "doodle", "doodle_cena": "doodle cena",
+               "cinema_zimage": "cinema"}  # escolhas do painel
 ANIMAR_POD = 3  # cenas animadas pelo Wan por vídeo (gancho, meio e clímax)
 
 
@@ -319,6 +323,14 @@ def _ia_pod(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
     canal = Canal.objects.filter(nicho=prod.nicho).first()
     estilo = (canal.estilo_pod if canal and canal.estilo_pod in ESTILOS_POD else "") or ESTILO_POD.get(prod.nicho, "cinema_zimage")
     r["_movimento"] = imagens.estilos()[estilo].get("movimento_video", animar.MOVIMENTO)
+    sp, _, _ = _motor()
+    preset = sp._preset(prod.nicho)
+    if preset.get("elenco"):  # elenco fixo do canal: a ficha de quem aparece entra no prompt de cada cena
+        r["personagens"] = preset["elenco"]
+        r["cenario_en"] = preset.get("cenario_en", "")
+        for c in r["cenas"]:
+            txt = c.get("imagem", "").lower()
+            c["personagens"] = [p["id"] for p in preset["elenco"] if p["nome_en"].lower() in txt]
     pasta = imagens.caminhos.PRODUCAO / "midia" / r["slug"]
     pasta.mkdir(parents=True, exist_ok=True)
     inicio = time.time()
