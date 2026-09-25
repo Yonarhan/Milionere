@@ -25,6 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import caminhos  # noqa: E402
+import cta  # noqa: E402
 
 SEGREDOS = caminhos.RAIZ / "motor" / "segredos"
 CLIENTE = SEGREDOS / "youtube_cliente.json"
@@ -126,7 +127,8 @@ def postar(video: Path, agendar: datetime | None = None, privado: bool = False) 
     print(f"postado: https://youtu.be/{vid} ({status['privacyStatus']}"
           + (f", publica em {agendar:%d/%m %H:%M}" if agendar else "") + ")")
     ja[video.name] = {"id": vid, "quando": datetime.now(BRASILIA).isoformat(timespec="seconds"),
-                      "status": status["privacyStatus"], "publica_em": status.get("publishAt")}
+                      "status": status["privacyStatus"], "publica_em": status.get("publishAt"),
+                      "titulo": post["titulo"], "tipo_titulo": cta.tipo_titulo(post["titulo"])}  # metricas_youtube.py
     POSTADOS.write_text(json.dumps(ja, ensure_ascii=False, indent=2), encoding="utf-8")
     return vid
 

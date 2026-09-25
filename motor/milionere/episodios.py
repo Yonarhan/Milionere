@@ -120,7 +120,7 @@ SCHEMA_CORTE = {
                          "comentario_fixado", "tiktok_titulo", "tiktok_legenda"],
             "properties": {
                 "n": {"type": "integer"},
-                "titulo": {"type": "string", "description": "título do post, até 50 caracteres (o '(Parte k/N)' entra sozinho)"},
+                "titulo": {"type": "string", "description": "título do post, até 50 caracteres (o '(Parte k/N)' entra sozinho): " + cta.REGRA_TITULO},
                 "inicio": {"type": "integer", "description": "número da PRIMEIRA cena da história neste episódio"},
                 "fim": {"type": "integer", "description": "número da ÚLTIMA cena da história neste episódio"},
                 "resumo": {"type": "string"}, "virada": {"type": "string"},
@@ -173,7 +173,7 @@ def _prompt_corte(h: dict, tema: dict, max_partes: int, lo: int, hi: int, correc
         "episódio pelo número; no último, não chame parte nenhuma.\n"
         "- versiculo: um versículo das cenas DESTE episódio, copiado letra por letra da fonte.\n"
         "- Frases novas não trazem fato que não está na fonte. Nomes e papéis iguais aos da história.\n"
-        "- Post: título até 50 caracteres (curiosidade, não repita o gancho), descrição com o versículo entre aspas, "
+        "- Post: título até 50 caracteres, " + cta.REGRA_TITULO + " Descrição com o versículo entre aspas, "
         "2 frases, uma pergunta e 'Leia <livro capítulo>', 5 hashtags com #shorts, comentário fixado com pergunta "
         "pessoal; TikTok com título próprio e legenda curta com pergunta e 3 a 5 hashtags sem #shorts.",
         "# Imagens das cenas novas\n" + roteirista.regras_imagem() + " Época bíblica, sem nenhum objeto moderno.",
@@ -326,7 +326,7 @@ SCHEMA_CORTE_SIMPLES = {
             "required": ["titulo", "inicio", "fim", "resumo", "virada", "gancho", "recap", "suspense", "fechamento",
                          "descricao", "hashtags", "comentario_fixado", "tiktok_titulo", "tiktok_legenda"],
             "properties": {
-                "titulo": {"type": "string", "description": "até 50 caracteres (o '(Parte k/N)' entra sozinho)"},
+                "titulo": {"type": "string", "description": "até 50 caracteres (o '(Parte k/N)' entra sozinho): " + cta.REGRA_TITULO},
                 "inicio": {"type": "integer"}, "fim": {"type": "integer"},
                 "resumo": {"type": "string"}, "virada": {"type": "string"},
                 "gancho": {**_CENA_SIMPLES, "description": "até 8 palavras, sobre um momento DESTE episódio"},

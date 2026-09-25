@@ -33,7 +33,7 @@ SCHEMA = {
                            "clareza": {"type": "integer"}, "imagem": {"type": "integer"}}}},
         "gancho_tela": {"type": "string", "description": "texto GRANDE na tela nos 2 primeiros segundos, 3 a 6 palavras, "
                         "sem emoji; complementa a fala da cena 1 (não repete palavra por palavra) e abre a lacuna"},
-        "titulo": {"type": "string", "description": "título do post, até 60 caracteres, pode ter 1 emoji"},
+        "titulo": {"type": "string", "description": "título do post, até 60 caracteres, uma pergunta específica que o vídeo responde, pode ter 1 emoji"},
         "cenario_en": {"type": "string", "description": "em inglês: SÓ o que vale para TODAS as cenas: época e paisagem geral (ex.: 'ancient Judea, 1st century, dusty hills'). Se a história muda de lugar (Canaã e depois Egito), o lugar específico vai no prompt de cada cena, nunca aqui"},
         "personagens": {"type": "array", "items": {
             "type": "object", "additionalProperties": False, "required": ["id", "nome", "nome_en", "descricao_visual"],
@@ -147,7 +147,7 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
         f"# O que já funcionou no canal\n{_ler(REFS / 'persona-gospel.md')}\n{_ler(RAIZ / 'producao' / 'aprendizados.md')}",
         "# Imagens\nCada `imagem` mostra literalmente o que a fala diz. Varie o enquadramento. " + regras_imagem() + " "
         f"Época: {'bíblica, sem nenhum objeto moderno' if formato['epoca'] == 'biblica' else 'Brasil atual, pessoas comuns'}.",
-        "# Post\nTítulo até 60 caracteres (pergunta ou curiosidade, não repita o gancho). Descrição: o versículo entre aspas "
+        "# Post\nTítulo até 60 caracteres. " + cta.REGRA_TITULO + " Descrição: o versículo entre aspas "
         "com referência, 2 frases, uma pergunta e 'Leia <livro capítulo>'. 5 hashtags com #shorts. Comentário fixado com "
         "pergunta pessoal. TikTok: título próprio até 70 caracteres (não repita o do YouTube) e legenda curta com uma "
         "pergunta e 3 a 5 hashtags do nicho, sem #shorts. Autoavaliação honesta de 1 a 5.",
