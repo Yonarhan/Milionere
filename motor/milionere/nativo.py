@@ -13,6 +13,7 @@ Nada de gerar imagem com IA: roda em PC fraco, sem GPU para Stable Diffusion/Flu
 
 import json
 import os
+import re
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
@@ -46,7 +47,8 @@ NOTA_ACEITA = 2
 NOME_NO_MUSEU = {"jesus": "Christ", "maria": "Virgin Mary", "pedro": "Saint Peter", "paulo": "Saint Paul"}
 # desenho e ilustração no meio de foto real deixam o vídeo com cara de colagem (o 1º vídeo nativo pegou um cartum)
 NAO_REALISTA = ["cartoon", "comic", "illustration", "vector", "clipart", "clip art", "drawing", "sketch", "anime",
-                "3d render", "3d model", "icon", "logo", "infographic", "emoji", "mascot"]
+                "3d render", "3d model", "icon", "logo", "infographic", "emoji", "mascot",
+                "subscribe", "like button", "bell icon"]  # o fim do vídeo já tem o cartão INSCREVA-SE
 # vídeo de agência com apresentador, entrevista ou texto na tela (ex.: série "What's Up" da NASA)
 FALADOS = ["what's up", "whats up", "skywatching tips", "briefing", "interview", "press conference", "lecture",
            "webinar", "q&a", "explains", "explained", "tutorial"]
@@ -95,6 +97,15 @@ def _ordenar(cands: list[dict], preset: dict, r: dict) -> list[dict]:
     return videos[:5] + fotos[:3] + videos[5:] + fotos[3:]
 
 
+def _titulo(c: dict) -> str:
+    """O título do candidato para o escolhedor ler: o da NASA diz "Mars' Ancient Ocean", coisa que a miniatura
+    pequena (ou preta, em vídeo sem prévia) não mostra. Slug do Pexels vira texto ("waves-crashing-123" -> "waves
+    crashing")."""
+    t = re.sub(r"[-_]+", " ", c.get("desc") or "")
+    t = re.sub(r"\s+\d{4,}\s*$", "", t).strip()
+    return f"{t[:70]} ({c['ref'].split(':')[0]})" if t else c["ref"].split(":")[0]
+
+
 def _escolher(r: dict, cenas: list[int], cache: dict, pasta: Path, rodada: int) -> dict[int, dict]:
     """Uma chamada ao Claude olhando as folhas das `cenas`. Devolve {cena: {"candidato": N, "nova_busca": ...}}."""
     folhas = []
@@ -110,12 +121,17 @@ def _escolher(r: dict, cenas: list[int], cache: dict, pasta: Path, rodada: int) 
             curadoria.folha_geral([r["cenas"][i - 1]], cache, destino, inicio=i)
             folhas.append(destino)
     lista = "\n".join(f"{i}. fala: «{r['cenas'][i - 1]['fala']}» · deveria mostrar: "
-                      f"{r['cenas'][i - 1].get('imagem') or r['cenas'][i - 1].get('busca', '')}" for i in cenas)
+                      f"{r['cenas'][i - 1].get('imagem') or r['cenas'][i - 1].get('busca', '')}\n"
+                      + "\n".join(f"   {i}.{j} {_titulo(x)}" for j, x in enumerate(cache.get(str(i), [])[:curadoria.POR_LINHA], 1))
+                      for i in cenas)
     biblico = r["nicho"] == "gospel" and r.get("epoca", "biblica") == "biblica"
     prompt = (
         f"Abra com a ferramenta Read as {len(folhas)} imagens: {', '.join(str(f) for f in folhas)}.\n"
         "Cada linha de uma folha é uma cena de um vídeo curto vertical (a fala narrada está em amarelo à esquerda). "
-        "As miniaturas da linha têm o rótulo 'cena.N' (F = foto ou pintura, V = vídeo).\n\n"
+        "As miniaturas da linha têm o rótulo 'cena.N' (F = foto ou pintura, V = vídeo). Abaixo, cada cena lista o "
+        "título de cada candidato: use a miniatura E o título juntos (título da NASA/ESA costuma dizer exatamente o "
+        "que o vídeo mostra). Miniatura preta = vídeo sem prévia: só escolha se o título mostrar a fala.\n"
+        "A cena 1 é o gancho: ela precisa da imagem mais forte e mais exata do vídeo.\n\n"
         "Para CADA cena, escolha a miniatura que mostra O QUE A FALA DIZ. Quem assiste precisa ver na imagem a ação "
         "ou a coisa narrada naquele segundo; imagem só 'do mesmo tema' deixa o vídeo desconexo.\n"
         "- o assunto certo: o animal, o planeta, a ação (gritar, pedir desculpa, afundar), o lugar;\n"

@@ -16,6 +16,7 @@ Todas liberam uso comercial; as CC-BY exigem crédito, que vai no campo "credito
 """
 
 import json
+import threading
 import tomllib
 import urllib.parse
 import urllib.request
@@ -24,13 +25,28 @@ from pathlib import Path
 UA = {"User-Agent": "roteirista-shorts/1.0 (personal non-commercial video tool)"}
 
 
+# a Wikimedia pede um pedido por vez: as 4 cenas buscando juntas davam 429 (muitos pedidos) em quase toda busca
+_UM_POR_VEZ = {"commons.wikimedia.org": (threading.Lock(), 0.6)}  # host -> (fila, intervalo mínimo em s)
+_ULTIMO: dict[str, float] = {}
+
+
 def _json(url: str, headers: dict | None = None) -> dict:
-    """GET com JSON. Resposta 429 (muitos pedidos, comum no Wikimedia em paralelo): espera e tenta de novo."""
+    """GET com JSON. Resposta 429 (muitos pedidos): espera e tenta de novo. Hosts em _UM_POR_VEZ vão em fila única."""
     import time
     import urllib.error
+    host = urllib.parse.urlsplit(url).hostname or ""
+    fila, intervalo = _UM_POR_VEZ.get(host, (None, 0))
     for tentativa in range(3):
         req = urllib.request.Request(url, headers={**UA, **(headers or {})})
         try:
+            if fila:
+                with fila:
+                    time.sleep(max(0.0, _ULTIMO.get(host, 0) + intervalo - time.time()))
+                    try:
+                        with urllib.request.urlopen(req, timeout=30) as r:
+                            return json.load(r)
+                    finally:
+                        _ULTIMO[host] = time.time()
             with urllib.request.urlopen(req, timeout=30) as r:
                 return json.load(r)
         except urllib.error.HTTPError as e:
