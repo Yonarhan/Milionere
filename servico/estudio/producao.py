@@ -404,58 +404,70 @@ def executar_serie(s: Serie) -> None:
                 formato = {"nome": (pauta.formato_nome if pauta else "") or s.formato, "receita": "",
                            "palavras": [preset["palavras_min"], preset["palavras_max"]]}
                 tema, fonte, chave = {"titulo": s.tema, "angulo": ""}, None, str(s.pk)[:8]
-            plano = ms.planejar(s.nicho, formato, tema, s.max_partes, log=lambda msg: diario(msg, "plano"))
-            N = len(plano["partes"])
-            Serie.objects.filter(pk=s.pk).update(plano=plano, titulo=plano["titulo_serie"][:200], etapa="roteiro")
-            partes = [Producao.objects.create(serie=s, parte=k, pauta=pauta, nicho=s.nicho, formato=s.formato,
-                                              tema=f"{plano['titulo_serie']} · parte {k}/{N}: {x['titulo']}"[:200],
-                                              status=Producao.Status.GERANDO, iniciado=agora(), etapa="roteiro")
-                      for k, x in enumerate(plano["partes"], 1)]
             slug_serie = f"serie-{s.formato}-{chave}"
-            roteiros: list = [None] * N  # gospel: (arquivo, pacote); outros: o roteiro do roteirista genérico
+            if biblico:  # história completa primeiro, depois o corte em episódios (motor/milionere/episodios.py)
+                import episodios
+                with _LogGospel(diario):
+                    plano, roteiros = episodios.serie_biblica(s.formato, formato, tema, s.max_partes, slug_serie,
+                                                              log=lambda msg: diario(msg, "roteiro"))
+                N = len(plano["partes"])
+                Serie.objects.filter(pk=s.pk).update(plano=plano, titulo=plano["titulo_serie"][:200], etapa="roteiro")
+                partes = [Producao.objects.create(serie=s, parte=k, pauta=pauta, nicho=s.nicho, formato=s.formato,
+                                                  tema=f"{plano['titulo_serie']} · parte {k}/{N}: {x['titulo']}"[:200],
+                                                  status=Producao.Status.GERANDO, iniciado=agora(), etapa="roteiro")
+                          for k, x in enumerate(plano["partes"], 1)]
+            else:
+                plano = ms.planejar(s.nicho, formato, tema, s.max_partes, log=lambda msg: diario(msg, "plano"))
+                N = len(plano["partes"])
+                Serie.objects.filter(pk=s.pk).update(plano=plano, titulo=plano["titulo_serie"][:200], etapa="roteiro")
+                partes = [Producao.objects.create(serie=s, parte=k, pauta=pauta, nicho=s.nicho, formato=s.formato,
+                                                  tema=f"{plano['titulo_serie']} · parte {k}/{N}: {x['titulo']}"[:200],
+                                                  status=Producao.Status.GERANDO, iniciado=agora(), etapa="roteiro")
+                          for k, x in enumerate(plano["partes"], 1)]
+                roteiros: list = [None] * N  # gospel: (arquivo, pacote); outros: o roteiro do roteirista genérico
 
-            def falas(k: int) -> list[str]:
-                r = roteiros[k - 1][1] if biblico else roteiros[k - 1]
-                return [c["fala"] for c in r["cenas"]]
+                def falas(k: int) -> list[str]:
+                    r = roteiros[k - 1][1] if biblico else roteiros[k - 1]
+                    return [c["fala"] for c in r["cenas"]]
 
-            def escrever(k: int, correcoes: list[str] | None = None) -> None:
-                anteriores = [falas(j) for j in range(1, k)]
-                diario(f"parte {k}/{N}: escrevendo" + (" de novo (juiz da série)" if correcoes else ""), "roteiro")
-                if biblico:
-                    anterior = roteiros[k - 1][1] if correcoes and roteiros[k - 1] else None
-                    with _LogGospel(diario):
-                        roteiros[k - 1] = ms.roteiro_gospel(s.formato, tema, plano, k, slug_serie, anteriores, correcoes, anterior)
-                else:
-                    x = plano["partes"][k - 1]
-                    r = sp._roteiro_generico({"nicho": s.nicho, "formato": s.formato, "formato_nome": formato["nome"],
-                                              "tema_livre": f"{s.tema} (parte {k} de {N}: {x['titulo']})",
-                                              "serie": ms.contexto_parte(plano, k, s.nicho, anteriores, correcoes)},
-                                             lambda etapa, msg: diario(msg or etapa, "roteiro"))
-                    if r.get("_avisos"):
-                        raise RuntimeError(f"parte {k}: o juiz reprovou o roteiro nas 3 tentativas: " + " | ".join(r["_avisos"][:3]))
-                    r["titulo"] = ms.titulo_parte(r["titulo"], k, N)
-                    if r.get("tiktok_titulo"):
-                        r["tiktok_titulo"] = ms.titulo_parte(r["tiktok_titulo"], k, N)
-                    roteiros[k - 1] = r
-                diario(f"parte {k}/{N} aprovada:\n" + "\n".join(f"  «{f}»" for f in falas(k)), "roteiro")
+                def escrever(k: int, correcoes: list[str] | None = None) -> None:
+                    anteriores = [falas(j) for j in range(1, k)]
+                    diario(f"parte {k}/{N}: escrevendo" + (" de novo (juiz da série)" if correcoes else ""), "roteiro")
+                    if biblico:
+                        anterior = roteiros[k - 1][1] if correcoes and roteiros[k - 1] else None
+                        with _LogGospel(diario):
+                            roteiros[k - 1] = ms.roteiro_gospel(s.formato, tema, plano, k, slug_serie, anteriores, correcoes, anterior)
+                    else:
+                        x = plano["partes"][k - 1]
+                        r = sp._roteiro_generico({"nicho": s.nicho, "formato": s.formato, "formato_nome": formato["nome"],
+                                                  "tema_livre": f"{s.tema} (parte {k} de {N}: {x['titulo']})",
+                                                  "serie": ms.contexto_parte(plano, k, s.nicho, anteriores, correcoes)},
+                                                 lambda etapa, msg: diario(msg or etapa, "roteiro"))
+                        if r.get("_avisos"):
+                            raise RuntimeError(f"parte {k}: o juiz reprovou o roteiro nas 3 tentativas: " + " | ".join(r["_avisos"][:3]))
+                        r["titulo"] = ms.titulo_parte(r["titulo"], k, N)
+                        if r.get("tiktok_titulo"):
+                            r["tiktok_titulo"] = ms.titulo_parte(r["tiktok_titulo"], k, N)
+                        roteiros[k - 1] = r
+                    diario(f"parte {k}/{N} aprovada:\n" + "\n".join(f"  «{f}»" for f in falas(k)), "roteiro")
 
-            for k in range(1, N + 1):
-                escrever(k)
-            for rodada in range(ms.RODADAS_SERIE + 1):
-                diario(f"juiz da série: lendo as {N} partes juntas (rodada {rodada + 1})", "roteiro")
-                vistos = [{"falas": falas(k), "personagens": (roteiros[k - 1][1] if biblico else {}).get("personagens", [])}
-                          for k in range(1, N + 1)]
-                problemas = ms.julgar_roteiros(plano, vistos, s.nicho, fonte)
-                if not problemas:
-                    diario("juiz da série: aprovada", "roteiro")
-                    break
-                for k, p in problemas.items():
-                    diario(f"  juiz da série, parte {k}: " + " | ".join(p), "roteiro")
-                if rodada == ms.RODADAS_SERIE:
-                    raise RuntimeError("o juiz da série reprovou depois das reescritas: "
-                                       + " | ".join(f"parte {k}: {p[0]}" for k, p in problemas.items()))
-                for k in sorted(problemas):
-                    escrever(k, problemas[k])
+                for k in range(1, N + 1):
+                    escrever(k)
+                for rodada in range(ms.RODADAS_SERIE + 1):
+                    diario(f"juiz da série: lendo as {N} partes juntas (rodada {rodada + 1})", "roteiro")
+                    vistos = [{"falas": falas(k), "personagens": (roteiros[k - 1][1] if biblico else {}).get("personagens", [])}
+                              for k in range(1, N + 1)]
+                    problemas = ms.julgar_roteiros(plano, vistos, s.nicho, fonte)
+                    if not problemas:
+                        diario("juiz da série: aprovada", "roteiro")
+                        break
+                    for k, p in problemas.items():
+                        diario(f"  juiz da série, parte {k}: " + " | ".join(p), "roteiro")
+                    if rodada == ms.RODADAS_SERIE:
+                        raise RuntimeError("o juiz da série reprovou depois das reescritas: "
+                                           + " | ".join(f"parte {k}: {p[0]}" for k, p in problemas.items()))
+                    for k in sorted(problemas):
+                        escrever(k, problemas[k])
 
             Serie.objects.filter(pk=s.pk).update(etapa="imagens")
             visuais = []

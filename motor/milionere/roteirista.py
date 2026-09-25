@@ -133,9 +133,15 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
         "e uma descricao_visual em inglês bem específica (idade, cabelo, barba, pele, roupa), sem nome próprio.\n"
         "Numa cena, `personagens` lista só quem aparece na imagem, NA MESMA ORDEM em que o prompt de imagem os descreve "
         "(a primeira ficha vai para a primeira figura descrita). Máximo 2 por cena. Rosto de Deus nunca aparece.",
-        f"# Tamanho\nMire em {lo} a {hi - 8} palavras no total (limite duro: {hi}; conte antes de entregar), {c_lo} a {c_hi} cenas. Uma frase por cena, 3 a 14 palavras. "
-        "A primeira cena é o gancho (até 8 palavras). A última é o CTA.",
-        "" if "# Fechamento" in formato["receita"] else cta.bloco("gospel"),  # parte de série traz o próprio
+        (f"# Tamanho\nMire em {lo} a {hi - 8} palavras no total (limite duro: {hi}; conte antes de entregar), {c_lo} a {c_hi} cenas. Uma frase por cena, 3 a 14 palavras. "
+         "A primeira cena é o gancho (até 8 palavras). A última é o CTA.") if not formato.get("completa") else
+        # história inteira de uma série (episodios.py): o gancho, a recapitulação e o CTA de cada parte vêm depois
+        (f"# Tamanho\nHISTÓRIA COMPLETA, {lo} a {hi} palavras, {c_lo} a {c_hi} cenas, uma frase por cena (3 a 14 palavras). "
+         "Ela vai ser cortada depois em episódios de ~40 s: NÃO escreva gancho, aplicação ao espectador nem CTA; só a "
+         "narração, do primeiro ao último fato, na ordem, com viradas claras (onde dá pra cortar deixando suspense). "
+         "Nos campos ganchos/versiculo/titulo/post, preencha para a série inteira."),
+        "" if "# Fechamento" in formato["receita"] or formato.get("completa") else cta.bloco("gospel"),
+        "" if formato.get("completa") else
         f"# Ganchos\n{_ler(REFS / 'ganchos.md')}\nEscreva 5 ganchos, dê nota 1-5 e use o melhor na cena 1.",
         f"# Linguagem\n{_ler(REFS / 'anti-ia.md')}",
         f"# O que já funcionou no canal\n{_ler(REFS / 'persona-gospel.md')}\n{_ler(RAIZ / 'producao' / 'aprendizados.md')}",
@@ -164,7 +170,7 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
                       + f"\n\nLIMITE RÍGIDO: {lo} a {hi} palavras no total (a versão anterior tinha "
                       + f"{sum(len(c['fala'].split()) for c in anterior['cenas'])}). Para cada palavra que acrescentar, corte "
                       "outra: junte cenas, tire adjetivos, troque frase explicativa por uma mais curta. Passar do limite = reprovado.")
-    return "\n\n".join(partes)
+    return "\n\n".join(x for x in partes if x)
 
 
 def escrever(formato: dict, tema: dict, correcoes: list[str] | None = None, anterior: dict | None = None) -> dict:
