@@ -29,7 +29,10 @@ from serie import SerieInviavel  # noqa: E402  (o painel transforma em vídeo ú
 TENTATIVAS_HISTORIA = 3
 TENTATIVAS_CORTE = 3
 TEMPO_MAX_HISTORIA = 480  # como o teto do juiz do CEO: passou, segue a melhor versão sem erro de fato, com avisos
-MIOLO_EPISODIO = (45, 80)  # palavras da narração que cabem num episódio além do gancho, recapitulação e fechamento
+MIOLO_EPISODIO = (45, 80)
+# corte que só erra tamanho pode seguir com aviso, mas nunca acima disso: ~58 s de fala, o teto da camada 4 (duração).
+# Antes seguia um episódio de 172 palavras que ia reprovar no render, depois de gerar as imagens (José, 25/09)
+TETO_PALAVRAS_EPISODIO = 130  # palavras da narração que cabem num episódio além do gancho, recapitulação e fechamento
 RECEITA_HISTORIA = (
     "Conte o episódio bíblico INTEIRO como uma história falada, do primeiro ao último fato do trecho, na ORDEM do texto. "
     "Frases ligadas com conectivos (e, mas, então, só que), como alguém contando em voz alta; nada de lista de frases "
@@ -58,7 +61,7 @@ def historia(formato: dict, tema: dict, max_partes: int, reg, log=print) -> dict
     correcoes, anterior, melhor, historico = None, None, None, []  # melhor = (pontos, roteiro, problemas, notas)
     comeco = time.time()
     for tentativa in range(1, TENTATIVAS_HISTORIA + 1):
-        if melhor and _sem_erro_de_fato(melhor[2]) and time.time() - comeco > TEMPO_MAX_HISTORIA:
+        if melhor and _pode_seguir(melhor[3]) and time.time() - comeco > TEMPO_MAX_HISTORIA:
             log(f"história: passou de {TEMPO_MAX_HISTORIA // 60} min, segue a melhor versão")
             break
         log(f"história completa: tentativa {tentativa}")
@@ -88,15 +91,18 @@ def historia(formato: dict, tema: dict, max_partes: int, reg, log=print) -> dict
             melhor = (pontos, r, e2, notas)
         historico += [p for p in e2 if p.startswith("ERRO FACTUAL") and p not in historico]
         correcoes, anterior = melhor[2] + historico, melhor[1]
-    if melhor and _sem_erro_de_fato(melhor[2]):
+    if melhor and _pode_seguir(melhor[3]):
         log(f"  segue a melhor versão da história, com {len(melhor[2])} aviso(s) para a revisão")
         melhor[1]["_notas_juiz"], melhor[1]["_avisos_juiz"] = melhor[3], [f"juiz: {p}" for p in melhor[2]]
         return melhor[1]
     raise RuntimeError(f"a história completa não passou em {TENTATIVAS_HISTORIA} tentativas (veja {reg.arq})")
 
 
-def _sem_erro_de_fato(problemas: list[str]) -> bool:
-    return not any(p.startswith("ERRO FACTUAL") or p.startswith("fidelidade") for p in problemas)
+def _pode_seguir(notas: dict) -> bool:
+    """Sem aprovação, a melhor versão segue (com os pontos do juiz como aviso) se a FIDELIDADE for >= 4. O juiz dava
+    fidelidade 4 e ainda listava 'erro factual' que ele mesmo chamava de 'inferência razoável' ('mandaram prender',
+    'dois anos esquecido'): a história do José caiu 2x assim (25/09). Fidelidade <= 3 continua travando."""
+    return notas.get("fidelidade", 0) >= 4
 
 
 # ---------------------------------------------------------------- 2. o corte em episódios
@@ -144,6 +150,11 @@ def _palavras(t: str) -> int:
     return len(t.split())
 
 
+def _min_eps(total: int, max_partes: int) -> int:
+    """Menos episódios que isso não cabe: o corte da série do José pôs 320 palavras em 3 e estourou (25/09)."""
+    return max(2, min(max_partes, -(-total // MIOLO_EPISODIO[1])))
+
+
 def _prompt_corte(h: dict, tema: dict, max_partes: int, lo: int, hi: int, correcoes: list[str], anterior: dict | None) -> str:
     refs = {e["n"]: e["ref"] for e in h["eventos"]}
     cenas = "\n".join(f"{i}. ({_palavras(c['fala'])} palavras) [{refs.get(c['evento'], '')}] {c['fala']}"
@@ -158,12 +169,13 @@ def _prompt_corte(h: dict, tema: dict, max_partes: int, lo: int, hi: int, correc
         f"# História aprovada ({len(h['cenas'])} cenas, {total} palavras)\n{cenas}",
         f"# Personagens (use só estes ids)\n{pers}",
         "# Como cortar\n"
-        f"- 2 a {max_partes} episódios, em sequência: o 1º começa na cena 1, cada um começa na cena seguinte ao fim do "
+        f"- {_min_eps(total, max_partes)} a {max_partes} episódios (menos que {_min_eps(total, max_partes)} não cabe: "
+        "estoura o tempo de cada vídeo), em sequência: o 1º começa na cena 1, cada um começa na cena seguinte ao fim do "
         f"anterior, e o último termina na cena {len(h['cenas'])}. Nenhuma cena fica de fora nem se repete.\n"
         f"- Cada episódio: {MIOLO_EPISODIO[0]} a {MIOLO_EPISODIO[1]} palavras de narração (some a contagem das cenas "
         f"acima) e, com gancho, recapitulação, suspense e fechamento, {lo} a {hi} palavras NO TOTAL.\n"
         "- Corte logo depois de uma virada (traição, prisão, reviravolta): o episódio termina com tensão e cada um "
-        "tem uma virada própria. Melhor menos episódios fortes que muitos com enchimento.",
+        "tem uma virada própria.",
         "# O que você escreve em cada episódio\n"
         "- gancho: até 8 palavras, paradoxo ou choque sobre um momento DESTE episódio; funciona pra quem não viu o anterior.\n"
         "- recap (do 2º em diante): 1 frase curta ligando ao anterior, com o nome do personagem.\n"
@@ -252,7 +264,8 @@ def particionar(h: dict, formato: dict, tema: dict, max_partes: int, reg, log=pr
             return corte, eps, []
         log("  corte reprovado: " + " | ".join(erros[:4]))
         ultimo, correcoes, anterior = erros, erros, corte
-    if ultimo and all("palavras" in e or "cenas; o formato" in e for e in ultimo) and eps:
+    if ultimo and all("palavras" in e or "cenas; o formato" in e for e in ultimo) and eps \
+            and all(sum(_palavras(c["fala"]) for c in e["r"]["cenas"]) <= TETO_PALAVRAS_EPISODIO for e in eps):
         return corte, eps, [f"corte: {e}" for e in ultimo]  # só tamanho: segue com aviso (como o juiz do CEO)
     raise RuntimeError(f"o corte em episódios não passou em {TENTATIVAS_CORTE} tentativas: " + " | ".join(ultimo[:3]))
 
@@ -268,7 +281,15 @@ def serie_biblica(formato_id: str, formato: dict, tema: dict, max_partes: int, s
     f_ep["palavras"] = [formato["palavras"][0], formato["palavras"][1] + ms.FOLGA_PARTE_RECAP]
     f_ep["cenas"] = [7, 18]
     reg = pipeline.Registro(slug_serie)
-    h = historia(formato, tema, max(2, min(ms.MAX_PARTES, max_partes)), reg, log)
+    # história aprovada fica guardada: se o corte ou as imagens falharem, a próxima rodada começa do corte
+    cache = pipeline.PROD / "roteiros" / f"{date.today():%Y-%m-%d}_{slug_serie}-historia.json"
+    if cache.exists() and json.loads(cache.read_text(encoding="utf-8")).get("_ref") == tema["ref"]:
+        h = json.loads(cache.read_text(encoding="utf-8"))
+        log(f"história completa: reaproveitando a aprovada hoje ({cache.name})")
+    else:
+        h = historia(formato, tema, max(2, min(ms.MAX_PARTES, max_partes)), reg, log)
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        cache.write_text(json.dumps({**h, "_ref": tema["ref"]}, ensure_ascii=False, indent=2), encoding="utf-8")
     if sum(_palavras(c["fala"]) for c in h["cenas"]) < MIOLO_EPISODIO[0] * 2:
         raise SerieInviavel("a história completa é curta demais para 2 episódios: gere como vídeo único")
     corte, eps, avisos = particionar(h, f_ep, tema, max_partes, reg, log)
@@ -407,10 +428,10 @@ def serie_generica(nicho: str, formato_nome: str, tema: str, max_partes: int, lo
                 "Você corta uma história já aprovada em EPISÓDIOS de Shorts/TikTok (pt-BR). A narração NÃO muda: você "
                 "escolhe onde cortar e escreve só as frases de ligação.",
                 f"# Nicho: {nicho} · Tema: {tema}\n# História ({M} cenas)\n{cenas_txt}",
-                f"# Como cortar\n- 2 a {max_partes} episódios em sequência: o 1º começa na cena 1, cada um na cena seguinte "
+                f"# Como cortar\n- {_min_eps(sum(_palavras(c['fala']) for c in h['cenas']), max_partes)} a {max_partes} episódios (menos não cabe no tempo de cada vídeo) em sequência: o 1º começa na cena 1, cada um na cena seguinte "
                 f"ao fim do anterior, o último termina na cena {M}.\n- Cada episódio: {MIOLO_EPISODIO[0]} a "
                 f"{MIOLO_EPISODIO[1]} palavras de narração e {preset_ep['palavras_min']} a {preset_ep['palavras_max']} "
-                "no total com as frases novas.\n- Corte logo depois de uma virada; melhor menos episódios fortes.",
+                "no total com as frases novas.\n- Corte logo depois de uma virada.",
                 "# Frases novas\n- gancho: até 8 palavras.\n- recap (do 2º em diante): 1 frase curta.\n- suspense (menos "
                 "o último): pergunta real sobre o que vem.\n- fechamento: " + cta.bloco(nicho, 2).split("\n", 1)[1]
                 + " Nos do meio, chame pro próximo episódio pelo número; no último, não chame parte nenhuma."
@@ -446,7 +467,8 @@ def serie_generica(nicho: str, formato_nome: str, tema: str, max_partes: int, lo
                 return corte, eps, []
             log("  corte reprovado: " + " | ".join(erros[:4]))
             problemas, anterior = erros, corte
-        if all("palavras" in e for e in erros):  # só tamanho: segue com aviso, como o juiz do CEO
+        if all("palavras" in e for e in erros) and eps \
+                and all(sum(_palavras(c["fala"]) for c in e["cenas"]) <= TETO_PALAVRAS_EPISODIO for e in eps):
             return corte, eps, [f"corte: {e}" for e in erros]
         raise RuntimeError(f"o corte em episódios não passou em {TENTATIVAS_CORTE} tentativas: " + " | ".join(erros[:3]))
 
