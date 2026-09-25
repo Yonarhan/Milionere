@@ -22,6 +22,7 @@ FONTES = {
 EMENDA_MAX = {"word_by_word": 0.35, "sentence": 1.5, "karaoke": 0.6}  # buracos menores que isso são fechados (evita piscar/sumir)
 PALAVRAS_POR_GRUPO = 3  # karaoke: poucas palavras grandes por vez, a da voz em destaque
 COR_DESTAQUE = "#FFD400"
+PAUSA_GRUPO = 0.25  # karaoke por palavra: pausa maior que isso na fala = fim do trecho (vira outro grupo)
 GANCHO_SEGUNDOS = 2.6  # texto-gancho do quadro 0: quem rola o feed sem som decide por ele (60% pulavam no 1º segundo)
 ESCALA_FONTE = 1.45  # font_size do preset (px do motor) -> tamanho ASS equivalente
 
@@ -86,8 +87,12 @@ def gerar_ass(srt: Path, destino: Path, p: dict, total: float | None = None) -> 
                 "100,100,2,0,3,18,0,5,90,90,0,1",
                 f"Style: Canal,{familia},{round(tamanho * 0.6)},&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,"
                 "100,100,1,0,1,3,1,5,90,90,0,1",
-                f"Style: Gancho,{familia},{round(tamanho * 1.15)},&H00FFFFFF,&H000000FF,&H40000000,&H40000000,-1,0,0,0,"
-                "100,100,0,0,3,18,0,8,70,70,0,1",
+                # gancho do quadro 0: padrão = texto com contorno e sombra, sem caixa (24/09: a caixa preta grande
+                # tapava a imagem); gancho_caixa=true no preset volta a caixa escura original
+                (f"Style: Gancho,{familia},{round(tamanho * 1.15)},&H00FFFFFF,&H000000FF,&H40000000,&H40000000,-1,0,0,0,"
+                 "100,100,0,0,3,18,0,8,70,70,0,1") if p.get("gancho_caixa") else
+                (f"Style: Gancho,{familia},{round(tamanho * 0.9)},&H00FFFFFF,&H000000FF,&H00000000,&H96000000,-1,0,0,0,"
+                 f"100,100,0,0,1,{contorno + 1:.1f},2,8,70,70,0,1"),
                 "",
                 "[Events]",
                 "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
@@ -104,6 +109,13 @@ def _karaoke(blocos: list, y: int, emenda: float) -> list[str]:
     """Poucas palavras por vez e a que está sendo falada em destaque. O horário de cada palavra é interpolado
     dentro da frase do srt pelo tamanho da palavra (a legenda do TTS vem por frase)."""
     palavras = []  # (ini, fim, texto, fim_de_frase)
+    if blocos and all(len(txt.split()) == 1 for _, _, txt in blocos):
+        # legenda com o tempo exato de cada palavra (o normal agora): usa o horário real e quebra o grupo onde a
+        # fala pausa (> PAUSA_GRUPO), que é onde a frase termina; sem pontuação no srt por palavra
+        for k, (ini, fim, txt) in enumerate(blocos):
+            pausa = blocos[k + 1][0] - fim if k + 1 < len(blocos) else 9.0
+            palavras.append((ini, fim, txt.replace("{", "(").replace("}", ")"), pausa > PAUSA_GRUPO))
+        blocos = []
     for ini, fim, txt in blocos:
         ws = txt.replace("{", "(").replace("}", ")").split()
         pesos = [len(w) + 2 for w in ws]
