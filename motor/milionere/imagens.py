@@ -286,7 +286,24 @@ def prompt_cena(cena: dict, personagens: dict, estilo: dict, cenario: str, bibli
     return ", ".join(p.strip().rstrip(".") for p in partes if p and p.strip())
 
 
+# o pod (instalar_pod.sh) só tem o Z-Image (e o Wan): estilo SDXL/Flux lá cai no equivalente Z-Image em vez de quebrar
+NO_POD = {"zimage"}
+EQUIVALENTE_POD = "cinema_zimage"
+_avisados: set[str] = set()
+
+
+def estilo_disponivel(nome_estilo: str) -> str:
+    """No ComfyUI remoto, troca o estilo cujo modelo não está no pod pelo equivalente Z-Image (com aviso, 1 vez)."""
+    if not REMOTO or estilos()[nome_estilo].get("motor") in NO_POD:
+        return nome_estilo
+    if nome_estilo not in _avisados:
+        _avisados.add(nome_estilo)
+        print(f"  estilo '{nome_estilo}' precisa de um modelo que o pod não tem: usando '{EQUIVALENTE_POD}'")
+    return EQUIVALENTE_POD
+
+
 def _gerar_cena(roteiro: dict, nome_estilo: str, n: int, destino: Path, seed: int) -> Path:
+    nome_estilo = estilo_disponivel(nome_estilo)
     estilo = estilos()[nome_estilo]
     biblico = roteiro.get("epoca", "biblica") == "biblica"
     personagens = {p["id"]: p for p in roteiro.get("personagens", [])}

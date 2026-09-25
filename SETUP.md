@@ -140,3 +140,15 @@ Gera vídeo atrás de vídeo até as 7h (`FIM_HORA`) e desliga o ComfyUI no fim.
 (privado) a cada 3h a partir das 23h: `0 2-23/3 * * * ... postar.py --pendentes --limite 1` (log em `producao/noite/postagem.log`).
 Log em `producao/noite/turno_<data>.log`. O WSL precisa estar aberto (deixe um terminal do Ubuntu aberto à noite).
 De manhã: YouTube Studio -> conferir cada vídeo privado -> Público (comentário fixado: à mão, está no `.txt`).
+
+## 9. Imagens e animação no pod da RunPod (padrão desde 25/09)
+
+As imagens (Z-Image) e a animação (Wan 2.2) rodam num pod da RunPod, não na placa local:
+1. Pod com o template "ComfyUI - CUDA 12.8"; dentro dele, `bash instalar_pod.sh` (copie de `motor/milionere/`)
+   baixa os modelos (~47 GB) e sobe o ComfyUI na porta 8188.
+2. No `.env`: `MILIONERE_COMFY_URL=https://<id-do-pod>-8188.proxy.runpod.net` (o id muda se o pod for recriado).
+   Vazio = volta ao ComfyUI local, que o motor liga e desliga sozinho.
+3. O pod só tem o Z-Image: estilo SDXL (`cinema`, `oleo`, `pixar`) ou Flux (`cinema_flux`) vira `cinema_zimage`
+   no remoto, com aviso no log (`imagens.estilo_disponivel`).
+4. SSH (manutenção): `ssh runpod` com a entrada no `~/.ssh/config` (HostName/porta do "SSH over exposed TCP" do pod).
+   Ligar/desligar o pod é no painel da RunPod: parado, o motor avisa "ComfyUI remoto fora do ar" em vez de subir o local.
