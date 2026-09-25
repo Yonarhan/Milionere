@@ -164,7 +164,7 @@ def dividir_longas(cenas: list[dict], limite: int = 14) -> list[dict]:
         meio, melhor = len(palavras) / 2, None
         for i in range(3, len(palavras) - 2):  # corta ANTES da palavra i
             antes, depois = palavras[i - 1], palavras[i].lower()
-            if antes.endswith((",", ".", ":", "?", "!")) or depois in ("e", "mas", "que", "porque", "quando", "só"):
+            if antes.endswith((",", ".", ":", "?", "!")) or depois in ("e", "mas", "porque", "só"):
                 if melhor is None or abs(i - meio) < abs(melhor - meio):
                     melhor = i
         if melhor is None:
@@ -206,7 +206,7 @@ def _prompt_corte(h: dict, tema: dict, max_partes: int, lo: int, hi: int, correc
         f"acima) e, com gancho, recapitulação, suspense e fechamento, {lo} a {hi} palavras NO TOTAL.\n"
         "- Corte logo depois de uma virada (traição, prisão, reviravolta): o episódio termina com tensão e cada um "
         "tem uma virada própria.",
-        "# O que você escreve em cada episódio\n"
+        "# O que você escreve em cada episódio (CADA frase nova tem no máximo 14 palavras: conte)\n"
         "- gancho: até 8 palavras, paradoxo ou choque sobre um momento DESTE episódio; funciona pra quem não viu o anterior.\n"
         "- recap (do 2º em diante): 1 frase curta ligando ao anterior, com o nome do personagem.\n"
         "- suspense (todos menos o último): pergunta real sobre o que vem, sem contar a resposta.\n"
@@ -252,7 +252,7 @@ def montar(h: dict, corte: dict, formato: dict, tema: dict) -> tuple[list[dict],
         cenas += [novas(x["suspense"])] if k < N and x["suspense"]["fala"].strip() else []
         cenas += [novas(x["aplicacao"])] if k == N and x["aplicacao"]["fala"].strip() else []
         cenas += [novas(c) for c in x["fechamento"]]
-        cenas = _dividir_novas(cenas, miolo)
+        cenas = _dividir_novas(cenas, miolo, len(x["fechamento"]))
         usados = sorted({c["evento"] for c in miolo if c["evento"]})
         eventos = [por_n[n] for n in usados if n in por_n]
         ids = list(dict.fromkeys(pid for c in cenas for pid in c["personagens"]))
@@ -276,10 +276,11 @@ def montar(h: dict, corte: dict, formato: dict, tema: dict) -> tuple[list[dict],
     return eps, erros
 
 
-def _dividir_novas(cenas: list[dict], miolo: list[dict]) -> list[dict]:
-    """Só as cenas novas (evento 0) são divididas; a narração aprovada fica como está."""
-    ids = {id(c) for c in miolo}
-    return [y for c in cenas for y in ([c] if id(c) in ids else dividir_longas([c]))]
+def _dividir_novas(cenas: list[dict], miolo: list[dict], fechamento: int) -> list[dict]:
+    """Só gancho, recap, suspense e aplicação são divididos. A narração aprovada fica como está, e o fechamento
+    também: partido, a última cena perdia o CTA ('...pra não perder' + 'o que aconteceu com José')."""
+    fixas = {id(c) for c in miolo} | {id(c) for c in cenas[len(cenas) - fechamento:]}
+    return [y for c in cenas for y in ([c] if id(c) in fixas else dividir_longas([c]))]
 
 
 def particionar(h: dict, formato: dict, tema: dict, max_partes: int, reg, log=print,
@@ -469,7 +470,7 @@ def serie_generica(nicho: str, formato_nome: str, tema: str, max_partes: int, lo
                 f"ao fim do anterior, o último termina na cena {M}.\n- Cada episódio: {MIOLO_EPISODIO[0]} a "
                 f"{MIOLO_EPISODIO[1]} palavras de narração e {preset_ep['palavras_min']} a {preset_ep['palavras_max']} "
                 "no total com as frases novas.\n- Corte logo depois de uma virada.",
-                "# Frases novas\n- gancho: até 8 palavras.\n- recap (do 2º em diante): 1 frase curta.\n- suspense (menos "
+                "# Frases novas (CADA uma com no máximo 14 palavras: conte)\n- gancho: até 8 palavras.\n- recap (do 2º em diante): 1 frase curta.\n- suspense (menos "
                 "o último): pergunta real sobre o que vem.\n- fechamento: " + cta.bloco(nicho, 2).split("\n", 1)[1]
                 + " Nos do meio, chame pro próximo episódio pelo número; no último, não chame parte nenhuma."
                 + (f" A chamada também pede pra se inscrever no canal {preset['inscreva_canal']}." if preset.get("inscreva_canal") else ""),
@@ -489,7 +490,7 @@ def serie_generica(nicho: str, formato_nome: str, tema: str, max_partes: int, lo
                 miolo = [dict(c) for c in h["cenas"][x["inicio"] - 1:x["fim"]]]
                 cenas = [x["gancho"]] + ([x["recap"]] if k > 1 and x["recap"]["fala"].strip() else []) + miolo
                 cenas += ([x["suspense"]] if k < N and x["suspense"]["fala"].strip() else []) + list(x["fechamento"])
-                cenas = _dividir_novas(cenas, miolo)
+                cenas = _dividir_novas(cenas, miolo, len(x["fechamento"]))
                 ep_erros = guia.checar(cenas, preset_ep)
                 if nicho == "gospel":
                     ep_erros += validar.checar_cta_gospel(cenas)
