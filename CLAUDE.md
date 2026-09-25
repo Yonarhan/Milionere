@@ -15,6 +15,7 @@ A fórmula completa está em **`docs/animacoes.md`**; leia antes de mexer. Em re
   de expectativa). Depois ela é dividida em 10 a 18 cenas, trocando de imagem a cada 2 a 4 s, mesmo no meio da frase.
 - **Cada imagem encena a fala:** emoção e pose, a ideia virando objeto, uma piada de 1 a 3 palavras, o coadjuvante
   reagindo.
+- **O roteirista está aprovado** pelo Yonarhan: não refatorar sem ele pedir.
 - **Pilotos aprovados** (em `producao/roteiros/`): `2026-09-25_propria-voz.json` e
   `2026-09-25_ultimo-minuto-da-vida-v2.json`.
 
@@ -68,6 +69,4 @@ de espaço: não postar animação de outro tema nele.
 - O Claude escolher entre 2 opções de imagem por cena. Hoje, a imagem errada é refeita à mão.
 - Refinar os prompts de imagem do `doodle_cena` e, depois de ~30 imagens boas, treinar um LoRA do estilo.
 - Formato longo, de ~8 min, com o mesmo estilo.
-- Refatorar o roteirista para ficar mais rápido. Alternativas discutidas: planejar antes de escrever, regras como
-  meta, o juiz corrigindo em vez de mandar reescrever, e um prompt mais enxuto.
 - A capa (banner) do canal Bob Curioso. As fotos de perfil estão em `videos_prontos/amostras/bob-curioso/`.
