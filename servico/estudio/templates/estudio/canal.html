@@ -244,6 +244,10 @@ function renderCanais(){
         <div class="label">Opções do vídeo</div>
         ${opcao(c,"imagens","Imagens",[["ia","geradas por IA"],["nativo","banco grátis"],["ia_pod","IA no pod"]],
           c.imagens==="nativo"?"Fotos, pinturas e vídeos livres (NASA, Pexels, museus). Roda em PC fraco.":c.imagens==="ia_pod"?"Z-Image gera cada cena e o Wan anima as 3 principais, na GPU da RunPod. Ligue o pod antes.":"A IA gera cada cena (precisa de GPU ou da API).")}
+        ${c.imagens==="ia_pod"?opcao(c,"estilo_pod","Estilo",[["","do nicho"],["espaco_zimage","espaço"],["doodle_zimage","doodle"],["cinema_zimage","cinema"]],
+          c.estilo_pod==="doodle_zimage"?"Desenho à mão, fundo branco, bonequinho de cabeça redonda.":c.estilo_pod==="espaco_zimage"?"Fotografia espacial realista (NASA, Hubble).":c.estilo_pod==="cinema_zimage"?"Cena de filme realista (o do gospel).":"O estilo padrão do nicho."):""}
+        ${opcao(c,"roteiro","Roteiro",[["padrao","padrão"],["narrado","narrado"]],
+          c.roteiro==="narrado"?"Narração corrida, como alguém contando uma história; a imagem troca a cada 2 a 4 s. 45 a 60 s de vídeo.":"Uma frase curta por cena (como sempre).")}
         ${opcao(c,"musica","Música",[["com","com música"],["sem","sem música"]],
           c.musica==="sem"?"Pro TikTok: você põe um som em alta no app.":"Trilha ambiente baixinha sob a voz.")}
         ${opcao(c,"legenda","Legenda",[["padrao","padrão"],["karaoke","destaque"],["word_by_word","palavra"]],

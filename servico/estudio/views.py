@@ -118,8 +118,12 @@ def api_canal_acao(request):
             return JsonResponse({"erro": "Legenda desconhecida."}, status=400)
         if "voz" in d and d["voz"] and d["voz"] not in dict(producao.VOZES):
             return JsonResponse({"erro": "Voz desconhecida."}, status=400)
+        if "roteiro" in d and d["roteiro"] not in ("padrao", "narrado"):
+            return JsonResponse({"erro": "Roteiro: padrão ou narrado."}, status=400)
+        if "estilo_pod" in d and d["estilo_pod"] and d["estilo_pod"] not in producao.ESTILOS_POD:
+            return JsonResponse({"erro": "Estilo desconhecido."}, status=400)
         limites = {"meta_dia": (0, 12), "serie_max": (2, 5), "serie_cada": (1, 20)}
-        for campo in ("ativo", "meta_dia", "musica", "imagens", "modo", "serie_max", "serie_cada", "legenda", "efeitos", "volume", "voz"):
+        for campo in ("ativo", "meta_dia", "musica", "imagens", "modo", "serie_max", "serie_cada", "legenda", "efeitos", "volume", "voz", "roteiro", "estilo_pod"):
             if campo in d:
                 setattr(c, campo, max(limites[campo][0], min(limites[campo][1], int(d[campo]))) if campo in limites else d[campo])
         c.save()

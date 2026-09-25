@@ -120,6 +120,27 @@ SCHEMA_SIMPLES = {
 }
 
 
+# roteiro narrado: a mesma saída, mas a fala de cada cena é o trecho da narração que vai com UMA imagem
+SCHEMA_NARRADO = json.loads(json.dumps(SCHEMA_SIMPLES))
+SCHEMA_NARRADO["properties"]["cenas"]["items"]["properties"]["fala"]["description"] = (
+    "o trecho da narração que vai com UMA imagem (2 a 4 s, 4 a 18 palavras); pode ser só um pedaço de uma frase")
+NARRADO_PALAVRAS = (110, 150)
+BLOCO_NARRADO = (
+    "# Formato NARRADO\n"
+    "Primeiro escreva a narração INTEIRA, corrida, como uma pessoa contando uma história pra um amigo: "
+    "{lo} a {hi} palavras (45 a 60 s de fala). Nada de lista de frases soltas: as frases se ligam com conectores "
+    "naturais ('só que', 'e aí', 'o mais estranho é', 'ou seja', 'tipo'), falam com quem assiste ('você') e têm "
+    "perguntas no meio.\n"
+    "Arco: situação que prende -> quebra de expectativa logo em seguida (ex.: 'Pronto, acabou... certo? Não "
+    "exatamente.') -> o fato -> 'e aí vem a parte estranha' -> um detalhe concreto e visual (ex.: 'o gato branco "
+    "que dormia na escada da casa da sua avó') -> virada que faz pensar -> pergunta pra comentar.\n"
+    "Depois divida essa narração em 10 a 18 cenas, UMA por imagem, trocando a cada 2 a 4 segundos (4 a 18 "
+    "palavras por cena). Corte onde a imagem muda de ideia, mesmo no meio da frase: juntando as falas das cenas, "
+    "tem que sair exatamente a narração. A 1ª cena é o gancho (até 10 palavras); a última é a pergunta/CTA. "
+    "Em cada cena, `imagem` descreve o desenho daquele trecho: quem aparece, fazendo o quê, e no máximo 1 ou 2 "
+    "palavras grandes escritas na imagem quando ajudar (ex.: THE END, 0:00); nada de números pequenos.")
+
+
 SCHEMA_JUIZ = {
     "type": "object", "additionalProperties": False, "required": ["notas", "erros_factuais", "problemas"],
     "properties": {
@@ -146,6 +167,9 @@ def _juiz(r: dict, entrada: dict, tema: str) -> tuple[list[str], dict]:
     import llm
 
     cenas = "\n".join(f"{i}. {c['fala']}" for i, c in enumerate(r["cenas"], 1))
+    narrado = ("\n# Este roteiro é NARRADO\nAs cenas são pedaços de UMA narração corrida (a imagem troca no meio da "
+               "frase, é de propósito). Leia tudo junto. Em ritmo e linguagem, conta se soa como uma pessoa contando uma "
+               "história, com as frases ligadas; lista de frases soltas é nota 2.\n" if entrada.get("narrado") else "")
     prompt = (
         "Você revisa roteiros de Shorts/TikTok em pt-BR antes de publicar. Ache problemas, não elogie. "
         "Nota 5 só se não há nada a melhorar; 3 = publicável com defeito visível.\n\n"
@@ -154,7 +178,7 @@ def _juiz(r: dict, entrada: dict, tema: str) -> tuple[list[str], dict]:
         "- ritmo: nenhuma frase sobrando, frases curtas e variadas?\n- linguagem: soa como gente falando, sem cara de IA?\n"
         "- payoff: o final entrega surpresa/emoção e responde o gancho?\n"
         "- precisao: o FATO CENTRAL está correto? Dramatização em tom de hipótese ('imagina') não é erro.\n"
-        + (f"\n# Este vídeo é uma parte de uma série\n{entrada['serie']}\nParte que não é a última termina em aberto de "
+        + narrado + (f"\n# Este vídeo é uma parte de uma série\n{entrada['serie']}\nParte que não é a última termina em aberto de "
            "propósito: aí o payoff é a virada parcial + o gancho pra próxima parte, não a resolução.\n\n" if entrada.get("serie") else "") +
         "erros_factuais = só afirmações apresentadas como fato que estão erradas. "
         "Cada problema: número da cena + como corrigir, em 1 frase.")
@@ -175,12 +199,19 @@ def _roteiro_generico(entrada: dict, log) -> dict:
     refs = caminhos.DADOS / "referencias"
     ler = lambda n: (refs / n).read_text(encoding="utf-8") if (refs / n).exists() else ""  # noqa: E731
     nicho, preset = entrada["nicho"], _preset(entrada["nicho"])
+    # "narrado" (opção do canal, MILIONERE_ROTEIRO): narração corrida primeiro, depois as cenas por imagem
+    entrada = {**entrada, "narrado": entrada.get("narrado", os.environ.get("MILIONERE_ROTEIRO") == "narrado")}
+    if entrada["narrado"]:
+        preset = {**preset, "palavras_min": NARRADO_PALAVRAS[0], "palavras_max": NARRADO_PALAVRAS[1], "narrado": True}
     lo, hi = preset["palavras_min"], preset["palavras_max"]
     tema = entrada.get("tema_livre") or entrada.get("tema_titulo") or entrada.get("tema")
     formato = entrada.get("formato_nome", entrada.get("formato", ""))
+    if entrada["narrado"]:
+        formato += " (narrado)"  # exemplos e erros do banco separados do modo padrão
     base = "\n\n".join(p for p in [
         "Você é roteirista de Shorts/TikTok em português do Brasil. Escreva UM roteiro dividido em cenas.",
         f"# Nicho: {nicho} · formato: {formato}\n# Tema: {tema}",
+        BLOCO_NARRADO.format(lo=lo, hi=hi) if entrada["narrado"] else
         f"# Tamanho\n{lo} a {hi} palavras no total, 7 a 13 cenas, uma frase por cena (3 a 14 palavras). "
         "A 1ª é o gancho (até 8 palavras); a última é um CTA curto.",
         "" if "# Fechamento" in entrada.get("serie", "") else cta.bloco(nicho),  # parte de série traz o próprio
@@ -209,7 +240,7 @@ def _roteiro_generico(entrada: dict, log) -> dict:
                        + json.dumps([c["fala"] for c in melhor[0]["cenas"]], ensure_ascii=False))
         log("roteiro", f"escrevendo (tentativa {tentativa})")
         with medidor.etapa("roteiro"):
-            r = llm.chamar(prompt, SCHEMA_SIMPLES, papel="roteirista")
+            r = llm.chamar(prompt, SCHEMA_NARRADO if entrada["narrado"] else SCHEMA_SIMPLES, papel="roteirista")
         erros = guia.checar(r["cenas"], preset)                      # camada 1: código, grátis
         if nicho == "gospel":
             import validar

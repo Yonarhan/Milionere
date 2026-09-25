@@ -54,19 +54,21 @@ def checar(cenas: list[dict], preset: dict) -> list[str]:
     if not falas:
         return ["roteiro vazio"]
     total = sum(_palavras(f) for f in falas)
+    narrado = preset.get("narrado")  # narração corrida dividida por imagem: mais cenas, trechos um pouco maiores
+    cmin, cmax, gmax, fmax = (8, 20, 10, 20) if narrado else (6, 15, 8, 16)
     lo, hi = preset.get("palavras_min", 45), preset.get("palavras_max", 90)
     # a faixa é uma meta, não uma trava: o que importa é a fala ficar boa. Só reprova quando passa longe (15%)
     if not lo * 0.85 <= total <= hi * 1.15:
         erros.append(f"roteiro com {total} palavras; o nicho pede {lo} a {hi}")
-    if not 6 <= len(falas) <= 15:
-        erros.append(f"{len(falas)} cenas; use de 6 a 15")
-    if _palavras(falas[0]) > 8:
-        erros.append(f"gancho com {_palavras(falas[0])} palavras (máx. 8): «{falas[0]}»")
+    if not cmin <= len(falas) <= cmax:
+        erros.append(f"{len(falas)} cenas; use de {cmin} a {cmax}")
+    if _palavras(falas[0]) > gmax:
+        erros.append(f"gancho com {_palavras(falas[0])} palavras (máx. {gmax}): «{falas[0]}»")
     if not CTA.search(falas[-1]):
         erros.append(f"a última cena não é uma chamada (comenta, manda, escreve...): «{falas[-1]}»")
     for i, f in enumerate(falas, 1):
-        if _palavras(f) > 16:
-            erros.append(f"cena {i} com {_palavras(f)} palavras (máx. 16), divida: «{f}»")
+        if _palavras(f) > fmax:
+            erros.append(f"cena {i} com {_palavras(f)} palavras (máx. {fmax}), divida: «{f}»")
         if re.search(r"[—–;]", f):
             erros.append(f"cena {i} tem travessão ou ponto e vírgula (a voz lê mal): «{f}»")
         for v in VOCAB_IA:

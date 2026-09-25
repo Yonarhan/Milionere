@@ -72,7 +72,9 @@ class Canal(models.Model):
     legenda = models.CharField(max_length=12, default="padrao")  # padrao (a do preset) | karaoke | word_by_word
     efeitos = models.BooleanField(default=False)  # whoosh nas trocas de cena + impacto no início (sons.py)
     volume = models.BooleanField(default=False)
-    voz = models.CharField(max_length=60, blank=True, default="")  # vazio = a voz do preset do nicho  # áudio final a -14 LUFS
+    voz = models.CharField(max_length=60, blank=True, default="")  # vazio = a voz do preset do nicho
+    roteiro = models.CharField(max_length=10, default="padrao")  # padrao | narrado (narração corrida, cena por imagem)
+    estilo_pod = models.CharField(max_length=30, blank=True, default="")  # imagens "IA no pod"; vazio = o do nicho  # áudio final a -14 LUFS
 
     def __str__(self):
         return f"{self.nicho} · {self.meta_dia}/dia · {'ativo' if self.ativo else 'parado'}"
