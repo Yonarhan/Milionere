@@ -151,15 +151,25 @@ BLOCO_NARRADO = (
     "palavras grandes escritas na imagem quando ajudar (ex.: THE END, 0:00); nada de números pequenos.")
 
 
+# os dois vídeos aprovados do canal: a voz (Bob e o Amigo, humor) e a morte (o Cérebro e o Coração, reflexivo)
+PILOTOS = ["2026-09-25_propria-voz.json", "2026-09-25_ultimo-minuto-da-vida-v2.json"]
+
+
 def _exemplo_piloto() -> str:
-    """O roteiro do piloto aprovado (falas + imagens) como MODELO de forma: o roteirista copia o jeito, não as frases."""
-    arq = caminhos.RAIZ / "producao" / "roteiros" / "2026-09-25_propria-voz.json"
-    if not arq.exists():
+    """Os roteiros aprovados (falas + imagens) como MODELO de forma: o roteirista copia o jeito, não as frases."""
+    modelos = []
+    for k, nome in enumerate(PILOTOS, 1):
+        arq = caminhos.RAIZ / "producao" / "roteiros" / nome
+        if not arq.exists():
+            continue
+        r = json.loads(arq.read_text(encoding="utf-8"))[0]
+        linhas = "\n".join(f"{i}. fala: «{c['fala']}»\n   imagem: {c['imagem']}" for i, c in enumerate(r["cenas"], 1))
+        modelos.append(f"## Modelo {k}: {r['titulo']}\n{linhas}")
+    if not modelos:
         return ""
-    r = json.loads(arq.read_text(encoding="utf-8"))[0]
-    linhas = "\n".join(f"{i}. fala: «{c['fala']}»\n   imagem: {c['imagem']}" for i, c in enumerate(r["cenas"], 1))
-    return ("# MODELO APROVADO (siga a FORMA, nunca as frases nem as piadas dele)\n"
-            f"Tema: {r['titulo']}\n{linhas}\n"
+    return ("# MODELOS APROVADOS (siga a FORMA, nunca as frases, as piadas nem os detalhes deles)\n"
+            + "\n\n".join(modelos) + "\n"
+            "O modelo 1 é mais divertido, o 2 mais reflexivo no fim: escolha o tom que o tema pede. "
             "Repare: a narração soa como uma pessoa contando; a quebra de expectativa nasce do próprio tema; o detalhe "
             "concreto é do tema; só ~1/3 das imagens tem texto escrito, e é piada (EU??, NORMAL, ENVIAR?), nunca rótulo; "
             "o Amigo aparece em ~1/3 das cenas, reagindo; o cenário nunca muda sem motivo.")

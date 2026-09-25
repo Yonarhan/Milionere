@@ -206,6 +206,18 @@
         "nome_en": "his friend",
         "papel": "coadjuvante, reage ao que acontece com o Bob",
         "descricao_visual": "a stick figure with a big round blue head, simple round eyes with expressive eyebrows, thin black line body, arms and legs"
+      },
+      {
+        "id": "cerebro",
+        "nome_en": "the Brain",
+        "papel": "personagem quando o assunto é mente, memória ou cérebro",
+        "descricao_visual": "a cute pink cartoon brain character with big round eyes, rosy cheeks and thin black stick arms and legs"
+      },
+      {
+        "id": "coracao",
+        "nome_en": "the Heart",
+        "papel": "personagem quando o assunto é coração, corpo ou emoção",
+        "descricao_visual": "a cute red cartoon heart character with big round eyes and thin black stick arms and legs"
       }
     ],
     "cenario_en": "plain white wall and a beige floor separated by one thin black line"
