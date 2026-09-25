@@ -14,6 +14,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import biblia  # noqa: E402
+import cta  # noqa: E402
 import llm  # noqa: E402
 
 from caminhos import DADOS as SKILL  # noqa: E402  (presets, formatos, estilos, bíblia, referências)
@@ -23,13 +24,15 @@ REFS = SKILL / "referencias"
 SCHEMA = {
     "type": "object",
     "additionalProperties": False,
-    "required": ["ganchos", "titulo", "cenario_en", "personagens", "eventos", "cenas", "versiculo",
-                 "descricao", "hashtags", "comentario_fixado", "autoavaliacao"],
+    "required": ["ganchos", "gancho_tela", "titulo", "cenario_en", "personagens", "eventos", "cenas", "versiculo",
+                 "descricao", "hashtags", "comentario_fixado", "tiktok_titulo", "tiktok_legenda", "autoavaliacao"],
     "properties": {
         "ganchos": {"type": "array", "minItems": 5, "maxItems": 5, "items": {
             "type": "object", "additionalProperties": False, "required": ["texto", "choque", "clareza", "imagem"],
             "properties": {"texto": {"type": "string"}, "choque": {"type": "integer"},
                            "clareza": {"type": "integer"}, "imagem": {"type": "integer"}}}},
+        "gancho_tela": {"type": "string", "description": "texto GRANDE na tela nos 2 primeiros segundos, 3 a 6 palavras, "
+                        "sem emoji; complementa a fala da cena 1 (não repete palavra por palavra) e abre a lacuna"},
         "titulo": {"type": "string", "description": "título do post, até 60 caracteres, pode ter 1 emoji"},
         "cenario_en": {"type": "string", "description": "em inglês: SÓ o que vale para TODAS as cenas: época e paisagem geral (ex.: 'ancient Judea, 1st century, dusty hills'). Se a história muda de lugar (Canaã e depois Egito), o lugar específico vai no prompt de cada cena, nunca aqui"},
         "personagens": {"type": "array", "items": {
@@ -55,6 +58,8 @@ SCHEMA = {
         "descricao": {"type": "string"},
         "hashtags": {"type": "array", "items": {"type": "string"}},
         "comentario_fixado": {"type": "string"},
+        "tiktok_titulo": {"type": "string", "description": "título do TikTok, até 70 caracteres, curiosidade diferente do título do YouTube"},
+        "tiktok_legenda": {"type": "string", "description": "legenda do TikTok: 1-2 frases curtas + pergunta que puxa comentário + 3 a 5 hashtags do nicho (sem #shorts), até 300 caracteres"},
         "autoavaliacao": {"type": "object", "additionalProperties": False,
                           "required": ["gancho", "clareza", "ritmo", "payoff", "precisao", "imagem"],
                           "properties": {k: {"type": "integer"} for k in ["gancho", "clareza", "ritmo", "payoff", "precisao", "imagem"]}},
@@ -114,7 +119,9 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
         "Quem age num milagre é Deus: diga isso, não atribua a ação a um objeto ou animal.\n"
         "- É UMA voz narrando: fala de personagem sempre com verbo ('Jesus disse: Venha!'), nunca 'Jesus: Venha!'. "
         "Conclusão sua ('nunca chegou ao fundo') também é fato novo: só diga o que o texto diz.\n"
-        "- `versiculo.texto` é copiado letra por letra da fonte (pode cortar com '...'). Na fala pode ser adaptado.",
+        "- `versiculo.texto` é copiado letra por letra da fonte (pode cortar com '...'). Na fala: se a frase traz a "
+        "referência junto ('Provérbios 15:1: ...'), use as palavras EXATAS da fonte, sem trocar sinônimo (o juiz reprova "
+        "'acende' no lugar de 'suscita'); se quiser adaptar, tire a referência e diga 'a Bíblia diz que...'.",
         f"# Personagens com aparência fixa (reuse o id e NÃO mude a descrição)\n{fichas}\n"
         f"Personagens esperados neste tema: {esperados}. Para quem não está na lista, crie id em minúsculas com hífen "
         "e uma descricao_visual em inglês bem específica (idade, cabelo, barba, pele, roupa), sem nome próprio.\n"
@@ -122,6 +129,7 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
         "(a primeira ficha vai para a primeira figura descrita). Máximo 2 por cena. Rosto de Deus nunca aparece.",
         f"# Tamanho\nMire em {lo} a {hi - 8} palavras no total (limite duro: {hi}; conte antes de entregar), {c_lo} a {c_hi} cenas. Uma frase por cena, 3 a 14 palavras. "
         "A primeira cena é o gancho (até 8 palavras). A última é o CTA.",
+        "" if "# Fechamento" in formato["receita"] else cta.bloco("gospel"),  # parte de série traz o próprio
         f"# Ganchos\n{_ler(REFS / 'ganchos.md')}\nEscreva 5 ganchos, dê nota 1-5 e use o melhor na cena 1.",
         f"# Linguagem\n{_ler(REFS / 'anti-ia.md')}",
         f"# O que já funcionou no canal\n{_ler(REFS / 'persona-gospel.md')}\n{_ler(RAIZ / 'producao' / 'aprendizados.md')}",
@@ -129,7 +137,8 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
         f"Época: {'bíblica, sem nenhum objeto moderno' if formato['epoca'] == 'biblica' else 'Brasil atual, pessoas comuns'}.",
         "# Post\nTítulo até 60 caracteres (pergunta ou curiosidade, não repita o gancho). Descrição: o versículo entre aspas "
         "com referência, 2 frases, uma pergunta e 'Leia <livro capítulo>'. 5 hashtags com #shorts. Comentário fixado com "
-        "pergunta pessoal. Autoavaliação honesta de 1 a 5.",
+        "pergunta pessoal. TikTok: título próprio até 70 caracteres (não repita o do YouTube) e legenda curta com uma "
+        "pergunta e 3 a 5 hashtags do nicho, sem #shorts. Autoavaliação honesta de 1 a 5.",
     ]
     try:  # guia do nicho: exemplos aprovados + erros que o revisor mais apontou (motor/milionere/guia.py)
         import guia

@@ -1,0 +1,43 @@
+{
+ "usd": 0.9616,
+ "brl": 5.29,
+ "segundos": 2797.9,
+ "por_etapa": {
+  "roteiro": {
+   "chamadas": 2,
+   "imagens": 0,
+   "tokens_entrada": 20499,
+   "tokens_saida": 19654,
+   "usd": 0.2785,
+   "segundos": 170.1,
+   "brl": 1.53
+  },
+  "imagens": {
+   "chamadas": 0,
+   "imagens": 24,
+   "tokens_entrada": 0,
+   "tokens_saida": 0,
+   "usd": 0.0,
+   "segundos": 1130.3,
+   "brl": 0.0
+  },
+  "juiz_visual": {
+   "chamadas": 24,
+   "imagens": 0,
+   "tokens_entrada": 267958,
+   "tokens_saida": 22493,
+   "usd": 0.6831,
+   "segundos": 346.5,
+   "brl": 3.76
+  }
+ },
+ "modelos": [
+  "claude-sonnet-5",
+  "comfy"
+ ],
+ "videos": [
+  "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-davi-golias_sem-musica.mp4",
+  "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-davi-golias.mp4"
+ ],
+ "gpu_imagens_s": 1130.3
+}

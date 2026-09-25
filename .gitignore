@@ -265,3 +265,9 @@ MoneyPrinterTurbo/
 
 # animações Manim geradas (vídeos e cache): recria com python motor/milionere/animacoes/<nome>.py
 motor/milionere/animacoes/saida/
+# credenciais da API do YouTube (postar.py)
+motor/segredos/
+
+# testes locais de animação e trava do turno da noite
+producao/testes_video/
+producao/noite/.turno.lock

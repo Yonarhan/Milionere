@@ -1,0 +1,139 @@
+{
+  "etapas": [
+    {
+      "quando": "21:18:34",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Ele gritou. Ela não.",
+        "Provérbios 15:1: a resposta branda desvia o furor, mas a palavra dura suscita a ira.",
+        "Seu colega te acusa na frente de todos.",
+        "Você respira fundo e responde calmo, a briga morre.",
+        "Sua calma pode desarmar uma raiva que nem começou.",
+        "Se isso tocou seu coração, escreve amém.",
+        "Se inscreve pra não perder o próximo vídeo."
+      ]
+    },
+    {
+      "quando": "21:18:55",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 2,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Responder com calma, em vez de gritar, evita que uma briga ou acusação injusta piore.",
+      "erros_factuais": [],
+      "problemas": [
+        "personagens (nota 2): Cena 1 mostra homem-irritado e mulher-serena como duas pessoas numa cena, mas cena 3 muda o quadro pra 'você' (2ª pessoa) sendo acusado por um 'colega' - fica ambíguo quem é quem: troque a cena 1 para focar só na ideia (sem fixar os dois como casal/dupla específica) ou ajuste a legenda de imagem da cena 3 para deixar claro que o colega é o homem-irritado e você está no lugar da mulher-serena.",
+        "compreensao (nota 3): Por causa da confusão de personagens entre cena 1 e cena 3, quem ouve uma vez pode achar que são duas histórias diferentes (um casal brigando x você e um colega); esclarecer verbalmente na cena 3 algo como 'assim como ela' para religar ao exemplo da cena 1."
+      ]
+    },
+    {
+      "quando": "21:20:10",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Um grita. Ela fica calma.",
+        "Provérbios 15:1: a resposta branda desvia o furor, mas a palavra dura suscita a ira.",
+        "Seu colega te acusa na frente de todos.",
+        "Você respira fundo, responde como ela, e a briga morre.",
+        "Sua calma desarma uma raiva que nem começou.",
+        "Se isso tocou você, escreve amém.",
+        "Se inscreve pra não perder o próximo."
+      ]
+    },
+    {
+      "quando": "21:20:27",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 5,
+        "gancho": 2,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Responder com calma, em vez de gritar de volta, evita a briga — como ensina Provérbios 15:1.",
+      "erros_factuais": [],
+      "problemas": [
+        "gancho (nota 2): Cena 1 só descreve a imagem ('Um grita. Ela fica calma.'), não conecta com uma dor real do espectador; troque por algo como 'Alguém te ataca com raiva do nada' para prender antes de citar.",
+        "ritmo (nota 3): Cena 1 é telegráfica, duas frases soltas sem conectivo, soa como legenda de imagem e não como início de história; una em uma frase só, ex.: 'Ele grita, mas ela fica calma.'"
+      ]
+    },
+    {
+      "quando": "21:21:26",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 3,
+      "problemas": [
+        "roteiro tem 63 palavras; o formato pede 35 a 62"
+      ],
+      "falas": [
+        "Alguém ataca você com raiva do nada.",
+        "Provérbios 15:1: a resposta branda desvia o furor, mas a palavra dura suscita a ira.",
+        "Assim como ela, alguém te acusa na frente de todos.",
+        "Você respira, responde manso, e a briga morre.",
+        "Sua calma desarma uma raiva que nem começou.",
+        "Se isso é pra você, escreve amém.",
+        "Se inscreve pra não perder o próximo."
+      ]
+    },
+    {
+      "quando": "21:22:08",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Alguém ataca você com raiva do nada.",
+        "Provérbios 15:1: a resposta branda desvia o furor, mas a palavra dura suscita a ira.",
+        "Assim como ele, alguém grita na sua frente.",
+        "Você respira, responde manso, e a briga morre.",
+        "Sua calma desarma uma raiva que nem começou.",
+        "Se isso é pra você, escreve amém.",
+        "Se inscreve pra não perder o próximo."
+      ]
+    },
+    {
+      "quando": "21:22:28",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Quando alguém grita com você, responder com calma acaba com a briga em vez de alimentá-la.",
+      "erros_factuais": [
+        "Cena 5: diz que a calma 'desarma uma raiva que nem começou', contradizendo as cenas 1 e 3 onde a raiva/grito já está acontecendo."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 5: diz que a calma 'desarma uma raiva que nem começou', contradizendo as cenas 1 e 3 onde a raiva/grito já está acontecendo.",
+        "fidelidade (nota 3): Cena 5 diz 'raiva que nem começou', mas a história (cenas 1/3) já mostra o colega gritando com raiva plena — contradição com o próprio roteiro; troque para 'raiva que já tava armada' ou algo que não negue o grito anterior.",
+        "compreensao (nota 3): Cena 3 'Assim como ele' só faz sentido vendo a imagem; quem só ouve não sabe quem é 'ele' — troque por algo autossuficiente como 'de novo, um colega grita na sua frente'."
+      ]
+    }
+  ]
+}

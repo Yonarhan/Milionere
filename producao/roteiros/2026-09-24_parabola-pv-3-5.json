@@ -1,0 +1,244 @@
+[
+  {
+    "slug": "parabola-pv-3-5",
+    "nicho": "gospel",
+    "formato": "parabola",
+    "tema": "pv-3-5",
+    "estilo": "cinema",
+    "epoca": "moderna",
+    "titulo": "Ele recusou o triplo do salário. Por quê?",
+    "cenario_en": "Brazil, present day, small modest auto repair shop",
+    "personagens": [
+      {
+        "id": "tiago",
+        "nome": "Tiago",
+        "nome_en": "Tiago",
+        "descricao_visual": "a mechanic in his late 20s, short black hair, light stubble, olive skin, wearing a worn grey work jumpsuit with rolled sleeves",
+        "id_retrato": "parabola-pv-3-5__tiago"
+      },
+      {
+        "id": "antonio",
+        "nome": "Antônio",
+        "nome_en": "Antonio",
+        "descricao_visual": "a mechanic in his late 50s, grey short hair, thick grey mustache, weathered olive skin, wearing a faded blue work jumpsuit",
+        "id_retrato": "parabola-pv-3-5__antonio"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Tiago trabalhava pra Antônio, dono de uma oficina pequena.",
+        "ref": ""
+      },
+      {
+        "n": 2,
+        "evento": "Uma empresa grande ofereceu o triplo do salário pra ele.",
+        "ref": ""
+      },
+      {
+        "n": 3,
+        "evento": "Orando, ele sentiu que não devia aceitar.",
+        "ref": ""
+      },
+      {
+        "n": 4,
+        "evento": "Mesmo assim, ele recusou a proposta e ficou.",
+        "ref": ""
+      },
+      {
+        "n": 5,
+        "evento": "Meses depois, a empresa grande faliu.",
+        "ref": ""
+      },
+      {
+        "n": 6,
+        "evento": "Antônio o fez seu sócio.",
+        "ref": ""
+      }
+    ],
+    "versiculo": {
+      "ref": "Provérbios 3:5-6",
+      "texto": "Confie no SENHOR de todo o seu coração, e não se apoie no seu próprio entendimento. Reconheça-o em todos os seus caminhos, e ele endireitará as suas veredas."
+    },
+    "cenas": [
+      {
+        "fala": "A proposta perfeita. E ele disse não.",
+        "evento": 0,
+        "personagens": [
+          "tiago"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a mechanic standing at a small garage doorway, worried expression, looking down at a folded paper, tools blurred behind, soft afternoon light.",
+        "busca": "worried man looking at paper"
+      },
+      {
+        "fala": "Tiago trabalhava pra Antônio, numa oficina pequena.",
+        "evento": 1,
+        "personagens": [
+          "tiago",
+          "antonio"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of two mechanics working together in a small modest auto repair shop, worn tools on shelves, dim afternoon light through open door.",
+        "busca": "two mechanics small auto repair shop"
+      },
+      {
+        "fala": "Uma empresa ofereceu o triplo do salário.",
+        "evento": 2,
+        "personagens": [
+          "tiago"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a mechanic reading a formal letter at a cluttered workbench, hopeful expression, warm light through a window, blurred tools behind.",
+        "busca": "man reading letter workshop"
+      },
+      {
+        "fala": "Mas orando, ele sentiu que não devia.",
+        "evento": 3,
+        "personagens": [
+          "tiago"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a mechanic sitting alone, eyes closed in quiet prayer, calm worried face, dim evening light, bare wall behind, christian prayer.",
+        "busca": "man praying alone with bible"
+      },
+      {
+        "fala": "Mesmo assim, ele recusou e ficou.",
+        "evento": 4,
+        "personagens": [
+          "tiago"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a mechanic standing firm inside a small garage, resolute expression, tools and a tire stacked nearby, soft morning light through open door.",
+        "busca": "confident man standing garage"
+      },
+      {
+        "fala": "Meses depois, a empresa grande faliu.",
+        "evento": 5,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of an empty modern office building entrance, closed glass doors, no people, overcast grey sky, empty parking lot.",
+        "busca": "empty closed office building"
+      },
+      {
+        "fala": "E Antônio o fez seu sócio.",
+        "evento": 6,
+        "personagens": [
+          "antonio",
+          "tiago"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of an older mechanic and a younger mechanic standing together in a small garage, proud smiles, warm afternoon light, tools organized behind them.",
+        "busca": "two mechanics smiling garage"
+      },
+      {
+        "fala": "Provérbios 3:5: confie no Senhor, não no seu entendimento.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Close-up of an open worn Bible resting on a wooden workbench, soft warm light, blurred tools in background, no people, peaceful.",
+        "busca": "open bible on wooden table"
+      },
+      {
+        "fala": "Quando não fizer sentido, confia mesmo assim.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a small garage at sunset, warm golden light streaming through the open door, empty workspace, tools neatly arranged, peaceful atmosphere.",
+        "busca": "sunset workshop peaceful empty"
+      },
+      {
+        "fala": "Se você já confiou sem entender, escreve amém.",
+        "evento": 0,
+        "personagens": [
+          "tiago"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a mechanic looking upward, eyes closed, peaceful hopeful expression, soft warm light, blurred garage background.",
+        "busca": "man looking up hopeful"
+      },
+      {
+        "fala": "Se inscreve pra mais histórias assim.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a small garage entrance at golden hour, warm light spilling onto the floor, open door inviting, tools and a tire visible.",
+        "busca": "golden hour workshop entrance"
+      }
+    ],
+    "descricao": "\"Confie no SENHOR de todo o seu coração, e não se apoie no seu próprio entendimento.\" Tiago recusou o emprego dos sonhos por causa de uma sensação estranha na oração. Meses depois, entendeu o motivo. Você confiaria sem entender? Leia Provérbios 3",
+    "hashtags": [
+      "#fé",
+      "#biblia",
+      "#jesus",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já recusou algo bom porque sentiu que Deus pedia pra esperar?",
+    "tiktok_titulo": "A oferta era perfeita. Mas veio um aviso na oração",
+    "tiktok_legenda": "Ele recusou o emprego dos sonhos e meses depois entendeu por quê. Você já confiou sem entender? #fé #biblia #confiancaemdeus #provérbios",
+    "fontes": [
+      "Provérbios 3:5-6 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "A proposta perfeita. E ele disse não.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Ele recusou o triplo do salário.",
+        "choque": 3,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "O plano perfeito. Deus disse: espera.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Ele tinha o emprego dos sonhos na mão.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "Recusar o triplo do salário quase o arruinou.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 4
+      }
+    ],
+    "gancho_tela": "ELE DISSE NÃO",
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 4,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 4,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Stable Diffusion XL)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    }
+  }
+]

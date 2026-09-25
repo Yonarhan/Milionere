@@ -1,0 +1,282 @@
+{
+  "etapas": [
+    {
+      "quando": "20:02:02",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "A ponte que ele não atravessou desabou.",
+        "A ponte era o caminho mais rápido.",
+        "Um aperto no peito o impediu de seguir.",
+        "A passageira reclamou do atraso pro voo.",
+        "Sem entender, Rafael virou pra outra rua.",
+        "Minutos depois, o rádio disse: a ponte caiu.",
+        "Provérbios três e cinco: não se apoie no seu entendimento.",
+        "Seu plano não precisa fazer sentido pra você confiar.",
+        "Se você confia nisso, escreve amém, e já se inscreve no canal."
+      ]
+    },
+    {
+      "quando": "20:02:40",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 3,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Um motorista sente um aperto no peito sem explicação, muda de rota apesar do protesto da passageira, e depois descobre que a ponte que evitou tinha desabado, mostrando que devemos confiar em Deus e não só na própria razão.",
+      "erros_factuais": [],
+      "problemas": [
+        "personagens (nota 3): Cena 4: a passageira aparece do nada, sem que antes se estabeleça que Rafael é motorista de app; corrigir inserindo na cena 2 'Rafael dirigia de app e a ponte era o caminho mais rápido'.",
+        "compreensao (nota 3): Cenas 2-4: sem saber que Rafael trabalha como motorista de aplicativo, o ouvinte não entende por que há uma passageira reclamando de voo no carro dele; resolver com a mesma correção da cena 2 citada acima, cortando alguma repetição depois para caber no limite de palavras."
+      ]
+    },
+    {
+      "quando": "20:03:15",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "A ponte que ele não atravessou desabou.",
+        "Rafael dirigia de app, e a ponte era o caminho mais rápido.",
+        "Um aperto no peito não deixava ele seguir.",
+        "A passageira reclamou que ia perder o voo.",
+        "Sem entender, Rafael virou pra outra rua.",
+        "Minutos depois, o rádio disse: a ponte caiu.",
+        "Provérbios três e cinco: não se apoie no seu entendimento.",
+        "Seu plano não precisa fazer sentido pra você confiar.",
+        "Se você confia nisso, escreve amém, e já se inscreve no canal."
+      ]
+    },
+    {
+      "quando": "20:03:46",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 4
+      },
+      "entendimento": "Um motorista de app sente um aperto no peito, muda de rota sem explicação lógica, e descobre que a ponte que evitou desabou — mostrando que confiar em Deus vale mais que entender tudo.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "20:05:27",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "A planilha dizia vender. Deus disse esperar.",
+        "Ele precisava pagar uma dívida até amanhã.",
+        "Diego disse: vende logo, faz sentido.",
+        "Orando, Marcos sentiu: espera mais uma semana.",
+        "Sem entender, ele recusou a proposta.",
+        "Dias depois, anunciaram uma avenida na frente.",
+        "O comprador voltou oferecendo o triplo.",
+        "Provérbios 3:5 diz: confie no Senhor, não no seu entendimento.",
+        "Quando seu plano faz sentido, mas Deus pede espera, confia.",
+        "Se já esperou sem entender, escreve amém.",
+        "Se inscreve pra mais histórias assim."
+      ]
+    },
+    {
+      "quando": "20:05:50",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Marcos sentiu que Deus pedia para esperar antes de vender um imóvel, mesmo endividado e indo contra o conselho do sócio, e a espera valeu a pena quando o valor triplicou.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "20:24:02",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Ninguém recusa esse salário. Ele recusou.",
+        "Bruno recebeu proposta perfeita: salário triplicado.",
+        "No papel, fazia sentido. Ele quase assinou.",
+        "Orando, sentiu aperto no peito.",
+        "Diego disse: você é louco de recusar.",
+        "Sem entender, Bruno recusou e ficou.",
+        "Meses depois, aquela empresa faliu.",
+        "No emprego antigo, veio promoção inesperada.",
+        "Provérbios 3,5: confie no Senhor, não no seu entendimento.",
+        "Quando seu plano faz sentido, mas Deus pede espera, confie.",
+        "Se já recusou sem entender, escreve amém e se inscreve."
+      ]
+    },
+    {
+      "quando": "20:24:24",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 3,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Bruno recusa por instinto uma proposta de emprego tentadora, a empresa que o contrataria falha e ele é promovido onde já estava, mostrando que confiar em Deus vale mais que a própria lógica.",
+      "erros_factuais": [],
+      "problemas": [
+        "personagens (nota 3): Cena 5: Diego surge do nada, fala uma frase e some sem função na virada — corte a fala dele ou dê a ele uma reação final (ex.: ele reconhecer que Bruno tinha razão) para fechar o personagem."
+      ]
+    },
+    {
+      "quando": "20:25:28",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Ninguém recusa esse salário. Ele recusou.",
+        "Bruno recebeu proposta perfeita: salário triplicado.",
+        "No papel, fazia sentido. Ele quase assinou.",
+        "Orando, sentiu aperto no peito.",
+        "Diego disse: você é louco.",
+        "Sem entender, Bruno recusou e ficou.",
+        "Meses depois, aquela empresa faliu.",
+        "Diego confessou: você tinha razão, Bruno.",
+        "No emprego antigo, veio promoção inesperada.",
+        "Provérbios 3:5: confie no Senhor, não em você.",
+        "Quando seu plano faz sentido, mas Deus pede espera, confie.",
+        "Se já recusou sem entender, escreve amém e se inscreve."
+      ]
+    },
+    {
+      "quando": "20:26:01",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Bruno recusa um emprego com salário triplicado por sentir um alerta ao orar, a empresa depois quebra e ele é promovido onde estava, mostrando que confiar em Deus vale mais que confiar no próprio entendimento.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "20:28:00",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "A proposta perfeita. E ele disse não.",
+        "Tiago ganhava pouco numa oficina pequena.",
+        "Uma empresa ofereceu o triplo do salário.",
+        "Mas orando, ele sentiu que não devia.",
+        "Mesmo assim, ele recusou e ficou.",
+        "Meses depois, a empresa grande faliu.",
+        "E Antônio o chamou de sócio.",
+        "Provérbios 3:5: confie no Senhor, não no seu entendimento.",
+        "Quando não fizer sentido, confia mesmo assim.",
+        "Se você já confiou sem entender, escreve amém.",
+        "Se inscreve pra mais histórias assim."
+      ]
+    },
+    {
+      "quando": "20:28:18",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 3,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Tiago recusou uma proposta de emprego melhor por sentir no coração que não devia, e essa confiança acabou sendo recompensada quando a empresa concorrente faliu e ele virou sócio da oficina onde já trabalhava.",
+      "erros_factuais": [],
+      "problemas": [
+        "personagens (nota 3): Antônio surge do nada na cena 7 como dono que promove Tiago a sócio; corrigir cena 2 para 'Tiago trabalhava pra Antônio, numa oficina pequena' e assim já apresentar o personagem.",
+        "compreensao (nota 3): Sem saber quem é Antônio, o ouvinte não entende por que ele vira sócio de Tiago na cena 7; nomear Antônio como dono da oficina já na cena 2 resolve."
+      ]
+    },
+    {
+      "quando": "20:28:51",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "A proposta perfeita. E ele disse não.",
+        "Tiago trabalhava pra Antônio, numa oficina pequena.",
+        "Uma empresa ofereceu o triplo do salário.",
+        "Mas orando, ele sentiu que não devia.",
+        "Mesmo assim, ele recusou e ficou.",
+        "Meses depois, a empresa grande faliu.",
+        "E Antônio o fez seu sócio.",
+        "Provérbios 3:5: confie no Senhor, não no seu entendimento.",
+        "Quando não fizer sentido, confia mesmo assim.",
+        "Se você já confiou sem entender, escreve amém.",
+        "Se inscreve pra mais histórias assim."
+      ]
+    },
+    {
+      "quando": "20:29:24",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Tiago recusa uma proposta de salário triplo por sentir no coração que não devia, a empresa rival falha depois, e seu chefe o recompensa fazendo-o sócio — mostrando que confiar em Deus vale mais que confiar no próprio cálculo.",
+      "erros_factuais": [],
+      "problemas": []
+    }
+  ]
+}

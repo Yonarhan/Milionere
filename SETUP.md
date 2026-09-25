@@ -110,3 +110,33 @@ cd motor
 .\.venv\Scripts\python.exe milionere\animacoes\luz_do_sol.py   # -> milionere\animacoes\saida\luz_do_sol.mp4
 ```
 Para usar num vídeo, copie o .mp4 para `producao/midia/<slug>/cena_NN.mp4` (mídia manual tem prioridade na montagem).
+
+**Séries (2 a 5 partes).** No cartão do nicho: *Gerar série agora* (ou ▶▶ num tema da pauta) e, para o automático,
+*vídeo único / série / misto* (misto = 1 série a cada N vídeos), com o teto de partes. A IA usa só as partes que a
+história aguenta. Fluxo (`motor/milionere/serie.py`, orquestrado em `servico/estudio/producao.py`):
+plano (trecho, virada e gancho de cada parte, personagens fixos) → juiz do plano → cada parte pelos juízes de sempre →
+juiz da série (continuidade, repetição, nomes/papéis, ganchos que ligam; reescreve só a parte apontada) → imagens e vídeo
+de cada parte → juiz visual da série (o mesmo personagem com a mesma cara; divergência vira aviso na revisão).
+A série vai para *Para revisar* como um bloco: aprova ou reprova inteira; a postagem é marcada parte por parte.
+Temas com `"serie": true` em `biblia/temas.json` têm preferência nas séries e ficam fora do vídeo único automático.
+O gospel fecha sempre com o amém **e** o pedido de inscrição "pra continuar sendo abençoado" (conferido na camada 1).
+
+## 8. Vídeo misto (animação) e turno da noite com postagem no YouTube
+
+**Animação (Wan 2.2 14B):** `bash motor/milionere/instalar_comfy.sh --animacao` baixa os modelos (~22GB). O pipeline
+anima 3 cenas-chave por vídeo (~5 min cada na RTX 4060); `MILIONERE_ANIMAR=0` desliga, `=2` anima 2. O ComfyUI roda
+com teto de RAM (cgroup, `COMFY_RAM_HIGH/MAX` em `imagens.py`): se estourar, morre só ele, não o WSL.
+
+**Postagem (API do YouTube, grátis):**
+1. Google Cloud: projeto com a *YouTube Data API v3* ativa, tela de consentimento (Externo) com os links de
+   `docs/index.html` e `docs/privacidade.html` (GitHub Pages) e o app **publicado** (em "Testando" o token vence em 7 dias).
+2. ID do cliente OAuth "App para computador" -> salvar em `motor/segredos/youtube_cliente.json` (fora do git).
+3. `motor/.venv-linux/bin/python motor/milionere/postar.py --autorizar` (uma vez).
+4. `postar.py --pendentes` sobe como PRIVADO o que está pronto, sem aviso e ainda não postado (`producao/postados.json`).
+
+**Turno da noite:** `crontab -e` ->
+`0 20 * * * /home/rafael/projects/milionere/milionere/motor/milionere/noite.sh`
+Gera vídeo atrás de vídeo até as 7h (`FIM_HORA`) e desliga o ComfyUI no fim. O upload é outro cron, 1 vídeo
+(privado) a cada 3h a partir das 23h: `0 2-23/3 * * * ... postar.py --pendentes --limite 1` (log em `producao/noite/postagem.log`).
+Log em `producao/noite/turno_<data>.log`. O WSL precisa estar aberto (deixe um terminal do Ubuntu aberto à noite).
+De manhã: YouTube Studio -> conferir cada vídeo privado -> Público (comentário fixado: à mão, está no `.txt`).

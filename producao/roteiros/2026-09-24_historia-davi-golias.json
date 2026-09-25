@@ -1,0 +1,269 @@
+[
+  {
+    "slug": "historia-davi-golias",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "davi-golias",
+    "estilo": "cinema_zimage",
+    "epoca": "biblica",
+    "titulo": "Por que ninguém teve coragem de enfrentar Golias?",
+    "cenario_en": "ancient Israel, Valley of Elah, 11th century BC, dusty hills and dry battlefield terrain",
+    "personagens": [
+      {
+        "id": "davi",
+        "nome": "Davi",
+        "nome_en": "David",
+        "descricao_visual": "a young shepherd boy around fifteen years old, short curly brown hair, no beard, olive skin, simple beige tunic with a leather sling tucked at the belt"
+      },
+      {
+        "id": "golias",
+        "nome": "Golias",
+        "nome_en": "Goliath",
+        "descricao_visual": "a giant Philistine warrior in his 40s, long braided black beard, deeply tanned muscular skin, bronze scale armor with bronze helmet and bronze greaves"
+      },
+      {
+        "id": "saul",
+        "nome": "Saul",
+        "nome_en": "Saul",
+        "descricao_visual": "an Israelite king in his 50s, grey-streaked dark hair and beard, weathered olive skin, deep-blue robe trimmed with purple over leather armor"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Golias sai do acampamento filisteu e desafia Israel a mandar um homem para lutar",
+        "ref": "1 Samuel 17:4-10"
+      },
+      {
+        "n": 2,
+        "evento": "Saul e todo o Israel ficam apavorados",
+        "ref": "1 Samuel 17:11"
+      },
+      {
+        "n": 3,
+        "evento": "Davi se oferece para lutar contra Golias, e Saul diz que ele é jovem demais",
+        "ref": "1 Samuel 17:32-33"
+      },
+      {
+        "n": 4,
+        "evento": "Davi conta que já matou um leão e um urso cuidando das ovelhas do pai",
+        "ref": "1 Samuel 17:34-36"
+      },
+      {
+        "n": 5,
+        "evento": "Davi diz que o Senhor que o livrou dos animais vai livrá-lo do filisteu",
+        "ref": "1 Samuel 17:37"
+      },
+      {
+        "n": 6,
+        "evento": "Diante de Golias, Davi diz que vem em nome do Senhor dos Exércitos",
+        "ref": "1 Samuel 17:45"
+      },
+      {
+        "n": 7,
+        "evento": "Golias avança para atacar, e Davi corre e atira uma pedra com a funda",
+        "ref": "1 Samuel 17:48-49"
+      },
+      {
+        "n": 8,
+        "evento": "A pedra crava na testa de Golias, que cai morto sem espada na mão de Davi",
+        "ref": "1 Samuel 17:49-50"
+      }
+    ],
+    "versiculo": {
+      "ref": "1 Samuel 17:50",
+      "texto": "Assim Davi venceu o filisteu com uma funda e uma pedra; ele feriu o filisteu e o matou, embora não houvesse espada na mão de Davi."
+    },
+    "cenas": [
+      {
+        "fala": "Um exército tremia. De um homem só.",
+        "evento": 0,
+        "personagens": [
+          "golias"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide low-angle shot of a tight group of soldiers huddled together on a dusty hillside, visibly trembling, cowering, staring fearfully toward a distant ridge, swirling dust, tense dawn light, barren desert terrain.",
+        "busca": "army fear battlefield ancient"
+      },
+      {
+        "fala": "Golias saiu e gritou: escolham um homem pra lutar.",
+        "evento": 1,
+        "personagens": [
+          "golias"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Full body shot of a giant warrior standing at a military camp, bronze scale armor and helmet gleaming, flat rocky ground, dramatic backlight.",
+        "busca": "ancient warrior bronze armor"
+      },
+      {
+        "fala": "Saul e Israel ficaram apavorados.",
+        "evento": 2,
+        "personagens": [
+          "saul"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of an Israelite king standing among soldiers with fearful expressions, dusty valley ground, overcast tense light.",
+        "busca": "biblical king fear army"
+      },
+      {
+        "fala": "Davi disse: eu vou. Saul disse: jovem demais.",
+        "evento": 3,
+        "personagens": [
+          "saul",
+          "davi"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a king and a young shepherd boy facing each other near a tent, doubtful expression versus determined stance, flat sandy ground.",
+        "busca": "biblical king young shepherd"
+      },
+      {
+        "fala": "Davi contou: matei leão e urso cuidando ovelhas.",
+        "evento": 4,
+        "personagens": [
+          "davi"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a young shepherd boy kneeling among sheep on a grassy hillside, recalling a dangerous memory, soft overcast daylight, dry hills in background, tunic tied simply without visible buttons or fasteners.",
+        "busca": "shepherd boy sheep hillside"
+      },
+      {
+        "fala": "O Senhor que me livrou deles vai me livrar.",
+        "evento": 5,
+        "personagens": [
+          "davi"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot on a dry hillside, looking upward with quiet confidence, open pale sky behind, flat rocky ground with scattered stones, soft warm morning sunlight, distant desert hills.",
+        "busca": "shepherd boy praying sky"
+      },
+      {
+        "fala": "Diante de Golias, Davi disse: venho em nome do Senhor.",
+        "evento": 6,
+        "personagens": [
+          "davi",
+          "golias"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a young shepherd boy standing alone facing a distant giant warrior across a dusty battlefield, harsh midday sun.",
+        "busca": "shepherd boy facing giant warrior"
+      },
+      {
+        "fala": "Golias avançou. Davi correu e atirou a pedra na funda.",
+        "evento": 7,
+        "personagens": [
+          "golias",
+          "davi"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Dynamic wide shot, giant warrior charging forward toward camera, single shepherd boy running alone toward him across dusty battlefield, cracked dry ground, distant hills, harsh sunlight, dust clouds swirling",
+        "busca": "warrior running battlefield ancient"
+      },
+      {
+        "fala": "A pedra cravou na testa, e Golias caiu morto.",
+        "evento": 8,
+        "personagens": [
+          "golias",
+          "davi"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot, giant warrior lying dead on dusty ground beside large boulders, young shepherd boy standing alone nearby pointing forward, dry rocky hills and ruined stone structures behind, bright daylight, wilderness terrain",
+        "busca": "fallen warrior desert ground"
+      },
+      {
+        "fala": "Seu gigante pode cair. Não foi o exército, foi um pastor com pedra.",
+        "evento": 0,
+        "personagens": [
+          "davi"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Silhouette of a small shepherd figure standing tall against a golden sunset sky, vast open field, quiet powerful mood.",
+        "busca": "shepherd silhouette sunset field"
+      },
+      {
+        "fala": "Se você acredita, escreve amém. E se inscreve pra mais história.",
+        "evento": 0,
+        "personagens": [
+          "davi"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a young shepherd boy kneeling in quiet prayer on a hillside at sunrise, sling resting beside him, peaceful golden light.",
+        "busca": "shepherd praying sunrise hillside"
+      }
+    ],
+    "descricao": "\"Assim Davi venceu o filisteu com uma funda e uma pedra; ele feriu o filisteu e o matou, embora não houvesse espada na mão de Davi.\" Um exército inteiro tinha medo de lutar. Só um pastor teve coragem de enfrentar o gigante. Você já enfrentou um problema que parecia grande demais? Leia 1 Samuel 17. #davi #golias #biblia #fe #shorts",
+    "hashtags": [
+      "#davi",
+      "#golias",
+      "#biblia",
+      "#fe",
+      "#shorts"
+    ],
+    "comentario_fixado": "Qual é o \"gigante\" que você está enfrentando hoje?",
+    "tiktok_titulo": "O pastor de ovelhas que derrubou um gigante de bronze",
+    "tiktok_legenda": "Um exército inteiro tinha medo. Só um menino teve coragem. Qual gigante você precisa enfrentar hoje? #davi #golias #biblia #fe",
+    "fontes": [
+      "1 Samuel 17:4-11; 17:32-37; 17:45-50 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Um exército tremia. De um homem só.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Um homem só, e um exército inteiro com medo.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "O maior guerreiro... caiu com uma pedra.",
+        "choque": 5,
+        "clareza": 4,
+        "imagem": 5
+      },
+      {
+        "texto": "Ninguém no exército teve coragem de lutar.",
+        "choque": 3,
+        "clareza": 5,
+        "imagem": 3
+      },
+      {
+        "texto": "Um menino contra o guerreiro mais temido.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      }
+    ],
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 5,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 4
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Z-Image Turbo)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    },
+    "_avisos": [],
+    "gancho_tela": "UM MENINO CONTRA UM GIGANTE"
+  }
+]

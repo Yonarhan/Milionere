@@ -22,6 +22,7 @@ OLLAMA = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
 # camada trocável do juiz visual: "claude" (padrão, uma imagem por chamada), "claude-lote" (várias por chamada)
 # ou "ollama:<modelo>" (modelo aberto na GPU local)
 JUIZ_VISUAL = os.environ.get("MILIONERE_JUIZ_VISUAL", "claude")
+LIMITE_ESPERAS, LIMITE_ESPERA_S = 3, 90  # 429 (limite da assinatura): espera 90s, 180s, 270s antes de desistir
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import caminhos  # noqa: E402
@@ -121,7 +122,10 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
     if "--effort" in _flags_opcionais():  # não herda o esforço da sessão de quem roda (ex.: "high" no settings.json)
         cmd += ["--effort", caminhos.ESFORCO_JUIZ if papel == "juiz" else caminhos.ESFORCO_ROTEIRO]
     ultimo = ""
-    for _ in range(2):
+    limites = 0
+    tentativa = 0
+    while tentativa < 2:
+        tentativa += 1
         _conferir_cancelado()
         inicio = time.time()
         with tempfile.TemporaryDirectory() as vazio:  # roda fora do projeto: nada de CLAUDE.md por perto
@@ -136,7 +140,13 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
             continue
         medidor.llm(saida, time.time() - inicio)  # conta também as tentativas que falharam (foram pagas)
         if saida.get("is_error") or "structured_output" not in saida:
-            ultimo = json.dumps(saida, ensure_ascii=False)[:1500]
+            # o motivo ("You've hit your session limit...") vem em result: primeiro, pra aparecer no painel
+            ultimo = f"{saida.get('result', '')} | " + json.dumps(saida, ensure_ascii=False)[:1500]
+            if saida.get("api_error_status") == 429 and limites < LIMITE_ESPERAS:
+                # limite da assinatura: às vezes é só um pico. Espera e tenta de novo sem gastar uma das 2 tentativas
+                limites += 1
+                tentativa -= 1
+                time.sleep(LIMITE_ESPERA_S * limites)
             continue
         return saida["structured_output"]
     raise ErroLLM(f"claude -p falhou duas vezes: {ultimo}")

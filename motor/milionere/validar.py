@@ -26,7 +26,7 @@ import medidor  # noqa: E402
 VOCAB_IA = ["fascinante", "incrível jornada", "desvendar", "crucial", "notável", "intrigante", "vasto universo",
             "mistérios do", "não apenas", "não é só", "e sabe o que", "realmente", "cientistas acreditam",
             "jornada", "tapeçaria", "mergulhar", "inspirador", "poderosa lição", "nos ensina que"]
-CTA = re.compile(r"\b(amém|amem|comenta|manda|escreve|compartilha|salva|inscreve|inscreva)\b", re.I)
+CTA = re.compile(r"\b(amém|amem|comenta|manda|escreve|compartilha|salva|inscrev\w*|segue)\b", re.I)
 ORDEM_LIVROS = list(biblia.LIVROS.values())
 
 
@@ -43,6 +43,17 @@ def _palavras(t: str) -> list[str]:
 
 # ---------------------------------------------------------------- camada 1
 
+def checar_cta_gospel(cenas: list[dict]) -> list[str]:
+    """Gospel fecha SEMPRE pedindo o amém e a inscrição (nas 2 últimas cenas). A frase varia: ver cta.py."""
+    fim = " ".join(c["fala"] for c in cenas[-2:]).lower()
+    erros = []
+    if not re.search(r"\bam[eé]m\b", fim):
+        erros.append("o fechamento (2 últimas cenas) não pede o amém (frase nova, ligada ao tema)")
+    if "inscrev" not in fim:
+        erros.append("o fechamento (2 últimas cenas) não pede a inscrição (frase nova, ligada ao tema)")
+    return erros
+
+
 def camada1(r: dict, formato: dict, tema: dict) -> list[str]:
     erros: list[str] = []
     cenas = r["cenas"]
@@ -57,6 +68,8 @@ def camada1(r: dict, formato: dict, tema: dict) -> list[str]:
         erros.append(f"gancho com {len(_palavras(cenas[0]['fala']))} palavras (máx. 8): «{cenas[0]['fala']}»")
     if not CTA.search(cenas[-1]["fala"]):
         erros.append(f"última cena não é um CTA: «{cenas[-1]['fala']}»")
+    if formato.get("nicho") == "gospel":
+        erros += checar_cta_gospel(cenas)
     for i, c in enumerate(cenas, 1):
         n = len(_palavras(c["fala"]))
         if n > 16:
@@ -336,8 +349,13 @@ def julgar_varias(r: dict, itens: list[tuple[int, Path]], epoca: str, juiz: str 
         return list(ex.map(lambda p: p[0].run(julgar_imagem, r, p[1][0], p[1][1], epoca, juiz), zip(ctxs, itens)))
 
 
+def imagem_da_cena(pasta: Path, n: int) -> Path | None:
+    """A imagem da cena n; ignora o cena_NN.mp4 da animação (que o sorted() pegaria antes do .png)."""
+    return next((p for p in sorted(pasta.glob(f"cena_{n:02d}.*")) if p.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"}), None)
+
+
 def camada3(r: dict, pasta: Path, epoca: str, so: list[int] | None = None) -> list[dict]:
     """Juiz visual (uma imagem por chamada, ou em lote com claude-lote). Devolve as reprovadas: [{cena, problema, imagem_corrigida}]."""
     itens = [(i, a) for i in range(1, len(r["cenas"]) + 1) if not so or i in so
-             for a in [next(iter(sorted(pasta.glob(f"cena_{i:02d}.*"))), None)] if a]
+             for a in [imagem_da_cena(pasta, i)] if a]
     return [v for v in julgar_varias(r, itens, epoca) if not v["ok"]]

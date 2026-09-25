@@ -1,46 +1,575 @@
 {
   "_comentario": "Catálogo de temas. 'ref' = trecho bíblico que é a FONTE DA VERDADE do roteiro (o texto exato vai pro roteirista e pro juiz). 'angulo' = a virada que prende. 'prioridade' maior sai primeiro. Temas usados ficam registrados em producao/usados.json.",
   "historias": [
-    {"id": "jose-irmaos", "titulo": "José perdoa os irmãos que o venderam", "ref": "Gênesis 37:3-4; 37:23-28; 42:1-8; 45:1-5", "angulo": "Os irmãos venderam José como escravo. Anos depois ele era o segundo homem mais poderoso do Egito e eles vieram pedir comida pra ele.", "personagens": ["jose", "irmaos-jose"], "prioridade": 3},
-    {"id": "jonas-peixe", "titulo": "Jonas fugiu de Deus e foi engolido", "ref": "Jonas 1:1-4; 1:11-17; 2:1-2; 2:10", "angulo": "Deus mandou Jonas pra leste, ele pegou um navio pro oeste. Deus não desistiu dele nem no fundo do mar.", "personagens": ["jonas"], "prioridade": 3},
-    {"id": "ana-oracao", "titulo": "Ana orou tanto que acharam que ela tava bêbada", "ref": "1 Samuel 1:9-17; 1:20", "angulo": "Ana chorava orando sem som e o sacerdote achou que ela estava bêbada. Deus ouviu a oração silenciosa.", "personagens": ["ana", "eli"], "prioridade": 3},
-    {"id": "elias-deserto", "titulo": "O profeta que pediu pra morrer", "ref": "1 Reis 19:3-8", "angulo": "Depois do maior milagre da vida dele, Elias deitou debaixo de uma árvore e pediu pra morrer. Deus não deu sermão: deu pão e sono.", "personagens": ["elias", "anjo"], "prioridade": 3},
-    {"id": "zaqueu", "titulo": "O homem mais odiado da cidade subiu numa árvore", "ref": "Lucas 19:1-10", "angulo": "Todo mundo odiava Zaqueu. Jesus parou no meio da multidão, olhou pra cima e escolheu a casa dele.", "personagens": ["jesus", "zaqueu"], "prioridade": 2},
-    {"id": "mulher-fluxo", "titulo": "12 anos doente e um toque na roupa", "ref": "Marcos 5:25-34", "angulo": "Doze anos de doença, todo dinheiro gasto em médicos. Ela só tocou na roupa de Jesus e ele parou a multidão pra achar ela.", "personagens": ["jesus", "mulher-fluxo"], "prioridade": 2},
-    {"id": "tempestade", "titulo": "Jesus dormindo no meio da tempestade", "ref": "Marcos 4:35-41", "angulo": "O barco enchendo de água e Jesus dormindo numa almofada. 'Mestre, não se importa que a gente morra?'", "personagens": ["jesus", "pedro"], "prioridade": 2},
-    {"id": "pedro-agua", "titulo": "Pedro andou sobre as águas e afundou", "ref": "Mateus 14:25-31", "angulo": "Pedro andou na água enquanto olhava pra Jesus. Olhou pro vento e afundou. Jesus pegou a mão dele imediatamente.", "personagens": ["jesus", "pedro"], "prioridade": 2},
-    {"id": "agar-deserto", "titulo": "Deus ouviu o choro de um menino no deserto", "ref": "Gênesis 21:14-19", "angulo": "Expulsa, sem água, Agar deixou o filho debaixo de um arbusto pra não ver ele morrer. Deus abriu os olhos dela e ela viu um poço.", "personagens": ["agar", "ismael"], "prioridade": 2},
-    {"id": "ladrao-cruz", "titulo": "O último minuto do ladrão na cruz", "ref": "Lucas 23:39-43", "angulo": "Ele não tinha tempo, nem obra, nem batismo. Só uma frase: 'lembre-se de mim'. E ouviu: 'hoje você estará comigo'.", "personagens": ["jesus", "ladrao"], "prioridade": 2},
-    {"id": "bartimeu", "titulo": "Mandaram o cego calar a boca", "ref": "Marcos 10:46-52", "angulo": "A multidão mandou Bartimeu calar a boca. Ele gritou mais alto. Jesus parou.", "personagens": ["jesus", "bartimeu"], "prioridade": 2},
-    {"id": "tome-duvida", "titulo": "O discípulo que duvidou", "ref": "João 20:24-29", "angulo": "Tomé disse que só acreditava se tocasse nas feridas. Jesus voltou só por causa dele e mostrou as mãos.", "personagens": ["jesus", "tome"], "prioridade": 1},
-    {"id": "filho-prodigo", "titulo": "O pai que correu", "ref": "Lucas 15:11-24", "angulo": "Na época, um homem respeitado nunca corria. O pai viu o filho que tinha torrado a herança e correu até ele.", "personagens": ["pai-prodigo", "filho-prodigo"], "prioridade": 1},
-    {"id": "daniel-leoes", "titulo": "Daniel orou mesmo sabendo da lei", "ref": "Daniel 6:10; 6:16-22", "angulo": "Uma lei proibia orar. Daniel abriu a janela e orou como sempre, três vezes por dia.", "personagens": ["daniel", "rei-dario"], "prioridade": 1}
+    {
+      "id": "jose-irmaos",
+      "titulo": "José perdoa os irmãos que o venderam",
+      "ref": "Gênesis 37:3-4; 37:23-28; 42:1-8; 45:1-5",
+      "angulo": "Os irmãos venderam José como escravo. Anos depois ele era o segundo homem mais poderoso do Egito e eles vieram pedir comida pra ele.",
+      "personagens": [
+        "jose",
+        "irmaos-jose"
+      ],
+      "prioridade": 3
+    },
+    {
+      "id": "jonas-peixe",
+      "titulo": "Jonas fugiu de Deus e foi engolido",
+      "ref": "Jonas 1:1-4; 1:11-17; 2:1-2; 2:10",
+      "angulo": "Deus mandou Jonas pra leste, ele pegou um navio pro oeste. Deus não desistiu dele nem no fundo do mar.",
+      "personagens": [
+        "jonas"
+      ],
+      "prioridade": 3
+    },
+    {
+      "id": "ana-oracao",
+      "titulo": "Ana orou tanto que acharam que ela tava bêbada",
+      "ref": "1 Samuel 1:9-17; 1:20",
+      "angulo": "Ana chorava orando sem som e o sacerdote achou que ela estava bêbada. Deus ouviu a oração silenciosa.",
+      "personagens": [
+        "ana",
+        "eli"
+      ],
+      "prioridade": 3
+    },
+    {
+      "id": "elias-deserto",
+      "titulo": "O profeta que pediu pra morrer",
+      "ref": "1 Reis 19:3-8",
+      "angulo": "Depois do maior milagre da vida dele, Elias deitou debaixo de uma árvore e pediu pra morrer. Deus não deu sermão: deu pão e sono.",
+      "personagens": [
+        "elias",
+        "anjo"
+      ],
+      "prioridade": 3
+    },
+    {
+      "id": "zaqueu",
+      "titulo": "O homem mais odiado da cidade subiu numa árvore",
+      "ref": "Lucas 19:1-10",
+      "angulo": "Todo mundo odiava Zaqueu. Jesus parou no meio da multidão, olhou pra cima e escolheu a casa dele.",
+      "personagens": [
+        "jesus",
+        "zaqueu"
+      ],
+      "prioridade": 2
+    },
+    {
+      "id": "mulher-fluxo",
+      "titulo": "12 anos doente e um toque na roupa",
+      "ref": "Marcos 5:25-34",
+      "angulo": "Doze anos de doença, todo dinheiro gasto em médicos. Ela só tocou na roupa de Jesus e ele parou a multidão pra achar ela.",
+      "personagens": [
+        "jesus",
+        "mulher-fluxo"
+      ],
+      "prioridade": 2
+    },
+    {
+      "id": "tempestade",
+      "titulo": "Jesus dormindo no meio da tempestade",
+      "ref": "Marcos 4:35-41",
+      "angulo": "O barco enchendo de água e Jesus dormindo numa almofada. 'Mestre, não se importa que a gente morra?'",
+      "personagens": [
+        "jesus",
+        "pedro"
+      ],
+      "prioridade": 2
+    },
+    {
+      "id": "pedro-agua",
+      "titulo": "Pedro andou sobre as águas e afundou",
+      "ref": "Mateus 14:25-31",
+      "angulo": "Pedro andou na água enquanto olhava pra Jesus. Olhou pro vento e afundou. Jesus pegou a mão dele imediatamente.",
+      "personagens": [
+        "jesus",
+        "pedro"
+      ],
+      "prioridade": 2
+    },
+    {
+      "id": "agar-deserto",
+      "titulo": "Deus ouviu o choro de um menino no deserto",
+      "ref": "Gênesis 21:14-19",
+      "angulo": "Expulsa, sem água, Agar deixou o filho debaixo de um arbusto pra não ver ele morrer. Deus abriu os olhos dela e ela viu um poço.",
+      "personagens": [
+        "agar",
+        "ismael"
+      ],
+      "prioridade": 2
+    },
+    {
+      "id": "ladrao-cruz",
+      "titulo": "O último minuto do ladrão na cruz",
+      "ref": "Lucas 23:39-43",
+      "angulo": "Ele não tinha tempo, nem obra, nem batismo. Só uma frase: 'lembre-se de mim'. E ouviu: 'hoje você estará comigo'.",
+      "personagens": [
+        "jesus",
+        "ladrao"
+      ],
+      "prioridade": 2
+    },
+    {
+      "id": "bartimeu",
+      "titulo": "Mandaram o cego calar a boca",
+      "ref": "Marcos 10:46-52",
+      "angulo": "A multidão mandou Bartimeu calar a boca. Ele gritou mais alto. Jesus parou.",
+      "personagens": [
+        "jesus",
+        "bartimeu"
+      ],
+      "prioridade": 2
+    },
+    {
+      "id": "tome-duvida",
+      "titulo": "O discípulo que duvidou",
+      "ref": "João 20:24-29",
+      "angulo": "Tomé disse que só acreditava se tocasse nas feridas. Jesus voltou só por causa dele e mostrou as mãos.",
+      "personagens": [
+        "jesus",
+        "tome"
+      ],
+      "prioridade": 1
+    },
+    {
+      "id": "filho-prodigo",
+      "titulo": "O pai que correu",
+      "ref": "Lucas 15:11-24",
+      "angulo": "Na época, um homem respeitado nunca corria. O pai viu o filho que tinha torrado a herança e correu até ele.",
+      "personagens": [
+        "pai-prodigo",
+        "filho-prodigo"
+      ],
+      "prioridade": 1
+    },
+    {
+      "id": "daniel-leoes",
+      "titulo": "Daniel orou mesmo sabendo da lei",
+      "ref": "Daniel 6:10; 6:16-22",
+      "angulo": "Uma lei proibia orar. Daniel abriu a janela e orou como sempre, três vezes por dia.",
+      "personagens": [
+        "daniel",
+        "rei-dario"
+      ],
+      "prioridade": 1
+    },
+    {
+      "id": "jose-vida",
+      "titulo": "José: do poço ao palácio",
+      "ref": "Gênesis 37:3-4; 37:18-28; 39:1-4; 39:7-12; 39:19-23; 40:8; 40:23; 41:14-16; 41:39-41; 42:6-8; 45:1-5; 50:19-21",
+      "angulo": "Vendido pelos irmãos, preso injustamente, esquecido na cadeia. Cada queda levava José um degrau mais perto do plano de Deus.",
+      "personagens": [
+        "jose",
+        "irmaos-jose"
+      ],
+      "prioridade": 3,
+      "serie": true
+    },
+    {
+      "id": "davi-golias",
+      "titulo": "Davi e Golias",
+      "ref": "1 Samuel 17:4-11; 17:32-37; 17:45-50",
+      "angulo": "Um exército inteiro com medo de um homem só. Quem enfrentou foi um menino que cuidava de ovelhas.",
+      "personagens": [
+        "davi",
+        "golias"
+      ],
+      "prioridade": 3,
+      "serie": true
+    },
+    {
+      "id": "rute-noemi",
+      "titulo": "Rute: a estrangeira que não foi embora",
+      "ref": "Rute 1:3-5; 1:14-17; 2:1-3; 2:8-12; 4:13-17",
+      "angulo": "Ela perdeu o marido e podia voltar pra casa. Escolheu ficar com a sogra e acabou na linhagem do rei Davi.",
+      "personagens": [
+        "rute",
+        "noemi",
+        "boaz"
+      ],
+      "prioridade": 3,
+      "serie": true
+    },
+    {
+      "id": "daniel-cova",
+      "titulo": "Daniel na cova dos leões",
+      "ref": "Daniel 6:3-5; 6:10-12; 6:16-23",
+      "angulo": "Criaram uma lei só pra pegar Daniel. Ele orou de janela aberta mesmo assim.",
+      "personagens": [
+        "daniel",
+        "rei-dario"
+      ],
+      "prioridade": 2,
+      "serie": true
+    },
+    {
+      "id": "pedro-restaurado",
+      "titulo": "Pedro negou Jesus e foi restaurado",
+      "ref": "Mateus 26:69-75; João 21:15-17",
+      "angulo": "Três vezes ele negou. Três vezes Jesus perguntou: você me ama?",
+      "personagens": [
+        "pedro",
+        "jesus"
+      ],
+      "prioridade": 2,
+      "serie": true
+    },
+    {
+      "id": "moises-mar-vermelho",
+      "titulo": "Exército atrás, mar na frente",
+      "ref": "Êxodo 14:10-16; 14:21-28",
+      "angulo": "O povo tava encurralado entre o exército egípcio e o mar. Moisés levantou o cajado e a água se abriu em duas paredes.",
+      "personagens": [
+        "moises"
+      ],
+      "prioridade": 2,
+      "origem": "automatico"
+    },
+    {
+      "id": "noe-arca",
+      "titulo": "Noé construiu um barco onde nunca tinha chovido",
+      "ref": "Gênesis 6:13-14; 7:1-5; 7:17-23",
+      "angulo": "Ninguém acreditava numa chuva que nunca tinha caído antes. Noé passou anos martelando uma arca no meio do deserto.",
+      "personagens": [
+        "noe"
+      ],
+      "prioridade": 2,
+      "origem": "automatico"
+    },
+    {
+      "id": "ester-rainha",
+      "titulo": "Se eu morrer, que morra",
+      "ref": "Ester 4:13-16; 7:3-6",
+      "angulo": "Entrar na sala do rei sem ser chamada podia dar em morte na hora. Ester foi mesmo assim pra salvar o próprio povo.",
+      "personagens": [
+        "ester",
+        "rei-assuero",
+        "hama"
+      ],
+      "prioridade": 2,
+      "origem": "automatico"
+    },
+    {
+      "id": "tres-fornalha",
+      "titulo": "Jogados vivos no fogo por não se curvarem",
+      "ref": "Daniel 3:16-20; 3:24-27",
+      "angulo": "Recusaram se curvar pra estátua do rei e foram atirados numa fornalha em chamas. Saíram sem nem cheirar a fumaça.",
+      "personagens": [
+        "sadraque",
+        "mesaque",
+        "abendego",
+        "rei-nabucodonosor"
+      ],
+      "prioridade": 2,
+      "origem": "automatico"
+    }
   ],
   "proverbios": [
-    {"id": "pv-15-1", "titulo": "A resposta calma", "ref": "Provérbios 15:1", "angulo": "Uma resposta calma desarma uma briga. Palavra dura acende a raiva.", "prioridade": 3},
-    {"id": "pv-3-5", "titulo": "Não confie só no seu entendimento", "ref": "Provérbios 3:5-6", "angulo": "Quando o seu plano não faz sentido, confiar é mais difícil do que entender.", "prioridade": 3},
-    {"id": "pv-24-16", "titulo": "O justo cai sete vezes", "ref": "Provérbios 24:16", "angulo": "O justo não é quem nunca cai. É quem levanta sete vezes.", "prioridade": 3},
-    {"id": "pv-17-17", "titulo": "O amigo de verdade", "ref": "Provérbios 17:17", "angulo": "Amigo de verdade aparece no dia ruim.", "prioridade": 2},
-    {"id": "pv-18-21", "titulo": "O poder da língua", "ref": "Provérbios 18:21", "angulo": "O que você fala tem poder de vida e de morte.", "prioridade": 2},
-    {"id": "pv-16-9", "titulo": "O plano e o passo", "ref": "Provérbios 16:9", "angulo": "Você faz o plano. Deus dirige o passo.", "prioridade": 2},
-    {"id": "pv-4-23", "titulo": "Guarde o seu coração", "ref": "Provérbios 4:23", "angulo": "Tudo o que você faz nasce do que você deixa entrar no coração.", "prioridade": 2},
-    {"id": "pv-27-17", "titulo": "Ferro afia ferro", "ref": "Provérbios 27:17", "angulo": "As pessoas perto de você te afiam ou te deixam cego.", "prioridade": 2},
-    {"id": "pv-13-20", "titulo": "Diz com quem andas", "ref": "Provérbios 13:20", "angulo": "Quem anda com sábio fica sábio. Com tolo, sofre junto.", "prioridade": 2},
-    {"id": "pv-11-25", "titulo": "Quem dá, recebe", "ref": "Provérbios 11:25", "angulo": "Quem refresca os outros acaba refrescado.", "prioridade": 1},
-    {"id": "pv-16-18", "titulo": "O orgulho vem antes da queda", "ref": "Provérbios 16:18", "angulo": "O orgulho sempre chega um passo antes da queda.", "prioridade": 1},
-    {"id": "pv-17-22", "titulo": "O coração alegre", "ref": "Provérbios 17:22", "angulo": "Alegria é remédio. Tristeza seca até os ossos.", "prioridade": 1},
-    {"id": "pv-22-6", "titulo": "Ensine a criança", "ref": "Provérbios 22:6", "angulo": "O que você ensina hoje o seu filho leva pra vida inteira.", "prioridade": 1},
-    {"id": "pv-19-11", "titulo": "Ignorar a ofensa", "ref": "Provérbios 19:11", "angulo": "Deixar uma ofensa passar não é fraqueza. É glória.", "prioridade": 1}
+    {
+      "id": "pv-15-1",
+      "titulo": "A resposta calma",
+      "ref": "Provérbios 15:1",
+      "angulo": "Uma resposta calma desarma uma briga. Palavra dura acende a raiva.",
+      "prioridade": 3
+    },
+    {
+      "id": "pv-3-5",
+      "titulo": "Não confie só no seu entendimento",
+      "ref": "Provérbios 3:5-6",
+      "angulo": "Quando o seu plano não faz sentido, confiar é mais difícil do que entender.",
+      "prioridade": 3
+    },
+    {
+      "id": "pv-24-16",
+      "titulo": "O justo cai sete vezes",
+      "ref": "Provérbios 24:16",
+      "angulo": "O justo não é quem nunca cai. É quem levanta sete vezes.",
+      "prioridade": 3
+    },
+    {
+      "id": "pv-17-17",
+      "titulo": "O amigo de verdade",
+      "ref": "Provérbios 17:17",
+      "angulo": "Amigo de verdade aparece no dia ruim.",
+      "prioridade": 2
+    },
+    {
+      "id": "pv-18-21",
+      "titulo": "O poder da língua",
+      "ref": "Provérbios 18:21",
+      "angulo": "O que você fala tem poder de vida e de morte.",
+      "prioridade": 2
+    },
+    {
+      "id": "pv-16-9",
+      "titulo": "O plano e o passo",
+      "ref": "Provérbios 16:9",
+      "angulo": "Você faz o plano. Deus dirige o passo.",
+      "prioridade": 2
+    },
+    {
+      "id": "pv-4-23",
+      "titulo": "Guarde o seu coração",
+      "ref": "Provérbios 4:23",
+      "angulo": "Tudo o que você faz nasce do que você deixa entrar no coração.",
+      "prioridade": 2
+    },
+    {
+      "id": "pv-27-17",
+      "titulo": "Ferro afia ferro",
+      "ref": "Provérbios 27:17",
+      "angulo": "As pessoas perto de você te afiam ou te deixam cego.",
+      "prioridade": 2
+    },
+    {
+      "id": "pv-13-20",
+      "titulo": "Diz com quem andas",
+      "ref": "Provérbios 13:20",
+      "angulo": "Quem anda com sábio fica sábio. Com tolo, sofre junto.",
+      "prioridade": 2
+    },
+    {
+      "id": "pv-11-25",
+      "titulo": "Quem dá, recebe",
+      "ref": "Provérbios 11:25",
+      "angulo": "Quem refresca os outros acaba refrescado.",
+      "prioridade": 1
+    },
+    {
+      "id": "pv-16-18",
+      "titulo": "O orgulho vem antes da queda",
+      "ref": "Provérbios 16:18",
+      "angulo": "O orgulho sempre chega um passo antes da queda.",
+      "prioridade": 1
+    },
+    {
+      "id": "pv-17-22",
+      "titulo": "O coração alegre",
+      "ref": "Provérbios 17:22",
+      "angulo": "Alegria é remédio. Tristeza seca até os ossos.",
+      "prioridade": 1
+    },
+    {
+      "id": "pv-22-6",
+      "titulo": "Ensine a criança",
+      "ref": "Provérbios 22:6",
+      "angulo": "O que você ensina hoje o seu filho leva pra vida inteira.",
+      "prioridade": 1
+    },
+    {
+      "id": "pv-19-11",
+      "titulo": "Ignorar a ofensa",
+      "ref": "Provérbios 19:11",
+      "angulo": "Deixar uma ofensa passar não é fraqueza. É glória.",
+      "prioridade": 1
+    }
   ],
   "personagens": [
-    {"id": "sansao", "titulo": "Sansão", "ref": "Juízes 16:4-6; 16:17-22; 16:28-30", "angulo": "O homem mais forte da Bíblia foi derrotado por um segredo contado no colo errado. E o cabelo voltou a crescer.", "personagens": ["sansao", "dalila"], "prioridade": 3},
-    {"id": "davi", "titulo": "Davi", "ref": "1 Samuel 16:11-13; 2 Samuel 11:2-4; 12:7; 12:13; Salmos 51:10", "angulo": "O menino que ninguém chamou virou rei. O mesmo rei caiu feio. E escreveu o salmo de arrependimento mais famoso.", "personagens": ["davi", "natan"], "prioridade": 3},
-    {"id": "rute", "titulo": "Rute", "ref": "Rute 1:3-5; 1:16-17; 4:13; 4:17", "angulo": "Uma estrangeira viúva e pobre escolheu ficar com a sogra. Virou bisavó do rei Davi.", "personagens": ["rute", "noemi", "boaz"], "prioridade": 3},
-    {"id": "gideao", "titulo": "Gideão", "ref": "Juízes 6:11-12; 6:15-16; 7:2; 7:7", "angulo": "Ele tava escondido com medo quando o anjo chamou ele de 'homem valente'.", "personagens": ["gideao", "anjo"], "prioridade": 2},
-    {"id": "ester", "titulo": "Ester", "ref": "Ester 2:17; 4:13-16; 5:1-3", "angulo": "Uma órfã virou rainha e arriscou a vida entrando no palácio sem ser chamada.", "personagens": ["ester", "mardoqueu", "rei-xerxes"], "prioridade": 2},
-    {"id": "moises", "titulo": "Moisés", "ref": "Êxodo 2:3; 2:11-15; 3:1-4; 4:10-12", "angulo": "Criado como príncipe, matou um homem, fugiu e virou pastor por 40 anos. Aí Deus chamou.", "personagens": ["moises"], "prioridade": 2},
-    {"id": "paulo", "titulo": "Paulo", "ref": "Atos 8:3; 9:3-6; 9:17-18; 2 Timóteo 4:7", "angulo": "Ele caçava cristãos. Virou o homem que mais espalhou o evangelho.", "personagens": ["paulo", "jesus"], "prioridade": 2},
-    {"id": "maria-madalena", "titulo": "Maria Madalena", "ref": "Lucas 8:1-2; João 20:11-16", "angulo": "Jesus tirou sete demônios dela. Ela foi a primeira pessoa a ver Jesus ressuscitado.", "personagens": ["maria-madalena", "jesus"], "prioridade": 1},
-    {"id": "noe", "titulo": "Noé", "ref": "Gênesis 6:9; 6:13-14; 7:11-12; 8:11; 9:13", "angulo": "Construiu um barco gigante longe do mar, ouvindo deboche, porque Deus mandou.", "personagens": ["noe"], "prioridade": 1}
+    {
+      "id": "sansao",
+      "titulo": "Sansão",
+      "ref": "Juízes 16:4-6; 16:17-22; 16:28-30",
+      "angulo": "O homem mais forte da Bíblia foi derrotado por um segredo contado no colo errado. E o cabelo voltou a crescer.",
+      "personagens": [
+        "sansao",
+        "dalila"
+      ],
+      "prioridade": 3
+    },
+    {
+      "id": "davi",
+      "titulo": "Davi",
+      "ref": "1 Samuel 16:11-13; 2 Samuel 11:2-4; 12:7; 12:13; Salmos 51:10",
+      "angulo": "O menino que ninguém chamou virou rei. O mesmo rei caiu feio. E escreveu o salmo de arrependimento mais famoso.",
+      "personagens": [
+        "davi",
+        "natan"
+      ],
+      "prioridade": 3
+    },
+    {
+      "id": "rute",
+      "titulo": "Rute",
+      "ref": "Rute 1:3-5; 1:16-17; 4:13; 4:17",
+      "angulo": "Uma estrangeira viúva e pobre escolheu ficar com a sogra. Virou bisavó do rei Davi.",
+      "personagens": [
+        "rute",
+        "noemi",
+        "boaz"
+      ],
+      "prioridade": 3
+    },
+    {
+      "id": "gideao",
+      "titulo": "Gideão",
+      "ref": "Juízes 6:11-12; 6:15-16; 7:2; 7:7",
+      "angulo": "Ele tava escondido com medo quando o anjo chamou ele de 'homem valente'.",
+      "personagens": [
+        "gideao",
+        "anjo"
+      ],
+      "prioridade": 2
+    },
+    {
+      "id": "ester",
+      "titulo": "Ester",
+      "ref": "Ester 2:17; 4:13-16; 5:1-3",
+      "angulo": "Uma órfã virou rainha e arriscou a vida entrando no palácio sem ser chamada.",
+      "personagens": [
+        "ester",
+        "mardoqueu",
+        "rei-xerxes"
+      ],
+      "prioridade": 2
+    },
+    {
+      "id": "moises",
+      "titulo": "Moisés",
+      "ref": "Êxodo 2:3; 2:11-15; 3:1-4; 4:10-12",
+      "angulo": "Criado como príncipe, matou um homem, fugiu e virou pastor por 40 anos. Aí Deus chamou.",
+      "personagens": [
+        "moises"
+      ],
+      "prioridade": 2
+    },
+    {
+      "id": "paulo",
+      "titulo": "Paulo",
+      "ref": "Atos 8:3; 9:3-6; 9:17-18; 2 Timóteo 4:7",
+      "angulo": "Ele caçava cristãos. Virou o homem que mais espalhou o evangelho.",
+      "personagens": [
+        "paulo",
+        "jesus"
+      ],
+      "prioridade": 2
+    },
+    {
+      "id": "maria-madalena",
+      "titulo": "Maria Madalena",
+      "ref": "Lucas 8:1-2; João 20:11-16",
+      "angulo": "Jesus tirou sete demônios dela. Ela foi a primeira pessoa a ver Jesus ressuscitado.",
+      "personagens": [
+        "maria-madalena",
+        "jesus"
+      ],
+      "prioridade": 1
+    },
+    {
+      "id": "noe",
+      "titulo": "Noé",
+      "ref": "Gênesis 6:9; 6:13-14; 7:11-12; 8:11; 9:13",
+      "angulo": "Construiu um barco gigante longe do mar, ouvindo deboche, porque Deus mandou.",
+      "personagens": [
+        "noe"
+      ],
+      "prioridade": 1
+    }
+  ],
+  "versiculos": [
+    {
+      "id": "jr-29-11",
+      "titulo": "Jeremias 29:11 foi escrito pra quem estava preso",
+      "ref": "Jeremias 29:4-7; 29:10-14",
+      "angulo": "A promessa mais famosa de futuro foi mandada numa carta pra gente levada como escrava pra Babilônia, que ia esperar 70 anos.",
+      "personagens": [],
+      "prioridade": 3
+    },
+    {
+      "id": "fp-4-13",
+      "titulo": "Filipenses 4:13 não é sobre vencer",
+      "ref": "Filipenses 4:10-13",
+      "angulo": "Paulo escreveu 'posso todas as coisas' preso, falando de passar fome e ter fartura com o mesmo coração.",
+      "personagens": [],
+      "prioridade": 3
+    },
+    {
+      "id": "js-1-9",
+      "titulo": "Josué 1:9: seja forte e corajoso",
+      "ref": "Josué 1:1-2; 1:5-9",
+      "angulo": "Moisés tinha acabado de morrer e Josué tinha que liderar um povo inteiro. Deus repetiu três vezes: seja forte.",
+      "personagens": [],
+      "prioridade": 3
+    },
+    {
+      "id": "jo-3-16",
+      "titulo": "João 3:16 foi dito de noite, pra um só homem",
+      "ref": "João 3:1-2; 3:14-17",
+      "angulo": "O versículo mais conhecido do mundo foi uma conversa escondida com Nicodemos, um líder religioso que foi até Jesus de noite.",
+      "personagens": [],
+      "prioridade": 3
+    },
+    {
+      "id": "sl-23",
+      "titulo": "Salmo 23: o Senhor é meu pastor",
+      "ref": "Salmos 23:1-6",
+      "angulo": "Quem escreveu foi Davi, que tinha sido pastor de ovelhas. Ele sabia o que um pastor faz no vale escuro.",
+      "personagens": [],
+      "prioridade": 3
+    },
+    {
+      "id": "mt-11-28",
+      "titulo": "Venham a mim, os cansados",
+      "ref": "Mateus 11:28-30",
+      "angulo": "Jesus não prometeu tirar o peso: prometeu trocar por um jugo leve. Jugo era a peça que dividia a carga entre dois bois.",
+      "personagens": [],
+      "prioridade": 3
+    },
+    {
+      "id": "rm-8-28",
+      "titulo": "Todas as coisas cooperam para o bem",
+      "ref": "Romanos 8:26-28; 8:35-39",
+      "angulo": "Não diz que tudo é bom. Diz que nada, nem morte nem fome nem perigo, separa você do amor de Deus.",
+      "personagens": [],
+      "prioridade": 2
+    },
+    {
+      "id": "is-40-31",
+      "titulo": "Os que esperam no Senhor renovam as forças",
+      "ref": "Isaías 40:28-31",
+      "angulo": "Até os jovens cansam e caem. Quem espera em Deus sobe como águia.",
+      "personagens": [],
+      "prioridade": 2
+    },
+    {
+      "id": "sl-91",
+      "titulo": "Salmo 91: debaixo das asas",
+      "ref": "Salmos 91:1-2; 91:9-11",
+      "angulo": "O salmo que mais gente reza em hora de medo fala de um esconderijo, não de uma vida sem tempestade.",
+      "personagens": [],
+      "prioridade": 2
+    },
+    {
+      "id": "fp-4-6",
+      "titulo": "Não andem ansiosos por coisa nenhuma",
+      "ref": "Filipenses 4:4-7",
+      "angulo": "Paulo mandou alegrar-se sempre enquanto estava preso. E ensinou o que fazer com a ansiedade: transformar em oração.",
+      "personagens": [],
+      "prioridade": 2
+    },
+    {
+      "id": "2tm-1-7",
+      "titulo": "Deus não nos deu espírito de medo",
+      "ref": "2 Timóteo 1:5-7",
+      "angulo": "Paulo escreveu pro jovem Timóteo, que era tímido: a fé que estava na avó e na mãe estava nele também.",
+      "personagens": [],
+      "prioridade": 2
+    },
+    {
+      "id": "mt-6-33",
+      "titulo": "Busquem primeiro o Reino",
+      "ref": "Mateus 6:25-26; 6:31-34",
+      "angulo": "Jesus apontou pros passarinhos: eles não plantam, não guardam, e Deus alimenta. Quanto mais você.",
+      "personagens": [],
+      "prioridade": 2
+    },
+    {
+      "id": "sl-46-1",
+      "titulo": "Deus é nosso refúgio",
+      "ref": "Salmos 46:1-3; 46:10",
+      "angulo": "Mesmo se a terra tremer e os montes caírem no mar: aquietem-se e saibam que Ele é Deus.",
+      "personagens": [],
+      "prioridade": 1
+    }
   ]
 }

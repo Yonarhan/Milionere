@@ -1,0 +1,255 @@
+{
+  "etapas": [
+    {
+      "quando": "20:36:49",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Sete vezes ele perdeu tudo.",
+        "Rafael abriu um food truck, sozinho.",
+        "O motor quebrou, e ele perdeu tudo.",
+        "Ele recomeçou, caiu, e caiu mais cinco vezes.",
+        "Camila disse: chega, você já caiu demais.",
+        "Na sétima queda, um cliente virou seu sócio.",
+        "Provérbios 24:16: o justo cai sete vezes, mas se levanta.",
+        "Sua queda de hoje não é o seu fim.",
+        "Se você vai cair, levanta de novo, escreve amém.",
+        "Se inscreve pra quem nunca desiste."
+      ]
+    },
+    {
+      "quando": "20:37:13",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Rafael caiu sete vezes tentando montar um negócio, mas na sétima vez um cliente virou seu sócio, mostrando que quem persiste se levanta.",
+      "erros_factuais": [
+        "Cena 1: o gancho diz 'perdeu tudo' sete vezes, mas só a cena 3 narra explicitamente uma perda total; as 'cinco quedas' da cena 4 não são descritas como perda total, criando inconsistência entre gancho e história."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 1: o gancho diz 'perdeu tudo' sete vezes, mas só a cena 3 narra explicitamente uma perda total; as 'cinco quedas' da cena 4 não são descritas como perda total, criando inconsistência entre gancho e história.",
+        "compreensao (nota 3): Cena 4: 'caiu mais cinco vezes' exige que o ouvinte some mentalmente (1+5+1=7) para bater com o gancho; troque para algo como 'caiu mais cinco vezes, quase desistindo' e deixe a cena 6 deixar claro que é a sétima."
+      ]
+    },
+    {
+      "quando": "20:38:16",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Sete vezes ele caiu. Só a sétima contou.",
+        "Rafael abriu um food truck sozinho.",
+        "Na primeira queda, o motor quebrou.",
+        "Recomeçou, e caiu mais quatro vezes seguidas.",
+        "Na sexta queda, Camila disse: chega, desiste logo.",
+        "Mas na sétima queda, ele levantou e um cliente virou seu sócio.",
+        "Provérbios 24:16: o justo cai sete vezes, mas se levanta.",
+        "Sua queda de hoje não é seu fim.",
+        "Se você vai cair, levanta de novo. Escreve amém.",
+        "Se inscreve pra quem nunca desiste."
+      ]
+    },
+    {
+      "quando": "20:38:45",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 3,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Rafael cai seis vezes tentando montar um food truck, e na sétima vez que se levanta um cliente vira seu sócio — mostrando que quem persiste, mesmo caindo, não está derrotado.",
+      "erros_factuais": [],
+      "problemas": [
+        "fidelidade (nota 3): Cena 1: 'Só a sétima contou' distorna o sentido do provérbio, que valoriza o ato de se levantar repetidamente (não que as 6 primeiras quedas 'não contaram') — trocar por algo como 'toda vez ele se levantou' e manter a surpresa só no resultado (cliente virar sócio).",
+        "personagens (nota 3): Cena 5: Camila aparece uma única vez dando um conselho negativo e some sem reação nem desfecho — dar a ela uma reação curta na virada (cena 6) ou cortá-la e usar a voz do narrador para o mesmo conselho."
+      ]
+    },
+    {
+      "quando": "20:39:30",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Toda vez que caiu, ele levantou de novo.",
+        "Rafael abriu um food truck sozinho.",
+        "Na primeira queda, o motor quebrou.",
+        "Caiu mais cinco vezes seguidas, quase desistindo.",
+        "Na sétima vez, ele levantou e um cliente virou sócio.",
+        "Provérbios 24:16: o justo cai sete vezes, mas se levanta.",
+        "Sua queda de hoje não é seu fim.",
+        "Se você vai cair, levanta de novo. Escreve amém.",
+        "Se inscreve pra quem nunca desiste."
+      ]
+    },
+    {
+      "quando": "20:39:53",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Rafael quase desistiu de seu food truck após várias falências, mas na sétima queda um cliente virou sócio, mostrando que quem se levanta depois de cair não está derrotado.",
+      "erros_factuais": [],
+      "problemas": [
+        "gancho (nota 3): Cena 1 é genérica e não descreve uma situação concreta e tensa como pede o formato; troque por algo como 'Rafael quase fechou as portas pela sétima vez.'",
+        "ritmo (nota 3): Cena 1 e cena 6 repetem a mesma ideia ('caiu... levantou') de forma quase idêntica, soando redundante; corte a repetição da cena 1 e use esse espaço para tornar o gancho mais concreto.",
+        "payoff (nota 3): O clímax 'um cliente virou sócio' é fraco e abrupto, sem preparo emocional nas cenas anteriores; adicione uma frase curta mostrando o desespero antes da sétima queda para o payoff ter mais peso."
+      ]
+    },
+    {
+      "quando": "20:40:47",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Rafael quase fechou as portas pela sétima vez.",
+        "Rafael abriu um food truck sozinho.",
+        "Na primeira queda, perdeu tudo o que tinha.",
+        "Caiu mais quatro vezes: chuva, multa e roubo.",
+        "Na sexta queda, quase desistiu de tudo.",
+        "Na sétima, levantou, e um cliente virou sócio.",
+        "Provérbios 24:16: o justo cai sete vezes, mas se levanta.",
+        "Sua queda de hoje não é seu fim.",
+        "Se você vai cair, levanta de novo. Escreve amém.",
+        "Se inscreve pra quem nunca desiste."
+      ]
+    },
+    {
+      "quando": "20:41:11",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 3,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 4
+      },
+      "entendimento": "Rafael cai seis vezes com o food truck, mas sempre se levanta, e na sétima queda um cliente vira sócio, mostrando que quem se levanta depois de cair não está derrotado.",
+      "erros_factuais": [],
+      "problemas": [
+        "personagens (nota 3): Cena 6: o 'cliente' surge do nada e já vira sócio na mesma frase; insira uma menção breve dele como cliente fiel em uma cena anterior (ex.: trocar parte da cena 5 por 'um cliente sempre voltava').",
+        "gancho (nota 3): Cena 1: 'quase fechou as portas pela sétima vez' é genérico e não cria tensão específica; torne concreto, ex. citar o motivo da última queda (o roubo) para prender mais.",
+        "ritmo (nota 3): Cena 4: 'Caiu mais quatro vezes: chuva, multa e roubo' soa como lista telegráfica em vez de narrativa contada; reescreva ligando com conectivo, ex. 'Depois veio a chuva, a multa e até um roubo — quatro quedas seguidas.'",
+        "linguagem (nota 3): Cena 4 e cena 3 têm construção de relatório/lista ('perdeu tudo o que tinha', 'chuva, multa e roubo') em vez de fala natural; reescreva em tom mais coloquial e fluido."
+      ]
+    },
+    {
+      "quando": "20:54:26",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "A loja de Marcos fechou pela sétima vez.",
+        "Seis negócios antes, todos quebraram.",
+        "Cláudio disse pra ele desistir.",
+        "Marcos olhou a placa de fechado.",
+        "No dia seguinte, abriu de novo.",
+        "Pintou a fachada com o resto.",
+        "Aos poucos, os clientes voltaram.",
+        "Em meses, virou a mais movimentada.",
+        "Provérbios 24:16: o justo cai sete vezes, e se levanta.",
+        "Sua queda não é o fim.",
+        "Se já caiu, escreve amém.",
+        "Se inscreve pra não perder a próxima."
+      ]
+    },
+    {
+      "quando": "20:54:48",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 3
+      },
+      "entendimento": "Marcos, dono de loja que já fechou seis vezes, insiste mesmo com conselho pra desistir, reabre no dia seguinte à sétima falência, reforma o que dá e a loja prospera, ilustrando que o justo cai mas se levanta.",
+      "erros_factuais": [],
+      "problemas": [
+        "compreensao (nota 3): Cenas 1-2 não dizem por que os negócios quebraram nem o que mudou dessa vez, então o ouvinte não entende por que agora deu certo — acrescente uma causa mínima (ex: 'sempre por falta de dinheiro') cortando a cena 2, que é redundante com a 1.",
+        "ritmo (nota 3): Cenas 1 a 8 soam como lista telegráfica sem conectivos ('Seis negócios antes, todos quebraram. Cláudio disse pra ele desistir. Marcos olhou a placa...') — ligue as frases com conectores temporais/causais ('mas', 'mesmo assim', 'só que') pra soar como história contada, não como resumo.",
+        "linguagem (nota 3): Frases muito curtas e neutras ('Aos poucos, os clientes voltaram') soam como narração de IA — dê uma frase com fala ou detalhe sensorial de Marcos pra humanizar, cortando a cena 2 pra caber no limite de palavras.",
+        "payoff (nota 3): A 'virada que ninguém esperava' (reabrir no dia seguinte) é previsível dado o tema do vídeo — reforce a virada com um detalhe concreto e inesperado (ex: reabrir usando a última economia que era pro aluguel de casa) pra surpreender de verdade."
+      ]
+    },
+    {
+      "quando": "20:56:22",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Marcos fechou a loja pela sétima vez.",
+        "Cláudio disse: desiste, você já quebrou seis vezes.",
+        "Sozinho, ficou olhando a placa de fechado.",
+        "Mas usou o dinheiro do aluguel e reabriu.",
+        "E reformou a fachada com o pouco que sobrou.",
+        "Aos poucos os clientes voltaram, e a loja ficou cheia.",
+        "Provérbios 24:16 diz: o justo cai sete vezes, e se levanta.",
+        "Sua queda não é o seu fim.",
+        "Se já caiu, escreve amém.",
+        "Se inscreve pra não perder a próxima."
+      ]
+    },
+    {
+      "quando": "20:57:03",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Um empresário que já viu vários negócios quebrarem se recusa a desistir mesmo depois da sétima queda, reabre por conta própria e no fim prospera — ilustrando que cair não significa estar acabado.",
+      "erros_factuais": [],
+      "problemas": []
+    }
+  ]
+}

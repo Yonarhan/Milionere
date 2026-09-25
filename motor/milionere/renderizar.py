@@ -5,6 +5,7 @@ quadro a quadro em Python). Aqui a legenda é desenhada pela libass e o vídeo �
 placa de vídeo (h264_nvenc); se a placa falhar, cai para libx264 no processador.
 """
 
+import math
 import subprocess
 from pathlib import Path
 
@@ -18,7 +19,10 @@ FONTES = {
     "Charm-Bold.ttf": ("Charm", True),
     "UTM Kabel KT.ttf": ("UTM Kabel KT", False),
 }
-EMENDA_MAX = {"word_by_word": 0.35, "sentence": 1.5}  # buracos menores que isso são fechados (evita piscar/sumir)
+EMENDA_MAX = {"word_by_word": 0.35, "sentence": 1.5, "karaoke": 0.6}  # buracos menores que isso são fechados (evita piscar/sumir)
+PALAVRAS_POR_GRUPO = 3  # karaoke: poucas palavras grandes por vez, a da voz em destaque
+COR_DESTAQUE = "#FFD400"
+GANCHO_SEGUNDOS = 2.6  # texto-gancho do quadro 0: quem rola o feed sem som decide por ele (60% pulavam no 1º segundo)
 ESCALA_FONTE = 1.45  # font_size do preset (px do motor) -> tamanho ASS equivalente
 
 
@@ -48,11 +52,19 @@ def gerar_ass(srt: Path, destino: Path, p: dict, total: float | None = None) -> 
 
     blocos = ler_srt(srt)
     linhas = []
-    for i, (ini, fim, txt) in enumerate(blocos):
-        if i + 1 < len(blocos) and 0 < blocos[i + 1][0] - fim < emenda:
-            fim = blocos[i + 1][0]
-        texto = txt.replace("{", "(").replace("}", ")")
-        linhas.append(f"Dialogue: 0,{tempo_ass(ini)},{tempo_ass(fim)},Legenda,,0,0,0,,{{\\an5\\pos({LARGURA // 2},{y}){efeito}}}{texto}")
+    if p.get("subtitle_display_mode") == "karaoke":
+        linhas = _karaoke(blocos, y, emenda)
+    else:
+        for i, (ini, fim, txt) in enumerate(blocos):
+            if i + 1 < len(blocos) and 0 < blocos[i + 1][0] - fim < emenda:
+                fim = blocos[i + 1][0]
+            texto = txt.replace("{", "(").replace("}", ")")
+            linhas.append(f"Dialogue: 0,{tempo_ass(ini)},{tempo_ass(fim)},Legenda,,0,0,0,,{{\\an5\\pos({LARGURA // 2},{y}){efeito}}}{texto}")
+    gancho = "".join(ch for ch in (p.get("gancho_tela") or "") if ord(ch) < 0x2000)  # sem emoji (a fonte não tem)
+    gancho = gancho.strip().upper().replace("{", "(").replace("}", ")")
+    if gancho:
+        linhas.append(f"Dialogue: 1,{tempo_ass(0)},{tempo_ass(GANCHO_SEGUNDOS)},Gancho,,0,0,0,,"
+                      f"{{\\an8\\pos({LARGURA // 2},{round(ALTURA * 0.13)})\\fad(0,250)}}{gancho}")
 
     destino.write_text(
         "\n".join(
@@ -74,6 +86,8 @@ def gerar_ass(srt: Path, destino: Path, p: dict, total: float | None = None) -> 
                 "100,100,2,0,3,18,0,5,90,90,0,1",
                 f"Style: Canal,{familia},{round(tamanho * 0.6)},&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,"
                 "100,100,1,0,1,3,1,5,90,90,0,1",
+                f"Style: Gancho,{familia},{round(tamanho * 1.15)},&H00FFFFFF,&H000000FF,&H40000000,&H40000000,-1,0,0,0,"
+                "100,100,0,0,3,18,0,8,70,70,0,1",
                 "",
                 "[Events]",
                 "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
@@ -84,6 +98,43 @@ def gerar_ass(srt: Path, destino: Path, p: dict, total: float | None = None) -> 
         ),
         encoding="utf-8",
     )
+
+
+def _karaoke(blocos: list, y: int, emenda: float) -> list[str]:
+    """Poucas palavras por vez e a que está sendo falada em destaque. O horário de cada palavra é interpolado
+    dentro da frase do srt pelo tamanho da palavra (a legenda do TTS vem por frase)."""
+    palavras = []  # (ini, fim, texto, fim_de_frase)
+    for ini, fim, txt in blocos:
+        ws = txt.replace("{", "(").replace("}", ")").split()
+        pesos = [len(w) + 2 for w in ws]
+        t, total = ini, sum(pesos)
+        for k, (w, peso) in enumerate(zip(ws, pesos)):
+            d = (fim - ini) * peso / total
+            palavras.append((t, t + d, w, k == len(ws) - 1))
+            t += d
+    # quebra em frases/vírgulas e divide cada trecho em partes iguais: 4 palavras = 2+2, nunca 3+1 (palavra órfã)
+    grupos, trecho = [], []
+    for w in palavras:
+        trecho.append(w)
+        if w[3] or w[2][-1] in ",;:.!?":
+            partes = math.ceil(len(trecho) / PALAVRAS_POR_GRUPO)
+            grupos += [trecho[round(k * len(trecho) / partes):round((k + 1) * len(trecho) / partes)] for k in range(partes)]
+            trecho = []
+    if trecho:
+        grupos.append(trecho)
+
+    cor = cor_ass(COR_DESTAQUE)
+    linhas = []
+    for g, grupo in enumerate(grupos):
+        fim_grupo = grupo[-1][1]
+        if g + 1 < len(grupos) and 0 < grupos[g + 1][0][0] - fim_grupo < emenda:
+            fim_grupo = grupos[g + 1][0][0]
+        for k, (ini, _fim, _w, _f) in enumerate(grupo):
+            fim = grupo[k + 1][0] if k + 1 < len(grupo) else fim_grupo
+            texto = " ".join(f"{{\\c{cor}}}{w}{{\\r}}" if j == k else w for j, (_, _, w, _) in enumerate(grupo))
+            linhas.append(f"Dialogue: 0,{tempo_ass(ini)},{tempo_ass(fim)},Legenda,,0,0,0,,"
+                          f"{{\\an5\\pos({LARGURA // 2},{y})}}{texto}")
+    return linhas
 
 
 def com_musica(video: Path, musica: Path, p: dict, saida: Path) -> None:

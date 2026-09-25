@@ -71,9 +71,11 @@ def log(msg: str) -> None:
 
 # ---------------------------------------------------------------- etapa 1: roteiro
 
-def roteiro_validado(formato: dict, tema: dict, reg: Registro) -> dict | None:
-    correcoes, anterior = None, None
+def roteiro_validado(formato: dict, tema: dict, reg: Registro, correcoes: list[str] | None = None,
+                     anterior: dict | None = None) -> dict | None:
+    """correcoes/anterior: começa já reescrevendo (a série manda de volta a parte que o juiz da série apontou)."""
     melhor = None  # (pontos, roteiro, problemas)
+    melhor_notas: dict | None = None
     historico: list[str] = []  # erros de fato/compreensão já apontados: a reescrita não pode voltar a cometê-los
     for tentativa in range(1, MAX_REESCRITAS + 1):
         log(f"roteiro: tentativa {tentativa} (claude -p)")
@@ -100,17 +102,20 @@ def roteiro_validado(formato: dict, tema: dict, reg: Registro) -> dict | None:
             # reescreve a partir da MELHOR versão até agora (uma reescrita ruim não vira base da próxima)
             correcoes, anterior = melhor[2] + historico, melhor[1]
             historico += [p for p in e2 if p.startswith("ERRO FACTUAL") or "compreensao" in p]
+            melhor_notas = notas if melhor[1] is r else melhor_notas
             continue
         r["_notas_juiz"] = notas
         return r
-    # nenhuma versão passou em tudo: em vez de desistir, vai a melhor (o que o juiz apontou chega na revisão humana)
-    if melhor:
-        r = melhor[1]
-        r["_avisos"] = [f"juiz: {p}" for p in melhor[2]]
-    else:
-        r["_avisos"] = [f"regra: {e}" for e in e1]
-    log(f"  entregando a melhor versão com {len(r['_avisos'])} aviso(s) para a revisão")
-    return r
+    # 4 reescritas sem nota máxima: aproveita a melhor se o problema é só de estilo (sem erro de fato, nenhuma nota
+    # abaixo de 3, média >= 3.75). Jogar fora ~12 min de roteiro por "ritmo 3" travava o turno da noite (24/09);
+    # o dono revisa cada vídeo antes de publicar.
+    if melhor and melhor_notas and not any(p.startswith("ERRO FACTUAL") for p in melhor[2]) \
+            and min(melhor_notas.values()) >= 3 and sum(melhor_notas.values()) / len(melhor_notas) >= 3.75:
+        log(f"  aceito a melhor versão (só ressalvas de estilo): {melhor_notas}")
+        reg.add("camada2", True, aceito_com_ressalvas=melhor[2], notas=melhor_notas)
+        melhor[1]["_notas_juiz"] = melhor_notas
+        return melhor[1]
+    return None
 
 
 def empacotar(r: dict, formato_id: str, formato: dict, tema: dict, estilo: str, slug: str) -> dict:
@@ -134,8 +139,11 @@ def empacotar(r: dict, formato_id: str, formato: dict, tema: dict, estilo: str, 
         "descricao": r["descricao"],
         "hashtags": r["hashtags"],
         "comentario_fixado": r["comentario_fixado"],
+        "tiktok_titulo": r.get("tiktok_titulo", ""),
+        "tiktok_legenda": r.get("tiktok_legenda", ""),
         "fontes": [f"{tema['ref']} ({biblia.TRADUCAO})"],
         "ganchos": r["ganchos"],
+        "gancho_tela": r.get("gancho_tela", ""),
         "notas": {"roteirista": r["autoavaliacao"], "juiz": r.get("_notas_juiz", {})},
         "_creditos": [f"Imagens geradas por IA ({imagens.estilos()[estilo].get('modelo_credito', 'Stable Diffusion XL')})",
                       f"Texto bíblico: {biblia.TRADUCAO}"],
@@ -217,7 +225,7 @@ def alimentar_banco(r: dict, pasta: Path, do_banco_ids: dict[int, int], reprovad
         for n, c in enumerate(r["cenas"], 1):
             if n in do_banco_ids or n in reprovadas:
                 continue
-            img = next(iter(sorted(pasta.glob(f"cena_{n:02d}.*"))), None)
+            img = validar.imagem_da_cena(pasta, n)
             desc = " | ".join(x for x in (c["fala"], c.get("imagem", "")) if x)
             if img and banco_imagens.adicionar(img, r["nicho"], desc, c.get("personagens"), r["estilo"], "ia-time",
                                                "Imagem gerada por IA", True, "time"):
@@ -229,7 +237,7 @@ def alimentar_banco(r: dict, pasta: Path, do_banco_ids: dict[int, int], reprovad
 
 def _hash_cena(pasta: Path, n: int) -> str | None:
     import hashlib
-    arq = next(iter(sorted(pasta.glob(f"cena_{n:02d}.*"))), None)
+    arq = validar.imagem_da_cena(pasta, n)
     return hashlib.sha1(arq.read_bytes()).hexdigest() if arq else None
 
 
@@ -265,7 +273,7 @@ def imagens_validadas(r: dict, arq_roteiro: Path, reg: Registro) -> None:
         reg.add("camada3", not ruins, rodada=1, reprovadas=ruins)
         _marcar_aprovadas(pasta, [n for n in pendentes if n not in {c["cena"] for c in ruins}])
         for c in ruins:
-            guardar_reprovada(r, next(iter(sorted(pasta.glob(f"cena_{c['cena']:02d}.*")))), c)
+            guardar_reprovada(r, validar.imagem_da_cena(pasta, c["cena"]), c)
             log(f"  cena {c['cena']} reprovada: {c['problema']}")
         # refação sequencial: UMA opção por vez; o juiz analisa antes da próxima existir, e o prompt corrigido
         # por ele entra na tentativa seguinte (antes: 3 opções de uma vez, e em 7 de 8 casos 1-2 eram desperdício)
@@ -304,6 +312,29 @@ def imagens_validadas(r: dict, arq_roteiro: Path, reg: Registro) -> None:
         alimentar_banco(r, pasta, reusadas, {c["cena"] for c in ruins})
     finally:
         provedores.derrubar(proc)  # libera a memória da placa pro render
+
+
+# ---------------------------------------------------------------- etapa 2b: animação (vídeo misto)
+
+def animacao(r: dict, reg: Registro) -> None:
+    """Poucas cenas-chave viram clipe do Wan 14B (cena_NN.mp4); o resto segue imagem. MILIONERE_ANIMAR=0 desliga,
+    =N anima N cenas. Falha na animação não derruba o vídeo: ele sai só com imagens."""
+    import os
+    import animar
+    qtd = int(os.environ.get("MILIONERE_ANIMAR", animar.QTD_PADRAO))
+    if qtd <= 0 or not (imagens.COMFY / "models" / "unet" / animar.ALTO[0]).exists():
+        return  # sem o Wan 14B instalado (instalar_comfy.sh --animacao) o vídeo sai só com imagens
+    cenas = animar.escolher(r, qtd)
+    log(f"animação: cenas {cenas} no Wan 2.2 14B (~5 min cada)")
+    inicio = time.time()
+    try:
+        feitas = animar.animar(r, PROD / "midia" / r["slug"], cenas)
+        reg.add("animacao", True, cenas=cenas, feitas=feitas, segundos=round(time.time() - inicio))
+        log(f"  animação ok em {time.time() - inicio:.0f}s")
+    except Exception as e:  # noqa: BLE001
+        reg.add("animacao", False, cenas=cenas, erro=str(e)[:1500])
+        log(f"  AVISO: animação falhou, vídeo sai só com imagens: {e}")
+        r.setdefault("_avisos", []).append(f"animação falhou: {str(e)[:200]}")
 
 
 # ---------------------------------------------------------------- etapa 3: vídeo
@@ -363,6 +394,7 @@ def um_video(formato_id: str, estilo: str | None, tema_id: str | None, musica: s
     pacote["_avisos"] = list(r.get("_avisos", []))  # o que o juiz não conseguiu resolver vai para a revisão
     salvar_fichas(pacote)
     arq = PROD / "roteiros" / f"{date.today():%Y-%m-%d}_{slug}.json"
+    arq.parent.mkdir(parents=True, exist_ok=True)  # no painel /canal a produção fica em servico/media/producao (pasta nova)
     arq.write_text(json.dumps([pacote], ensure_ascii=False, indent=2), encoding="utf-8")
     log(f"roteiro aprovado -> {arq.relative_to(RAIZ)}")
     for c in pacote["cenas"]:
@@ -378,10 +410,14 @@ def um_video(formato_id: str, estilo: str | None, tema_id: str | None, musica: s
 
 def imagens_e_video(arq: Path, musica: str, reg: Registro | None = None) -> list[Path]:
     r = json.loads(arq.read_text(encoding="utf-8"))[0]
+    r["_avisos"] = []  # recalculados nesta rodada (aviso de uma rodada antiga, já corrigido, travava a postagem)
     reg = reg or Registro(r["slug"])
     with medidor.etapa("imagens"):
         imagens_validadas(r, arq, reg)
     arq.write_text(json.dumps([r], ensure_ascii=False, indent=2), encoding="utf-8")
+    with medidor.etapa("animacao"):
+        animacao(r, reg)
+    arq.write_text(json.dumps([r], ensure_ascii=False, indent=2), encoding="utf-8")  # _avisos da animação
     with medidor.etapa("render"):
         prontos = produzir(arq, musica, reg)
     if prontos:
@@ -435,7 +471,7 @@ def salvar_custos(resumo: dict, prontos: list[Path]) -> None:
     log(f"custo: US$ {resumo['usd']:.2f} (R$ {resumo['brl']:.2f}) | {sum(e['chamadas'] for e in pe.values())} chamadas "
         f"de IA | {img} imagens | " + " | ".join(f"{k} {v['segundos'] / 60:.1f} min" for k, v in pe.items()))
     pasta = PROD / "custos"
-    pasta.mkdir(exist_ok=True)
+    pasta.mkdir(parents=True, exist_ok=True)
     nome = prontos[0].stem if prontos else f"sem-video-{datetime.now():%H%M%S}"
     (pasta / f"{datetime.now():%Y-%m-%d_%H%M}_{nome}.json").write_text(
         json.dumps({**resumo, "videos": [str(p) for p in prontos], "gpu_imagens_s": round(gpu, 1)},

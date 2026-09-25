@@ -1,0 +1,230 @@
+{
+  "etapas": [
+    {
+      "quando": "18:10:27",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Um exército tremia. De um homem só.",
+        "Golias saiu e gritou: escolham um homem pra lutar.",
+        "Saul e Israel ficaram apavorados.",
+        "Davi disse: eu vou. Saul disse: jovem demais.",
+        "Davi contou: matei leão e urso cuidando ovelhas.",
+        "O Senhor que me livrou deles vai me livrar.",
+        "Diante de Golias, Davi disse: venho em nome do Senhor.",
+        "Golias avançou. Davi correu e atirou a pedra na funda.",
+        "A pedra cravou na testa, e Golias caiu morto.",
+        "Seu gigante pode cair. Não foi o exército, foi um pastor com pedra.",
+        "Se você acredita, escreve amém. E se inscreve pra mais história."
+      ]
+    },
+    {
+      "quando": "18:10:47",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 4
+      },
+      "entendimento": "Um pastor jovem, Davi, enfrenta e mata o gigante Golias com uma pedra e uma funda, confiando que Deus lutaria por ele.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "18:22:00",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "O guerreiro com armadura de bronze e capacete (a descrição de Golias) aparece duplicado: uma vez em primeiro plano, parado calmamente no meio dos soldados israelitas, e outra vez como silhueta distante na colina; além disso o grupo em primeiro plano não demonstra medo, contradizendo \"um exército tremia\" diante de um único homem separado deles.",
+          "imagem_corrigida": "Wide low-angle shot of a tight group of Israelite soldiers on a dusty hillside, visibly trembling and huddled together, staring toward a distant ridge, dust swirling, tense dawn light, barren desert terrain."
+        },
+        {
+          "cena": 5,
+          "ok": false,
+          "problema": "Túnica com botões metálicos modernos no colarinho, anacrônico para cena bíblica",
+          "imagem_corrigida": "Waist-up shot of a young shepherd boy kneeling among sheep on a grassy hillside, recalling a dangerous memory, soft overcast daylight, dry hills in background, tunic tied simply without visible buttons or fasteners."
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "A túnica tem botões de pressão e o cinto tem rebites/fivela metálicos de aparência moderna, quebrando o realismo bíblico.",
+          "imagem_corrigida": "Waist-up shot on a dry hillside, looking upward with quiet confidence, open pale sky behind, flat rocky ground with scattered stones, soft warm morning sunlight, distant desert hills."
+        },
+        {
+          "cena": 8,
+          "ok": false,
+          "problema": "Surge uma criança extra não relacionada à história ao lado de Davi, poluindo o primeiro plano da cena.",
+          "imagem_corrigida": "Dynamic wide shot, giant warrior charging forward alone toward camera, young shepherd boy running alone toward him across dusty battlefield, cracked dry ground, distant hills, harsh sunlight, dust clouds."
+        },
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "Davi aparece empunhando um arco e flecha em vez da funda (sua arma característica na história), o que contradiz a ação narrada de matar Golias com a pedra da funda.",
+          "imagem_corrigida": "Wide shot of a fallen giant warrior lying on dusty ground with a stone mark on his forehead, a young shepherd boy standing nearby holding an empty leather sling, dry hills and rocky terrain in the background, bright daylight."
+        }
+      ]
+    },
+    {
+      "quando": "18:33:51",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 2,
+      "reprovadas": [
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "Davi aparece empunhando um arco e flecha em vez da funda, contradizendo a narração que diz que uma pedra atingiu a testa de Golias.",
+          "imagem_corrigida": "Wide shot, fallen giant warrior lying dead on dusty ground beside large boulders, young shepherd boy standing nearby pointing forward toward him, dry rocky hills behind, bright daylight, wilderness terrain"
+        }
+      ]
+    },
+    {
+      "quando": "18:53:59",
+      "etapa": "animacao",
+      "ok": true,
+      "cenas": [
+        1,
+        4,
+        8
+      ],
+      "feitas": [
+        1,
+        4,
+        8
+      ],
+      "segundos": 1207
+    },
+    {
+      "quando": "18:54:30",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-davi-golias_sem-musica.mp4",
+      "duracao": 47.7,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    },
+    {
+      "quando": "18:54:30",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-davi-golias.mp4",
+      "duracao": 47.7,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    },
+    {
+      "quando": "19:12:42",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 9,
+          "ok": false,
+          "problema": "Davi aparece empunhando um arco e flecha em vez do estilingue descrito, e há um terceiro personagem (homem idoso) sem função na cena, o que contradiz a composição de apenas Golias caído e Davi.",
+          "imagem_corrigida": "Wide shot, giant warrior lying dead on dusty ground beside large boulders, young shepherd boy standing alone nearby pointing forward, dry rocky hills and ruined stone structures behind, bright daylight, wilderness terrain"
+        }
+      ]
+    },
+    {
+      "quando": "19:14:52",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "19:14:56",
+      "etapa": "animacao",
+      "ok": true,
+      "cenas": [
+        1,
+        4,
+        8
+      ],
+      "feitas": [],
+      "segundos": 0
+    },
+    {
+      "quando": "19:15:22",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-davi-golias_sem-musica.mp4",
+      "duracao": 42.2,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    },
+    {
+      "quando": "19:15:22",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-davi-golias.mp4",
+      "duracao": 42.2,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    },
+    {
+      "quando": "19:16:16",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 1,
+      "reprovadas": []
+    },
+    {
+      "quando": "19:16:16",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "19:16:16",
+      "etapa": "animacao",
+      "ok": true,
+      "cenas": [
+        1,
+        4,
+        8
+      ],
+      "feitas": [],
+      "segundos": 0
+    },
+    {
+      "quando": "19:16:45",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-davi-golias_sem-musica.mp4",
+      "duracao": 42.2,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    },
+    {
+      "quando": "19:16:45",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-24_historia-davi-golias.mp4",
+      "duracao": 42.2,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    }
+  ]
+}

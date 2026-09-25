@@ -90,7 +90,7 @@ def api_canal_acao(request):
     from django.utils import timezone
 
     from . import producao
-    from .models import Canal, Pauta, Producao, Produtor
+    from .models import Canal, Pauta, Producao, Produtor, Serie
 
     d = json.loads(request.body or "{}")
     acao = d.get("acao")
@@ -100,9 +100,12 @@ def api_canal_acao(request):
             return JsonResponse({"erro": "Escolha com ou sem música."}, status=400)
         if "imagens" in d and d["imagens"] not in ("ia", "nativo"):
             return JsonResponse({"erro": "Imagens: ia ou nativo."}, status=400)
-        for campo in ("ativo", "meta_dia", "musica", "imagens"):
+        if "modo" in d and d["modo"] not in producao.MODOS:
+            return JsonResponse({"erro": "Modo desconhecido."}, status=400)
+        limites = {"meta_dia": (0, 12), "serie_max": (2, 5), "serie_cada": (1, 20)}
+        for campo in ("ativo", "meta_dia", "musica", "imagens", "modo", "serie_max", "serie_cada"):
             if campo in d:
-                setattr(c, campo, max(0, min(12, int(d[campo]))) if campo == "meta_dia" else d[campo])
+                setattr(c, campo, max(limites[campo][0], min(limites[campo][1], int(d[campo]))) if campo in limites else d[campo])
         c.save()
     elif acao == "produtor":
         p = Produtor.get()
@@ -121,8 +124,21 @@ def api_canal_acao(request):
         p.save()
     elif acao == "gerar":
         pauta = Pauta.objects.filter(pk=d["pauta"]).first() if d.get("pauta") else None
-        if not producao.enfileirar(d["nicho"], pauta):
+        serie_max = max(0, min(5, int(d.get("serie_max") or 0)))  # 0 = vídeo único; 2 a 5 = série
+        if not producao.enfileirar(d["nicho"], pauta, serie_max):
             return JsonResponse({"erro": "Acabaram os temas desse nicho: adicione na pauta."}, status=400)
+    elif acao in ("aprovar", "reprovar") and d.get("serie"):  # a série é revisada como um bloco só
+        s = Serie.objects.get(pk=d["serie"])
+        if acao == "aprovar":
+            s.status = Producao.Status.APROVADO
+        else:
+            s.status, s.motivo = Producao.Status.REPROVADO, (d.get("motivo") or "")[:300]
+            if s.motivo:
+                jobs._pipeline()
+                import banco_roteiros
+                banco_roteiros.registrar_erros(s.nicho, s.formato, [f"(revisão humana, série) {s.motivo}"])
+        s.save()
+        s.partes.update(status=s.status, motivo=s.motivo)
     elif acao in ("aprovar", "reprovar", "youtube", "tiktok", "voltar"):
         p = Producao.objects.get(pk=d["id"])
         if acao == "aprovar":
@@ -137,6 +153,12 @@ def api_canal_acao(request):
             p.status, p.postado_youtube, p.postado_tiktok = Producao.Status.REVISAR, None, None
         else:
             campo = f"postado_{acao}"
+            if acao == "youtube" and not p.postado_youtube and not d.get("forcar"):
+                n = Producao.objects.filter(nicho=p.nicho, postado_youtube__date=timezone.localdate()).count()
+                if n >= producao.MAX_POSTS_YT_DIA:
+                    return JsonResponse({"limite": True, "erro": f"Já são {n} vídeos de {p.nicho} no YouTube hoje. Mais que "
+                                         f"{producao.MAX_POSTS_YT_DIA} por dia dá cara de canal produzido em massa na revisão "
+                                         "da monetização. Melhor deixar este para amanhã."}, status=409)
             setattr(p, campo, None if getattr(p, campo) else timezone.now())
             if p.postado_youtube and p.postado_tiktok:
                 p.status = Producao.Status.POSTADO
@@ -146,6 +168,14 @@ def api_canal_acao(request):
     elif acao == "ligar_produtor":
         if not producao.ligar_produtor():
             return JsonResponse({"erro": "O produtor já está rodando."}, status=400)
+    elif acao == "tentar_de_novo" and (d.get("serie") or Serie.objects.filter(pk=d["id"], status=Producao.Status.FALHOU).exists()):
+        falha = Serie.objects.get(pk=d.get("serie") or d["id"], status=Producao.Status.FALHOU)
+        if falha.pauta_id:
+            Pauta.objects.filter(pk=falha.pauta_id).update(falhas=0, usado=False)
+        Serie.objects.create(pauta=falha.pauta, nicho=falha.nicho, formato=falha.formato, tema=falha.tema,
+                             max_partes=falha.max_partes)
+        if not producao.vivo():
+            producao.ligar_produtor()
     elif acao == "tentar_de_novo":
         falha = Producao.objects.get(pk=d["id"], status=Producao.Status.FALHOU)
         if falha.pauta_id:
@@ -167,6 +197,7 @@ def api_canal_acao(request):
         Pauta.objects.filter(usado=False, falhas__gt=0).update(falhas=0)
     elif acao == "cancelar":
         Producao.objects.filter(pk=d["id"], status=Producao.Status.FILA).delete()
+        Serie.objects.filter(pk=d["id"], status=Producao.Status.FILA).delete()
     elif acao == "pauta_add":
         titulo = (d.get("titulo") or "").strip()
         if not titulo:

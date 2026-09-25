@@ -17,6 +17,7 @@ Formato de cada item em roteiros.json (modo sincronizado, recomendado):
       "descricao": "...",
       "hashtags": ["#curiosidades", "#shorts"],
       "comentario_fixado": "...",          # opcional
+      "tiktok_titulo": "...", "tiktok_legenda": "...",  # opcionais: seção TikTok no texto do post
       "fontes": ["..."],                   # opcional, só registro
       "ajustes": {"voice_rate": 1.2}       # opcional, sobrescreve o preset
     }
@@ -59,8 +60,16 @@ def roteiro_de(r: dict) -> str:
 
 
 def escolher_musica(prefixo: str) -> str | None:
+    """Só entra faixa com licença registrada em creditos.json: música sem crédito descumpre a CC BY e pode gerar
+    reivindicação de Content ID (Short com reivindicação e mais de 1 min é bloqueado)."""
     pasta = MPT / "storage" / "bgm"
-    opcoes = [p.name for p in pasta.glob(f"{prefixo}*") if p.suffix.lower() in {".mp3", ".wav", ".m4a", ".ogg"}]
+    arq = pasta / "creditos.json"
+    creditos = json.loads(arq.read_text(encoding="utf-8")) if arq.exists() else {}
+    opcoes = [p.name for p in pasta.glob(f"{prefixo}*")
+              if p.suffix.lower() in {".mp3", ".wav", ".m4a", ".ogg"} and creditos.get(p.name, "").strip()]
+    sem = sorted(p.name for p in pasta.glob(f"{prefixo}*") if p.suffix.lower() != ".json" and p.name not in opcoes)
+    if sem:
+        print(f"AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: {', '.join(sem)}")
     return random.choice(opcoes) if opcoes else None
 
 
@@ -100,6 +109,9 @@ def texto_post(r: dict) -> str:
     partes = [f"TÍTULO:\n{r['titulo']}", f"DESCRIÇÃO:\n{r['descricao']}\n\n{' '.join(r['hashtags'])}"]
     if r.get("comentario_fixado"):
         partes.append(f"COMENTÁRIO FIXADO:\n{r['comentario_fixado']}")
+    if r.get("tiktok_titulo") or r.get("tiktok_legenda"):
+        partes.append(f"TIKTOK — TÍTULO:\n{r.get('tiktok_titulo') or r['titulo']}")
+        partes.append(f"TIKTOK — LEGENDA:\n{r.get('tiktok_legenda', '')}")
     if r.get("_creditos"):
         partes.append("CRÉDITOS (colar no fim da descrição):\n" + "\n".join(f"- {c}" for c in r["_creditos"]))
     partes.append("LEMBRETE: marcar 'Conteúdo alterado ou sintético = Sim' (voz de IA).")
@@ -110,6 +122,10 @@ def rodar_cli(tarefas: list[dict], stop_at: str | None = None) -> dict:
     lotes = MPT / "storage" / "lotes"
     lotes.mkdir(parents=True, exist_ok=True)
     manifesto = lotes / f"lote_{datetime.now():%Y%m%d_%H%M%S_%f}.json"
+    # "karaoke" e "gancho_tela" são do render.py; o motor só conhece sentence/word_by_word
+    tarefas = [{k: v for k, v in t.items() if k != "gancho_tela"} |
+               ({"subtitle_display_mode": "sentence"} if t.get("subtitle_display_mode") == "karaoke" else {})
+               for t in tarefas]
     manifesto.write_text(json.dumps(tarefas, ensure_ascii=False, indent=2), encoding="utf-8")
     cmd = [str(PYTHON), "cli.py", "--batch-file", str(manifesto)]
     if stop_at:
@@ -167,6 +183,11 @@ def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, r
 
     for p in sync.respirar(r["cenas"], pasta_a / "audio.mp3", pasta_a / "subtitle.srt"):
         print(f"AVISO  [{r['slug']}] {p}")
+    tirado = sync.compactar_pausas(pasta_a / "audio.mp3", pasta_a / "subtitle.srt")
+    print(f"ritmo [{r['slug']}] {tirado:.1f}s de silêncio entre frases removidos")
+    if r.get("gancho_tela") or r.get("titulo"):
+        # texto grande no quadro 0; roteiro antigo sem gancho_tela usa o título (pergunta do post)
+        tarefa["gancho_tela"] = r.get("gancho_tela") or r["titulo"]
     dur = sync.duracao_audio(pasta_a / "audio.mp3")
     tempos, avisos = sync.tempos_das_cenas(r["cenas"], sync.ler_srt(pasta_a / "subtitle.srt"), dur)
     for a in avisos:

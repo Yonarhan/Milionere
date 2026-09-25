@@ -21,6 +21,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import caminhos  # noqa: E402
+import cta  # noqa: E402
 
 REPO_PRODUCAO = caminhos.RAIZ / "producao"   # roteiros e mídias já feitos pelo time (fonte dos "prontos")
 PRESET_DO_NICHO = {"gospel": "gospel", "astronomia": "astronomia", "animais": "curiosidades"}
@@ -52,7 +53,8 @@ def _prontos() -> dict[str, dict]:
 def _tela(r: dict) -> dict:
     return {"titulo": r.get("titulo", ""), "falas": [c["fala"] for c in r["cenas"]],
             "extra": [{"busca": c.get("busca", ""), "imagem": c.get("imagem", "")} for c in r["cenas"]],
-            "desc": r.get("descricao", ""), "tags": " ".join(r.get("hashtags", [])), "base": r["slug"]}
+            "desc": r.get("descricao", ""), "tags": " ".join(r.get("hashtags", [])), "base": r["slug"],
+            "tiktok_titulo": r.get("tiktok_titulo", ""), "tiktok_legenda": r.get("tiktok_legenda", "")}
 
 
 def roteiro_pronto(tema_id: str) -> dict | None:
@@ -99,7 +101,7 @@ def catalogo() -> dict:
 
 SCHEMA_SIMPLES = {
     "type": "object", "additionalProperties": False,
-    "required": ["titulo", "cenas", "descricao", "hashtags", "comentario_fixado"],
+    "required": ["titulo", "cenas", "descricao", "hashtags", "comentario_fixado", "tiktok_titulo", "tiktok_legenda"],
     "properties": {
         "titulo": {"type": "string"},
         "cenas": {"type": "array", "items": {"type": "object", "additionalProperties": False,
@@ -109,6 +111,8 @@ SCHEMA_SIMPLES = {
                       "imagem": {"type": "string", "description": "em inglês: prompt de imagem da cena, até 30 palavras"}}}},
         "descricao": {"type": "string"}, "hashtags": {"type": "array", "items": {"type": "string"}},
         "comentario_fixado": {"type": "string"},
+        "tiktok_titulo": {"type": "string", "description": "título do TikTok, até 70 caracteres, curiosidade diferente do título do YouTube"},
+        "tiktok_legenda": {"type": "string", "description": "legenda do TikTok: 1-2 frases curtas + pergunta que puxa comentário + 3 a 5 hashtags do nicho (sem #shorts), até 300 caracteres"},
     },
 }
 
@@ -144,6 +148,8 @@ def _juiz(r: dict, entrada: dict, tema: str) -> tuple[list[str], dict]:
         "- ritmo: nenhuma frase sobrando, frases curtas e variadas?\n- linguagem: soa como gente falando, sem cara de IA?\n"
         "- payoff: o final entrega surpresa/emoção e responde o gancho?\n"
         "- precisao: o FATO CENTRAL está correto? Dramatização em tom de hipótese ('imagina') não é erro.\n"
+        + (f"\n# Este vídeo é uma parte de uma série\n{entrada['serie']}\nParte que não é a última termina em aberto de "
+           "propósito: aí o payoff é a virada parcial + o gancho pra próxima parte, não a resolução.\n\n" if entrada.get("serie") else "") +
         "erros_factuais = só afirmações apresentadas como fato que estão erradas. "
         "Cada problema: número da cena + como corrigir, em 1 frase.")
     j = llm.chamar(prompt, SCHEMA_JUIZ, papel="juiz", modelo=caminhos.MODELO_JUIZ_ROTEIRO)
@@ -166,16 +172,20 @@ def _roteiro_generico(entrada: dict, log) -> dict:
     lo, hi = preset["palavras_min"], preset["palavras_max"]
     tema = entrada.get("tema_livre") or entrada.get("tema_titulo") or entrada.get("tema")
     formato = entrada.get("formato_nome", entrada.get("formato", ""))
-    base = "\n\n".join([
+    base = "\n\n".join(p for p in [
         "Você é roteirista de Shorts/TikTok em português do Brasil. Escreva UM roteiro dividido em cenas.",
         f"# Nicho: {nicho} · formato: {formato}\n# Tema: {tema}",
         f"# Tamanho\n{lo} a {hi} palavras no total, 7 a 13 cenas, uma frase por cena (3 a 14 palavras). "
-        "A 1ª é o gancho (até 8 palavras); a última é um CTA curto (comenta, manda pra alguém, escreve...)"
-        + (f", e ela chama pra se inscrever no canal: {preset['cta_canal']}" if preset.get("cta_canal") else "") + ".",
+        "A 1ª é o gancho (até 8 palavras); a última é um CTA curto.",
+        "" if "# Fechamento" in entrada.get("serie", "") else cta.bloco(nicho),  # parte de série traz o próprio
+        entrada.get("serie", ""),
+        (f"A chamada final também pede pra se inscrever no canal {preset['inscreva_canal']}, com palavras suas."
+         if preset.get("inscreva_canal") else ""),
         "# Fatos\nO fato central tem que ser verdadeiro. O resto pode ser dramatização em tom de hipótese ('imagina', 'provavelmente').",
         guia.bloco(nicho, formato, tema),
         f"# Ganchos\n{ler('ganchos.md')}", f"# Linguagem\n{ler('anti-ia.md')}",
-        "# Post\nTítulo até 60 caracteres, descrição com 1-2 frases e uma pergunta, 5 hashtags com #shorts.",
+        "# Post\nTítulo até 60 caracteres, descrição com 1-2 frases e uma pergunta, 5 hashtags com #shorts. "
+        "TikTok: título próprio até 70 caracteres e legenda curta com uma pergunta e 3 a 5 hashtags do nicho, sem #shorts.",
     ])
     melhor, correcoes = None, []
     for tentativa in range(1, MAX_TENTATIVAS + 1):
@@ -188,6 +198,9 @@ def _roteiro_generico(entrada: dict, log) -> dict:
         with medidor.etapa("roteiro"):
             r = llm.chamar(prompt, SCHEMA_SIMPLES, papel="roteirista")
         erros = guia.checar(r["cenas"], preset)                      # camada 1: código, grátis
+        if nicho == "gospel":
+            import validar
+            erros += validar.checar_cta_gospel(r["cenas"])
         notas = {}
         if not erros and caminhos.JUIZ_ROTEIRO:                      # camada 2: só se o código aprovou
             log("roteiro", f"juiz revisando (tentativa {tentativa})")
@@ -307,7 +320,8 @@ def montar_roteiro(entrada: dict, slug: str) -> dict:
                "text_fore_color": "#FFE600" if entrada.get("cor") == "amarela" else "#FFFFFF"}
     return {"slug": slug, "nicho": PRESET_DO_NICHO.get(nicho, "curiosidades"), "titulo": post.get("titulo") or "Meu Short",
             "cenas": cenas, "descricao": post.get("desc", ""), "hashtags": (post.get("tags") or "#shorts").split(),
-            "comentario_fixado": post.get("comentario", ""), "ajustes": ajustes, "_do_banco": do_banco}
+            "comentario_fixado": post.get("comentario", ""), "tiktok_titulo": post.get("tiktok_titulo", ""),
+            "tiktok_legenda": post.get("tiktok_legenda", ""), "ajustes": ajustes, "_do_banco": do_banco}
 
 
 def gerar_video(entrada: dict, pasta_job: Path, log) -> dict:
