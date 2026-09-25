@@ -89,9 +89,10 @@ details.pauta summary{cursor:pointer;font-weight:600;font-size:14px}
 .pauta li small{color:var(--muted)}
 .pauta li .x{border:0;background:none;color:var(--muted);cursor:pointer;padding:0 4px}
 .opcoes{margin-top:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--ground);display:grid;gap:8px}
-.op{display:grid;grid-template-columns:110px auto;gap:4px 10px;align-items:center}
+.op{display:grid;grid-template-columns:110px minmax(0,1fr);gap:4px 10px;align-items:center}
 .op-nome{font-size:13px;font-weight:600}
-.op .seg button{white-space:nowrap}
+.op .seg{flex-wrap:wrap;max-width:100%}
+.op .seg button{white-space:nowrap;flex:1 0 auto}
 .op-dica{grid-column:2;font-size:12px;color:var(--muted)}
 @media (max-width:600px){.op{grid-template-columns:1fr}.op-dica{grid-column:1}}
 .pauta form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;margin-top:6px}
