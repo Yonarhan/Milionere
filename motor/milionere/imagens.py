@@ -281,6 +281,8 @@ def _seed_fixa(texto: str) -> int:
 def prompt_cena(cena: dict, personagens: dict, estilo: dict, cenario: str, biblico: bool = False) -> str:
     quem = [f"{personagens[i]['nome_en']}: {personagens[i]['descricao_visual']}" for i in cena.get("personagens", [])
             if i in personagens]
+    if re.search(r"\bsetting:", cena["imagem"], re.I):  # cena com ambientação própria: sai o cenário padrão
+        cenario = ""
     epoca = estilo.get("prompt_biblico", "") if biblico else ""
     partes = [cena["imagem"], *quem, cenario, epoca, estilo["prompt"], "vertical composition"]
     return ", ".join(p.strip().rstrip(".") for p in partes if p and p.strip())

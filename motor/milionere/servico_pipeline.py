@@ -187,11 +187,13 @@ def _bloco_elenco(preset: dict) -> str:
             "claras (scared, recoiling, curious, embarrassed, proud...); (2) a ideia da fala virando um objeto ou "
             "ícone simples (celular tocando, alto-falante com ondas, seta, balão de pensamento, X vermelho); (3) quando "
             "ajudar, 1 a 3 palavras grandes escritas, de preferência uma piada curta (ex.: EU??, NORMAL, ENVIAR?); (4) em "
-            "parte das cenas, o outro personagem reagindo; (5) lugar só se a história pedir (caverna, hospital), senão o "
-            "cenário padrão. Nunca números pequenos, nunca texto longo, nunca rosto de caveira ou algo assustador.\n"
+            "parte das cenas, o outro personagem reagindo; (5) ambientação quando a cena pedir (céu à noite, praia, "
+            "acampamento, espaço, hospital): escreva no fim da `imagem` 'setting: ...' em inglês, em traço doodle e "
+            "cores chapadas (ex.: 'setting: night sky with a few stars over green grass'); sem isso, vale o cenário "
+            "padrão. Use ambientação em parte das cenas, não em todas. Nunca números pequenos, nunca texto longo, nunca rosto de caveira ou algo assustador.\n"
             "Regras que decidem se o vídeo passa: texto escrito em no máximo 1/3 das imagens (e só piada curta, nunca "
-            "um rótulo repetindo a fala); o Amigo em no máximo metade das cenas; nunca mude o fundo (nada de 'bright "
-            "background'); não copie frases, piadas nem detalhes do modelo: crie os DESTE tema.\n\n" + _exemplo_piloto())
+            "um rótulo repetindo a fala); o Amigo em no máximo metade das cenas; fundo só muda via 'setting:' (nada de "
+            "'bright background' solto); não copie frases, piadas nem detalhes do modelo: crie os DESTE tema.\n\n" + _exemplo_piloto())
 
 
 SCHEMA_JUIZ = {

@@ -66,8 +66,9 @@ def checar_elenco(cenas: list[dict], preset: dict) -> list[str]:
     if len(amigo) > round(n * 0.6):
         erros.append(f"o Amigo aparece em {len(amigo)} de {n} imagens (máx. {round(n * 0.6)}): ele só reage em parte das cenas")
     for i, t in enumerate(imgs, 1):
-        if re.search(r"\b(bright|colorful|gradient|dark)\s+background\b", t, re.I):
-            erros.append(f"cena {i}: não mude o fundo ('{re.search(r'\w+ background', t).group(0)}'); o cenário é fixo")
+        if re.search(r"\b(bright|colorful|gradient|dark)\s+background\b", t, re.I) and not re.search(r"\bsetting:", t, re.I):
+            erros.append(f"cena {i}: não mude o fundo ('{re.search(r'\w+ background', t).group(0)}'); "
+                         "ambientação vai em 'setting: ...' no fim da imagem")
     narracao = " ".join(c.get("fala", "") for c in cenas).lower()
     for f in META:
         if f in narracao:

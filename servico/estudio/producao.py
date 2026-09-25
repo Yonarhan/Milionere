@@ -420,6 +420,8 @@ def _opcoes_video(nicho: str) -> None:
     os.environ["MILIONERE_VOLUME"] = "1" if c and c.volume else "0"
     os.environ["MILIONERE_VOZ"] = c.voz if c and c.voz else ""
     os.environ["MILIONERE_ROTEIRO"] = c.roteiro if c else "padrao"
+    # canal do Bob (IA no pod + doodle cena): o nicho usa o elenco do canal de animações (Space Atlas, etc.)
+    os.environ["MILIONERE_ELENCO"] = "1" if c and c.imagens == "ia_pod" and c.estilo_pod == "doodle_cena" else ""
 
 
 _ATUAL: "Producao | Serie | None" = None  # o que o produtor está gerando agora (o vigia de cancelamento olha)

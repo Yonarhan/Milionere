@@ -466,9 +466,10 @@ if(FOCO){
   $("#marca").textContent="Estúdio de Animações"; $("#marcaTag").textContent="doodle · Bob e o Amigo";
   $("#linkTodos").textContent="ver todos os canais"; $("#tituloCanais").textContent="Criar animação";
 }else{ $("#linkTodos").textContent="só animações"; $("#linkTodos").href="?"; }
-function focar(E){  // mostra só o canal de animações e os vídeos dele
+function focar(E){  // mostra só os canais do Bob (animações + os nichos em doodle cena) e os vídeos deles
   if(!FOCO) return E;
-  const so = l => (l||[]).filter(x=>x.nicho===FOCO);
+  const bob = new Set([FOCO, ...(E.canais||[]).filter(c=>c.imagens==="ia_pod"&&c.estilo_pod==="doodle_cena").map(c=>c.nicho)]);
+  const so = l => (l||[]).filter(x=>bob.has(x.nicho));
   return {...E, canais:so(E.canais), revisar:so(E.revisar), aprovados:so(E.aprovados), historico:so(E.historico),
           fila:so(E.fila), series_revisar:so(E.series_revisar)};
 }

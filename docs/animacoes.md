@@ -33,7 +33,7 @@ A imagem **encena o momento da fala**; não basta desenhar o assunto. Cada descr
 | A ideia virando **objeto ou ícone** | a phone playing audio, a speaker with sound waves |
 | **Piada curta escrita**, de 1 a 3 palavras, quando ajudar | EU??, NORMAL, ENVIAR? |
 | O **outro personagem reagindo** (em parte das cenas) | his friend looking awkward |
-| **Cenário** só se a história pedir | senão, o padrão: parede branca e chão bege |
+| **Ambientação** quando a cena pedir, com `setting: ...` no fim | setting: night sky over green grass; sem isso, parede branca e chão bege |
 
 Não pode: números pequenos, texto longo, caveira ou qualquer coisa assustadora. O Z-Image erra texto miúdo.
 
