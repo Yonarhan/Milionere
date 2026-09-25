@@ -18,6 +18,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import biblia  # noqa: E402
+import caminhos  # noqa: E402
 import cta  # noqa: E402
 import llm  # noqa: E402
 import medidor  # noqa: E402
@@ -240,7 +241,7 @@ def particionar(h: dict, formato: dict, tema: dict, max_partes: int, reg, log=pr
         log(f"corte em episódios: tentativa {tentativa}")
         with medidor.etapa("serie_corte"):
             corte = llm.chamar(_prompt_corte(h, tema, max_partes, lo, hi, correcoes or [], anterior), SCHEMA_CORTE,
-                               papel="roteirista")
+                               papel="roteirista", modelo=caminhos.MODELO_CORTE)
         for x in corte["partes"]:  # o miolo é o da história; o que vale para as palavras é o episódio montado
             x["n"] = corte["partes"].index(x) + 1
         eps, erros = montar(h, corte, formato, tema)
@@ -310,3 +311,162 @@ def serie_biblica(formato_id: str, formato: dict, tema: dict, max_partes: int, s
             + "\n".join(f"  «{c['fala']}»" for c in r["cenas"]))
         saida.append((arq, pacote))
     return plano, saida
+
+
+# ---------------------------------------------------------------- outros nichos (roteirista genérico do painel)
+
+_CENA_SIMPLES = {"type": "object", "additionalProperties": False, "required": ["fala", "busca", "imagem"],
+                 "properties": {"fala": {"type": "string"}, "busca": {"type": "string"}, "imagem": {"type": "string"}}}
+SCHEMA_CORTE_SIMPLES = {
+    "type": "object", "additionalProperties": False, "required": ["titulo_serie", "arco", "partes"],
+    "properties": {
+        "titulo_serie": {"type": "string"}, "arco": {"type": "string"},
+        "partes": {"type": "array", "items": {
+            "type": "object", "additionalProperties": False,
+            "required": ["titulo", "inicio", "fim", "resumo", "virada", "gancho", "recap", "suspense", "fechamento",
+                         "descricao", "hashtags", "comentario_fixado", "tiktok_titulo", "tiktok_legenda"],
+            "properties": {
+                "titulo": {"type": "string", "description": "até 50 caracteres (o '(Parte k/N)' entra sozinho)"},
+                "inicio": {"type": "integer"}, "fim": {"type": "integer"},
+                "resumo": {"type": "string"}, "virada": {"type": "string"},
+                "gancho": {**_CENA_SIMPLES, "description": "até 8 palavras, sobre um momento DESTE episódio"},
+                "recap": {**_CENA_SIMPLES, "description": "do 2º episódio em diante, 1 frase curta; fala vazia no 1º"},
+                "suspense": {**_CENA_SIMPLES, "description": "pergunta em aberto sobre o próximo; fala vazia no último"},
+                "fechamento": {"type": "array", "minItems": 1, "maxItems": 2, "items": _CENA_SIMPLES},
+                "descricao": {"type": "string"}, "hashtags": {"type": "array", "items": {"type": "string"}},
+                "comentario_fixado": {"type": "string"}, "tiktok_titulo": {"type": "string"},
+                "tiktok_legenda": {"type": "string"}}}}},
+}
+
+
+def serie_generica(nicho: str, formato_nome: str, tema: str, max_partes: int, log=print) -> tuple[dict, list[dict]]:
+    """-> (plano, [roteiro no formato do _roteiro_generico, um por episódio]). Mesmo desenho da bíblica, sem fonte."""
+    import caminhos
+    import guia
+    import serie as ms
+    import servico_pipeline as sp
+
+    preset = sp._preset(nicho)
+    max_partes = max(2, min(ms.MAX_PARTES, max_partes))
+    refs = caminhos.DADOS / "referencias"
+    ler = lambda n: (refs / n).read_text(encoding="utf-8") if (refs / n).exists() else ""  # noqa: E731
+    lo_h, hi_h = MIOLO_EPISODIO[0] * 2, MIOLO_EPISODIO[1] * max_partes
+    base = "\n\n".join(p for p in [
+        "Você é roteirista de Shorts/TikTok em português do Brasil. Escreva a HISTÓRIA COMPLETA abaixo, dividida em "
+        "cenas. Ela vai ser cortada depois em episódios de ~40 s.",
+        f"# Nicho: {nicho} · formato: {formato_nome}\n# Tema: {tema}",
+        f"# Tamanho\n{lo_h} a {hi_h} palavras, uma frase por cena (3 a 14 palavras). NÃO escreva gancho nem chamada "
+        "final: só a narração, do começo ao fim, com viradas claras (onde dá pra cortar deixando suspense).",
+        "# Fatos\nO fato central tem que ser verdadeiro. O resto pode ser dramatização em tom de hipótese ('imagina', 'provavelmente').",
+        guia.bloco(nicho, formato_nome, tema), f"# Linguagem\n{ler('anti-ia.md')}",
+        "# Post\nPreencha título, descrição e hashtags para a série inteira (cada episódio ganha os seus depois).",
+    ] if p)
+    comeco, correcoes, melhor = time.time(), [], None
+    for tentativa in range(1, TENTATIVAS_HISTORIA + 1):
+        if melhor and time.time() - comeco > TEMPO_MAX_HISTORIA:
+            break
+        log(f"história completa: tentativa {tentativa}")
+        prompt = base + ("\n\n# REESCREVA corrigindo:\n" + "\n".join(f"- {c}" for c in correcoes) + "\n\nVersão anterior:\n"
+                         + json.dumps([c["fala"] for c in melhor[0]["cenas"]], ensure_ascii=False) if correcoes and melhor else "")
+        with medidor.etapa("serie_historia"):
+            h = llm.chamar(prompt, sp.SCHEMA_SIMPLES, papel="roteirista")
+        total = sum(_palavras(c["fala"]) for c in h["cenas"])
+        erros = [e for e in guia.checar(h["cenas"], {"palavras_min": lo_h, "palavras_max": hi_h})
+                 if not e.startswith(("gancho com", "a última cena não é", ))
+                 and "cenas; use de" not in e]
+        if not erros:
+            with medidor.etapa("juiz"):
+                probs, notas = sp._juiz(h, {"nicho": nicho, "serie": "HISTÓRIA COMPLETA de uma série: ainda sem gancho "
+                                            "nem chamada (vêm no corte). Avalie fatos e clareza."}, tema)
+            # gancho/payoff/CTA são do episódio: na história só o fato errado e a clareza reprovam
+            erros = [p for p in probs if p.startswith("ERRO FACTUAL")] + \
+                    ([f"clareza (nota {notas['clareza']})"] if notas.get("clareza", 5) < 3 else [])
+            log(f"  {total} palavras, notas do juiz: {notas}")
+        else:
+            log(f"  camada 1 reprovou ({total} palavras): " + " | ".join(erros[:3]))
+        if melhor is None or len(erros) <= len(melhor[1]):
+            melhor = (h, erros)
+        if not erros:
+            break
+        correcoes = erros
+    h, erros_h = melhor
+    if any(e.startswith("ERRO FACTUAL") for e in erros_h):
+        raise RuntimeError("a história completa ficou com erro de fato: " + " | ".join(erros_h[:2]))
+    if sum(_palavras(c["fala"]) for c in h["cenas"]) < MIOLO_EPISODIO[0] * 2:
+        raise SerieInviavel("a história é curta demais para 2 episódios: gere como vídeo único")
+
+    preset_ep = {"palavras_min": preset["palavras_min"], "palavras_max": preset["palavras_max"] + ms.FOLGA_PARTE_RECAP}
+    M = len(h["cenas"])
+    cenas_txt = "\n".join(f"{i}. ({_palavras(c['fala'])} palavras) {c['fala']}" for i, c in enumerate(h["cenas"], 1))
+
+    def cortar(problemas: list[str], anterior: dict | None) -> tuple[dict, list[dict], list[str]]:
+        erros = []
+        for tentativa in range(1, TENTATIVAS_CORTE + 1):
+            log(f"corte em episódios: tentativa {tentativa}")
+            prompt = "\n\n".join([
+                "Você corta uma história já aprovada em EPISÓDIOS de Shorts/TikTok (pt-BR). A narração NÃO muda: você "
+                "escolhe onde cortar e escreve só as frases de ligação.",
+                f"# Nicho: {nicho} · Tema: {tema}\n# História ({M} cenas)\n{cenas_txt}",
+                f"# Como cortar\n- 2 a {max_partes} episódios em sequência: o 1º começa na cena 1, cada um na cena seguinte "
+                f"ao fim do anterior, o último termina na cena {M}.\n- Cada episódio: {MIOLO_EPISODIO[0]} a "
+                f"{MIOLO_EPISODIO[1]} palavras de narração e {preset_ep['palavras_min']} a {preset_ep['palavras_max']} "
+                "no total com as frases novas.\n- Corte logo depois de uma virada; melhor menos episódios fortes.",
+                "# Frases novas\n- gancho: até 8 palavras.\n- recap (do 2º em diante): 1 frase curta.\n- suspense (menos "
+                "o último): pergunta real sobre o que vem.\n- fechamento: " + cta.bloco(nicho, 2).split("\n", 1)[1]
+                + " Nos do meio, chame pro próximo episódio pelo número; no último, não chame parte nenhuma."
+                + (f" A chamada também pede pra se inscrever no canal {preset['inscreva_canal']}." if preset.get("inscreva_canal") else ""),
+                "# Busca e imagem das cenas novas\n" + sp.SCHEMA_SIMPLES["properties"]["cenas"]["items"]["properties"]["busca"]["description"],
+            ] + ([f"# CORRIJA o corte anterior\n{json.dumps(anterior, ensure_ascii=False)[:5000]}\nProblemas:\n"
+                  + "\n".join(f"- {p}" for p in problemas)] if problemas and anterior else []))
+            with medidor.etapa("serie_corte"):
+                corte = llm.chamar(prompt, SCHEMA_CORTE_SIMPLES, papel="roteirista", modelo=caminhos.MODELO_CORTE)
+            erros, eps, esperado = [], [], 1
+            N = len(corte["partes"])
+            if N < 2:
+                raise SerieInviavel("o corte deu 1 episódio só")
+            for k, x in enumerate(corte["partes"], 1):
+                if x["inicio"] != esperado or x["fim"] < x["inicio"]:
+                    erros.append(f"episódio {k}: começa na cena {x['inicio']}, devia começar na {esperado}")
+                esperado = x["fim"] + 1
+                cenas = [x["gancho"]] + ([x["recap"]] if k > 1 and x["recap"]["fala"].strip() else [])
+                cenas += [dict(c) for c in h["cenas"][x["inicio"] - 1:x["fim"]]]
+                cenas += ([x["suspense"]] if k < N and x["suspense"]["fala"].strip() else []) + list(x["fechamento"])
+                ep_erros = guia.checar(cenas, preset_ep)
+                if nicho == "gospel":
+                    ep_erros += validar.checar_cta_gospel(cenas)
+                erros += [f"episódio {k}: {e}" for e in ep_erros if "cenas; use de" not in e]
+                eps.append({"titulo": ms.titulo_parte(x["titulo"], k, N), "cenas": cenas, "descricao": x["descricao"],
+                            "hashtags": x["hashtags"], "comentario_fixado": x["comentario_fixado"],
+                            "tiktok_titulo": ms.titulo_parte(x["tiktok_titulo"], k, N) if x["tiktok_titulo"] else "",
+                            "tiktok_legenda": x["tiktok_legenda"]})
+            if esperado != M + 1:
+                erros.append(f"o último episódio termina na cena {esperado - 1}, mas a história tem {M}")
+            if not erros:
+                log(f"  corte ok: {N} episódios")
+                return corte, eps, []
+            log("  corte reprovado: " + " | ".join(erros[:4]))
+            problemas, anterior = erros, corte
+        if all("palavras" in e for e in erros):  # só tamanho: segue com aviso, como o juiz do CEO
+            return corte, eps, [f"corte: {e}" for e in erros]
+        raise RuntimeError(f"o corte em episódios não passou em {TENTATIVAS_CORTE} tentativas: " + " | ".join(erros[:3]))
+
+    def plano_de(corte: dict) -> dict:
+        return {"titulo_serie": corte["titulo_serie"], "arco": corte["arco"], "personagens": [],
+                "partes": [{"n": k, "titulo": x["titulo"], "trecho": "", "resumo": x["resumo"], "virada": x["virada"],
+                            "gancho_final": x["suspense"]["fala"], "versiculo": ""}
+                           for k, x in enumerate(corte["partes"], 1)]}
+
+    corte, eps, avisos = cortar([], None)
+    log("juiz da série: lendo os episódios juntos")
+    problemas = ms.julgar_roteiros(plano_de(corte), [{"falas": [c["fala"] for c in e["cenas"]]} for e in eps], nicho)
+    if problemas:
+        log("  juiz da série: " + " | ".join(f"ep. {k}: {p[0]}" for k, p in problemas.items()) + " -> refaz o corte uma vez")
+        corte, eps, avisos = cortar([f"episódio {k}: {p}" for k, ps in problemas.items() for p in ps], corte)
+        resto = ms.julgar_roteiros(plano_de(corte), [{"falas": [c["fala"] for c in e["cenas"]]} for e in eps], nicho)
+        avisos += [f"juiz da série, ep. {k}: {p}" for k, ps in resto.items() for p in ps]
+    else:
+        log("  juiz da série: aprovada")
+    avisos = erros_h + avisos
+    for e in eps:
+        e["_avisos"] = list(avisos)
+    return plano_de(corte), eps
