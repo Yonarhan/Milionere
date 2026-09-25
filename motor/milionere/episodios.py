@@ -44,7 +44,8 @@ RECEITA_HISTORIA = (
 
 def _formato_historia(formato: dict, max_partes: int) -> dict:
     f = {**formato, "completa": True, "receita": RECEITA_HISTORIA}
-    f["palavras"] = [MIOLO_EPISODIO[0] * 2, MIOLO_EPISODIO[1] * max_partes]
+    # a camada 1 aceita +15%: o teto nominal fica abaixo para o total caber nos episódios (345 em 4 não cabia)
+    f["palavras"] = [MIOLO_EPISODIO[0] * 2, int(MIOLO_EPISODIO[1] * max_partes / (1 + validar.MARGEM_PALAVRAS))]
     f["cenas"] = [10, 9 * max_partes]
     f.pop("nicho", None)  # sem a checagem de amém/inscrição: a história não tem fechamento
     return f
@@ -150,9 +151,38 @@ def _palavras(t: str) -> int:
     return len(t.split())
 
 
+def dividir_longas(cenas: list[dict], limite: int = 14) -> list[dict]:
+    """Frase de ligação (gancho, recap, suspense, CTA) longa vira 2 cenas, cortada na vírgula ou no conectivo mais
+    perto do meio, com a mesma imagem. Uma frase de 18 palavras derrubou o corte da série do José 3 vezes (25/09)."""
+    import re
+    saida = []
+    for c in cenas:
+        palavras = c["fala"].split()
+        if len(palavras) <= limite:
+            saida.append(c)
+            continue
+        meio, melhor = len(palavras) / 2, None
+        for i in range(3, len(palavras) - 2):  # corta ANTES da palavra i
+            antes, depois = palavras[i - 1], palavras[i].lower()
+            if antes.endswith((",", ".", ":", "?", "!")) or depois in ("e", "mas", "que", "porque", "quando", "só"):
+                if melhor is None or abs(i - meio) < abs(melhor - meio):
+                    melhor = i
+        if melhor is None:
+            saida.append(c)
+            continue
+        a, b = " ".join(palavras[:melhor]), " ".join(palavras[melhor:])
+        if a.endswith(","):  # corte na vírgula: a frase continua na cena seguinte, a voz só respira
+            saida += [{**c, "fala": a}, {**c, "fala": b}]
+            continue
+        a = a.rstrip(":") if a.endswith((".", "?", "!")) else a.rstrip(":") + "."
+        saida += [{**c, "fala": a}, {**c, "fala": b[0].upper() + b[1:]}]
+    return saida
+
+
 def _min_eps(total: int, max_partes: int) -> int:
     """Menos episódios que isso não cabe: o corte da série do José pôs 320 palavras em 3 e estourou (25/09)."""
-    return max(2, min(max_partes, -(-total // MIOLO_EPISODIO[1])))
+    import serie as ms
+    return max(2, min(ms.MAX_PARTES, -(-total // MIOLO_EPISODIO[1])))  # passa do pedido se a história exigir (até 5)
 
 
 def _prompt_corte(h: dict, tema: dict, max_partes: int, lo: int, hi: int, correcoes: list[str], anterior: dict | None) -> str:
@@ -169,7 +199,7 @@ def _prompt_corte(h: dict, tema: dict, max_partes: int, lo: int, hi: int, correc
         f"# História aprovada ({len(h['cenas'])} cenas, {total} palavras)\n{cenas}",
         f"# Personagens (use só estes ids)\n{pers}",
         "# Como cortar\n"
-        f"- {_min_eps(total, max_partes)} a {max_partes} episódios (menos que {_min_eps(total, max_partes)} não cabe: "
+        f"- {_min_eps(total, max_partes)} a {max(max_partes, _min_eps(total, max_partes))} episódios (menos que {_min_eps(total, max_partes)} não cabe: "
         "estoura o tempo de cada vídeo), em sequência: o 1º começa na cena 1, cada um começa na cena seguinte ao fim do "
         f"anterior, e o último termina na cena {len(h['cenas'])}. Nenhuma cena fica de fora nem se repete.\n"
         f"- Cada episódio: {MIOLO_EPISODIO[0]} a {MIOLO_EPISODIO[1]} palavras de narração (some a contagem das cenas "
@@ -222,6 +252,7 @@ def montar(h: dict, corte: dict, formato: dict, tema: dict) -> tuple[list[dict],
         cenas += [novas(x["suspense"])] if k < N and x["suspense"]["fala"].strip() else []
         cenas += [novas(x["aplicacao"])] if k == N and x["aplicacao"]["fala"].strip() else []
         cenas += [novas(c) for c in x["fechamento"]]
+        cenas = _dividir_novas(cenas, miolo)
         usados = sorted({c["evento"] for c in miolo if c["evento"]})
         eventos = [por_n[n] for n in usados if n in por_n]
         ids = list(dict.fromkeys(pid for c in cenas for pid in c["personagens"]))
@@ -243,6 +274,12 @@ def montar(h: dict, corte: dict, formato: dict, tema: dict) -> tuple[list[dict],
             erros.append(f"episódio {k}: versículo inválido ({ex})")
         eps.append({"r": r, "trecho": trecho})
     return eps, erros
+
+
+def _dividir_novas(cenas: list[dict], miolo: list[dict]) -> list[dict]:
+    """Só as cenas novas (evento 0) são divididas; a narração aprovada fica como está."""
+    ids = {id(c) for c in miolo}
+    return [y for c in cenas for y in ([c] if id(c) in ids else dividir_longas([c]))]
 
 
 def particionar(h: dict, formato: dict, tema: dict, max_partes: int, reg, log=print,
@@ -417,7 +454,7 @@ def serie_generica(nicho: str, formato_nome: str, tema: str, max_partes: int, lo
         raise SerieInviavel("a história é curta demais para 2 episódios: gere como vídeo único")
 
     preset_ep = {"palavras_min": preset["palavras_min"], "palavras_max": preset["palavras_max"] + ms.FOLGA_PARTE_RECAP}
-    M = len(h["cenas"])
+    M, total_h = len(h["cenas"]), sum(_palavras(c["fala"]) for c in h["cenas"])
     cenas_txt = "\n".join(f"{i}. ({_palavras(c['fala'])} palavras) {c['fala']}" for i, c in enumerate(h["cenas"], 1))
 
     def cortar(problemas: list[str], anterior: dict | None) -> tuple[dict, list[dict], list[str]]:
@@ -428,7 +465,7 @@ def serie_generica(nicho: str, formato_nome: str, tema: str, max_partes: int, lo
                 "Você corta uma história já aprovada em EPISÓDIOS de Shorts/TikTok (pt-BR). A narração NÃO muda: você "
                 "escolhe onde cortar e escreve só as frases de ligação.",
                 f"# Nicho: {nicho} · Tema: {tema}\n# História ({M} cenas)\n{cenas_txt}",
-                f"# Como cortar\n- {_min_eps(sum(_palavras(c['fala']) for c in h['cenas']), max_partes)} a {max_partes} episódios (menos não cabe no tempo de cada vídeo) em sequência: o 1º começa na cena 1, cada um na cena seguinte "
+                f"# Como cortar\n- {_min_eps(total_h, max_partes)} a {max(max_partes, _min_eps(total_h, max_partes))} episódios (menos não cabe no tempo de cada vídeo) em sequência: o 1º começa na cena 1, cada um na cena seguinte "
                 f"ao fim do anterior, o último termina na cena {M}.\n- Cada episódio: {MIOLO_EPISODIO[0]} a "
                 f"{MIOLO_EPISODIO[1]} palavras de narração e {preset_ep['palavras_min']} a {preset_ep['palavras_max']} "
                 "no total com as frases novas.\n- Corte logo depois de uma virada.",
@@ -449,9 +486,10 @@ def serie_generica(nicho: str, formato_nome: str, tema: str, max_partes: int, lo
                 if x["inicio"] != esperado or x["fim"] < x["inicio"]:
                     erros.append(f"episódio {k}: começa na cena {x['inicio']}, devia começar na {esperado}")
                 esperado = x["fim"] + 1
-                cenas = [x["gancho"]] + ([x["recap"]] if k > 1 and x["recap"]["fala"].strip() else [])
-                cenas += [dict(c) for c in h["cenas"][x["inicio"] - 1:x["fim"]]]
+                miolo = [dict(c) for c in h["cenas"][x["inicio"] - 1:x["fim"]]]
+                cenas = [x["gancho"]] + ([x["recap"]] if k > 1 and x["recap"]["fala"].strip() else []) + miolo
                 cenas += ([x["suspense"]] if k < N and x["suspense"]["fala"].strip() else []) + list(x["fechamento"])
+                cenas = _dividir_novas(cenas, miolo)
                 ep_erros = guia.checar(cenas, preset_ep)
                 if nicho == "gospel":
                     ep_erros += validar.checar_cta_gospel(cenas)
