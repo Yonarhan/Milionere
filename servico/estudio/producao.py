@@ -463,6 +463,9 @@ def executar(prod: Producao) -> None:
 
 # ------------------------------------------------------------------ série (2 a 5 partes)
 
+TEMPO_MAX_JUIZ_SERIE = 8 * 60  # rodadas do juiz da série (com as reescritas): passou, segue com os avisos
+
+
 def executar_serie(s: Serie) -> None:
     """Plano -> juiz do plano -> roteiro de cada parte (juízes de sempre) -> juiz da série (reescreve só a parte
     apontada) -> imagens e vídeo de cada parte -> juiz visual da série -> revisão como um bloco só."""
@@ -499,6 +502,7 @@ def executar_serie(s: Serie) -> None:
                       for k, x in enumerate(plano["partes"], 1)]
             slug_serie = f"serie-{s.formato}-{chave}"
             roteiros: list = [None] * N  # gospel: (arquivo, pacote); outros: o roteiro do roteirista genérico
+            avisos_roteiro: list[str] = []  # o que os juízes apontaram e não ficou resolvido (vai para a revisão)
 
             def falas(k: int) -> list[str]:
                 r = roteiros[k - 1][1] if biblico else roteiros[k - 1]
@@ -517,8 +521,8 @@ def executar_serie(s: Serie) -> None:
                                               "tema_livre": f"{s.tema} (parte {k} de {N}: {x['titulo']})",
                                               "serie": ms.contexto_parte(plano, k, s.nicho, anteriores, correcoes)},
                                              lambda etapa, msg: diario(msg or etapa, "roteiro"))
-                    if r.get("_avisos"):
-                        raise RuntimeError(f"parte {k}: o juiz reprovou o roteiro nas 3 tentativas: " + " | ".join(r["_avisos"][:3]))
+                    if r.get("_avisos"):  # não joga a série fora: segue a melhor versão e o ponto vai para a revisão
+                        avisos_roteiro.extend(f"parte {k}: {a}" for a in r["_avisos"][:3])
                     r["titulo"] = ms.titulo_parte(r["titulo"], k, N)
                     if r.get("tiktok_titulo"):
                         r["tiktok_titulo"] = ms.titulo_parte(r["tiktok_titulo"], k, N)
@@ -527,6 +531,7 @@ def executar_serie(s: Serie) -> None:
 
             for k in range(1, N + 1):
                 escrever(k)
+            comeco_juiz = time.time()
             for rodada in range(ms.RODADAS_SERIE + 1):
                 diario(f"juiz da série: lendo as {N} partes juntas (rodada {rodada + 1})", "roteiro")
                 vistos = [{"falas": falas(k), "personagens": (roteiros[k - 1][1] if biblico else {}).get("personagens", [])}
@@ -537,9 +542,14 @@ def executar_serie(s: Serie) -> None:
                     break
                 for k, p in problemas.items():
                     diario(f"  juiz da série, parte {k}: " + " | ".join(p), "roteiro")
-                if rodada == ms.RODADAS_SERIE:
-                    raise RuntimeError("o juiz da série reprovou depois das reescritas: "
-                                       + " | ".join(f"parte {k}: {p[0]}" for k, p in problemas.items()))
+                estourou = time.time() - comeco_juiz > TEMPO_MAX_JUIZ_SERIE
+                if rodada == ms.RODADAS_SERIE or estourou:
+                    # antes a série inteira ia fora aqui (27 min de roteiro aprovado parte a parte). O juiz ajuda,
+                    # mas não segura o vídeo: segue esta versão e o que ele apontou vai para a revisão.
+                    diario("juiz da série não aprovou tudo " + ("(passou do tempo)" if estourou else "depois das reescritas")
+                           + ": segue esta versão, os pontos vão para a revisão", "roteiro")
+                    avisos_roteiro.extend(f"juiz da série, parte {k}: {p[0]}" for k, p in problemas.items())
+                    break
                 for k in sorted(problemas):
                     escrever(k, problemas[k])
 
@@ -560,11 +570,12 @@ def executar_serie(s: Serie) -> None:
                     raise RuntimeError(f"parte {k}: o render não passou nas validações (veja o log)")
                 Producao.objects.filter(pk=prod.pk).update(etapa="post", mensagem="pronta, esperando as outras partes",
                                                            **_resultado(videos))
-            avisos = []
+            avisos = list(avisos_roteiro)
             if visuais and any(r.get("personagens") for _, r, _ in visuais):
                 diario("juiz visual da série: o mesmo personagem com a mesma cara em todas as partes", "montagem")
-                avisos = ms.julgar_visual(visuais, pipeline.PROD / "midia" / "_serie_visual" / slug_serie)
-                for a in avisos:
+                visual = ms.julgar_visual(visuais, pipeline.PROD / "midia" / "_serie_visual" / slug_serie)
+                avisos += visual
+                for a in visual:
                     diario(f"  AVISO: {a}")
             fim, custos = agora(), m.resumo()
             por_parte = {k: (round(v / N, 4) if isinstance(v, (int, float)) else v) for k, v in custos.items()}
