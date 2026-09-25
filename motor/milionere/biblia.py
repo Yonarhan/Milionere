@@ -87,9 +87,9 @@ def versiculos(ref: str) -> list[tuple[str, str]]:
     faixa entre capítulos ('Gênesis 37:36-39:2') e vários trechos separados por ';' ou ','."""
     biblia = texto()
     saida: list[tuple[str, str]] = []
-    livro = None
-    for parte in re.split(r"[;,]", ref):
-        parte = parte.strip()
+    livro, cap_atual, sep = None, None, ";"
+    for parte, prox in zip(*[iter(re.split(r"([;,])", ref) + [";"])] * 2):
+        parte, sep_antes, sep = parte.strip(), sep, prox
         if not parte:
             continue
         m = re.match(r"^((?:[123]\s*)?[^\d:]+?)\s*(\d.*)$", parte)
@@ -100,6 +100,10 @@ def versiculos(ref: str) -> list[tuple[str, str]]:
             livro, resto = _POR_NOME[nome], m.group(2)
         elif livro:
             resto = parte
+            # 'Gênesis 37:4,18-20': depois da vírgula, número sem ':' é versículo do mesmo capítulo (lia 18-20 como
+            # capítulos e o evento caía "fora do trecho", reprovando a série do José)
+            if sep_antes == "," and cap_atual and ":" not in resto:
+                resto = f"{cap_atual}:{resto}"
         else:
             raise RefInvalida(f"referência sem livro: '{parte}'")
 
@@ -107,6 +111,7 @@ def versiculos(ref: str) -> list[tuple[str, str]]:
         if not m:
             raise RefInvalida(f"formato não reconhecido: '{parte}'")
         c1, v1, a, b = m.groups()
+        cap_atual = (a if b is not None else c1) if v1 is not None else None
         caps = biblia[livro]
         if c1 not in caps:
             raise RefInvalida(f"{LIVROS[livro]} não tem capítulo {c1}")

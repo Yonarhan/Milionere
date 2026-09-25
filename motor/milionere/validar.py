@@ -4,8 +4,9 @@
            eventos dentro do trecho bíblico e em ordem, cenas seguindo a ordem dos eventos, personagens
            declarados e com ficha visual.
   Camada 2 (juiz LLM, conversa nova, só vê a fonte e o roteiro): fidelidade aos fatos, ordem, personagens
-           consistentes, compreensão de quem ouve uma vez (nota >= 4 em cada) + gancho, ritmo, linguagem,
-           payoff (média >= 3.5, nenhum <= 2). Qualquer erro factual = reprovado, e os problemas voltam pro roteirista reescrever.
+           consistentes, compreensão de quem ouve uma vez (nota >= 4; com a MARGEM de 10%, um 3 isolado passa se a média
+           dos rígidos >= 3.6, exceto fidelidade) + gancho, ritmo, linguagem,
+           payoff (média >= 3.15, nenhum <= 2). Qualquer erro factual = reprovado, e os problemas voltam pro roteirista reescrever.
   Camada 3 (juiz visual, depois das imagens): uma imagem por vez, em resolução cheia. Primeiro anatomia e
            artefatos (mãos, rostos extras, corpos fundidos, texto, objeto moderno), depois se contradiz a fala.
            Cena reprovada é refeita uma opção por vez (julgada antes da próxima). Em teste: MILIONERE_JUIZ_VISUAL=claude-lote
@@ -28,6 +29,9 @@ VOCAB_IA = ["fascinante", "incrível jornada", "desvendar", "crucial", "notável
             "jornada", "tapeçaria", "mergulhar", "inspirador", "poderosa lição", "nos ensina que"]
 CTA = re.compile(r"\b(amém|amem|comenta|manda|escreve|compartilha|salva|inscrev\w*|segue)\b", re.I)
 ORDEM_LIVROS = list(biblia.LIVROS.values())
+# folga de 10% em todo limite de TEXTO (pedido do dono, 25/09): palavras, gancho, tamanho da cena e notas do juiz.
+# A série do José caiu 3 vezes por 1-4 palavras a mais e por uma nota 3 isolada. Fidelidade e erro factual seguem sem folga.
+MARGEM = 0.10
 
 
 def _pos(rotulo: str) -> tuple[int, int, int]:
@@ -67,21 +71,23 @@ def camada1(r: dict, formato: dict, tema: dict) -> list[str]:
     cenas = r["cenas"]
     total = sum(len(_palavras(c["fala"])) for c in cenas)
     lo, hi = formato["palavras"]
-    hi = round(hi * 1.05)  # 103 palavras num formato de 102 reprovava e custava uma reescrita inteira (~2s de fala)
+    lo, hi = int(lo * (1 - MARGEM)), round(hi * (1 + MARGEM))  # 103 palavras num formato de 102 custava uma reescrita inteira
     if not lo <= total <= hi:
         erros.append(f"roteiro tem {total} palavras; o formato pede {lo} a {hi}")
     c_lo, c_hi = formato["cenas"]
+    c_lo, c_hi = int(c_lo * (1 - MARGEM)), round(c_hi * (1 + MARGEM))
     if not c_lo <= len(cenas) <= c_hi:
         erros.append(f"{len(cenas)} cenas; o formato pede {c_lo} a {c_hi}")
-    if len(_palavras(cenas[0]["fala"])) > 8:
-        erros.append(f"gancho com {len(_palavras(cenas[0]['fala']))} palavras (máx. 8): «{cenas[0]['fala']}»")
+    max_gancho = round(8 * (1 + MARGEM))
+    if len(_palavras(cenas[0]["fala"])) > max_gancho:
+        erros.append(f"gancho com {len(_palavras(cenas[0]['fala']))} palavras (máx. {max_gancho}): «{cenas[0]['fala']}»")
     if not CTA.search(cenas[-1]["fala"]):
         erros.append(f"última cena não é um CTA: «{cenas[-1]['fala']}»")
     if formato.get("nicho") == "gospel":
         erros += checar_cta_gospel(cenas)
     for i, c in enumerate(cenas, 1):
         n = len(_palavras(c["fala"]))
-        if n > 16:
+        if n > int(16 * (1 + MARGEM)):
             erros.append(f"cena {i} com {n} palavras (máx. 14-16), divida: «{c['fala']}»")
         if "—" in c["fala"] or "–" in c["fala"] or ";" in c["fala"]:
             erros.append(f"cena {i} tem travessão ou ponto e vírgula (o TTS lê mal): «{c['fala']}»")
@@ -163,10 +169,12 @@ CRITERIOS = {
     "linguagem": "soa como gente falando, sem cara de IA nem de livro",
     "payoff": "o final entrega emoção ou virada e responde o gancho",
 }
-# fatos, ordem, personagens e compreensão: nota >= 4 obrigatória. Os de gosto: média >= 3.5 e nenhum <= 2.
+# fidelidade: nota >= 4 sempre. Ordem, personagens e compreensão: nota >= 4, ou um 3 isolado se a média dos
+# rígidos ficar >= 3.6 (4 com a MARGEM de 10%). Os de gosto: média >= 3.15 (3.5 com a margem) e nenhum <= 2.
 RIGIDOS = ["fidelidade", "ordem", "personagens", "compreensao"]
 SUBJETIVOS = ["gancho", "ritmo", "linguagem", "payoff"]
-MEDIA_SUBJETIVA = 3.5
+MEDIA_RIGIDA = 4 * (1 - MARGEM)
+MEDIA_SUBJETIVA = 3.5 * (1 - MARGEM)
 SCHEMA_JUIZ = {
     "type": "object", "additionalProperties": False,
     "required": ["entendimento", "erros_factuais", "criterios"],
@@ -219,8 +227,13 @@ def camada2(r: dict, formato: dict, tema: dict) -> tuple[list[str], dict]:
     notas = {c["criterio"]: c["nota"] for c in j["criterios"]}
     subjetivas = [notas[k] for k in SUBJETIVOS]
     reprova_subj = sum(subjetivas) / len(subjetivas) < MEDIA_SUBJETIVA or min(subjetivas) <= 2
+    rigidas = [notas[k] for k in RIGIDOS]
+    reprova_rig = sum(rigidas) / len(rigidas) < MEDIA_RIGIDA or min(rigidas) <= 2 or sum(n < 4 for n in rigidas) > 1
     for c in j["criterios"]:
-        ruim = c["nota"] < 4 if c["criterio"] in RIGIDOS else (reprova_subj and c["nota"] < 4)
+        if c["criterio"] == "fidelidade":
+            ruim = c["nota"] < 4
+        else:
+            ruim = (reprova_rig if c["criterio"] in RIGIDOS else reprova_subj) and c["nota"] < 4
         if ruim:
             problemas += [f"{c['criterio']} (nota {c['nota']}): {p}" for p in c["problemas"]] or [f"{c['criterio']} com nota {c['nota']}"]
     return problemas, j
