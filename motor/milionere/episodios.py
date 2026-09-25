@@ -30,9 +30,10 @@ TENTATIVAS_HISTORIA = 3
 TENTATIVAS_CORTE = 3
 TEMPO_MAX_HISTORIA = 480  # como o teto do juiz do CEO: passou, segue a melhor versão sem erro de fato, com avisos
 MIOLO_EPISODIO = (45, 80)
-# corte que só erra tamanho pode seguir com aviso, mas nunca acima disso: ~58 s de fala, o teto da camada 4 (duração).
+# corte que só erra tamanho pode seguir com aviso, mas nunca acima disso: a voz fala ~2,5 palavras/s (medido em 4
+# vídeos de 25/09: 96-102 palavras = 38-41 s), então 140 palavras ~ 56 s, abaixo do teto de 58 s da camada 4.
 # Antes seguia um episódio de 172 palavras que ia reprovar no render, depois de gerar as imagens (José, 25/09)
-TETO_PALAVRAS_EPISODIO = 130  # palavras da narração que cabem num episódio além do gancho, recapitulação e fechamento
+TETO_PALAVRAS_EPISODIO = 140  # palavras da narração que cabem num episódio além do gancho, recapitulação e fechamento
 RECEITA_HISTORIA = (
     "Conte o episódio bíblico INTEIRO como uma história falada, do primeiro ao último fato do trecho, na ORDEM do texto. "
     "Frases ligadas com conectivos (e, mas, então, só que), como alguém contando em voz alta; nada de lista de frases "
@@ -349,7 +350,8 @@ def serie_biblica(formato_id: str, formato: dict, tema: dict, max_partes: int, s
     import serie as ms
 
     f_ep = dict(formato)
-    f_ep["palavras"] = [formato["palavras"][0], formato["palavras"][1] + ms.FOLGA_PARTE_RECAP]
+    # teto do episódio = o que cabe em ~56 s (a camada 1 soma +15% em cima do nominal)
+    f_ep["palavras"] = [formato["palavras"][0], int(TETO_PALAVRAS_EPISODIO / (1 + validar.MARGEM_PALAVRAS))]
     f_ep["cenas"] = [7, 18]
     reg = pipeline.Registro(slug_serie)
     # história aprovada fica guardada: se o corte ou as imagens falharem, a próxima rodada começa do corte
@@ -487,7 +489,7 @@ def serie_generica(nicho: str, formato_nome: str, tema: str, max_partes: int, lo
     if sum(_palavras(c["fala"]) for c in h["cenas"]) < MIOLO_EPISODIO[0] * 2:
         raise SerieInviavel("a história é curta demais para 2 episódios: gere como vídeo único")
 
-    preset_ep = {"palavras_min": preset["palavras_min"], "palavras_max": preset["palavras_max"] + ms.FOLGA_PARTE_RECAP}
+    preset_ep = {"palavras_min": preset["palavras_min"], "palavras_max": int(TETO_PALAVRAS_EPISODIO / 1.15)}  # guia.checar: +15%
     M, total_h = len(h["cenas"]), sum(_palavras(c["fala"]) for c in h["cenas"])
     fx = faixas(h["cenas"], _min_eps(total_h, max_partes))
     cenas_txt = "\n".join(f"{i}. ({_palavras(c['fala'])} palavras) {c['fala']}" for i, c in enumerate(h["cenas"], 1))
