@@ -87,6 +87,7 @@ def versiculos(ref: str) -> list[tuple[str, str]]:
     faixa entre capítulos ('Gênesis 37:36-39:2') e vários trechos separados por ';' ou ','."""
     biblia = texto()
     saida: list[tuple[str, str]] = []
+    ref = re.sub(r"\s+e\s+(?=\d)", "; ", ref)  # 'Gênesis 39:9 e 39:12' (o roteirista escreve assim às vezes)
     livro, cap_atual, sep = None, None, ";"
     for parte, prox in zip(*[iter(re.split(r"([;,])", ref) + [";"])] * 2):
         parte, sep_antes, sep = parte.strip(), sep, prox

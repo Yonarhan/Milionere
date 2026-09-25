@@ -223,6 +223,11 @@ def camada2(r: dict, formato: dict, tema: dict) -> tuple[list[str], dict]:
     )
     import caminhos
     j = llm.chamar(prompt, SCHEMA_JUIZ, papel="juiz", modelo=caminhos.MODELO_JUIZ_ROTEIRO)
+    # o juiz às vezes lista omissão como erro factual ("não contradiz a fonte, mas omite...") mesmo com o prompt dizendo
+    # que não é: reprovou 3x a parte 2 do José (25/09). Omissão não é fato errado; fica registrada, sem reprovar.
+    omissao = re.compile(r"não contradiz|omit|omiss|não é (um )?erro factual|sem erro factual", re.I)
+    j["omissoes_ignoradas"] = [e for e in j["erros_factuais"] if omissao.search(e)]
+    j["erros_factuais"] = [e for e in j["erros_factuais"] if not omissao.search(e)]
     problemas = [f"ERRO FACTUAL: {e}" for e in j["erros_factuais"]]
     notas = {c["criterio"]: c["nota"] for c in j["criterios"]}
     subjetivas = [notas[k] for k in SUBJETIVOS]

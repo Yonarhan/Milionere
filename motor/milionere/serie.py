@@ -24,8 +24,11 @@ import llm  # noqa: E402
 import medidor  # noqa: E402
 
 MAX_PARTES = 5
-TENTATIVAS_PLANO = 3
+TENTATIVAS_PLANO = 4
 RODADAS_SERIE = 2  # rodadas do juiz da série (cada uma reescreve só as partes apontadas)
+# trecho de uma parte: com 13 versículos de ação (Gênesis 37:3-4; 37:18-28) o roteirista escrevia 150-230 palavras
+# para um limite de ~120 e a série do José caía nas 4 tentativas (25/09)
+MAX_VERSICULOS_PARTE = 11  # 10 + a margem de 10% (validar.MARGEM)
 FOLGA_PARTE, FOLGA_PARTE_RECAP = 10, 16  # palavras a mais que o formato de vídeo único (parte 1 / partes seguintes)
 
 # os mais lidos/compartilhados (YouVersion e buscas em pt-BR): se cair no trecho, vira o versículo de uma parte
@@ -62,7 +65,7 @@ SCHEMA_PLANO = {
             "properties": {
                 "n": {"type": "integer"},
                 "titulo": {"type": "string", "description": "título curto desta parte"},
-                "trecho": {"type": "string", "description": "história bíblica: SÓ os versículos desta parte (ex.: 'Gênesis 37:3-4; 37:18-28'), dentro da fonte, na ordem, sem repetir versículo de outra parte. Outros nichos: vazio"},
+                "trecho": {"type": "string", "description": f"história bíblica: SÓ os versículos desta parte (ex.: 'Gênesis 37:3-4; 37:23-28'), no máximo {MAX_VERSICULOS_PARTE} versículos (cabe em ~45 s de fala), dentro da fonte, na ordem, sem repetir versículo de outra parte. Pode deixar versículos da fonte de fora. Outros nichos: vazio"},
                 "resumo": {"type": "string", "description": "o que esta parte conta, em 1-2 frases"},
                 "virada": {"type": "string", "description": "o momento forte que faz esta parte valer sozinha"},
                 "gancho_final": {"type": "string", "description": "a pergunta em aberto que empurra pra próxima parte; vazio na última"},
@@ -119,6 +122,9 @@ def checar_plano(p: dict, max_partes: int, fonte_ref: str | None) -> list[str]:
                 erros.append(f"parte {x['n']}: começa antes, no texto, do fim da parte anterior (fora de ordem)")
             vistos |= set(rots)
             ultimo = validar._pos(rots[-1])
+            if len(rots) > MAX_VERSICULOS_PARTE:
+                erros.append(f"parte {x['n']}: {len(rots)} versículos não cabem em ~45 s (máx. {MAX_VERSICULOS_PARTE}); "
+                             "fique só com os versículos dos momentos principais (pode deixar versículos da fonte de fora)")
             if len(rots) < 2:
                 erros.append(f"parte {x['n']}: 1 versículo só não sustenta um vídeo; junte com a vizinha")
             if x["versiculo"].strip():
@@ -156,7 +162,8 @@ def planejar(nicho: str, formato: dict, tema: dict, max_partes: int, log=print) 
          "(campo `trecho`), em ordem, sem repetir versículo. Nada fora dela." if fonte_ref else ""),
         ("# Versículos muito lidos que estão neste trecho\n" + ", ".join(famosos) + "\nSão os que o público mais procura e "
          "compartilha: use cada um como `versiculo` de uma parte (o da parte onde ele acontece)." if famosos else ""),
-        f"# Quantas partes\nNo máximo {max_partes}. Use SÓ quantas a história aguenta com uma virada forte em cada uma: "
+        f"# Quantas partes\nNo máximo {max_partes}. Cada parte cobre no MÁXIMO {MAX_VERSICULOS_PARTE} versículos "
+          "(conte; o primeiro plano sempre passava disso): fique com os momentos principais e deixe o resto da fonte de fora. Use SÓ quantas a história aguenta com uma virada forte em cada uma: "
         "melhor 2 partes fortes que 4 com enchimento. Se a história não rende mais de 1 vídeo, diga `partes_possiveis` = 1.\n"
         "Cada parte tem começo, virada e um gancho final que deixa uma pergunta real em aberto. A última fecha o arco.",
         ("# Personagens com aparência fixa (reuse o id)\n" + fichas if fichas else "")
@@ -165,13 +172,16 @@ def planejar(nicho: str, formato: dict, tema: dict, max_partes: int, log=print) 
           "(ex.: Rúben e Judá, entre os irmãos de José) tem id e ficha próprios, fora do grupo; o grupo continua na "
           "lista só para as cenas em que aparece junto.",
     ] if x)
-    correcoes, ultimo_erro, anterior = [], "", None
+    correcoes, ultimo_erro, anterior, historico = [], "", None, []
     for tentativa in range(1, TENTATIVAS_PLANO + 1):
         prompt = base
         if correcoes:  # corrige a versão anterior (sem ela, cada tentativa recomeçava do zero e trocava de defeito)
             prompt += ("\n\n# CORRIJA o plano anterior (mantenha o que não foi apontado)\n"
                        + json.dumps({k: anterior[k] for k in ("titulo_serie", "arco", "partes")}, ensure_ascii=False)
-                       + "\n\nProblemas:\n" + "\n".join(f"- {c}" for c in correcoes))
+                       + "\n\nProblemas:\n" + "\n".join(f"- {c}" for c in correcoes)
+                       # cada tentativa consertava um defeito e trazia de volta um antigo (José, 25/09)
+                       + ("\n\nJá apontados em versões anteriores (não volte a cometer):\n" + "\n".join(f"- {c}" for c in historico)
+                          if historico else ""))
         log(f"série: planejando (tentativa {tentativa})")
         with medidor.etapa("serie_plano"):
             p = llm.chamar(prompt, SCHEMA_PLANO, papel="roteirista")
@@ -179,17 +189,18 @@ def planejar(nicho: str, formato: dict, tema: dict, max_partes: int, log=print) 
             p["partes"][-1]["gancho_final"] = ""
         erros = checar_plano(p, max_partes, fonte_ref)  # SerieInviavel sobe direto
         if not erros:
-            erros = julgar_plano(p, nicho, tema, fonte_ref)
+            erros = julgar_plano(p, nicho, tema, fonte_ref, max_partes)
         if not erros:
             _fixas(p, bool(fonte_ref))
             log(f"série: plano aprovado, {len(p['partes'])} partes: " + " | ".join(x["titulo"] for x in p["partes"]))
             return p
         log("série: plano reprovado: " + " | ".join(erros[:4]))
+        historico += [c for c in correcoes if c not in historico]
         correcoes, ultimo_erro, anterior = erros, "; ".join(erros[:3]), p
     raise RuntimeError(f"o plano da série não passou em {TENTATIVAS_PLANO} tentativas: {ultimo_erro}")
 
 
-def julgar_plano(p: dict, nicho: str, tema: dict, fonte_ref: str | None) -> list[str]:
+def julgar_plano(p: dict, nicho: str, tema: dict, fonte_ref: str | None, max_partes: int = MAX_PARTES) -> list[str]:
     partes = "\n".join(f"Parte {x['n']} «{x['titulo']}» [{x['trecho'] or '-'}]: {x['resumo']} | virada: {x['virada']} | "
                        f"termina com: {x['gancho_final'] or '(fim da série)'}" for x in p["partes"])
     prompt = (
@@ -202,8 +213,14 @@ def julgar_plano(p: dict, nicho: str, tema: dict, fonte_ref: str | None) -> list
         "- dá pra contar a mesma coisa em menos partes sem perder força (diga quais juntar);\n"
         "- a divisão corta a história num lugar sem tensão, ou o gancho final não deixa uma pergunta real;\n"
         "- partes repetem o mesmo acontecimento;\n"
-        + ("- algum resumo afirma algo que NÃO está no trecho daquela parte;\n" if fonte_ref else "- o fato central é falso;\n")
+        # detalhe de ligação no resumo ("vai visitá-los no campo") reprovava o plano inteiro (José, 25/09); o resumo não vai
+        # ao ar e o roteiro de cada parte é conferido depois contra o próprio trecho (camada 2)
+        + ("- a VIRADA ou o fato central de alguma parte NÃO está no trecho daquela parte, ou contradiz a fonte (detalhe "
+           "de ligação no resumo não reprova; o gancho_final PODE antecipar ou perguntar sobre o que a PRÓXIMA parte "
+           "conta, é pra isso que ele existe);\n" if fonte_ref else "- o fato central é falso;\n")
         + "- a última parte não fecha o arco.\n"
+        # o juiz mandou dividir em 4 com teto de 3, e o plano morreu no teto (José, 25/09)
+        + f"A série tem no MÁXIMO {max_partes} partes: nunca peça mais partes que isso; se falta espaço, diga o que cortar.\n"
         "SÓ esses motivos reprovam. Gosto (um gancho que podia ser mais forte, um título melhor) NÃO reprova: se o plano "
         "não tem nenhum dos problemas acima, aprovado=true e problemas vazio. Resumo que conta um fato da fonte com outras "
         "palavras não é erro. Cada problema: a parte e como corrigir DENTRO da fonte dada, em 1 frase. No máximo 5.")
