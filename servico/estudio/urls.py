@@ -12,4 +12,5 @@ urlpatterns = [
     path("api/jobs/<str:job_id>", views.api_job),
     path("api/canal", views.api_canal),
     path("api/canal/acao", views.api_canal_acao),
+    path("api/voz/previa", views.api_voz_previa),
 ]

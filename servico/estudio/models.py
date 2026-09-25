@@ -71,7 +71,8 @@ class Canal(models.Model):
     # opções do vídeo (padrão = como já funcionava)
     legenda = models.CharField(max_length=12, default="padrao")  # padrao (a do preset) | karaoke | word_by_word
     efeitos = models.BooleanField(default=False)  # whoosh nas trocas de cena + impacto no início (sons.py)
-    volume = models.BooleanField(default=False)  # áudio final a -14 LUFS
+    volume = models.BooleanField(default=False)
+    voz = models.CharField(max_length=60, blank=True, default="")  # vazio = a voz do preset do nicho  # áudio final a -14 LUFS
 
     def __str__(self):
         return f"{self.nicho} · {self.meta_dia}/dia · {'ativo' if self.ativo else 'parado'}"

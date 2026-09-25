@@ -363,6 +363,40 @@ def _resultado(videos: list[Path]) -> dict:
             "videos": [{"nome": p.name, "url": _url(p), "variante": "sem" if "_sem-musica" in p.stem else "com"} for p in videos]}
 
 
+# vozes do Edge TTS que falam português (as "Multilingual" são americanas lendo em pt-BR, com leve sotaque)
+VOZES = [
+    ("pt-BR-AntonioNeural-Male", "Antonio (masculina)"),
+    ("pt-BR-FranciscaNeural-Female", "Francisca (feminina)"),
+    ("pt-BR-ThalitaMultilingualNeural-Female", "Thalita (feminina, jovem)"),
+    ("en-US-AndrewMultilingualNeural-Male", "Andrew (masculina, sotaque leve)"),
+    ("en-US-BrianMultilingualNeural-Male", "Brian (masculina, sotaque leve)"),
+    ("en-US-AvaMultilingualNeural-Female", "Ava (feminina, sotaque leve)"),
+    ("en-US-EmmaMultilingualNeural-Female", "Emma (feminina, sotaque leve)"),
+]
+TEXTO_PREVIA = ("Oi! Essa é a voz do canal. Você sabia que um dia em Vênus dura mais do que um ano inteiro? "
+                "Se inscreve pra não perder o próximo.")
+
+
+def previa_voz(nicho: str, voz: str) -> Path:
+    """mp3 curto com a voz no tom e na velocidade do nicho (gerado uma vez e guardado em media/vozes)."""
+    import asyncio
+
+    import edge_tts
+    if voz not in dict(VOZES):
+        raise ValueError("voz desconhecida")
+    sp, _, _ = _motor()
+    preset = sp._preset(nicho)
+    tom = str(preset.get("voice_pitch", "") or "+0Hz")
+    rate = float(preset.get("voice_rate", 1.0) or 1.0)
+    velocidade = f"{round((rate - 1) * 100):+d}%"
+    destino = Path(settings.MEDIA_ROOT) / "vozes" / f"{nicho}_{voz}_{tom}_{velocidade}.mp3".replace("%", "p")
+    if not destino.exists():
+        destino.parent.mkdir(parents=True, exist_ok=True)
+        nome = voz.rsplit("-", 1)[0]  # "pt-BR-AntonioNeural-Male" -> "pt-BR-AntonioNeural"
+        asyncio.run(edge_tts.Communicate(TEXTO_PREVIA, nome, rate=velocidade, pitch=tom).save(str(destino)))
+    return destino
+
+
 def _opcoes_video(nicho: str) -> None:
     """As opções do vídeo do nicho viram variáveis de ambiente: o produzir.py (processo filho) lê. Um vídeo por vez,
     então não há dois jobs disputando as variáveis."""
@@ -370,6 +404,7 @@ def _opcoes_video(nicho: str) -> None:
     os.environ["MILIONERE_LEGENDA"] = "" if not c or c.legenda == "padrao" else c.legenda
     os.environ["MILIONERE_EFEITOS"] = "1" if c and c.efeitos else "0"
     os.environ["MILIONERE_VOLUME"] = "1" if c and c.volume else "0"
+    os.environ["MILIONERE_VOZ"] = c.voz if c and c.voz else ""
 
 
 _ATUAL: "Producao | Serie | None" = None  # o que o produtor está gerando agora (o vigia de cancelamento olha)
@@ -774,7 +809,7 @@ def estado() -> dict:
         feitos, falhas = hoje(c.nicho)
         livres = Pauta.objects.filter(nicho=c.nicho, usado=False, falhas__lt=2)
         canais.append({"nicho": c.nicho, "nome": cat[c.nicho]["nome"], "cor": cat[c.nicho]["cor"], "ativo": c.ativo,
-                       "meta_dia": c.meta_dia, "musica": c.musica, "imagens": c.imagens, "legenda": c.legenda, "efeitos": c.efeitos, "volume": c.volume,
+                       "meta_dia": c.meta_dia, "musica": c.musica, "imagens": c.imagens, "legenda": c.legenda, "efeitos": c.efeitos, "volume": c.volume, "voz": c.voz,
                        "modo": c.modo, "serie_max": c.serie_max,
                        "serie_cada": c.serie_cada, "hoje": feitos, "falhas_hoje": falhas,
                        "restantes": livres.count(), "formatos": formatos_do_nicho(c.nicho),
