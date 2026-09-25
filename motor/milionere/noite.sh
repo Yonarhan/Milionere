@@ -8,6 +8,8 @@ set -u
 RAIZ=/home/rafael/projects/milionere/milionere
 cd "$RAIZ" || exit 1
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin"  # cron não carrega o PATH do shell (claude CLI)
+export XDG_RUNTIME_DIR="/run/user/$(id -u)"  # systemd-run --user (teto de RAM do ComfyUI) precisa do barramento
+export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
 export MILIONERE_COMFY_MANTER=1  # ComfyUI fica no ar entre um vídeo e outro (não espera subir a cada vídeo)
 FIM_HORA=${FIM_HORA:-7}
 PY=motor/.venv-linux/bin/python
@@ -24,13 +26,14 @@ while :; do
   if [ "$h" -ge "$FIM_HORA" ] && [ "$h" -lt 20 ]; then break; fi  # janela: 20h até FIM_HORA
   echo "--- vídeo começou $(date +%T)"
   timeout 6000 "$PY" motor/milionere/lote.py --qtd 1 --musica ambas > "$D/ultimo_video.log" 2>&1
-  grep -E "===|LOTE|YouTube|NÃO subiu|DESISTI|FALHOU|AVISO|custo" "$D/ultimo_video.log" | cut -c1-300
+  cat "$D/ultimo_video.log" >> "$D/videos_$(date +%F).log"  # log inteiro: toda falha precisa ser analisável
+  grep -E "===|LOTE|YouTube|NÃO subiu|DESISTI|FALHOU|AVISO|custo|Traceback|Error" "$D/ultimo_video.log" | cut -c1-300
   if grep -q "hit your session limit\|api_error_status\": 429\|rate_limit" "$D/ultimo_video.log"; then
     echo "limite de uso do Claude às $(date +%T); esperando 30 min"
     sleep 1800
     continue
   fi
-  if grep -q "LOTE FIM.*: 0 arquivo" "$D/ultimo_video.log"; then
+  if grep -q "LOTE FIM.*: 0 arquivo" "$D/ultimo_video.log" || ! grep -q "LOTE FIM" "$D/ultimo_video.log"; then
     falhas=$((falhas + 1))
     echo "vídeo falhou ($falhas seguidas); esperando 10 min"
     [ "$falhas" -ge 4 ] && { echo "4 falhas seguidas: encerrando o turno"; break; }

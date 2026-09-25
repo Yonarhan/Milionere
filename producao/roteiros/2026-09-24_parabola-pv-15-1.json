@@ -1,0 +1,258 @@
+[
+  {
+    "slug": "parabola-pv-15-1",
+    "nicho": "gospel",
+    "formato": "parabola",
+    "tema": "pv-15-1",
+    "estilo": "cinema",
+    "epoca": "moderna",
+    "titulo": "O que Marcos fez calou o cliente furioso",
+    "cenario_en": "present-day Brazil, small phone repair shop, fluorescent and warm lighting",
+    "personagens": [
+      {
+        "id": "marcos",
+        "nome": "Marcos",
+        "nome_en": "Marcos",
+        "descricao_visual": "a man in his 30s, short black hair, clean-shaven, brown skin, light blue collared work shirt with a name tag",
+        "id_retrato": "parabola-pv-15-1__marcos"
+      },
+      {
+        "id": "cliente-furioso",
+        "nome": "Cliente furioso",
+        "nome_en": "Angry customer",
+        "descricao_visual": "a man in his 40s, short greying hair, stubble beard, pale skin, wrinkled grey t-shirt",
+        "id_retrato": "parabola-pv-15-1__cliente-furioso"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Um cliente furioso joga o celular quebrado no balcão da assistência técnica de Marcos.",
+        "ref": ""
+      },
+      {
+        "n": 2,
+        "evento": "Marcos sente vontade de revidar, mas respira fundo.",
+        "ref": ""
+      },
+      {
+        "n": 3,
+        "evento": "O homem grita mais alto e xinga Marcos.",
+        "ref": ""
+      },
+      {
+        "n": 4,
+        "evento": "Marcos pergunta, calmo, o que aconteceu com o celular.",
+        "ref": ""
+      },
+      {
+        "n": 5,
+        "evento": "A voz do homem treme e o grito para.",
+        "ref": ""
+      },
+      {
+        "n": 6,
+        "evento": "Ele confessa que perdeu o emprego naquela semana.",
+        "ref": ""
+      },
+      {
+        "n": 7,
+        "evento": "Marcos troca a peça de graça, sem cobrar nada.",
+        "ref": ""
+      }
+    ],
+    "versiculo": {
+      "ref": "Provérbios 15:1",
+      "texto": "A resposta branda desvia o furor, mas a palavra dura suscita a ira."
+    },
+    "cenas": [
+      {
+        "fala": "O cliente furioso jogou o celular na assistência.",
+        "evento": 1,
+        "personagens": [
+          "cliente-furioso",
+          "marcos"
+        ],
+        "rosto_visivel": true,
+        "imagem": "wide shot of an angry man slamming a broken phone on a counter, red face, calm store employee across counter, fluorescent light, smooth tile floor, shelves blurred behind",
+        "busca": "angry customer smartphone repair counter"
+      },
+      {
+        "fala": "Marcos quis revidar, mas respirou fundo.",
+        "evento": 2,
+        "personagens": [
+          "marcos"
+        ],
+        "rosto_visivel": true,
+        "imagem": "medium waist-up shot of a calm man behind a counter closing his eyes, taking a deep breath, soft indoor light, smooth counter, shelves blurred behind",
+        "busca": "man calm breathing counter"
+      },
+      {
+        "fala": "Mas o homem gritou mais alto e xingou.",
+        "evento": 3,
+        "personagens": [
+          "cliente-furioso"
+        ],
+        "rosto_visivel": true,
+        "imagem": "medium shot of an angry man shouting louder, mouth open, red face, standing in a store aisle, fluorescent light, smooth tile floor, shelves blurred behind",
+        "busca": "man yelling angry store"
+      },
+      {
+        "fala": "Marcos perguntou o que houve com o celular.",
+        "evento": 4,
+        "personagens": [
+          "marcos",
+          "cliente-furioso"
+        ],
+        "rosto_visivel": true,
+        "imagem": "wide shot of a calm employee speaking gently across a counter to a tense customer, soft warm light, smooth counter, shelves blurred behind, both standing apart",
+        "busca": "calm employee talking customer counter"
+      },
+      {
+        "fala": "A voz dele tremeu, e o grito sumiu.",
+        "evento": 5,
+        "personagens": [
+          "cliente-furioso"
+        ],
+        "rosto_visivel": true,
+        "imagem": "medium waist-up shot of a man with shoulders slumping, eyes downcast, quiet face replacing anger, standing in a store aisle, soft light, shelves blurred behind",
+        "busca": "man calming down quiet"
+      },
+      {
+        "fala": "Ele confessou: tinha perdido o emprego.",
+        "evento": 6,
+        "personagens": [
+          "cliente-furioso",
+          "marcos"
+        ],
+        "rosto_visivel": true,
+        "imagem": "wide shot of a tired man speaking quietly across a counter to an employee, dim warm light, empty store background, smooth floor",
+        "busca": "man confessing sad quiet store"
+      },
+      {
+        "fala": "Marcos trocou a peça de graça, sem cobrar.",
+        "evento": 7,
+        "personagens": [
+          "marcos",
+          "cliente-furioso"
+        ],
+        "rosto_visivel": true,
+        "imagem": "wide shot of an employee placing a repaired phone box on a counter, both men standing calmly apart, warm afternoon light through window, smooth counter surface",
+        "busca": "repair shop counter phone calm"
+      },
+      {
+        "fala": "Ele não respondeu ao grito, respondeu ao homem.",
+        "evento": 0,
+        "personagens": [
+          "marcos"
+        ],
+        "rosto_visivel": true,
+        "imagem": "medium waist-up shot of a calm man standing behind an empty counter, peaceful expression, soft warm light, smooth counter, shelves blurred behind",
+        "busca": "peaceful man counter calm"
+      },
+      {
+        "fala": "Provérbios quinze um: resposta branda desvia o furor.",
+        "evento": 0,
+        "personagens": [],
+        "rosto_visivel": false,
+        "imagem": "wide shot of an empty store counter at dusk, warm golden light through the window, calm quiet atmosphere, smooth floor",
+        "busca": "empty shop dusk warm light"
+      },
+      {
+        "fala": "Sua resposta pode apagar o fogo, ou atear.",
+        "evento": 0,
+        "personagens": [
+          "marcos"
+        ],
+        "rosto_visivel": true,
+        "imagem": "medium waist-up shot of a man looking thoughtfully forward, soft warm light, calm expression, smooth counter, shelves blurred behind",
+        "busca": "thoughtful man calm store"
+      },
+      {
+        "fala": "Escreve amém e se inscreve agora.",
+        "evento": 0,
+        "personagens": [
+          "marcos",
+          "cliente-furioso"
+        ],
+        "rosto_visivel": true,
+        "imagem": "wide shot of two men standing calmly apart in a warmly lit store, relaxed postures, evening light through window, smooth tile floor",
+        "busca": "two men calm store evening"
+      }
+    ],
+    "descricao": "\"A resposta branda desvia o furor, mas a palavra dura suscita a ira.\" (Provérbios 15:1). Um grito quase virou briga, até alguém escolher a calma. Você já apagou uma discussão só respondendo com calma? Leia Provérbios 15.",
+    "hashtags": [
+      "#biblia",
+      "#fé",
+      "#palavradedeus",
+      "#provérbios",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já segurou a raiva pra não piorar uma briga? Conta aqui embaixo 👇",
+    "tiktok_titulo": "O cliente gritava, e o funcionário só respirou fundo",
+    "tiktok_legenda": "A calma dele mudou tudo em segundos. Você já viu isso funcionar na vida real? #fé #biblia #provérbios #paznocaos",
+    "fontes": [
+      "Provérbios 15:1 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "O cliente furioso jogou o celular na assistência.",
+        "choque": 4,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Ele gritou tanto que assustou a loja toda.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Um grito quase custou o emprego de Marcos.",
+        "choque": 3,
+        "clareza": 3,
+        "imagem": 3
+      },
+      {
+        "texto": "Ele explodiu de raiva na frente de todos.",
+        "choque": 3,
+        "clareza": 3,
+        "imagem": 2
+      },
+      {
+        "texto": "O celular quebrado virou motivo de gritaria.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 3
+      }
+    ],
+    "gancho_tela": "A CALMA QUE DESARMOU TUDO",
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 4,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 4
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Stable Diffusion XL)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    }
+  }
+]

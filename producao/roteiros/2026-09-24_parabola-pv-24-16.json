@@ -1,0 +1,251 @@
+[
+  {
+    "slug": "parabola-pv-24-16",
+    "nicho": "gospel",
+    "formato": "parabola",
+    "tema": "pv-24-16",
+    "estilo": "cinema",
+    "epoca": "moderna",
+    "titulo": "Por que ele reabriu a loja pela 7ª vez? 🔑",
+    "cenario_en": "modern Brazil, present day, ordinary small city street with simple shops, natural daylight",
+    "personagens": [
+      {
+        "id": "marcos",
+        "nome": "Marcos",
+        "nome_en": "Marcos",
+        "descricao_visual": "a Brazilian man in his mid-30s, short black hair, light stubble, tan skin, wearing a plain grey t-shirt and dark jeans",
+        "id_retrato": "parabola-pv-24-16__marcos"
+      },
+      {
+        "id": "claudio",
+        "nome": "Cláudio",
+        "nome_en": "Claudio",
+        "descricao_visual": "a Brazilian man in his 40s, short greying hair, thin mustache, olive skin, wearing a faded blue polo shirt",
+        "id_retrato": "parabola-pv-24-16__claudio"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Marcos fecha a loja pela sétima vez.",
+        "ref": ""
+      },
+      {
+        "n": 2,
+        "evento": "Antes dela, seis negócios já tinham quebrado, sempre por falta de dinheiro.",
+        "ref": ""
+      },
+      {
+        "n": 3,
+        "evento": "O vizinho Cláudio diz pra Marcos desistir de vez.",
+        "ref": ""
+      },
+      {
+        "n": 4,
+        "evento": "Marcos fica sentado sozinho, olhando a placa de fechado.",
+        "ref": ""
+      },
+      {
+        "n": 5,
+        "evento": "No dia seguinte, ele pega o dinheiro guardado pro aluguel de casa e reabre a loja.",
+        "ref": ""
+      },
+      {
+        "n": 6,
+        "evento": "Ele reforma a fachada com o pouco que sobrou.",
+        "ref": ""
+      },
+      {
+        "n": 7,
+        "evento": "Aos poucos, os clientes começam a voltar.",
+        "ref": ""
+      },
+      {
+        "n": 8,
+        "evento": "A loja não fecha mais e vira a mais movimentada da região.",
+        "ref": ""
+      }
+    ],
+    "versiculo": {
+      "ref": "Provérbios 24:16",
+      "texto": "pois ainda que um homem justo caia sete vezes, ele se levanta de novo, mas os ímpios são derrubados pela calamidade."
+    },
+    "cenas": [
+      {
+        "fala": "Marcos fechou a loja pela sétima vez.",
+        "evento": 1,
+        "personagens": [
+          "marcos"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a Brazilian man in his mid-30s closing a small shop's metal shutter, sad expression, evening light, empty sidewalk, smooth concrete floor.",
+        "busca": "small shop closing sad owner"
+      },
+      {
+        "fala": "Cláudio disse: desiste, você já quebrou seis vezes.",
+        "evento": 3,
+        "personagens": [
+          "claudio",
+          "marcos"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium wide shot of a man gesturing while talking to another man outside a closed shop, daylight, flat sidewalk, ordinary Brazilian street.",
+        "busca": "two men talking street storefront"
+      },
+      {
+        "fala": "Sozinho, ficou olhando a placa de fechado.",
+        "evento": 4,
+        "personagens": [
+          "marcos"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a man sitting alone on a curb, staring at a closed sign on a shop door, soft afternoon light, smooth pavement.",
+        "busca": "man sitting curb sad street"
+      },
+      {
+        "fala": "Mas usou o dinheiro do aluguel e reabriu.",
+        "evento": 5,
+        "personagens": [
+          "marcos"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a man opening the front door of a small shop early morning, determined face, sunlight streaming in, empty street, clean tiled floor.",
+        "busca": "man opening shop door morning"
+      },
+      {
+        "fala": "E reformou a fachada com o pouco que sobrou.",
+        "evento": 6,
+        "personagens": [
+          "marcos"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Full body shot of a man painting a shop's wall with a roller, focused posture, bright daylight, clean sidewalk in front of the store.",
+        "busca": "man painting wall shop front"
+      },
+      {
+        "fala": "Aos poucos os clientes voltaram, e a loja ficou cheia.",
+        "evento": 7,
+        "personagens": [
+          "marcos"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a small shop with blurred customers outside, the owner standing proud in the doorway, bright daylight, clean street.",
+        "busca": "busy small shop street crowd blurred"
+      },
+      {
+        "fala": "Provérbios 24:16 diz: o justo cai sete vezes, e se levanta.",
+        "evento": 0,
+        "personagens": [
+          "marcos"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Waist-up shot of a man standing alone facing a bright sunrise over rooftops, calm posture, open sky, flat rooftop floor.",
+        "busca": "man sunrise rooftop hope"
+      },
+      {
+        "fala": "Sua queda não é o seu fim.",
+        "evento": 0,
+        "personagens": [
+          "marcos"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a man looking forward with quiet hope, standing on an empty street at dawn, soft golden light, smooth pavement.",
+        "busca": "man hopeful street dawn"
+      },
+      {
+        "fala": "Se já caiu, escreve amém.",
+        "evento": 0,
+        "personagens": [
+          "marcos"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a man smiling inside his small shop, warm light, clean tiled floor, simple wooden counter beside him.",
+        "busca": "man smiling small shop counter"
+      },
+      {
+        "fala": "Se inscreve pra não perder a próxima.",
+        "evento": 0,
+        "personagens": [
+          "marcos"
+        ],
+        "rosto_visivel": false,
+        "imagem": "Wide shot of a small shop's lit sign glowing at dusk, the owner standing in the open doorway, quiet street, smooth pavement.",
+        "busca": "small shop open sign night"
+      }
+    ],
+    "descricao": "\"Ainda que um homem justo caia sete vezes, ele se levanta de novo.\" — Provérbios 24:16\n\nMarcos perdeu tudo seis vezes antes de dar certo, e mesmo assim tentou de novo. Deus não julga sua queda, julga se você levanta. Já pensou em desistir de vez? Leia Provérbios 24.",
+    "hashtags": [
+      "#biblia",
+      "#fé",
+      "#proverbios",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Quantas vezes você já quis desistir de tudo? Conta aqui embaixo 👇",
+    "tiktok_titulo": "A loja fechou 6 vezes. Ele arriscou tudo na 7ª.",
+    "tiktok_legenda": "Marcos perdeu tudo 6 vezes e mesmo assim tentou de novo na 7ª. Você já pensou em desistir? #fé #biblia #superação #empreendedorismo",
+    "fontes": [
+      "Provérbios 24:16 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Marcos fechou a loja pela sétima vez.",
+        "choque": 3,
+        "clareza": 5,
+        "imagem": 4
+      },
+      {
+        "texto": "Sete quedas. Sete vezes ele levantou.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Ele quebrou seis vezes. A sétima mudou tudo.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 4
+      },
+      {
+        "texto": "Todo mundo mandou ele desistir.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Ele usou o dinheiro do aluguel pra reabrir a loja.",
+        "choque": 5,
+        "clareza": 4,
+        "imagem": 4
+      }
+    ],
+    "gancho_tela": "A SÉTIMA VEZ MUDOU TUDO",
+    "notas": {
+      "roteirista": {
+        "gancho": 4,
+        "clareza": 4,
+        "ritmo": 4,
+        "payoff": 4,
+        "precisao": 5,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Stable Diffusion XL)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    }
+  }
+]

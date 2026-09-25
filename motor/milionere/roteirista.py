@@ -119,7 +119,9 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
         "Quem age num milagre é Deus: diga isso, não atribua a ação a um objeto ou animal.\n"
         "- É UMA voz narrando: fala de personagem sempre com verbo ('Jesus disse: Venha!'), nunca 'Jesus: Venha!'. "
         "Conclusão sua ('nunca chegou ao fundo') também é fato novo: só diga o que o texto diz.\n"
-        "- `versiculo.texto` é copiado letra por letra da fonte (pode cortar com '...'). Na fala pode ser adaptado.",
+        "- `versiculo.texto` é copiado letra por letra da fonte (pode cortar com '...'). Na fala: se a frase traz a "
+        "referência junto ('Provérbios 15:1: ...'), use as palavras EXATAS da fonte, sem trocar sinônimo (o juiz reprova "
+        "'acende' no lugar de 'suscita'); se quiser adaptar, tire a referência e diga 'a Bíblia diz que...'.",
         f"# Personagens com aparência fixa (reuse o id e NÃO mude a descrição)\n{fichas}\n"
         f"Personagens esperados neste tema: {esperados}. Para quem não está na lista, crie id em minúsculas com hífen "
         "e uma descricao_visual em inglês bem específica (idade, cabelo, barba, pele, roupa), sem nome próprio.\n"

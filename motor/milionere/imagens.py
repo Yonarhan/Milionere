@@ -73,7 +73,11 @@ def garantir_comfy() -> subprocess.Popen | None:
         # Com o teto, o kernel mata só o ComfyUI (OOM) e o resto da máquina segue de pé.
         cmd = ["systemd-run", "--user", "--scope", "--quiet", "--collect", "-p", f"MemoryHigh={COMFY_RAM_HIGH}",
                "-p", f"MemoryMax={COMFY_RAM_MAX}", "-p", "MemorySwapMax=4G", *cmd]
-    proc = subprocess.Popen(cmd, cwd=COMFY, stdout=log, stderr=subprocess.STDOUT)
+    import os
+    env = dict(os.environ)
+    # cron não define o barramento do usuário e o systemd-run --user falhava calado (turno de 24/09 sem vídeo)
+    env.setdefault("XDG_RUNTIME_DIR", f"/run/user/{os.getuid()}")
+    proc = subprocess.Popen(cmd, cwd=COMFY, stdout=log, stderr=subprocess.STDOUT, env=env)
     for _ in range(180):
         if no_ar():
             return proc

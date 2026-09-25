@@ -1,0 +1,436 @@
+{
+  "etapas": [
+    {
+      "quando": "20:07:08",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 1,
+      "problemas": [
+        "o fechamento (2 últimas cenas) não pede a inscrição (frase nova, ligada ao tema)",
+        "as cenas contam os eventos fora de ordem: [2, 1, 2, 3, 4, 5, 6, 0, 0, 0]"
+      ],
+      "falas": [
+        "Ele chegou gritando. Ela não gritou.",
+        "Diego tinha acabado de perder o emprego.",
+        "Em casa, explodiu por causa de uma louça.",
+        "Renata quase gritou de volta.",
+        "Respirou fundo e falou calmo: conta pra mim.",
+        "Diego parou na hora e começou a chorar.",
+        "Contou que tinha medo de decepcionar ela.",
+        "Provérbios quinze, um: resposta branda desvia a ira.",
+        "Sua calma desarma o que a raiva quer destruir.",
+        "Se isso tocou você, escreve amém e segue esse perfil."
+      ]
+    },
+    {
+      "quando": "20:07:52",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 2,
+      "problemas": [
+        "o fechamento (2 últimas cenas) não pede a inscrição (frase nova, ligada ao tema)"
+      ],
+      "falas": [
+        "Uma palavra ia destruir aquele casamento.",
+        "Diego tinha perdido o emprego.",
+        "Chegou em casa gritando por causa de louça.",
+        "Renata quase gritou de volta.",
+        "Mas respirou fundo e falou calma: me conta.",
+        "Diego parou na hora e chorou.",
+        "Confessou medo de decepcionar ela.",
+        "Provérbios quinze um: resposta branda desvia a ira.",
+        "Sua calma pode desarmar a raiva de alguém.",
+        "Se isso te tocou, escreve amém.",
+        "E segue esse perfil pra mais histórias assim."
+      ]
+    },
+    {
+      "quando": "20:08:31",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 3,
+      "problemas": [
+        "o fechamento (2 últimas cenas) não pede a inscrição (frase nova, ligada ao tema)"
+      ],
+      "falas": [
+        "Uma palavra ia destruir aquele casamento.",
+        "Diego tinha perdido o emprego.",
+        "Chegou em casa gritando por causa de louça.",
+        "Renata quase gritou de volta.",
+        "Mas respirou fundo e falou calma: me conta.",
+        "Diego parou na hora e chorou.",
+        "Confessou medo de decepcionar ela.",
+        "Provérbios quinze um: resposta branda desvia a ira.",
+        "Sua calma pode desarmar a raiva de alguém.",
+        "Se isso te tocou, escreve amém.",
+        "Segue aqui pra aprender a responder assim."
+      ]
+    },
+    {
+      "quando": "20:09:25",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Uma palavra ia destruir aquele casamento.",
+        "Diego perdeu o emprego e chegou puto.",
+        "Gritou por causa de um prato na pia.",
+        "Renata quase gritou de volta, mas respirou fundo.",
+        "Falou calma: me conta o que houve.",
+        "Diego parou na hora e chorou.",
+        "Confessou que tinha medo de decepcionar ela.",
+        "Provérbios quinze um diz: resposta branda desvia a ira.",
+        "Sua calma pode desarmar a raiva de alguém hoje.",
+        "Escreve amém se isso já te tocou.",
+        "E se inscreve pra aprender a responder assim."
+      ]
+    },
+    {
+      "quando": "20:09:50",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Diego perde o emprego, descarrega a raiva em Renata, mas a calma dela o desarma e ele chora confessando medo, ilustrando que resposta branda acalma a ira.",
+      "erros_factuais": [
+        "Cena 8: cita o versículo como 'desvia a ira', mas a fonte diz 'desvia o furor' — troca a palavra da citação apresentada como texto bíblico."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 8: cita o versículo como 'desvia a ira', mas a fonte diz 'desvia o furor' — troca a palavra da citação apresentada como texto bíblico.",
+        "fidelidade (nota 3): Cena 8: citação do versículo alterada ('a ira' em vez de 'o furor'); corrija para citar literalmente 'a resposta branda desvia o furor'."
+      ]
+    },
+    {
+      "quando": "20:22:06",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Diego gritou bem na frente de todos.",
+        "Você estragou tudo, seu incompetente!",
+        "Marcos respirou fundo e não revidou.",
+        "Ele falou calmo: desculpa, vamos resolver.",
+        "A raiva de Diego caiu na hora.",
+        "Ninguém esperava ele chorar ali.",
+        "Diego contou que ia perder o emprego.",
+        "Marcos só escutou, sem julgar nada.",
+        "Provérbios quinze um: resposta branda desvia o furor.",
+        "Sua palavra pode acender ou apagar uma briga.",
+        "Se isso tocou você, escreve amém.",
+        "E se inscreve pra mais histórias assim."
+      ]
+    },
+    {
+      "quando": "20:22:29",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Diego humilha Marcos no trabalho, mas a resposta calma de Marcos desarma a raiva dele e revela que Diego está em crise por medo de perder o emprego, ilustrando que a resposta branda desvia o furor.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "20:31:22",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Marcos teve dois segundos pra decidir.",
+        "Um cliente gritou na bancada.",
+        "Marcos respirou fundo e falou baixinho.",
+        "O homem gritou mais alto e xingou Marcos.",
+        "Marcos perguntou, calmo, o que tinha acontecido.",
+        "A voz dele tremeu e o grito sumiu.",
+        "Ele confessou: tinha perdido o emprego.",
+        "Marcos trocou a peça de graça, sem cobrar.",
+        "Provérbios quinze, um: resposta branda desvia furor.",
+        "Sua resposta pode apagar o fogo ou atear.",
+        "Se você concorda, escreve amém.",
+        "Se inscreve e não perca a próxima história."
+      ]
+    },
+    {
+      "quando": "20:31:44",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 2,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Um técnico atende um cliente furioso com calma, descobre que ele estava desempregado, e conserta o aparelho de graça, ilustrando que a resposta branda acalma a ira.",
+      "erros_factuais": [],
+      "problemas": [
+        "gancho (nota 3): 'Dois segundos pra decidir' soa genérico e não entrega imediatamente o conflito (cliente gritando); inverta a ordem colocando o grito do cliente já na cena 1 para prender atenção mais rápido.",
+        "ritmo (nota 2): As cenas 1 a 8 são frases curtas soltas sem conectivos entre si, soando como lista de eventos e não uma história contada de corrida; adicione conectivos como 'mas', 'então', 'só que' ligando pelo menos 3 dessas cenas.",
+        "payoff (nota 3): O gancho promete uma decisão sob pressão de dois segundos, mas o clímax (confissão do desemprego + peça de graça) não fecha essa promessa específica de forma explícita; ajuste a cena 8 para remeter de volta ao gancho, algo como 'naqueles dois segundos ele tinha escolhido certo'."
+      ]
+    },
+    {
+      "quando": "20:33:06",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Um cliente gritou na cara de Marcos.",
+        "Ele tinha dois segundos, e respirou fundo.",
+        "Mas o homem gritou mais alto e xingou.",
+        "Marcos perguntou, calmo, o que tinha acontecido.",
+        "A voz dele tremeu, e o grito sumiu.",
+        "Ele confessou: tinha perdido o emprego.",
+        "Marcos trocou a peça de graça, sem cobrar.",
+        "Naqueles dois segundos, ele escolheu certo.",
+        "Provérbios quinze um: resposta branda desvia o furor.",
+        "Sua resposta pode apagar o fogo, ou atear.",
+        "Escreve amém e se inscreve agora."
+      ]
+    },
+    {
+      "quando": "20:33:31",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 4
+      },
+      "entendimento": "Um atendente mantém a calma diante de um cliente furioso e descobre que por trás da raiva havia desespero, e por isso o perdoa cobrando nada.",
+      "erros_factuais": [],
+      "problemas": [
+        "compreensao (nota 3): Cena 1: nunca se diz que Marcos trabalha numa assistência técnica nem o que ele conserta; some 'no balcão da assistência técnica' à cena 1 para o ouvinte situar a cena sem ver a tela.",
+        "compreensao (nota 3): Cena 4: 'o que tinha acontecido' é ambíguo (com o aparelho? com a vida dele?); troque por 'o que houve com o celular dele' para não confundir com a confissão da cena 6.",
+        "gancho (nota 3): Cena 1: 'gritou na cara' é genérico, não cria tensão específica; adicionar um detalhe concreto (ex.: 'jogou o celular quebrado no balcão e gritou') prenderia mais no primeiro segundo.",
+        "ritmo (nota 3): Cena 8: 'Naqueles dois segundos, ele escolheu certo' soa abstrata e desconectada do clímax (cena 7); ligue direto ao gesto, ex.: 'Ele não respondeu ao grito, respondeu ao homem'.",
+        "linguagem (nota 3): Cena 2: 'tinha dois segundos' soa artificial/roteirizado, ninguém fala assim no dia a dia; troque por algo como 'sentiu vontade de revidar, mas respirou fundo'."
+      ]
+    },
+    {
+      "quando": "20:34:36",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "O cliente furioso jogou o celular na assistência.",
+        "Marcos quis revidar, mas respirou fundo.",
+        "Mas o homem gritou mais alto e xingou.",
+        "Marcos perguntou o que houve com o celular.",
+        "A voz dele tremeu, e o grito sumiu.",
+        "Ele confessou: tinha perdido o emprego.",
+        "Marcos trocou a peça de graça, sem cobrar.",
+        "Ele não respondeu ao grito, respondeu ao homem.",
+        "Provérbios quinze um: resposta branda desvia o furor.",
+        "Sua resposta pode apagar o fogo, ou atear.",
+        "Escreve amém e se inscreve agora."
+      ]
+    },
+    {
+      "quando": "20:35:14",
+      "etapa": "camada2",
+      "ok": true,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 4
+      },
+      "entendimento": "Um técnico de celulares responde com calma a um cliente agressivo e descobre que ele tinha acabado de perder o emprego, mostrando que uma resposta branda acalma a raiva.",
+      "erros_factuais": [],
+      "problemas": []
+    },
+    {
+      "quando": "20:58:38",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 1,
+      "problemas": [
+        "roteiro tem 84 palavras; o formato pede 55 a 82"
+      ],
+      "falas": [
+        "Um homem furioso invadiu a oficina gritando.",
+        "Gritou que Carlos estragou o carro dele.",
+        "Carlos ficou calado, sem revidar.",
+        "Perguntou calmo: o que houve com você?",
+        "O homem contou que perdeu o emprego hoje.",
+        "A raiva foi caindo, e ele pediu desculpa.",
+        "Carlos consertou o carro sem cobrar nada.",
+        "Provérbios quinze um diz:",
+        "a resposta branda desvia o furor, mas a palavra dura suscita a ira.",
+        "Quando gritarem com você, a calma desarma a briga.",
+        "Se isso tocou você, escreve amém e se inscreve."
+      ]
+    },
+    {
+      "quando": "20:59:46",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Um homem furioso invadiu a oficina gritando.",
+        "Ele gritou que Carlos estragou seu carro.",
+        "Carlos ficou calado, sem revidar.",
+        "Perguntou calmo: o que houve?",
+        "O homem contou que perdeu o emprego.",
+        "A raiva caiu, e ele pediu desculpa.",
+        "Carlos consertou o carro sem cobrar.",
+        "Provérbios quinze um diz:",
+        "A calma desvia a raiva, a dureza a acende.",
+        "Quando gritarem com você, a calma desarma.",
+        "Se isso tocou você, escreve amém e se inscreve."
+      ]
+    },
+    {
+      "quando": "21:00:06",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 4
+      },
+      "entendimento": "Um mecânico responde com calma a um cliente furioso, descobre que ele estava desesperado por ter perdido o emprego, e a gentileza desarma a raiva e resolve o conflito.",
+      "erros_factuais": [],
+      "problemas": [
+        "fidelidade (nota 3): Cena 9 parafraseia o versículo ('a calma desvia a raiva, a dureza a acende') em vez de citar a frase real 'resposta branda' / 'palavra dura'; troque por algo mais próximo do texto, ex.: 'a resposta branda desvia o furor, a palavra dura acende a ira'."
+      ]
+    },
+    {
+      "quando": "21:01:05",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Um homem furioso invadiu a oficina gritando.",
+        "Ele gritou que Carlos estragou seu carro.",
+        "Carlos ficou calado, sem revidar.",
+        "Perguntou calmo: o que houve?",
+        "O homem contou que perdeu o emprego.",
+        "A raiva caiu, e ele pediu desculpa.",
+        "Carlos consertou o carro sem cobrar.",
+        "Provérbios quinze um diz:",
+        "A resposta branda desvia o furor, mas a palavra dura acende a ira.",
+        "Quando gritarem com você, a calma desarma.",
+        "Se isso tocou você, escreve amém e se inscreve."
+      ]
+    },
+    {
+      "quando": "21:01:22",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 5,
+        "gancho": 4,
+        "ritmo": 2,
+        "linguagem": 3,
+        "payoff": 3
+      },
+      "entendimento": "Um mecânico calmo desarma a fúria de um cliente sendo gentil, e por isso conserta o carro dele de graça.",
+      "erros_factuais": [
+        "Cena 9: o versículo é citado com a palavra 'acende' no lugar de 'suscita', divergindo do texto fonte apresentado como citação literal."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 9: o versículo é citado com a palavra 'acende' no lugar de 'suscita', divergindo do texto fonte apresentado como citação literal.",
+        "fidelidade (nota 3): Cena 9 cita o versículo trocando 'suscita' por 'acende', mudando a palavra do texto apresentado como citação exata; use 'suscita a ira' como na fonte.",
+        "ritmo (nota 2): Cenas 1 a 7 são frases curtas e soltas sem conectivos, soando como lista telegráfica em vez de história contada; ligue as cenas com 'mas', 'então', 'só que' etc, ex: cena 3-4 'Carlos ficou calado, sem revidar, e perguntou calmo o que houve.'",
+        "linguagem (nota 3): Frases como 'Ele gritou que Carlos estragou seu carro' e 'A raiva caiu, e ele pediu desculpa' soam relatadas/formais, não como fala natural; reescreva em tom mais coloquial de quem está contando um causo.",
+        "payoff (nota 3): A virada (cliente perdeu o emprego, se acalma, Carlos não cobra) é previsível e pouco explorada emocionalmente; reforce o contraste entre a fúria inicial e o gesto final de Carlos para dar mais impacto."
+      ]
+    },
+    {
+      "quando": "21:02:35",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Um homem furioso invadiu a oficina gritando.",
+        "Ele gritou que Carlos estragou seu carro.",
+        "Carlos ficou calado, sem revidar.",
+        "Perguntou calmo: o que houve?",
+        "O homem contou que perdeu o emprego.",
+        "A raiva caiu, e ele pediu desculpa.",
+        "Carlos consertou o carro sem cobrar.",
+        "Provérbios quinze um diz:",
+        "A resposta branda desvia o furor, a palavra dura acende a ira.",
+        "Quando gritarem com você, a calma desarma.",
+        "Se isso tocou você, escreve amém e se inscreve."
+      ]
+    },
+    {
+      "quando": "21:02:55",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Um mecânico responde com calma a um cliente furioso, o que acalma o cliente e ilustra que resposta branda desvia a ira.",
+      "erros_factuais": [
+        "Cena 9: a citação troca 'suscita a ira' por 'acende a ira', alterando o texto do versículo apresentado como citação literal."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 9: a citação troca 'suscita a ira' por 'acende a ira', alterando o texto do versículo apresentado como citação literal.",
+        "fidelidade (nota 3): Cena 9: o versículo é parafraseado ('acende a ira' em vez de 'suscita a ira'), o que soa como citação literal mas não é; usar a redação exata da fonte."
+      ]
+    }
+  ]
+}
