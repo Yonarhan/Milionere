@@ -1,0 +1,154 @@
+{
+  "etapas": [
+    {
+      "quando": "21:29:11",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Jogado num poço vazio pelos próprios irmãos.",
+        "José era o favorito, com uma túnica especial.",
+        "Os irmãos o odiaram e o venderam por prata.",
+        "No Egito, José foi preso injustamente.",
+        "Mas o Senhor estava com José, mesmo preso.",
+        "Ele interpretou sonhos, mas foi esquecido por anos.",
+        "Até que o Faraó o tirou da prisão e o fez governador.",
+        "Anos depois, José disse: sou eu, o irmão que vocês venderam!",
+        "Não se entristeçam: foi Deus quem me mandou pra preservar vidas.",
+        "Sua pior queda pode virar o degrau de Deus.",
+        "Do poço ao palácio, nada foi por acaso.",
+        "Escreve amém, e se inscreve."
+      ]
+    },
+    {
+      "quando": "21:29:49",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "José foi rejeitado e vendido pelos próprios irmãos, mas Deus usou cada queda até colocá-lo no poder do Egito para salvar sua família.",
+      "erros_factuais": [],
+      "problemas": [
+        "compreensao (nota 3): Cena 4: quem nunca ouviu a história não sabe por que José foi preso; acrescente 'acusado à toa pela mulher do seu patrão' para a prisão fazer sentido.",
+        "compreensao (nota 3): Cena 6: 'copeiro' surge do nada, sem explicar que é um companheiro de prisão; diga 'um colega de cela, copeiro do Faraó' para não soar como personagem novo sem vínculo."
+      ]
+    },
+    {
+      "quando": "21:31:19",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Jogado num poço pelos próprios irmãos.",
+        "José era favorito, com túnica especial.",
+        "Os irmãos o odiaram e venderam por prata.",
+        "No Egito, José foi preso, acusado à toa pela mulher do patrão.",
+        "Mesmo preso, José interpretou sonhos de um colega, copeiro do Faraó, que depois o esqueceu.",
+        "Até que o Faraó o tirou da prisão e o fez governador.",
+        "Anos depois, José disse: sou eu, o irmão que vocês venderam!",
+        "Não se entristeçam: foi Deus quem me mandou pra preservar vidas.",
+        "Sua queda pode virar o degrau de Deus.",
+        "Do poço ao palácio, nada foi por acaso.",
+        "Escreve amém, e se inscreve."
+      ]
+    },
+    {
+      "quando": "21:31:56",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 4,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "José, vendido pelos próprios irmãos por inveja, sofre no Egito mas acaba se tornando governador e perdoa quem o traiu, entendendo que Deus usou o mal para o bem.",
+      "erros_factuais": [],
+      "problemas": [
+        "compreensao (nota 3): Cena 6: falta o elo causal entre o copeiro esquecer de José (cena 5) e ele sair da prisão — quem ouve uma vez não entende por que ele foi promovido do nada; inserir 'até que o Faraó teve um sonho que só José decifrou' resolve."
+      ]
+    },
+    {
+      "quando": "21:33:46",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 3,
+      "problemas": [
+        "cena 6 com 17 palavras (máx. 14-16), divida: «O copeiro esqueceu dele, até o Faraó sonhar e só José decifrar, saindo da prisão para governar.»"
+      ],
+      "falas": [
+        "Jogado num poço pelos irmãos.",
+        "José era favorito, com túnica especial.",
+        "Os irmãos o odiaram e venderam por prata.",
+        "No Egito, acusado à toa pela mulher do patrão, José foi preso.",
+        "Na prisão, José interpretou o sonho de um colega, o copeiro.",
+        "O copeiro esqueceu dele, até o Faraó sonhar e só José decifrar, saindo da prisão para governar.",
+        "Anos depois, José disse: sou eu, o irmão que vocês venderam!",
+        "Não se entristeçam: foi Deus quem me mandou pra preservar vidas.",
+        "Sua queda pode virar o degrau de Deus.",
+        "Do poço ao palácio, nada foi por acaso.",
+        "Escreve amém, e se inscreve."
+      ]
+    },
+    {
+      "quando": "21:36:18",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Jogado num poço pelos próprios irmãos.",
+        "José era favorito, com túnica especial.",
+        "Os irmãos o odiaram e venderam por prata.",
+        "No Egito, acusado à toa pela mulher do patrão, José foi preso.",
+        "José interpretou o sonho de um colega de cela, copeiro do Faraó.",
+        "O copeiro esqueceu, até o Faraó sonhar e José decifrar.",
+        "Ele saiu da prisão e governou o Egito.",
+        "Anos depois, José disse: sou eu, o irmão que vocês venderam!",
+        "Não se entristeçam: Deus me mandou preservar vidas.",
+        "Sua queda pode virar degrau de Deus.",
+        "Do poço ao palácio, nada foi acaso.",
+        "Escreve amém, e se inscreve."
+      ]
+    },
+    {
+      "quando": "21:37:04",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 4
+      },
+      "entendimento": "José, vendido pelos próprios irmãos, foi escravizado e preso injustamente no Egito, mas por interpretar sonhos acabou governando o país e depois perdoou os irmãos, entendendo que Deus usou o mal para o bem.",
+      "erros_factuais": [],
+      "problemas": [
+        "gancho (nota 3): A cena 1 já entrega o evento do poço como fato consumado, reduzindo a tensão do paradoxo; reformular como pergunta/contradição (ex.: 'O irmão traído virou o mais poderoso do Egito') sem nomear o poço logo de cara.",
+        "ritmo (nota 3): Cenas 2 e 3 soam como lista de fatos soltos sem conectivo causal ('José era favorito... Os irmãos o odiaram...'); ligar com 'mas' ou 'por isso' para soar uma história contada, não tópicos.",
+        "linguagem (nota 3): Cena 10 ('Sua queda pode virar degrau de Deus') soa como frase de livro de autoajuda, não fala natural; trocar por algo mais coloquial como 'Se você tá caído, Deus pode te levantar também'."
+      ]
+    }
+  ]
+}

@@ -98,6 +98,8 @@ def main() -> None:
             break
         try:
             travados = {k for k, n in falhas().items() if n >= 2}
+            # tema de série (vários episódios, ex.: "José: do poço ao palácio" com 12 trechos) não cabe em 1 vídeo
+            travados |= {f"{fmt}:{t['id']}" for t in biblia.temas()[formatos[fmt]["catalogo"]] if t.get("serie")}
             tema = biblia.sortear(fmt, formatos[fmt]["catalogo"], pipeline.usados() | tentados | travados)
         except RuntimeError:
             permitidos = [f for f in permitidos if f != fmt]

@@ -75,6 +75,7 @@ def roteiro_validado(formato: dict, tema: dict, reg: Registro, correcoes: list[s
                      anterior: dict | None = None) -> dict | None:
     """correcoes/anterior: começa já reescrevendo (a série manda de volta a parte que o juiz da série apontou)."""
     melhor = None  # (pontos, roteiro, problemas)
+    melhor_notas: dict | None = None
     historico: list[str] = []  # erros de fato/compreensão já apontados: a reescrita não pode voltar a cometê-los
     for tentativa in range(1, MAX_REESCRITAS + 1):
         log(f"roteiro: tentativa {tentativa} (claude -p)")
@@ -101,9 +102,19 @@ def roteiro_validado(formato: dict, tema: dict, reg: Registro, correcoes: list[s
             # reescreve a partir da MELHOR versão até agora (uma reescrita ruim não vira base da próxima)
             correcoes, anterior = melhor[2] + historico, melhor[1]
             historico += [p for p in e2 if p.startswith("ERRO FACTUAL") or "compreensao" in p]
+            melhor_notas = notas if melhor[1] is r else melhor_notas
             continue
         r["_notas_juiz"] = notas
         return r
+    # 4 reescritas sem nota máxima: aproveita a melhor se o problema é só de estilo (sem erro de fato, nenhuma nota
+    # abaixo de 3, média >= 3.75). Jogar fora ~12 min de roteiro por "ritmo 3" travava o turno da noite (24/09);
+    # o dono revisa cada vídeo antes de publicar.
+    if melhor and melhor_notas and not any(p.startswith("ERRO FACTUAL") for p in melhor[2]) \
+            and min(melhor_notas.values()) >= 3 and sum(melhor_notas.values()) / len(melhor_notas) >= 3.75:
+        log(f"  aceito a melhor versão (só ressalvas de estilo): {melhor_notas}")
+        reg.add("camada2", True, aceito_com_ressalvas=melhor[2], notas=melhor_notas)
+        melhor[1]["_notas_juiz"] = melhor_notas
+        return melhor[1]
     return None
 
 
