@@ -334,6 +334,7 @@ def montar_tomadas(cenas, tempos, corte_max: float, pexels: Pexels, pasta: Path,
 
         escolha = [e for e in (cena.get("escolha") or []) if e in por_ref]  # escolhas órfãs viram busca automática
         if escolha:
+            entrou = []
             for k in range(partes):
                 frames = limites[k + 1] - limites[k]
                 ref = escolha[min(k, len(escolha) - 1)]
@@ -342,6 +343,7 @@ def montar_tomadas(cenas, tempos, corte_max: float, pexels: Pexels, pasta: Path,
                 if c["ref"] != ref:  # o crédito do post tem que ser o da imagem que entrou de verdade
                     cena["escolha"] = [c["ref"] if e == ref else e for e in cena["escolha"]]
                     por_ref[c["ref"]] = c
+                entrou.append(c["ref"])
                 n += 1
                 destino = pasta / f"tomada_{n:02d}.mp4"
                 if c["tipo"] == "video":
@@ -352,6 +354,7 @@ def montar_tomadas(cenas, tempos, corte_max: float, pexels: Pexels, pasta: Path,
                     animar_foto(origem, destino, frames, n)
                 tomadas.append({"provider": "local", "url": str(destino), "duration": max(1, math.ceil(frames / FPS)), "frames": frames})
                 relatorio.append(f"  {ini:5.1f}s–{fim:5.1f}s  cena {i:>2}.{k + 1}  {frames / FPS:4.1f}s  {ref}  «{cena['fala'][:50]}»")
+            cena["escolha"] = list(dict.fromkeys(entrou))  # a reserva que não entrou não vai para os créditos
             continue
 
         termos = [t.strip() for t in cena["busca"].split("|") if t.strip()]

@@ -97,6 +97,9 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, model
     if resp.stop_reason == "refusal":
         raise ErroAPI(f"{mid} recusou o pedido")
     if resp.stop_reason == "max_tokens":
+        if esforco != "low" and mid not in SEM_ESFORCO:
+            # a resposta foi cortada no meio (o modelo pensou/escreveu demais): tenta uma vez com esforço baixo
+            return chamar(prompt, schema, ler_arquivos_em, modelo, papel, esforco="low")
         raise ErroAPI(f"{mid} parou no limite de tokens")
     texto = next((b.text for b in resp.content if b.type == "text"), "")
     return json.loads(texto)
