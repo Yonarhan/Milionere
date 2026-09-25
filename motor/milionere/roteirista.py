@@ -156,7 +156,11 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
     if anterior and correcoes:
         partes.append("# REESCREVA\nSua versão anterior foi reprovada. Versão anterior:\n"
                       + json.dumps({k: anterior[k] for k in ("cenas", "eventos", "versiculo") if k in anterior}, ensure_ascii=False)
-                      + "\nCorrija TODOS estes problemas, sem criar outros:\n" + "\n".join(f"- {c}" for c in correcoes)
+                      + "\nCorrija estes problemas, sem criar outros:\n" + "\n".join(f"- {c}" for c in correcoes)
+                      # como no juiz geral do CEO (25/09): reescrita que refazia tudo trocava um defeito por outro
+                      + ("" if any("palavras" in c for c in correcoes) else
+                         "\n\nMexa só nas cenas apontadas: as outras ficam como estão. Não corte cenas nem encurte a "
+                         "história para corrigir; o que importa é a fala ficar boa e o vídeo continuar completo.")
                       + f"\n\nLIMITE RÍGIDO: {lo} a {hi} palavras no total (a versão anterior tinha "
                       + f"{sum(len(c['fala'].split()) for c in anterior['cenas'])}). Para cada palavra que acrescentar, corte "
                       "outra: junte cenas, tire adjetivos, troque frase explicativa por uma mais curta. Passar do limite = reprovado.")
