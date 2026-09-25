@@ -13,6 +13,7 @@ Nada de gerar imagem com IA: roda em PC fraco, sem GPU para Stable Diffusion/Flu
 
 import json
 import os
+import re
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
@@ -29,17 +30,25 @@ CENAS_POR_FOLHA = 6
 SCHEMA_ESCOLHA = {
     "type": "object", "additionalProperties": False, "required": ["escolhas"],
     "properties": {"escolhas": {"type": "array", "items": {
-        "type": "object", "additionalProperties": False, "required": ["cena", "candidato", "nova_busca"],
+        "type": "object", "additionalProperties": False, "required": ["cena", "candidato", "nota", "reserva", "nova_busca"],
         "properties": {"cena": {"type": "integer"},
                        "candidato": {"type": "integer", "description": "o N do rótulo cena.N; 0 se nenhum serve de verdade"},
-                       "nova_busca": {"type": "string", "description": "se candidato = 0: termo em inglês, concreto e "
-                                      "curto, para achar um VÍDEO de banco que mostre a cena; senão vazio"}}}}},
+                       "nota": {"type": "integer", "minimum": 0, "maximum": 3,
+                                "description": "o quanto o escolhido mostra a fala: 3 = a ação/coisa exata, 2 = o assunto "
+                                               "certo, 1 = só o mesmo tema, 0 = nada a ver"},
+                       "reserva": {"type": "integer", "description": "outro N que também mostra a fala (nota 2 ou 3), "
+                                   "para a 2ª tomada de uma fala longa; 0 se não há"},
+                       "nova_busca": {"type": "string", "description": "se nota < 2: 2 ou 3 buscas em inglês separadas "
+                                      "por |, cada uma com 2 a 4 palavras concretas mostrando a AÇÃO da fala; senão vazio"}}}}},
 }
+# nota mínima para aceitar a imagem sem tentar outra busca (2 = mostra o assunto da fala; 1 = só o tema)
+NOTA_ACEITA = 2
 # museu cataloga Jesus como "Christ": a busca por "Jesus" quase não acha pintura
 NOME_NO_MUSEU = {"jesus": "Christ", "maria": "Virgin Mary", "pedro": "Saint Peter", "paulo": "Saint Paul"}
 # desenho e ilustração no meio de foto real deixam o vídeo com cara de colagem (o 1º vídeo nativo pegou um cartum)
 NAO_REALISTA = ["cartoon", "comic", "illustration", "vector", "clipart", "clip art", "drawing", "sketch", "anime",
-                "3d render", "3d model", "icon", "logo", "infographic", "emoji", "mascot"]
+                "3d render", "3d model", "icon", "logo", "infographic", "emoji", "mascot",
+                "subscribe", "like button", "bell icon"]  # o fim do vídeo já tem o cartão INSCREVA-SE
 # vídeo de agência com apresentador, entrevista ou texto na tela (ex.: série "What's Up" da NASA)
 FALADOS = ["what's up", "whats up", "skywatching tips", "briefing", "interview", "press conference", "lecture",
            "webinar", "q&a", "explains", "explained", "tutorial"]
@@ -57,8 +66,9 @@ def termos_de_busca(r: dict) -> None:
     fichas = {p["id"]: p for p in r.get("personagens", [])}
     biblico = r["nicho"] == "gospel" and r.get("epoca", "biblica") == "biblica"
     for c in r["cenas"]:
-        busca = (c.get("busca") or "").split("|")[0].strip()
-        c.setdefault("foto", busca)
+        buscas = [b.strip() for b in (c.get("busca") or "").split("|") if b.strip()]
+        busca = buscas[0] if buscas else ""
+        c.setdefault("foto", "|".join(buscas[:2]))  # as 2 primeiras: mais candidatos que mostram a ação da fala
         if biblico:
             nomes = [NOME_NO_MUSEU.get(i, fichas.get(i, {}).get("nome_en") or fichas.get(i, {}).get("nome", ""))
                      for i in c.get("personagens", [])]
@@ -66,7 +76,7 @@ def termos_de_busca(r: dict) -> None:
             # pintura: quem aparece (como o museu chama) + o começo da busca ("Christ Saint Peter stormy sea")
             c.setdefault("arte", " ".join(nomes[:2] + busca.split()[:2]) or busca)
         elif r["nicho"] == "astronomia":
-            c.setdefault("arte", busca)
+            c.setdefault("arte", "|".join(buscas[:2]))
 
 
 def _limpar(cands: list[dict]) -> list[dict]:
@@ -87,6 +97,15 @@ def _ordenar(cands: list[dict], preset: dict, r: dict) -> list[dict]:
     return videos[:5] + fotos[:3] + videos[5:] + fotos[3:]
 
 
+def _titulo(c: dict) -> str:
+    """O título do candidato para o escolhedor ler: o da NASA diz "Mars' Ancient Ocean", coisa que a miniatura
+    pequena (ou preta, em vídeo sem prévia) não mostra. Slug do Pexels vira texto ("waves-crashing-123" -> "waves
+    crashing")."""
+    t = re.sub(r"[-_]+", " ", c.get("desc") or "")
+    t = re.sub(r"\s+\d{4,}\s*$", "", t).strip()
+    return f"{t[:70]} ({c['ref'].split(':')[0]})" if t else c["ref"].split(":")[0]
+
+
 def _escolher(r: dict, cenas: list[int], cache: dict, pasta: Path, rodada: int) -> dict[int, dict]:
     """Uma chamada ao Claude olhando as folhas das `cenas`. Devolve {cena: {"candidato": N, "nova_busca": ...}}."""
     folhas = []
@@ -102,15 +121,23 @@ def _escolher(r: dict, cenas: list[int], cache: dict, pasta: Path, rodada: int) 
             curadoria.folha_geral([r["cenas"][i - 1]], cache, destino, inicio=i)
             folhas.append(destino)
     lista = "\n".join(f"{i}. fala: «{r['cenas'][i - 1]['fala']}» · deveria mostrar: "
-                      f"{r['cenas'][i - 1].get('imagem') or r['cenas'][i - 1].get('busca', '')}" for i in cenas)
+                      f"{r['cenas'][i - 1].get('imagem') or r['cenas'][i - 1].get('busca', '')}\n"
+                      + "\n".join(f"   {i}.{j} {_titulo(x)}" for j, x in enumerate(cache.get(str(i), [])[:curadoria.POR_LINHA], 1))
+                      for i in cenas)
     biblico = r["nicho"] == "gospel" and r.get("epoca", "biblica") == "biblica"
     prompt = (
         f"Abra com a ferramenta Read as {len(folhas)} imagens: {', '.join(str(f) for f in folhas)}.\n"
         "Cada linha de uma folha é uma cena de um vídeo curto vertical (a fala narrada está em amarelo à esquerda). "
-        "As miniaturas da linha têm o rótulo 'cena.N' (F = foto ou pintura, V = vídeo).\n\n"
+        "As miniaturas da linha têm o rótulo 'cena.N' (F = foto ou pintura, V = vídeo). Abaixo, cada cena lista o "
+        "título de cada candidato: use a miniatura E o título juntos (título da NASA/ESA costuma dizer exatamente o "
+        "que o vídeo mostra). Miniatura preta = vídeo sem prévia: só escolha se o título mostrar a fala.\n"
+        "A cena 1 é o gancho: ela precisa da imagem mais forte e mais exata do vídeo.\n\n"
         "Para CADA cena, escolha a miniatura que mostra O QUE A FALA DIZ. Quem assiste precisa ver na imagem a ação "
         "ou a coisa narrada naquele segundo; imagem só 'do mesmo tema' deixa o vídeo desconexo.\n"
         "- o assunto certo: o animal, o planeta, a ação (gritar, pedir desculpa, afundar), o lugar;\n"
+        "- o VERBO da fala conta: 'as ondas avançam' pede onda grande avançando sobre a costa (mar calmo = nota 1); "
+        "'a cidade seria engolida' pede água invadindo rua (cidade seca = nota 1);\n"
+        "- dê a `nota` com honestidade: nota 1 faz o sistema buscar de novo, e isso é melhor que aceitar imagem fraca;\n"
         + ("- história bíblica: pintura da própria história ou cena de época; nada moderno, nenhum símbolo de outra "
            "religião;\n" if biblico else
            "- tudo com cara de FOTO/VÍDEO REAL: nada de desenho, pintura antiga, estátua ou ilustração;\n") +
@@ -118,8 +145,10 @@ def _escolher(r: dict, cenas: list[int], cache: dict, pasta: Path, rodada: int) 
         "- o vídeo todo com o mesmo clima visual (não misture estilos);\n"
         "- não use a mesma imagem (ou quase igual) em duas cenas;\n"
         "- empate: prefira vídeo (V), que tem movimento.\n"
-        "Se NENHUMA miniatura da linha mostra a fala de verdade, responda candidato 0 e escreva em `nova_busca` um termo "
-        "em inglês, curto e concreto, para achar um vídeo de banco que mostre a cena (ex.: 'angry boss shouting office').\n\n"
+        "Escolha sempre a melhor miniatura que houver (candidato 0 só se nenhuma tem nada a ver) e, quando a nota for "
+        "menor que 2, escreva em `nova_busca` 2 ou 3 buscas em inglês separadas por |, curtas e concretas, que mostrem "
+        "a ação (ex.: 'giant wave hitting coast | tsunami wave city | storm surge flooding street'). "
+        "Em `reserva`, outro N que também mostre a fala (serve quando a fala é longa e ganha 2 tomadas).\n\n"
         f"# O que cada cena precisa\n{lista}\n\nDevolva uma escolha por cena listada."
     )
     with medidor.etapa("curadoria"):
@@ -141,22 +170,35 @@ def curar(r: dict, log=print) -> dict:
     cache = {str(i): c for i, c in enumerate(cands, 1)}
     todas = [i for i, c in enumerate(cands, 1) if c]
     usados, escolhidas = set(), 0
+    fraca: dict[int, tuple[int, dict]] = {}  # cena -> (nota, candidato) da 1ª rodada, caso a 2ª não ache melhor
 
-    def aplicar(decisoes: dict[int, dict]) -> list[tuple[int, str]]:
+    def aplicar(decisoes: dict[int, dict], ultima: bool = False) -> list[tuple[int, str]]:
+        """Nota >= NOTA_ACEITA: fica. Abaixo disso: guarda como reserva e pede a 2ª rodada com a busca nova; na
+        última rodada fica a de maior nota entre as duas (melhor que a busca automática, que pega o 1º do Pexels)."""
         nonlocal escolhidas
         refazer = []
         for i, e in sorted(decisoes.items()):
             opcoes = cache[str(i)][:curadoria.POR_LINHA]
-            n = e["candidato"]
-            escolha = opcoes[n - 1] if 1 <= n <= len(opcoes) else None
-            if escolha and escolha["ref"] in usados:  # a mesma imagem em duas cenas: fica para a 2ª rodada
-                escolha = None
+
+            def pega(n):  # a mesma imagem em duas cenas não vale
+                return opcoes[n - 1] if 1 <= n <= len(opcoes) and opcoes[n - 1]["ref"] not in usados else None
+
+            escolha, nota = pega(e["candidato"]), e.get("nota", NOTA_ACEITA)
+            nova = e.get("nova_busca", "").strip()
+            if escolha and nota < NOTA_ACEITA and not ultima and nova:
+                fraca[i] = (nota, escolha)
+                refazer.append((i, nova))
+                continue
+            if ultima and i in fraca and fraca[i][1]["ref"] not in usados and (not escolha or fraca[i][0] > nota):
+                escolha = fraca[i][1]
             if escolha:
-                r["cenas"][i - 1]["escolha"] = [escolha["ref"]]
-                usados.add(escolha["ref"])
+                reserva = pega(e.get("reserva", 0))
+                refs = [escolha["ref"]] + ([reserva["ref"]] if reserva and reserva["ref"] != escolha["ref"] else [])
+                r["cenas"][i - 1]["escolha"] = refs
+                usados.update(refs)
                 escolhidas += 1
-            elif e.get("nova_busca", "").strip():
-                refazer.append((i, e["nova_busca"].strip()))
+            elif nova and not ultima:
+                refazer.append((i, nova))
         return refazer
 
     refazer = []
@@ -167,10 +209,14 @@ def curar(r: dict, log=print) -> dict:
         log(f"2ª rodada com buscas novas para as cenas {[i for i, _ in refazer]}")
         for i, termo in refazer:
             c = r["cenas"][i - 1]
-            novos = _ordenar(curadoria.candidatos_para({**c, "busca": termo, "foto": termo, "arte": ""}, preset), preset, r)
-            cache[str(i)] = [x for x in novos if x["ref"] not in usados] or cache[str(i)]
-            c["busca"] = termo  # a busca automática da montagem (se ainda sobrar sem escolha) usa o termo melhor
-        aplicar(_escolher(r, [i for i, _ in refazer], cache, pasta, 2))
+            arte = termo if r["nicho"] == "astronomia" else ""  # astronomia: a NASA também entra na busca nova
+            novos = _ordenar(curadoria.candidatos_para({**c, "busca": termo, "foto": termo, "arte": arte}, preset), preset, r)
+            novos = [x for x in novos if x["ref"] not in usados]
+            # a escolha fraca da 1ª rodada continua na lista (no fim), para a montagem achar o arquivo se ela ficar
+            guardada = [fraca[i][1]] if i in fraca and all(x["ref"] != fraca[i][1]["ref"] for x in novos) else []
+            cache[str(i)] = (novos + guardada) if novos else cache[str(i)]
+            c["busca"] = termo.split("|")[0].strip()  # a busca automática da montagem (se sobrar sem escolha)
+        aplicar(_escolher(r, [i for i, _ in refazer], cache, pasta, 2), ultima=True)
     (pasta / "candidatos.json").write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
     sem = [i for i, c in enumerate(r["cenas"], 1) if not c.get("escolha")]
     log(f"curadoria: {escolhidas} cenas escolhidas" + (f"; sem escolha (busca automática no Pexels): {sem}" if sem else ""))

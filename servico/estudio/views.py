@@ -102,8 +102,10 @@ def api_canal_acao(request):
             return JsonResponse({"erro": "Imagens: ia ou nativo."}, status=400)
         if "modo" in d and d["modo"] not in producao.MODOS:
             return JsonResponse({"erro": "Modo desconhecido."}, status=400)
+        if "legenda" in d and d["legenda"] not in ("padrao", "karaoke", "word_by_word"):
+            return JsonResponse({"erro": "Legenda desconhecida."}, status=400)
         limites = {"meta_dia": (0, 12), "serie_max": (2, 5), "serie_cada": (1, 20)}
-        for campo in ("ativo", "meta_dia", "musica", "imagens", "modo", "serie_max", "serie_cada"):
+        for campo in ("ativo", "meta_dia", "musica", "imagens", "modo", "serie_max", "serie_cada", "legenda", "efeitos", "volume"):
             if campo in d:
                 setattr(c, campo, max(limites[campo][0], min(limites[campo][1], int(d[campo]))) if campo in limites else d[campo])
         c.save()
@@ -127,6 +129,8 @@ def api_canal_acao(request):
         serie_max = max(0, min(5, int(d.get("serie_max") or 0)))  # 0 = vídeo único; 2 a 5 = série
         if not producao.enfileirar(d["nicho"], pauta, serie_max):
             return JsonResponse({"erro": "Acabaram os temas desse nicho: adicione na pauta."}, status=400)
+        if not producao.vivo():  # pedido manual: não espera alguém ligar o produtor
+            producao.ligar_produtor()
     elif acao in ("aprovar", "reprovar") and d.get("serie"):  # a série é revisada como um bloco só
         s = Serie.objects.get(pk=d["serie"])
         if acao == "aprovar":
@@ -195,6 +199,8 @@ def api_canal_acao(request):
     elif acao == "zerar_falhas":
         Produtor.objects.filter(pk=Produtor.get().pk).update(falhas_zeradas_em=timezone.now())
         Pauta.objects.filter(usado=False, falhas__gt=0).update(falhas=0)
+    elif acao == "iniciar_agora":
+        return JsonResponse({"ok": True, "msg": producao.iniciar_agora(d["id"])})
     elif acao == "cancelar":
         Producao.objects.filter(pk=d["id"], status=Producao.Status.FILA).delete()
         Serie.objects.filter(pk=d["id"], status=Producao.Status.FILA).delete()

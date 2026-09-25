@@ -83,7 +83,8 @@ def montar_tarefa(r: dict, preset: dict) -> tuple[dict, list[str]]:
         tarefa["video_terms"] = ", ".join(c["busca"].split("|")[0].strip() for c in r["cenas"])
     else:
         tarefa["video_terms"] = ", ".join(r["keywords"])
-    musica = escolher_musica(preset["bgm_prefixo"])
+    fixa = preset.get("bgm_fixa")  # opção: trilha fixa do canal (identidade); sem ela, sorteia como antes
+    musica = fixa if fixa and (MPT / "storage" / "bgm" / fixa).exists() else escolher_musica(preset["bgm_prefixo"])
     if musica:
         tarefa.update(bgm_type="custom", bgm_file=musica)
     else:
@@ -122,9 +123,11 @@ def rodar_cli(tarefas: list[dict], stop_at: str | None = None) -> dict:
     lotes = MPT / "storage" / "lotes"
     lotes.mkdir(parents=True, exist_ok=True)
     manifesto = lotes / f"lote_{datetime.now():%Y%m%d_%H%M%S_%f}.json"
-    # "karaoke" e "gancho_tela" são do render.py; o motor só conhece sentence/word_by_word
+    # "karaoke" e "gancho_tela" são do render.py; o motor só conhece sentence/word_by_word. O karaoke pede o tempo
+    # de CADA palavra (word_by_word): com o tempo da frase inteira, o horário da palavra era estimado pelo tamanho
+    # e a legenda descolava da voz (25/09)
     tarefas = [{k: v for k, v in t.items() if k != "gancho_tela"} |
-               ({"subtitle_display_mode": "sentence"} if t.get("subtitle_display_mode") == "karaoke" else {})
+               ({"subtitle_display_mode": "word_by_word"} if t.get("subtitle_display_mode") == "karaoke" else {})
                for t in tarefas]
     manifesto.write_text(json.dumps(tarefas, ensure_ascii=False, indent=2), encoding="utf-8")
     cmd = [str(PYTHON), "cli.py", "--batch-file", str(manifesto)]
@@ -226,7 +229,15 @@ def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, r
         inicio = datetime.now()
         duas = r.get("_duas_versoes")  # monta UMA vez sem música; a versão com música é só a mistura do áudio
         # cartão INSCREVA-SE do canal (preset do nicho) entra só no render, fora dos params do motor
-        p_render = {**tarefa, **{k: preset[k] for k in ("inscreva_canal", "inscreva_segundos") if k in preset}}
+        p_render = {**tarefa, **{k: preset[k] for k in ("inscreva_canal", "inscreva_segundos", "gancho_caixa") if k in preset}}
+        # opções do vídeo (painel /canal ou preset), desligadas por padrão: efeitos sonoros e volume padronizado
+        if _opcao("MILIONERE_EFEITOS", preset.get("efeitos_sonoros")):
+            import sons
+            p_render["_sfx"] = str(sons.trilha([ini for ini, _ in tempos[1:]], sum(t["frames"] for t in tomadas) / 30,
+                                               pasta_sync / "efeitos.wav"))
+            print(f"efeitos [{r['slug']}] whoosh em {len(tempos) - 1} trocas de cena + impacto no início")
+        if _opcao("MILIONERE_VOLUME", preset.get("volume_padrao")):
+            p_render["volume_padrao"] = True
         encoder = render.renderizar(
             [Path(t["url"]) for t in tomadas], sum(t["frames"] for t in tomadas), pasta_a / "audio.mp3",
             pasta_a / "subtitle.srt", None if duas else musica, p_render, pasta_sync, MPT / "resource" / "fonts", saida,
@@ -264,6 +275,12 @@ def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, r
         entregar(r, pasta_tarefa(item), so_audio=False)
 
 
+def _opcao(var: str, padrao_preset) -> bool:
+    """Opção ligada pelo painel (variável de ambiente "1"/"0") ou, sem ela, pelo preset do nicho."""
+    v = os.environ.get(var, "")
+    return v == "1" if v in ("0", "1") else bool(padrao_preset)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("arquivo")
@@ -285,6 +302,9 @@ def main() -> None:
         if r["nicho"] not in presets or r["nicho"].startswith("_"):
             sys.exit(f"nicho desconhecido em '{r['slug']}': {r['nicho']}")
         tarefa, avisos = montar_tarefa(r, presets[r["nicho"]])
+        if os.environ.get("MILIONERE_LEGENDA") in ("karaoke", "word_by_word", "sentence"):  # escolhida no painel
+            tarefa["subtitle_display_mode"] = os.environ["MILIONERE_LEGENDA"]
+            avisos.append(f"legenda: {tarefa['subtitle_display_mode']}")
         if args.sem_musica:
             tarefa["bgm_type"] = ""
             tarefa.pop("bgm_file", None)

@@ -17,6 +17,7 @@ import re
 import shutil
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -107,7 +108,9 @@ SCHEMA_SIMPLES = {
         "cenas": {"type": "array", "items": {"type": "object", "additionalProperties": False,
                   "required": ["fala", "busca", "imagem"], "properties": {
                       "fala": {"type": "string", "description": "1 frase curta em pt-BR, 3 a 14 palavras"},
-                      "busca": {"type": "string", "description": "em inglês: termo concreto de vídeo de banco (Pexels)"},
+                      "busca": {"type": "string", "description": "em inglês: 2 ou 3 buscas de vídeo de banco separadas "
+                                "por |, cada uma com 2 a 4 palavras concretas que mostram a AÇÃO da fala "
+                                "(fala 'as ondas avançam' -> 'giant wave hitting coast | tsunami wave | storm surge')"},
                       "imagem": {"type": "string", "description": "em inglês: prompt de imagem da cena, até 30 palavras"}}}},
         "descricao": {"type": "string"}, "hashtags": {"type": "array", "items": {"type": "string"}},
         "comentario_fixado": {"type": "string"},
@@ -129,6 +132,9 @@ SCHEMA_JUIZ = {
     },
 }
 MAX_TENTATIVAS = 3
+# teto de tempo do roteiro (escrever + juiz + reescritas): passou, não começa outra tentativa e vai a melhor versão,
+# com o que o juiz apontou nos avisos da revisão. O juiz ajuda, mas não pode prender o vídeo.
+TEMPO_MAX_ROTEIRO = 240
 
 
 def _preset(nicho: str) -> dict:
@@ -188,11 +194,18 @@ def _roteiro_generico(entrada: dict, log) -> dict:
         "TikTok: título próprio até 70 caracteres e legenda curta com uma pergunta e 3 a 5 hashtags do nicho, sem #shorts.",
     ])
     melhor, correcoes = None, []
+    comeco = time.time()
     for tentativa in range(1, MAX_TENTATIVAS + 1):
+        if melhor and time.time() - comeco > TEMPO_MAX_ROTEIRO:
+            log("roteiro", f"roteiro passou de {TEMPO_MAX_ROTEIRO // 60} min: segue com a melhor versão, sem nova tentativa")
+            break
         prompt = base
         if correcoes:
-            prompt += ("\n\n# REESCREVA corrigindo TODOS estes problemas (sem criar outros)\n"
-                       + "\n".join(f"- {c}" for c in correcoes) + "\n\nVersão anterior:\n"
+            prompt += ("\n\n# REESCREVA corrigindo estes problemas (sem criar outros)\n"
+                       + "\n".join(f"- {c}" for c in correcoes)
+                       + "\n\nMexa só nas cenas apontadas: as outras ficam como estão. Não corte cenas nem encurte a "
+                       "história para corrigir; o que importa é a fala ficar boa e o vídeo continuar completo."
+                       + "\n\nVersão anterior:\n"
                        + json.dumps([c["fala"] for c in melhor[0]["cenas"]], ensure_ascii=False))
         log("roteiro", f"escrevendo (tentativa {tentativa})")
         with medidor.etapa("roteiro"):
@@ -215,7 +228,7 @@ def _roteiro_generico(entrada: dict, log) -> dict:
             return {**r, "_notas_juiz": notas, "_tentativas": tentativa}
         correcoes = erros
     r, notas, _ = melhor
-    return {**r, "_notas_juiz": notas, "_tentativas": MAX_TENTATIVAS, "_avisos": correcoes}
+    return {**r, "_notas_juiz": notas, "_tentativas": tentativa, "_avisos": correcoes}
 
 
 def gerar_roteiro(entrada: dict, log) -> dict:

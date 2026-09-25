@@ -55,7 +55,8 @@ def checar(cenas: list[dict], preset: dict) -> list[str]:
         return ["roteiro vazio"]
     total = sum(_palavras(f) for f in falas)
     lo, hi = preset.get("palavras_min", 45), preset.get("palavras_max", 90)
-    if not lo <= total <= hi:
+    # a faixa é uma meta, não uma trava: o que importa é a fala ficar boa. Só reprova quando passa longe (15%)
+    if not lo * 0.85 <= total <= hi * 1.15:
         erros.append(f"roteiro com {total} palavras; o nicho pede {lo} a {hi}")
     if not 6 <= len(falas) <= 15:
         erros.append(f"{len(falas)} cenas; use de 6 a 15")

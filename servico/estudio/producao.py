@@ -319,7 +319,17 @@ def _resultado(videos: list[Path]) -> dict:
             "videos": [{"nome": p.name, "url": _url(p), "variante": "sem" if "_sem-musica" in p.stem else "com"} for p in videos]}
 
 
+def _opcoes_video(nicho: str) -> None:
+    """As opções do vídeo do nicho viram variáveis de ambiente: o produzir.py (processo filho) lê. Um vídeo por vez,
+    então não há dois jobs disputando as variáveis."""
+    c = Canal.objects.filter(nicho=nicho).first()
+    os.environ["MILIONERE_LEGENDA"] = "" if not c or c.legenda == "padrao" else c.legenda
+    os.environ["MILIONERE_EFEITOS"] = "1" if c and c.efeitos else "0"
+    os.environ["MILIONERE_VOLUME"] = "1" if c and c.volume else "0"
+
+
 def executar_qualquer(item: "Producao | Serie") -> None:
+    _opcoes_video(item.nicho)
     (executar_serie if isinstance(item, Serie) else executar)(item)
 
 
@@ -500,12 +510,14 @@ def executar_serie(s: Serie) -> None:
 # ------------------------------------------------------------------ o processo
 
 def _matar_filhos() -> None:
-    """Derruba os processos que o produtor abriu (claude -p, produzir.py, ffmpeg), com os filhos deles."""
+    """Derruba os processos que o produtor abriu (claude -p, produzir.py, ffmpeg), com os filhos deles. Poupa o
+    conhost (o console do próprio produtor): matá-lo fazia todo claude -p seguinte sair na hora sem escrever nada."""
     eu = os.getpid()
     try:
         if os.name == "nt":
             saida = subprocess.run(["powershell", "-NoProfile", "-Command",
-                                    f"(Get-CimInstance Win32_Process -Filter 'ParentProcessId={eu}').ProcessId"],
+                                    f"(Get-CimInstance Win32_Process -Filter 'ParentProcessId={eu}' | Where-Object {{ "
+                                    f"$_.Name -notin 'conhost.exe','powershell.exe' }}).ProcessId"],
                                    capture_output=True, text=True, timeout=30).stdout.split()
             for pid in saida:
                 subprocess.run(["taskkill", "/F", "/T", "/PID", pid], capture_output=True)
@@ -570,7 +582,11 @@ def rodar(uma_vez: bool = False, log=print) -> None:
             if uma_vez:
                 log("nada para gerar agora (metas cumpridas, pausado ou em descanso)")
                 return
-            time.sleep(30)
+            for _ in range(10):  # espera 30 s, mas acorda em até 3 s se pedirem um vídeo no painel ("iniciar agora")
+                time.sleep(3)
+                if not Produtor.get().pausado and (Producao.objects.filter(status=Producao.Status.FILA, serie=None).exists()
+                                                   or Serie.objects.filter(status=Producao.Status.FILA).exists()):
+                    break
     finally:
         parar.set()
         try:
@@ -582,6 +598,26 @@ def rodar(uma_vez: bool = False, log=print) -> None:
 
 
 # ------------------------------------------------------------------ painel
+
+def iniciar_agora(item_id) -> str:
+    """Passa o pedido da fila para a frente de todos e liga o produtor se estiver parado. O produtor faz um vídeo por
+    vez: se já tem um gerando, este é o próximo, sem descanso entre os dois."""
+    item = (Producao.objects.filter(pk=item_id, status=Producao.Status.FILA).first()
+            or Serie.objects.filter(pk=item_id, status=Producao.Status.FILA).first())
+    if not item:
+        return "Esse vídeo não está mais na fila."
+    primeiros = [x for x in (Producao.objects.filter(status=Producao.Status.FILA).order_by("criado").first(),
+                             Serie.objects.filter(status=Producao.Status.FILA).order_by("criado").first()) if x]
+    frente = min(x.criado for x in primeiros)
+    type(item).objects.filter(pk=item.pk).update(criado=frente - timedelta(seconds=1))
+    if not vivo():
+        ligar_produtor()
+        return "Ligando o produtor: começa em alguns segundos"
+    if Produtor.get().pausado:
+        return "Está na frente da fila, mas o produtor está pausado: despause para começar"
+    if Producao.objects.filter(status=Producao.Status.GERANDO).exists() or Serie.objects.filter(status=Producao.Status.GERANDO).exists():
+        return "Já tem um vídeo gerando: este é o próximo, logo em seguida"
+    return "Começando em alguns segundos"
 
 def vivo() -> bool:
     p = Produtor.get()
@@ -683,7 +719,8 @@ def estado() -> dict:
         feitos, falhas = hoje(c.nicho)
         livres = Pauta.objects.filter(nicho=c.nicho, usado=False, falhas__lt=2)
         canais.append({"nicho": c.nicho, "nome": cat[c.nicho]["nome"], "cor": cat[c.nicho]["cor"], "ativo": c.ativo,
-                       "meta_dia": c.meta_dia, "musica": c.musica, "imagens": c.imagens, "modo": c.modo, "serie_max": c.serie_max,
+                       "meta_dia": c.meta_dia, "musica": c.musica, "imagens": c.imagens, "legenda": c.legenda, "efeitos": c.efeitos, "volume": c.volume,
+                       "modo": c.modo, "serie_max": c.serie_max,
                        "serie_cada": c.serie_cada, "hoje": feitos, "falhas_hoje": falhas,
                        "restantes": livres.count(), "formatos": formatos_do_nicho(c.nicho),
                        "aviso": "Este PC não tem o ComfyUI: os temas do catálogo bíblico falham na etapa das imagens. "

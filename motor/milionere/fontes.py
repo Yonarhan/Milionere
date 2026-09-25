@@ -6,6 +6,8 @@
 - pexels / pixabay: vídeos de banco (campo "busca" da cena)
 - wikimedia / met: pinturas e fotos em DOMÍNIO PÚBLICO (campo "arte" da cena) — ótimo para histórias bíblicas
 - nasa: imagens reais do espaço, domínio público (campo "arte" da cena) — astronomia
+- nasa_svs: animações científicas da NASA (buraco negro, Sol, galáxia), domínio público (campo "busca") — astronomia
+- nasa_epic: a Terra inteira fotografada todo dia pela EPIC, domínio público (campo "arte", só se falar da Terra)
 - cleveland: pinturas de museu em domínio público (CC0), sem chave — gospel (campo "arte")
   (o Art Institute of Chicago saiu em 24/09: as imagens ficam atrás do desafio anti-robô da Cloudflare, 403 sempre)
 - openverse: fotos CC0 / domínio público / CC-BY de vários acervos (Flickr, museus), sem chave (campo "foto")
@@ -14,6 +16,7 @@ Todas liberam uso comercial; as CC-BY exigem crédito, que vai no campo "credito
 """
 
 import json
+import threading
 import tomllib
 import urllib.parse
 import urllib.request
@@ -22,13 +25,28 @@ from pathlib import Path
 UA = {"User-Agent": "roteirista-shorts/1.0 (personal non-commercial video tool)"}
 
 
+# a Wikimedia pede um pedido por vez: as 4 cenas buscando juntas davam 429 (muitos pedidos) em quase toda busca
+_UM_POR_VEZ = {"commons.wikimedia.org": (threading.Lock(), 0.6)}  # host -> (fila, intervalo mínimo em s)
+_ULTIMO: dict[str, float] = {}
+
+
 def _json(url: str, headers: dict | None = None) -> dict:
-    """GET com JSON. Resposta 429 (muitos pedidos, comum no Wikimedia em paralelo): espera e tenta de novo."""
+    """GET com JSON. Resposta 429 (muitos pedidos): espera e tenta de novo. Hosts em _UM_POR_VEZ vão em fila única."""
     import time
     import urllib.error
+    host = urllib.parse.urlsplit(url).hostname or ""
+    fila, intervalo = _UM_POR_VEZ.get(host, (None, 0))
     for tentativa in range(3):
         req = urllib.request.Request(url, headers={**UA, **(headers or {})})
         try:
+            if fila:
+                with fila:
+                    time.sleep(max(0.0, _ULTIMO.get(host, 0) + intervalo - time.time()))
+                    try:
+                        with urllib.request.urlopen(req, timeout=30) as r:
+                            return json.load(r)
+                    finally:
+                        _ULTIMO[host] = time.time()
             with urllib.request.urlopen(req, timeout=30) as r:
                 return json.load(r)
         except urllib.error.HTTPError as e:
@@ -207,9 +225,51 @@ def inaturalist(termo: str, chaves: dict, n: int = 6) -> list[dict]:
     return saida[:n]
 
 
+def nasa_svs(termo: str, chaves: dict, n: int = 4) -> list[dict]:
+    """NASA Scientific Visualization Studio: animações científicas (buraco negro, Sol, galáxia...), domínio público.
+    Só as 'Visualization' (animação pura, sem narração nem texto na tela, boa para fundo)."""
+    dados = _json("https://svs.gsfc.nasa.gov/api/search/?" + urllib.parse.urlencode({"search": termo, "limit": 25}))
+    saida = []
+    for res in dados.get("results", []):
+        if res.get("result_type") != "Visualization" or len(saida) >= n:
+            continue
+        try:
+            item = _json(f"https://svs.gsfc.nasa.gov/api/{res['id']}")
+        except Exception:
+            continue
+        videos, thumb = [], None
+        for g in item.get("media_groups", []):
+            for it in g.get("items", []):
+                ins = it.get("instance") or {}
+                url, w = ins.get("url") or "", ins.get("width") or 0
+                if ins.get("media_type") == "Movie" and url.endswith(".mp4") and 720 <= w <= 1920:
+                    videos.append((w, url))
+                elif ins.get("media_type") == "Image" and not thumb and 200 <= w <= 1024:
+                    thumb = url
+        if videos:
+            saida.append({"ref": f"svs:{res['id']}", "tipo": "video", "thumb": thumb or (item.get("main_image") or {}).get("url", ""),
+                          "link": max(videos)[1], "dur": 10, "desc": (item.get("title") or "")[:80],
+                          "credito": f"{item.get('title', '')}: NASA's Scientific Visualization Studio"})
+    return saida
+
+
+def nasa_epic(termo: str, chaves: dict, n: int = 3) -> list[dict]:
+    """NASA EPIC: a Terra inteira fotografada todo dia a 1,5 milhão de km (DSCOVR), domínio público."""
+    if not any(w in termo.lower() for w in ("earth", "terra", "planet", "globe", "blue marble")):
+        return []
+    saida = []
+    for o in _json("https://epic.gsfc.nasa.gov/api/natural")[:n]:
+        d = o["date"][:10].replace("-", "/")
+        base = f"https://epic.gsfc.nasa.gov/archive/natural/{d}"
+        saida.append({"ref": f"epic:{o['identifier']}", "tipo": "foto", "thumb": f"{base}/thumbs/{o['image']}.jpg",
+                      "link": f"{base}/jpg/{o['image']}.jpg", "desc": f"Terra vista pela EPIC em {o['date'][:10]}",
+                      "credito": "NASA EPIC Team (DSCOVR)"})
+    return saida
+
+
 FONTES = {"pexels": pexels, "pixabay": pixabay, "wikimedia": wikimedia, "met": met, "nasa": nasa,
           "pixabay_foto": pixabay_foto, "pexels_foto": pexels_foto, "nasa_video": nasa_video,
-          "cleveland": cleveland, "openverse": openverse, "inaturalist": inaturalist}
+          "cleveland": cleveland, "nasa_svs": nasa_svs, "nasa_epic": nasa_epic, "openverse": openverse, "inaturalist": inaturalist}
 
 
 def buscar_candidatos(cena: dict, fontes_video: list[str], fontes_arte: list[str], config: Path,

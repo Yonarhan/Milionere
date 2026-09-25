@@ -88,6 +88,12 @@ details.pauta summary{cursor:pointer;font-weight:600;font-size:14px}
 .pauta li{margin:3px 0}
 .pauta li small{color:var(--muted)}
 .pauta li .x{border:0;background:none;color:var(--muted);cursor:pointer;padding:0 4px}
+.opcoes{margin-top:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--ground);display:grid;gap:8px}
+.op{display:grid;grid-template-columns:110px auto;gap:4px 10px;align-items:center}
+.op-nome{font-size:13px;font-weight:600}
+.op .seg button{white-space:nowrap}
+.op-dica{grid-column:2;font-size:12px;color:var(--muted)}
+@media (max-width:600px){.op{grid-template-columns:1fr}.op-dica{grid-column:1}}
 .pauta form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;margin-top:6px}
 .pauta form select{grid-column:1/-1}
 
@@ -99,6 +105,9 @@ details.pauta summary{cursor:pointer;font-weight:600;font-size:14px}
 @keyframes pulse{50%{opacity:.45}}
 @media (prefers-reduced-motion:reduce){.etapa.agora,.bar.loading i{animation:none}.bar i{transition:none}}
 pre.log{margin:0;max-height:260px;overflow:auto;background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:10px;font:12px/1.5 var(--mono);white-space:pre-wrap}
+.postbox{display:grid;gap:8px;margin-top:10px;padding:10px 12px;border:1px solid var(--line,#ccc3);border-radius:10px}
+.postcampo pre{margin:4px 0 0;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:14px}
+.postcampo .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .fila{display:grid;gap:6px;margin-top:10px}
 .fila div{display:flex;gap:8px;align-items:center;font-size:14px}
 
@@ -202,6 +211,11 @@ function renderStatus(){
   $("#avisoProdutor").innerHTML = p.vivo ? "" : `<p class="aviso">O produtor não está rodando: as metas só andam com ele ligado. Clique em <b>Ligar produtor</b> (o log fica em <code>servico/media/produtor.log</code>).</p>`;
 }
 
+function opcao(c,campo,nome,valores,dica){
+  return `<div class="op"><span class="op-nome">${nome}</span><span class="seg" role="group" aria-label="${nome}">${valores.map(([v,r])=>
+    `<button data-a="opcao" data-campo="${campo}" data-v="${v}" aria-pressed="${c[campo]===v}">${r}</button>`).join("")}</span>
+    <span class="op-dica">${esc(dica)}</span></div>`;
+}
 function renderCanais(){
   const box=$("#canais");
   if(dentroDeCampo(box) || !mudou("canais",E.canais)) return;
@@ -222,11 +236,18 @@ function renderCanais(){
       <div class="row" style="margin-top:12px">
         <button class="btn small primary" data-a="gerar">Gerar um agora</button>
         <button class="btn small" data-a="gerarSerie" title="Uma história em até ${c.serie_max} partes">Gerar série agora</button>
-        <span class="seg" role="group" aria-label="Música">${["com","sem"].map(m=>`<button data-a="musica" data-v="${m}" aria-pressed="${c.musica===m}">${m==="com"?"com música":"sem música"}</button>`).join("")}</span>
       </div>
-      <div class="row" style="margin-top:8px">
-        <span class="small">Imagens</span>
-        <span class="seg" role="group" aria-label="Imagens">${[["ia","geradas por IA"],["nativo","banco grátis"]].map(([v,n])=>`<button data-a="imagens" data-v="${v}" aria-pressed="${c.imagens===v}" title="${v==="nativo"?"Fotos, pinturas de museu e vídeos grátis (Pexels, Pixabay, NASA, museus, Openverse, iNaturalist) montados no ffmpeg: roda em PC fraco":"Imagens geradas por IA (ComfyUI, Gemini ou Cloudflare)"}">${n}</button>`).join("")}</span>
+      <div class="opcoes" role="group" aria-label="Opções do vídeo">
+        <div class="label">Opções do vídeo</div>
+        ${opcao(c,"imagens","Imagens",[["ia","geradas por IA"],["nativo","banco grátis"]],
+          c.imagens==="nativo"?"Fotos, pinturas e vídeos livres (NASA, Pexels, museus). Roda em PC fraco.":"A IA gera cada cena (precisa de GPU ou da API).")}
+        ${opcao(c,"musica","Música",[["com","com música"],["sem","sem música"]],
+          c.musica==="sem"?"Pro TikTok: você põe um som em alta no app.":"Trilha ambiente baixinha sob a voz.")}
+        ${opcao(c,"legenda","Legenda",[["padrao","padrão"],["karaoke","destaque"],["word_by_word","palavra"]],
+          c.legenda==="karaoke"?"2 ou 3 palavras por vez, a falada em amarelo (estilo viral).":c.legenda==="word_by_word"?"Uma palavra por vez, bem grande.":"Como o nicho já usava.")}
+        ${opcao(c,"volume","Volume",[[false,"como sai"],[true,"padrão -14 LUFS"]],
+          c.volume?"Mesmo volume do resto do feed (TikTok, YouTube, Instagram).":"Sem ajuste no volume final.")}
+      </div>
       <div class="modo">
         <div class="row"><span class="small">Automático gera</span>
           <span class="seg" role="group" aria-label="O que o automático gera">${[["unitario","vídeo único"],["serie","série"],["misto","misto"]].map(([m,n])=>`<button data-a="modo" data-v="${m}" aria-pressed="${c.modo===m}">${n}</button>`).join("")}</span></div>
@@ -254,6 +275,7 @@ function renderCanais(){
       if(a==="ativo") acao({acao:"canal",nicho:n,ativo:!c.ativo}, !c.ativo?`${c.nome}: automático ligado`:`${c.nome}: automático desligado`);
       if(a==="menos") acao({acao:"canal",nicho:n,meta_dia:c.meta_dia-1});
       if(a==="mais") acao({acao:"canal",nicho:n,meta_dia:c.meta_dia+1});
+      if(a==="opcao"){const v=b.dataset.v; acao({acao:"canal",nicho:n,[b.dataset.campo]: v==="true"?true:v==="false"?false:v},"Opção do vídeo ajustada")}
       if(a==="musica") acao({acao:"canal",nicho:n,musica:b.dataset.v},"Música ajustada");
       if(a==="imagens") acao({acao:"canal",nicho:n,imagens:b.dataset.v},b.dataset.v==="nativo"?"Imagens: banco grátis (roda em PC fraco)":"Imagens: geradas por IA");
       if(a==="gerar") acao({acao:"gerar",nicho:n},"Entrou na fila");
@@ -291,13 +313,35 @@ function renderAtual(){
   } else {
     html += `<div class="vazio">${E.produtor.pausado?"Pausado.":"Nada gerando agora."} ${E.fila.length?"":"Metas de hoje cumpridas, em descanso ou nenhum nicho ligado."}</div>`;
   }
-  if(E.fila.length) html += `<div class="fila">${E.fila.map(f=>`<div><span class="label">na fila</span> ${f.tipo==="serie"?`<span class="parte-tag">série até ${f.max_partes}</span>`:""} ${esc(f.nicho)} · ${esc(f.tema)} <button class="btn small bad" data-cancelar="${f.id}">tirar</button></div>`).join("")}</div>`;
+  if(E.fila.length) html += `<div class="fila">${E.fila.map(f=>`<div><span class="label">na fila</span> ${f.tipo==="serie"?`<span class="parte-tag">série até ${f.max_partes}</span>`:""} ${esc(f.nicho)} · ${esc(f.tema)} <button class="btn small primary" data-agora="${f.id}" title="Passa na frente da fila e começa sem esperar o descanso">▶ iniciar agora</button> <button class="btn small bad" data-cancelar="${f.id}">tirar</button></div>`).join("")}</div>`;
   box.innerHTML=html;
   const bc=$("#bCancelarAtual"); if(bc) bc.onclick=()=>{ if(!confirm("Cancelar o vídeo que está gerando? O tema volta para a pauta.")) return;
     bc.disabled=true; bc.textContent="Cancelando…"; acao({acao:"cancelar_atual",id:a.id},"Cancelando: para em alguns segundos") };
   const d=$("#dLog"); if(d){d.ontoggle=()=>logAberto=d.open; const pre=d.querySelector("pre"); pre.scrollTop=pre.scrollHeight}
+  box.querySelectorAll("[data-agora]").forEach(b=>b.onclick=async()=>{ b.disabled=true;
+    const j=await acao({acao:"iniciar_agora",id:b.dataset.agora}); if(j&&j.msg) toast(j.msg) });
   box.querySelectorAll("[data-cancelar]").forEach(b=>b.onclick=()=>acao({acao:"cancelar",id:b.dataset.cancelar},"Tirado da fila"));
 }
+
+// separa o .txt do post (TÍTULO:, DESCRIÇÃO:, CRÉDITOS...) no que se cola no YouTube/TikTok
+function partesPost(txt){
+  const sec={}; let atual=null;
+  for(const l of (txt||"").split("\n")){
+    const m=l.match(/^([\p{Lu} ]{4,}?)(?: \(.*\))?:(.*)$/u);
+    if(m){atual=m[1].trim(); sec[atual]=m[2].trim()?[m[2].trim()]:[]; continue}
+    if(atual) sec[atual].push(l);
+  }
+  const j=k=>(sec[k]||[]).join("\n").trim();
+  const creditos=j("CRÉDITOS");
+  return {titulo:j("TÍTULO"), desc:[j("DESCRIÇÃO"),creditos].filter(Boolean).join("\n\n"), comentario:j("COMENTÁRIO FIXADO")};
+}
+function blocoPost(txt){
+  const q=partesPost(txt); if(!q.titulo&&!q.desc) return "";
+  const campo=(rot,v)=>v?`<div class="postcampo"><div class="row"><span class="label">${rot}</span><button class="btn small" data-copiar-texto="${esc(v)}">Copiar</button></div><pre>${esc(v)}</pre></div>`:"";
+  return `<div class="postbox"><b>Como vai ficar no post</b>${campo("Título",q.titulo)}${campo("Descrição",q.desc)}${campo("Comentário fixado",q.comentario)}</div>`;
+}
+document.addEventListener("click",async e=>{const b=e.target.closest("[data-copiar-texto]"); if(!b) return;
+  try{await navigator.clipboard.writeText(b.dataset.copiarTexto);toast("Copiado")}catch{toast("Não consegui copiar: selecione o texto")}});
 
 function cartao(p, modo){
   const com=p.videos.find(v=>v.variante==="com")||p.videos[0], sem=p.videos.find(v=>v.variante==="sem");
@@ -309,6 +353,7 @@ function cartao(p, modo){
     <div><div class="bar" role="progressbar" aria-label="Vídeo concluído" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><i style="width:100%"></i></div>
       <div class="row"><span class="small">Concluído</span><strong>${p.custo_brl!=null?reais(p.custo_brl)+" em valor de API":"Custo indisponível"}</strong></div></div>
     ${p.avisos&&p.avisos.length?`<div class="aviso"><b>Revise antes de aprovar.</b> O juiz apontou e não ficou resolvido:<ul style="margin:6px 0 0;padding-left:18px">${p.avisos.slice(0,6).map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>`:""}
+    ${blocoPost(p.post)}
     <details class="copybox"><summary>Texto do post</summary><pre>${esc(p.post)}</pre></details>`;
   const baixar = p.videos.map(v=>`<a class="btn small" href="${esc(v.url)}" download>${v.variante==="sem"?"Baixar (sem música)":"Baixar (com música)"}</a>`).join("");
   if(modo==="parte") return base+`<div class="acoes"><button class="btn small" data-a="copiar">Copiar post</button></div></article>`;

@@ -18,6 +18,19 @@ import urllib.request
 from pathlib import Path
 
 CLAUDE = shutil.which("claude") or "claude"
+
+
+def _comando_claude() -> list[str]:
+    """No Windows o claude do npm é um .cmd: os argumentos passam pelo cmd.exe, que lê | & < > ^ % do schema como
+    comando (um "separadas por |" virou "'cada' não é reconhecido como um comando"). Chamando o node direto com o
+    cli.js, os argumentos chegam intactos. Instalação sem cli.js (binário nativo): usa o claude de sempre."""
+    if os.name == "nt" and CLAUDE.lower().endswith((".cmd", ".bat")):
+        pasta = Path(CLAUDE).parent
+        cli = pasta / "node_modules" / "@anthropic-ai" / "claude-code" / "cli.js"
+        node = pasta / "node.exe"
+        if cli.exists():
+            return [str(node) if node.exists() else (shutil.which("node") or "node"), str(cli)]
+    return [CLAUDE]
 OLLAMA = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
 # camada trocável do juiz visual: "claude" (padrão, uma imagem por chamada), "claude-lote" (várias por chamada)
 # ou "ollama:<modelo>" (modelo aberto na GPU local)
@@ -63,7 +76,7 @@ def _flags_opcionais() -> list[str]:
     global _FLAGS
     if _FLAGS is None:
         try:
-            ajuda = subprocess.run([CLAUDE, "--help"], capture_output=True, text=True, timeout=30).stdout
+            ajuda = subprocess.run([*_comando_claude(), "--help"], capture_output=True, text=True, timeout=30).stdout
         except (OSError, subprocess.TimeoutExpired):
             ajuda = ""
         _FLAGS = [f for f in ("--safe-mode", "--no-session-persistence", "--effort", "--system-prompt") if f in ajuda]
@@ -108,7 +121,7 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
             raise ErroLLM(f"API: {e}") from e
     if provedor != "claude-cli":
         raise ErroLLM(f"MILIONERE_LLM={provedor!r} desconhecido (use claude-cli ou api)")
-    cmd = [CLAUDE, "-p", *[f for f in _flags_opcionais() if f not in ("--effort", "--system-prompt")],
+    cmd = [*_comando_claude(), "-p", *[f for f in _flags_opcionais() if f not in ("--effort", "--system-prompt")],
            "--output-format", "json", "--json-schema", json.dumps(schema)]
     if "--system-prompt" in _flags_opcionais():
         cmd += ["--system-prompt", SISTEMA + (SISTEMA_ARQUIVOS if ler_arquivos_em else "")]
@@ -136,7 +149,7 @@ def chamar(prompt: str, schema: dict, ler_arquivos_em: Path | None = None, timeo
         try:
             saida = json.loads(proc.stdout)
         except json.JSONDecodeError:
-            ultimo = (proc.stdout + proc.stderr)[-1500:]
+            ultimo = (proc.stdout + proc.stderr)[-1500:].strip() or                 f"o claude -p saiu com código {proc.returncode} sem escrever nada (confira o login: rode 'claude' no terminal)"
             continue
         medidor.llm(saida, time.time() - inicio)  # conta também as tentativas que falharam (foram pagas)
         if saida.get("is_error") or "structured_output" not in saida:
