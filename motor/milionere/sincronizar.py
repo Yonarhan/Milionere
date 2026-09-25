@@ -67,7 +67,9 @@ def respirar(cenas: list[dict], audio: Path, srt_arq: Path) -> list[str]:
     fins_de_fala, acc = set(), 0
     for c in cenas[:-1]:
         acc += len(tokens(c["fala"]))
-        fins_de_fala.add(acc)
+        # cena que corta no meio da frase (a imagem troca, a fala segue) não ganha pausa: só fim de frase
+        if c["fala"].rstrip()[-1:] in ".!?…:":
+            fins_de_fala.add(acc)
     cortes, acc = [], 0  # (índice do bloco que termina a fala, silêncio a inserir)
     for k, (ini, fim, txt) in enumerate(srt[:-1]):
         acc += len(tokens(txt))

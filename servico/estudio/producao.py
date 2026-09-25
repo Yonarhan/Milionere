@@ -292,6 +292,7 @@ def _nativo(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
 
 
 ESTILO_POD = {"astronomia": "espaco_zimage"}  # nicho sem estilo aqui usa o do gospel (cinema_zimage)
+ESTILOS_POD = {"espaco_zimage": "espaço", "doodle_zimage": "doodle", "cinema_zimage": "cinema"}  # escolhas do painel
 ANIMAR_POD = 3  # cenas animadas pelo Wan por vídeo (gancho, meio e clímax)
 
 
@@ -315,7 +316,8 @@ def _ia_pod(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
                                 f"canal-{str(prod.id)[:8]}", log)
     diario("roteiro aprovado:\n" + "\n".join(f"  «{c['fala']}»" for c in r["cenas"]), "imagens")
     diario.avisos += r.get("_avisos", [])
-    estilo = ESTILO_POD.get(prod.nicho, "cinema_zimage")
+    canal = Canal.objects.filter(nicho=prod.nicho).first()
+    estilo = (canal.estilo_pod if canal and canal.estilo_pod in ESTILOS_POD else "") or ESTILO_POD.get(prod.nicho, "cinema_zimage")
     r["_movimento"] = imagens.estilos()[estilo].get("movimento_video", animar.MOVIMENTO)
     pasta = imagens.caminhos.PRODUCAO / "midia" / r["slug"]
     pasta.mkdir(parents=True, exist_ok=True)
@@ -405,6 +407,7 @@ def _opcoes_video(nicho: str) -> None:
     os.environ["MILIONERE_EFEITOS"] = "1" if c and c.efeitos else "0"
     os.environ["MILIONERE_VOLUME"] = "1" if c and c.volume else "0"
     os.environ["MILIONERE_VOZ"] = c.voz if c and c.voz else ""
+    os.environ["MILIONERE_ROTEIRO"] = c.roteiro if c else "padrao"
 
 
 _ATUAL: "Producao | Serie | None" = None  # o que o produtor está gerando agora (o vigia de cancelamento olha)
@@ -783,7 +786,7 @@ def estado() -> dict:
         feitos, falhas = hoje(c.nicho)
         livres = Pauta.objects.filter(nicho=c.nicho, usado=False, falhas__lt=2)
         canais.append({"nicho": c.nicho, "nome": cat[c.nicho]["nome"], "cor": cat[c.nicho]["cor"], "ativo": c.ativo,
-                       "meta_dia": c.meta_dia, "musica": c.musica, "imagens": c.imagens, "legenda": c.legenda, "efeitos": c.efeitos, "volume": c.volume, "voz": c.voz,
+                       "meta_dia": c.meta_dia, "musica": c.musica, "imagens": c.imagens, "legenda": c.legenda, "efeitos": c.efeitos, "volume": c.volume, "voz": c.voz, "roteiro": c.roteiro, "estilo_pod": c.estilo_pod,
                        "modo": c.modo, "serie_max": c.serie_max,
                        "serie_cada": c.serie_cada, "hoje": feitos, "falhas_hoje": falhas,
                        "restantes": livres.count(), "formatos": formatos_do_nicho(c.nicho),
