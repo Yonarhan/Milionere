@@ -82,7 +82,7 @@ def roteiro_validado(formato: dict, tema: dict, reg: Registro, correcoes: list[s
     historico: list[str] = []  # erros de fato/compreensão já apontados: a reescrita não pode voltar a cometê-los
     comeco = time.time()
     for tentativa in range(1, MAX_REESCRITAS + 1):
-        if _aceitavel(melhor) and time.time() - comeco > TEMPO_MAX_ROTEIRO:
+        if _aceitavel(melhor, melhor_notas) and time.time() - comeco > TEMPO_MAX_ROTEIRO:
             log(f"  roteiro passou de {TEMPO_MAX_ROTEIRO // 60} min: segue a melhor versão, sem nova tentativa")
             break
         log(f"roteiro: tentativa {tentativa} (claude -p)")
@@ -116,7 +116,7 @@ def roteiro_validado(formato: dict, tema: dict, reg: Registro, correcoes: list[s
     # sem aprovação (tentativas ou tempo esgotados): segue a melhor versão, como no juiz geral do CEO, desde que não
     # tenha erro factual nem fidelidade < 4 (no gospel, história bíblica errada não vai ao ar). O que o juiz apontou
     # vai para os avisos: o vídeo não sobe sozinho, fica para a revisão do dono.
-    if _aceitavel(melhor):
+    if _aceitavel(melhor, melhor_notas):
         log(f"  segue a melhor versão, com {len(melhor[2])} aviso(s) do juiz para a revisão: {melhor_notas}")
         reg.add("camada2", True, aceito_com_ressalvas=melhor[2], notas=melhor_notas)
         melhor[1]["_notas_juiz"] = melhor_notas
@@ -125,9 +125,10 @@ def roteiro_validado(formato: dict, tema: dict, reg: Registro, correcoes: list[s
     return None
 
 
-def _aceitavel(melhor: tuple | None) -> bool:
-    """Versão que pode seguir sem a aprovação do juiz: nada de erro factual nem fidelidade abaixo de 4."""
-    return bool(melhor) and not any(p.startswith("ERRO FACTUAL") or p.startswith("fidelidade") for p in melhor[2])
+def _aceitavel(melhor: tuple | None, notas: dict | None) -> bool:
+    """Versão que pode seguir sem a aprovação do juiz (com os pontos dele como aviso, revisão antes de postar):
+    fidelidade >= 4. 'ERRO FACTUAL' listado com fidelidade 4 era implicância ('inferência razoável'), não fato errado."""
+    return bool(melhor) and (notas or {}).get("fidelidade", 0) >= 4
 
 
 def empacotar(r: dict, formato_id: str, formato: dict, tema: dict, estilo: str, slug: str) -> dict:
