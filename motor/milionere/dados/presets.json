@@ -87,7 +87,8 @@
     "cta_canal": "'Salva e se inscreve no Space Atlas.'",
     "inscreva_canal": "Space Atlas",
     "inscreva_segundos": 3.0,
-    "voice_pitch": "-8Hz"
+    "voice_pitch": "-8Hz",
+    "bgm_fixa": "espaco_1_floating-cities.mp3"
   },
   "gospel": {
     "palavras_min": 45,

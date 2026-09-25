@@ -319,7 +319,17 @@ def _resultado(videos: list[Path]) -> dict:
             "videos": [{"nome": p.name, "url": _url(p), "variante": "sem" if "_sem-musica" in p.stem else "com"} for p in videos]}
 
 
+def _opcoes_video(nicho: str) -> None:
+    """As opções do vídeo do nicho viram variáveis de ambiente: o produzir.py (processo filho) lê. Um vídeo por vez,
+    então não há dois jobs disputando as variáveis."""
+    c = Canal.objects.filter(nicho=nicho).first()
+    os.environ["MILIONERE_LEGENDA"] = "" if not c or c.legenda == "padrao" else c.legenda
+    os.environ["MILIONERE_EFEITOS"] = "1" if c and c.efeitos else "0"
+    os.environ["MILIONERE_VOLUME"] = "1" if c and c.volume else "0"
+
+
 def executar_qualquer(item: "Producao | Serie") -> None:
+    _opcoes_video(item.nicho)
     (executar_serie if isinstance(item, Serie) else executar)(item)
 
 
@@ -683,7 +693,8 @@ def estado() -> dict:
         feitos, falhas = hoje(c.nicho)
         livres = Pauta.objects.filter(nicho=c.nicho, usado=False, falhas__lt=2)
         canais.append({"nicho": c.nicho, "nome": cat[c.nicho]["nome"], "cor": cat[c.nicho]["cor"], "ativo": c.ativo,
-                       "meta_dia": c.meta_dia, "musica": c.musica, "imagens": c.imagens, "modo": c.modo, "serie_max": c.serie_max,
+                       "meta_dia": c.meta_dia, "musica": c.musica, "imagens": c.imagens, "legenda": c.legenda, "efeitos": c.efeitos, "volume": c.volume,
+                       "modo": c.modo, "serie_max": c.serie_max,
                        "serie_cada": c.serie_cada, "hoje": feitos, "falhas_hoje": falhas,
                        "restantes": livres.count(), "formatos": formatos_do_nicho(c.nicho),
                        "aviso": "Este PC não tem o ComfyUI: os temas do catálogo bíblico falham na etapa das imagens. "

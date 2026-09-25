@@ -68,6 +68,10 @@ class Canal(models.Model):
     modo = models.CharField(max_length=10, default="unitario")  # unitario | serie | misto (o que o automático gera)
     serie_max = models.PositiveSmallIntegerField(default=3)  # teto de partes; a IA usa só as que a história aguenta
     serie_cada = models.PositiveSmallIntegerField(default=3)  # misto: 1 série a cada N vídeos únicos
+    # opções do vídeo (padrão = como já funcionava)
+    legenda = models.CharField(max_length=12, default="padrao")  # padrao (a do preset) | karaoke | word_by_word
+    efeitos = models.BooleanField(default=False)  # whoosh nas trocas de cena + impacto no início (sons.py)
+    volume = models.BooleanField(default=False)  # áudio final a -14 LUFS
 
     def __str__(self):
         return f"{self.nicho} · {self.meta_dia}/dia · {'ativo' if self.ativo else 'parado'}"

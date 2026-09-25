@@ -102,8 +102,10 @@ def api_canal_acao(request):
             return JsonResponse({"erro": "Imagens: ia ou nativo."}, status=400)
         if "modo" in d and d["modo"] not in producao.MODOS:
             return JsonResponse({"erro": "Modo desconhecido."}, status=400)
+        if "legenda" in d and d["legenda"] not in ("padrao", "karaoke", "word_by_word"):
+            return JsonResponse({"erro": "Legenda desconhecida."}, status=400)
         limites = {"meta_dia": (0, 12), "serie_max": (2, 5), "serie_cada": (1, 20)}
-        for campo in ("ativo", "meta_dia", "musica", "imagens", "modo", "serie_max", "serie_cada"):
+        for campo in ("ativo", "meta_dia", "musica", "imagens", "modo", "serie_max", "serie_cada", "legenda", "efeitos", "volume"):
             if campo in d:
                 setattr(c, campo, max(limites[campo][0], min(limites[campo][1], int(d[campo]))) if campo in limites else d[campo])
         c.save()

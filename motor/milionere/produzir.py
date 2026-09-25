@@ -83,7 +83,8 @@ def montar_tarefa(r: dict, preset: dict) -> tuple[dict, list[str]]:
         tarefa["video_terms"] = ", ".join(c["busca"].split("|")[0].strip() for c in r["cenas"])
     else:
         tarefa["video_terms"] = ", ".join(r["keywords"])
-    musica = escolher_musica(preset["bgm_prefixo"])
+    fixa = preset.get("bgm_fixa")  # opção: trilha fixa do canal (identidade); sem ela, sorteia como antes
+    musica = fixa if fixa and (MPT / "storage" / "bgm" / fixa).exists() else escolher_musica(preset["bgm_prefixo"])
     if musica:
         tarefa.update(bgm_type="custom", bgm_file=musica)
     else:
@@ -227,6 +228,14 @@ def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, r
         duas = r.get("_duas_versoes")  # monta UMA vez sem música; a versão com música é só a mistura do áudio
         # cartão INSCREVA-SE do canal (preset do nicho) entra só no render, fora dos params do motor
         p_render = {**tarefa, **{k: preset[k] for k in ("inscreva_canal", "inscreva_segundos") if k in preset}}
+        # opções do vídeo (painel /canal ou preset), desligadas por padrão: efeitos sonoros e volume padronizado
+        if _opcao("MILIONERE_EFEITOS", preset.get("efeitos_sonoros")):
+            import sons
+            p_render["_sfx"] = str(sons.trilha([ini for ini, _ in tempos[1:]], sum(t["frames"] for t in tomadas) / 30,
+                                               pasta_sync / "efeitos.wav"))
+            print(f"efeitos [{r['slug']}] whoosh em {len(tempos) - 1} trocas de cena + impacto no início")
+        if _opcao("MILIONERE_VOLUME", preset.get("volume_padrao")):
+            p_render["volume_padrao"] = True
         encoder = render.renderizar(
             [Path(t["url"]) for t in tomadas], sum(t["frames"] for t in tomadas), pasta_a / "audio.mp3",
             pasta_a / "subtitle.srt", None if duas else musica, p_render, pasta_sync, MPT / "resource" / "fonts", saida,
@@ -264,6 +273,12 @@ def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, r
         entregar(r, pasta_tarefa(item), so_audio=False)
 
 
+def _opcao(var: str, padrao_preset) -> bool:
+    """Opção ligada pelo painel (variável de ambiente "1"/"0") ou, sem ela, pelo preset do nicho."""
+    v = os.environ.get(var, "")
+    return v == "1" if v in ("0", "1") else bool(padrao_preset)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("arquivo")
@@ -285,6 +300,9 @@ def main() -> None:
         if r["nicho"] not in presets or r["nicho"].startswith("_"):
             sys.exit(f"nicho desconhecido em '{r['slug']}': {r['nicho']}")
         tarefa, avisos = montar_tarefa(r, presets[r["nicho"]])
+        if os.environ.get("MILIONERE_LEGENDA") in ("karaoke", "word_by_word", "sentence"):  # escolhida no painel
+            tarefa["subtitle_display_mode"] = os.environ["MILIONERE_LEGENDA"]
+            avisos.append(f"legenda: {tarefa['subtitle_display_mode']}")
         if args.sem_musica:
             tarefa["bgm_type"] = ""
             tarefa.pop("bgm_file", None)

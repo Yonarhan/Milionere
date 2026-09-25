@@ -145,7 +145,8 @@ def com_musica(video: Path, musica: Path, p: dict, saida: Path) -> None:
     filtro = (f"[1:a]volume={vol},afade=t=out:st={max(0, total - 1.5):.2f}:d=1.5[bg];"
               "[0:a][bg]amix=inputs=2:duration=first:normalize=0[a]")
     proc = subprocess.run([FFMPEG, "-y", "-loglevel", "error", "-i", str(video), "-stream_loop", "-1", "-i", str(musica),
-                           "-filter_complex", filtro, "-map", "0:v", "-map", "[a]", "-c:v", "copy",
+                           "-filter_complex", filtro.replace("normalize=0[a]", f"normalize=0,{LOUDNORM}[a]") if p.get("volume_padrao") else filtro,
+                           "-map", "0:v", "-map", "[a]", "-c:v", "copy",
                            "-c:a", "aac", "-b:a", "192k", "-ar", "44100", "-ac", "2", "-t", f"{total:.3f}",
                            "-movflags", "+faststart", str(saida)], capture_output=True, text=True)
     if proc.returncode != 0:
@@ -172,6 +173,23 @@ def _cartao_inscreva(p: dict, total: float) -> list[str]:
             f"Dialogue: 1,{tempo_ass(ini + 0.15)},{tempo_ass(total)},Canal,,0,0,0,,{{\\an5\\pos({LARGURA // 2},{y + 105})\\fad(150,0)}}{canal}"]
 
 
+SFX_VOLUME = 0.35  # whoosh/impacto bem abaixo da voz: se chama atenção pra si, atrapalha
+LOUDNORM = "loudnorm=I=-14:TP=-1.5:LRA=11"  # nível das plataformas (TikTok, YouTube, Instagram)
+
+
+def _extras_audio(audio_f: str, p: dict, entradas: list[str]) -> str:
+    """Opções do nicho, desligadas por padrão: trilha de efeitos sonoros (p["_sfx"], feita pelo sons.py) e o volume
+    final padronizado em -14 LUFS (p["volume_padrao"]). Recebe o filtro que termina em [a] e devolve outro que
+    também termina em [a]."""
+    if p.get("_sfx"):
+        n = sum(1 for x in entradas if x == "-i")  # índice da nova entrada
+        entradas += ["-i", str(p["_sfx"])]
+        audio_f = audio_f.rsplit("[a]", 1)[0] + f"[a0];[{n}:a]volume={SFX_VOLUME}[sfx];[a0][sfx]amix=inputs=2:duration=first:normalize=0[a]"
+    if p.get("volume_padrao"):
+        audio_f = audio_f.rsplit("[a]", 1)[0] + f"[a1];[a1]{LOUDNORM}[a]"
+    return audio_f
+
+
 def renderizar(tomadas: list[Path], frames_total: int, audio: Path, srt: Path, musica: Path | None,
                p: dict, pasta: Path, fontes: Path, saida: Path) -> str:
     """Devolve o encoder usado. Roda com cwd=pasta para os caminhos do filtro ass não terem 'C:'."""
@@ -188,6 +206,7 @@ def renderizar(tomadas: list[Path], frames_total: int, audio: Path, srt: Path, m
         audio_f = f"{voz};[2:a]volume={vol},afade=t=out:st={max(0, total - 1.5):.2f}:d=1.5[bg];[voz][bg]amix=inputs=2:duration=first:normalize=0[a]"
     else:
         audio_f = voz.replace("[voz]", "[a]")
+    audio_f = _extras_audio(audio_f, p, entradas)
     filtro = f"[0:v]ass=legenda.ass:fontsdir={fontes_rel}[v];{audio_f}"
 
     base = [FFMPEG, "-y", "-loglevel", "error", *entradas, "-filter_complex", filtro,
