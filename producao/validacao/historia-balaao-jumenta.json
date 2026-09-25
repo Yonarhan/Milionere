@@ -1,0 +1,117 @@
+{
+  "etapas": [
+    {
+      "quando": "03:47:52",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 1,
+      "problemas": [
+        "o fechamento (2 últimas cenas) não pede a inscrição (frase nova, ligada ao tema)"
+      ],
+      "falas": [
+        "O jumento viu o anjo antes do profeta.",
+        "Balaão selou a jumenta e partiu com os príncipes.",
+        "Um anjo de espada barrou o caminho. Só ela via.",
+        "Três vezes ela fugiu, e ele bateu nela.",
+        "Aí Deus abriu a boca da jumenta.",
+        "'Por que bateu em mim?', ela perguntou.",
+        "Balaão disse que ela zombou dele.",
+        "Deus abriu os olhos dele. Ele viu o anjo, e se prostrou em terra.",
+        "Às vezes Deus te protege sem você ver.",
+        "O animal viu o anjo primeiro. Deus falou por ele.",
+        "Se isso tocou você, escreve amém.",
+        "Segue o perfil pra mais histórias."
+      ]
+    },
+    {
+      "quando": "03:49:43",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 2,
+      "problemas": [
+        "o fechamento (2 últimas cenas) não pede a inscrição (frase nova, ligada ao tema)"
+      ],
+      "falas": [
+        "O jumento viu o anjo antes do profeta.",
+        "Balaão selou a jumenta e foi com os príncipes de Moabe.",
+        "Um anjo com espada barrou o caminho. Só ela via.",
+        "Três vezes ela desviou, e ele bateu nela.",
+        "Aí Deus abriu a boca da jumenta.",
+        "Ela perguntou por que ele batia nela.",
+        "Balaão disse que ela zombara dele.",
+        "Deus abriu os olhos dele: viu o anjo e se prostrou em terra.",
+        "Às vezes Deus te protege sem você ver.",
+        "O animal viu o anjo primeiro. Deus falou por ele.",
+        "Se isso tocou você, escreve amém.",
+        "Segue o perfil pra mais histórias assim."
+      ]
+    },
+    {
+      "quando": "03:50:54",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 3,
+      "problemas": [
+        "roteiro tem 103 palavras; o formato pede 60 a 102"
+      ],
+      "falas": [
+        "O jumento viu o anjo antes do profeta.",
+        "Balaão selou a jumenta e foi com os príncipes de Moabe.",
+        "Um anjo com espada barrou o caminho. Só ela via.",
+        "Três vezes ela desviou, e ele bateu.",
+        "Aí Deus abriu a boca da jumenta.",
+        "Ela perguntou por que ele batia nela.",
+        "Balaão disse que ela zombara dele.",
+        "Deus abriu os olhos dele: viu o anjo e se prostrou em terra.",
+        "Às vezes Deus te protege sem você ver.",
+        "O animal viu o anjo primeiro. Deus falou por ele.",
+        "Se isso tocou você, escreve amém.",
+        "Se inscreve pra ver quando Deus abrir seus olhos também."
+      ]
+    },
+    {
+      "quando": "03:52:34",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "A jumenta viu o anjo antes do profeta.",
+        "Balaão selou a jumenta e foi com os príncipes.",
+        "Um anjo de espada barrou o caminho, e só ela via.",
+        "Três vezes ela parou, e ele bateu nela.",
+        "Aí Deus abriu a boca da jumenta.",
+        "Ela perguntou por que ele batia nela.",
+        "Balaão disse que ela zombara dele.",
+        "Deus abriu os olhos dele: viu o anjo e se prostrou em terra.",
+        "Deus te protege antes de você ver.",
+        "O bicho viu o anjo primeiro. Quem falou foi Deus.",
+        "Se isso tocou você, escreve amém.",
+        "Se inscreve pra ver quando Deus abrir seus olhos também."
+      ]
+    },
+    {
+      "quando": "03:52:59",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Um ouvinte entende que a jumenta de Balaão viu um anjo invisível a ele, foi espancada três vezes, e Deus fez o animal falar até abrir os olhos do próprio Balaão para o anjo.",
+      "erros_factuais": [
+        "Cena 10: atribui a fala diretamente a Deus ('Quem falou foi Deus'), quando na fonte é a jumenta quem fala, com a boca aberta por Deus (Números 22:28)."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 10: atribui a fala diretamente a Deus ('Quem falou foi Deus'), quando na fonte é a jumenta quem fala, com a boca aberta por Deus (Números 22:28)."
+      ]
+    }
+  ]
+}

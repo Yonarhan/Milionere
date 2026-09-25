@@ -1,0 +1,213 @@
+{
+  "etapas": [
+    {
+      "quando": "02:08:10",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Ele orou sabendo que podia morrer.",
+        "Uma lei proibia orar a qualquer deus.",
+        "Daniel abriu a janela pra Jerusalém e orou, sem se esconder.",
+        "Ele foi jogado na cova dos leões.",
+        "O rei disse: que seu Deus o livre.",
+        "Selaram a cova com pedra e anel do rei.",
+        "O rei jejuou a noite toda, sem dormir.",
+        "De manhã, correu à cova: seu Deus te livrou?",
+        "Deus fechou a boca dos leões. Daniel não sofreu nada.",
+        "Sua fé pode custar caro, mas Deus não esquece.",
+        "Ele orou sabendo do risco, e saiu vivo.",
+        "Se você crê, escreve amém, e se inscreve."
+      ]
+    },
+    {
+      "quando": "02:08:44",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 5
+      },
+      "entendimento": "Daniel continuou orando ao seu Deus mesmo com uma lei proibindo isso, foi jogado na cova dos leões, e Deus o livrou intacto.",
+      "erros_factuais": [
+        "Cena 2: a existência de uma lei proibindo orar a qualquer deus não está no trecho da FONTE fornecido (que começa em 6:10); é pano de fundo pressuposto, não citado no texto dado."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 2: a existência de uma lei proibindo orar a qualquer deus não está no trecho da FONTE fornecido (que começa em 6:10); é pano de fundo pressuposto, não citado no texto dado."
+      ]
+    },
+    {
+      "quando": "02:10:10",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 2,
+      "problemas": [
+        "cena 2 com 17 palavras (máx. 14-16), divida: «Um documento foi assinado contra Daniel, mas ele abriu a janela pra Jerusalém e orou, como sempre.»"
+      ],
+      "falas": [
+        "Ele orou sabendo que podia morrer.",
+        "Um documento foi assinado contra Daniel, mas ele abriu a janela pra Jerusalém e orou, como sempre.",
+        "Foi jogado na cova dos leões.",
+        "O rei disse: seu Deus vai te livrar.",
+        "Selaram a cova com pedra e o anel do rei.",
+        "O rei jejuou a noite toda, sem dormir.",
+        "De manhã, correu à cova: Daniel, seu Deus te livrou dos leões?",
+        "Deus mandou um anjo e fechou a boca dos leões.",
+        "Sua fé pode custar caro, mas Deus não esquece.",
+        "Ele orou sabendo do risco, e saiu vivo.",
+        "Se você crê, escreve amém, e se inscreve."
+      ]
+    },
+    {
+      "quando": "02:11:58",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Um documento foi assinado. Ele orou assim mesmo.",
+        "Foi pra casa, abriu a janela voltada pra Jerusalém.",
+        "E se ajoelhou pra orar, três vezes ao dia.",
+        "Por isso foi jogado na cova dos leões.",
+        "O rei disse: seu Deus vai te livrar.",
+        "Selaram a cova com pedra e o anel do rei.",
+        "O rei jejuou a noite toda, sem dormir.",
+        "De manhã, correu à cova: Daniel, foi livrado?",
+        "Deus mandou um anjo e fechou a boca deles.",
+        "Sua fé pode custar caro, mas Deus não esquece.",
+        "Ele orou sabendo do risco, e saiu vivo.",
+        "Se você crê, escreve amém, e se inscreve."
+      ]
+    },
+    {
+      "quando": "02:12:21",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Daniel continuou orando mesmo com a lei proibindo, foi jogado aos leões por isso, mas Deus enviou um anjo e ele saiu ileso.",
+      "erros_factuais": [],
+      "problemas": [
+        "gancho (nota 3): Cena 1: 'Um documento foi assinado. Ele orou assim mesmo.' é frio e não deixa claro o risco de morte; reescreva algo como 'Ele sabia que orar era crime de morte' para criar tensão imediata.",
+        "ritmo (nota 3): Cenas 4, 6 e 7 soam como frases soltas em lista, sem conectivo que ligue à cena anterior (ex: 'Por isso', 'Então'); acrescente conectores como 'Ainda assim', 'E' para dar fluidez de narrativa contínua.",
+        "payoff (nota 3): A frase-loop (cena 11) não retoma o vocabulário do gancho ('documento assinado'/'orou assim mesmo'); reescreva a cena 11 para ecoar literalmente a frase do gancho e fechar o paradoxo."
+      ]
+    },
+    {
+      "quando": "02:14:31",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 4,
+      "problemas": [
+        "cena 3 com 17 palavras (máx. 14-16), divida: «Por isso, jogaram Daniel na cova dos leões, e o rei disse: seu Deus vai livrá-lo.»"
+      ],
+      "falas": [
+        "Daniel sabia do risco, orou assim mesmo.",
+        "Foi pra casa e orou três vezes ao dia, de joelhos, voltado pra Jerusalém.",
+        "Por isso, jogaram Daniel na cova dos leões, e o rei disse: seu Deus vai livrá-lo.",
+        "Selaram a cova com pedra e anel real.",
+        "Ainda assim, o rei jejuou a noite toda.",
+        "E de manhã, correu à cova, chamando Daniel.",
+        "Daniel disse: Deus mandou um anjo e fechou a boca dos leões.",
+        "Sua fé custa caro, mas Deus não esquece.",
+        "Ele sabia do risco, orou assim mesmo, e viveu.",
+        "Se você crê, escreve amém.",
+        "E se inscreve pra ver mais."
+      ]
+    },
+    {
+      "quando": "02:14:31",
+      "etapa": "camada2",
+      "ok": true,
+      "aceito_com_ressalvas": [
+        "gancho (nota 3): Cena 1: 'Um documento foi assinado. Ele orou assim mesmo.' é frio e não deixa claro o risco de morte; reescreva algo como 'Ele sabia que orar era crime de morte' para criar tensão imediata.",
+        "ritmo (nota 3): Cenas 4, 6 e 7 soam como frases soltas em lista, sem conectivo que ligue à cena anterior (ex: 'Por isso', 'Então'); acrescente conectores como 'Ainda assim', 'E' para dar fluidez de narrativa contínua.",
+        "payoff (nota 3): A frase-loop (cena 11) não retoma o vocabulário do gancho ('documento assinado'/'orou assim mesmo'); reescreva a cena 11 para ecoar literalmente a frase do gancho e fechar o paradoxo."
+      ],
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 3
+      }
+    },
+    {
+      "quando": "02:33:15",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "Porta ao fundo tem uma maçaneta/fechadura de metal com aparência moderna, destoando de época bíblica",
+          "imagem_corrigida": ""
+        }
+      ]
+    },
+    {
+      "quando": "02:34:43",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "02:52:47",
+      "etapa": "animacao",
+      "ok": true,
+      "cenas": [
+        1,
+        5,
+        8
+      ],
+      "feitas": [
+        1,
+        5,
+        8
+      ],
+      "segundos": 1083
+    },
+    {
+      "quando": "02:53:15",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-25_historia-daniel-leoes_sem-musica.mp4",
+      "duracao": 39.2,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    },
+    {
+      "quando": "02:53:15",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-25_historia-daniel-leoes.mp4",
+      "duracao": 39.2,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    }
+  ]
+}

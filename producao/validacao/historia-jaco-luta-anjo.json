@@ -1,0 +1,243 @@
+{
+  "etapas": [
+    {
+      "quando": "06:52:26",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Sozinho no escuro, um homem lutou com Jacó.",
+        "Lutaram a noite inteira.",
+        "Sem vencer, o homem deslocou a coxa de Jacó.",
+        "O homem pediu pra ir, mas Jacó exigiu a bênção.",
+        "O homem perguntou o nome dele, e ele respondeu: Jacó.",
+        "Ele disse: seu nome é Israel, porque lutou com Deus e venceu.",
+        "Jacó perguntou o nome dele, mas só ganhou a bênção.",
+        "Jacó disse: vi a Deus face a face, e vivi.",
+        "Talvez essa luta seja Deus te abençoando.",
+        "Ele saiu mancando, mas não largou até ser abençoado.",
+        "Se você crê nisso, escreve amém, e se inscreve."
+      ]
+    },
+    {
+      "quando": "06:52:56",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 3
+      },
+      "entendimento": "Jacó luta a noite toda com um homem misterioso, sai machucado mas ganha uma bênção e um novo nome, Israel, por ter \"lutado com Deus\".",
+      "erros_factuais": [],
+      "problemas": [
+        "gancho (nota 3): Cena 1 não cria um paradoxo real (lutar à noite não soa impossível/estranho); reescreva como 'Um homem lutou contra Deus a noite toda — e quase venceu' para abrir lacuna maior.",
+        "ritmo (nota 3): Cenas 1-8 são frases curtas soltas sem conectivos entre si (ex: cena 2 'Lutaram a noite inteira' isolada), soando como lista telegráfica; una cena 1 e 2 com um conectivo tipo 'e lutaram assim a noite inteira'.",
+        "linguagem (nota 3): Falas como 'ganhou a bênção' e 'exigiu a bênção' soam mais escritas que faladas; troque por algo mais coloquial, ex: 'Jacó não deixou' em vez de 'exigiu'.",
+        "payoff (nota 3): Cena 10 (loop) responde fracamente ao gancho da cena 1, que fala de 'sozinho no escuro' e não é retomado; ajuste a frase-loop para citar a escuridão/solidão inicial, ex: 'Ele entrou sozinho na luta, mas não saiu sozinho da bênção.'"
+      ]
+    },
+    {
+      "quando": "06:54:48",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 2,
+      "problemas": [
+        "gancho com 10 palavras (máx. 8): «Ele lutou contra Deus a noite toda, e quase venceu.»"
+      ],
+      "falas": [
+        "Ele lutou contra Deus a noite toda, e quase venceu.",
+        "Jacó ficou sozinho no escuro, lutando até o dia raiar.",
+        "Sem vencer, ele deslocou a coxa de Jacó.",
+        "O dia raiava, mas Jacó não soltou sem bênção.",
+        "Ele perguntou o nome de Jacó, e ouviu: Jacó.",
+        "Seu nome agora é Israel: lutou com Deus e venceu.",
+        "Jacó quis saber o nome, mas só levou a bênção.",
+        "Jacó disse: vi a Deus face a face, e continuo vivo.",
+        "Talvez sua luta seja Deus te abençoando.",
+        "Ele não venceu a luta, mas saiu com a bênção.",
+        "Se você crê, escreve amém, e se inscreve."
+      ]
+    },
+    {
+      "quando": "06:55:22",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 3,
+      "problemas": [
+        "cena 1 usa o personagem 'anjo', que não está na lista de personagens",
+        "cena 2 usa o personagem 'anjo', que não está na lista de personagens",
+        "cena 4 usa o personagem 'anjo', que não está na lista de personagens",
+        "cena 5 usa o personagem 'anjo', que não está na lista de personagens",
+        "cena 6 usa o personagem 'anjo', que não está na lista de personagens",
+        "cena 7 usa o personagem 'anjo', que não está na lista de personagens"
+      ],
+      "falas": [
+        "Ele lutou a noite toda contra Deus.",
+        "Jacó ficou sozinho no escuro, lutando até o dia raiar.",
+        "Sem vencer, ele deslocou a coxa de Jacó.",
+        "O dia raiava, mas Jacó não soltou sem bênção.",
+        "Ele perguntou o nome de Jacó, e ouviu: Jacó.",
+        "Seu nome agora é Israel: lutou com Deus e venceu.",
+        "Jacó quis saber o nome, mas só levou a bênção.",
+        "Jacó disse: vi a Deus face a face, e continuo vivo.",
+        "Talvez sua luta seja Deus te abençoando.",
+        "Ele não venceu a luta, mas saiu com a bênção.",
+        "Se você crê, escreve amém, e se inscreve."
+      ]
+    },
+    {
+      "quando": "06:55:54",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Ele lutou a noite toda contra Deus.",
+        "Jacó ficou sozinho no escuro, lutando até o dia raiar.",
+        "Sem vencer, ele deslocou a coxa de Jacó.",
+        "O dia raiava, mas Jacó não soltou sem bênção.",
+        "Ele perguntou o nome de Jacó, e ouviu: Jacó.",
+        "Seu nome agora é Israel: lutou com Deus e venceu.",
+        "Jacó quis saber o nome, mas só levou a bênção.",
+        "Jacó disse: vi a Deus face a face, e continuo vivo.",
+        "Talvez sua luta seja Deus te abençoando.",
+        "Ele não venceu a luta, mas saiu com a bênção.",
+        "Se você crê, escreve amém, e se inscreve."
+      ]
+    },
+    {
+      "quando": "06:56:17",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 3
+      },
+      "entendimento": "Jacó lutou a noite toda com um ser misterioso, ficou ferido mas não desistiu até ser abençoado, e saiu dali sabendo que tinha visto a Deus face a face.",
+      "erros_factuais": [
+        "Cena 10: diz 'ele não venceu a luta', contradizendo a cena 6 e o próprio texto ('prevaleceu'/'venceu') — é uma contradição interna, não só uma opinião."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 10: diz 'ele não venceu a luta', contradizendo a cena 6 e o próprio texto ('prevaleceu'/'venceu') — é uma contradição interna, não só uma opinião.",
+        "fidelidade (nota 3): Cena 10 contradiz Gênesis 32:28 e a cena 6: o texto diz que Jacó prevaleceu/venceu, mas a cena 10 afirma o contrário; corrija para algo como 'Ele saiu ferido, mas com a bênção.'"
+      ]
+    },
+    {
+      "quando": "06:56:17",
+      "etapa": "camada2",
+      "ok": true,
+      "aceito_com_ressalvas": [
+        "gancho (nota 3): Cena 1 não cria um paradoxo real (lutar à noite não soa impossível/estranho); reescreva como 'Um homem lutou contra Deus a noite toda — e quase venceu' para abrir lacuna maior.",
+        "ritmo (nota 3): Cenas 1-8 são frases curtas soltas sem conectivos entre si (ex: cena 2 'Lutaram a noite inteira' isolada), soando como lista telegráfica; una cena 1 e 2 com um conectivo tipo 'e lutaram assim a noite inteira'.",
+        "linguagem (nota 3): Falas como 'ganhou a bênção' e 'exigiu a bênção' soam mais escritas que faladas; troque por algo mais coloquial, ex: 'Jacó não deixou' em vez de 'exigiu'.",
+        "payoff (nota 3): Cena 10 (loop) responde fracamente ao gancho da cena 1, que fala de 'sozinho no escuro' e não é retomado; ajuste a frase-loop para citar a escuridão/solidão inicial, ex: 'Ele entrou sozinho na luta, mas não saiu sozinho da bênção.'"
+      ],
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 3
+      }
+    },
+    {
+      "quando": "07:12:34",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 1,
+          "ok": false,
+          "problema": "Jacó usa calçado moderno (botas com cadarço) e há luzes ao fundo que parecem elétricas/urbanas, quebrando o realismo bíblico da cena.",
+          "imagem_corrigida": "Wide shot, two men in close wrestling grip under a full moon, dusty open plain, flat bare dry ground, distant dark hills silhouette, no lights, deep night shadows, tense struggle atmosphere"
+        },
+        {
+          "cena": 2,
+          "ok": false,
+          "problema": "Mãos fundidas em bloco sem dedos e artefato branco solto atrás do pescoço do anjo",
+          "imagem_corrigida": "Wide shot of two figures gripping shoulders and arms in a tense wrestling hold, deep night sky full of stars above, flat sandy desert ground, dramatic low moonlight casting long shadows"
+        },
+        {
+          "cena": 4,
+          "ok": false,
+          "problema": "O fundo mostra uma estrada pavimentada moderna com um veículo junto ao rio, um anacronismo perceptível na cena bíblica.",
+          "imagem_corrigida": "Wide shot of two figures still gripping each other on a rocky hilltop, pale dawn light rising over a flat desert plain, winding natural river valley with wild trees below, empty barren horizon."
+        },
+        {
+          "cena": 6,
+          "ok": false,
+          "problema": "O homem idoso ajoelhado usa calçado que parece bota moderna, um objeto anacrônico para a cena bíblica",
+          "imagem_corrigida": "Waist-up shot of a glowing figure standing and a kneeling man facing each other on flat desert sand, golden dawn light, river and dry hills in the background, separated, barefoot, no touching."
+        },
+        {
+          "cena": 10,
+          "ok": false,
+          "problema": "Forma ao fundo lembra um veículo moderno, destoando do cenário bíblico",
+          "imagem_corrigida": "Wide shot of a man walking slowly across flat desert sand toward camera, empty barren dunes and distant hills in background, golden sunrise light, long shadow stretching across ground, peaceful mood."
+        }
+      ]
+    },
+    {
+      "quando": "07:26:43",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "07:48:47",
+      "etapa": "animacao",
+      "ok": true,
+      "cenas": [
+        1,
+        4,
+        8
+      ],
+      "feitas": [
+        1,
+        4,
+        8
+      ],
+      "segundos": 1324
+    },
+    {
+      "quando": "07:49:14",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-25_historia-jaco-luta-anjo_sem-musica.mp4",
+      "duracao": 38.5,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    },
+    {
+      "quando": "07:49:14",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-25_historia-jaco-luta-anjo.mp4",
+      "duracao": 38.5,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    }
+  ]
+}

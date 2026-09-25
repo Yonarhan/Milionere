@@ -1,0 +1,294 @@
+[
+  {
+    "slug": "historia-salomao-julgamento",
+    "nicho": "gospel",
+    "formato": "historia",
+    "tema": "salomao-julgamento",
+    "estilo": "cinema_zimage",
+    "epoca": "biblica",
+    "titulo": "A ordem que só uma mãe suportaria 😢",
+    "cenario_en": "ancient Israel, 10th century BC, royal palace with smooth stone floors and torchlight",
+    "personagens": [
+      {
+        "id": "salomao",
+        "nome": "Salomão",
+        "nome_en": "Solomon",
+        "descricao_visual": "a young Israelite king in his early 20s, short dark curly hair, thin trimmed black beard, olive skin, richly embroidered deep-blue and gold royal robe, thin gold circlet crown"
+      },
+      {
+        "id": "mae-verdadeira",
+        "nome": "Mãe verdadeira",
+        "nome_en": "True mother",
+        "descricao_visual": "a Hebrew woman in her mid-20s, long dark hair under a plain beige head covering, olive skin, worn undyed linen robe, tired sorrowful eyes"
+      },
+      {
+        "id": "mae-falsa",
+        "nome": "Outra mulher",
+        "nome_en": "Other woman",
+        "descricao_visual": "a Hebrew woman in her early 30s, long dark hair under a faded reddish-brown headscarf, olive skin, worn grey-brown linen robe, hard guarded eyes"
+      }
+    ],
+    "eventos": [
+      {
+        "n": 1,
+        "evento": "Duas mulheres, que eram prostitutas, vieram ao rei Salomão e se apresentaram diante dele",
+        "ref": "1 Reis 3:16"
+      },
+      {
+        "n": 2,
+        "evento": "Uma delas contou que moravam na mesma casa e que ela tinha dado à luz um filho estando com a outra",
+        "ref": "1 Reis 3:17"
+      },
+      {
+        "n": 3,
+        "evento": "No terceiro dia depois, a outra mulher também deu à luz, e só as duas estavam na casa",
+        "ref": "1 Reis 3:18"
+      },
+      {
+        "n": 4,
+        "evento": "O filho de uma delas morreu durante a noite, porque ela se deitou sobre ele",
+        "ref": "1 Reis 3:19"
+      },
+      {
+        "n": 5,
+        "evento": "Ela se levantou à meia-noite, trocou os bebês e pôs o filho morto no colo da outra",
+        "ref": "1 Reis 3:20"
+      },
+      {
+        "n": 6,
+        "evento": "De manhã, ao amamentar, a mãe viu que aquele bebê morto não era o filho que ela tinha dado à luz",
+        "ref": "1 Reis 3:21"
+      },
+      {
+        "n": 7,
+        "evento": "As duas discutiam diante do rei, cada uma dizendo que o filho vivo era o seu",
+        "ref": "1 Reis 3:22-23"
+      },
+      {
+        "n": 8,
+        "evento": "O rei mandou trazer uma espada",
+        "ref": "1 Reis 3:24"
+      },
+      {
+        "n": 9,
+        "evento": "O rei ordenou dividir o menino vivo em dois e dar metade a cada uma",
+        "ref": "1 Reis 3:25"
+      },
+      {
+        "n": 10,
+        "evento": "O coração da mãe verdadeira ansiava pelo filho, e ela implorou para dar o vivo à outra, sem matá-lo",
+        "ref": "1 Reis 3:26"
+      },
+      {
+        "n": 11,
+        "evento": "A outra mulher disse que o menino não seria de nenhuma das duas, e que deviam dividi-lo",
+        "ref": "1 Reis 3:26"
+      },
+      {
+        "n": 12,
+        "evento": "O rei entregou o menino vivo à primeira mulher, dizendo que ela era a mãe dele",
+        "ref": "1 Reis 3:27"
+      },
+      {
+        "n": 13,
+        "evento": "Todo Israel ouviu o julgamento e temeu o rei, vendo que a sabedoria de Deus estava nele",
+        "ref": "1 Reis 3:28"
+      }
+    ],
+    "versiculo": {
+      "ref": "1 Reis 3:27",
+      "texto": "Deem à primeira mulher o menino vivo, e definitivamente não o matem. Ela é a mãe dele."
+    },
+    "cenas": [
+      {
+        "fala": "Salomão mandou cortar o bebê ao meio.",
+        "evento": 0,
+        "personagens": [
+          "salomao"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a young king seated on a stone throne, tense expression, a bronze sword lying on the smooth stone floor before him, torchlight.",
+        "busca": "king throne sword judgment"
+      },
+      {
+        "fala": "Duas mulheres juravam ser mãe do mesmo bebê.",
+        "evento": 1,
+        "personagens": [
+          "mae-verdadeira",
+          "mae-falsa"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of two women standing before a throne, pleading expressions, arms at their sides, smooth stone floor, palace hall lit by torches.",
+        "busca": "two women pleading king"
+      },
+      {
+        "fala": "Um bebê morreu porque a mãe dormiu em cima dele, e ela trocou os dois.",
+        "evento": 5,
+        "personagens": [
+          "mae-falsa"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a woman kneeling beside a sleeping infant on a straw mat, guilty expression, dim oil lamp light, humble house interior at night.",
+        "busca": "woman night infant lamp"
+      },
+      {
+        "fala": "De manhã ela viu: aquele morto não era seu filho.",
+        "evento": 6,
+        "personagens": [
+          "mae-verdadeira"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a woman staring down in shock and grief, morning light through a window, simple clay house interior, empty cradle beside her.",
+        "busca": "woman grief morning shock"
+      },
+      {
+        "fala": "Diante do rei, elas discutiam sem parar.",
+        "evento": 7,
+        "personagens": [
+          "mae-verdadeira",
+          "mae-falsa"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of two women facing each other with raised voices, arguing expressions, standing on smooth stone floor inside a palace hall.",
+        "busca": "women arguing palace"
+      },
+      {
+        "fala": "Salomão pediu a espada: dividam o menino vivo.",
+        "evento": 8,
+        "personagens": [
+          "salomao"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Medium shot of a young king raising his hand in command, stern expression, a bronze sword resting on the stone floor beside the throne.",
+        "busca": "king command sword throne"
+      },
+      {
+        "fala": "A mãe verdadeira gritou: dê a ela, não o matem.",
+        "evento": 10,
+        "personagens": [
+          "mae-verdadeira",
+          "salomao"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a woman kneeling on a stone palace floor with desperate pleading expression, arms crossed over her chest, facing a king seated upright on a raised stone throne above her, torchlight glow, columns in background.",
+        "busca": "woman pleading king mercy"
+      },
+      {
+        "fala": "A outra respondeu: não será de nenhuma, dividam.",
+        "evento": 11,
+        "personagens": [
+          "mae-falsa"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Waist-up shot of a woman with a hard, cold expression, arms crossed, standing in a stone palace hall, torchlight.",
+        "busca": "woman cold expression"
+      },
+      {
+        "fala": "Salomão entregou o bebê: ela era a mãe verdadeira.",
+        "evento": 12,
+        "personagens": [
+          "salomao",
+          "mae-verdadeira"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a king gesturing toward a woman kneeling with relief and joy, swaddled infant beside her on a woven blanket, stone floor.",
+        "busca": "king gives baby relief"
+      },
+      {
+        "fala": "Seu amor aparece quando você prefere perder a machucar.",
+        "evento": 0,
+        "personagens": [
+          "mae-verdadeira"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a woman sitting on the ground, gently watching over a swaddled infant on a blanket beside her, soft warm light, humble room.",
+        "busca": "mother watching infant tender"
+      },
+      {
+        "fala": "A espada nunca cortou ninguém. Escreve amém, e se inscreve.",
+        "evento": 0,
+        "personagens": [
+          "salomao"
+        ],
+        "rosto_visivel": true,
+        "imagem": "Wide shot of a king lowering his hand, calm relieved expression, bronze sword resting on the stone floor, warm light filling the palace hall.",
+        "busca": "king relief judgment palace"
+      }
+    ],
+    "descricao": "\"Deem à primeira mulher o menino vivo, e definitivamente não o matem. Ela é a mãe dele.\" (1 Reis 3:27)\n\nDuas mulheres, um bebê, e uma espada que nunca chegou a cortar ninguém. A verdade apareceu no exato momento em que uma delas preferiu perder tudo a ver o filho sofrer. Você teria essa coragem? Leia 1 Reis 3.\n\n#biblia #salomao #fé #palavradedeus #shorts",
+    "hashtags": [
+      "#biblia",
+      "#salomao",
+      "#fé",
+      "#palavradedeus",
+      "#shorts"
+    ],
+    "comentario_fixado": "Você já preferiu abrir mão de algo pra não machucar quem você ama?",
+    "tiktok_titulo": "O teste que só uma mãe de verdade passaria",
+    "tiktok_legenda": "Uma mentira, um bebê trocado, e uma espada que revelou a verdade. Você teria coragem de fazer o que essa mãe fez? #biblia #salomao #fé #historiasbiblicas",
+    "fontes": [
+      "1 Reis 3:16-28 (Bíblia Portuguesa Mundial (domínio público))"
+    ],
+    "ganchos": [
+      {
+        "texto": "Salomão mandou cortar o bebê ao meio.",
+        "choque": 5,
+        "clareza": 5,
+        "imagem": 5
+      },
+      {
+        "texto": "Uma mãe pediu pra matar o próprio filho.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "Duas mulheres. Um bebê. Só uma é mãe.",
+        "choque": 3,
+        "clareza": 4,
+        "imagem": 3
+      },
+      {
+        "texto": "O rei pediu uma espada pra um bebê.",
+        "choque": 3,
+        "clareza": 3,
+        "imagem": 3
+      },
+      {
+        "texto": "Ela preferiu perder o filho a vê-lo morto.",
+        "choque": 4,
+        "clareza": 4,
+        "imagem": 3
+      }
+    ],
+    "gancho_tela": "SÓ UMA MÃE GRITOU",
+    "notas": {
+      "roteirista": {
+        "gancho": 5,
+        "clareza": 4,
+        "ritmo": 4,
+        "payoff": 5,
+        "precisao": 4,
+        "imagem": 4
+      },
+      "juiz": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 5,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 3
+      }
+    },
+    "_creditos": [
+      "Imagens geradas por IA (Z-Image Turbo)",
+      "Texto bíblico: Bíblia Portuguesa Mundial (domínio público)"
+    ],
+    "ajustes": {
+      "voice_rate": 1.05
+    },
+    "_avisos": []
+  }
+]

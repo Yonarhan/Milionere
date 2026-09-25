@@ -128,5 +128,60 @@
     "nome": "Saul",
     "nome_en": "Saul",
     "descricao_visual": "an Israelite king in his 50s, grey-streaked dark hair and beard, weathered olive skin, deep-blue robe trimmed with purple over leather armor"
+  },
+  "ester": {
+    "nome": "Ester",
+    "nome_en": "Esther",
+    "descricao_visual": "a young queen in her early 20s, long dark hair under a jeweled headpiece, elegant purple silk robe embroidered with gold, olive skin"
+  },
+  "mardoqueu": {
+    "nome": "Mardoqueu",
+    "nome_en": "Mordecai",
+    "descricao_visual": "an elderly Jewish man in his 60s, long grey beard, grey hair, plain sackcloth robe, olive skin"
+  },
+  "rei-assuero": {
+    "nome": "Rei Assuero",
+    "nome_en": "King Ahasuerus",
+    "descricao_visual": "a Persian king in his 40s, short black beard, dark hair under a tall jeweled crown, richly embroidered royal robe with gold trim, olive skin"
+  },
+  "hama": {
+    "nome": "Hamã",
+    "nome_en": "Haman",
+    "descricao_visual": "a Persian noble man in his 50s, groomed grey-streaked beard, dark hair, ornate dark red robe with gold sash, olive skin"
+  },
+  "daniel": {
+    "nome": "Daniel",
+    "nome_en": "Daniel",
+    "descricao_visual": "an elderly Hebrew man in his 80s, thinning white hair, long white beard, deeply wrinkled olive skin, simple long dark blue robe with a woven sash"
+  },
+  "rei-dario": {
+    "nome": "Rei Dario",
+    "nome_en": "King Darius",
+    "descricao_visual": "a Persian-Median king in his 50s, short grey-streaked dark beard, greying dark hair under a jeweled crown, richly embroidered deep purple and gold royal robe, olive skin"
+  },
+  "salomao": {
+    "nome": "Salomão",
+    "nome_en": "Solomon",
+    "descricao_visual": "a young Israelite king in his early 20s, short dark curly hair, thin trimmed black beard, olive skin, richly embroidered deep-blue and gold royal robe, thin gold circlet crown"
+  },
+  "mae-verdadeira": {
+    "nome": "Mãe verdadeira",
+    "nome_en": "True mother",
+    "descricao_visual": "a Hebrew woman in her mid-20s, long dark hair under a plain beige head covering, olive skin, worn undyed linen robe, tired sorrowful eyes"
+  },
+  "mae-falsa": {
+    "nome": "Outra mulher",
+    "nome_en": "Other woman",
+    "descricao_visual": "a Hebrew woman in her early 30s, long dark hair under a faded reddish-brown headscarf, olive skin, worn grey-brown linen robe, hard guarded eyes"
+  },
+  "isaque": {
+    "nome": "Isaque",
+    "nome_en": "Isaac",
+    "descricao_visual": "a lean teenage boy around fifteen years old, short black curly hair, no beard, olive skin, simple undyed linen tunic"
+  },
+  "jaco": {
+    "nome": "Jacó",
+    "nome_en": "Jacob",
+    "descricao_visual": "a man in his 70s, long grey-streaked dark hair and full grey beard, weathered olive skin, worn dark brown wool tunic with a leather belt"
   }
 }

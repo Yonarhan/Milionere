@@ -1,0 +1,239 @@
+{
+  "etapas": [
+    {
+      "quando": "02:57:44",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 1,
+      "problemas": [],
+      "falas": [
+        "Salomão mandou cortar o bebê ao meio.",
+        "Duas mulheres juravam ser mãe do mesmo bebê.",
+        "Um bebê morreu porque a mãe dormiu em cima dele, e ela trocou os dois.",
+        "De manhã ela viu: aquele morto não era seu filho.",
+        "Diante do rei, elas discutiam sem parar.",
+        "Salomão pediu a espada: dividam o menino vivo.",
+        "A mãe verdadeira gritou: dê a ela, não o matem.",
+        "A outra respondeu: não será de nenhuma, dividam.",
+        "Salomão entregou o bebê: ela era a mãe verdadeira.",
+        "Seu amor aparece quando você prefere perder a machucar.",
+        "A espada nunca cortou ninguém. Escreve amém, e se inscreve."
+      ]
+    },
+    {
+      "quando": "02:58:22",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 1,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 5,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 3
+      },
+      "entendimento": "Duas mulheres brigam por um bebê vivo diante do rei Salomão, que finge querer dividi-lo ao meio para descobrir, pelo desespero da mãe verdadeira, quem realmente o ama.",
+      "erros_factuais": [],
+      "problemas": [
+        "ritmo (nota 3): As cenas 2 a 9 são frases soltas sem conectivos entre si, soando como lista de fatos em vez de história contada de corrido; acrescente ligações como 'Mas', 'Então', 'De repente' entre as cenas.",
+        "linguagem (nota 3): Cena 9 ('Salomão entregou o bebê: ela era a mãe verdadeira') soa expositiva e robótica; reescreva como fala direta, ex.: 'Dê o bebê a ela — essa é a mãe.'",
+        "payoff (nota 3): Cena 11 comprime a frase-loop e as duas exigências do CTA (amém + inscrição) numa única linha apressada; separe em uma cena de loop e outra de CTA, cortando alguma palavra da cena 3 para caber no limite.",
+        "payoff (nota 3): O rótulo antecipado 'mae-verdadeira' (cena 2) reduz o impacto da virada no clímax, enfraquecendo o payoff emocional."
+      ]
+    },
+    {
+      "quando": "02:59:55",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Salomão mandou cortar o bebê ao meio.",
+        "Duas mulheres juravam ser mãe do mesmo filho.",
+        "Moravam juntas, e tiveram bebês quase juntas.",
+        "Mas um bebê morreu à noite, e ela trocou os dois.",
+        "De manhã ela viu: não era seu filho.",
+        "Então, diante do rei, elas discutiam.",
+        "E Salomão pediu a espada: dividam o menino vivo.",
+        "Uma gritou: dê a ela, não o matem!",
+        "Mas a outra disse: não será de nenhuma.",
+        "Salomão disse: dê a ela. Essa é a mãe.",
+        "Seu amor aparece quando você prefere perder a machucar.",
+        "A espada nunca cortou ninguém.",
+        "Escreve amém, e se inscreve aqui."
+      ]
+    },
+    {
+      "quando": "03:00:52",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 3,
+        "compreensao": 2,
+        "gancho": 4,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Duas mulheres disputam a maternidade de um bebê vivo diante do rei Salomão, que finge mandar dividi-lo ao meio para descobrir, pelo amor da mãe verdadeira, quem realmente era a mãe.",
+      "erros_factuais": [],
+      "problemas": [
+        "personagens (nota 3): As duas mulheres nunca são nomeadas ou diferenciadas na fala (só nas tags de imagem mae-um/mae-dois); quem ouve sem ver a tela não consegue saber qual 'ela' é qual ao longo das cenas 4 a 10 — dê um rótulo falado simples, como 'a primeira mulher' e 'a outra', desde a cena 3.",
+        "compreensao (nota 2): Cenas 5, 8, 9 e 10 usam apenas 'ela', 'uma' e 'a outra' para diferenciar as mulheres, o que só funciona olhando a imagem; sem tela, o ouvinte perde quem é a mãe verdadeira já na cena 5 — acrescente uma marca verbal fixa (ex.: 'a que trocou o filho' vs 'a outra mãe') e corte uma palavra em outra cena para caber no limite."
+      ]
+    },
+    {
+      "quando": "03:03:20",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Salomão mandou cortar o bebê ao meio.",
+        "Duas mulheres juravam ser mãe do mesmo bebê.",
+        "Mas um bebê morreu de noite, e a mãe trocou os dois.",
+        "De manhã, ela viu: não era seu filho.",
+        "Então foram ao rei, e discutiam sem parar.",
+        "Salomão pediu a espada: dividam o vivo.",
+        "Uma delas gritou: dê a ela, não o matem!",
+        "A outra disse: não será de nenhuma, dividam.",
+        "Salomão disse: dê a ela, essa é a mãe.",
+        "Seu amor aparece quando você prefere perder a machucar.",
+        "A espada nunca cortou ninguém, revelou o amor.",
+        "Escreve amém, e se inscreve pra ver mais."
+      ]
+    },
+    {
+      "quando": "03:03:56",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 4,
+        "personagens": 5,
+        "compreensao": 3,
+        "gancho": 5,
+        "ritmo": 4,
+        "linguagem": 4,
+        "payoff": 4
+      },
+      "entendimento": "Duas mulheres brigam por um bebê diante do rei Salomão, que finge mandar dividi-lo ao meio pra descobrir, pelo amor, quem é a verdadeira mãe.",
+      "erros_factuais": [
+        "Cena 2: diz que as mulheres 'juravam ser mãe do mesmo bebê' já no início, mas na fonte cada uma tinha seu próprio filho recém-nascido até a troca na madrugada — isso contradiz a cena 3, que só depois menciona dois bebês."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 2: diz que as mulheres 'juravam ser mãe do mesmo bebê' já no início, mas na fonte cada uma tinha seu próprio filho recém-nascido até a troca na madrugada — isso contradiz a cena 3, que só depois menciona dois bebês.",
+        "compreensao (nota 3): Quem ouve uma vez pode se confundir: cena 2 fala de 'um bebê' disputado, cena 3 revela que na verdade eram dois bebês e um morreu — corrija a cena 2 para não antecipar a disputa por 'um' bebê."
+      ]
+    },
+    {
+      "quando": "03:07:46",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 4,
+      "problemas": [
+        "roteiro tem 103 palavras; o formato pede 60 a 102"
+      ],
+      "falas": [
+        "Salomão mandou cortar o bebê em dois.",
+        "Duas mulheres juravam ser mãe do filho.",
+        "Mas de noite, o filho da primeira morreu, ela trocou os dois.",
+        "De manhã, a outra mãe viu: aquele morto não era seu.",
+        "Então, diante do rei, elas discutiam.",
+        "Salomão pediu a espada: dividam o vivo.",
+        "A outra mãe implorou: dê a ela, não o matem.",
+        "A primeira disse: não fica com nenhuma, dividam.",
+        "Salomão disse: entrega a ela, é a mãe verdadeira.",
+        "Seu amor aparece quando você prefere perder a machucar.",
+        "A espada nunca cortou ninguém.",
+        "Se isso tocou, escreve amém.",
+        "E se inscreve pra ver a próxima."
+      ]
+    },
+    {
+      "quando": "03:07:46",
+      "etapa": "camada2",
+      "ok": true,
+      "aceito_com_ressalvas": [
+        "ritmo (nota 3): As cenas 2 a 9 são frases soltas sem conectivos entre si, soando como lista de fatos em vez de história contada de corrido; acrescente ligações como 'Mas', 'Então', 'De repente' entre as cenas.",
+        "linguagem (nota 3): Cena 9 ('Salomão entregou o bebê: ela era a mãe verdadeira') soa expositiva e robótica; reescreva como fala direta, ex.: 'Dê o bebê a ela — essa é a mãe.'",
+        "payoff (nota 3): Cena 11 comprime a frase-loop e as duas exigências do CTA (amém + inscrição) numa única linha apressada; separe em uma cena de loop e outra de CTA, cortando alguma palavra da cena 3 para caber no limite.",
+        "payoff (nota 3): O rótulo antecipado 'mae-verdadeira' (cena 2) reduz o impacto da virada no clímax, enfraquecendo o payoff emocional."
+      ],
+      "notas": {
+        "fidelidade": 5,
+        "ordem": 5,
+        "personagens": 4,
+        "compreensao": 5,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 3
+      }
+    },
+    {
+      "quando": "03:22:45",
+      "etapa": "camada3",
+      "ok": false,
+      "rodada": 1,
+      "reprovadas": [
+        {
+          "cena": 7,
+          "ok": false,
+          "problema": "Salomão aparece ajoelhado atrás da mulher, no mesmo nível dela, em vez de sentado como juiz em posição de autoridade acima dela.",
+          "imagem_corrigida": "Wide shot of a woman kneeling on a stone palace floor with desperate pleading expression, arms crossed over her chest, facing a king seated upright on a raised stone throne above her, torchlight glow, columns in background."
+        }
+      ]
+    },
+    {
+      "quando": "03:23:52",
+      "etapa": "camada3",
+      "ok": true,
+      "rodada": 2,
+      "reprovadas": []
+    },
+    {
+      "quando": "03:44:00",
+      "etapa": "animacao",
+      "ok": true,
+      "cenas": [
+        1,
+        4,
+        8
+      ],
+      "feitas": [
+        1,
+        4,
+        8
+      ],
+      "segundos": 1208
+    },
+    {
+      "quando": "03:44:26",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-25_historia-salomao-julgamento_sem-musica.mp4",
+      "duracao": 39.5,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    },
+    {
+      "quando": "03:44:26",
+      "etapa": "camada4",
+      "ok": true,
+      "video": "/home/rafael/projects/milionere/milionere/videos_prontos/2026-09-25_historia-salomao-julgamento.mp4",
+      "duracao": 39.5,
+      "avisos": [
+        "AVISO  músicas ignoradas por falta de crédito em storage/bgm/creditos.json: gospel_2_clean-soul.mp3, gospel_3_dreamer.mp3, gospel_4_heartwarming.mp3, gospel_5_touching-moments-two-higher.mp3, gospel_6_healing.mp3"
+      ]
+    }
+  ]
+}

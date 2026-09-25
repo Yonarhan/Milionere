@@ -1,0 +1,27 @@
+{
+  "etapas": [
+    {
+      "quando": "21:51:02",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 1,
+      "problemas": [
+        "gancho com 9 palavras (máx. 8): «Um rei viu quatro homens andando dentro do fogo.»"
+      ],
+      "falas": [
+        "Um rei viu quatro homens andando dentro do fogo.",
+        "Sadraque, Mesaque e Abede-Nego disseram: não vamos adorar a estátua.",
+        "O rei, furioso, mandou esquentar a fornalha sete vezes mais.",
+        "Soldados amarraram os três e os jogaram no fogo.",
+        "O rei se levantou espantado: não jogamos três amarrados?",
+        "Mas eram quatro, soltos, andando no fogo. E o quarto parecia filho dos deuses.",
+        "Nabucodonosor gritou: saiam! Os três saíram do fogo.",
+        "Cabelo intacto, roupa intacta, nem cheiro de fumaça neles.",
+        "Talvez você esteja num fogo agora.",
+        "O rei jogou três. Deus tirou três, inteiros.",
+        "Se creu, escreve amém.",
+        "E se inscreve pra mais."
+      ]
+    }
+  ]
+}

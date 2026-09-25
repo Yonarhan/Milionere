@@ -1,0 +1,172 @@
+{
+  "etapas": [
+    {
+      "quando": "01:46:24",
+      "etapa": "camada1",
+      "ok": false,
+      "tentativa": 1,
+      "problemas": [
+        "roteiro tem 104 palavras; o formato pede 60 a 102",
+        "cena 2 tem travessão ou ponto e vírgula (o TTS lê mal): «Os egípcios vinham atrás; o povo clamou ao Senhor.»",
+        "cena 7 tem travessão ou ponto e vírgula (o TTS lê mal): «Os egípcios entraram atrás; Deus arrancou as rodas.»",
+        "evento 4 ('Moisés estendeu a mão sobre o mar, e o Senhor o abriu com um vento forte a noite toda') cita Êxodo 14:15-16,21, fora do trecho fornecido (Êxodo 14:10-16; 14:21-28)"
+      ],
+      "falas": [
+        "Mar na frente. Exército atrás. Sem saída.",
+        "Os egípcios vinham atrás; o povo clamou ao Senhor.",
+        "Disseram: melhor servir egípcios que morrer no deserto.",
+        "Moisés disse: não temam, Deus luta por vocês.",
+        "Moisés ergueu a vara, e um vento abriu o mar.",
+        "Israel cruzou o mar seco, água como muro.",
+        "Os egípcios entraram atrás; Deus arrancou as rodas.",
+        "Eles gritaram: fujamos, o Senhor luta por Israel!",
+        "Moisés estendeu a mão sobre o mar.",
+        "As águas cobriram os egípcios. Não sobrou nenhum.",
+        "Seu inimigo parece maior? Deus luta por você.",
+        "Sem saída. Mas Deus sempre abre uma.",
+        "Escreve amém, e se inscreve pra mais histórias."
+      ]
+    },
+    {
+      "quando": "01:48:46",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 2,
+      "problemas": [],
+      "falas": [
+        "Mar na frente. Exército atrás. Sem saída.",
+        "O povo com medo clamou ao Senhor.",
+        "Disseram a Moisés: preferimos servir egípcios a morrer.",
+        "Moisés respondeu: não temam, o Senhor luta por vocês.",
+        "Deus mandou Moisés estender a mão sobre o mar.",
+        "Deus abriu o mar com vento forte a noite toda.",
+        "Israel atravessou o mar seco, com água como muro.",
+        "Os egípcios entraram atrás, mas Deus travou as rodas.",
+        "Moisés estendeu a mão de novo sobre o mar.",
+        "As águas cobriram os egípcios. Não sobrou nenhum.",
+        "Seu inimigo parece maior? Deus sempre abre um caminho.",
+        "Escreve amém, e se inscreve pra mais histórias."
+      ]
+    },
+    {
+      "quando": "01:49:17",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 2,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 3,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 3
+      },
+      "entendimento": "O povo de Israel, encurralado entre o mar e o exército egípcio, vê Deus abrir o mar para eles passarem e depois fechá-lo sobre os perseguidores, sem que nenhum sobrevivesse.",
+      "erros_factuais": [],
+      "problemas": [
+        "personagens (nota 3): Faraó nunca é citado apesar de ser quem persegue o povo na fonte; troque 'exército atrás' na cena 1 por 'Faraó e seu exército atrás' pra dar nome ao antagonista.",
+        "personagens (nota 3): 'soldado-egipcio' aparece só na cena 8 e some sem fechar arco visual — mantenha o mesmo personagem também na cena 10 (imagem das águas cobrindo os soldados) em vez de 'ninguém'.",
+        "ritmo (nota 3): Cenas 2 a 10 são frases soltas sem conectivo entre si (nenhum 'então', 'mas', 'e quando'), soando como lista de fatos e não como história contada de uma vez; adicione conectivos simples ligando ao menos 3-4 cenas consecutivas.",
+        "linguagem (nota 3): Frases como 'Deus mandou Moisés estender a mão sobre o mar' e 'Moisés respondeu: não temam' soam resumo de livro didático, não fala natural; reescreva como discurso direto mais coloquial, ex.: 'Moisés gritou: fiquem parados, Deus briga por vocês.'",
+        "payoff (nota 3): A cena 11 tenta ser aplicação pessoal e frase-loop ao mesmo tempo ('Deus sempre abre um caminho') mas não ecoa literalmente o 'sem saída' do gancho, enfraquecendo o fechamento; ajuste para algo como 'Não havia saída — até Deus abrir uma.'"
+      ]
+    },
+    {
+      "quando": "01:51:08",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 3,
+      "problemas": [],
+      "falas": [
+        "Mar na frente, exército de Faraó atrás.",
+        "Com medo, o povo clamou ao Senhor.",
+        "Disseram a Moisés: melhor servir egípcios que morrer aqui.",
+        "Moisés respondeu: fiquem quietos, Deus luta por vocês.",
+        "Ele levantou o cajado, e Deus abriu o mar.",
+        "Israel passou em terra seca, água como muro.",
+        "Faraó entrou atrás, e Deus travou as rodas.",
+        "Moisés estendeu a mão, e o mar voltou.",
+        "Cobriu Faraó e o exército. Não sobrou nenhum.",
+        "Sem saída também é onde você tá? Deus luta por você.",
+        "Não havia saída, até Deus abrir uma.",
+        "Se você creu, escreve amém, e se inscreve pra mais histórias."
+      ]
+    },
+    {
+      "quando": "01:51:45",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 3,
+      "notas": {
+        "fidelidade": 3,
+        "ordem": 5,
+        "personagens": 2,
+        "compreensao": 4,
+        "gancho": 4,
+        "ritmo": 3,
+        "linguagem": 3,
+        "payoff": 4
+      },
+      "entendimento": "Preso entre o mar e o exército egípcio, o povo hebreu vê Deus abrir o mar para eles passarem e depois fechá-lo sobre os perseguidores, mostrando que Deus luta por quem confia nele mesmo sem saída aparente.",
+      "erros_factuais": [
+        "Cena 7: diz que 'Faraó entrou atrás' pessoalmente no mar, mas a fonte fala do exército/cavalos/carros/cavaleiros de Faraó, não confirma que ele próprio entrou.",
+        "Cena 9: diz que a água 'cobriu Faraó', mas a fonte (14:28) diz que cobriu o exército que entrou atrás, sem afirmar que Faraó estava lá."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 7: diz que 'Faraó entrou atrás' pessoalmente no mar, mas a fonte fala do exército/cavalos/carros/cavaleiros de Faraó, não confirma que ele próprio entrou.",
+        "ERRO FACTUAL: Cena 9: diz que a água 'cobriu Faraó', mas a fonte (14:28) diz que cobriu o exército que entrou atrás, sem afirmar que Faraó estava lá.",
+        "fidelidade (nota 3): Cena 7 e 9 atribuem a morte no mar a Faraó pessoalmente, fato não sustentado pela fonte; troque 'Faraó' por 'exército egípcio' nas duas cenas.",
+        "personagens (nota 2): Cenas 7 e 9 citam 'Faraó' no texto mas usam a imagem de soldado-egipcio, e Faraó não é personagem definido na lista; ajuste o texto para 'exército egípcio' para bater com a imagem e a lista de personagens."
+      ]
+    },
+    {
+      "quando": "01:53:51",
+      "etapa": "camada1",
+      "ok": true,
+      "tentativa": 4,
+      "problemas": [],
+      "falas": [
+        "Mar na frente. Faraó atrás. Sem saída.",
+        "Com medo, o povo clamou ao Senhor.",
+        "E disseram a Moisés: melhor servir egípcios que morrer.",
+        "Moisés gritou: fiquem parados, Deus briga por vocês.",
+        "Então Deus mandou Moisés esticar o cajado.",
+        "Um vento forte abriu o mar a noite toda.",
+        "Israel passou em terra seca, água como muro dos lados.",
+        "Mas os egípcios entraram atrás, e Deus travou as rodas.",
+        "Aí Moisés esticou a mão outra vez.",
+        "E as águas voltaram e cobriram Faraó e seu exército.",
+        "Não havia saída, até Deus abrir uma.",
+        "Escreve amém, e se inscreve pra mais histórias."
+      ]
+    },
+    {
+      "quando": "01:54:13",
+      "etapa": "camada2",
+      "ok": false,
+      "tentativa": 4,
+      "notas": {
+        "fidelidade": 4,
+        "ordem": 5,
+        "personagens": 5,
+        "compreensao": 4,
+        "gancho": 3,
+        "ritmo": 3,
+        "linguagem": 4,
+        "payoff": 2
+      },
+      "entendimento": "Com o mar à frente e o exército egípcio atrás, Deus abre o mar para Israel passar em terra seca e depois fecha as águas sobre os egípcios que os perseguiam.",
+      "erros_factuais": [
+        "Cena 8: diz que Deus 'travou as rodas', mas a fonte (14:25) diz que Ele arrancou/soltou as rodas dos carros, causando dificuldade em conduzi-los — 'travar' sugere algo diferente de 'arrancar'."
+      ],
+      "problemas": [
+        "ERRO FACTUAL: Cena 8: diz que Deus 'travou as rodas', mas a fonte (14:25) diz que Ele arrancou/soltou as rodas dos carros, causando dificuldade em conduzi-los — 'travar' sugere algo diferente de 'arrancar'.",
+        "gancho (nota 3): Cena 1 descreve a cena mas não cria um paradoxo/impossibilidade clara; troque por algo como 'Deus mandou o povo andar para dentro do mar' para gerar mais estranhamento imediato.",
+        "ritmo (nota 3): Cena 1 soa telegráfica, 3 frases soltas sem conectivo ('Mar na frente. Faraó atrás. Sem saída.'), una em uma frase corrida tipo 'Mar na frente, Faraó atrás — sem saída.'",
+        "payoff (nota 2): Falta totalmente a aplicação pessoal em 2ª pessoa ligada a uma dor real (medo, espera) entre o clímax (cena 10) e o loop (cena 11); insira uma cena curta tipo 'Quando parecer que não tem saída, lembra: Ele também luta por ti' cortando algo da cena 1 ou 8 para caber no limite de palavras."
+      ]
+    }
+  ]
+}

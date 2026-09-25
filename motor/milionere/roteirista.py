@@ -119,6 +119,10 @@ def montar_prompt(formato: dict, tema: dict, correcoes: list[str] | None = None,
         "Quem age num milagre é Deus: diga isso, não atribua a ação a um objeto ou animal.\n"
         "- É UMA voz narrando: fala de personagem sempre com verbo ('Jesus disse: Venha!'), nunca 'Jesus: Venha!'. "
         "Conclusão sua ('nunca chegou ao fundo') também é fato novo: só diga o que o texto diz.\n"
+        "- FIDELIDADE AO TRECHO: afirme só o que está no texto da FONTE acima. Nada de tradição, detalhe de outro "
+        "capítulo ou dedução, mesmo que você saiba (reprovados em 24/09: 'nunca tinha chovido', 'dez filhos' fora do "
+        "trecho, 'Faraó entrou no mar' quando o texto diz 'o exército', 'Deus falou' quando quem fala é a jumenta). "
+        "Na dúvida, use a palavra exata do texto.",
         "- `versiculo.texto` é copiado letra por letra da fonte (pode cortar com '...'). Na fala: se a frase traz a "
         "referência junto ('Provérbios 15:1: ...'), use as palavras EXATAS da fonte, sem trocar sinônimo (o juiz reprova "
         "'acende' no lugar de 'suscita'); se quiser adaptar, tire a referência e diga 'a Bíblia diz que...'.",
