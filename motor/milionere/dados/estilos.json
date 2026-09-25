@@ -76,5 +76,25 @@
     "scheduler": "simple",
     "ip_peso": 0,
     "movimento": "zoom"
+  },
+  "espaco_zimage": {
+    "motor": "zimage",
+    "unet": "z_image_turbo-Q6_K.gguf",
+    "text_encoder": "qwen_3_4b_fp8_mixed.safetensors",
+    "vae": "z_image_ae.safetensors",
+    "passos": 9,
+    "cfg": 1.0,
+    "shift": 3.0,
+    "sampler": "res_multistep",
+    "scheduler": "simple",
+    "nome": "Espaço realista (Z-Image Turbo, mesmos arquivos do cinema_zimage)",
+    "modelo_credito": "Z-Image Turbo",
+    "prompt": "photorealistic space photography, NASA and Hubble style, cinematic lighting, highly detailed, deep black space, no text, no watermark",
+    "prompt_biblico": "",
+    "negativo": "",
+    "negativo_biblico": "",
+    "ip_peso": 0,
+    "movimento": "zoom",
+    "movimento_video": ", slow cinematic camera push-in, subtle natural motion, glowing light, gas and clouds drifting gently, realistic space footage"
   }
 }

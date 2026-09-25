@@ -291,6 +291,50 @@ def _nativo(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
     return videos
 
 
+ESTILO_POD = {"astronomia": "espaco_zimage"}  # nicho sem estilo aqui usa o do gospel (cinema_zimage)
+ANIMAR_POD = 3  # cenas animadas pelo Wan por vídeo (gancho, meio e clímax)
+
+
+def _ia_pod(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
+    """Imagens geradas por IA no ComfyUI do pod (MILIONERE_COMFY_URL), como o gospel do Rafael: o roteiro do nicho
+    (escritor + juiz), o Z-Image gera cada cena e o Wan 2.2 anima as principais. O resto (voz, legenda, montagem) é
+    a montagem de sempre, que prefere cena_NN.mp4 / cena_NN.png da pasta de mídia."""
+    _motor()
+    import animar
+    import imagens
+    import nativo
+
+    def log(msg):
+        diario(msg, _etapa_nativo(msg))
+    if not imagens.REMOTO:
+        raise RuntimeError("Imagens 'IA no pod' precisa do MILIONERE_COMFY_URL no .env (endereço do ComfyUI do pod)")
+    if not imagens.no_ar():
+        raise RuntimeError(f"o pod está desligado ou o ComfyUI não responde ({imagens.URL}): ligue o pod na RunPod")
+    pauta = prod.pauta
+    r = nativo.roteiro_generico(prod.nicho, (pauta.formato_nome if pauta else "") or prod.formato, prod.tema,
+                                f"canal-{str(prod.id)[:8]}", log)
+    diario("roteiro aprovado:\n" + "\n".join(f"  «{c['fala']}»" for c in r["cenas"]), "imagens")
+    diario.avisos += r.get("_avisos", [])
+    estilo = ESTILO_POD.get(prod.nicho, "cinema_zimage")
+    r["_movimento"] = imagens.estilos()[estilo].get("movimento_video", animar.MOVIMENTO)
+    pasta = imagens.caminhos.PRODUCAO / "midia" / r["slug"]
+    pasta.mkdir(parents=True, exist_ok=True)
+    inicio = time.time()
+    diario(f"gerando {len(r['cenas'])} imagens no pod (Z-Image, estilo {estilo})", "imagens")
+    imagens.gerar_cenas(r, estilo, pasta)
+    diario(f"imagens prontas em {time.time() - inicio:.0f}s", "imagens")
+    cenas = animar.escolher(r, ANIMAR_POD)
+    try:  # animação é bônus: se falhar, o vídeo sai com as imagens (com zoom)
+        diario(f"animando as cenas {cenas} no pod (Wan 2.2)", "imagens")
+        inicio = time.time()
+        animar.animar(r, pasta, cenas)
+        diario(f"animação pronta em {time.time() - inicio:.0f}s", "imagens")
+    except Exception as e:  # noqa: BLE001
+        diario(f"animação falhou, o vídeo segue só com imagens: {str(e)[:300]}", "imagens")
+        diario.avisos.append(f"animação falhou: {str(e)[:200]}")
+    return nativo.montar(r, Path(settings.MEDIA_ROOT) / "canal" / str(prod.id), musica, log)
+
+
 def _url(p: Path) -> str:
     try:
         return settings.MEDIA_URL + p.resolve().relative_to(Path(settings.MEDIA_ROOT).resolve()).as_posix()
@@ -319,6 +363,40 @@ def _resultado(videos: list[Path]) -> dict:
             "videos": [{"nome": p.name, "url": _url(p), "variante": "sem" if "_sem-musica" in p.stem else "com"} for p in videos]}
 
 
+# vozes do Edge TTS que falam português (as "Multilingual" são americanas lendo em pt-BR, com leve sotaque)
+VOZES = [
+    ("pt-BR-AntonioNeural-Male", "Antonio (masculina)"),
+    ("pt-BR-FranciscaNeural-Female", "Francisca (feminina)"),
+    ("pt-BR-ThalitaMultilingualNeural-Female", "Thalita (feminina, jovem)"),
+    ("en-US-AndrewMultilingualNeural-Male", "Andrew (masculina, sotaque leve)"),
+    ("en-US-BrianMultilingualNeural-Male", "Brian (masculina, sotaque leve)"),
+    ("en-US-AvaMultilingualNeural-Female", "Ava (feminina, sotaque leve)"),
+    ("en-US-EmmaMultilingualNeural-Female", "Emma (feminina, sotaque leve)"),
+]
+TEXTO_PREVIA = ("Oi! Essa é a voz do canal. Você sabia que um dia em Vênus dura mais do que um ano inteiro? "
+                "Se inscreve pra não perder o próximo.")
+
+
+def previa_voz(nicho: str, voz: str) -> Path:
+    """mp3 curto com a voz no tom e na velocidade do nicho (gerado uma vez e guardado em media/vozes)."""
+    import asyncio
+
+    import edge_tts
+    if voz not in dict(VOZES):
+        raise ValueError("voz desconhecida")
+    sp, _, _ = _motor()
+    preset = sp._preset(nicho)
+    tom = str(preset.get("voice_pitch", "") or "+0Hz")
+    rate = float(preset.get("voice_rate", 1.0) or 1.0)
+    velocidade = f"{round((rate - 1) * 100):+d}%"
+    destino = Path(settings.MEDIA_ROOT) / "vozes" / f"{nicho}_{voz}_{tom}_{velocidade}.mp3".replace("%", "p")
+    if not destino.exists():
+        destino.parent.mkdir(parents=True, exist_ok=True)
+        nome = voz.rsplit("-", 1)[0]  # "pt-BR-AntonioNeural-Male" -> "pt-BR-AntonioNeural"
+        asyncio.run(edge_tts.Communicate(TEXTO_PREVIA, nome, rate=velocidade, pitch=tom).save(str(destino)))
+    return destino
+
+
 def _opcoes_video(nicho: str) -> None:
     """As opções do vídeo do nicho viram variáveis de ambiente: o produzir.py (processo filho) lê. Um vídeo por vez,
     então não há dois jobs disputando as variáveis."""
@@ -326,9 +404,15 @@ def _opcoes_video(nicho: str) -> None:
     os.environ["MILIONERE_LEGENDA"] = "" if not c or c.legenda == "padrao" else c.legenda
     os.environ["MILIONERE_EFEITOS"] = "1" if c and c.efeitos else "0"
     os.environ["MILIONERE_VOLUME"] = "1" if c and c.volume else "0"
+    os.environ["MILIONERE_VOZ"] = c.voz if c and c.voz else ""
+
+
+_ATUAL: "Producao | Serie | None" = None  # o que o produtor está gerando agora (o vigia de cancelamento olha)
 
 
 def executar_qualquer(item: "Producao | Serie") -> None:
+    global _ATUAL
+    _ATUAL = item
     _opcoes_video(item.nicho)
     (executar_serie if isinstance(item, Serie) else executar)(item)
 
@@ -349,6 +433,8 @@ def executar(prod: Producao) -> None:
             biblico = prod.nicho == "gospel" and prod.pauta and prod.pauta.tema_id and prod.pauta.origem == "catalogo"
             if canal and canal.imagens == "nativo":
                 videos = _nativo(prod, musica, diario)
+            elif canal and canal.imagens == "ia_pod":
+                videos = _ia_pod(prod, musica, diario)
             else:
                 videos = _gospel(prod, musica, diario) if biblico else _generico(prod, musica, diario, provedor)
             Producao.objects.filter(pk=prod.pk).update(
@@ -376,6 +462,9 @@ def executar(prod: Producao) -> None:
 
 
 # ------------------------------------------------------------------ série (2 a 5 partes)
+
+TEMPO_MAX_JUIZ_SERIE = 8 * 60  # rodadas do juiz da série (com as reescritas): passou, segue com os avisos
+
 
 def executar_serie(s: Serie) -> None:
     """Plano -> juiz do plano -> roteiro de cada parte (juízes de sempre) -> juiz da série (reescreve só a parte
@@ -405,11 +494,13 @@ def executar_serie(s: Serie) -> None:
                            "palavras": [preset["palavras_min"], preset["palavras_max"]]}
                 tema, fonte, chave = {"titulo": s.tema, "angulo": ""}, None, str(s.pk)[:8]
             slug_serie = f"serie-{s.formato}-{chave}"
+            avisos_roteiro: list[str] = []  # o que os juízes apontaram e não ficou resolvido (vai para a revisão)
             if biblico:  # história completa primeiro, depois o corte em episódios (motor/milionere/episodios.py)
                 import episodios
                 with _LogGospel(diario):
                     plano, roteiros = episodios.serie_biblica(s.formato, formato, tema, s.max_partes, slug_serie,
                                                               log=lambda msg: diario(msg, "roteiro"))
+                avisos_roteiro += list(dict.fromkeys(a for _, pk in roteiros for a in pk.get("_avisos_juiz", [])))
                 N = len(plano["partes"])
                 Serie.objects.filter(pk=s.pk).update(plano=plano, titulo=plano["titulo_serie"][:200], etapa="roteiro")
                 partes = [Producao.objects.create(serie=s, parte=k, pauta=pauta, nicho=s.nicho, formato=s.formato,
@@ -443,8 +534,8 @@ def executar_serie(s: Serie) -> None:
                                                   "tema_livre": f"{s.tema} (parte {k} de {N}: {x['titulo']})",
                                                   "serie": ms.contexto_parte(plano, k, s.nicho, anteriores, correcoes)},
                                                  lambda etapa, msg: diario(msg or etapa, "roteiro"))
-                        if r.get("_avisos"):
-                            raise RuntimeError(f"parte {k}: o juiz reprovou o roteiro nas 3 tentativas: " + " | ".join(r["_avisos"][:3]))
+                        if r.get("_avisos"):  # não joga a série fora: segue a melhor versão e o ponto vai para a revisão
+                            avisos_roteiro.extend(f"parte {k}: {a}" for a in r["_avisos"][:3])
                         r["titulo"] = ms.titulo_parte(r["titulo"], k, N)
                         if r.get("tiktok_titulo"):
                             r["tiktok_titulo"] = ms.titulo_parte(r["tiktok_titulo"], k, N)
@@ -453,6 +544,7 @@ def executar_serie(s: Serie) -> None:
 
                 for k in range(1, N + 1):
                     escrever(k)
+                comeco_juiz = time.time()
                 for rodada in range(ms.RODADAS_SERIE + 1):
                     diario(f"juiz da série: lendo as {N} partes juntas (rodada {rodada + 1})", "roteiro")
                     vistos = [{"falas": falas(k), "personagens": (roteiros[k - 1][1] if biblico else {}).get("personagens", [])}
@@ -463,9 +555,14 @@ def executar_serie(s: Serie) -> None:
                         break
                     for k, p in problemas.items():
                         diario(f"  juiz da série, parte {k}: " + " | ".join(p), "roteiro")
-                    if rodada == ms.RODADAS_SERIE:
-                        raise RuntimeError("o juiz da série reprovou depois das reescritas: "
-                                           + " | ".join(f"parte {k}: {p[0]}" for k, p in problemas.items()))
+                    estourou = time.time() - comeco_juiz > TEMPO_MAX_JUIZ_SERIE
+                    if rodada == ms.RODADAS_SERIE or estourou:
+                        # antes a série inteira ia fora aqui (27 min de roteiro aprovado parte a parte). O juiz ajuda,
+                        # mas não segura o vídeo: segue esta versão e o que ele apontou vai para a revisão.
+                        diario("juiz da série não aprovou tudo " + ("(passou do tempo)" if estourou else "depois das reescritas")
+                               + ": segue esta versão, os pontos vão para a revisão", "roteiro")
+                        avisos_roteiro.extend(f"juiz da série, parte {k}: {p[0]}" for k, p in problemas.items())
+                        break
                     for k in sorted(problemas):
                         escrever(k, problemas[k])
 
@@ -486,11 +583,12 @@ def executar_serie(s: Serie) -> None:
                     raise RuntimeError(f"parte {k}: o render não passou nas validações (veja o log)")
                 Producao.objects.filter(pk=prod.pk).update(etapa="post", mensagem="pronta, esperando as outras partes",
                                                            **_resultado(videos))
-            avisos = []
+            avisos = list(avisos_roteiro)
             if visuais and any(r.get("personagens") for _, r, _ in visuais):
                 diario("juiz visual da série: o mesmo personagem com a mesma cara em todas as partes", "montagem")
-                avisos = ms.julgar_visual(visuais, pipeline.PROD / "midia" / "_serie_visual" / slug_serie)
-                for a in avisos:
+                visual = ms.julgar_visual(visuais, pipeline.PROD / "midia" / "_serie_visual" / slug_serie)
+                avisos += visual
+                for a in visual:
                     diario(f"  AVISO: {a}")
             fim, custos = agora(), m.resumo()
             por_parte = {k: (round(v / N, 4) if isinstance(v, (int, float)) else v) for k, v in custos.items()}
@@ -544,7 +642,11 @@ def _vigiar_cancelamento(parar: threading.Event) -> None:
     import llm
     while not parar.is_set():
         try:
-            if Producao.objects.filter(status=Producao.Status.GERANDO, cancelar=True).exists():
+            atual = _ATUAL
+            # série não tem o campo cancelar: o painel a marca como falhou enquanto ela ainda roda aqui
+            serie_cancelada = isinstance(atual, Serie) and Serie.objects.filter(
+                pk=atual.pk, status=Producao.Status.FALHOU).exists()
+            if serie_cancelada or Producao.objects.filter(status=Producao.Status.GERANDO, cancelar=True).exists():
                 if not llm.CANCELADO.is_set():
                     llm.CANCELADO.set()
                     _matar_filhos()
@@ -731,7 +833,7 @@ def estado() -> dict:
         feitos, falhas = hoje(c.nicho)
         livres = Pauta.objects.filter(nicho=c.nicho, usado=False, falhas__lt=2)
         canais.append({"nicho": c.nicho, "nome": cat[c.nicho]["nome"], "cor": cat[c.nicho]["cor"], "ativo": c.ativo,
-                       "meta_dia": c.meta_dia, "musica": c.musica, "imagens": c.imagens, "legenda": c.legenda, "efeitos": c.efeitos, "volume": c.volume,
+                       "meta_dia": c.meta_dia, "musica": c.musica, "imagens": c.imagens, "legenda": c.legenda, "efeitos": c.efeitos, "volume": c.volume, "voz": c.voz,
                        "modo": c.modo, "serie_max": c.serie_max,
                        "serie_cada": c.serie_cada, "hoje": feitos, "falhas_hoje": falhas,
                        "restantes": livres.count(), "formatos": formatos_do_nicho(c.nicho),

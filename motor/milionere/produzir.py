@@ -91,6 +91,8 @@ def montar_tarefa(r: dict, preset: dict) -> tuple[dict, list[str]]:
         tarefa["bgm_type"] = ""  # vazio = sem música para o motor
         avisos.append(f"sem música '{preset['bgm_prefixo']}*' em storage/bgm; vídeo sai sem música")
     tarefa.update(r.get("ajustes", {}))
+    if os.environ.get("MILIONERE_VOZ"):  # voz escolhida no painel para o canal (vazio = a do preset)
+        tarefa["voice_name"] = os.environ["MILIONERE_VOZ"]
     if caminhos.VOZ == "azure":  # mesma voz pela API oficial do Azure (formato do motor: ...Neural-V2-Male)
         nome = tarefa.get("voice_name", "")
         if nome and "-V2" not in nome:

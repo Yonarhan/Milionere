@@ -162,7 +162,7 @@ def _animar_remoto(r: dict, pasta: Path, faltam: list[int]) -> list[int]:
     t0 = time.time()
     for i in faltam:
         img = imagens.enviar(pasta / f"cena_{i:02d}.png", f"{r['slug']}_cena_{i:02d}.png")
-        texto = r["cenas"][i - 1]["imagem"].rstrip(". ") + MOVIMENTO
+        texto = r["cenas"][i - 1]["imagem"].rstrip(". ") + r.get("_movimento", MOVIMENTO)
         h = _rodar(wf_completo(img, texto, NEG, quadros(r["cenas"][i - 1]["fala"]), f"{r['slug']}_{i:02d}"), None)
         video = next(o for out in h["outputs"].values() for tipo in ("videos", "images", "gifs") for o in out.get(tipo, [])
                      if o["filename"].endswith(".mp4"))

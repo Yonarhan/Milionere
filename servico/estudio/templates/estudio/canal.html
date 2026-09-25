@@ -89,9 +89,12 @@ details.pauta summary{cursor:pointer;font-weight:600;font-size:14px}
 .pauta li small{color:var(--muted)}
 .pauta li .x{border:0;background:none;color:var(--muted);cursor:pointer;padding:0 4px}
 .opcoes{margin-top:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--ground);display:grid;gap:8px}
-.op{display:grid;grid-template-columns:110px auto;gap:4px 10px;align-items:center}
+.op{display:grid;grid-template-columns:110px minmax(0,1fr);gap:4px 10px;align-items:center}
 .op-nome{font-size:13px;font-weight:600}
-.op .seg button{white-space:nowrap}
+.op .seg{flex-wrap:wrap;max-width:100%}
+.op .seg button{white-space:nowrap;flex:1 0 auto}
+.vozsel{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.vozsel select{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px;font:inherit;font-size:12px;max-width:100%}
 .op-dica{grid-column:2;font-size:12px;color:var(--muted)}
 @media (max-width:600px){.op{grid-template-columns:1fr}.op-dica{grid-column:1}}
 .pauta form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;margin-top:6px}
@@ -239,12 +242,19 @@ function renderCanais(){
       </div>
       <div class="opcoes" role="group" aria-label="Opções do vídeo">
         <div class="label">Opções do vídeo</div>
-        ${opcao(c,"imagens","Imagens",[["ia","geradas por IA"],["nativo","banco grátis"]],
-          c.imagens==="nativo"?"Fotos, pinturas e vídeos livres (NASA, Pexels, museus). Roda em PC fraco.":"A IA gera cada cena (precisa de GPU ou da API).")}
+        ${opcao(c,"imagens","Imagens",[["ia","geradas por IA"],["nativo","banco grátis"],["ia_pod","IA no pod"]],
+          c.imagens==="nativo"?"Fotos, pinturas e vídeos livres (NASA, Pexels, museus). Roda em PC fraco.":c.imagens==="ia_pod"?"Z-Image gera cada cena e o Wan anima as 3 principais, na GPU da RunPod. Ligue o pod antes.":"A IA gera cada cena (precisa de GPU ou da API).")}
         ${opcao(c,"musica","Música",[["com","com música"],["sem","sem música"]],
           c.musica==="sem"?"Pro TikTok: você põe um som em alta no app.":"Trilha ambiente baixinha sob a voz.")}
         ${opcao(c,"legenda","Legenda",[["padrao","padrão"],["karaoke","destaque"],["word_by_word","palavra"]],
           c.legenda==="karaoke"?"2 ou 3 palavras por vez, a falada em amarelo (estilo viral).":c.legenda==="word_by_word"?"Uma palavra por vez, bem grande.":"Como o nicho já usava.")}
+        <div class="op"><span class="op-nome">Voz</span><span class="vozsel">
+          <select data-voz="${c.nicho}" aria-label="Voz do canal">
+            <option value="" ${!c.voz?"selected":""}>padrão do nicho</option>
+            ${(E.vozes||[]).map(([v,r])=>`<option value="${v}" ${c.voz===v?"selected":""}>${esc(r)}</option>`).join("")}
+          </select>
+          <button class="btn small" data-previa="${c.nicho}" title="Ouvir a voz no tom e na velocidade do canal">▶ ouvir</button></span>
+          <span class="op-dica">Vale para os próximos vídeos deste canal.</span></div>
         ${opcao(c,"volume","Volume",[[false,"como sai"],[true,"padrão -14 LUFS"]],
           c.volume?"Mesmo volume do resto do feed (TikTok, YouTube, Instagram).":"Sem ajuste no volume final.")}
       </div>
@@ -277,7 +287,7 @@ function renderCanais(){
       if(a==="mais") acao({acao:"canal",nicho:n,meta_dia:c.meta_dia+1});
       if(a==="opcao"){const v=b.dataset.v; acao({acao:"canal",nicho:n,[b.dataset.campo]: v==="true"?true:v==="false"?false:v},"Opção do vídeo ajustada")}
       if(a==="musica") acao({acao:"canal",nicho:n,musica:b.dataset.v},"Música ajustada");
-      if(a==="imagens") acao({acao:"canal",nicho:n,imagens:b.dataset.v},b.dataset.v==="nativo"?"Imagens: banco grátis (roda em PC fraco)":"Imagens: geradas por IA");
+      if(a==="imagens") acao({acao:"canal",nicho:n,imagens:b.dataset.v},b.dataset.v==="nativo"?"Imagens: banco grátis (roda em PC fraco)":b.dataset.v==="ia_pod"?"Imagens: IA no pod (ligue o pod na RunPod)":"Imagens: geradas por IA");
       if(a==="gerar") acao({acao:"gerar",nicho:n},"Entrou na fila");
       if(a==="zerar") acao({acao:"zerar_falhas"},"Falhas zeradas: o automático volta a gerar");
       if(a==="gerarPauta") acao({acao:"gerar",nicho:n,pauta:+b.dataset.id},"Entrou na fila");
@@ -288,6 +298,15 @@ function renderCanais(){
       if(a==="sugerir"){b.disabled=true;b.textContent="A IA está pensando…";
         const j=await acao({acao:"sugerir",nicho:n}); if(j) toast(`${j.novos} tema(s) novo(s) na pauta`); b.disabled=false;b.textContent="IA sugere 10 temas"}
     };
+    el.querySelectorAll("[data-voz]").forEach(s=>s.onchange=()=>acao({acao:"canal",nicho:s.dataset.voz,voz:s.value},
+    s.value?"Voz escolhida: "+s.selectedOptions[0].textContent:"Voz: padrão do nicho"));
+    el.querySelectorAll("[data-previa]").forEach(b=>b.onclick=()=>{
+    const s=el.querySelector(`[data-voz="${b.dataset.previa}"]`), voz=s.value||"pt-BR-AntonioNeural-Male";
+    b.disabled=true; b.textContent="carregando…";
+    const a=new Audio(`/api/voz/previa?nicho=${encodeURIComponent(b.dataset.previa)}&voz=${encodeURIComponent(voz)}`);
+    a.oncanplay=()=>{b.textContent="▶ tocando"}; a.onended=a.onerror=()=>{b.disabled=false; b.textContent="▶ ouvir"; if(a.error) toast("Não consegui tocar a prévia")};
+    a.play().catch(()=>{b.disabled=false; b.textContent="▶ ouvir"; toast("Não consegui tocar a prévia")});
+  });
     el.querySelectorAll("select[data-a]").forEach(s=>s.onchange=()=>acao({acao:"canal",nicho:n,[s.dataset.a]:+s.value},"Série ajustada"));
     el.querySelector("form").onsubmit=e=>{e.preventDefault();const f=e.target;
       acao({acao:"pauta_add",nicho:n,titulo:f.titulo.value,formato:f.formato.value},"Tema adicionado")};

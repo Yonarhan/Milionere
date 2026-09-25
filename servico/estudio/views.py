@@ -81,7 +81,19 @@ def canal(request):
 @require_GET
 def api_canal(request):
     from . import producao
-    return JsonResponse(producao.estado())
+    return JsonResponse({**producao.estado(), "vozes": producao.VOZES})
+
+
+def api_voz_previa(request):
+    """GET ?nicho=astronomia&voz=pt-BR-AntonioNeural-Male -> mp3 com a voz no tom e na velocidade do nicho."""
+    from django.http import FileResponse
+
+    from . import producao
+    try:
+        arq = producao.previa_voz(request.GET.get("nicho", ""), request.GET.get("voz", ""))
+    except Exception as e:  # noqa: BLE001
+        return JsonResponse({"erro": f"não consegui gerar a prévia: {e}"}, status=400)
+    return FileResponse(open(arq, "rb"), content_type="audio/mpeg")
 
 
 @require_POST
@@ -98,14 +110,16 @@ def api_canal_acao(request):
         c = Canal.objects.get(pk=d["nicho"])
         if "musica" in d and d["musica"] not in ("com", "sem"):  # um vídeo só: com ou sem música
             return JsonResponse({"erro": "Escolha com ou sem música."}, status=400)
-        if "imagens" in d and d["imagens"] not in ("ia", "nativo"):
+        if "imagens" in d and d["imagens"] not in ("ia", "nativo", "ia_pod"):
             return JsonResponse({"erro": "Imagens: ia ou nativo."}, status=400)
         if "modo" in d and d["modo"] not in producao.MODOS:
             return JsonResponse({"erro": "Modo desconhecido."}, status=400)
         if "legenda" in d and d["legenda"] not in ("padrao", "karaoke", "word_by_word"):
             return JsonResponse({"erro": "Legenda desconhecida."}, status=400)
+        if "voz" in d and d["voz"] and d["voz"] not in dict(producao.VOZES):
+            return JsonResponse({"erro": "Voz desconhecida."}, status=400)
         limites = {"meta_dia": (0, 12), "serie_max": (2, 5), "serie_cada": (1, 20)}
-        for campo in ("ativo", "meta_dia", "musica", "imagens", "modo", "serie_max", "serie_cada", "legenda", "efeitos", "volume"):
+        for campo in ("ativo", "meta_dia", "musica", "imagens", "modo", "serie_max", "serie_cada", "legenda", "efeitos", "volume", "voz"):
             if campo in d:
                 setattr(c, campo, max(limites[campo][0], min(limites[campo][1], int(d[campo]))) if campo in limites else d[campo])
         c.save()
@@ -187,6 +201,12 @@ def api_canal_acao(request):
         Producao.objects.create(pauta=falha.pauta, nicho=falha.nicho, formato=falha.formato, tema=falha.tema)
         if not producao.vivo():
             producao.ligar_produtor()
+    elif acao == "cancelar_atual" and Serie.objects.filter(pk=d["id"], status=Producao.Status.GERANDO).exists():
+        # série: marca como cancelada na hora (sai do "Gerando agora"); o produtor vê e derruba as chamadas
+        Serie.objects.filter(pk=d["id"]).update(status=Producao.Status.FALHOU, mensagem="cancelado por você",
+                                                terminado=timezone.now())
+        Producao.objects.filter(serie_id=d["id"], status__in=[Producao.Status.GERANDO, Producao.Status.FILA]).update(
+            status=Producao.Status.FALHOU, mensagem="cancelado por você", terminado=timezone.now())
     elif acao == "cancelar_atual":
         p = Producao.objects.filter(pk=d["id"], status=Producao.Status.GERANDO).first()
         if not p:
