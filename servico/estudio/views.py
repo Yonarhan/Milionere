@@ -98,7 +98,7 @@ def api_canal_acao(request):
         c = Canal.objects.get(pk=d["nicho"])
         if "musica" in d and d["musica"] not in ("com", "sem"):  # um vídeo só: com ou sem música
             return JsonResponse({"erro": "Escolha com ou sem música."}, status=400)
-        if "imagens" in d and d["imagens"] not in ("ia", "nativo"):
+        if "imagens" in d and d["imagens"] not in ("ia", "nativo", "ia_pod"):
             return JsonResponse({"erro": "Imagens: ia ou nativo."}, status=400)
         if "modo" in d and d["modo"] not in producao.MODOS:
             return JsonResponse({"erro": "Modo desconhecido."}, status=400)

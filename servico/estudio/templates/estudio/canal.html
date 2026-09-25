@@ -239,8 +239,8 @@ function renderCanais(){
       </div>
       <div class="opcoes" role="group" aria-label="Opções do vídeo">
         <div class="label">Opções do vídeo</div>
-        ${opcao(c,"imagens","Imagens",[["ia","geradas por IA"],["nativo","banco grátis"]],
-          c.imagens==="nativo"?"Fotos, pinturas e vídeos livres (NASA, Pexels, museus). Roda em PC fraco.":"A IA gera cada cena (precisa de GPU ou da API).")}
+        ${opcao(c,"imagens","Imagens",[["ia","geradas por IA"],["nativo","banco grátis"],["ia_pod","IA no pod"]],
+          c.imagens==="nativo"?"Fotos, pinturas e vídeos livres (NASA, Pexels, museus). Roda em PC fraco.":c.imagens==="ia_pod"?"Z-Image gera cada cena e o Wan anima as 3 principais, na GPU da RunPod. Ligue o pod antes.":"A IA gera cada cena (precisa de GPU ou da API).")}
         ${opcao(c,"musica","Música",[["com","com música"],["sem","sem música"]],
           c.musica==="sem"?"Pro TikTok: você põe um som em alta no app.":"Trilha ambiente baixinha sob a voz.")}
         ${opcao(c,"legenda","Legenda",[["padrao","padrão"],["karaoke","destaque"],["word_by_word","palavra"]],
@@ -277,7 +277,7 @@ function renderCanais(){
       if(a==="mais") acao({acao:"canal",nicho:n,meta_dia:c.meta_dia+1});
       if(a==="opcao"){const v=b.dataset.v; acao({acao:"canal",nicho:n,[b.dataset.campo]: v==="true"?true:v==="false"?false:v},"Opção do vídeo ajustada")}
       if(a==="musica") acao({acao:"canal",nicho:n,musica:b.dataset.v},"Música ajustada");
-      if(a==="imagens") acao({acao:"canal",nicho:n,imagens:b.dataset.v},b.dataset.v==="nativo"?"Imagens: banco grátis (roda em PC fraco)":"Imagens: geradas por IA");
+      if(a==="imagens") acao({acao:"canal",nicho:n,imagens:b.dataset.v},b.dataset.v==="nativo"?"Imagens: banco grátis (roda em PC fraco)":b.dataset.v==="ia_pod"?"Imagens: IA no pod (ligue o pod na RunPod)":"Imagens: geradas por IA");
       if(a==="gerar") acao({acao:"gerar",nicho:n},"Entrou na fila");
       if(a==="zerar") acao({acao:"zerar_falhas"},"Falhas zeradas: o automático volta a gerar");
       if(a==="gerarPauta") acao({acao:"gerar",nicho:n,pauta:+b.dataset.id},"Entrou na fila");

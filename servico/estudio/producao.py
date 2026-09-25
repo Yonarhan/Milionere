@@ -291,6 +291,50 @@ def _nativo(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
     return videos
 
 
+ESTILO_POD = {"astronomia": "espaco_zimage"}  # nicho sem estilo aqui usa o do gospel (cinema_zimage)
+ANIMAR_POD = 3  # cenas animadas pelo Wan por vídeo (gancho, meio e clímax)
+
+
+def _ia_pod(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
+    """Imagens geradas por IA no ComfyUI do pod (MILIONERE_COMFY_URL), como o gospel do Rafael: o roteiro do nicho
+    (escritor + juiz), o Z-Image gera cada cena e o Wan 2.2 anima as principais. O resto (voz, legenda, montagem) é
+    a montagem de sempre, que prefere cena_NN.mp4 / cena_NN.png da pasta de mídia."""
+    _motor()
+    import animar
+    import imagens
+    import nativo
+
+    def log(msg):
+        diario(msg, _etapa_nativo(msg))
+    if not imagens.REMOTO:
+        raise RuntimeError("Imagens 'IA no pod' precisa do MILIONERE_COMFY_URL no .env (endereço do ComfyUI do pod)")
+    if not imagens.no_ar():
+        raise RuntimeError(f"o pod está desligado ou o ComfyUI não responde ({imagens.URL}): ligue o pod na RunPod")
+    pauta = prod.pauta
+    r = nativo.roteiro_generico(prod.nicho, (pauta.formato_nome if pauta else "") or prod.formato, prod.tema,
+                                f"canal-{str(prod.id)[:8]}", log)
+    diario("roteiro aprovado:\n" + "\n".join(f"  «{c['fala']}»" for c in r["cenas"]), "imagens")
+    diario.avisos += r.get("_avisos", [])
+    estilo = ESTILO_POD.get(prod.nicho, "cinema_zimage")
+    r["_movimento"] = imagens.estilos()[estilo].get("movimento_video", animar.MOVIMENTO)
+    pasta = imagens.caminhos.PRODUCAO / "midia" / r["slug"]
+    pasta.mkdir(parents=True, exist_ok=True)
+    inicio = time.time()
+    diario(f"gerando {len(r['cenas'])} imagens no pod (Z-Image, estilo {estilo})", "imagens")
+    imagens.gerar_cenas(r, estilo, pasta)
+    diario(f"imagens prontas em {time.time() - inicio:.0f}s", "imagens")
+    cenas = animar.escolher(r, ANIMAR_POD)
+    try:  # animação é bônus: se falhar, o vídeo sai com as imagens (com zoom)
+        diario(f"animando as cenas {cenas} no pod (Wan 2.2)", "imagens")
+        inicio = time.time()
+        animar.animar(r, pasta, cenas)
+        diario(f"animação pronta em {time.time() - inicio:.0f}s", "imagens")
+    except Exception as e:  # noqa: BLE001
+        diario(f"animação falhou, o vídeo segue só com imagens: {str(e)[:300]}", "imagens")
+        diario.avisos.append(f"animação falhou: {str(e)[:200]}")
+    return nativo.montar(r, Path(settings.MEDIA_ROOT) / "canal" / str(prod.id), musica, log)
+
+
 def _url(p: Path) -> str:
     try:
         return settings.MEDIA_URL + p.resolve().relative_to(Path(settings.MEDIA_ROOT).resolve()).as_posix()
@@ -349,6 +393,8 @@ def executar(prod: Producao) -> None:
             biblico = prod.nicho == "gospel" and prod.pauta and prod.pauta.tema_id and prod.pauta.origem == "catalogo"
             if canal and canal.imagens == "nativo":
                 videos = _nativo(prod, musica, diario)
+            elif canal and canal.imagens == "ia_pod":
+                videos = _ia_pod(prod, musica, diario)
             else:
                 videos = _gospel(prod, musica, diario) if biblico else _generico(prod, musica, diario, provedor)
             Producao.objects.filter(pk=prod.pk).update(
