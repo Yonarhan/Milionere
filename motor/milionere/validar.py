@@ -80,7 +80,7 @@ def camada1(r: dict, formato: dict, tema: dict) -> list[str]:
     c_lo, c_hi = int(c_lo * (1 - MARGEM)), round(c_hi * (1 + MARGEM))
     if not c_lo <= len(cenas) <= c_hi:
         erros.append(f"{len(cenas)} cenas; o formato pede {c_lo} a {c_hi}")
-    max_gancho = round(8 * (1 + MARGEM))
+    max_gancho = 10  # meta de 8 (o prompt pede 8); só reprova acima de 10: bons ganchos de 10 derrubavam o corte (25/09)
     if len(_palavras(cenas[0]["fala"])) > max_gancho:
         erros.append(f"gancho com {len(_palavras(cenas[0]['fala']))} palavras (máx. {max_gancho}): «{cenas[0]['fala']}»")
     if not CTA.search(cenas[-1]["fala"]):
