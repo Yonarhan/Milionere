@@ -306,11 +306,29 @@ def montar(h: dict, corte: dict, formato: dict, tema: dict) -> tuple[list[dict],
     return eps, erros
 
 
+def encurtar_cta(c: dict, limite: int = 14) -> dict:
+    """CTA longo não pode ser dividido (a última cena perdia o pedido): corta no primeiro 'e/mas/,' depois do pedido
+    e fica com a parte que pede. 'Se inscreve pra ver a parte 5 e descobrir o que José fez...' (18 palavras, derrubou
+    o corte do José) -> 'Se inscreve pra ver a parte 5.'"""
+    import re
+    palavras = c["fala"].split()
+    if len(palavras) <= limite:
+        return c
+    pedido = re.compile(r"am[eé]m|inscrev|comenta|escreve|segue|compartilha|salva|manda", re.I)
+    for i in range(3, len(palavras) - 1):
+        antes, depois = palavras[i - 1], palavras[i].lower()
+        if (antes.endswith(",") or depois in ("e", "mas", "porque")) and pedido.search(" ".join(palavras[:i])) \
+                and not pedido.search(" ".join(palavras[i:])):
+            return {**c, "fala": " ".join(palavras[:i]).rstrip(",") + "."}
+    return c
+
+
 def _dividir_novas(cenas: list[dict], miolo: list[dict], fechamento: int) -> list[dict]:
     """Só gancho, recap, suspense e aplicação são divididos. A narração aprovada fica como está, e o fechamento
     também: partido, a última cena perdia o CTA ('...pra não perder' + 'o que aconteceu com José')."""
-    fixas = {id(c) for c in miolo} | {id(c) for c in cenas[len(cenas) - fechamento:]}
-    return [y for c in cenas for y in ([c] if id(c) in fixas else dividir_longas([c]))]
+    fecho = {id(c) for c in cenas[len(cenas) - fechamento:]}
+    return [y for c in cenas for y in ([c] if id(c) in {id(m) for m in miolo}
+                                       else [encurtar_cta(c)] if id(c) in fecho else dividir_longas([c]))]
 
 
 def particionar(h: dict, formato: dict, tema: dict, max_partes: int, reg, log=print,
