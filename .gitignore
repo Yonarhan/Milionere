@@ -271,3 +271,7 @@ motor/segredos/
 # testes locais de animação e trava do turno da noite
 producao/testes_video/
 producao/noite/.turno.lock
+
+# Prévias e revisões das cenas em código (regeráveis); os .json das cenas entram
+producao/cenas_codigo/*.png
+producao/cenas_codigo/*_revisao/

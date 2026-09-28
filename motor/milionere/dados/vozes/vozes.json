@@ -1,0 +1,7 @@
+{
+  "_comentario": "Vozes do OmniVoice escolhidas pelo Yonarhan no teste de elenco (27/09/2026). O áudio é a referência que a narração clona: timbre e jeito de falar. 'texto' é o que a referência diz.",
+  "bob-jovem": {"nome": "Bob · jovem (OmniVoice)", "arquivo": "bob-jovem.wav", "velocidade": 1.0,
+                "texto": "Pera... você sabia que o seu cérebro fica acordado a noite inteira? Sério! E aí vem a parte estranha."},
+  "bob-agudo": {"nome": "Bob · jovem agudo (OmniVoice)", "arquivo": "bob-agudo.wav", "velocidade": 1.0,
+                "texto": "Pera... você sabia que o seu cérebro fica acordado a noite inteira? Sério! E aí vem a parte estranha."}
+}

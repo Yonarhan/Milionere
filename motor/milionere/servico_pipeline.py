@@ -151,6 +151,37 @@ BLOCO_NARRADO = (
     "palavras grandes escritas na imagem quando ajudar (ex.: THE END, 0:00); nada de números pequenos.")
 
 
+# modo VIRAL (opção do canal, MILIONERE_ROTEIRO=viral): o narrado + regras de retenção. Tamanho mais solto: o que
+# manda é prender até o fim, não bater número de palavras.
+VIRAL_PALAVRAS = (80, 160)
+BLOCO_VIRAL = (
+    "# Modo VIRAL (vale por cima do formato narrado)\n"
+    "O objetivo é a pessoa assistir ATÉ O FIM e reassistir. Regras:\n"
+    "1. Gancho (1ª cena, até 8 palavras): uma AFIRMAÇÃO que contraria o senso comum ou choca, nunca uma pergunta "
+    "morna. Ex.: 'Você nunca ouviu a sua voz de verdade.' A crença contrariada tem que ser REAL e comum (o que a "
+    "maioria pensa ou sente no dia a dia); nunca desminta um mito que quase ninguém acredita, nem invente um. "
+    "Na dúvida, parta de uma experiência que todo mundo já viveu.\n"
+    "2. Nada de ordem de aula (hipótese -> experimento -> conclusão). Conte como mistério: a resposta mais "
+    "surpreendente fica para o último terço.\n"
+    "3. Um mini-gancho de retenção no meio ('mas o mais estranho vem agora', 'e isso não é nem o pior'), para quem ia "
+    "sair ficar.\n"
+    "4. Cada frase empurra para a próxima; corte toda frase que só explica sem surpreender. Nome de cientista, ano e "
+    "número exato só se forem a surpresa.\n"
+    "5. Final em CICLO: a última frase conversa com o gancho (quem chega no fim quer ver de novo) ou é uma pergunta "
+    "que divide opiniões e faz comentar. Nunca termine com resumo.\n"
+    "6. O tamanho é o que a história pede: curto e denso ganha de longo e completo.\n"
+    "7. IMPLICAÇÃO NO COTIDIANO: o vídeo tem que mudar alguma coisa no dia de quem assiste. Mostre onde isso "
+    "aparece na vida real (em casa, no trabalho, no celular, no relacionamento) e, quando couber, o que a pessoa "
+    "pode fazer com essa informação ('da próxima vez que...'). Estudo, ano e cientista só entram se mudarem a "
+    "vida da pessoa; curiosidade sem utilidade nenhuma prende menos.\n"
+    "8. AMBIENTAÇÃO: ancore a história numa SITUAÇÃO concreta que o Bob vive (lugar + momento: 'na cozinha, 7 da "
+    "manhã, procurando a chave'; 'no ônibus lotado'; 'deitado às 2 da manhã com o celular'). A narração volta a essa "
+    "situação no fim. Nas `imagem`, diga o lugar ('setting: ...').\n"
+    "9. Varie o TIPO de gancho entre os vídeos (os que mais viralizam lá fora): contrariar uma crença comum; "
+    "'o que acontece se...' (consequência que a pessoa precisa saber); aviso ('pare de fazer X'); lacuna de curiosidade "
+    "(abre a pergunta e segura a resposta); chamar o espectador ('se você sempre...'); começar no meio da cena tensa.")
+
+
 # os dois vídeos aprovados do canal: a voz (Bob e o Amigo, humor) e a morte (o Cérebro e o Coração, reflexivo)
 PILOTOS = ["2026-09-25_propria-voz.json", "2026-09-25_ultimo-minuto-da-vida-v2.json"]
 
@@ -232,6 +263,17 @@ def _juiz(r: dict, entrada: dict, tema: str) -> tuple[list[str], dict]:
                "história, com as frases ligadas; lista de frases soltas é nota 2. A quebra de expectativa do começo tem "
                "que fazer sentido NESTE tema (frase feita que não combina é problema) e o detalhe concreto tem que ser "
                "do tema, não forçado.\n" if entrada.get("narrado") else "")
+    if entrada.get("viral"):
+        narrado += ("\n# Este roteiro é VIRAL: seja duro em gancho, ritmo e payoff\n"
+                    "- gancho: afirmação que contraria o senso comum ou choca (pergunta morna = nota 2). A crença "
+                    "contrariada é algo que as pessoas REALMENTE pensam? Mito que quase ninguém acredita = nota 2;\n"
+                    "- ritmo: tem ordem de aula (hipótese -> experimento -> conclusão)? frase que só explica sem "
+                    "surpreender? falta um mini-gancho no meio? Cada caso é problema, com o número da cena;\n"
+                    "- payoff: a informação mais surpreendente está no último terço e o final fecha em ciclo com o "
+                    "gancho ou pergunta que divide opiniões? Final com resumo ('ou seja...') = nota 2;\n"
+                    "- clareza: o roteiro mostra onde isso aparece NO DIA A DIA de quem assiste (e o que fazer com "
+                    "isso)? Trecho de aula (estudo, ano, 'pesquisadores testaram') que não muda nada na vida da pessoa "
+                    "é problema, com o número da cena e como trocar por um exemplo do cotidiano.\n")
     if entrada.get("narrado") and any(c.get("imagem") for c in r["cenas"]):
         narrado += ("\n# Imagens (desenho doodle com o elenco fixo: Bob e o Amigo)\n"
                     + "\n".join(f"{i}. {c.get('imagem', '')}" for i, c in enumerate(r["cenas"], 1))
@@ -267,19 +309,22 @@ def _roteiro_generico(entrada: dict, log) -> dict:
     ler = lambda n: (refs / n).read_text(encoding="utf-8") if (refs / n).exists() else ""  # noqa: E731
     nicho, preset = entrada["nicho"], _preset(entrada["nicho"])
     # "narrado" (opção do canal, MILIONERE_ROTEIRO): narração corrida primeiro, depois as cenas por imagem
-    entrada = {**entrada, "narrado": entrada.get("narrado", os.environ.get("MILIONERE_ROTEIRO") == "narrado")}
+    modo = os.environ.get("MILIONERE_ROTEIRO", "")
+    entrada = {**entrada, "narrado": entrada.get("narrado", modo in ("narrado", "viral")),
+               "viral": entrada.get("viral", modo == "viral")}
     if entrada["narrado"]:
-        preset = {**preset, "palavras_min": NARRADO_PALAVRAS[0], "palavras_max": NARRADO_PALAVRAS[1], "narrado": True}
+        faixa = VIRAL_PALAVRAS if entrada["viral"] else NARRADO_PALAVRAS
+        preset = {**preset, "palavras_min": faixa[0], "palavras_max": faixa[1], "narrado": True}
     lo, hi = preset["palavras_min"], preset["palavras_max"]
     tema = entrada.get("tema_livre") or entrada.get("tema_titulo") or entrada.get("tema")
     formato = entrada.get("formato_nome", entrada.get("formato", ""))
     if entrada["narrado"]:
-        formato += " (narrado)"  # exemplos e erros do banco separados do modo padrão
+        formato += " (viral)" if entrada["viral"] else " (narrado)"  # exemplos e erros do banco separados por modo
     base = "\n\n".join(p for p in [
         "Você é roteirista de Shorts/TikTok em português do Brasil. Escreva UM roteiro dividido em cenas.",
         f"# Nicho: {nicho} · formato: {formato}\n# Tema: {tema}",
         _bloco_elenco(preset),
-        BLOCO_NARRADO.format(lo=lo, hi=hi) if entrada["narrado"] else
+        BLOCO_NARRADO.format(lo=lo, hi=hi) + ("\n\n" + BLOCO_VIRAL if entrada["viral"] else "") if entrada["narrado"] else
         f"# Tamanho\n{lo} a {hi} palavras no total, 7 a 13 cenas, uma frase por cena (3 a 14 palavras). "
         "A 1ª é o gancho (até 8 palavras); a última é um CTA curto.",
         "" if "# Fechamento" in entrada.get("serie", "") else cta.bloco(nicho),  # parte de série traz o próprio
@@ -372,7 +417,7 @@ def _busca_auto(fala: str, nicho: str) -> str:
 def _salvar_upload(data_url: str, pasta: Path, n: int) -> None:
     cab, dados = data_url.split(",", 1)
     ext = {"image/png": ".png", "image/webp": ".webp", "video/mp4": ".mp4"}.get(cab[5:].split(";")[0], ".jpg")
-    for velho in pasta.glob(f"cena_{n:02d}*"):
+    for velho in pasta.glob(f"cena_{n:02d}[!0-9]*"):
         velho.unlink()
     (pasta / f"cena_{n:02d}{ext}").write_bytes(base64.b64decode(dados))
 
@@ -392,7 +437,7 @@ def montar_roteiro(entrada: dict, slug: str) -> dict:
         igual = base and i < len(base["cenas"]) and base["cenas"][i]["fala"].strip() == fala
         if igual:
             cena = {k: v for k, v in base["cenas"][i].items() if k in ("fala", "busca", "arte", "foto", "escolha", "imagem")}
-            for arq in (REPO_PRODUCAO / "midia" / base["slug"]).glob(f"cena_{i + 1:02d}*"):
+            for arq in (REPO_PRODUCAO / "midia" / base["slug"]).glob(f"cena_{i + 1:02d}[!0-9]*"):
                 shutil.copy(arq, midia / arq.name.replace(f"cena_{i + 1:02d}", f"cena_{n:02d}", 1))
         else:
             cena = {"fala": fala, "busca": (c.get("busca") or "").strip() or _busca_auto(fala, nicho)}

@@ -249,12 +249,12 @@ function renderCanais(){
       </div>
       <div class="opcoes" role="group" aria-label="Opções do vídeo">
         <div class="label">Opções do vídeo</div>
-        ${opcao(c,"imagens","Imagens",[["ia","geradas por IA"],["nativo","banco grátis"],["ia_pod","IA no pod"]],
-          c.imagens==="nativo"?"Fotos, pinturas e vídeos livres (NASA, Pexels, museus). Roda em PC fraco.":c.imagens==="ia_pod"?"Z-Image gera cada cena e o Wan anima as 3 principais, na GPU da RunPod. Ligue o pod antes.":"A IA gera cada cena (precisa de GPU ou da API).")}
+        ${opcao(c,"imagens","Imagens",[["ia","geradas por IA"],["nativo","banco grátis"],["ia_pod","IA no pod"],["codigo","animação em código"]],
+          c.imagens==="nativo"?"Fotos, pinturas e vídeos livres (NASA, Pexels, museus). Roda em PC fraco.":c.imagens==="codigo"?"O Claude desenha e anima o Bob e os objetos em código. Sem GPU e sem pod; ~3 min por vídeo.":c.imagens==="ia_pod"?"Z-Image gera cada cena e o Wan anima as 3 principais, na GPU da RunPod. Ligue o pod antes.":"A IA gera cada cena (precisa de GPU ou da API).")}
         ${c.imagens==="ia_pod"?opcao(c,"estilo_pod","Estilo",[["","do nicho"],["espaco_zimage","espaço"],["doodle_zimage","doodle"],["doodle_cena","doodle cena"],["cinema_zimage","cinema"]],
           c.estilo_pod==="doodle_zimage"?"Desenho à mão, fundo branco, bonequinho de cabeça redonda.":c.estilo_pod==="doodle_cena"?"Cena ilustrada com o elenco do canal (Bob e o Amigo), parede branca e chão bege.":c.estilo_pod==="espaco_zimage"?"Fotografia espacial realista (NASA, Hubble).":c.estilo_pod==="cinema_zimage"?"Cena de filme realista (o do gospel).":"O estilo padrão do nicho."):""}
-        ${opcao(c,"roteiro","Roteiro",[["padrao","padrão"],["narrado","narrado"]],
-          c.roteiro==="narrado"?"Narração corrida, como alguém contando uma história; a imagem troca a cada 2 a 4 s. 45 a 60 s de vídeo.":"Uma frase curta por cena (como sempre).")}
+        ${opcao(c,"roteiro","Roteiro",[["padrao","padrão"],["narrado","narrado"],["viral","viral"]],
+          c.roteiro==="viral"?"Narrado com regras de retenção: gancho que choca, mistério até o fim, final em ciclo. O tamanho é o que a história pede.":c.roteiro==="narrado"?"Narração corrida, como alguém contando uma história; a imagem troca a cada 2 a 4 s. 45 a 60 s de vídeo.":"Uma frase curta por cena (como sempre).")}
         ${opcao(c,"musica","Música",[["com","com música"],["sem","sem música"]],
           c.musica==="sem"?"Pro TikTok: você põe um som em alta no app.":"Trilha ambiente baixinha sob a voz.")}
         ${opcao(c,"legenda","Legenda",[["padrao","padrão"],["karaoke","destaque"],["word_by_word","palavra"]],
@@ -298,7 +298,7 @@ function renderCanais(){
       if(a==="mais") acao({acao:"canal",nicho:n,meta_dia:c.meta_dia+1});
       if(a==="opcao"){const v=b.dataset.v; acao({acao:"canal",nicho:n,[b.dataset.campo]: v==="true"?true:v==="false"?false:v},"Opção do vídeo ajustada")}
       if(a==="musica") acao({acao:"canal",nicho:n,musica:b.dataset.v},"Música ajustada");
-      if(a==="imagens") acao({acao:"canal",nicho:n,imagens:b.dataset.v},b.dataset.v==="nativo"?"Imagens: banco grátis (roda em PC fraco)":b.dataset.v==="ia_pod"?"Imagens: IA no pod (ligue o pod na RunPod)":"Imagens: geradas por IA");
+      if(a==="imagens") acao({acao:"canal",nicho:n,imagens:b.dataset.v},b.dataset.v==="nativo"?"Imagens: banco grátis (roda em PC fraco)":b.dataset.v==="ia_pod"?"Imagens: IA no pod (ligue o pod na RunPod)":b.dataset.v==="codigo"?"Imagens: animação em código (sem GPU)":"Imagens: geradas por IA");
       if(a==="gerar") acao({acao:"gerar",nicho:n},"Entrou na fila");
       if(a==="zerar") acao({acao:"zerar_falhas"},"Falhas zeradas: o automático volta a gerar");
       if(a==="gerarPauta") acao({acao:"gerar",nicho:n,pauta:+b.dataset.id},"Entrou na fila");
@@ -468,7 +468,7 @@ if(FOCO){
 }else{ $("#linkTodos").textContent="só animações"; $("#linkTodos").href="?"; }
 function focar(E){  // mostra só os canais do Bob (animações + os nichos em doodle cena) e os vídeos deles
   if(!FOCO) return E;
-  const bob = new Set([FOCO, ...(E.canais||[]).filter(c=>c.imagens==="ia_pod"&&c.estilo_pod==="doodle_cena").map(c=>c.nicho)]);
+  const bob = new Set([FOCO, ...(E.canais||[]).filter(c=>c.imagens==="codigo"||c.imagens==="ia_pod"&&c.estilo_pod==="doodle_cena").map(c=>c.nicho)]);
   const so = l => (l||[]).filter(x=>bob.has(x.nicho));
   return {...E, canais:so(E.canais), revisar:so(E.revisar), aprovados:so(E.aprovados), historico:so(E.historico),
           fila:so(E.fila), series_revisar:so(E.series_revisar)};

@@ -93,7 +93,7 @@ def api_voz_previa(request):
         arq = producao.previa_voz(request.GET.get("nicho", ""), request.GET.get("voz", ""))
     except Exception as e:  # noqa: BLE001
         return JsonResponse({"erro": f"não consegui gerar a prévia: {e}"}, status=400)
-    return FileResponse(open(arq, "rb"), content_type="audio/mpeg")
+    return FileResponse(open(arq, "rb"), content_type="audio/wav" if arq.suffix == ".wav" else "audio/mpeg")
 
 
 @require_POST
@@ -110,7 +110,7 @@ def api_canal_acao(request):
         c = Canal.objects.get(pk=d["nicho"])
         if "musica" in d and d["musica"] not in ("com", "sem"):  # um vídeo só: com ou sem música
             return JsonResponse({"erro": "Escolha com ou sem música."}, status=400)
-        if "imagens" in d and d["imagens"] not in ("ia", "nativo", "ia_pod"):
+        if "imagens" in d and d["imagens"] not in ("ia", "nativo", "ia_pod", "codigo"):
             return JsonResponse({"erro": "Imagens: ia ou nativo."}, status=400)
         if "modo" in d and d["modo"] not in producao.MODOS:
             return JsonResponse({"erro": "Modo desconhecido."}, status=400)
@@ -118,8 +118,8 @@ def api_canal_acao(request):
             return JsonResponse({"erro": "Legenda desconhecida."}, status=400)
         if "voz" in d and d["voz"] and d["voz"] not in dict(producao.VOZES):
             return JsonResponse({"erro": "Voz desconhecida."}, status=400)
-        if "roteiro" in d and d["roteiro"] not in ("padrao", "narrado"):
-            return JsonResponse({"erro": "Roteiro: padrão ou narrado."}, status=400)
+        if "roteiro" in d and d["roteiro"] not in ("padrao", "narrado", "viral"):
+            return JsonResponse({"erro": "Roteiro: padrão, narrado ou viral."}, status=400)
         if "estilo_pod" in d and d["estilo_pod"] and d["estilo_pod"] not in producao.ESTILOS_POD:
             return JsonResponse({"erro": "Estilo desconhecido."}, status=400)
         limites = {"meta_dia": (0, 12), "serie_max": (2, 5), "serie_cada": (1, 20)}

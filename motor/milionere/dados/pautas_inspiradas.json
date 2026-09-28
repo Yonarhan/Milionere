@@ -1,0 +1,29 @@
+{
+  "_comentario": "Pautas inspiradas em FORMATOS que viralizam em canais gringos de animação explicativa (What happens if..., Why do we..., psicologia do dia a dia). Adaptadas ao Brasil: tema e fato em comum, roteiro 100% nosso (nunca traduzir roteiro de ninguém). Cada pauta: tipo de gancho, a crença/experiência REAL que ela usa, a situação do cotidiano (ambientação) e a utilidade. Criado em 28/09/2026.",
+  "pautas": [
+    {"tema": "Por que você esquece o que ia fazer quando passa por uma porta?", "gancho": "contrariar", "situacao": "sala -> cozinha, procurando algo", "utilidade": "voltar ao cômodo ajuda a lembrar"},
+    {"tema": "O que acontece com seu corpo se você dorme só 4 horas por noite", "gancho": "o_que_acontece", "situacao": "quarto de madrugada com o celular", "utilidade": "o que o sono ruim faz no humor e na fome no dia seguinte"},
+    {"tema": "Por que você sempre acorda 1 minuto antes do despertador", "gancho": "chamar_espectador", "situacao": "quarto, 6h59", "utilidade": "o relógio interno e como aproveitar"},
+    {"tema": "Pare de apertar o botão soneca", "gancho": "aviso", "situacao": "quarto, despertador tocando de novo", "utilidade": "por que a soneca deixa mais cansado"},
+    {"tema": "Por que o tempo passa mais rápido quando você fica mais velho", "gancho": "lacuna", "situacao": "aniversário, 'já é dezembro de novo?'", "utilidade": "como fazer o ano 'durar mais'"},
+    {"tema": "Por que a comida parece mais gostosa quando você está com fome", "gancho": "contrariar", "situacao": "cozinha, fome às 23h", "utilidade": "não fazer mercado com fome"},
+    {"tema": "O que acontece se você passar 1 dia inteiro sem celular", "gancho": "o_que_acontece", "situacao": "sala, celular desligado na mesa", "utilidade": "o efeito no cérebro e na ansiedade"},
+    {"tema": "Por que você ouve uma música e ela gruda na cabeça o dia inteiro", "gancho": "chamar_espectador", "situacao": "ônibus, cantarolando sem querer", "utilidade": "o truque para desgrudar a música"},
+    {"tema": "Por que você tem mais ideias no banho", "gancho": "lacuna", "situacao": "banheiro, a ideia genial no chuveiro", "utilidade": "como provocar esse estado de propósito"},
+    {"tema": "Por que você trava e esquece tudo na hora da prova ou da entrevista", "gancho": "cena_tensa", "situacao": "escritório, entrevista de emprego", "utilidade": "a respiração que destrava"},
+    {"tema": "O supermercado foi planejado para você gastar mais", "gancho": "contrariar", "situacao": "supermercado, carrinho enchendo", "utilidade": "3 truques das lojas e como escapar"},
+    {"tema": "Por que o preço sempre termina em 99", "gancho": "lacuna", "situacao": "supermercado, etiqueta R$ 9,99", "utilidade": "como o cérebro lê o preço"},
+    {"tema": "Por que dá sono depois do almoço", "gancho": "chamar_espectador", "situacao": "escritório, 14h, olho pesando", "utilidade": "o que comer para não dar a moleza"},
+    {"tema": "O que acontece com seu cérebro quando você rola o feed por 1 hora", "gancho": "o_que_acontece", "situacao": "sofá, rolando o celular", "utilidade": "por que cansa sem ter feito nada"},
+    {"tema": "Por que você sente que está sendo observado (e às vezes está certo)", "gancho": "cena_tensa", "situacao": "rua à noite", "utilidade": "o sentido que o cérebro usa sem você perceber"},
+    {"tema": "Pare de estalar os dedos? A verdade sobre o estalo", "gancho": "aviso", "situacao": "escritório, colega estalando os dedos", "utilidade": "o que é o estalo e se faz mal"},
+    {"tema": "Por que você acha seu nome no meio de uma conversa barulhenta", "gancho": "lacuna", "situacao": "festa lotada", "utilidade": "o filtro de atenção do cérebro"},
+    {"tema": "Por que quanto mais você tenta dormir, menos consegue", "gancho": "contrariar", "situacao": "quarto, olhando o teto às 2h", "utilidade": "o truque de parar de tentar"},
+    {"tema": "O que acontece se você beber água gelada no calor", "gancho": "o_que_acontece", "situacao": "praia, calor de 40 graus", "utilidade": "mito ou verdade que todo mundo repete"},
+    {"tema": "Por que você fica mais irritado com fome", "gancho": "chamar_espectador", "situacao": "fila do restaurante", "utilidade": "o açúcar no sangue e o humor"},
+    {"tema": "Por que a primeira noite num lugar novo você dorme mal", "gancho": "lacuna", "situacao": "quarto de hotel", "utilidade": "metade do cérebro fica de vigia; como amenizar"},
+    {"tema": "Por que você lembra de vergonhas de 10 anos atrás na hora de dormir", "gancho": "chamar_espectador", "situacao": "quarto, 2 da manhã", "utilidade": "por que isso acontece e como parar"},
+    {"tema": "Por que o caminho de volta parece mais curto que o de ida", "gancho": "contrariar", "situacao": "ônibus/carro voltando de viagem", "utilidade": "como o cérebro mede o tempo"},
+    {"tema": "O que acontece se você ficar 1 semana sem açúcar", "gancho": "o_que_acontece", "situacao": "cozinha, pote de doce", "utilidade": "o que muda no corpo dia a dia"}
+  ]
+}

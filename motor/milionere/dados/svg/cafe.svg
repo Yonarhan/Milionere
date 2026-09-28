@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- xícara de café: exemplo de objeto em SVG (dados/svg/) -->
+  <path d="M70 60 C60 45 80 38 70 22" fill="none" stroke="#9aa3ad" stroke-width="6" stroke-linecap="round"/>
+  <path d="M100 58 C90 42 110 35 100 18" fill="none" stroke="#9aa3ad" stroke-width="6" stroke-linecap="round"/>
+  <path d="M130 60 C120 45 140 38 130 22" fill="none" stroke="#9aa3ad" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="100" cy="172" rx="80" ry="14" fill="#e8e2d6" stroke="#15151a" stroke-width="6"/>
+  <path d="M150 95 C185 95 185 140 148 142" fill="none" stroke="#15151a" stroke-width="10"/>
+  <path d="M40 80 L160 80 L150 150 C148 162 135 168 120 168 L80 168 C65 168 52 162 50 150 Z"
+        fill="#f4f1ea" stroke="#15151a" stroke-width="7"/>
+  <ellipse cx="100" cy="82" rx="60" ry="10" fill="#6b3f22" stroke="#15151a" stroke-width="6"/>
+  <path d="M85 120 C85 108 100 108 100 118 C100 108 115 108 115 120 C115 132 100 140 100 144 C100 140 85 132 85 120 Z"
+        fill="#e8413c" stroke="none"/>
+</svg>

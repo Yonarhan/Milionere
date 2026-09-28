@@ -31,6 +31,7 @@ Saída: videos_prontos/<data>_<slug>.mp4 e <data>_<slug>.txt (texto do post).
 import argparse
 import json
 import random
+import re
 import shutil
 import os
 import subprocess
@@ -93,7 +94,7 @@ def montar_tarefa(r: dict, preset: dict) -> tuple[dict, list[str]]:
     tarefa.update(r.get("ajustes", {}))
     if os.environ.get("MILIONERE_VOZ"):  # voz escolhida no painel para o canal (vazio = a do preset)
         tarefa["voice_name"] = os.environ["MILIONERE_VOZ"]
-    if caminhos.VOZ == "azure":  # mesma voz pela API oficial do Azure (formato do motor: ...Neural-V2-Male)
+    if caminhos.VOZ == "azure" and not tarefa.get("voice_name", "").startswith("omnivoice:"):  # mesma voz pela API oficial do Azure (formato do motor: ...Neural-V2-Male)
         nome = tarefa.get("voice_name", "")
         if nome and "-V2" not in nome:
             base, _, genero = nome.rpartition("-")
@@ -168,7 +169,53 @@ def entregar(r: dict, pasta: Path, so_audio: bool, video: Path | None = None) ->
         return
     shutil.copy(video, base.with_suffix(".mp4"))
     base.with_suffix(".txt").write_text(texto_post(r), encoding="utf-8")
+    # capa do Short (uma só para as duas versões, com e sem música)
+    import thumbnail
+    capa = SAIDA / f"{date.today():%Y-%m-%d}_{r['slug']}_thumb.jpg"
+    if thumbnail.gerar(r, base.with_suffix(".mp4"), capa):
+        print(f"capa   [{r['slug']}] {capa}")
     print(f"PRONTO [{r['slug']}] {base.with_suffix('.mp4')}")
+
+
+def narrar_omnivoice(r: dict, tarefa: dict) -> Path | None:
+    """Voz "omnivoice:<id>" (dados/vozes/vozes.json): a narração é clonada da referência da voz pelo OmniVoice e sai
+    o mesmo par do motor com o Edge, audio.mp3 + subtitle.srt com uma palavra por bloco, numa pasta de tarefa."""
+    vid = tarefa["voice_name"].split(":", 1)[1]
+    vozes = json.loads((SKILL / "vozes" / "vozes.json").read_text(encoding="utf-8"))
+    if vid not in vozes:
+        print(f"FALHOU [{r['slug']}] voz '{vid}' não existe em dados/vozes/vozes.json")
+        return None
+    if not caminhos.PYTHON_OMNIVOICE.exists():
+        print(f"FALHOU [{r['slug']}] Python do OmniVoice não encontrado em {caminhos.PYTHON_OMNIVOICE} "
+              "(MILIONERE_OMNIVOICE_PYTHON no .env)")
+        return None
+    voz = vozes[vid]
+    pasta = MPT / "storage" / "tasks" / f"omnivoice_{r['slug']}_{datetime.now():%Y%m%d_%H%M%S}"
+    pasta.mkdir(parents=True, exist_ok=True)
+    texto = tarefa["video_script"]
+    palavras = re.findall(r"\w+", texto)  # mesma contagem do sync.tokens(), com a caixa original na legenda
+    pedido = pasta / "pedido.json"
+    pedido.write_text(json.dumps({
+        "texto": texto, "palavras": palavras, "ref": str(SKILL / "vozes" / voz["arquivo"]), "ref_texto": voz["texto"],
+        "velocidade": float(voz.get("velocidade", 1.0)), "saida": str(pasta),
+    }, ensure_ascii=False), encoding="utf-8")
+    proc = subprocess.run([str(caminhos.PYTHON_OMNIVOICE), str(Path(__file__).with_name("voz_omnivoice.py")), str(pedido)],
+                          capture_output=True, text=True, encoding="utf-8", errors="replace",
+                          env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+    for linha in proc.stdout.splitlines():
+        print(f"voz [{r['slug']}] {linha}")
+    if proc.returncode or not (pasta / "tempos.json").exists():
+        print(f"FALHOU [{r['slug']}] no estágio voz (OmniVoice): {proc.stderr.strip()[-800:]}")
+        return None
+    # limpeza leve: o OmniVoice às vezes solta estalos e chiado baixo entre as palavras (tira ronco, estalo e ruído)
+    subprocess.run([sync.FFMPEG, "-y", "-loglevel", "error", "-i", str(pasta / "audio.wav"),
+                    "-af", "highpass=f=70,adeclick,afftdn=nf=-30:tn=1", "-b:a", "192k",
+                    str(pasta / "audio.mp3")], check=True)
+    tempos = json.loads((pasta / "tempos.json").read_text(encoding="utf-8"))
+    (pasta / "subtitle.srt").write_text("\n".join(
+        f"{i}\n{sync._tempo_srt(ini)} --> {sync._tempo_srt(fim)}\n{p}\n" for i, (p, (ini, fim)) in enumerate(zip(palavras, tempos), 1)
+    ), encoding="utf-8")
+    return pasta
 
 
 def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, render_mpt: bool = False) -> None:
@@ -177,10 +224,15 @@ def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, r
     print("ETAPA voz", flush=True)
     # tom da voz do nicho (ex.: "-8Hz"): fica fora dos params porque o cli.py do motor só aceita os campos dele
     os.environ["MILIONERE_VOZ_TOM"] = str(preset.get("voice_pitch", ""))
-    item = rodar_cli([tarefa], stop_at="subtitle")["tasks"][0]
-    if falhou(item, r["slug"]):
-        return
-    pasta_a = pasta_tarefa(item)
+    if tarefa.get("voice_name", "").startswith("omnivoice:"):
+        pasta_a = narrar_omnivoice(r, tarefa)
+        if not pasta_a:
+            return
+    else:
+        item = rodar_cli([tarefa], stop_at="subtitle")["tasks"][0]
+        if falhou(item, r["slug"]):
+            return
+        pasta_a = pasta_tarefa(item)
     print("ETAPA imagens", flush=True)
     if so_audio:
         entregar(r, pasta_a, so_audio=True)
@@ -203,7 +255,7 @@ def produzir_sincronizado(r: dict, tarefa: dict, preset: dict, so_audio: bool, r
     curadoria = json.loads(cur_arq.read_text(encoding="utf-8")) if cur_arq.exists() else None
     midia = caminhos.PRODUCAO / "midia" / r["slug"]
     sem_escolha = [i for i, c in enumerate(r["cenas"], 1)
-                   if not c.get("escolha") and not (midia.exists() and any(midia.glob(f"cena_{i:02d}*")))]
+                   if not c.get("escolha") and not (midia.exists() and any(midia.glob(f"cena_{i:02d}[!0-9]*")))]
     if sem_escolha:
         print(f"AVISO  [{r['slug']}] cenas sem curadoria (busca automática): {sem_escolha}")
     tomadas, relatorio = sync.montar_tomadas(

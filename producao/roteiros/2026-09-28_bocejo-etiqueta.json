@@ -1,0 +1,186 @@
+[
+  {
+    "slug": "bocejo-etiqueta",
+    "nicho": "animacoes",
+    "formato": "doodle narrado (fórmula v2 informativa)",
+    "epoca": "moderna",
+    "estilo": "doodle_cena",
+    "titulo": "Bocejo NÃO é falta de oxigênio 🥱",
+    "gancho_tela": "Por que a gente boceja?",
+    "descricao": "Em 1987, o psicólogo Robert Provine deu ar com mais oxigênio para voluntários e eles bocejaram do mesmo jeito. A hipótese mais forte hoje é que o bocejo ajuda a resfriar o cérebro. E o bocejo contagioso parece ligado à empatia: pegamos mais de amigos e família, e até cachorros pegam do dono.",
+    "hashtags": [
+      "#shorts",
+      "#curiosidades",
+      "#ciencia",
+      "#cerebro",
+      "#bocejo"
+    ],
+    "comentario_fixado": "Confessa: bocejou assistindo? 🥱👇",
+    "tiktok_titulo": "Bocejo não é falta de oxigênio 🥱",
+    "tiktok_legenda": "O bocejo resfria o cérebro, e o contagioso tem a ver com empatia. Bocejou? #curiosidades #ciencia #cerebro",
+    "cenario_en": "plain white wall and a beige floor separated by one thin black line",
+    "personagens": [
+      {
+        "id": "bob",
+        "nome_en": "Bob",
+        "descricao_visual": "a stick figure with a big bald round white head with no hair, simple round eyes with expressive eyebrows, thin black line body, arms and legs"
+      },
+      {
+        "id": "amigo",
+        "nome_en": "his friend",
+        "descricao_visual": "a stick figure with a big bald round blue head with no hair, simple round eyes with expressive eyebrows, thin black line body, arms and legs"
+      }
+    ],
+    "cenas": [
+      {
+        "fala": "Você boceja porque tá com sono, ou porque tá faltando oxigênio, certo?",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob yawning widely with his eyes closed and arms stretched up, setting: simple bedroom in the morning, light blue window",
+        "animar": true,
+        "movimento": "Bob yawns widely and stretches his arms"
+      },
+      {
+        "fala": "Essa do oxigênio muita gente aprendeu na escola.",
+        "personagens": [
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "his friend standing next to a green school chalkboard with a simple drawing of lungs, pointing at it, setting: simple classroom"
+      },
+      {
+        "fala": "Só que ela já foi testada.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob raising one finger with a knowing look, a big red X floating next to him"
+      },
+      {
+        "fala": "Nos anos oitenta, o psicólogo Robert Provine deu pra voluntários um ar com mais oxigênio,",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "his friend in a white lab coat holding a clipboard next to Bob who wears a clear oxygen mask connected to a green tank, setting: simple science lab"
+      },
+      {
+        "fala": "e eles bocejaram do mesmo jeito.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob wearing a clear oxygen mask and still yawning widely, his friend in a lab coat looking surprised"
+      },
+      {
+        "fala": "Então, pra que serve o bocejo?",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob scratching his head with a big question mark floating above him"
+      },
+      {
+        "fala": "A hipótese mais forte hoje é que ele ajuda a resfriar o cérebro.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a big pink cartoon brain wearing a small ice pack on top and smiling with relief, no people"
+      },
+      {
+        "fala": "A boca abre bem, entra ar,",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "close-up of Bob's round face with his mouth wide open, blue air swirls flowing into his mouth",
+        "animar": true,
+        "movimento": "Bob opens his mouth wide and blue air swirls flow in"
+      },
+      {
+        "fala": "e o sangue que sobe pra cabeça esfria um pouco.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a big pink cartoon brain with a small blue electric fan blowing on it, the brain smiling, no people",
+        "animar": true,
+        "movimento": "the fan blades spin and the brain smiles"
+      },
+      {
+        "fala": "Tanto que, em dias muito quentes, a gente boceja menos.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob sweating under a big bright sun, fanning himself with his hand, mouth closed, setting: hot sunny street, yellow sky"
+      },
+      {
+        "fala": "E bebês bocejam ainda dentro da barriga, com umas onze semanas.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a cute simple cartoon baby with a big round head, curled up with knees bent, eyes closed and mouth open in a tiny yawn, floating inside a big light pink circle, no other people"
+      },
+      {
+        "fala": "Agora, o bocejo contagioso é outra história.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob yawning and his friend next to him starting to yawn too",
+        "animar": true,
+        "movimento": "Bob yawns and then his friend yawns too"
+      },
+      {
+        "fala": "Ele parece ligado à empatia:",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob and his friend smiling at each other with a small red heart floating between them"
+      },
+      {
+        "fala": "a gente pega muito mais o bocejo de amigos e da família do que de estranhos.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob yawning at a family dinner table while his friend and two other stick figures yawn back, setting: cozy dining room"
+      },
+      {
+        "fala": "Até cachorros pegam o bocejo do dono.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob yawning while sitting on a sofa, a small brown dog next to him yawning at the same time, setting: simple living room",
+        "animar": true,
+        "movimento": "Bob yawns and the dog yawns too"
+      },
+      {
+        "fala": "Ou seja, bocejo não é falta de ar: é o cérebro se ajustando e se conectando com quem tá perto.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a big pink cartoon brain holding hands with a smaller blue cartoon brain, both smiling, no people"
+      },
+      {
+        "fala": "E aí, você bocejou enquanto ouvia isso?",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob covering a yawn with his hand and looking at the viewer with a guilty smile, his friend laughing"
+      }
+    ],
+    "ajustes": {
+      "font_size": 56,
+      "subtitle_position": "custom",
+      "custom_position": 85
+    }
+  }
+]

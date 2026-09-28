@@ -6,12 +6,13 @@ placa de vídeo (h264_nvenc); se a placa falhar, cai para libx264 no processador
 """
 
 import math
+import os
 import subprocess
 from pathlib import Path
 
 from sincronizar import FFMPEG, FPS, ler_srt
 
-LARGURA, ALTURA = 1080, 1920
+LARGURA, ALTURA = (1920, 1080) if os.environ.get("MILIONERE_FORMATO") == "16:9" else (1080, 1920)
 FONTES = {
     # arquivo em motor/resource/fonts -> (família, negrito)
     "BeVietnamPro-Bold.ttf": ("Be Vietnam Pro", True),
@@ -24,7 +25,7 @@ PALAVRAS_POR_GRUPO = 3  # karaoke: poucas palavras grandes por vez, a da voz em 
 COR_DESTAQUE = "#FFD400"
 PAUSA_GRUPO = 0.25  # karaoke por palavra: pausa maior que isso na fala = fim do trecho (vira outro grupo)
 GANCHO_SEGUNDOS = 2.6  # texto-gancho do quadro 0: quem rola o feed sem som decide por ele (60% pulavam no 1º segundo)
-ESCALA_FONTE = 1.45  # font_size do preset (px do motor) -> tamanho ASS equivalente
+ESCALA_FONTE = 1.45 * (0.7 if ALTURA < LARGURA else 1)  # font_size do preset (px do motor) -> tamanho ASS; no 16:9, menor
 
 
 def cor_ass(hex_rgb: str) -> str:

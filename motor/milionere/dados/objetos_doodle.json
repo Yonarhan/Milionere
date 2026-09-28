@@ -1,0 +1,2445 @@
+{
+ "cerebro": {
+  "sinonimos": [
+   "cabeca",
+   "encefalo",
+   "inteligencia",
+   "mente",
+   "miolo"
+  ],
+  "mexe": "pulsa",
+  "formas": [
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      8,
+      35
+     ],
+     [
+      32,
+      35
+     ],
+     [
+      36,
+      88
+     ],
+     [
+      14,
+      88
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#e88aa8",
+    "larg": 6
+   },
+   {
+    "f": "elipse",
+    "x": 48,
+    "y": 48,
+    "rx": 28,
+    "ry": 20,
+    "rot": 0,
+    "cor": "tinta",
+    "preenche": "#e88aa8",
+    "larg": 6
+   },
+   {
+    "f": "circulo",
+    "x": -65,
+    "y": -10,
+    "r": 35,
+    "cor": "tinta",
+    "preenche": "#f4a6c0",
+    "larg": 6
+   },
+   {
+    "f": "circulo",
+    "x": -35,
+    "y": -45,
+    "r": 35,
+    "cor": "tinta",
+    "preenche": "#f4a6c0",
+    "larg": 6
+   },
+   {
+    "f": "circulo",
+    "x": 10,
+    "y": -55,
+    "r": 38,
+    "cor": "tinta",
+    "preenche": "#f4a6c0",
+    "larg": 6
+   },
+   {
+    "f": "circulo",
+    "x": 55,
+    "y": -35,
+    "r": 35,
+    "cor": "tinta",
+    "preenche": "#f4a6c0",
+    "larg": 6
+   },
+   {
+    "f": "circulo",
+    "x": 70,
+    "y": 5,
+    "r": 30,
+    "cor": "tinta",
+    "preenche": "#f4a6c0",
+    "larg": 6
+   },
+   {
+    "f": "circulo",
+    "x": 35,
+    "y": 30,
+    "r": 30,
+    "cor": "tinta",
+    "preenche": "#f4a6c0",
+    "larg": 6
+   },
+   {
+    "f": "circulo",
+    "x": -10,
+    "y": 30,
+    "r": 32,
+    "cor": "tinta",
+    "preenche": "#f4a6c0",
+    "larg": 6
+   },
+   {
+    "f": "circulo",
+    "x": -50,
+    "y": 25,
+    "r": 30,
+    "cor": "tinta",
+    "preenche": "#f4a6c0",
+    "larg": 6
+   },
+   {
+    "f": "elipse",
+    "x": 0,
+    "y": -8,
+    "rx": 78,
+    "ry": 45,
+    "rot": 0,
+    "cor": "nenhuma",
+    "preenche": "#f4a6c0",
+    "larg": 4
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -65,
+      0
+     ],
+     [
+      -35,
+      -12
+     ],
+     [
+      0,
+      0
+     ],
+     [
+      30,
+      -12
+     ],
+     [
+      65,
+      0
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 5
+   },
+   {
+    "f": "arco",
+    "x": -40,
+    "y": -30,
+    "r": 15,
+    "de": 200,
+    "ate": 340,
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 5
+   },
+   {
+    "f": "arco",
+    "x": 20,
+    "y": -35,
+    "r": 16,
+    "de": 200,
+    "ate": 340,
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 5
+   },
+   {
+    "f": "arco",
+    "x": -25,
+    "y": 18,
+    "r": 14,
+    "de": 20,
+    "ate": 160,
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 5
+   },
+   {
+    "f": "arco",
+    "x": 40,
+    "y": 15,
+    "r": 13,
+    "de": 20,
+    "ate": 160,
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 5
+   }
+  ]
+ },
+ "coracao": {
+  "sinonimos": [
+   "amor",
+   "batimento",
+   "cardio",
+   "paixao"
+  ],
+  "mexe": "pulsa",
+  "formas": [
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      0,
+      -50
+     ],
+     [
+      -15,
+      -75
+     ],
+     [
+      -40,
+      -88
+     ],
+     [
+      -70,
+      -80
+     ],
+     [
+      -92,
+      -55
+     ],
+     [
+      -95,
+      -25
+     ],
+     [
+      -80,
+      10
+     ],
+     [
+      -50,
+      45
+     ],
+     [
+      0,
+      95
+     ],
+     [
+      50,
+      45
+     ],
+     [
+      80,
+      10
+     ],
+     [
+      95,
+      -25
+     ],
+     [
+      92,
+      -55
+     ],
+     [
+      70,
+      -80
+     ],
+     [
+      40,
+      -88
+     ],
+     [
+      15,
+      -75
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "vermelho",
+    "larg": 7
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      82,
+      -5
+     ],
+     [
+      72,
+      18
+     ],
+     [
+      45,
+      48
+     ],
+     [
+      5,
+      85
+     ],
+     [
+      40,
+      38
+     ],
+     [
+      65,
+      10
+     ]
+    ],
+    "cor": "nenhuma",
+    "preenche": "#b3122a",
+    "larg": 4
+   },
+   {
+    "f": "elipse",
+    "x": -58,
+    "y": -48,
+    "rx": 13,
+    "ry": 22,
+    "rot": -35,
+    "cor": "nenhuma",
+    "preenche": "branco",
+    "larg": 4
+   },
+   {
+    "f": "circulo",
+    "x": -35,
+    "y": -68,
+    "r": 6,
+    "cor": "nenhuma",
+    "preenche": "branco",
+    "larg": 4
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -104,
+      -98
+     ],
+     [
+      -92,
+      -88
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 5
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      104,
+      -98
+     ],
+     [
+      92,
+      -88
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 5
+   }
+  ]
+ },
+ "porta": {
+  "sinonimos": [
+   "entrada",
+   "portao",
+   "portinha"
+  ],
+  "mexe": "",
+  "formas": [
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -72,
+      -108
+     ],
+     [
+      72,
+      -108
+     ],
+     [
+      72,
+      106
+     ],
+     [
+      -72,
+      106
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#e8d9b5",
+    "larg": 7
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -58,
+      -94
+     ],
+     [
+      58,
+      -94
+     ],
+     [
+      58,
+      106
+     ],
+     [
+      -58,
+      106
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#a0612b",
+    "larg": 7
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -44,
+      -80
+     ],
+     [
+      -6,
+      -80
+     ],
+     [
+      -6,
+      -10
+     ],
+     [
+      -44,
+      -10
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#c47a3a",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      6,
+      -80
+     ],
+     [
+      44,
+      -80
+     ],
+     [
+      44,
+      -10
+     ],
+     [
+      6,
+      -10
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#c47a3a",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -44,
+      10
+     ],
+     [
+      -6,
+      10
+     ],
+     [
+      -6,
+      90
+     ],
+     [
+      -44,
+      90
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#c47a3a",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      6,
+      10
+     ],
+     [
+      44,
+      10
+     ],
+     [
+      44,
+      90
+     ],
+     [
+      6,
+      90
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#c47a3a",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -62,
+      -70
+     ],
+     [
+      -52,
+      -70
+     ],
+     [
+      -52,
+      -52
+     ],
+     [
+      -62,
+      -52
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "cinza",
+    "larg": 4
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -62,
+      62
+     ],
+     [
+      -52,
+      62
+     ],
+     [
+      -52,
+      80
+     ],
+     [
+      -62,
+      80
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "cinza",
+    "larg": 4
+   },
+   {
+    "f": "circulo",
+    "x": 44,
+    "y": 0,
+    "r": 9,
+    "cor": "tinta",
+    "preenche": "amarelo",
+    "larg": 5
+   },
+   {
+    "f": "circulo",
+    "x": 41,
+    "y": -3,
+    "r": 3,
+    "cor": "nenhuma",
+    "preenche": "branco",
+    "larg": 4
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -95,
+      106
+     ],
+     [
+      95,
+      106
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 8
+   }
+  ]
+ },
+ "carrinho": {
+  "sinonimos": [
+   "carrinho de compras",
+   "carrinho de supermercado",
+   "carro de compras"
+  ],
+  "mexe": "balanca",
+  "formas": [
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -110,
+      -80
+     ],
+     [
+      -92,
+      -80
+     ],
+     [
+      -78,
+      -50
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 7
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -80,
+      -50
+     ],
+     [
+      90,
+      -50
+     ],
+     [
+      70,
+      30
+     ],
+     [
+      -60,
+      30
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#9ec9e8",
+    "larg": 7
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -40,
+      -50
+     ],
+     [
+      -28,
+      30
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 5
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      0,
+      -50
+     ],
+     [
+      4,
+      30
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 5
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      40,
+      -50
+     ],
+     [
+      36,
+      30
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 5
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -72,
+      -10
+     ],
+     [
+      80,
+      -10
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 5
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -60,
+      30
+     ],
+     [
+      -66,
+      55
+     ],
+     [
+      75,
+      55
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 7
+   },
+   {
+    "f": "circulo",
+    "x": -45,
+    "y": 75,
+    "r": 14,
+    "cor": "tinta",
+    "preenche": "cinza",
+    "larg": 6
+   },
+   {
+    "f": "circulo",
+    "x": 55,
+    "y": 75,
+    "r": 14,
+    "cor": "tinta",
+    "preenche": "cinza",
+    "larg": 6
+   }
+  ]
+ },
+ "cesta": {
+  "sinonimos": [
+   "cesta de compras",
+   "cestinha",
+   "cesto"
+  ],
+  "mexe": "balanca",
+  "formas": [
+   {
+    "f": "arco",
+    "x": 0,
+    "y": -10,
+    "r": 65,
+    "de": 180,
+    "ate": 360,
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 8
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -90,
+      -10
+     ],
+     [
+      90,
+      -10
+     ],
+     [
+      68,
+      85
+     ],
+     [
+      -68,
+      85
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#c68642",
+    "larg": 7
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -84,
+      20
+     ],
+     [
+      84,
+      20
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 5
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -77,
+      52
+     ],
+     [
+      77,
+      52
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 5
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -30,
+      -10
+     ],
+     [
+      -24,
+      85
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 5
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      30,
+      -10
+     ],
+     [
+      24,
+      85
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -98,
+      -22
+     ],
+     [
+      98,
+      -22
+     ],
+     [
+      98,
+      -6
+     ],
+     [
+      -98,
+      -6
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#8b5a2b",
+    "larg": 6
+   }
+  ]
+ },
+ "corredor": {
+  "sinonimos": [
+   "corredor do mercado",
+   "gondola",
+   "secao"
+  ],
+  "mexe": "",
+  "formas": [
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -110,
+      -110
+     ],
+     [
+      110,
+      -110
+     ],
+     [
+      110,
+      110
+     ],
+     [
+      -110,
+      110
+     ]
+    ],
+    "cor": "nenhuma",
+    "preenche": "#f3ead2",
+    "larg": 4
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -30,
+      50
+     ],
+     [
+      30,
+      50
+     ],
+     [
+      110,
+      110
+     ],
+     [
+      -110,
+      110
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "cinza",
+    "larg": 6
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -110,
+      -110
+     ],
+     [
+      -30,
+      -50
+     ],
+     [
+      -30,
+      50
+     ],
+     [
+      -110,
+      110
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#8b5a2b",
+    "larg": 7
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      110,
+      -110
+     ],
+     [
+      30,
+      -50
+     ],
+     [
+      30,
+      50
+     ],
+     [
+      110,
+      110
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#8b5a2b",
+    "larg": 7
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -100,
+      -80
+     ],
+     [
+      -40,
+      -38
+     ],
+     [
+      -40,
+      -18
+     ],
+     [
+      -100,
+      -50
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "vermelho",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -100,
+      -20
+     ],
+     [
+      -40,
+      0
+     ],
+     [
+      -40,
+      20
+     ],
+     [
+      -100,
+      10
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "amarelo",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -100,
+      40
+     ],
+     [
+      -40,
+      36
+     ],
+     [
+      -40,
+      50
+     ],
+     [
+      -100,
+      75
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "verde",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      100,
+      -80
+     ],
+     [
+      40,
+      -38
+     ],
+     [
+      40,
+      -18
+     ],
+     [
+      100,
+      -50
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "azul",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      100,
+      -20
+     ],
+     [
+      40,
+      0
+     ],
+     [
+      40,
+      20
+     ],
+     [
+      100,
+      10
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "laranja",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      100,
+      40
+     ],
+     [
+      40,
+      36
+     ],
+     [
+      40,
+      50
+     ],
+     [
+      100,
+      75
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "vermelho",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -30,
+      -50
+     ],
+     [
+      30,
+      -50
+     ],
+     [
+      30,
+      50
+     ],
+     [
+      -30,
+      50
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 6
+   }
+  ]
+ },
+ "fruta": {
+  "sinonimos": [
+   "frutas",
+   "hortifruti",
+   "maca"
+  ],
+  "mexe": "balanca",
+  "formas": [
+   {
+    "f": "linha",
+    "pts": [
+     [
+      0,
+      -55
+     ],
+     [
+      8,
+      -90
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 8
+   },
+   {
+    "f": "elipse",
+    "x": 30,
+    "y": -78,
+    "rx": 26,
+    "ry": 12,
+    "rot": -25,
+    "cor": "tinta",
+    "preenche": "verde",
+    "larg": 6
+   },
+   {
+    "f": "circulo",
+    "x": -28,
+    "y": 15,
+    "r": 62,
+    "cor": "tinta",
+    "preenche": "vermelho",
+    "larg": 7
+   },
+   {
+    "f": "circulo",
+    "x": 28,
+    "y": 15,
+    "r": 62,
+    "cor": "tinta",
+    "preenche": "vermelho",
+    "larg": 7
+   },
+   {
+    "f": "elipse",
+    "x": 0,
+    "y": 20,
+    "rx": 50,
+    "ry": 55,
+    "rot": 0,
+    "cor": "nenhuma",
+    "preenche": "vermelho",
+    "larg": 4
+   },
+   {
+    "f": "elipse",
+    "x": -45,
+    "y": -10,
+    "rx": 10,
+    "ry": 18,
+    "rot": 20,
+    "cor": "nenhuma",
+    "preenche": "branco",
+    "larg": 4
+   }
+  ]
+ },
+ "leite": {
+  "sinonimos": [
+   "caixa de leite",
+   "laticinio",
+   "leitinho"
+  ],
+  "mexe": "",
+  "formas": [
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -55,
+      -40
+     ],
+     [
+      55,
+      -40
+     ],
+     [
+      55,
+      105
+     ],
+     [
+      -55,
+      105
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 7
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -55,
+      -40
+     ],
+     [
+      -30,
+      -85
+     ],
+     [
+      30,
+      -85
+     ],
+     [
+      55,
+      -40
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "azul",
+    "larg": 7
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -30,
+      -100
+     ],
+     [
+      30,
+      -100
+     ],
+     [
+      30,
+      -85
+     ],
+     [
+      -30,
+      -85
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 6
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -55,
+      5
+     ],
+     [
+      55,
+      5
+     ],
+     [
+      55,
+      55
+     ],
+     [
+      -55,
+      55
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "azul",
+    "larg": 6
+   },
+   {
+    "f": "texto",
+    "x": 0,
+    "y": 38,
+    "txt": "LEITE",
+    "tam": 26,
+    "cor": "nenhuma",
+    "preenche": "branco",
+    "larg": 4
+   },
+   {
+    "f": "elipse",
+    "x": 0,
+    "y": 80,
+    "rx": 18,
+    "ry": 10,
+    "rot": 0,
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 4
+   }
+  ]
+ },
+ "lista de compras": {
+  "sinonimos": [
+   "anotacao",
+   "lista",
+   "lista do mercado",
+   "papel"
+  ],
+  "mexe": "balanca",
+  "formas": [
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -70,
+      -100
+     ],
+     [
+      70,
+      -100
+     ],
+     [
+      70,
+      100
+     ],
+     [
+      -70,
+      100
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#fff8d6",
+    "larg": 7
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -30,
+      -60
+     ],
+     [
+      50,
+      -60
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 5
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -30,
+      -20
+     ],
+     [
+      50,
+      -20
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 5
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -30,
+      20
+     ],
+     [
+      50,
+      20
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 5
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -30,
+      60
+     ],
+     [
+      50,
+      60
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 5
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -55,
+      -62
+     ],
+     [
+      -48,
+      -54
+     ],
+     [
+      -38,
+      -70
+     ]
+    ],
+    "cor": "verde",
+    "preenche": "nenhuma",
+    "larg": 6
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -55,
+      -22
+     ],
+     [
+      -48,
+      -14
+     ],
+     [
+      -38,
+      -30
+     ]
+    ],
+    "cor": "verde",
+    "preenche": "nenhuma",
+    "larg": 6
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -55,
+      12
+     ],
+     [
+      -41,
+      12
+     ],
+     [
+      -41,
+      26
+     ],
+     [
+      -55,
+      26
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 4
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -55,
+      52
+     ],
+     [
+      -41,
+      52
+     ],
+     [
+      -41,
+      66
+     ],
+     [
+      -55,
+      66
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 4
+   }
+  ]
+ },
+ "prateleira": {
+  "sinonimos": [
+   "estante",
+   "gondola",
+   "prateleiras"
+  ],
+  "mexe": "",
+  "formas": [
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -100,
+      -100
+     ],
+     [
+      100,
+      -100
+     ],
+     [
+      100,
+      100
+     ],
+     [
+      -100,
+      100
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#c68642",
+    "larg": 7
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -85,
+      -85
+     ],
+     [
+      85,
+      -85
+     ],
+     [
+      85,
+      85
+     ],
+     [
+      -85,
+      85
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#f3ead2",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -75,
+      -70
+     ],
+     [
+      -45,
+      -70
+     ],
+     [
+      -45,
+      -20
+     ],
+     [
+      -75,
+      -20
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "vermelho",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -35,
+      -60
+     ],
+     [
+      -5,
+      -60
+     ],
+     [
+      -5,
+      -20
+     ],
+     [
+      -35,
+      -20
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "amarelo",
+    "larg": 5
+   },
+   {
+    "f": "circulo",
+    "x": 40,
+    "y": -40,
+    "r": 20,
+    "cor": "tinta",
+    "preenche": "laranja",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -100,
+      -20
+     ],
+     [
+      100,
+      -20
+     ],
+     [
+      100,
+      -8
+     ],
+     [
+      -100,
+      -8
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#8b5a2b",
+    "larg": 6
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -70,
+      20
+     ],
+     [
+      -30,
+      20
+     ],
+     [
+      -30,
+      70
+     ],
+     [
+      -70,
+      70
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "azul",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -15,
+      30
+     ],
+     [
+      20,
+      30
+     ],
+     [
+      20,
+      70
+     ],
+     [
+      -15,
+      70
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "verde",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      35,
+      10
+     ],
+     [
+      70,
+      10
+     ],
+     [
+      70,
+      70
+     ],
+     [
+      35,
+      70
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -100,
+      70
+     ],
+     [
+      100,
+      70
+     ],
+     [
+      100,
+      82
+     ],
+     [
+      -100,
+      82
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#8b5a2b",
+    "larg": 6
+   }
+  ]
+ },
+ "produto barato": {
+  "sinonimos": [
+   "barato",
+   "oferta",
+   "pechincha",
+   "promocao"
+  ],
+  "mexe": "pulsa",
+  "formas": [
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -70,
+      -40
+     ],
+     [
+      50,
+      -40
+     ],
+     [
+      50,
+      90
+     ],
+     [
+      -70,
+      90
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#f0c27a",
+    "larg": 7
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -70,
+      -10
+     ],
+     [
+      50,
+      -10
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 5
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      10,
+      -100
+     ],
+     [
+      100,
+      -100
+     ],
+     [
+      100,
+      -45
+     ],
+     [
+      10,
+      -45
+     ],
+     [
+      -10,
+      -72
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "verde",
+    "larg": 7
+   },
+   {
+    "f": "circulo",
+    "x": 2,
+    "y": -72,
+    "r": 5,
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 4
+   },
+   {
+    "f": "texto",
+    "x": 57,
+    "y": -62,
+    "txt": "R$1",
+    "tam": 30,
+    "cor": "nenhuma",
+    "preenche": "branco",
+    "larg": 4
+   },
+   {
+    "f": "texto",
+    "x": -10,
+    "y": 50,
+    "txt": "%",
+    "tam": 44,
+    "cor": "nenhuma",
+    "preenche": "vermelho",
+    "larg": 4
+   }
+  ]
+ },
+ "produto caro": {
+  "sinonimos": [
+   "caro",
+   "importado",
+   "luxo",
+   "produto de luxo"
+  ],
+  "mexe": "pulsa",
+  "formas": [
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -70,
+      -40
+     ],
+     [
+      50,
+      -40
+     ],
+     [
+      50,
+      90
+     ],
+     [
+      -70,
+      90
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#6a2c91",
+    "larg": 7
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -40,
+      15
+     ],
+     [
+      -10,
+      -15
+     ],
+     [
+      20,
+      15
+     ],
+     [
+      -10,
+      60
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#7fe3ff",
+    "larg": 5
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -40,
+      15
+     ],
+     [
+      20,
+      15
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 4
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      0,
+      -105
+     ],
+     [
+      108,
+      -105
+     ],
+     [
+      108,
+      -50
+     ],
+     [
+      0,
+      -50
+     ],
+     [
+      -20,
+      -78
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "vermelho",
+    "larg": 7
+   },
+   {
+    "f": "circulo",
+    "x": -8,
+    "y": -78,
+    "r": 5,
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 4
+   },
+   {
+    "f": "texto",
+    "x": 55,
+    "y": -68,
+    "txt": "R$999",
+    "tam": 24,
+    "cor": "nenhuma",
+    "preenche": "amarelo",
+    "larg": 4
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      80,
+      20
+     ],
+     [
+      86,
+      34
+     ],
+     [
+      100,
+      40
+     ],
+     [
+      86,
+      46
+     ],
+     [
+      80,
+      60
+     ],
+     [
+      74,
+      46
+     ],
+     [
+      60,
+      40
+     ],
+     [
+      74,
+      34
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "amarelo",
+    "larg": 4
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -90,
+      -30
+     ],
+     [
+      -86,
+      -20
+     ],
+     [
+      -76,
+      -16
+     ],
+     [
+      -86,
+      -12
+     ],
+     [
+      -90,
+      -2
+     ],
+     [
+      -94,
+      -12
+     ],
+     [
+      -104,
+      -16
+     ],
+     [
+      -94,
+      -20
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "amarelo",
+    "larg": 4
+   }
+  ]
+ },
+ "relogio": {
+  "sinonimos": [
+   "hora",
+   "relogio de parede",
+   "tempo"
+  ],
+  "mexe": "balanca",
+  "formas": [
+   {
+    "f": "circulo",
+    "x": 0,
+    "y": 0,
+    "r": 95,
+    "cor": "tinta",
+    "preenche": "vermelho",
+    "larg": 8
+   },
+   {
+    "f": "circulo",
+    "x": 0,
+    "y": 0,
+    "r": 78,
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 6
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      0,
+      -72
+     ],
+     [
+      0,
+      -58
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 6
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      72,
+      0
+     ],
+     [
+      58,
+      0
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 6
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      0,
+      72
+     ],
+     [
+      0,
+      58
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 6
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -72,
+      0
+     ],
+     [
+      -58,
+      0
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 6
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      -50
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 8
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      0,
+      0
+     ],
+     [
+      35,
+      20
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "nenhuma",
+    "larg": 8
+   },
+   {
+    "f": "circulo",
+    "x": 0,
+    "y": 0,
+    "r": 8,
+    "cor": "tinta",
+    "preenche": "tinta",
+    "larg": 4
+   }
+  ]
+ },
+ "dinheiro": {
+  "sinonimos": [
+   "bufunfa",
+   "cedula",
+   "dindin",
+   "dolar",
+   "grana",
+   "moeda",
+   "money",
+   "nota",
+   "pagamento",
+   "real"
+  ],
+  "mexe": "flutua",
+  "formas": [
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -98,
+      -40
+     ],
+     [
+      82,
+      -70
+     ],
+     [
+      98,
+      10
+     ],
+     [
+      -82,
+      40
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#5aa85e",
+    "larg": 6
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -100,
+      -45
+     ],
+     [
+      100,
+      -45
+     ],
+     [
+      100,
+      45
+     ],
+     [
+      -100,
+      45
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "verde",
+    "larg": 6
+   },
+   {
+    "f": "poligono",
+    "pts": [
+     [
+      -86,
+      -32
+     ],
+     [
+      86,
+      -32
+     ],
+     [
+      86,
+      32
+     ],
+     [
+      -86,
+      32
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "#a5dba8",
+    "larg": 4
+   },
+   {
+    "f": "circulo",
+    "x": 0,
+    "y": 0,
+    "r": 25,
+    "cor": "tinta",
+    "preenche": "#e8f5e9",
+    "larg": 5
+   },
+   {
+    "f": "texto",
+    "x": 0,
+    "y": 2,
+    "txt": "$",
+    "tam": 38,
+    "cor": "tinta",
+    "preenche": "#1b5e20",
+    "larg": 4
+   },
+   {
+    "f": "circulo",
+    "x": -65,
+    "y": 0,
+    "r": 9,
+    "cor": "tinta",
+    "preenche": "verde",
+    "larg": 4
+   },
+   {
+    "f": "circulo",
+    "x": 65,
+    "y": 0,
+    "r": 9,
+    "cor": "tinta",
+    "preenche": "verde",
+    "larg": 4
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      -45,
+      -18
+     ],
+     [
+      -35,
+      -18
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 4
+   },
+   {
+    "f": "linha",
+    "pts": [
+     [
+      35,
+      18
+     ],
+     [
+      45,
+      18
+     ]
+    ],
+    "cor": "tinta",
+    "preenche": "branco",
+    "larg": 4
+   },
+   {
+    "f": "circulo",
+    "x": 40,
+    "y": 80,
+    "r": 24,
+    "cor": "tinta",
+    "preenche": "#e6b800",
+    "larg": 6
+   },
+   {
+    "f": "circulo",
+    "x": 72,
+    "y": 66,
+    "r": 28,
+    "cor": "tinta",
+    "preenche": "amarelo",
+    "larg": 6
+   },
+   {
+    "f": "circulo",
+    "x": 72,
+    "y": 66,
+    "r": 19,
+    "cor": "tinta",
+    "preenche": "#ffe066",
+    "larg": 4
+   },
+   {
+    "f": "texto",
+    "x": 72,
+    "y": 68,
+    "txt": "$",
+    "tam": 26,
+    "cor": "tinta",
+    "preenche": "#b8860b",
+    "larg": 4
+   },
+   {
+    "f": "arco",
+    "x": 72,
+    "y": 66,
+    "r": 23,
+    "de": 200,
+    "ate": 260,
+    "cor": "branco",
+    "preenche": "branco",
+    "larg": 4
+   }
+  ]
+ }
+}

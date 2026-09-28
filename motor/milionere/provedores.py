@@ -182,7 +182,7 @@ def gerar_cenas(roteiro: dict, nome_estilo: str, pasta: Path, so: list[int] | No
     base = imagens._seed_fixa(roteiro["slug"])
     feitos = []
     for n in alvo:
-        for velho in pasta.glob(f"cena_{n:02d}*"):
+        for velho in pasta.glob(f"cena_{n:02d}[!0-9]*"):
             velho.unlink()
         seed = base + n + (random.randint(1, 10**6) if nova_seed else 0)
         feitos.append(_uma(roteiro, nome_estilo, n, pasta / f"cena_{n:02d}.png", seed, banco=banco))

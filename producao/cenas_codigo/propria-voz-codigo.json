@@ -1,0 +1,671 @@
+{
+ "slug": "propria-voz-codigo",
+ "cenas": [
+  {
+   "duracao": 5,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 400,
+     "olha": 1,
+     "sobrancelhas": "levantadas",
+     "boca": "sorriso",
+     "braco_d": [
+      150,
+      -40
+     ]
+    },
+    {
+     "tipo": "celular",
+     "x": 590,
+     "y": 720,
+     "tam": 1.1,
+     "play": true,
+     "entra": 0.2
+    },
+    {
+     "tipo": "texto",
+     "txt": "PLAY",
+     "x": 730,
+     "y": 470,
+     "tam": 90,
+     "cor": "verde",
+     "entra": 0.6
+    }
+   ]
+  },
+  {
+   "duracao": 5,
+   "susto": true,
+   "elementos": [
+    {
+     "tipo": "celular",
+     "x": 600,
+     "y": 1040,
+     "tam": 0.9,
+     "tela": "EU??",
+     "onda_audio": true
+    },
+    {
+     "tipo": "ondas",
+     "x": 600,
+     "y": 900,
+     "ang": -90,
+     "alcance": 220,
+     "n": 3
+    },
+    {
+     "tipo": "bob",
+     "x": 285,
+     "olha": 1,
+     "olhos": "arregalados",
+     "sobrancelhas": "levantadas",
+     "boca": "aberta",
+     "braco_e": "cima",
+     "braco_d": "frente",
+     "tremer": true
+    },
+    {
+     "tipo": "amigo",
+     "x": 790,
+     "olha": -1,
+     "sobrancelhas": "preocupadas",
+     "boca": "nervosa"
+    },
+    {
+     "tipo": "texto",
+     "txt": "ESSA É MINHA?!",
+     "x": 540,
+     "y": 400,
+     "tam": 80,
+     "cor": "vermelho",
+     "entra": 0.3
+    }
+   ]
+  },
+  {
+   "duracao": 5,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 400,
+     "olha": 1,
+     "olhos": "fechados",
+     "sobrancelhas": "preocupadas",
+     "boca": "triste",
+     "braco_e": "rosto",
+     "braco_d": "rosto",
+     "corado": true
+    },
+    {
+     "tipo": "amigo",
+     "x": 700,
+     "olha": -1,
+     "olhos": "feliz",
+     "boca": "sorriso",
+     "braco_e": "ombro_amigo"
+    },
+    {
+     "tipo": "texto",
+     "txt": "CALMA...",
+     "x": 560,
+     "y": 400,
+     "tam": 100,
+     "cor": "azul",
+     "entra": 0.3
+    }
+   ]
+  },
+  {
+   "duracao": 5,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 320,
+     "olha": 1,
+     "sobrancelhas": "uma",
+     "boca": "reta",
+     "braco_d": "rosto"
+    },
+    {
+     "tipo": "balao",
+     "x": 680,
+     "y": 400,
+     "w": 440,
+     "h": 340,
+     "cauda": [
+      430,
+      560
+     ],
+     "entra": 0.2
+    },
+    {
+     "tipo": "orelha",
+     "x": 610,
+     "y": 400,
+     "tam": 1.1,
+     "entra": 0.4
+    },
+    {
+     "tipo": "ondas",
+     "x": 665,
+     "y": 390,
+     "ang": 0,
+     "alcance": 110,
+     "n": 3,
+     "larg": 7,
+     "entra": 0.4
+    },
+    {
+     "tipo": "lampada",
+     "x": 810,
+     "y": 380,
+     "tam": 0.65,
+     "entra": 0.8
+    }
+   ]
+  },
+  {
+   "duracao": 5,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 400,
+     "olha": 1,
+     "fala": true,
+     "braco_d": "cintura"
+    },
+    {
+     "tipo": "orelha",
+     "x": 262,
+     "y": 600,
+     "tam": 0.45
+    },
+    {
+     "tipo": "seta",
+     "de": [
+      520,
+      700
+     ],
+     "curva": [
+      720,
+      380
+     ],
+     "ate": [
+      300,
+      520
+     ],
+     "cor": "azul",
+     "rotulo": "AR",
+     "rotulo_em": [
+      700,
+      560
+     ],
+     "entra": 0.3
+    },
+    {
+     "tipo": "zigue",
+     "de": [
+      425,
+      665
+     ],
+     "ate": [
+      285,
+      610
+     ],
+     "cor": "laranja",
+     "dentes": 8,
+     "amp": 12,
+     "entra": 0.9
+    },
+    {
+     "tipo": "texto",
+     "txt": "OSSO",
+     "x": 335,
+     "y": 718,
+     "tam": 42,
+     "cor": "laranja",
+     "entra": 1.1
+    },
+    {
+     "tipo": "texto",
+     "txt": "2 CAMINHOS",
+     "x": 560,
+     "y": 310,
+     "tam": 90,
+     "entra": 1.4
+    }
+   ]
+  },
+  {
+   "duracao": 5,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 300,
+     "olha": 1,
+     "fala": true,
+     "braco_d": "frente"
+    },
+    {
+     "tipo": "amigo",
+     "x": 790,
+     "olha": -1,
+     "olhos": "feliz",
+     "sobrancelhas": "levantadas",
+     "boca": "sorriso"
+    },
+    {
+     "tipo": "ondas",
+     "x": 350,
+     "y": 680,
+     "ang": 0,
+     "alcance": 330,
+     "n": 4
+    },
+    {
+     "tipo": "ondas",
+     "x": 330,
+     "y": 660,
+     "ang": -120,
+     "alcance": 110,
+     "n": 2,
+     "larg": 7
+    },
+    {
+     "tipo": "texto",
+     "txt": "PELO AR",
+     "x": 560,
+     "y": 400,
+     "tam": 100,
+     "cor": "azul",
+     "entra": 0.3
+    }
+   ]
+  },
+  {
+   "duracao": 5,
+   "foco": [
+    540,
+    520
+   ],
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 540,
+     "olha": 1,
+     "escala": 1.25,
+     "fala": true,
+     "olhos": "arregalados",
+     "sobrancelhas": "levantadas"
+    },
+    {
+     "tipo": "cabeca_por_dentro",
+     "x": 540,
+     "y": 480
+    },
+    {
+     "tipo": "zigue",
+     "de": [
+      545,
+      585
+     ],
+     "ate": [
+      385,
+      540
+     ],
+     "cor": "laranja",
+     "dentes": 10,
+     "amp": 16,
+     "desenha": 0.8,
+     "entra": 0.3
+    },
+    {
+     "tipo": "texto",
+     "txt": "VIBRA!",
+     "x": 800,
+     "y": 300,
+     "tam": 100,
+     "cor": "laranja",
+     "entra": 0.6
+    }
+   ]
+  },
+  {
+   "duracao": 5,
+   "elementos": [
+    {
+     "tipo": "caixa_som",
+     "x": 780,
+     "y": 860,
+     "entra": 0.2,
+     "tam": 0.85
+    },
+    {
+     "tipo": "ondas",
+     "x": 680,
+     "y": 760,
+     "ang": 180,
+     "alcance": 200,
+     "n": 3,
+     "larg": 18,
+     "vel": 0.5,
+     "cor": "laranja",
+     "entra": 0.3
+    },
+    {
+     "tipo": "bob",
+     "x": 350,
+     "olha": 1,
+     "olhos": "feliz",
+     "sobrancelhas": "levantadas",
+     "boca": "aberta",
+     "braco_e": "cima",
+     "braco_d": [
+      80,
+      -75
+     ]
+    },
+    {
+     "tipo": "microfone",
+     "x": 445,
+     "y": 690,
+     "tam": 0.8
+    },
+    {
+     "tipo": "texto",
+     "txt": "GRAVE",
+     "x": 560,
+     "y": 390,
+     "tam": 150,
+     "cor": "laranja",
+     "entra": 0.4
+    }
+   ]
+  },
+  {
+   "duracao": 5,
+   "elementos": [
+    {
+     "tipo": "mesa",
+     "x": 760,
+     "y": 950,
+     "w": 280
+    },
+    {
+     "tipo": "celular",
+     "x": 760,
+     "y": 830,
+     "tam": 0.8
+    },
+    {
+     "tipo": "bob",
+     "x": 300,
+     "olha": 1,
+     "fala": true
+    },
+    {
+     "tipo": "ondas",
+     "x": 350,
+     "y": 690,
+     "ang": 15,
+     "alcance": 330,
+     "n": 4
+    },
+    {
+     "tipo": "zigue",
+     "de": [
+      420,
+      560
+     ],
+     "ate": [
+      600,
+      560
+     ],
+     "cor": "laranja",
+     "dentes": 8,
+     "amp": 14,
+     "entra": 0.3
+    },
+    {
+     "tipo": "xis",
+     "x": 640,
+     "y": 560,
+     "tam": 55,
+     "entra": 1.0
+    },
+    {
+     "tipo": "texto",
+     "txt": "SÓ O AR",
+     "x": 700,
+     "y": 380,
+     "tam": 100,
+     "cor": "azul",
+     "entra": 0.5
+    }
+   ]
+  },
+  {
+   "duracao": 5,
+   "elementos": [
+    {
+     "tipo": "mesa",
+     "x": 700,
+     "y": 950,
+     "w": 260
+    },
+    {
+     "tipo": "celular",
+     "x": 700,
+     "y": 830,
+     "tam": 0.8,
+     "onda_audio": true
+    },
+    {
+     "tipo": "zigue",
+     "de": [
+      620,
+      760
+     ],
+     "ate": [
+      440,
+      650
+     ],
+     "cor": "azul",
+     "dentes": 22,
+     "amp": 8,
+     "larg": 4,
+     "entra": 0.2
+    },
+    {
+     "tipo": "bob",
+     "x": 310,
+     "olha": 1,
+     "olhos": "arregalados",
+     "sobrancelhas": "levantadas",
+     "boca": "o",
+     "braco_e": "orelha"
+    },
+    {
+     "tipo": "rato",
+     "x": 780,
+     "y": 1080,
+     "tam": 0.9,
+     "fala": "iiih!",
+     "entra": 0.7
+    },
+    {
+     "tipo": "texto",
+     "txt": "FININHA",
+     "x": 560,
+     "y": 400,
+     "tam": 120,
+     "cor": "azul",
+     "entra": 0.4
+    }
+   ]
+  },
+  {
+   "duracao": 5,
+   "camera": "aproxima",
+   "foco": [
+    540,
+    600
+   ],
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 540,
+     "olha": 1,
+     "escala": 1.3,
+     "olhos": "lado",
+     "sobrancelhas": "uma",
+     "boca": "sussurro",
+     "braco_d": [
+      95,
+      -150
+     ]
+    },
+    {
+     "tipo": "texto",
+     "txt": "psiu...",
+     "x": 830,
+     "y": 280,
+     "tam": 90,
+     "entra": 0.3
+    }
+   ]
+  },
+  {
+   "duracao": 5,
+   "elementos": [
+    {
+     "tipo": "placa",
+     "x": 835,
+     "y": 860,
+     "w": 170,
+     "h": 110,
+     "txt": "NORMAL",
+     "txt_tam": 36,
+     "cor": "verde",
+     "entra": 0.5
+    },
+    {
+     "tipo": "bob",
+     "x": 300,
+     "olha": 1,
+     "fala": true,
+     "braco_d": "frente"
+    },
+    {
+     "tipo": "amigo",
+     "x": 660,
+     "olha": -1,
+     "olhos": "feliz",
+     "boca": "sorriso"
+    },
+    {
+     "tipo": "ondas",
+     "x": 350,
+     "y": 680,
+     "ang": 0,
+     "alcance": 250,
+     "n": 4
+    }
+   ]
+  },
+  {
+   "duracao": 5,
+   "elementos": [
+    {
+     "tipo": "amigo",
+     "x": 540,
+     "olha": 1,
+     "olhos": "feliz",
+     "sobrancelhas": "levantadas",
+     "boca": "grande",
+     "braco_e": "encolhe",
+     "braco_d": "joinha"
+    },
+    {
+     "tipo": "texto",
+     "txt": "DE BOA",
+     "x": 540,
+     "y": 360,
+     "tam": 120,
+     "cor": "verde",
+     "entra": 0.3
+    }
+   ]
+  },
+  {
+   "duracao": 5,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 300,
+     "olha": 1,
+     "olhos": "arregalados",
+     "sobrancelhas": "preocupadas",
+     "boca": "reta"
+    },
+    {
+     "tipo": "bob",
+     "x": 780,
+     "olha": -1,
+     "fala": true,
+     "braco_e": "acena",
+     "entra": 0.2
+    },
+    {
+     "tipo": "interrogacao",
+     "x": 300,
+     "y": 330,
+     "tam": 170,
+     "entra": 0.5
+    }
+   ]
+  },
+  {
+   "duracao": 6,
+   "elementos": [
+    {
+     "tipo": "celular",
+     "x": 650,
+     "y": 760,
+     "tam": 1.5
+    },
+    {
+     "tipo": "botao",
+     "x": 650,
+     "y": 800,
+     "w": 180,
+     "h": 80,
+     "txt": "ENVIAR",
+     "txt_tam": 30
+    },
+    {
+     "tipo": "bob",
+     "x": 330,
+     "olha": 1,
+     "sobrancelhas": "preocupadas",
+     "boca": "nervosa",
+     "suor": true,
+     "braco_d": [
+      300,
+      5
+     ]
+    },
+    {
+     "tipo": "texto",
+     "txt": "ENVIAR?",
+     "x": 560,
+     "y": 380,
+     "tam": 130,
+     "cor": "vermelho",
+     "entra": 0.3
+    }
+   ]
+  }
+ ]
+}

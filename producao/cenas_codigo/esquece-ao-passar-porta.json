@@ -1,0 +1,3251 @@
+{
+ "slug": "esquece-ao-passar-porta",
+ "etiquetas": [
+  {
+   "m": "gigante",
+   "lugar": "sala",
+   "bob": "chocado",
+   "amigo": "",
+   "fig": "",
+   "fig_amigo": "",
+   "obj": "porta",
+   "txt": "UMA PORTA?!",
+   "cor": "vermelho",
+   "fx": "susto"
+  },
+  {
+   "m": "solo",
+   "lugar": "sala",
+   "bob": "feliz",
+   "amigo": "",
+   "fig": "",
+   "fig_amigo": "",
+   "obj": "lista de compras",
+   "txt": "",
+   "cor": "",
+   "fx": ""
+  },
+  {
+   "m": "objeto",
+   "lugar": "corredor",
+   "bob": "corre",
+   "amigo": "",
+   "fig": "",
+   "fig_amigo": "",
+   "obj": "porta",
+   "txt": "",
+   "cor": "",
+   "fx": "ondas"
+  },
+  {
+   "m": "close",
+   "lugar": "cozinha",
+   "bob": "confuso",
+   "amigo": "",
+   "fig": "",
+   "fig_amigo": "",
+   "obj": "",
+   "txt": "SUMIU.",
+   "cor": "azul",
+   "fx": "interrogacao"
+  },
+  {
+   "m": "solo",
+   "lugar": "cozinha",
+   "bob": "tonto",
+   "amigo": "",
+   "fig": "",
+   "fig_amigo": "",
+   "obj": "placa:???",
+   "txt": "",
+   "cor": "",
+   "fx": "interrogacao"
+  },
+  {
+   "m": "divide",
+   "lugar": "cor_azul",
+   "bob": "surpreso",
+   "amigo": "",
+   "fig": "",
+   "fig_amigo": "",
+   "obj": "cerebro|lampada",
+   "txt": "NÃO É BURRICE",
+   "cor": "verde",
+   "fx": ""
+  },
+  {
+   "m": "pensa",
+   "lugar": "laboratorio",
+   "bob": "pensando",
+   "amigo": "",
+   "fig": "jaleco",
+   "fig_amigo": "",
+   "obj": "cerebro",
+   "txt": "",
+   "cor": "",
+   "fx": ""
+  },
+  {
+   "m": "objeto",
+   "lugar": "corredor",
+   "bob": "explica",
+   "amigo": "",
+   "fig": "",
+   "fig_amigo": "",
+   "obj": "porta",
+   "txt": "FECHA O ARQUIVO",
+   "cor": "laranja",
+   "fx": "xis"
+  },
+  {
+   "m": "solo",
+   "lugar": "corredor",
+   "bob": "orgulhoso",
+   "amigo": "",
+   "fig": "",
+   "fig_amigo": "",
+   "obj": "caixa de som",
+   "txt": "",
+   "cor": "",
+   "fx": "estrelas"
+  },
+  {
+   "m": "segura",
+   "lugar": "laboratorio",
+   "bob": "calmo",
+   "amigo": "",
+   "fig": "jaleco",
+   "fig_amigo": "",
+   "obj": "cerebro",
+   "txt": "",
+   "cor": "",
+   "fx": ""
+  },
+  {
+   "m": "close",
+   "lugar": "corredor",
+   "bob": "desconfiado",
+   "amigo": "",
+   "fig": "",
+   "fig_amigo": "",
+   "obj": "",
+   "txt": "A PARTE ESTRANHA",
+   "cor": "vermelho",
+   "fx": "vibra"
+  },
+  {
+   "m": "solo",
+   "lugar": "sala",
+   "bob": "surpreso",
+   "amigo": "",
+   "fig": "",
+   "fig_amigo": "",
+   "obj": "lampada",
+   "txt": "",
+   "cor": "",
+   "fx": "estrelas"
+  },
+  {
+   "m": "pensa",
+   "lugar": "sala",
+   "bob": "encantado",
+   "amigo": "",
+   "fig": "",
+   "fig_amigo": "",
+   "obj": "cerebro",
+   "txt": "",
+   "cor": "",
+   "fx": "ondas"
+  },
+  {
+   "m": "divide",
+   "lugar": "corredor",
+   "bob": "explica",
+   "amigo": "",
+   "fig": "",
+   "fig_amigo": "",
+   "obj": "porta|cerebro",
+   "txt": "",
+   "cor": "",
+   "fx": ""
+  },
+  {
+   "m": "objeto",
+   "lugar": "corredor",
+   "bob": "joinha",
+   "amigo": "",
+   "fig": "",
+   "fig_amigo": "",
+   "obj": "porta",
+   "txt": "",
+   "cor": "verde",
+   "fx": "estrelas"
+  },
+  {
+   "m": "dupla",
+   "lugar": "sala",
+   "bob": "curioso",
+   "amigo": "zoeira",
+   "fig": "",
+   "fig_amigo": "",
+   "obj": "celular:E VOCÊ?",
+   "txt": "",
+   "cor": "",
+   "fx": "interrogacao"
+  }
+ ],
+ "cenas": [
+  {
+   "camera": "aproxima",
+   "foco": [
+    600,
+    700
+   ],
+   "susto": true,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 230,
+     "olha": 1,
+     "pose_nome": "chocado",
+     "olhos": "arregalados",
+     "sobrancelhas": "levantadas",
+     "boca": "aberta",
+     "braco_e": "cima",
+     "braco_d": "frente",
+     "tremer": true,
+     "escala": 0.6
+    },
+    {
+     "tipo": "desenho",
+     "x": 640,
+     "y": 600,
+     "tam": 2.8499999999999996,
+     "entra": 0.15,
+     "mexe": "",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -72,
+         -108
+        ],
+        [
+         72,
+         -108
+        ],
+        [
+         72,
+         106
+        ],
+        [
+         -72,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#e8d9b5",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -58,
+         -94
+        ],
+        [
+         58,
+         -94
+        ],
+        [
+         58,
+         106
+        ],
+        [
+         -58,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#a0612b",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -44,
+         -80
+        ],
+        [
+         -6,
+         -80
+        ],
+        [
+         -6,
+         -10
+        ],
+        [
+         -44,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         6,
+         -80
+        ],
+        [
+         44,
+         -80
+        ],
+        [
+         44,
+         -10
+        ],
+        [
+         6,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -44,
+         10
+        ],
+        [
+         -6,
+         10
+        ],
+        [
+         -6,
+         90
+        ],
+        [
+         -44,
+         90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         6,
+         10
+        ],
+        [
+         44,
+         10
+        ],
+        [
+         44,
+         90
+        ],
+        [
+         6,
+         90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -62,
+         -70
+        ],
+        [
+         -52,
+         -70
+        ],
+        [
+         -52,
+         -52
+        ],
+        [
+         -62,
+         -52
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 4
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -62,
+         62
+        ],
+        [
+         -52,
+         62
+        ],
+        [
+         -52,
+         80
+        ],
+        [
+         -62,
+         80
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 4
+      },
+      {
+       "f": "circulo",
+       "x": 44,
+       "y": 0,
+       "r": 9,
+       "cor": "tinta",
+       "preenche": "amarelo",
+       "larg": 5
+      },
+      {
+       "f": "circulo",
+       "x": 41,
+       "y": -3,
+       "r": 3,
+       "cor": "nenhuma",
+       "preenche": "branco",
+       "larg": 4
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -95,
+         106
+        ],
+        [
+         95,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 8
+      }
+     ],
+     "anim": "desliza"
+    },
+    {
+     "tipo": "texto",
+     "txt": "UMA\nPORTA?!",
+     "x": 560,
+     "y": 360,
+     "tam": 110,
+     "cor": "vermelho",
+     "entra": 0.35
+    }
+   ],
+   "cenario": "sala",
+   "clima": "",
+   "corpo": "",
+   "transicao": "soco",
+   "duracao": 7
+  },
+  {
+   "camera": "lado",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 320,
+     "olha": 1,
+     "pose_nome": "feliz",
+     "olhos": "feliz",
+     "boca": "grande",
+     "braco_d": "acena",
+     "escala": 1.0
+    },
+    {
+     "tipo": "desenho",
+     "x": 730,
+     "y": 720,
+     "tam": 1.35,
+     "entra": 0.3,
+     "mexe": "balanca",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -70,
+         -100
+        ],
+        [
+         70,
+         -100
+        ],
+        [
+         70,
+         100
+        ],
+        [
+         -70,
+         100
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#fff8d6",
+       "larg": 7
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -30,
+         -60
+        ],
+        [
+         50,
+         -60
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -30,
+         -20
+        ],
+        [
+         50,
+         -20
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -30,
+         20
+        ],
+        [
+         50,
+         20
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -30,
+         60
+        ],
+        [
+         50,
+         60
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -55,
+         -62
+        ],
+        [
+         -48,
+         -54
+        ],
+        [
+         -38,
+         -70
+        ]
+       ],
+       "cor": "verde",
+       "preenche": "nenhuma",
+       "larg": 6
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -55,
+         -22
+        ],
+        [
+         -48,
+         -14
+        ],
+        [
+         -38,
+         -30
+        ]
+       ],
+       "cor": "verde",
+       "preenche": "nenhuma",
+       "larg": 6
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -55,
+         12
+        ],
+        [
+         -41,
+         12
+        ],
+        [
+         -41,
+         26
+        ],
+        [
+         -55,
+         26
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 4
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -55,
+         52
+        ],
+        [
+         -41,
+         52
+        ],
+        [
+         -41,
+         66
+        ],
+        [
+         -55,
+         66
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 4
+      }
+     ],
+     "anim": "cai"
+    }
+   ],
+   "cenario": "sala",
+   "clima": "",
+   "corpo": "",
+   "transicao": "",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    600,
+    640
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 250,
+     "olha": 1,
+     "pose_nome": "corre",
+     "olhos": "arregalados",
+     "boca": "aberta",
+     "corre": true,
+     "braco_e": "frente",
+     "braco_d": "tras",
+     "escala": 0.8
+    },
+    {
+     "tipo": "desenho",
+     "x": 600,
+     "y": 640,
+     "tam": 1.7249999999999999,
+     "entra": 0.1,
+     "mexe": "",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -72,
+         -108
+        ],
+        [
+         72,
+         -108
+        ],
+        [
+         72,
+         106
+        ],
+        [
+         -72,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#e8d9b5",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -58,
+         -94
+        ],
+        [
+         58,
+         -94
+        ],
+        [
+         58,
+         106
+        ],
+        [
+         -58,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#a0612b",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -44,
+         -80
+        ],
+        [
+         -6,
+         -80
+        ],
+        [
+         -6,
+         -10
+        ],
+        [
+         -44,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         6,
+         -80
+        ],
+        [
+         44,
+         -80
+        ],
+        [
+         44,
+         -10
+        ],
+        [
+         6,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -44,
+         10
+        ],
+        [
+         -6,
+         10
+        ],
+        [
+         -6,
+         90
+        ],
+        [
+         -44,
+         90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         6,
+         10
+        ],
+        [
+         44,
+         10
+        ],
+        [
+         44,
+         90
+        ],
+        [
+         6,
+         90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -62,
+         -70
+        ],
+        [
+         -52,
+         -70
+        ],
+        [
+         -52,
+         -52
+        ],
+        [
+         -62,
+         -52
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 4
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -62,
+         62
+        ],
+        [
+         -52,
+         62
+        ],
+        [
+         -52,
+         80
+        ],
+        [
+         -62,
+         80
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 4
+      },
+      {
+       "f": "circulo",
+       "x": 44,
+       "y": 0,
+       "r": 9,
+       "cor": "tinta",
+       "preenche": "amarelo",
+       "larg": 5
+      },
+      {
+       "f": "circulo",
+       "x": 41,
+       "y": -3,
+       "r": 3,
+       "cor": "nenhuma",
+       "preenche": "branco",
+       "larg": 4
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -95,
+         106
+        ],
+        [
+         95,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 8
+      }
+     ],
+     "anim": "cresce"
+    },
+    {
+     "tipo": "ondas",
+     "x": 270,
+     "y": 770,
+     "ang": 0,
+     "alcance": 260,
+     "n": 3
+    }
+   ],
+   "cenario": "",
+   "clima": "",
+   "corpo": "",
+   "transicao": "soco",
+   "duracao": 7
+  },
+  {
+   "camera": "afasta",
+   "foco": [
+    540,
+    560
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 540,
+     "olha": 1,
+     "pose_nome": "confuso",
+     "olhos": "arregalados",
+     "sobrancelhas": "preocupadas",
+     "boca": "reta",
+     "escala": 1.15
+    },
+    {
+     "tipo": "interrogacao",
+     "x": 820,
+     "y": 330,
+     "tam": 150,
+     "entra": 0.4
+    },
+    {
+     "tipo": "texto",
+     "txt": "SUMIU.",
+     "x": 600,
+     "y": 265,
+     "tam": 95,
+     "cor": "azul",
+     "entra": 0.35
+    }
+   ],
+   "cenario": "cozinha",
+   "clima": "",
+   "corpo": "",
+   "transicao": "soco",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 320,
+     "olha": 1,
+     "pose_nome": "tonto",
+     "olhos": "espiral",
+     "sobrancelhas": "preocupadas",
+     "boca": "nervosa",
+     "escala": 1.0
+    },
+    {
+     "tipo": "placa",
+     "x": 730,
+     "y": 720,
+     "tam": 0.9,
+     "entra": 0.3,
+     "txt": "???",
+     "w": 270.0,
+     "h": 108.0,
+     "txt_tam": 45.0,
+     "anim": "desliza"
+    },
+    {
+     "tipo": "interrogacao",
+     "x": 320,
+     "y": 330,
+     "tam": 150,
+     "entra": 0.4
+    }
+   ],
+   "cenario": "cozinha",
+   "clima": "",
+   "corpo": "",
+   "transicao": "iris",
+   "duracao": 7
+  },
+  {
+   "camera": "fixa",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "desenho",
+     "x": 540,
+     "y": 700,
+     "fixo": true,
+     "formas": [
+      {
+       "f": "linha",
+       "pts": [
+        [
+         0,
+         -330
+        ],
+        [
+         0,
+         420
+        ]
+       ],
+       "cor": "tinta",
+       "larg": 8
+      }
+     ]
+    },
+    {
+     "tipo": "desenho",
+     "x": 300,
+     "y": 620,
+     "tam": 1.125,
+     "entra": 0.2,
+     "mexe": "pulsa",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         8,
+         35
+        ],
+        [
+         32,
+         35
+        ],
+        [
+         36,
+         88
+        ],
+        [
+         14,
+         88
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#e88aa8",
+       "larg": 6
+      },
+      {
+       "f": "elipse",
+       "x": 48,
+       "y": 48,
+       "rx": 28,
+       "ry": 20,
+       "rot": 0,
+       "cor": "tinta",
+       "preenche": "#e88aa8",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -65,
+       "y": -10,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -35,
+       "y": -45,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 10,
+       "y": -55,
+       "r": 38,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 55,
+       "y": -35,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 70,
+       "y": 5,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 35,
+       "y": 30,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -10,
+       "y": 30,
+       "r": 32,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -50,
+       "y": 25,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "elipse",
+       "x": 0,
+       "y": -8,
+       "rx": 78,
+       "ry": 45,
+       "rot": 0,
+       "cor": "nenhuma",
+       "preenche": "#f4a6c0",
+       "larg": 4
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -65,
+         0
+        ],
+        [
+         -35,
+         -12
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         30,
+         -12
+        ],
+        [
+         65,
+         0
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": -40,
+       "y": -30,
+       "r": 15,
+       "de": 200,
+       "ate": 340,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": 20,
+       "y": -35,
+       "r": 16,
+       "de": 200,
+       "ate": 340,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": -25,
+       "y": 18,
+       "r": 14,
+       "de": 20,
+       "ate": 160,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": 40,
+       "y": 15,
+       "r": 13,
+       "de": 20,
+       "ate": 160,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      }
+     ],
+     "anim": "cai"
+    },
+    {
+     "tipo": "xis",
+     "x": 300,
+     "y": 620,
+     "tam": 90,
+     "entra": 0.5,
+     "anim": "cresce"
+    },
+    {
+     "tipo": "bob",
+     "x": 780,
+     "olha": -1,
+     "pose_nome": "surpreso",
+     "olhos": "arregalados",
+     "sobrancelhas": "levantadas",
+     "boca": "o",
+     "escala": 0.6,
+     "entra": 0.9
+    },
+    {
+     "tipo": "lampada",
+     "x": 780,
+     "y": 620,
+     "tam": 1.35,
+     "entra": 0.7,
+     "anim": "desliza"
+    },
+    {
+     "tipo": "texto",
+     "txt": "NÃO É\nBURRICE",
+     "x": 560,
+     "y": 360,
+     "tam": 110,
+     "cor": "verde",
+     "entra": 0.35
+    }
+   ],
+   "cenario": "cor_azul",
+   "clima": "",
+   "corpo": "",
+   "transicao": "",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 300,
+     "olha": 1,
+     "pose_nome": "pensando",
+     "sobrancelhas": "uma",
+     "boca": "reta",
+     "braco_d": "rosto",
+     "roupa": "jaleco",
+     "escala": 1.0
+    },
+    {
+     "tipo": "balao",
+     "x": 700,
+     "y": 480,
+     "w": 440,
+     "h": 320,
+     "cauda": [
+      420,
+      580
+     ],
+     "entra": 0.2
+    },
+    {
+     "tipo": "desenho",
+     "x": 700,
+     "y": 480,
+     "tam": 0.8999999999999999,
+     "entra": 0.45,
+     "mexe": "pulsa",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         8,
+         35
+        ],
+        [
+         32,
+         35
+        ],
+        [
+         36,
+         88
+        ],
+        [
+         14,
+         88
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#e88aa8",
+       "larg": 6
+      },
+      {
+       "f": "elipse",
+       "x": 48,
+       "y": 48,
+       "rx": 28,
+       "ry": 20,
+       "rot": 0,
+       "cor": "tinta",
+       "preenche": "#e88aa8",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -65,
+       "y": -10,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -35,
+       "y": -45,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 10,
+       "y": -55,
+       "r": 38,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 55,
+       "y": -35,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 70,
+       "y": 5,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 35,
+       "y": 30,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -10,
+       "y": 30,
+       "r": 32,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -50,
+       "y": 25,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "elipse",
+       "x": 0,
+       "y": -8,
+       "rx": 78,
+       "ry": 45,
+       "rot": 0,
+       "cor": "nenhuma",
+       "preenche": "#f4a6c0",
+       "larg": 4
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -65,
+         0
+        ],
+        [
+         -35,
+         -12
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         30,
+         -12
+        ],
+        [
+         65,
+         0
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": -40,
+       "y": -30,
+       "r": 15,
+       "de": 200,
+       "ate": 340,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": 20,
+       "y": -35,
+       "r": 16,
+       "de": 200,
+       "ate": 340,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": -25,
+       "y": 18,
+       "r": 14,
+       "de": 20,
+       "ate": 160,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": 40,
+       "y": 15,
+       "r": 13,
+       "de": 20,
+       "ate": 160,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      }
+     ],
+     "anim": "pop"
+    }
+   ],
+   "cenario": "laboratorio",
+   "clima": "",
+   "corpo": "",
+   "transicao": "desliza",
+   "duracao": 7
+  },
+  {
+   "camera": "afasta",
+   "foco": [
+    600,
+    640
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 250,
+     "olha": 1,
+     "pose_nome": "explica",
+     "fala": true,
+     "braco_d": "aponta",
+     "escala": 0.8
+    },
+    {
+     "tipo": "desenho",
+     "x": 600,
+     "y": 640,
+     "tam": 1.7249999999999999,
+     "entra": 0.1,
+     "mexe": "",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -72,
+         -108
+        ],
+        [
+         72,
+         -108
+        ],
+        [
+         72,
+         106
+        ],
+        [
+         -72,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#e8d9b5",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -58,
+         -94
+        ],
+        [
+         58,
+         -94
+        ],
+        [
+         58,
+         106
+        ],
+        [
+         -58,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#a0612b",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -44,
+         -80
+        ],
+        [
+         -6,
+         -80
+        ],
+        [
+         -6,
+         -10
+        ],
+        [
+         -44,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         6,
+         -80
+        ],
+        [
+         44,
+         -80
+        ],
+        [
+         44,
+         -10
+        ],
+        [
+         6,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -44,
+         10
+        ],
+        [
+         -6,
+         10
+        ],
+        [
+         -6,
+         90
+        ],
+        [
+         -44,
+         90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         6,
+         10
+        ],
+        [
+         44,
+         10
+        ],
+        [
+         44,
+         90
+        ],
+        [
+         6,
+         90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -62,
+         -70
+        ],
+        [
+         -52,
+         -70
+        ],
+        [
+         -52,
+         -52
+        ],
+        [
+         -62,
+         -52
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 4
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -62,
+         62
+        ],
+        [
+         -52,
+         62
+        ],
+        [
+         -52,
+         80
+        ],
+        [
+         -62,
+         80
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 4
+      },
+      {
+       "f": "circulo",
+       "x": 44,
+       "y": 0,
+       "r": 9,
+       "cor": "tinta",
+       "preenche": "amarelo",
+       "larg": 5
+      },
+      {
+       "f": "circulo",
+       "x": 41,
+       "y": -3,
+       "r": 3,
+       "cor": "nenhuma",
+       "preenche": "branco",
+       "larg": 4
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -95,
+         106
+        ],
+        [
+         95,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 8
+      }
+     ],
+     "anim": "pop"
+    },
+    {
+     "tipo": "xis",
+     "x": 600,
+     "y": 640,
+     "tam": 70,
+     "entra": 0.9
+    },
+    {
+     "tipo": "texto",
+     "txt": "FECHA O\nARQUIVO",
+     "x": 560,
+     "y": 360,
+     "tam": 110,
+     "cor": "laranja",
+     "entra": 0.35
+    }
+   ],
+   "cenario": "",
+   "clima": "",
+   "corpo": "",
+   "transicao": "",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 320,
+     "olha": 1,
+     "pose_nome": "orgulhoso",
+     "olhos": "feliz",
+     "sobrancelhas": "levantadas",
+     "boca": "sorriso",
+     "braco_e": "cintura",
+     "braco_d": "cintura",
+     "escala": 1.0
+    },
+    {
+     "tipo": "caixa_som",
+     "x": 730,
+     "y": 720,
+     "tam": 0.7200000000000001,
+     "entra": 0.3,
+     "anim": "desliza"
+    },
+    {
+     "tipo": "estrelas",
+     "x": 320,
+     "y": 430
+    }
+   ],
+   "cenario": "",
+   "clima": "",
+   "corpo": "",
+   "transicao": "soco",
+   "duracao": 7
+  },
+  {
+   "camera": "lado",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 380,
+     "olha": 1,
+     "pose_nome": "segura",
+     "boca": "sorriso",
+     "sobrancelhas": "levantadas",
+     "braco_d": [
+      150,
+      -40
+     ],
+     "roupa": "jaleco",
+     "escala": 1.0
+    },
+    {
+     "tipo": "desenho",
+     "x": 560,
+     "y": 740,
+     "tam": 0.8250000000000001,
+     "entra": 0.2,
+     "mexe": "pulsa",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         8,
+         35
+        ],
+        [
+         32,
+         35
+        ],
+        [
+         36,
+         88
+        ],
+        [
+         14,
+         88
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#e88aa8",
+       "larg": 6
+      },
+      {
+       "f": "elipse",
+       "x": 48,
+       "y": 48,
+       "rx": 28,
+       "ry": 20,
+       "rot": 0,
+       "cor": "tinta",
+       "preenche": "#e88aa8",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -65,
+       "y": -10,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -35,
+       "y": -45,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 10,
+       "y": -55,
+       "r": 38,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 55,
+       "y": -35,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 70,
+       "y": 5,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 35,
+       "y": 30,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -10,
+       "y": 30,
+       "r": 32,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -50,
+       "y": 25,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "elipse",
+       "x": 0,
+       "y": -8,
+       "rx": 78,
+       "ry": 45,
+       "rot": 0,
+       "cor": "nenhuma",
+       "preenche": "#f4a6c0",
+       "larg": 4
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -65,
+         0
+        ],
+        [
+         -35,
+         -12
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         30,
+         -12
+        ],
+        [
+         65,
+         0
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": -40,
+       "y": -30,
+       "r": 15,
+       "de": 200,
+       "ate": 340,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": 20,
+       "y": -35,
+       "r": 16,
+       "de": 200,
+       "ate": 340,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": -25,
+       "y": 18,
+       "r": 14,
+       "de": 20,
+       "ate": 160,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": 40,
+       "y": 15,
+       "r": 13,
+       "de": 20,
+       "ate": 160,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      }
+     ],
+     "anim": "cai"
+    }
+   ],
+   "cenario": "laboratorio",
+   "clima": "",
+   "corpo": "",
+   "transicao": "",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    540,
+    560
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 540,
+     "olha": 1,
+     "pose_nome": "desconfiado",
+     "olhos": "desconfiado",
+     "sobrancelhas": "uma",
+     "boca": "reta",
+     "braco_d": "rosto",
+     "escala": 1.15
+    },
+    {
+     "tipo": "zigue",
+     "de": [
+      610,
+      540
+     ],
+     "ate": [
+      830,
+      540
+     ],
+     "cor": "laranja",
+     "entra": 0.3
+    },
+    {
+     "tipo": "texto",
+     "txt": "A PARTE\nESTRANHA",
+     "x": 600,
+     "y": 265,
+     "tam": 95,
+     "cor": "vermelho",
+     "entra": 0.35
+    }
+   ],
+   "cenario": "",
+   "clima": "",
+   "corpo": "",
+   "transicao": "soco",
+   "duracao": 7
+  },
+  {
+   "camera": "afasta",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 320,
+     "olha": 1,
+     "pose_nome": "surpreso",
+     "olhos": "arregalados",
+     "sobrancelhas": "levantadas",
+     "boca": "o",
+     "escala": 1.0
+    },
+    {
+     "tipo": "lampada",
+     "x": 730,
+     "y": 720,
+     "tam": 1.62,
+     "entra": 0.3,
+     "anim": "pop"
+    },
+    {
+     "tipo": "estrelas",
+     "x": 320,
+     "y": 430
+    }
+   ],
+   "cenario": "sala",
+   "clima": "",
+   "corpo": "",
+   "transicao": "",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 300,
+     "olha": 1,
+     "pose_nome": "encantado",
+     "olhos": "brilho",
+     "sobrancelhas": "levantadas",
+     "boca": "sorrisao",
+     "braco_e": "cima",
+     "braco_d": "cima",
+     "escala": 1.0
+    },
+    {
+     "tipo": "balao",
+     "x": 700,
+     "y": 480,
+     "w": 440,
+     "h": 320,
+     "cauda": [
+      420,
+      580
+     ],
+     "entra": 0.2
+    },
+    {
+     "tipo": "desenho",
+     "x": 700,
+     "y": 480,
+     "tam": 0.8999999999999999,
+     "entra": 0.45,
+     "mexe": "pulsa",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         8,
+         35
+        ],
+        [
+         32,
+         35
+        ],
+        [
+         36,
+         88
+        ],
+        [
+         14,
+         88
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#e88aa8",
+       "larg": 6
+      },
+      {
+       "f": "elipse",
+       "x": 48,
+       "y": 48,
+       "rx": 28,
+       "ry": 20,
+       "rot": 0,
+       "cor": "tinta",
+       "preenche": "#e88aa8",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -65,
+       "y": -10,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -35,
+       "y": -45,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 10,
+       "y": -55,
+       "r": 38,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 55,
+       "y": -35,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 70,
+       "y": 5,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 35,
+       "y": 30,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -10,
+       "y": 30,
+       "r": 32,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -50,
+       "y": 25,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "elipse",
+       "x": 0,
+       "y": -8,
+       "rx": 78,
+       "ry": 45,
+       "rot": 0,
+       "cor": "nenhuma",
+       "preenche": "#f4a6c0",
+       "larg": 4
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -65,
+         0
+        ],
+        [
+         -35,
+         -12
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         30,
+         -12
+        ],
+        [
+         65,
+         0
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": -40,
+       "y": -30,
+       "r": 15,
+       "de": 200,
+       "ate": 340,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": 20,
+       "y": -35,
+       "r": 16,
+       "de": 200,
+       "ate": 340,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": -25,
+       "y": 18,
+       "r": 14,
+       "de": 20,
+       "ate": 160,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": 40,
+       "y": 15,
+       "r": 13,
+       "de": 20,
+       "ate": 160,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      }
+     ],
+     "anim": "cai"
+    },
+    {
+     "tipo": "ondas",
+     "x": 340,
+     "y": 690,
+     "ang": 0,
+     "alcance": 260,
+     "n": 3
+    }
+   ],
+   "cenario": "sala",
+   "clima": "",
+   "corpo": "",
+   "transicao": "desliza",
+   "duracao": 7
+  },
+  {
+   "camera": "fixa",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "desenho",
+     "x": 540,
+     "y": 700,
+     "fixo": true,
+     "formas": [
+      {
+       "f": "linha",
+       "pts": [
+        [
+         0,
+         -330
+        ],
+        [
+         0,
+         420
+        ]
+       ],
+       "cor": "tinta",
+       "larg": 8
+      }
+     ]
+    },
+    {
+     "tipo": "desenho",
+     "x": 300,
+     "y": 620,
+     "tam": 1.125,
+     "entra": 0.2,
+     "mexe": "",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -72,
+         -108
+        ],
+        [
+         72,
+         -108
+        ],
+        [
+         72,
+         106
+        ],
+        [
+         -72,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#e8d9b5",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -58,
+         -94
+        ],
+        [
+         58,
+         -94
+        ],
+        [
+         58,
+         106
+        ],
+        [
+         -58,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#a0612b",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -44,
+         -80
+        ],
+        [
+         -6,
+         -80
+        ],
+        [
+         -6,
+         -10
+        ],
+        [
+         -44,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         6,
+         -80
+        ],
+        [
+         44,
+         -80
+        ],
+        [
+         44,
+         -10
+        ],
+        [
+         6,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -44,
+         10
+        ],
+        [
+         -6,
+         10
+        ],
+        [
+         -6,
+         90
+        ],
+        [
+         -44,
+         90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         6,
+         10
+        ],
+        [
+         44,
+         10
+        ],
+        [
+         44,
+         90
+        ],
+        [
+         6,
+         90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -62,
+         -70
+        ],
+        [
+         -52,
+         -70
+        ],
+        [
+         -52,
+         -52
+        ],
+        [
+         -62,
+         -52
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 4
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -62,
+         62
+        ],
+        [
+         -52,
+         62
+        ],
+        [
+         -52,
+         80
+        ],
+        [
+         -62,
+         80
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 4
+      },
+      {
+       "f": "circulo",
+       "x": 44,
+       "y": 0,
+       "r": 9,
+       "cor": "tinta",
+       "preenche": "amarelo",
+       "larg": 5
+      },
+      {
+       "f": "circulo",
+       "x": 41,
+       "y": -3,
+       "r": 3,
+       "cor": "nenhuma",
+       "preenche": "branco",
+       "larg": 4
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -95,
+         106
+        ],
+        [
+         95,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 8
+      }
+     ],
+     "anim": "cai"
+    },
+    {
+     "tipo": "xis",
+     "x": 300,
+     "y": 620,
+     "tam": 90,
+     "entra": 0.5,
+     "anim": "cresce"
+    },
+    {
+     "tipo": "bob",
+     "x": 780,
+     "olha": -1,
+     "pose_nome": "explica",
+     "fala": true,
+     "braco_d": "aponta",
+     "escala": 0.6,
+     "entra": 0.9
+    },
+    {
+     "tipo": "desenho",
+     "x": 780,
+     "y": 620,
+     "tam": 1.125,
+     "entra": 0.7,
+     "mexe": "pulsa",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         8,
+         35
+        ],
+        [
+         32,
+         35
+        ],
+        [
+         36,
+         88
+        ],
+        [
+         14,
+         88
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#e88aa8",
+       "larg": 6
+      },
+      {
+       "f": "elipse",
+       "x": 48,
+       "y": 48,
+       "rx": 28,
+       "ry": 20,
+       "rot": 0,
+       "cor": "tinta",
+       "preenche": "#e88aa8",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -65,
+       "y": -10,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -35,
+       "y": -45,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 10,
+       "y": -55,
+       "r": 38,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 55,
+       "y": -35,
+       "r": 35,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 70,
+       "y": 5,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 35,
+       "y": 30,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -10,
+       "y": 30,
+       "r": 32,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -50,
+       "y": 25,
+       "r": 30,
+       "cor": "tinta",
+       "preenche": "#f4a6c0",
+       "larg": 6
+      },
+      {
+       "f": "elipse",
+       "x": 0,
+       "y": -8,
+       "rx": 78,
+       "ry": 45,
+       "rot": 0,
+       "cor": "nenhuma",
+       "preenche": "#f4a6c0",
+       "larg": 4
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -65,
+         0
+        ],
+        [
+         -35,
+         -12
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         30,
+         -12
+        ],
+        [
+         65,
+         0
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": -40,
+       "y": -30,
+       "r": 15,
+       "de": 200,
+       "ate": 340,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": 20,
+       "y": -35,
+       "r": 16,
+       "de": 200,
+       "ate": 340,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": -25,
+       "y": 18,
+       "r": 14,
+       "de": 20,
+       "ate": 160,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "arco",
+       "x": 40,
+       "y": 15,
+       "r": 13,
+       "de": 20,
+       "ate": 160,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      }
+     ],
+     "anim": "desliza"
+    }
+   ],
+   "cenario": "",
+   "clima": "",
+   "corpo": "",
+   "transicao": "",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    600,
+    640
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 250,
+     "olha": 1,
+     "pose_nome": "joinha",
+     "olhos": "feliz",
+     "boca": "sorriso",
+     "braco_d": "joinha",
+     "escala": 0.8
+    },
+    {
+     "tipo": "desenho",
+     "x": 600,
+     "y": 640,
+     "tam": 1.7249999999999999,
+     "entra": 0.1,
+     "mexe": "",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -72,
+         -108
+        ],
+        [
+         72,
+         -108
+        ],
+        [
+         72,
+         106
+        ],
+        [
+         -72,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#e8d9b5",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -58,
+         -94
+        ],
+        [
+         58,
+         -94
+        ],
+        [
+         58,
+         106
+        ],
+        [
+         -58,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#a0612b",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -44,
+         -80
+        ],
+        [
+         -6,
+         -80
+        ],
+        [
+         -6,
+         -10
+        ],
+        [
+         -44,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         6,
+         -80
+        ],
+        [
+         44,
+         -80
+        ],
+        [
+         44,
+         -10
+        ],
+        [
+         6,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -44,
+         10
+        ],
+        [
+         -6,
+         10
+        ],
+        [
+         -6,
+         90
+        ],
+        [
+         -44,
+         90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         6,
+         10
+        ],
+        [
+         44,
+         10
+        ],
+        [
+         44,
+         90
+        ],
+        [
+         6,
+         90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -62,
+         -70
+        ],
+        [
+         -52,
+         -70
+        ],
+        [
+         -52,
+         -52
+        ],
+        [
+         -62,
+         -52
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 4
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -62,
+         62
+        ],
+        [
+         -52,
+         62
+        ],
+        [
+         -52,
+         80
+        ],
+        [
+         -62,
+         80
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 4
+      },
+      {
+       "f": "circulo",
+       "x": 44,
+       "y": 0,
+       "r": 9,
+       "cor": "tinta",
+       "preenche": "amarelo",
+       "larg": 5
+      },
+      {
+       "f": "circulo",
+       "x": 41,
+       "y": -3,
+       "r": 3,
+       "cor": "nenhuma",
+       "preenche": "branco",
+       "larg": 4
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -95,
+         106
+        ],
+        [
+         95,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 8
+      }
+     ],
+     "anim": "cresce"
+    },
+    {
+     "tipo": "estrelas",
+     "x": 320,
+     "y": 430
+    }
+   ],
+   "cenario": "",
+   "clima": "",
+   "corpo": "",
+   "transicao": "soco",
+   "duracao": 7
+  },
+  {
+   "camera": "afasta",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 300,
+     "olha": 1,
+     "pose_nome": "curioso",
+     "olhos": "brilho",
+     "sobrancelhas": "uma",
+     "boca": "biquinho",
+     "braco_d": "rosto",
+     "escala": 1.0
+    },
+    {
+     "tipo": "amigo",
+     "x": 780,
+     "olha": -1,
+     "pose_nome": "zoeira",
+     "olhos": "feliz",
+     "boca": "lingua",
+     "braco_d": "joinha",
+     "entra": 0.25,
+     "escala": 1.0
+    },
+    {
+     "tipo": "celular",
+     "x": 540,
+     "y": 990,
+     "tam": 0.55,
+     "entra": 0.3,
+     "tela": "E VOCÊ?",
+     "anim": "desliza"
+    },
+    {
+     "tipo": "interrogacao",
+     "x": 320,
+     "y": 330,
+     "tam": 150,
+     "entra": 0.4
+    }
+   ],
+   "cenario": "sala",
+   "clima": "",
+   "corpo": "",
+   "transicao": "",
+   "duracao": 7
+  }
+ ]
+}

@@ -193,7 +193,7 @@ def indexar_roteiro(r: dict, pasta: Path, origem: str = "ia-time", dono: str = "
     nicho = NICHO_DO_PRESET.get(r.get("nicho", ""), r.get("nicho", ""))
     n = 0
     for i, c in enumerate(r["cenas"], 1):
-        img = next((p for p in sorted(Path(pasta).glob(f"cena_{i:02d}*"))
+        img = next((p for p in sorted(Path(pasta).glob(f"cena_{i:02d}[!0-9]*"))
                     if p.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"}), None)
         if not img or i in reprovadas:
             continue

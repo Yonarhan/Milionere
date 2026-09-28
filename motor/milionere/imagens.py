@@ -46,7 +46,7 @@ if REMOTO:  # o proxy da RunPod (Cloudflare) recusa o User-Agent padrão do Pyth
 COMFY_RAM_HIGH = "9G"
 COMFY_RAM_MAX = "11G"
 RETRATOS = SKILL / "biblia" / "retratos"
-LARGURA, ALTURA = 768, 1344  # resolução nativa do SDXL mais próxima de 9:16
+LARGURA, ALTURA = (1344, 768) if caminhos.HORIZONTAL else (768, 1344)  # resolução nativa do SDXL mais próxima de 9:16 (ou 16:9)
 IPADAPTER = "ip-adapter-plus-face_sdxl_vit-h.safetensors"
 CLIP_VISION = "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
 
@@ -284,7 +284,8 @@ def prompt_cena(cena: dict, personagens: dict, estilo: dict, cenario: str, bibli
     if re.search(r"\bsetting:", cena["imagem"], re.I):  # cena com ambientação própria: sai o cenário padrão
         cenario = ""
     epoca = estilo.get("prompt_biblico", "") if biblico else ""
-    partes = [cena["imagem"], *quem, cenario, epoca, estilo["prompt"], "vertical composition"]
+    partes = [cena["imagem"], *quem, cenario, epoca, estilo["prompt"],
+              "wide horizontal composition" if caminhos.HORIZONTAL else "vertical composition"]
     return ", ".join(p.strip().rstrip(".") for p in partes if p and p.strip())
 
 
@@ -330,7 +331,7 @@ def gerar_cenas(roteiro: dict, nome_estilo: str, pasta: Path, so: list[int] | No
         if so and n not in so:
             continue
         seed = base + n + (random.randint(1, 10**6) if nova_seed else 0)
-        for velho in pasta.glob(f"cena_{n:02d}*"):
+        for velho in pasta.glob(f"cena_{n:02d}[!0-9]*"):
             velho.unlink()
         feitos.append(_gerar_cena(roteiro, nome_estilo, n, pasta / f"cena_{n:02d}.png", seed))
     return feitos

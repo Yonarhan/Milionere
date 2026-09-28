@@ -31,7 +31,7 @@ import imagens  # noqa: E402
 from sincronizar import FFMPEG  # noqa: E402
 
 QTD_PADRAO = 3  # gancho + meio + clímax; ~15 min por vídeo
-LARGURA, ALTURA = 480, 832  # vertical, múltiplo de 16; o render amplia para 1080x1920
+LARGURA, ALTURA = (832, 480) if caminhos.HORIZONTAL else (480, 832)  # múltiplo de 16; o render amplia para 1080p
 QPS = 16  # nativo do Wan
 MAX_QUADROS = 81  # 5s
 PALAVRAS_POR_SEGUNDO = 2.4  # medido nas tomadas do Zaqueu (fala por cena, sem as pausas entre cenas)
@@ -162,7 +162,9 @@ def _animar_remoto(r: dict, pasta: Path, faltam: list[int]) -> list[int]:
     t0 = time.time()
     for i in faltam:
         img = imagens.enviar(pasta / f"cena_{i:02d}.png", f"{r['slug']}_cena_{i:02d}.png")
-        texto = r["cenas"][i - 1]["imagem"].rstrip(". ") + r.get("_movimento", MOVIMENTO)
+        cena = r["cenas"][i - 1]
+        # "movimento" (opcional, em inglês): o que se mexe na cena; sem ele, o Wan inventa a partir da imagem
+        texto = cena["imagem"].rstrip(". ") + (f", {cena['movimento']}" if cena.get("movimento") else "")             + r.get("_movimento", MOVIMENTO)
         h = _rodar(wf_completo(img, texto, NEG, quadros(r["cenas"][i - 1]["fala"]), f"{r['slug']}_{i:02d}"), None)
         video = next(o for out in h["outputs"].values() for tipo in ("videos", "images", "gifs") for o in out.get(tipo, [])
                      if o["filename"].endswith(".mp4"))
@@ -285,6 +287,8 @@ def main() -> None:
     args = ap.parse_args()
     r = json.loads(args.roteiro.read_text(encoding="utf-8"))[0]
     pasta = caminhos.PRODUCAO / "midia" / r["slug"]
+    if r.get("estilo") in imagens.estilos():  # o movimento do estilo (doodle: 2D, fundo parado), como no painel
+        r["_movimento"] = imagens.estilos()[r["estilo"]].get("movimento_video", MOVIMENTO)
     print(f"cenas: {args.cenas or escolher(r)}")
     feitas = animar(r, pasta, args.cenas)
     print(f"animadas: {feitas or 'nenhuma (já existiam)'}")

@@ -17,6 +17,8 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+import os
+
 import imageio_ffmpeg
 
 FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
@@ -236,13 +238,17 @@ def _vazio(video: Path) -> bool:
     return (sum((b - media) ** 2 for b in cru) / len(cru)) ** 0.5 < 7
 
 
+# formato do vídeo: vertical (padrão) ou 16:9 (MILIONERE_FORMATO, vídeo longo)
+W, H = (1920, 1080) if os.environ.get("MILIONERE_FORMATO") == "16:9" else (1080, 1920)
+
+
 def cortar(origem: Path, destino: Path, inicio_origem: float, frames: int) -> None:
     base = [
         FFMPEG, "-y", "-loglevel", "error",
         "-ss", f"{inicio_origem:.2f}", "-i", str(origem),
         "-frames:v", str(frames),
         # tpad: clipe mais curto que a fala congela no último quadro em vez de encurtar a tomada (desincroniza)
-        "-vf", f"scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,fps={FPS},setsar=1,"
+        "-vf", f"scale={W}:{H}:force_original_aspect_ratio=increase:flags=lanczos,crop={W}:{H},fps={FPS},setsar=1,"
                "tpad=stop_mode=clone:stop_duration=30",
         "-an", "-pix_fmt", "yuv420p",
     ]
@@ -296,9 +302,9 @@ def animar_foto(origem: Path, destino: Path, frames: int, parte: int = 0) -> Non
     with Image.open(origem) as im:
         proporcao = im.width / im.height
     z, x, y = (e.replace("P", f"(on/{frames})") for e in MOVIMENTOS[parte % len(MOVIMENTOS)])
-    zoom = f"zoompan=z='{z}':x='{x}':y='{y}':d=1:s=1080x1920:fps={FPS}"
-    if proporcao < 0.75:
-        filtro = f"[0:v]scale=2160:3840:force_original_aspect_ratio=increase,crop=2160:3840,{zoom},setsar=1[v]"
+    zoom = f"zoompan=z='{z}':x='{x}':y='{y}':d=1:s={W}x{H}:fps={FPS}"
+    if proporcao < 0.75 or (W > H and proporcao > 1.3):  # imagem no mesmo formato do vídeo: preenche a tela
+        filtro = f"[0:v]scale={2 * W}:{2 * H}:force_original_aspect_ratio=increase,crop={2 * W}:{2 * H},{zoom},setsar=1[v]"
     else:
         filtro = (
             "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=30:3,eq=brightness=-0.12[bg];"
@@ -330,7 +336,7 @@ def montar_tomadas(cenas, tempos, corte_max: float, pexels: Pexels, pasta: Path,
         limites = [f_ini_cena + round((f_fim_cena - f_ini_cena) * k / partes) for k in range(partes + 1)]
 
         # 1º: arquivos do usuário em producao/midia/<slug>/cena_05.jpg, cena_05b.mp4... (prioridade total)
-        manuais = sorted(p for p in (pasta_midia.glob(f"cena_{i:02d}*") if pasta_midia and pasta_midia.exists() else [])
+        manuais = sorted(p for p in (pasta_midia.glob(f"cena_{i:02d}[!0-9]*") if pasta_midia and pasta_midia.exists() else [])
                          if p.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp", ".mp4", ".mov"})
         videos = [p for p in manuais if p.suffix.lower() in {".mp4", ".mov"}]
         if videos and any(p.stem == f"cena_{i:02d}" for p in videos):

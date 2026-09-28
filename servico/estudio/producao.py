@@ -5,6 +5,7 @@ Gospel com tema do catálogo: pipeline bíblico completo (texto exato da Bíblia
 Os outros nichos (e temas livres): roteirista guiado + juiz, imagens do banco/Pexels, mesma montagem do site.
 """
 
+import json
 import os
 import subprocess
 import threading
@@ -22,8 +23,10 @@ from .models import Canal, Pauta, Producao, Produtor, Serie
 
 NICHOS = ["gospel", "astronomia", "animais", "animacoes"]
 # canal criado já configurado como o piloto (Short doodle "própria voz"): IA no pod, cena ilustrada, narrado
-PADRAO_CANAL = {"animacoes": {"imagens": "ia_pod", "estilo_pod": "doodle_cena", "roteiro": "narrado",
-                              "legenda": "karaoke", "volume": True, "musica": "com"}}
+# padrão do canal de animações desde 28/09/2026: animação em código (etiquetas + Bob vivo), roteiro viral, voz
+# Bob jovem agudo (OmniVoice). O "IA no pod" com doodle cena continua disponível no painel.
+PADRAO_CANAL = {"animacoes": {"imagens": "codigo", "estilo_pod": "doodle_cena", "roteiro": "viral",
+                              "legenda": "karaoke", "volume": True, "musica": "com", "voz": "omnivoice:bob-agudo"}}
 MODOS = ("unitario", "serie", "misto")
 MAX_FALHAS_DIA = 3  # um nicho que falhou 3 vezes hoje descansa até amanhã (não fica gastando em loop)
 # YouTube: volume alto de vídeos parecidos pesa como "produzido em massa" na revisão do YPP (política de conteúdo
@@ -300,6 +303,31 @@ ESTILOS_POD = {"espaco_zimage": "espaço", "doodle_zimage": "doodle", "doodle_ce
 ANIMAR_POD = 3  # cenas animadas pelo Wan por vídeo (gancho, meio e clímax)
 
 
+def _codigo(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
+    """Animação em código (sem GPU): o roteiro narrado do nicho (escritor + juiz), o Claude descreve cada cena e o
+    cairo desenha e anima o elenco do Bob (cenas_codigo.py). O resto é a montagem de sempre, que usa cena_NN.mp4."""
+    _motor()
+    import cenas_codigo
+    import nativo
+
+    def log(msg):
+        diario(msg, _etapa_nativo(msg))
+    pauta = prod.pauta
+    r = nativo.roteiro_generico(prod.nicho, (pauta.formato_nome if pauta else "") or prod.formato, prod.tema,
+                                f"canal-{str(prod.id)[:8]}", log)
+    diario("roteiro aprovado:
+" + "
+".join(f"  «{c['fala']}»" for c in r["cenas"]), "imagens")
+    diario.avisos += r.get("_avisos", [])
+    # padrão desde 28/09/2026: etiquetas (barato) + Bob vivo + traço limpo; o diretor livre (Opus) segue no
+    # cenas_codigo.dirigir, para quando quiser comparar
+    import cenas_etiqueta
+    cenas_etiqueta.dirigir(r, lambda m: diario(m, "imagens"))
+    r["gancho_tela"] = r.get("gancho_tela") or r.get("titulo", "")
+    r["ajustes"] = {**r.get("ajustes", {}), **cenas_codigo.AJUSTES_LEGENDA}
+    return nativo.montar(r, Path(settings.MEDIA_ROOT) / "canal" / str(prod.id), musica, log)
+
+
 def _ia_pod(prod: Producao, musica: str, diario: _Diario) -> list[Path]:
     """Imagens geradas por IA no ComfyUI do pod (MILIONERE_COMFY_URL), como o gospel do Rafael: o roteiro do nicho
     (escritor + juiz), o Z-Image gera cada cena e o Wan 2.2 anima as principais. O resto (voz, legenda, montagem) é
@@ -386,6 +414,9 @@ VOZES = [
     ("en-US-BrianMultilingualNeural-Male", "Brian (masculina, sotaque leve)"),
     ("en-US-AvaMultilingualNeural-Female", "Ava (feminina, sotaque leve)"),
     ("en-US-EmmaMultilingualNeural-Female", "Emma (feminina, sotaque leve)"),
+    # OmniVoice local (motor/milionere/dados/vozes): a narração clona a voz escolhida no teste de elenco (27/09)
+    ("omnivoice:bob-jovem", "Bob · jovem (OmniVoice)"),
+    ("omnivoice:bob-agudo", "Bob · jovem agudo (OmniVoice)"),
 ]
 TEXTO_PREVIA = ("Oi! Essa é a voz do canal. Você sabia que um dia em Vênus dura mais do que um ano inteiro? "
                 "Se inscreve pra não perder o próximo.")
@@ -398,6 +429,9 @@ def previa_voz(nicho: str, voz: str) -> Path:
     import edge_tts
     if voz not in dict(VOZES):
         raise ValueError("voz desconhecida")
+    if voz.startswith("omnivoice:"):  # a prévia é a própria referência que a narração clona
+        vozes = settings.BASE_DIR.parent / "motor" / "milionere" / "dados" / "vozes"
+        return vozes / json.loads((vozes / "vozes.json").read_text(encoding="utf-8"))[voz.split(":", 1)[1]]["arquivo"]
     sp, _, _ = _motor()
     preset = sp._preset(nicho)
     tom = str(preset.get("voice_pitch", "") or "+0Hz")
@@ -421,7 +455,7 @@ def _opcoes_video(nicho: str) -> None:
     os.environ["MILIONERE_VOZ"] = c.voz if c and c.voz else ""
     os.environ["MILIONERE_ROTEIRO"] = c.roteiro if c else "padrao"
     # canal do Bob (IA no pod + doodle cena): o nicho usa o elenco do canal de animações (Space Atlas, etc.)
-    os.environ["MILIONERE_ELENCO"] = "1" if c and c.imagens == "ia_pod" and c.estilo_pod == "doodle_cena" else ""
+    os.environ["MILIONERE_ELENCO"] = "1" if c and (c.imagens == "codigo" or c.imagens == "ia_pod" and c.estilo_pod == "doodle_cena") else ""
 
 
 _ATUAL: "Producao | Serie | None" = None  # o que o produtor está gerando agora (o vigia de cancelamento olha)
@@ -452,6 +486,8 @@ def executar(prod: Producao) -> None:
                 videos = _nativo(prod, musica, diario)
             elif canal and canal.imagens == "ia_pod":
                 videos = _ia_pod(prod, musica, diario)
+            elif canal and canal.imagens == "codigo":
+                videos = _codigo(prod, musica, diario)
             else:
                 videos = _gospel(prod, musica, diario) if biblico else _generico(prod, musica, diario, provedor)
             Producao.objects.filter(pk=prod.pk).update(

@@ -1,0 +1,835 @@
+[
+  {
+    "slug": "tempo-passa-rapido-longo",
+    "nicho": "animacoes",
+    "formato": "doodle narrado longo 16:9 (piloto)",
+    "epoca": "moderna",
+    "estilo": "doodle_cena",
+    "titulo": "Por que o tempo passa mais rápido quando a gente envelhece?",
+    "descricao": "Um ano pesa menos quando a vida fica maior, o cérebro mede o tempo pelas lembranças novas e, segundo uma hipótese da física, a gente registra menos imagens por segundo com a idade. E dá pra frear o tempo.",
+    "hashtags": [
+      "#curiosidades",
+      "#ciencia",
+      "#tempo",
+      "#cerebro",
+      "#memoria"
+    ],
+    "comentario_fixado": "Qual foi a última vez que você fez algo pela primeira vez? 👇",
+    "cenario_en": "plain white wall and a beige floor separated by one thin black line",
+    "personagens": [
+      {
+        "id": "bob",
+        "nome_en": "Bob",
+        "descricao_visual": "a stick figure with a big bald round white head with no hair, simple round eyes with expressive eyebrows, thin black line body, arms and legs"
+      },
+      {
+        "id": "amigo",
+        "nome_en": "his friend",
+        "descricao_visual": "a stick figure with a big bald round blue head with no hair, simple round eyes with expressive eyebrows, thin black line body, arms and legs"
+      }
+    ],
+    "ajustes": {
+      "custom_position": 86,
+      "voice_rate": 1.05
+    },
+    "cenas": [
+      {
+        "fala": "Lembra quando as férias de julho pareciam durar uma eternidade?",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob lying on green grass with hands behind his head, relaxed smile, looking up at fluffy clouds, setting: sunny summer park, light blue sky",
+        "animar": true,
+        "movimento": "the clouds drift slowly, Bob gently swings one foot"
+      },
+      {
+        "fala": "Um mês inteiro. Parecia um ano.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a giant paper calendar page with big text JULHO, the page stretched extremely long like an unrolled scroll across the floor, no people"
+      },
+      {
+        "fala": "Agora você pisca...",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "close-up of Bob's round face with a neutral expression, eyes wide open",
+        "movimento": "Bob blinks slowly once"
+      },
+      {
+        "fala": "e já é dezembro de novo.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob jumping back startled, a decorated christmas tree with gifts suddenly next to him, setting: simple living room with a window"
+      },
+      {
+        "fala": "A gente costuma achar que é só impressão, coisa da idade, e segue a vida.",
+        "personagens": [
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "his friend shrugging with a relaxed face, palms up, text NORMAL"
+      },
+      {
+        "fala": "Só que não é bem assim.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob raising one finger with a knowing look, a big red X floating next to him"
+      },
+      {
+        "fala": "A ciência tem pelo menos quatro explicações pra isso, e elas se somam.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob opening a big old book, four glowing yellow lightbulbs popping out of the pages"
+      },
+      {
+        "fala": "A primeira é matemática.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob holding a long pointer stick, standing next to a big round pie"
+      },
+      {
+        "fala": "Em 1877, um filósofo francês chamado Paul Janet percebeu uma coisa curiosa.",
+        "personagens": [
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "his friend wearing a tall black top hat and a thin mustache, writing with a feather quill at a wooden desk, setting: old study room with a candle and bookshelves",
+        "movimento": "his friend writes with the quill, the candle flame flickers"
+      },
+      {
+        "fala": "Quando você tem cinco anos, um ano é um quinto da sua vida inteira.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a big round pie cut into five equal slices, one slice colored bright yellow, big text 1/5 above, no people"
+      },
+      {
+        "fala": "É um pedaço enorme.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob hugging a giant yellow pie slice as big as himself, amazed face",
+        "movimento": "Bob tries to lift the giant slice and wobbles"
+      },
+      {
+        "fala": "Agora, quando você tem cinquenta, um ano é só dois por cento de tudo que você já viveu.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a huge round pie with only one very thin sliver colored yellow, big text 2% above, no people"
+      },
+      {
+        "fala": "Uma fatia fininha.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob holding a tiny thin pie sliver between two fingers, disappointed face"
+      },
+      {
+        "fala": "Isso ficou conhecido como a teoria proporcional do tempo: cada ano é sentido em proporção à vida que você já viveu.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob pointing at a small pie slice next to a whole big pie, a simple black arrow between them, thoughtful face"
+      },
+      {
+        "fala": "Ou seja, cada ano novo pesa menos, comparado com a vida toda.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob looking at a big balance scale, a tiny yellow block on one side and a tall stack of blocks on the other side"
+      },
+      {
+        "fala": "É como jogar um copo d'água numa piscina que não para de crescer.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob pouring a glass of water into a big swimming pool, setting: outdoor pool with light blue water and white tiles",
+        "movimento": "water pours from the glass into the pool, small ripples"
+      },
+      {
+        "fala": "O copo é sempre o mesmo.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a simple glass of water on a small wooden table, no people"
+      },
+      {
+        "fala": "A piscina é que fica gigante.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "tiny Bob standing at the edge of an enormous swimming pool that stretches to the horizon, looking lost, setting: outdoor pool under a blue sky"
+      },
+      {
+        "fala": "Faz sentido, né? Só que isso explica pouco.",
+        "personagens": [
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "his friend tilting his head skeptically, hand on his chin"
+      },
+      {
+        "fala": "Porque tem gente de oitenta anos que jura que o último ano passou devagar.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "an elderly stick figure with a cane and a white beard relaxing in a rocking chair with a calm smile, setting: wooden porch with plants",
+        "movimento": "the rocking chair rocks slowly back and forth"
+      },
+      {
+        "fala": "E tem jovem de vinte que sente que o ano voou.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob reaching out in surprise as a paper calendar with white bird wings flies away from him",
+        "animar": true,
+        "movimento": "the calendar flaps its wings and flies away"
+      },
+      {
+        "fala": "Então tem mais coisa aí. E é aqui que entra a queda.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob standing at the edge of a very high platform looking down nervously, setting: top of a tall amusement park tower, blue sky"
+      },
+      {
+        "fala": "Um neurocientista americano chamado David Eagleman quis testar uma pergunta antiga:",
+        "personagens": [
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "his friend in a white lab coat holding a clipboard, curious face, setting: simple science lab with shelves of flasks"
+      },
+      {
+        "fala": "quando a gente leva um susto, o tempo fica mais lento de verdade?",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob frozen in the air mid-jump from fright, arms up, sweat drops flying"
+      },
+      {
+        "fala": "Todo mundo já ouviu alguém dizer que, num acidente, viu tudo em câmera lenta.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob telling a story to his friend with big hand gestures, a thought bubble above with a snail inside"
+      },
+      {
+        "fala": "Então ele levou voluntários a um parque de diversões no Texas,",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "hand-drawn doodle of a tall simple steel free fall tower drawn with black marker lines, a big safety net at the bottom, flat colors, setting: amusement park drawn in doodle style, flat light blue sky, no people"
+      },
+      {
+        "fala": "numa atração em que você cai de costas, em queda livre, de uma altura de uns quinze andares,",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob falling backwards through the air with arms and legs flailing, a big safety net far below, setting: blue sky next to a tall steel tower",
+        "animar": true,
+        "movimento": "Bob falls downward through the air, arms flailing"
+      },
+      {
+        "fala": "até cair numa rede.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob lying in a big safety net, dizzy with swirly eyes"
+      },
+      {
+        "fala": "A queda dura uns três segundos.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a big orange stopwatch with big text 3s next to it, no people"
+      },
+      {
+        "fala": "Depois, cada um tinha que estimar quanto tempo tinha caído.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob holding a stopwatch with an unsure face, his friend in a lab coat writing on a clipboard"
+      },
+      {
+        "fala": "E o resultado foi curioso:",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob pointing proudly at a white card pinned on the wall with big bold text 36%"
+      },
+      {
+        "fala": "as pessoas disseram que a própria queda tinha durado uns trinta e seis por cento a mais do que as quedas que elas viram os outros fazerem.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of two orange stopwatches side by side, the left one much bigger than the right one, no people"
+      },
+      {
+        "fala": "Parecia que o tempo tinha esticado.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob stretching a round clock like chewing gum between his two hands, amazed face",
+        "animar": true,
+        "movimento": "Bob pulls his hands apart and the clock stretches"
+      },
+      {
+        "fala": "Mas aí vem a parte estranha.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob leaning in with a suspicious squint, his friend whispering behind his hand"
+      },
+      {
+        "fala": "Ele colocou no pulso das pessoas um aparelhinho com números que piscavam rápido demais pra ler.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a wrist wearing a small black gadget whose screen shows only blurry scribbles and motion lines, no face"
+      },
+      {
+        "fala": "Se o cérebro ficasse mesmo em câmera lenta durante a queda, elas conseguiriam ler os números.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob falling through the air squinting hard at a gadget on his wrist, setting: blue sky"
+      },
+      {
+        "fala": "E ninguém conseguiu.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob sitting in a safety net holding up his wrist gadget and shrugging, text NADA"
+      },
+      {
+        "fala": "Ou seja, o tempo não ficou mais lento enquanto elas caíam.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a simple round wall clock without numbers ticking normally, no people"
+      },
+      {
+        "fala": "O que mudou foi a memória.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a big pink cartoon brain writing fast in a notebook with a pencil, no people",
+        "movimento": "the brain scribbles quickly in the notebook"
+      },
+      {
+        "fala": "No susto, o cérebro grava tudo com muito mais detalhe.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a big pink cartoon brain holding an old camera with a bright flash, many small photos flying out, no people"
+      },
+      {
+        "fala": "E quando você lembra, aquele monte de detalhe parece ter durado mais.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob holding a very long strip of photos that unrolls all the way to the floor, surprised face"
+      },
+      {
+        "fala": "Guarde isso, porque é a chave de tudo.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob holding up a big shiny golden key with a proud smile"
+      },
+      {
+        "fala": "A gente não mede o tempo com um relógio dentro da cabeça.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob with a thought bubble above his head, inside the bubble a clock crossed out with a red X"
+      },
+      {
+        "fala": "A gente mede pelo número de lembranças novas que ficaram gravadas.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a wooden shelf filling up with colorful photo albums, no people"
+      },
+      {
+        "fala": "Quem cuida disso é o hipocampo, uma estrutura em forma de cavalo-marinho que fica no meio do cérebro.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a big pink cartoon brain seen from the side with a small cute yellow seahorse glowing inside its center, no people"
+      },
+      {
+        "fala": "Ele funciona como um porteiro: o que é novo, ele guarda; o que é repetido, ele deixa passar sem registrar.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a small cute yellow seahorse wearing a doorman cap standing at a door, letting in a colorful photo and pushing away a gray photo, no people"
+      },
+      {
+        "fala": "Pensa na sua infância.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "a small child version of Bob with a tiny body and the same bald round white head, holding a red balloon, setting: sunny park",
+        "movimento": "the balloon bobs gently, the child sways"
+      },
+      {
+        "fala": "Tudo era primeira vez.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "the small child version of Bob staring in wonder at a big colorful butterfly"
+      },
+      {
+        "fala": "O primeiro dia de aula,",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "the small child version of Bob wearing a big backpack in front of a school door, nervous face, setting: simple school entrance"
+      },
+      {
+        "fala": "a primeira vez que viu o mar,",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "the small child version of Bob at the beach with arms wide open facing the waves, setting: beach with blue sea and yellow sand",
+        "movimento": "the waves roll in gently, the child jumps with joy"
+      },
+      {
+        "fala": "a primeira bicicleta sem rodinha.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "the small child version of Bob riding a wobbly bicycle, his friend running behind holding the seat, setting: quiet street with trees",
+        "animar": true,
+        "movimento": "the child pedals wobbly, his friend runs behind"
+      },
+      {
+        "fala": "Cada semana vinha cheia de novidade, e o cérebro gravava tudo.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a big pink cartoon brain holding an old camera with a bright flash, many small photos flying out, no people"
+      },
+      {
+        "fala": "Um ano cheio de lembranças parece um ano longo.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob on a ladder next to a tall stack of photo albums that reaches the ceiling, amazed"
+      },
+      {
+        "fala": "Agora pensa numa semana normal de adulto.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob sitting at a desk with a computer, yawning, setting: simple gray office",
+        "movimento": "Bob yawns and stretches his arms"
+      },
+      {
+        "fala": "Acorda, trânsito, trabalho, almoço, trabalho, trânsito, dorme.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob running inside a giant hamster wheel, tired face",
+        "animar": true,
+        "movimento": "the wheel spins and Bob keeps running"
+      },
+      {
+        "fala": "Repete.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "five identical small drawings of Bob sleeping in bed lined up in a row, no other people"
+      },
+      {
+        "fala": "O cérebro olha pra isso e pensa: esse dia eu já tenho.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a big pink cartoon brain holding a rubber stamp over a paper with big red text REPETIDO, no people"
+      },
+      {
+        "fala": "E simplesmente não grava de novo.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a big pink cartoon brain tossing a photo into a trash bin, bored face, no people",
+        "movimento": "the brain tosses the photo into the bin"
+      },
+      {
+        "fala": "Aí, no fim do ano, você olha pra trás e encontra poucas lembranças novas.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob opening a photo album that is almost empty, surprised face"
+      },
+      {
+        "fala": "Um ano com poucas lembranças parece curto.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of one single very thin closed book lying alone on an empty wooden shelf, no people"
+      },
+      {
+        "fala": "Parece que voou.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob waving goodbye to a paper calendar with white bird wings flying away",
+        "movimento": "the calendar flaps its wings and flies away, Bob waves"
+      },
+      {
+        "fala": "A psicóloga britânica Claudia Hammond chamou isso de paradoxo das férias.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob relaxing on a beach chair with sunglasses, setting: beach with blue sea and yellow sand"
+      },
+      {
+        "fala": "Quando você viaja uma semana pra um lugar novo, a semana passa voando enquanto acontece.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob running excitedly while pulling a suitcase, setting: simple airport hall with big windows",
+        "movimento": "Bob runs pulling the suitcase"
+      },
+      {
+        "fala": "Mas depois, quando você lembra, ela parece enorme, cheia de coisa.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob holding a big pile of colorful square photos in his arms and showing them to his friend, his friend amazed with wide eyes"
+      },
+      {
+        "fala": "E uma semana em casa, na rotina, se arrasta enquanto acontece...",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob slumped on a sofa staring at a wall clock without numbers, bored, setting: simple living room",
+        "movimento": "Bob taps his fingers slowly on the sofa"
+      },
+      {
+        "fala": "e depois some da memória como se nem tivesse existido.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "close-up of a photo of Bob fading away into small dots in the air, no other people"
+      },
+      {
+        "fala": "É por isso que a vida adulta parece acelerar.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob running on a treadmill that is going too fast, worried face",
+        "animar": true,
+        "movimento": "the treadmill speeds up and Bob runs faster"
+      },
+      {
+        "fala": "Não é que os anos ficaram mais curtos.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of two identical paper calendars side by side, exactly the same size, no people"
+      },
+      {
+        "fala": "É que eles ficaram mais parecidos entre si.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob standing in front of a long row of identical gray boxes, confused face"
+      },
+      {
+        "fala": "Tem até uma medida disso: quando pesquisadores pedem pra pessoas mais velhas contarem as lembranças mais marcantes da vida,",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "an elderly stick figure with a cane and white beard telling stories from an armchair, Bob and his friend sitting on the floor listening, setting: cozy living room with a lamp"
+      },
+      {
+        "fala": "a maioria vem da fase entre os dez e os trinta anos.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a long horizontal timeline arrow with a big yellow hill bump in the middle, big text 10-30 above the bump, no people"
+      },
+      {
+        "fala": "É o chamado pico de reminiscência: a fase do primeiro emprego, do primeiro amor, da primeira casa.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob smiling under three simple drawings floating in a row: a work badge, a red heart and a small house"
+      },
+      {
+        "fala": "E tem mais uma peça nessa história, e essa é de física.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob wearing safety goggles and holding a big magnifying glass, curious face"
+      },
+      {
+        "fala": "Em 2019, um professor da Universidade Duke, nos Estados Unidos, chamado Adrian Bejan, propôs uma ideia curiosa.",
+        "personagens": [
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "his friend in a white lab coat pointing at a big drawing of an eye on a board, setting: university classroom"
+      },
+      {
+        "fala": "Seus olhos não enxergam o mundo como um vídeo contínuo.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of one big cartoon eye looking around, no people",
+        "movimento": "the eye looks left and right"
+      },
+      {
+        "fala": "Eles dão pequenos pulos, várias vezes por segundo, e o cérebro monta as imagens.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of one big cartoon eye with small motion arcs, little photo frames popping out around it, no people"
+      },
+      {
+        "fala": "Quando a gente é criança, esses sinais viajam rápido nos nervos, e o cérebro registra muitas imagens.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "the small child version of Bob surrounded by many small photo frames floating around his head, happy"
+      },
+      {
+        "fala": "Com o tempo, os caminhos dos nervos ficam mais longos e cheios de curvas,",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a long winding road full of curves like a maze, no people"
+      },
+      {
+        "fala": "e o sinal demora mais pra chegar.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a tiny snail carrying an envelope along a long winding road, no people",
+        "movimento": "the snail crawls slowly along the road"
+      },
+      {
+        "fala": "Resultado: menos imagens por segundo.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a film strip with only a few frames and big gaps between them, no people"
+      },
+      {
+        "fala": "É como se o filme da criança tivesse muitas fotos por segundo, e o do adulto, menos.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "the small child version of Bob holding a long dense film strip, Bob holding a short sparse film strip, side by side"
+      },
+      {
+        "fala": "Menos imagens, menos coisa gravada, e o dia parece passar mais rápido.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob watching a round clock without numbers whose hands spin very fast, dizzy face",
+        "movimento": "the clock hands spin fast"
+      },
+      {
+        "fala": "Essa ideia ainda é discutida, mas combina com um experimento famoso.",
+        "personagens": [
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "his friend holding a big question mark in one hand and giving a thumbs up with the other"
+      },
+      {
+        "fala": "Pediram pra jovens e pra pessoas com mais de sessenta anos contarem três minutos de cabeça, sem relógio.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a young stick figure and an elderly stick figure with a cane and white beard sitting side by side with eyes closed, counting on their fingers, setting: simple waiting room"
+      },
+      {
+        "fala": "Os jovens acertaram quase em cheio.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a young stick figure raising a hand in triumph, a big green check mark next to him"
+      },
+      {
+        "fala": "Os mais velhos só disseram agora quando já tinham passado mais de três minutos e meio.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "an elderly stick figure with a cane and white beard calmly raising a hand, a big stopwatch next to him with its hand far past the top"
+      },
+      {
+        "fala": "Pro relógio interno deles, o tempo andava mais devagar,",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "an elderly stick figure with a cane and white beard walking calmly with a small snail on his shoulder",
+        "movimento": "he walks slowly, the snail looks around"
+      },
+      {
+        "fala": "e por isso o mundo lá fora parecia correr.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "an elderly stick figure with a cane and white beard standing on a sidewalk while cars zoom past as colorful blurs, setting: city street",
+        "movimento": "the cars zoom past quickly"
+      },
+      {
+        "fala": "Tá, mas e agora? A gente tá condenado a ver os anos voarem?",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob sitting on the floor hugging his knees, worried face, his friend patting his shoulder"
+      },
+      {
+        "fala": "Não. Lembra da chave? Memória.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob holding up a big shiny golden key with a proud smile, his friend smiling"
+      },
+      {
+        "fala": "Se o tempo é medido pelas lembranças novas, dá pra esticar o ano enchendo ele de primeiras vezes.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob stretching a paper calendar wide with both hands, determined smile",
+        "animar": true,
+        "movimento": "Bob pulls and the calendar stretches wider"
+      },
+      {
+        "fala": "Não precisa ser viagem cara.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob with his empty pants pockets turned out, smiling and shrugging"
+      },
+      {
+        "fala": "Um caminho diferente pro trabalho.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob walking happily on a new path between flowers and trees, setting: park path in the morning",
+        "movimento": "Bob walks forward happily"
+      },
+      {
+        "fala": "Uma receita que você nunca fez.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob cooking at a stove, holding a pan with a small puff of smoke, surprised and laughing, setting: simple kitchen"
+      },
+      {
+        "fala": "Um instrumento, uma língua, um lugar da sua cidade onde você nunca pisou.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob playing a small ukulele happily while his friend dances next to him",
+        "animar": true,
+        "movimento": "Bob strums the ukulele, his friend dances"
+      },
+      {
+        "fala": "Cada novidade é uma foto nova no álbum.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of an open photo album with new colorful photos, no people"
+      },
+      {
+        "fala": "E um ano com muitas fotos é um ano que dura.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob sitting happily on top of a tall stack of photo albums"
+      },
+      {
+        "fala": "Então, lembra daquelas férias de julho que pareciam não acabar?",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob lying on green grass with hands behind his head, relaxed smile, looking up at fluffy clouds, setting: sunny summer park, light blue sky"
+      },
+      {
+        "fala": "Elas não eram mais longas.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a normal size paper calendar page with a small yellow sun drawing on it, no text, no people"
+      },
+      {
+        "fala": "Eram só mais cheias.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a paper calendar page overflowing with little drawings of a kite, an ice cream, a bicycle and a beach ball, no people"
+      },
+      {
+        "fala": "E a boa notícia é que ainda dá pra ter um ano assim.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob putting on a backpack and looking at the sunrise, setting: green hilltop at sunrise, orange sky",
+        "animar": true,
+        "movimento": "Bob adjusts his backpack and looks ahead"
+      },
+      {
+        "fala": "Qual foi a última vez que você fez alguma coisa pela primeira vez?",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob and his friend looking at the viewer with curious smiles, a big question mark above them"
+      }
+    ]
+  }
+]

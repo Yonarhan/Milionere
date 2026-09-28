@@ -1,0 +1,174 @@
+[
+  {
+    "slug": "cerebro-turno-da-noite",
+    "nicho": "animacoes",
+    "formato": "doodle narrado (piloto fórmula v2: crença, promessa, revelações, callback)",
+    "epoca": "moderna",
+    "estilo": "doodle_cena",
+    "titulo": "Seu cérebro NÃO desliga quando você dorme 🧠",
+    "gancho_tela": "Seu cérebro desliga quando você dorme?",
+    "descricao": "Durante o sono, o cérebro abre espaço entre as células e um líquido passa lavando os resíduos do dia. Em 2013, pesquisadores da Universidade de Rochester viram esse espaço crescer uns 60% em camundongos dormindo. Dormir é o turno da faxina.",
+    "hashtags": [
+      "#shorts",
+      "#curiosidades",
+      "#ciencia",
+      "#sono",
+      "#cerebro"
+    ],
+    "comentario_fixado": "Quem aí já foi chamado de preguiçoso por dormir cedo? 👇",
+    "tiktok_titulo": "Seu cérebro trabalha no turno da noite 🧠",
+    "tiktok_legenda": "Dormir não é perder tempo: é a hora da faxina do cérebro. #curiosidades #ciencia #sono",
+    "cenario_en": "plain white wall and a beige floor separated by one thin black line",
+    "personagens": [
+      {
+        "id": "bob",
+        "nome_en": "Bob",
+        "descricao_visual": "a stick figure with a big round white head, simple round eyes with expressive eyebrows, thin black line body, arms and legs"
+      },
+      {
+        "id": "amigo",
+        "nome_en": "his friend",
+        "descricao_visual": "a stick figure with a big round blue head, simple round eyes with expressive eyebrows, thin black line body, arms and legs"
+      }
+    ],
+    "cenas": [
+      {
+        "fala": "Quando você dorme, seu cérebro desliga, certo?",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob sleeping peacefully in a simple bed with a calm smile, a big light switch on the wall next to the bed flipped down, the switch plate shows big text OFF, setting: simple bedroom at night, dark blue window with a yellow moon"
+      },
+      {
+        "fala": "Tipo um celular no modo avião.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a smartphone lying on a small wooden nightstand, a big airplane icon on the screen, no people, setting: dark blue bedroom wall at night"
+      },
+      {
+        "fala": "Só que é quase o contrário.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "animar": true,
+        "busca": "doodle",
+        "imagem": "his friend bursting in holding up a big red X sign with raised eyebrows, Bob sitting up in bed startled, setting: simple bedroom at night"
+      },
+      {
+        "fala": "E tem um número nessa história que parece erro:",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob in pajamas scratching his head, looking at a white card pinned on the wall that shows one big question mark"
+      },
+      {
+        "fala": "sessenta por cento. Já já eu chego nele.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a white card pinned to the wall with a red pin, big bold black text 60% on the card, no people"
+      },
+      {
+        "fala": "Primeiro, a parte que é verdade: você desliga do mundo, sim.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob with his bald round white head sleeping on his back in bed, a light blue sleep mask over his eyes, a big unplugged power plug lying on the floor next to the bed, setting: simple bedroom at night"
+      },
+      {
+        "fala": "Mas lá dentro começa um turno da noite.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "a big pink cartoon brain wearing a yellow hard hat, rolling up its sleeves, a small crescent moon above it, no people"
+      },
+      {
+        "fala": "Em 2013, na Universidade de Rochester, cientistas viram que, durante o sono,",
+        "personagens": [
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "his friend wearing a white lab coat looking through a microscope at a tiny white mouse sleeping on a small pillow, setting: simple science lab with shelves of flasks"
+      },
+      {
+        "fala": "o cérebro de camundongos abre espaço entre as células,",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of round pink cells like balls moving apart from each other, the gaps between them widening, black arrows pointing outward, no people"
+      },
+      {
+        "fala": "uns sessenta por cento a mais,",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob holding up the white card with big bold text 60% with both hands, jaw dropped in amazement"
+      },
+      {
+        "fala": "e deixa um líquido passar lavando tudo.",
+        "personagens": [],
+        "animar": true,
+        "busca": "doodle",
+        "imagem": "a blue water wave flowing between round pink cells, washing away small gray trash bits, no people"
+      },
+      {
+        "fala": "É uma faxina.",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob in pajamas proudly mopping a floor with a bucket of blue water beside him, text FAXINA, setting: inside a giant pink brain, curvy pink walls"
+      },
+      {
+        "fala": "Sabe aquela manhã, depois de uma noite mal dormida, em que você relê a mesma frase três vezes?",
+        "personagens": [
+          "bob"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob with his bald round white head and droopy tired half-closed eyes, holding a coffee mug and staring at an open book, a black circular arrow looping above the book, setting: simple kitchen in the morning, light blue window"
+      },
+      {
+        "fala": "É o lixo que ficou pra trás.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a pile of small gray trash bags left in a corner, no people, setting: inside a giant pink brain, curvy pink walls"
+      },
+      {
+        "fala": "Ou seja, dormir não é perder tempo.",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob and his friend standing side by side, Bob smiling with closed happy eyes and holding a small plain blank pillow under one arm, his friend giving a thumbs up, big text NÃO É"
+      },
+      {
+        "fala": "É o único horário em que a limpeza acontece.",
+        "personagens": [],
+        "busca": "doodle",
+        "imagem": "close-up of a big round wall clock with a yellow crescent moon painted on its face, a broom leaning against the wall under it, no people"
+      },
+      {
+        "fala": "Então, da próxima vez que alguém te chamar de preguiçoso por dormir cedo...",
+        "personagens": [
+          "bob",
+          "amigo"
+        ],
+        "busca": "doodle",
+        "imagem": "Bob sitting in bed under the blanket looking embarrassed, his friend standing beside the bed pointing at Bob and laughing, a speech bubble from his friend with text PREGUIÇA?, setting: simple bedroom in the evening"
+      },
+      {
+        "fala": "diz que o seu cérebro tá no turno da noite.",
+        "personagens": [
+          "bob"
+        ],
+        "animar": true,
+        "busca": "doodle",
+        "imagem": "Bob sleeping peacefully in bed with a proud smile, the big light switch on the wall flipped up, the switch plate shows big text ON, a small glowing pink brain with a yellow hard hat floating above his head, setting: simple bedroom at night, dark blue window with a yellow moon"
+      }
+    ],
+    "ajustes": {}
+  }
+]

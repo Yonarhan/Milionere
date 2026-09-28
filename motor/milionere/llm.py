@@ -26,6 +26,9 @@ def _comando_claude() -> list[str]:
     cli.js, os argumentos chegam intactos. Instalação sem cli.js (binário nativo): usa o claude de sempre."""
     if os.name == "nt" and CLAUDE.lower().endswith((".cmd", ".bat")):
         pasta = Path(CLAUDE).parent
+        nativo = pasta / "node_modules" / "@anthropic-ai" / "claude-code" / "bin" / "claude.exe"
+        if nativo.exists():  # versões novas (2.1.2xx+): binário nativo, chamado direto (sem cmd.exe)
+            return [str(nativo)]
         cli = pasta / "node_modules" / "@anthropic-ai" / "claude-code" / "cli.js"
         node = pasta / "node.exe"
         if cli.exists():

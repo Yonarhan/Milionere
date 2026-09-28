@@ -1,0 +1,105 @@
+[
+  {
+    "slug": "esquece-ao-passar-porta",
+    "nicho": "animacoes",
+    "titulo": "Por que você esquece o que ia fazer ao passar por uma porta?",
+    "epoca": "moderna",
+    "cenas": [
+      {
+        "fala": "Uma porta te faz esquecer. De verdade.",
+        "busca": "person forgetting walking through door | confused man doorway | walking through room",
+        "imagem": "Bob standing in a doorway looking shocked, a big red DELETE icon floating above his head, setting: living room with couch and lamp"
+      },
+      {
+        "fala": "Você levanta do sofá, sabe exatamente o que vai buscar na cozinha,",
+        "busca": "person getting up couch determined | man standing up sofa | getting up living room",
+        "imagem": "Bob jumping up from couch with a determined confident smile, a small glowing lightbulb above his head showing the idea, setting: living room with couch and lamp"
+      },
+      {
+        "fala": "passa pela porta...",
+        "busca": "person walking through doorway | crossing threshold door | man entering room",
+        "imagem": "Bob crossing a doorframe, the lightbulb above his head flickering and going dark as he steps through, setting: hallway between two rooms"
+      },
+      {
+        "fala": "e sumiu.",
+        "busca": "confused person standing kitchen | blank mind forgetting | man standing confused room",
+        "imagem": "Bob standing frozen in the kitchen with wide blank eyes and empty hands, a big question mark above his head, his friend watching from behind with raised eyebrows"
+      },
+      {
+        "fala": "Você fica parado no meio do cômodo sem a menor ideia do que ia fazer.",
+        "busca": "confused man standing kitchen | person forgetting task | blank mind kitchen",
+        "imagem": "Bob standing arms wide open in total confusion in the middle of the kitchen, a big empty thought bubble above him, setting: kitchen with counter and fridge"
+      },
+      {
+        "fala": "Parece burrice, mas não é.",
+        "busca": "reassuring friend embarrassed | not your fault gesture | person pointing head",
+        "imagem": "Bob looking embarrassed and pointing at his own head with a sheepish grin, his friend shaking head with a reassuring smile, big text NÃO É next to them"
+      },
+      {
+        "fala": "Pesquisadores descobriram que o cérebro usa as portas como marcadores de capítulo:",
+        "busca": "brain memory chapter | mind organizing memory | brain bookmark chapter",
+        "imagem": "the Brain character holding a tiny open book, each page labeled with a small door icon, looking proud and pointing at the pages"
+      },
+      {
+        "fala": "quando você cruza uma, ele fecha o arquivo do que veio antes",
+        "busca": "filing cabinet closing | brain archiving memory | folder closing shut",
+        "imagem": "the Brain character dramatically slamming a big filing cabinet drawer shut with one hand, a small glowing folder disappearing inside, big text ARQUIVO next to the cabinet"
+      },
+      {
+        "fala": "e abre um novo.",
+        "busca": "opening new blank folder | new chapter brain | fresh start empty page",
+        "imagem": "the Brain character opening a brand new empty folder with a cheerful expression, the folder completely blank inside, a fresh blinking cursor in it"
+      },
+      {
+        "fala": "É um mecanismo de organização, não de falha.",
+        "busca": "brain organizing system | memory organization brain | efficient system proud",
+        "imagem": "the Brain character flexing proudly with a thumbs up, a neat row of labeled folders behind it, the Brain looking very satisfied"
+      },
+      {
+        "fala": "E aí vem a parte estranha:",
+        "busca": "person whispering secret curious | leaning forward secret | sharing secret gesture",
+        "imagem": "Bob leaning toward the viewer with wide curious eyes and one eyebrow raised, one hand cupped near his mouth like sharing a secret"
+      },
+      {
+        "fala": "voltar pro mesmo lugar de onde você saiu às vezes traz a memória de volta,",
+        "busca": "person retracing steps doorway | walking back same room | returning same place memory",
+        "imagem": "Bob walking back through the doorway into the living room, the lightbulb above his head flickering back ON as he crosses the frame, setting: hallway between two rooms"
+      },
+      {
+        "fala": "porque o ambiente vira uma senha pra o cérebro.",
+        "busca": "environment memory trigger | place triggers memory | brain location password",
+        "imagem": "the Brain character standing in the living room looking at the couch and smiling, a glowing key floating above the couch connecting to a lightbulb in the Brain's head, big text SENHA"
+      },
+      {
+        "fala": "Ou seja, a porta não te fez esquecer,",
+        "busca": "pointing at door suspicious | person accusing door | doorway misunderstood",
+        "imagem": "Bob standing next to a door and pointing at it with a suspicious squinting face, the door looking completely innocent, setting: hallway between two rooms"
+      },
+      {
+        "fala": "ela só arquivou.",
+        "busca": "brain filing memory away | archiving casual | mind storing memory",
+        "imagem": "the Brain character winking and casually dropping a folder into a filing cabinet with one smooth hand, looking very calm and unbothered"
+      },
+      {
+        "fala": "E você, já voltou pro cômodo pra lembrar e funcionou?",
+        "busca": "pointing at camera fun | asking viewer question | both characters pointing viewer",
+        "imagem": "Bob back on the couch grinning and pointing at the viewer with a knowing look, his friend beside him also pointing at the viewer with a raised eyebrow, setting: living room with couch and lamp"
+      }
+    ],
+    "descricao": "Sabe quando você levanta do sofá com uma missão, passa pela porta e… apagou tudo? Não é falta de atenção: é o seu cérebro fazendo exatamente o que foi programado pra fazer. E tem um truque simples pra contornar isso. Você já voltou pro mesmo cômodo pra lembrar e funcionou? 🚪🧠 #shorts #curiosidades #psicologia #cerebro #memoriahumana",
+    "hashtags": [
+      "#shorts",
+      "#curiosidades",
+      "#psicologia",
+      "#cerebro",
+      "#memoriahumana"
+    ],
+    "comentario_fixado": "Você acabou de aprender que voltar pro cômodo de onde você saiu é literalmente uma técnica de memória. Da próxima vez que travar na cozinha, dá meia volta e testa! 🚪💡",
+    "gancho_tela": "Por que você esquece o que ia fazer ao passar por uma porta?",
+    "ajustes": {
+      "font_size": 56,
+      "subtitle_position": "custom",
+      "custom_position": 85
+    }
+  }
+]

@@ -1,0 +1,2885 @@
+{
+ "slug": "supermercado-gastar-mais",
+ "etiquetas": [
+  {
+   "m": "gigante",
+   "lugar": "supermercado",
+   "bob": "chocado",
+   "txt": "PROJETADO PRA GASTAR",
+   "cor": "vermelho",
+   "obj": "carrinho",
+   "fx": "vibra"
+  },
+  {
+   "m": "segura",
+   "lugar": "supermercado",
+   "bob": "desconfiado",
+   "obj": "placa:ROTEIRO",
+   "txt": "",
+   "cor": "",
+   "fx": ""
+  },
+  {
+   "m": "objeto",
+   "lugar": "supermercado",
+   "bob": "surpreso",
+   "obj": "fruta",
+   "txt": "",
+   "cor": "",
+   "fx": "interrogacao"
+  },
+  {
+   "m": "solo",
+   "lugar": "supermercado",
+   "bob": "feliz",
+   "obj": "cesta",
+   "txt": "ESCOLHA SAUDÁVEL",
+   "cor": "verde",
+   "fx": "estrelas"
+  },
+  {
+   "m": "close",
+   "lugar": "supermercado",
+   "bob": "zoeira",
+   "obj": "",
+   "txt": "",
+   "cor": "",
+   "fx": ""
+  },
+  {
+   "m": "gigante",
+   "lugar": "supermercado",
+   "bob": "confuso",
+   "obj": "leite",
+   "txt": "NO FUNDO!",
+   "cor": "azul",
+   "fx": ""
+  },
+  {
+   "m": "solo",
+   "lugar": "supermercado",
+   "bob": "corre",
+   "obj": "corredor",
+   "txt": "",
+   "cor": "",
+   "fx": "ondas"
+  },
+  {
+   "m": "close",
+   "lugar": "supermercado",
+   "bob": "sussurro",
+   "obj": "",
+   "txt": "NINGUÉM PERCEBE",
+   "cor": "tinta",
+   "fx": ""
+  },
+  {
+   "m": "objeto",
+   "lugar": "supermercado",
+   "bob": "encantado",
+   "obj": "caixa de som",
+   "txt": "",
+   "cor": "",
+   "fx": "ondas"
+  },
+  {
+   "m": "pensa",
+   "lugar": "supermercado",
+   "bob": "calmo",
+   "obj": "relogio",
+   "txt": "",
+   "cor": "",
+   "fx": "zzz"
+  },
+  {
+   "m": "close",
+   "lugar": "cor_amarelo",
+   "bob": "eita",
+   "obj": "",
+   "txt": "O MAIS ESTRANHO",
+   "cor": "laranja",
+   "fx": "susto"
+  },
+  {
+   "m": "divide",
+   "lugar": "supermercado",
+   "bob": "explica",
+   "obj": "produto caro|produto barato",
+   "txt": "",
+   "cor": "",
+   "fx": ""
+  },
+  {
+   "m": "gigante",
+   "lugar": "supermercado",
+   "bob": "curioso",
+   "obj": "prateleira",
+   "txt": "OPÇÃO BARATA",
+   "cor": "verde",
+   "fx": "xis"
+  },
+  {
+   "m": "solo",
+   "lugar": "supermercado",
+   "bob": "pensando",
+   "obj": "porta",
+   "txt": "",
+   "cor": "",
+   "fx": ""
+  },
+  {
+   "m": "segura",
+   "lugar": "supermercado",
+   "bob": "desconfiado",
+   "obj": "lista de compras",
+   "txt": "",
+   "cor": "vermelho",
+   "fx": "vibra"
+  },
+  {
+   "m": "objeto",
+   "lugar": "supermercado",
+   "bob": "bravo",
+   "obj": "placa:ROTEIRO DELES",
+   "txt": "",
+   "cor": "",
+   "fx": ""
+  },
+  {
+   "m": "dupla",
+   "lugar": "supermercado",
+   "bob": "rindo",
+   "amigo": "surpreso",
+   "obj": "carrinho",
+   "txt": "E VOCÊ?",
+   "cor": "laranja",
+   "fx": "interrogacao"
+  }
+ ],
+ "cenas": [
+  {
+   "camera": "aproxima",
+   "foco": [
+    600,
+    700
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 230,
+     "olha": 1,
+     "pose_nome": "chocado",
+     "olhos": "arregalados",
+     "sobrancelhas": "levantadas",
+     "boca": "aberta",
+     "braco_e": "cima",
+     "braco_d": "frente",
+     "tremer": true,
+     "escala": 0.6
+    },
+    {
+     "tipo": "desenho",
+     "x": 640,
+     "y": 600,
+     "tam": 2.8499999999999996,
+     "entra": 0.15,
+     "mexe": "balanca",
+     "formas": [
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -110,
+         -80
+        ],
+        [
+         -92,
+         -80
+        ],
+        [
+         -78,
+         -50
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -80,
+         -50
+        ],
+        [
+         90,
+         -50
+        ],
+        [
+         70,
+         30
+        ],
+        [
+         -60,
+         30
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#9ec9e8",
+       "larg": 7
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -40,
+         -50
+        ],
+        [
+         -28,
+         30
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         0,
+         -50
+        ],
+        [
+         4,
+         30
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         40,
+         -50
+        ],
+        [
+         36,
+         30
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -72,
+         -10
+        ],
+        [
+         80,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -60,
+         30
+        ],
+        [
+         -66,
+         55
+        ],
+        [
+         75,
+         55
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 7
+      },
+      {
+       "f": "circulo",
+       "x": -45,
+       "y": 75,
+       "r": 14,
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 55,
+       "y": 75,
+       "r": 14,
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 6
+      }
+     ],
+     "anim": "desliza"
+    },
+    {
+     "tipo": "zigue",
+     "de": [
+      280,
+      810
+     ],
+     "ate": [
+      500,
+      810
+     ],
+     "cor": "laranja",
+     "entra": 0.3
+    },
+    {
+     "tipo": "texto",
+     "txt": "PROJETADO\nPRA GASTAR",
+     "x": 556.90673828125,
+     "y": 360,
+     "tam": 110,
+     "cor": "vermelho",
+     "entra": 0.35
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "desliza",
+   "duracao": 7
+  },
+  {
+   "camera": "lado",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 380,
+     "olha": 1,
+     "pose_nome": "segura",
+     "boca": "sorriso",
+     "sobrancelhas": "levantadas",
+     "braco_d": [
+      150,
+      -40
+     ],
+     "escala": 1.0
+    },
+    {
+     "tipo": "placa",
+     "x": 560,
+     "y": 740,
+     "tam": 0.55,
+     "entra": 0.2,
+     "txt": "ROTEIRO",
+     "w": 165.0,
+     "h": 66.0,
+     "txt_tam": 27.500000000000004,
+     "anim": "cai"
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    600,
+    640
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 250,
+     "olha": 1,
+     "pose_nome": "surpreso",
+     "olhos": "arregalados",
+     "sobrancelhas": "levantadas",
+     "boca": "o",
+     "escala": 0.8
+    },
+    {
+     "tipo": "desenho",
+     "x": 600,
+     "y": 640,
+     "tam": 1.7249999999999999,
+     "entra": 0.1,
+     "mexe": "balanca",
+     "formas": [
+      {
+       "f": "linha",
+       "pts": [
+        [
+         0,
+         -55
+        ],
+        [
+         8,
+         -90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 8
+      },
+      {
+       "f": "elipse",
+       "x": 30,
+       "y": -78,
+       "rx": 26,
+       "ry": 12,
+       "rot": -25,
+       "cor": "tinta",
+       "preenche": "verde",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": -28,
+       "y": 15,
+       "r": 62,
+       "cor": "tinta",
+       "preenche": "vermelho",
+       "larg": 7
+      },
+      {
+       "f": "circulo",
+       "x": 28,
+       "y": 15,
+       "r": 62,
+       "cor": "tinta",
+       "preenche": "vermelho",
+       "larg": 7
+      },
+      {
+       "f": "elipse",
+       "x": 0,
+       "y": 20,
+       "rx": 50,
+       "ry": 55,
+       "rot": 0,
+       "cor": "nenhuma",
+       "preenche": "vermelho",
+       "larg": 4
+      },
+      {
+       "f": "elipse",
+       "x": -45,
+       "y": -10,
+       "rx": 10,
+       "ry": 18,
+       "rot": 20,
+       "cor": "nenhuma",
+       "preenche": "branco",
+       "larg": 4
+      }
+     ],
+     "anim": "cresce"
+    },
+    {
+     "tipo": "interrogacao",
+     "x": 320,
+     "y": 330,
+     "tam": 150,
+     "entra": 0.4
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "soco",
+   "duracao": 7
+  },
+  {
+   "camera": "afasta",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 320,
+     "olha": 1,
+     "pose_nome": "feliz",
+     "olhos": "feliz",
+     "boca": "grande",
+     "braco_d": "acena",
+     "escala": 1.0
+    },
+    {
+     "tipo": "desenho",
+     "x": 730,
+     "y": 720,
+     "tam": 1.35,
+     "entra": 0.3,
+     "mexe": "balanca",
+     "formas": [
+      {
+       "f": "arco",
+       "x": 0,
+       "y": -10,
+       "r": 65,
+       "de": 180,
+       "ate": 360,
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 8
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -90,
+         -10
+        ],
+        [
+         90,
+         -10
+        ],
+        [
+         68,
+         85
+        ],
+        [
+         -68,
+         85
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c68642",
+       "larg": 7
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -84,
+         20
+        ],
+        [
+         84,
+         20
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -77,
+         52
+        ],
+        [
+         77,
+         52
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -30,
+         -10
+        ],
+        [
+         -24,
+         85
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         30,
+         -10
+        ],
+        [
+         24,
+         85
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -98,
+         -22
+        ],
+        [
+         98,
+         -22
+        ],
+        [
+         98,
+         -6
+        ],
+        [
+         -98,
+         -6
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#8b5a2b",
+       "larg": 6
+      }
+     ],
+     "anim": "pop"
+    },
+    {
+     "tipo": "estrelas",
+     "x": 320,
+     "y": 430
+    },
+    {
+     "tipo": "texto",
+     "txt": "ESCOLHA\nSAUDÁVEL",
+     "x": 560,
+     "y": 274.0,
+     "tam": 110,
+     "cor": "verde",
+     "entra": 0.35
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    540,
+    560
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 540,
+     "olha": 1,
+     "pose_nome": "zoeira",
+     "olhos": "feliz",
+     "boca": "lingua",
+     "braco_d": "joinha",
+     "escala": 1.15
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "soco",
+   "duracao": 7
+  },
+  {
+   "camera": "lado",
+   "foco": [
+    600,
+    700
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 230,
+     "olha": 1,
+     "pose_nome": "confuso",
+     "olhos": "arregalados",
+     "sobrancelhas": "preocupadas",
+     "boca": "reta",
+     "escala": 0.6
+    },
+    {
+     "tipo": "desenho",
+     "x": 640,
+     "y": 600,
+     "tam": 2.8499999999999996,
+     "entra": 0.15,
+     "mexe": "",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -55,
+         -40
+        ],
+        [
+         55,
+         -40
+        ],
+        [
+         55,
+         105
+        ],
+        [
+         -55,
+         105
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -55,
+         -40
+        ],
+        [
+         -30,
+         -85
+        ],
+        [
+         30,
+         -85
+        ],
+        [
+         55,
+         -40
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "azul",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -30,
+         -100
+        ],
+        [
+         30,
+         -100
+        ],
+        [
+         30,
+         -85
+        ],
+        [
+         -30,
+         -85
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 6
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -55,
+         5
+        ],
+        [
+         55,
+         5
+        ],
+        [
+         55,
+         55
+        ],
+        [
+         -55,
+         55
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "azul",
+       "larg": 6
+      },
+      {
+       "f": "texto",
+       "x": 0,
+       "y": 38,
+       "txt": "LEITE",
+       "tam": 26,
+       "cor": "nenhuma",
+       "preenche": "branco",
+       "larg": 4
+      },
+      {
+       "f": "elipse",
+       "x": 0,
+       "y": 80,
+       "rx": 18,
+       "ry": 10,
+       "rot": 0,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 4
+      }
+     ],
+     "anim": "cai"
+    },
+    {
+     "tipo": "texto",
+     "txt": "NO FUNDO!",
+     "x": 560,
+     "y": 360,
+     "tam": 110,
+     "cor": "azul",
+     "entra": 0.35
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 320,
+     "olha": 1,
+     "pose_nome": "corre",
+     "olhos": "arregalados",
+     "boca": "aberta",
+     "corre": true,
+     "braco_e": "frente",
+     "braco_d": "tras",
+     "escala": 1.0
+    },
+    {
+     "tipo": "desenho",
+     "x": 730,
+     "y": 720,
+     "tam": 1.35,
+     "entra": 0.3,
+     "mexe": "",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -110,
+         -110
+        ],
+        [
+         110,
+         -110
+        ],
+        [
+         110,
+         110
+        ],
+        [
+         -110,
+         110
+        ]
+       ],
+       "cor": "nenhuma",
+       "preenche": "#f3ead2",
+       "larg": 4
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -30,
+         50
+        ],
+        [
+         30,
+         50
+        ],
+        [
+         110,
+         110
+        ],
+        [
+         -110,
+         110
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 6
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -110,
+         -110
+        ],
+        [
+         -30,
+         -50
+        ],
+        [
+         -30,
+         50
+        ],
+        [
+         -110,
+         110
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#8b5a2b",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         110,
+         -110
+        ],
+        [
+         30,
+         -50
+        ],
+        [
+         30,
+         50
+        ],
+        [
+         110,
+         110
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#8b5a2b",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -100,
+         -80
+        ],
+        [
+         -40,
+         -38
+        ],
+        [
+         -40,
+         -18
+        ],
+        [
+         -100,
+         -50
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "vermelho",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -100,
+         -20
+        ],
+        [
+         -40,
+         0
+        ],
+        [
+         -40,
+         20
+        ],
+        [
+         -100,
+         10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "amarelo",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -100,
+         40
+        ],
+        [
+         -40,
+         36
+        ],
+        [
+         -40,
+         50
+        ],
+        [
+         -100,
+         75
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "verde",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         100,
+         -80
+        ],
+        [
+         40,
+         -38
+        ],
+        [
+         40,
+         -18
+        ],
+        [
+         100,
+         -50
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "azul",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         100,
+         -20
+        ],
+        [
+         40,
+         0
+        ],
+        [
+         40,
+         20
+        ],
+        [
+         100,
+         10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "laranja",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         100,
+         40
+        ],
+        [
+         40,
+         36
+        ],
+        [
+         40,
+         50
+        ],
+        [
+         100,
+         75
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "vermelho",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -30,
+         -50
+        ],
+        [
+         30,
+         -50
+        ],
+        [
+         30,
+         50
+        ],
+        [
+         -30,
+         50
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 6
+      }
+     ],
+     "anim": "cresce"
+    },
+    {
+     "tipo": "ondas",
+     "x": 370,
+     "y": 690,
+     "ang": 0,
+     "alcance": 260,
+     "n": 3
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "desliza",
+   "duracao": 7
+  },
+  {
+   "camera": "afasta",
+   "foco": [
+    540,
+    560
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 540,
+     "olha": 1,
+     "pose_nome": "sussurro",
+     "olhos": "lado",
+     "sobrancelhas": "uma",
+     "boca": "sussurro",
+     "braco_d": [
+      95,
+      -150
+     ],
+     "escala": 1.15
+    },
+    {
+     "tipo": "texto",
+     "txt": "NINGUÉM\nPERCEBE",
+     "x": 289.96112640380863,
+     "y": 250,
+     "tam": 58,
+     "cor": "tinta",
+     "entra": 0.35
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "soco",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    600,
+    640
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 250,
+     "olha": 1,
+     "pose_nome": "encantado",
+     "olhos": "brilho",
+     "sobrancelhas": "levantadas",
+     "boca": "sorrisao",
+     "braco_e": "cima",
+     "braco_d": "cima",
+     "escala": 0.8
+    },
+    {
+     "tipo": "caixa_som",
+     "x": 600,
+     "y": 640,
+     "tam": 0.9199999999999999,
+     "entra": 0.1,
+     "anim": "desliza"
+    },
+    {
+     "tipo": "ondas",
+     "x": 270,
+     "y": 770,
+     "ang": 0,
+     "alcance": 260,
+     "n": 3
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "soco",
+   "duracao": 7
+  },
+  {
+   "camera": "lado",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 300,
+     "olha": 1,
+     "pose_nome": "calmo",
+     "boca": "sorriso",
+     "escala": 1.0
+    },
+    {
+     "tipo": "balao",
+     "x": 700,
+     "y": 480,
+     "w": 440,
+     "h": 320,
+     "cauda": [
+      420,
+      580
+     ],
+     "entra": 0.2
+    },
+    {
+     "tipo": "desenho",
+     "x": 700,
+     "y": 480,
+     "tam": 0.8999999999999999,
+     "entra": 0.45,
+     "mexe": "balanca",
+     "formas": [
+      {
+       "f": "circulo",
+       "x": 0,
+       "y": 0,
+       "r": 95,
+       "cor": "tinta",
+       "preenche": "vermelho",
+       "larg": 8
+      },
+      {
+       "f": "circulo",
+       "x": 0,
+       "y": 0,
+       "r": 78,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 6
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         0,
+         -72
+        ],
+        [
+         0,
+         -58
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 6
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         72,
+         0
+        ],
+        [
+         58,
+         0
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 6
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         0,
+         72
+        ],
+        [
+         0,
+         58
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 6
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -72,
+         0
+        ],
+        [
+         -58,
+         0
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 6
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         -50
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 8
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         0,
+         0
+        ],
+        [
+         35,
+         20
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 8
+      },
+      {
+       "f": "circulo",
+       "x": 0,
+       "y": 0,
+       "r": 8,
+       "cor": "tinta",
+       "preenche": "tinta",
+       "larg": 4
+      }
+     ],
+     "anim": "cresce"
+    },
+    {
+     "tipo": "texto",
+     "txt": "z",
+     "x": 430,
+     "y": 470,
+     "tam": 50,
+     "cor": "azul",
+     "entra": 0.3,
+     "rot": 0
+    },
+    {
+     "tipo": "texto",
+     "txt": "z",
+     "x": 475,
+     "y": 415,
+     "tam": 68,
+     "cor": "azul",
+     "entra": 0.6499999999999999,
+     "rot": 0
+    },
+    {
+     "tipo": "texto",
+     "txt": "z",
+     "x": 520,
+     "y": 360,
+     "tam": 86,
+     "cor": "azul",
+     "entra": 1.0,
+     "rot": 0
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    540,
+    560
+   ],
+   "susto": true,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 540,
+     "olha": 1,
+     "pose_nome": "eita",
+     "olhos": "arregalados",
+     "sobrancelhas": "preocupadas",
+     "boca": "dentes",
+     "suor": true,
+     "escala": 1.15
+    },
+    {
+     "tipo": "texto",
+     "txt": "O MAIS\nESTRANHO",
+     "x": 292.387527381897,
+     "y": 250,
+     "tam": 50,
+     "cor": "laranja",
+     "entra": 0.35
+    }
+   ],
+   "cenario": "cor_amarelo",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "soco",
+   "duracao": 7
+  },
+  {
+   "camera": "fixa",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "desenho",
+     "x": 540,
+     "y": 700,
+     "fixo": true,
+     "formas": [
+      {
+       "f": "linha",
+       "pts": [
+        [
+         0,
+         -330
+        ],
+        [
+         0,
+         420
+        ]
+       ],
+       "cor": "tinta",
+       "larg": 8
+      }
+     ]
+    },
+    {
+     "tipo": "desenho",
+     "x": 300,
+     "y": 620,
+     "tam": 1.125,
+     "entra": 0.2,
+     "mexe": "pulsa",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -70,
+         -40
+        ],
+        [
+         50,
+         -40
+        ],
+        [
+         50,
+         90
+        ],
+        [
+         -70,
+         90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#6a2c91",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -40,
+         15
+        ],
+        [
+         -10,
+         -15
+        ],
+        [
+         20,
+         15
+        ],
+        [
+         -10,
+         60
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#7fe3ff",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -40,
+         15
+        ],
+        [
+         20,
+         15
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 4
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         0,
+         -105
+        ],
+        [
+         108,
+         -105
+        ],
+        [
+         108,
+         -50
+        ],
+        [
+         0,
+         -50
+        ],
+        [
+         -20,
+         -78
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "vermelho",
+       "larg": 7
+      },
+      {
+       "f": "circulo",
+       "x": -8,
+       "y": -78,
+       "r": 5,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 4
+      },
+      {
+       "f": "texto",
+       "x": 55,
+       "y": -68,
+       "txt": "R$999",
+       "tam": 24,
+       "cor": "nenhuma",
+       "preenche": "amarelo",
+       "larg": 4
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         80,
+         20
+        ],
+        [
+         86,
+         34
+        ],
+        [
+         100,
+         40
+        ],
+        [
+         86,
+         46
+        ],
+        [
+         80,
+         60
+        ],
+        [
+         74,
+         46
+        ],
+        [
+         60,
+         40
+        ],
+        [
+         74,
+         34
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "amarelo",
+       "larg": 4
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -90,
+         -30
+        ],
+        [
+         -86,
+         -20
+        ],
+        [
+         -76,
+         -16
+        ],
+        [
+         -86,
+         -12
+        ],
+        [
+         -90,
+         -2
+        ],
+        [
+         -94,
+         -12
+        ],
+        [
+         -104,
+         -16
+        ],
+        [
+         -94,
+         -20
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "amarelo",
+       "larg": 4
+      }
+     ],
+     "anim": "pop"
+    },
+    {
+     "tipo": "xis",
+     "x": 300,
+     "y": 620,
+     "tam": 90,
+     "entra": 0.5,
+     "anim": "desliza"
+    },
+    {
+     "tipo": "bob",
+     "x": 780,
+     "olha": -1,
+     "pose_nome": "explica",
+     "fala": true,
+     "braco_d": "aponta",
+     "escala": 0.6,
+     "entra": 0.9
+    },
+    {
+     "tipo": "desenho",
+     "x": 780,
+     "y": 620,
+     "tam": 1.125,
+     "entra": 0.7,
+     "mexe": "pulsa",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -70,
+         -40
+        ],
+        [
+         50,
+         -40
+        ],
+        [
+         50,
+         90
+        ],
+        [
+         -70,
+         90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#f0c27a",
+       "larg": 7
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -70,
+         -10
+        ],
+        [
+         50,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         10,
+         -100
+        ],
+        [
+         100,
+         -100
+        ],
+        [
+         100,
+         -45
+        ],
+        [
+         10,
+         -45
+        ],
+        [
+         -10,
+         -72
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "verde",
+       "larg": 7
+      },
+      {
+       "f": "circulo",
+       "x": 2,
+       "y": -72,
+       "r": 5,
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 4
+      },
+      {
+       "f": "texto",
+       "x": 57,
+       "y": -62,
+       "txt": "R$1",
+       "tam": 30,
+       "cor": "nenhuma",
+       "preenche": "branco",
+       "larg": 4
+      },
+      {
+       "f": "texto",
+       "x": -10,
+       "y": 50,
+       "txt": "%",
+       "tam": 44,
+       "cor": "nenhuma",
+       "preenche": "vermelho",
+       "larg": 4
+      }
+     ],
+     "anim": "cresce"
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    600,
+    700
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 230,
+     "olha": 1,
+     "pose_nome": "curioso",
+     "olhos": "brilho",
+     "sobrancelhas": "uma",
+     "boca": "biquinho",
+     "braco_d": "rosto",
+     "escala": 0.6
+    },
+    {
+     "tipo": "desenho",
+     "x": 640,
+     "y": 600,
+     "tam": 2.8499999999999996,
+     "entra": 0.15,
+     "mexe": "",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -100,
+         -100
+        ],
+        [
+         100,
+         -100
+        ],
+        [
+         100,
+         100
+        ],
+        [
+         -100,
+         100
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c68642",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -85,
+         -85
+        ],
+        [
+         85,
+         -85
+        ],
+        [
+         85,
+         85
+        ],
+        [
+         -85,
+         85
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#f3ead2",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -75,
+         -70
+        ],
+        [
+         -45,
+         -70
+        ],
+        [
+         -45,
+         -20
+        ],
+        [
+         -75,
+         -20
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "vermelho",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -35,
+         -60
+        ],
+        [
+         -5,
+         -60
+        ],
+        [
+         -5,
+         -20
+        ],
+        [
+         -35,
+         -20
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "amarelo",
+       "larg": 5
+      },
+      {
+       "f": "circulo",
+       "x": 40,
+       "y": -40,
+       "r": 20,
+       "cor": "tinta",
+       "preenche": "laranja",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -100,
+         -20
+        ],
+        [
+         100,
+         -20
+        ],
+        [
+         100,
+         -8
+        ],
+        [
+         -100,
+         -8
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#8b5a2b",
+       "larg": 6
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -70,
+         20
+        ],
+        [
+         -30,
+         20
+        ],
+        [
+         -30,
+         70
+        ],
+        [
+         -70,
+         70
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "azul",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -15,
+         30
+        ],
+        [
+         20,
+         30
+        ],
+        [
+         20,
+         70
+        ],
+        [
+         -15,
+         70
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "verde",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         35,
+         10
+        ],
+        [
+         70,
+         10
+        ],
+        [
+         70,
+         70
+        ],
+        [
+         35,
+         70
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -100,
+         70
+        ],
+        [
+         100,
+         70
+        ],
+        [
+         100,
+         82
+        ],
+        [
+         -100,
+         82
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#8b5a2b",
+       "larg": 6
+      }
+     ],
+     "anim": "desliza"
+    },
+    {
+     "tipo": "xis",
+     "x": 640,
+     "y": 600,
+     "tam": 70,
+     "entra": 0.9
+    },
+    {
+     "tipo": "texto",
+     "txt": "OPÇÃO\nBARATA",
+     "x": 560,
+     "y": 360,
+     "tam": 110,
+     "cor": "verde",
+     "entra": 0.35
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "desliza",
+   "duracao": 7
+  },
+  {
+   "camera": "lado",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 320,
+     "olha": 1,
+     "pose_nome": "pensando",
+     "sobrancelhas": "uma",
+     "boca": "reta",
+     "braco_d": "rosto",
+     "escala": 1.0
+    },
+    {
+     "tipo": "desenho",
+     "x": 730,
+     "y": 720,
+     "tam": 1.35,
+     "entra": 0.3,
+     "mexe": "",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -72,
+         -108
+        ],
+        [
+         72,
+         -108
+        ],
+        [
+         72,
+         106
+        ],
+        [
+         -72,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#e8d9b5",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -58,
+         -94
+        ],
+        [
+         58,
+         -94
+        ],
+        [
+         58,
+         106
+        ],
+        [
+         -58,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#a0612b",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -44,
+         -80
+        ],
+        [
+         -6,
+         -80
+        ],
+        [
+         -6,
+         -10
+        ],
+        [
+         -44,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         6,
+         -80
+        ],
+        [
+         44,
+         -80
+        ],
+        [
+         44,
+         -10
+        ],
+        [
+         6,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -44,
+         10
+        ],
+        [
+         -6,
+         10
+        ],
+        [
+         -6,
+         90
+        ],
+        [
+         -44,
+         90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         6,
+         10
+        ],
+        [
+         44,
+         10
+        ],
+        [
+         44,
+         90
+        ],
+        [
+         6,
+         90
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#c47a3a",
+       "larg": 5
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -62,
+         -70
+        ],
+        [
+         -52,
+         -70
+        ],
+        [
+         -52,
+         -52
+        ],
+        [
+         -62,
+         -52
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 4
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -62,
+         62
+        ],
+        [
+         -52,
+         62
+        ],
+        [
+         -52,
+         80
+        ],
+        [
+         -62,
+         80
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 4
+      },
+      {
+       "f": "circulo",
+       "x": 44,
+       "y": 0,
+       "r": 9,
+       "cor": "tinta",
+       "preenche": "amarelo",
+       "larg": 5
+      },
+      {
+       "f": "circulo",
+       "x": 41,
+       "y": -3,
+       "r": 3,
+       "cor": "nenhuma",
+       "preenche": "branco",
+       "larg": 4
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -95,
+         106
+        ],
+        [
+         95,
+         106
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 8
+      }
+     ],
+     "anim": "cai"
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 380,
+     "olha": 1,
+     "pose_nome": "segura",
+     "boca": "sorriso",
+     "sobrancelhas": "levantadas",
+     "braco_d": [
+      150,
+      -40
+     ],
+     "escala": 1.0
+    },
+    {
+     "tipo": "desenho",
+     "x": 560,
+     "y": 740,
+     "tam": 0.8250000000000001,
+     "entra": 0.2,
+     "mexe": "balanca",
+     "formas": [
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -70,
+         -100
+        ],
+        [
+         70,
+         -100
+        ],
+        [
+         70,
+         100
+        ],
+        [
+         -70,
+         100
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#fff8d6",
+       "larg": 7
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -30,
+         -60
+        ],
+        [
+         50,
+         -60
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -30,
+         -20
+        ],
+        [
+         50,
+         -20
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -30,
+         20
+        ],
+        [
+         50,
+         20
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -30,
+         60
+        ],
+        [
+         50,
+         60
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -55,
+         -62
+        ],
+        [
+         -48,
+         -54
+        ],
+        [
+         -38,
+         -70
+        ]
+       ],
+       "cor": "verde",
+       "preenche": "nenhuma",
+       "larg": 6
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -55,
+         -22
+        ],
+        [
+         -48,
+         -14
+        ],
+        [
+         -38,
+         -30
+        ]
+       ],
+       "cor": "verde",
+       "preenche": "nenhuma",
+       "larg": 6
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -55,
+         12
+        ],
+        [
+         -41,
+         12
+        ],
+        [
+         -41,
+         26
+        ],
+        [
+         -55,
+         26
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 4
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -55,
+         52
+        ],
+        [
+         -41,
+         52
+        ],
+        [
+         -41,
+         66
+        ],
+        [
+         -55,
+         66
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "branco",
+       "larg": 4
+      }
+     ],
+     "anim": "cresce"
+    },
+    {
+     "tipo": "zigue",
+     "de": [
+      460,
+      650
+     ],
+     "ate": [
+      680,
+      650
+     ],
+     "cor": "laranja",
+     "entra": 0.3
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "soco",
+   "duracao": 7
+  },
+  {
+   "camera": "afasta",
+   "foco": [
+    600,
+    640
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 250,
+     "olha": 1,
+     "pose_nome": "bravo",
+     "sobrancelhas": "bravo",
+     "boca": "reta",
+     "braco_e": "cintura",
+     "braco_d": "cintura",
+     "escala": 0.8
+    },
+    {
+     "tipo": "placa",
+     "x": 600,
+     "y": 640,
+     "tam": 1.15,
+     "entra": 0.1,
+     "txt": "ROTEIRO DELE",
+     "w": 345.0,
+     "h": 138.0,
+     "txt_tam": 57.49999999999999,
+     "anim": "pop"
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "",
+   "duracao": 7
+  },
+  {
+   "camera": "aproxima",
+   "foco": [
+    540,
+    800
+   ],
+   "susto": false,
+   "elementos": [
+    {
+     "tipo": "bob",
+     "x": 300,
+     "olha": 1,
+     "pose_nome": "rindo",
+     "olhos": "feliz",
+     "sobrancelhas": "levantadas",
+     "boca": "grande",
+     "pula": true,
+     "escala": 1.0
+    },
+    {
+     "tipo": "amigo",
+     "x": 780,
+     "olha": -1,
+     "pose_nome": "surpreso",
+     "olhos": "arregalados",
+     "sobrancelhas": "levantadas",
+     "boca": "o",
+     "entra": 0.25,
+     "escala": 1.0
+    },
+    {
+     "tipo": "desenho",
+     "x": 540,
+     "y": 990,
+     "tam": 0.75,
+     "entra": 0.3,
+     "mexe": "balanca",
+     "formas": [
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -110,
+         -80
+        ],
+        [
+         -92,
+         -80
+        ],
+        [
+         -78,
+         -50
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 7
+      },
+      {
+       "f": "poligono",
+       "pts": [
+        [
+         -80,
+         -50
+        ],
+        [
+         90,
+         -50
+        ],
+        [
+         70,
+         30
+        ],
+        [
+         -60,
+         30
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "#9ec9e8",
+       "larg": 7
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -40,
+         -50
+        ],
+        [
+         -28,
+         30
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         0,
+         -50
+        ],
+        [
+         4,
+         30
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         40,
+         -50
+        ],
+        [
+         36,
+         30
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -72,
+         -10
+        ],
+        [
+         80,
+         -10
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 5
+      },
+      {
+       "f": "linha",
+       "pts": [
+        [
+         -60,
+         30
+        ],
+        [
+         -66,
+         55
+        ],
+        [
+         75,
+         55
+        ]
+       ],
+       "cor": "tinta",
+       "preenche": "nenhuma",
+       "larg": 7
+      },
+      {
+       "f": "circulo",
+       "x": -45,
+       "y": 75,
+       "r": 14,
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 6
+      },
+      {
+       "f": "circulo",
+       "x": 55,
+       "y": 75,
+       "r": 14,
+       "cor": "tinta",
+       "preenche": "cinza",
+       "larg": 6
+      }
+     ],
+     "anim": "cai"
+    },
+    {
+     "tipo": "interrogacao",
+     "x": 320,
+     "y": 330,
+     "tam": 150,
+     "entra": 0.4
+    },
+    {
+     "tipo": "texto",
+     "txt": "E VOCÊ?",
+     "x": 560,
+     "y": 334.5,
+     "tam": 110,
+     "cor": "laranja",
+     "entra": 0.35
+    }
+   ],
+   "cenario": "supermercado",
+   "clima": "",
+   "corpo": "vivo",
+   "transicao": "iris",
+   "duracao": 7
+  }
+ ]
+}
